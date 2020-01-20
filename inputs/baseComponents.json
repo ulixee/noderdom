@@ -1,0 +1,169 @@
+{
+  "interfaces": {
+    "EventListenerObject": {
+      "name": "EventListenerObject",
+      "methods": {
+        "method": {
+          "handleEvent": {
+            "name": "handleEvent",
+            "signature": [
+              {
+                "type": "void",
+                "param": [
+                  {
+                    "name": "evt",
+                    "type": "Event"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "no-interface-object": 1
+    },
+    "HTMLCollectionOf": {
+      "name": "HTMLCollectionOf",
+      "type-parameters": [
+        {
+          "name": "T",
+          "extends": "Element"
+        }
+      ],
+      "exposed": "Window",
+      "extends": "HTMLCollection",
+      "methods": {
+        "method": {
+          "item": {
+            "getter": 1,
+            "signature": [
+              {
+                "nullable": 1,
+                "type": "T",
+                "param": [
+                  {
+                    "name": "index",
+                    "type": "unsigned long"
+                  }
+                ]
+              }
+            ],
+            "specs": "html5",
+            "name": "item"
+          },
+          "namedItem": {
+            "name": "namedItem",
+            "signature": [
+              {
+                "name": "namedItem",
+                "type": [
+                  {
+                    "type": "T"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "param": [
+                  {
+                    "name": "name",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "no-interface-object": 0
+    },
+    "NodeListOf": {
+      "name": "NodeListOf",
+      "type-parameters": [
+        {
+          "name": "TNode",
+          "extends": "Node"
+        }
+      ],
+      "exposed": "Window",
+      "extends": "NodeList",
+      "properties": {
+        "property": {
+          "length": {
+            "name": "length",
+            "type": "number"
+          }
+        }
+      },
+      "methods": {
+        "method": {
+          "item": {
+            "name": "item",
+            "signature": [
+              {
+                "name": "item",
+                "type": "TNode",
+                "param": [
+                  {
+                    "name": "item",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "no-interface-object": 0,
+      "anonymous-methods": {
+        "method": [
+          {
+            "signature": [
+              {
+                "type": "TNode",
+                "param": [
+                  {
+                    "name": "index",
+                    "type": "number"
+                  }
+                ]
+              }
+            ],
+            "getter": 1,
+            "exposed": "Window"
+          }
+        ]
+      },
+      "iterator": {
+        "kind": "iterable",
+        "type": [
+          {
+            "type": "TNode"
+          }
+        ]
+      }
+    }
+  },
+  "typedefs": [
+    {
+      "new-type": "EventListenerOrEventListenerObject",
+      "type": ["EventListener", "EventListenerObject"]
+    },
+    {
+      "new-type": "UnsupportedFeature",
+      "type": "void"
+    },
+    {
+      "new-type": "CanvasRenderingContext2D",
+      "type": "UnsupportedFeature"
+    },
+    {
+      "new-type": "WebGLRenderingContext",
+      "type": "UnsupportedFeature"
+    },
+    {
+      "new-type": "WindowProxy",
+      "type": "UnsupportedFeature"
+    }
+  ]
+}
