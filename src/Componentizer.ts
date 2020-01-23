@@ -3,7 +3,7 @@ import * as Types from './types';
 import { merge, resolveExposure } from './helpers';
 import Components from './Components';
 import ElementsMeta from './ElementsMeta';
-import BaseComponents from './BaseComponents';
+import ComponentOverrides from './ComponentOverrides';
 
 export default class Componentizer {
   public components: Components;
@@ -12,12 +12,12 @@ export default class Componentizer {
   private callbackInterfaces: Record<string, Types.Interface> = {};
   private dictionaries: Record<string, Types.Dictionary> = {};
   private enums: Record<string, Types.Enum> = {};
-  private interfaces: Record<string, Types.Interface> = BaseComponents.interfaces;
+  private interfaces: Record<string, Types.Interface> = ComponentOverrides.interfaces;
   private mixins: Record<string, Types.Interface> = {};
-  private typedefs: Types.TypeDef[] = BaseComponents.typedefs;
+  private typedefs: Types.TypeDef[] = ComponentOverrides.typedefs;
   private namespaces: Types.Interface[] = [];
 
-  private partialInterfaces: Types.Interface[] = [];
+  private partialInterfaces: Types.Interface[] = ComponentOverrides.partialInterfaces;
   private partialMixins: Types.Interface[] = [];
   private partialDictionaries: Types.Dictionary[] = [];
   private includes: Types.Include[] = [];
@@ -76,6 +76,12 @@ export default class Componentizer {
         merge(base.constants, partial.constants, true);
         merge(base.methods, partial.methods, true);
         merge(base.properties, partial.properties, true);
+        if (partial['type-parameters']) {
+          base['type-parameters'] = partial['type-parameters'];
+        }
+        if (partial.extends && partial.extends !== 'Object') {
+          base.extends = partial.extends;
+        }
       }
     }
 
@@ -97,7 +103,7 @@ export default class Componentizer {
     }
 
     for (const include of this.includes) {
-      const target = this.interfaces![include.target];
+      const target = this.interfaces[include.target];
       if (target) {
         if (!target.implements) {
           target.implements = [include.includes];

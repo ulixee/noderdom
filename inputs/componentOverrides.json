@@ -1,0 +1,120 @@
+{
+  "interfaces": {
+    "EventListenerObject": {
+      "name": "EventListenerObject",
+      "methods": {
+        "method": {
+          "handleEvent": {
+            "name": "handleEvent",
+            "signature": [
+              {
+                "type": "void",
+                "param": [
+                  {
+                    "name": "evt",
+                    "type": "Event"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "no-interface-object": 1
+    }
+  },
+  "partialInterfaces": [
+    {
+      "name": "HTMLCollection",
+      "type-parameters": [
+        {
+          "name": "T",
+          "extends": "Element",
+          "default": "Element"
+        }
+      ],
+      "methods": {
+        "method": {
+          "namedItem": {
+            "signature": [
+              {
+                "_updateIndex": 0,
+                "type": "T"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "NodeList",
+      "type-parameters": [
+        {
+          "name": "T",
+          "extends": "Node",
+          "default": "Node"
+        }
+      ],
+      "methods": {
+        "method": {
+          "item": {
+            "signature": [
+              {
+                "_updateIndex": 0,
+                "type": "T"
+              }
+            ]
+          }
+        }
+      },
+      "no-interface-object": 0,
+      "anonymous-methods": {
+        "method": [
+          {
+            "_updateIndex": 0,
+            "signature": [
+              {
+                "_updateIndex": 0,
+                "type": "T"
+              }
+            ]
+          }
+        ]
+      },
+      "iterator": {
+        "type": [
+          {
+            "_updateIndex": 0,
+            "type": "T"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HTMLFormControlsCollection",
+      "extends": "HTMLCollectionBase"
+    }
+  ],
+  "typedefs": [
+    {
+      "new-type": "EventListenerOrEventListenerObject",
+      "type": ["EventListener", "EventListenerObject"]
+    },
+    {
+      "new-type": "UnsupportedFeature",
+      "type": "void"
+    },
+    {
+      "new-type": "CanvasRenderingContext2D",
+      "type": "UnsupportedFeature"
+    },
+    {
+      "new-type": "WebGLRenderingContext",
+      "type": "UnsupportedFeature"
+    },
+    {
+      "new-type": "WindowProxy",
+      "type": "UnsupportedFeature"
+    }
+  ]
+}

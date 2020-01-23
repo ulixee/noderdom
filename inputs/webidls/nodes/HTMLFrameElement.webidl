@@ -1,3 +1,5 @@
+// https://dxr.mozilla.org/mozilla-central/source/dom/webidl/HTMLFrameElement.webidl
+
 [Exposed=Window,
  HTMLConstructor]
 interface HTMLFrameElement : HTMLElement {

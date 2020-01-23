@@ -1,7 +1,7 @@
 import Components from './Components';
 import * as Browser from './types';
 import { filter, exposesTo, followTypeReferences, mapToArray, arrayToMap } from './helpers';
-import { baseComponentNames } from './BaseComponents';
+import { baseComponentNames } from './ComponentOverrides';
 
 export default class ComponentCleaner {
   private referencedIDLTypes: Set<string>;

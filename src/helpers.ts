@@ -41,8 +41,6 @@ export const baseTypeConversionMap = new Map<string, string>([
   ['EventHandler', 'EventHandler'],
 ]);
 
-export const interfacesConflictingWithBaseType: Set<string> = new Set(['HTMLFormControlsCollection']);
-
 export function filter<T>(obj: T, fn: (o: any, n: string | undefined) => boolean): T {
   if (typeof obj === 'object') {
     if (Array.isArray(obj)) {
@@ -95,23 +93,33 @@ export function merge<T>(target: T, src: T, shallow?: boolean): T {
   return target;
 }
 
-function mergeNamedArrays<T extends { name: string; 'new-type': string }>(srcProp: T[], targetProp: T[]) {
+function mergeNamedArrays<T extends { name: string; 'new-type': string }>(targetProp: T[], srcProp: T[]) {
   const mapped: any = {};
-  for (const e1 of srcProp) {
-    const name = e1.name || e1['new-type'];
-    if (name) {
-      mapped[name] = e1;
-    }
-  }
+  const indexed: any = {};
 
-  for (const e2 of targetProp) {
-    const name = e2.name || e2['new-type'];
-    if (name && mapped[name]) {
-      merge(mapped[name], e2);
-    } else {
-      srcProp.push(e2);
+  targetProp.forEach((t, index) => {
+    const name = t.name || t['new-type'];
+    if (name) {
+      mapped[name] = t;
     }
-  }
+    indexed[index.toString()] = t;
+  });
+
+  srcProp.forEach(s => {
+    // @ts-ignore
+    const updateIndex = `${s._updateIndex}`;
+    // @ts-ignore
+    delete s._updateIndex;
+
+    const name = s.name || s['new-type'];
+    if (name && mapped[name]) {
+      merge(mapped[name], s);
+    } else if (updateIndex && indexed[updateIndex]) {
+      merge(indexed[updateIndex], s);
+    } else {
+      targetProp.push(s);
+    }
+  });
 }
 
 export function distinct<T>(a: T[]): T[] {
@@ -154,6 +162,9 @@ export function mapDefined<T, U>(array: ReadonlyArray<T> | undefined, mapFn: (x:
 export function toNameMap<T extends { name: string }>(array: T[]) {
   const result: Record<string, T> = {};
   for (const value of array) {
+    if (!value.name) {
+      console.log('value: ', value);
+    }
     result[value.name] = value;
   }
   return result;
@@ -267,8 +278,8 @@ export function compareName(c1: { name: string }, c2: { name: string }) {
 }
 
 function typeParameterWithDefault(type: Types.TypeParameter, convertToIType: boolean = false) {
-  const extendsStr = (type.extends ? ` extends ${convertToIType ? toIType(type.extends) : type.extends}` : '');
-  const defaultStr = (type.default ? ` = ${type.default}` : '');
+  const extendsStr = type.extends ? ` extends ${convertToIType ? toIType(type.extends) : type.extends}` : '';
+  const defaultStr = type.default ? ` = ${convertToIType ? toIType(type.default) : type.default}` : '';
   return `${type.name}${extendsStr}${defaultStr}`;
 }
 
@@ -281,7 +292,7 @@ export function getNameWithTypeParameter(
   if (!i['type-parameters']) {
     return iName;
   }
-  return `${iName}<${i['type-parameters'].map(p => typeParameterWithDefault(p, convertToIType)).join(', ')}>`;
+  return `${iName}<${i['type-parameters'].map(p => typeParameterWithDefault(p, true)).join(', ')}>`;
 }
 
 export function markAsDeprecated(i: Types.Interface) {
@@ -296,10 +307,9 @@ export function markAsDeprecated(i: Types.Interface) {
 ///////
 
 export function toIType(type: string) {
-  if (['Iterable', 'Promise'].includes(type)) return type;
+  if (['Iterable', 'Promise', 'ArrayBufferView', 'ArrayBuffer', 'T'].includes(type)) return type;
   if (type[0] === type[0].toLowerCase()) return type;
-  const iType = type[0] === 'I' && type[1] === type[1].toUpperCase() ? type : `I${type}`;
-  return iType;
+  return type[0] === 'I' && type[1] === type[1].toUpperCase() ? type : `I${type}`;
 }
 
 export function makeNullable(originalType: string) {

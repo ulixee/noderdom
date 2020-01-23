@@ -13,3 +13,11 @@ Generate classes and mixins to current folder:
 ```
 noderdom-scaffolding generate
 ```
+
+# ToDo
+
+- Add DynamicHandler (get/set/run) that is default for each method. By default, not-implemented error will be thrown.
+
+- Do away with idea of CLI and instead add scripts along with package.json commands.
+
+- Extract documentation from Mozilla's MDN.

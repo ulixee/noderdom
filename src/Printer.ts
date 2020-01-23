@@ -76,28 +76,24 @@ export default class Printer {
     method: {
       signature?: Types.Signature[];
     },
-    prefix: string,
     name: string,
     components: Components,
-    convertToIType: boolean = false,
   ) {
     if (method.signature) {
-      method.signature.forEach(s => this.emitSignature(s, prefix, name, components, convertToIType));
+      method.signature.forEach(s => this.printSignature(s, name, components));
     }
   }
 
-  private emitSignature(
+  private printSignature(
     s: Types.Signature,
-    prefix: string | undefined,
     name: string | undefined,
     components: Components,
-    convertToIType: boolean = false,
   ) {
-    const paramsString = s.param ? components.paramsToString(s.param, convertToIType) : '';
-    let returnType = components.convertDomTypeToTsType(s, convertToIType);
+    const paramsString = s.param ? components.paramsToString(s.param, true) : '';
+    let returnType = components.convertDomTypeToTsType(s, true);
     returnType = s.nullable ? makeNullable(returnType) : returnType;
     if (s.deprecated) this.printDepreciated();
-    this.printLine(`${prefix || ''}${name || ''}(${paramsString}): ${returnType};`);
+    this.printLine(`${name || ''}(${paramsString}): ${returnType};`);
   }
 
   private getIndentString(level: number) {

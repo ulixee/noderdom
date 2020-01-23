@@ -1,4 +1,5 @@
 // https://dom.spec.whatwg.org/#element
+
 [Exposed=Window]
 interface Element : Node {
   readonly attribute DOMString? namespaceURI;

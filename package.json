@@ -1,8 +1,8 @@
 {
-  "name": "noderdom-scafolding",
+  "name": "noderdom-scaffolding",
   "version": "0.3.1",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
-  "homepage": "https://github.com/ulixee/noderdom-scafolding",
+  "homepage": "https://github.com/ulixee/noderdom-scaffolding",
   "author": {
     "name": "Caleb Clark"
   },
@@ -16,6 +16,17 @@
     "DOMParser",
     "XMLSerializer"
   ],
+  "scripts": {
+    "test": "NODE_ENV=test jest --runInBand",
+    "lint": "tslint --project ./",
+    "build": "tsc",
+    "clean": "tsc --build --clean",
+    "develop": "ts-node index.ts",
+    "prepublishOnly": "npm run lint && npm run build && npm test"
+  },
+  "bin": {
+    "noderdom-scaffolding": "./bin/cli.js"
+  },
   "dependencies": {
     "@types/parse5": "^5.0.2",
     "@types/underscore": "^1.9.4",
@@ -32,7 +43,7 @@
     "jest-summary-reporter": "^0.0.2",
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
-    "ts-node": "^7.0.1",
+    "ts-node": "^8.6.2",
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
@@ -41,18 +52,11 @@
     "tslint-microsoft-contrib": "^6.2.0",
     "tslint-no-circular-imports": "^0.7.0",
     "tslint-plugin-prettier": "^2.1.0",
-    "typescript": "^3.5.1",
+    "typescript": "^3.7.5",
     "webidl2": "^23.10.1"
-  },
-  "scripts": {
-    "test": "NODE_ENV=test jest --runInBand",
-    "lint": "tslint --project ./",
-    "build": "tsc",
-    "clean": "tsc --build --clean",
-    "prepublishOnly": "npm run lint && npm run build && npm test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ulixee/noderdom-scafolding"
+    "url": "git://github.com/ulixee/noderdom-scaffolding"
   }
 }

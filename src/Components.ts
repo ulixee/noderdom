@@ -30,7 +30,12 @@ const eventTypeMap: Record<string, string> = {
 };
 
 const defaultEventType = 'Event';
-const tsKeywords = new Set(['default', 'delete', 'continue']);
+const tsKeywordConverter: Record<string, string> = {
+  default: 'defaultz',
+  delete: 'deletez',
+  continue: 'continuez',
+  arguments: 'args',
+};
 
 export default class Components implements IComponents {
   public interfaces: Record<string, Types.Interface> = {};
@@ -312,6 +317,10 @@ export default class Components implements IComponents {
     return ps.map(p => this.paramToString(p, convertToIType, isUnused)).join(', ');
   }
 
+  public paramNames(ps: Types.Param[]) {
+    return ps.map(p => this.adjustParamName(p.name));
+  }
+
   private paramToString(p: Types.Param, convertToIType: boolean = false, isUnused: boolean = false) {
     if (p.type === 'Promise' && !Array.isArray(p.subtype)) {
       p = { name: p.name, type: [p.subtype!, p] };
@@ -332,7 +341,8 @@ export default class Components implements IComponents {
 
   /// Parameter cannot be named "default" in JavaScript/Typescript so we need to rename it.
   private adjustParamName(name: string, isUnused: boolean = false) {
-    return tsKeywords.has(name) || isUnused ? `_${name}` : name;
+    const safe = tsKeywordConverter[name] || name;
+    return isUnused ? `${safe}_` : safe;
   }
 
   private getGenericEventType(baseName: string, i: Types.Interface) {

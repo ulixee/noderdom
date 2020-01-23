@@ -25,4 +25,4 @@ dictionary BlobPropertyBag {
 };
 
 // for some reason BlobPart isn't needed
-// typedef (BufferSource or Blob or USVString) BlobPart;
+typedef (BufferSource or Blob or USVString) BlobPart;

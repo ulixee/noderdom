@@ -2,10 +2,17 @@ import * as Fs from 'fs';
 import * as Path from 'path';
 import webIDLFilenames from './inputs/webidls';
 import Componentizer from './src/Componentizer';
-import TsEmitter from './src/TsEmitter';
+import TsExtractor from './src/TsExtractor';
 
 async function run() {
   const outputsDir = Path.join(__dirname, 'outputs');
+  const compiledDir = Path.join(__dirname, 'compiled');
+
+  if (!Fs.existsSync(outputsDir)) Fs.mkdirSync(outputsDir);
+  if (!Fs.existsSync(compiledDir)) Fs.mkdirSync(compiledDir);
+
+  const internalHandlerFilepath = Path.join(__dirname, 'src/export/InternalHandler.ts');
+  Fs.copyFileSync(internalHandlerFilepath, `${outputsDir}/InternalHandler.ts`);
 
   // load componentizer
   const componentizer = new Componentizer();
@@ -19,7 +26,7 @@ async function run() {
   const components = componentizer.run();
 
   // save components.json in case we want to investigate
-  const componentsOutputPath = Path.join(outputsDir, 'components.json');
+  const componentsOutputPath = Path.join(compiledDir, 'components.json');
   Fs.writeFileSync(componentsOutputPath, JSON.stringify(components, null, 2));
 
   // cleanup components (i.e., remove unused types)
@@ -32,16 +39,16 @@ async function run() {
     '\n',
   ].join('\n');
 
-  const typescriptEmitter = new TsEmitter(components);
+  const typescriptExtractor = new TsExtractor(components);
 
-  const typescriptTypes = typescriptEmitter.emitTypes();
+  const typescriptTypes = typescriptExtractor.extractTypes();
   const outputTypes = [
     '// TYPES //////////////////////////////////////////////////////////////////////////////////////////////////////////\n',
     typescriptTypes.map(t => t.code).join('\n\n'),
     '\n',
   ].join('\n');
 
-  const typescriptInterfaces = typescriptEmitter.emitInterfaces();
+  const typescriptInterfaces = typescriptExtractor.extractInterfaces();
   const outputInterfaces = [
     '// BASIC INTERFACES ///////////////////////////////////////////////////////////////////////////////////////////////\n',
     typescriptInterfaces
@@ -53,7 +60,7 @@ async function run() {
 
   const outputHTMLElements = [
     '// HTML ELEMENTS //////////////////////////////////////////////////////////////////////////////////////////////////\n',
-    typescriptEmitter.emitTagNameMap('HTML').join('\n\n'),
+    typescriptExtractor.extractTagNameMap('HTML').join('\n\n'),
     typescriptInterfaces
       .filter(i => i.elementNamespace === 'HTML')
       .map(i => i.code)
@@ -63,7 +70,7 @@ async function run() {
 
   const outputSVGElements = [
     '// SVG ELEMENTS ///////////////////////////////////////////////////////////////////////////////////////////////////\n',
-    typescriptEmitter.emitTagNameMap('SVG').join('\n\n'),
+    typescriptExtractor.extractTagNameMap('SVG').join('\n\n'),
     typescriptInterfaces
       .filter(i => i.elementNamespace === 'SVG')
       .map(i => i.code)
@@ -74,17 +81,21 @@ async function run() {
   const output = [outputIntro, outputTypes, outputInterfaces, outputHTMLElements, outputSVGElements].join('');
   Fs.writeFileSync(`${outputsDir}/interfaces.ts`, output);
 
-  const mixinsOutputDir = Path.join(outputsDir, 'mixins');
-  const typescriptMixins = typescriptEmitter.emitMixins();
+  const mixinsDir = Path.join(outputsDir, 'mixins');
+  if (!Fs.existsSync(mixinsDir)) Fs.mkdirSync(mixinsDir);
+
+  const typescriptMixins = typescriptExtractor.extractMixins();
   typescriptMixins.forEach(c => {
-    const mixinOutputPath = Path.join(mixinsOutputDir, `${c.name}.ts`);
+    const mixinOutputPath = Path.join(mixinsDir, `${c.name}.ts`);
     Fs.writeFileSync(mixinOutputPath, `${c.code}\n`);
   });
 
-  const classesOutputDir = Path.join(outputsDir, 'classes');
-  const typescriptClasses = typescriptEmitter.emitClasses();
+  const classesDir = Path.join(outputsDir, 'classes');
+  if (!Fs.existsSync(classesDir)) Fs.mkdirSync(classesDir);
+
+  const typescriptClasses = typescriptExtractor.extractClasses();
   typescriptClasses.forEach(c => {
-    const classOutputPath = Path.join(classesOutputDir, `${c.name}.ts`);
+    const classOutputPath = Path.join(classesDir, `${c.name}.ts`);
     Fs.writeFileSync(classOutputPath, `${c.code}\n`);
   });
 }
