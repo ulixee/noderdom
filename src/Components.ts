@@ -30,12 +30,7 @@ const eventTypeMap: Record<string, string> = {
 };
 
 const defaultEventType = 'Event';
-const tsKeywordConverter: Record<string, string> = {
-  default: 'defaultz',
-  delete: 'deletez',
-  continue: 'continuez',
-  arguments: 'args',
-};
+const reservedTsKeywords: Set<string> = new Set(['default', 'delete', 'continue', 'arguments']);
 
 export default class Components implements IComponents {
   public interfaces: Record<string, Types.Interface> = {};
@@ -341,8 +336,8 @@ export default class Components implements IComponents {
 
   /// Parameter cannot be named "default" in JavaScript/Typescript so we need to rename it.
   private adjustParamName(name: string, isUnused: boolean = false) {
-    const safe = tsKeywordConverter[name] || name;
-    return isUnused ? `${safe}_` : safe;
+    if (reservedTsKeywords.has(name)) throw new Error(`${name} is a reserved typescript keyword`);
+    return isUnused ? `${name}_` : name;
   }
 
   private getGenericEventType(baseName: string, i: Types.Interface) {

@@ -1,25 +1,24 @@
 import InternalHandler from '../InternalHandler';
 import { ISVGStringList, ISVGTests } from '../interfaces';
 
-type Constructor<T = {}> = new (...args: any[]) => T;
+export default class SVGTests implements ISVGTests {
+  public get requiredExtensions(): ISVGStringList {
+    return InternalHandler.get<ISVGTests, ISVGStringList>(this, 'requiredExtensions');
+  }
 
-export default function SVGTests<TBase extends Constructor>(base: TBase) {
-  return class extends base implements ISVGTests {
-    public get requiredExtensions(): ISVGStringList {
-      return InternalHandler.get<ISVGTests, ISVGStringList>(this, 'requiredExtensions');
-    }
-
-    public get systemLanguage(): ISVGStringList {
-      return InternalHandler.get<ISVGTests, ISVGStringList>(this, 'systemLanguage');
-    }
-  };
+  public get systemLanguage(): ISVGStringList {
+    return InternalHandler.get<ISVGTests, ISVGStringList>(this, 'systemLanguage');
+  }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpSVGTestsKeys: Set<string> = new Set([]);
+export interface ISVGTestsProperties {
+  requiredExtensions?: ISVGStringList;
+  systemLanguage?: ISVGStringList;
+}
 
-export interface ISVGTestsRps {
-  readonly requiredExtensions?: ISVGStringList;
-  readonly systemLanguage?: ISVGStringList;
+export interface ISVGTestsReadonlyProperties {
+  requiredExtensions?: ISVGStringList;
+  systemLanguage?: ISVGStringList;
 }

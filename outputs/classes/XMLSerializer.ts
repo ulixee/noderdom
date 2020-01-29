@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { INode, IXMLSerializer } from '../interfaces';
 
 export default class XMLSerializer implements IXMLSerializer {
@@ -7,8 +8,14 @@ export default class XMLSerializer implements IXMLSerializer {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpXMLSerializerKeys: Set<string> = new Set([]);
+export interface IXMLSerializerProperties {}
 
-export interface IXMLSerializerRps {}
+export interface IXMLSerializerReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfXMLSerializer } = InternalStateGenerator<
+  IXMLSerializer,
+  IXMLSerializerProperties,
+  IXMLSerializerReadonlyProperties
+>('XMLSerializer');

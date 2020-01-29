@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ILocation } from '../interfaces';
 
 export default class Location implements ILocation {
-  protected readonly _: ILocationRps = {};
-
-  // properties
-
   public get hash(): string {
     return InternalHandler.get<ILocation, string>(this, 'hash');
   }
@@ -93,21 +90,26 @@ export default class Location implements ILocation {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpLocationKeys: Set<string> = new Set([]);
-
-export interface ILocationRps {
-  readonly origin?: string;
+export interface ILocationProperties {
+  hash?: string;
+  host?: string;
+  hostname?: string;
+  href?: string;
+  origin?: string;
+  pathname?: string;
+  port?: string;
+  protocol?: string;
+  search?: string;
 }
 
-export function setLocationRps(instance: ILocation, data: ILocationRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpLocationKeys.has(key)) {
-      throw new Error(`${key} is not a property of Location`);
-    }
-    properties[key] = value;
-  });
+export interface ILocationReadonlyProperties {
+  origin?: string;
 }
+
+export const { getState, setState, setReadonlyOfLocation } = InternalStateGenerator<
+  ILocation,
+  ILocationProperties,
+  ILocationReadonlyProperties
+>('Location');

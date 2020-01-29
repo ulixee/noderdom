@@ -18,11 +18,8 @@ interface Document : Node {
   HTMLCollection getElementsByTagNameNS(DOMString? namespace, DOMString localName);
   HTMLCollection getElementsByClassName(DOMString classNames);
 
-//  We don't support the last argument yet
-//  [CEReactions, NewObject] Element createElement(DOMString localName, optional ElementCreationOptions options);
-//  [CEReactions, NewObject] Element createElementNS(DOMString? namespace, DOMString qualifiedName, optional ElementCreationOptions options);
-  [CEReactions, NewObject] Element createElement(DOMString localName);
-  [CEReactions, NewObject] Element createElementNS(DOMString? namespace, DOMString qualifiedName);
+  [CEReactions, NewObject] Element createElement(DOMString localName, optional ElementCreationOptions options);
+  [CEReactions, NewObject] Element createElementNS(DOMString? namespace, DOMString qualifiedName, optional ElementCreationOptions options);
   [NewObject] DocumentFragment createDocumentFragment();
   [NewObject] Text createTextNode(DOMString data);
   [NewObject] CDATASection createCDATASection(DOMString data);
@@ -57,14 +54,14 @@ enum DocumentReadyState { "loading", "interactive", "complete" };
 partial interface Document {
   // resource metadata management
   [PutForwards=href, Unforgeable] readonly attribute Location? location;
-//  attribute USVString domain;
+  //  attribute USVString domain;
   readonly attribute USVString referrer;
   attribute USVString cookie;
   readonly attribute DOMString lastModified;
   readonly attribute DocumentReadyState readyState;
 
   // DOM tree accessors
-//  getter object (DOMString name);
+  //  getter object (DOMString name);
   [CEReactions] attribute DOMString title;
   [CEReactions] attribute DOMString dir;
   [CEReactions] attribute HTMLElement? body;

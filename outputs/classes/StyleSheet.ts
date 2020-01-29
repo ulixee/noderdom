@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IElement, IProcessingInstruction, ICSSStyleSheet, IMediaList, IStyleSheet } from '../interfaces';
 
 export default class StyleSheet implements IStyleSheet {
-  protected readonly _: IStyleSheetRps = {};
-
-  // properties
-
   public get disabled(): boolean {
     return InternalHandler.get<IStyleSheet, boolean>(this, 'disabled');
   }
@@ -39,26 +36,29 @@ export default class StyleSheet implements IStyleSheet {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpStyleSheetKeys: Set<string> = new Set([]);
-
-export interface IStyleSheetRps {
-  readonly href?: string | null;
-  readonly media?: IMediaList;
-  readonly ownerNode?: IElement | IProcessingInstruction | null;
-  readonly parentStyleSheet?: ICSSStyleSheet | null;
-  readonly title?: string | null;
-  readonly type?: string;
+export interface IStyleSheetProperties {
+  disabled?: boolean;
+  href?: string | null;
+  media?: IMediaList;
+  ownerNode?: IElement | IProcessingInstruction | null;
+  parentStyleSheet?: ICSSStyleSheet | null;
+  title?: string | null;
+  type?: string;
 }
 
-export function setStyleSheetRps(instance: IStyleSheet, data: IStyleSheetRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpStyleSheetKeys.has(key)) {
-      throw new Error(`${key} is not a property of StyleSheet`);
-    }
-    properties[key] = value;
-  });
+export interface IStyleSheetReadonlyProperties {
+  href?: string | null;
+  media?: IMediaList;
+  ownerNode?: IElement | IProcessingInstruction | null;
+  parentStyleSheet?: ICSSStyleSheet | null;
+  title?: string | null;
+  type?: string;
 }
+
+export const { getState, setState, setReadonlyOfStyleSheet } = InternalStateGenerator<
+  IStyleSheet,
+  IStyleSheetProperties,
+  IStyleSheetReadonlyProperties
+>('StyleSheet');

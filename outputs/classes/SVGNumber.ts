@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ISVGNumber } from '../interfaces';
 
 export default class SVGNumber implements ISVGNumber {
@@ -11,8 +12,16 @@ export default class SVGNumber implements ISVGNumber {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpSVGNumberKeys: Set<string> = new Set([]);
+export interface ISVGNumberProperties {
+  value?: number;
+}
 
-export interface ISVGNumberRps {}
+export interface ISVGNumberReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfSVGNumber } = InternalStateGenerator<
+  ISVGNumber,
+  ISVGNumberProperties,
+  ISVGNumberReadonlyProperties
+>('SVGNumber');

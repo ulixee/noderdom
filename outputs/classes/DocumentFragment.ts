@@ -1,26 +1,27 @@
-import { IDocumentFragment } from '../interfaces';
-import Node, { INodeRps, rpNodeKeys } from './Node';
-import NonElementParentNode, { INonElementParentNodeRps, rpNonElementParentNodeKeys } from '../mixins/NonElementParentNode';
-import ParentNode, { IParentNodeRps, rpParentNodeKeys } from '../mixins/ParentNode';
+import ClassMixer from '../ClassMixer';
+import Constructable from '../Constructable';
+import InternalStateGenerator from '../InternalStateGenerator';
+import { INode, INonElementParentNode, IParentNode, IDocumentFragment } from '../interfaces';
+import { INodeProperties, INodeReadonlyProperties } from './Node';
+import { INonElementParentNodeProperties, INonElementParentNodeReadonlyProperties } from '../mixins/NonElementParentNode';
+import { IParentNodeProperties, IParentNodeReadonlyProperties } from '../mixins/ParentNode';
 
 // tslint:disable-next-line:variable-name
-const DocumentFragmentBase = NonElementParentNode(ParentNode(Node));
+export function DocumentFragmentGenerator(Node: Constructable<INode>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>) {
+  // tslint:disable-next-line:variable-name
+  const Parent = (ClassMixer(Node, [NonElementParentNode, ParentNode]) as unknown) as Constructable<INode & INonElementParentNode & IParentNode>;
 
-export default class DocumentFragment extends DocumentFragmentBase implements IDocumentFragment {}
-
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
-
-export const rpDocumentFragmentKeys: Set<string> = new Set([...rpNodeKeys, ...rpNonElementParentNodeKeys, ...rpParentNodeKeys]);
-
-export interface IDocumentFragmentRps extends INodeRps, INonElementParentNodeRps, IParentNodeRps {}
-
-export function setDocumentFragmentRps(instance: IDocumentFragment, data: IDocumentFragmentRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpDocumentFragmentKeys.has(key)) {
-      throw new Error(`${key} is not a property of DocumentFragment`);
-    }
-    properties[key] = value;
-  });
+  return class DocumentFragment extends Parent implements IDocumentFragment {};
 }
+
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
+
+export interface IDocumentFragmentProperties extends INodeProperties, INonElementParentNodeProperties, IParentNodeProperties {}
+
+export interface IDocumentFragmentReadonlyProperties extends INodeReadonlyProperties, INonElementParentNodeReadonlyProperties, IParentNodeReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfDocumentFragment } = InternalStateGenerator<
+  IDocumentFragment,
+  IDocumentFragmentProperties,
+  IDocumentFragmentReadonlyProperties
+>('DocumentFragment');

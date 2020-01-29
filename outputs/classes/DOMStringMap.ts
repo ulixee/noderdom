@@ -1,11 +1,18 @@
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IDOMStringMap } from '../interfaces';
 
 export default class DOMStringMap implements IDOMStringMap {
   [name: string]: string;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpDOMStringMapKeys: Set<string> = new Set([]);
+export interface IDOMStringMapProperties {}
 
-export interface IDOMStringMapRps {}
+export interface IDOMStringMapReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfDOMStringMap } = InternalStateGenerator<
+  IDOMStringMap,
+  IDOMStringMapProperties,
+  IDOMStringMapReadonlyProperties
+>('DOMStringMap');

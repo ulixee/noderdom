@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ISupportedType, IDocument, IDOMParser } from '../interfaces';
 
 export default class DOMParser implements IDOMParser {
@@ -7,8 +8,14 @@ export default class DOMParser implements IDOMParser {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpDOMParserKeys: Set<string> = new Set([]);
+export interface IDOMParserProperties {}
 
-export interface IDOMParserRps {}
+export interface IDOMParserReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfDOMParser } = InternalStateGenerator<
+  IDOMParser,
+  IDOMParserProperties,
+  IDOMParserReadonlyProperties
+>('DOMParser');

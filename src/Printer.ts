@@ -23,7 +23,7 @@ export default class Printer {
     this.indent -= 1;
   }
 
-  public printLine(c: string) {
+  public printLine(c: string = '') {
     this.print(c);
     this.endLine();
   }

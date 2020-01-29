@@ -1,32 +1,30 @@
+import Constructable from '../Constructable';
 import InternalHandler from '../InternalHandler';
-import { IProcessingInstruction } from '../interfaces';
-import CharacterData, { ICharacterDataRps, rpCharacterDataKeys } from './CharacterData';
+import InternalStateGenerator from '../InternalStateGenerator';
+import { ICharacterData, IProcessingInstruction } from '../interfaces';
+import { ICharacterDataProperties, ICharacterDataReadonlyProperties } from './CharacterData';
 
-export default class ProcessingInstruction extends CharacterData implements IProcessingInstruction {
-  protected readonly _: IProcessingInstructionRps = {};
-
-  // properties
-
-  public get target(): string {
-    return InternalHandler.get<IProcessingInstruction, string>(this, 'target');
-  }
-}
-
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
-
-export const rpProcessingInstructionKeys: Set<string> = new Set([...rpCharacterDataKeys]);
-
-export interface IProcessingInstructionRps extends ICharacterDataRps {
-  readonly target?: string;
-}
-
-export function setProcessingInstructionRps(instance: IProcessingInstruction, data: IProcessingInstructionRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpProcessingInstructionKeys.has(key)) {
-      throw new Error(`${key} is not a property of ProcessingInstruction`);
+// tslint:disable-next-line:variable-name
+export function ProcessingInstructionGenerator(CharacterData: Constructable<ICharacterData>) {
+  return class ProcessingInstruction extends CharacterData implements IProcessingInstruction {
+    public get target(): string {
+      return InternalHandler.get<IProcessingInstruction, string>(this, 'target');
     }
-    properties[key] = value;
-  });
+  };
 }
+
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
+
+export interface IProcessingInstructionProperties extends ICharacterDataProperties {
+  target?: string;
+}
+
+export interface IProcessingInstructionReadonlyProperties extends ICharacterDataReadonlyProperties {
+  target?: string;
+}
+
+export const { getState, setState, setReadonlyOfProcessingInstruction } = InternalStateGenerator<
+  IProcessingInstruction,
+  IProcessingInstructionProperties,
+  IProcessingInstructionReadonlyProperties
+>('ProcessingInstruction');

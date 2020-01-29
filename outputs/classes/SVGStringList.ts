@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ISVGStringList } from '../interfaces';
 
 export default class SVGStringList implements ISVGStringList {
-  protected readonly _: ISVGStringListRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<ISVGStringList, number>(this, 'length');
   }
@@ -47,22 +44,20 @@ export default class SVGStringList implements ISVGStringList {
   [index: number]: string;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpSVGStringListKeys: Set<string> = new Set([]);
-
-export interface ISVGStringListRps {
-  readonly length?: number;
-  readonly numberOfItems?: number;
+export interface ISVGStringListProperties {
+  length?: number;
+  numberOfItems?: number;
 }
 
-export function setSVGStringListRps(instance: ISVGStringList, data: ISVGStringListRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpSVGStringListKeys.has(key)) {
-      throw new Error(`${key} is not a property of SVGStringList`);
-    }
-    properties[key] = value;
-  });
+export interface ISVGStringListReadonlyProperties {
+  length?: number;
+  numberOfItems?: number;
 }
+
+export const { getState, setState, setReadonlyOfSVGStringList } = InternalStateGenerator<
+  ISVGStringList,
+  ISVGStringListProperties,
+  ISVGStringListReadonlyProperties
+>('SVGStringList');

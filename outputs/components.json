@@ -3584,6 +3584,11 @@
                   {
                     "name": "localName",
                     "type": "DOMString"
+                  },
+                  {
+                    "name": "options",
+                    "type": "ElementCreationOptions",
+                    "optional": 1
                   }
                 ]
               }
@@ -3604,6 +3609,11 @@
                   {
                     "name": "qualifiedName",
                     "type": "DOMString"
+                  },
+                  {
+                    "name": "options",
+                    "type": "ElementCreationOptions",
+                    "optional": 1
                   }
                 ]
               }
@@ -3761,7 +3771,7 @@
                 "type": "Event",
                 "param": [
                   {
-                    "name": "interface",
+                    "name": "eventInterface",
                     "type": "DOMString"
                   }
                 ]
@@ -5684,7 +5694,7 @@
                     "type": "DOMString"
                   },
                   {
-                    "name": "arguments",
+                    "name": "args",
                     "type": "any",
                     "variadic": 1
                   }
@@ -13723,6 +13733,25 @@
             "exposed": "Window"
           }
         },
+        "namesakes": {}
+      },
+      "exposed": "Window",
+      "legacy-window-alias": []
+    },
+    "HTMLDocument": {
+      "name": "HTMLDocument",
+      "extends": "Document",
+      "constants": {
+        "constant": {}
+      },
+      "methods": {
+        "method": {}
+      },
+      "anonymous-methods": {
+        "method": []
+      },
+      "properties": {
+        "property": {},
         "namesakes": {}
       },
       "exposed": "Window",

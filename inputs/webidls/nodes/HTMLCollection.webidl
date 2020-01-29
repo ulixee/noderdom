@@ -9,6 +9,7 @@ interface HTMLCollectionBase {
   getter Element? item(unsigned long index);
 };
 
+[Exposed=Window, LegacyUnenumerableNamedProperties]
 interface HTMLCollection : HTMLCollectionBase {
   getter Element? namedItem(DOMString name);
 };

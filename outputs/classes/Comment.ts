@@ -1,27 +1,27 @@
+import Constructable from '../Constructable';
 import InternalHandler from '../InternalHandler';
-import { IComment } from '../interfaces';
-import CharacterData, { ICharacterDataRps, rpCharacterDataKeys } from './CharacterData';
+import InternalStateGenerator from '../InternalStateGenerator';
+import { ICharacterData, IComment } from '../interfaces';
+import { ICharacterDataProperties, ICharacterDataReadonlyProperties } from './CharacterData';
 
-export default class Comment extends CharacterData implements IComment {
-  constructor(data?: string) {
-    super();
-    InternalHandler.construct(this, [data]);
-  }
-}
-
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
-
-export const rpCommentKeys: Set<string> = new Set([...rpCharacterDataKeys]);
-
-export interface ICommentRps extends ICharacterDataRps {}
-
-export function setCommentRps(instance: IComment, data: ICommentRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpCommentKeys.has(key)) {
-      throw new Error(`${key} is not a property of Comment`);
+// tslint:disable-next-line:variable-name
+export function CommentGenerator(CharacterData: Constructable<ICharacterData>) {
+  return class Comment extends CharacterData implements IComment {
+    constructor(data?: string) {
+      super();
+      InternalHandler.construct(this, [data]);
     }
-    properties[key] = value;
-  });
+  };
 }
+
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
+
+export interface ICommentProperties extends ICharacterDataProperties {}
+
+export interface ICommentReadonlyProperties extends ICharacterDataReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfComment } = InternalStateGenerator<
+  IComment,
+  ICommentProperties,
+  ICommentReadonlyProperties
+>('Comment');

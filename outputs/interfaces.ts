@@ -60,6 +60,10 @@ export interface IDOMRectInit {
   y?: number;
 }
 
+export interface IElementCreationOptions {
+  is?: string;
+}
+
 export interface IEventInit {
   bubbles?: boolean;
   cancelable?: boolean;
@@ -346,7 +350,8 @@ export interface IDocument extends INode, IDocumentOrShadowRoot, IGlobalEventHan
   createCDATASection(data: string): ICDATASection;
   createComment(data: string): IComment;
   createDocumentFragment(): IDocumentFragment;
-  createElementNS(namespace: string | null, qualifiedName: string): IElement;
+  createElement(localName: string, options?: IElementCreationOptions): IElement;
+  createElementNS(namespace: string | null, qualifiedName: string, options?: IElementCreationOptions): IElement;
   createEvent(eventInterface: string): IEvent;
   createNodeIterator(root: INode, whatToShow?: number, filter?: INodeFilter | null): INodeIterator;
   createProcessingInstruction(target: string, data: string): IProcessingInstruction;
@@ -355,9 +360,7 @@ export interface IDocument extends INode, IDocumentOrShadowRoot, IGlobalEventHan
   createTreeWalker(root: INode, whatToShow?: number, filter?: INodeFilter | null): ITreeWalker;
   getElementsByClassName(classNames: string): IHTMLCollection;
   getElementsByName(elementName: string): INodeList;
-  getElementsByTagName<K extends keyof IHTMLElementTagNameMap>(qualifiedName: K): IHTMLCollection<IHTMLElementTagNameMap[K]>;
-  getElementsByTagName<K extends keyof ISVGElementTagNameMap>(qualifiedName: K): IHTMLCollection<ISVGElementTagNameMap[K]>;
-  getElementsByTagName(qualifiedName: string): IHTMLCollection<IElement>;
+  getElementsByTagName(qualifiedName: string): IHTMLCollection;
   getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection;
   getSelection(): ISelection | null;
   hasFocus(): boolean;
@@ -416,9 +419,7 @@ export interface IElement extends INode, IChildNode, INonDocumentTypeChildNode, 
   getBoundingClientRect(): IDOMRect;
   getClientRects(): IDOMRectList;
   getElementsByClassName(classNames: string): IHTMLCollection;
-  getElementsByTagName<K extends keyof IHTMLElementTagNameMap>(qualifiedName: K): IHTMLCollection<IHTMLElementTagNameMap[K]>;
-  getElementsByTagName<K extends keyof ISVGElementTagNameMap>(qualifiedName: K): IHTMLCollection<ISVGElementTagNameMap[K]>;
-  getElementsByTagName(qualifiedName: string): IHTMLCollection<IElement>;
+  getElementsByTagName(qualifiedName: string): IHTMLCollection;
   getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection;
   hasAttribute(qualifiedName: string): boolean;
   hasAttributeNS(namespace: string | null, localName: string): boolean;
@@ -623,14 +624,21 @@ export interface IGlobalEventHandlers {
   removeEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IEventListenerOptions): void;
 }
 
+export interface IHTMLCollection<T extends IElement = IElement> extends IHTMLCollectionBase {
+  namedItem(name: string): T | null;
+}
+
 export interface IHTMLCollectionBase {
   readonly length: number;
   item(index: number): IElement | null;
   [index: number]: IElement;
 }
 
-export interface IHTMLCollection<T extends IElement = IElement> extends IHTMLCollectionBase {
-  namedItem(name: string): T | null;
+export interface IHTMLDocument extends IDocument {
+  addEventListener<K extends keyof IDocumentEventMap>(type: K, listener: (this: IHTMLDocument, ev: IDocumentEventMap[K]) => any, options?: boolean | IAddEventListenerOptions): void;
+  addEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IAddEventListenerOptions): void;
+  removeEventListener<K extends keyof IDocumentEventMap>(type: K, listener: (this: IHTMLDocument, ev: IDocumentEventMap[K]) => any, options?: boolean | IEventListenerOptions): void;
+  removeEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IEventListenerOptions): void;
 }
 
 export interface IHTMLFormControlsCollection extends IHTMLCollectionBase {
@@ -839,12 +847,8 @@ export interface IParentNode {
   readonly lastElementChild: IElement | null;
   append(...nodes: (INode | string)[]): void;
   prepend(...nodes: (INode | string)[]): void;
-  querySelector<K extends keyof IHTMLElementTagNameMap>(selectors: K): IHTMLElementTagNameMap[K] | null;
-  querySelector<K extends keyof ISVGElementTagNameMap>(selectors: K): ISVGElementTagNameMap[K] | null;
-  querySelector<E extends IElement = IElement>(selectors: string): E | null;
-  querySelectorAll<K extends keyof IHTMLElementTagNameMap>(selectors: K): INodeList<IHTMLElementTagNameMap[K]>;
-  querySelectorAll<K extends keyof ISVGElementTagNameMap>(selectors: K): INodeList<ISVGElementTagNameMap[K]>;
-  querySelectorAll<E extends IElement = IElement>(selectors: string): INodeList<E>;
+  querySelector(selectors: string): IElement | null;
+  querySelectorAll(selectors: string): INodeList;
 }
 
 export interface IProcessingInstruction extends ICharacterData {

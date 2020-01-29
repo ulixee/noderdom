@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IAudioTrack } from '../interfaces';
 
 export default class AudioTrack implements IAudioTrack {
-  protected readonly _: IAudioTrackRps = {};
-
-  // properties
-
   public get enabled(): boolean {
     return InternalHandler.get<IAudioTrack, boolean>(this, 'enabled');
   }
@@ -31,24 +28,25 @@ export default class AudioTrack implements IAudioTrack {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpAudioTrackKeys: Set<string> = new Set([]);
-
-export interface IAudioTrackRps {
-  readonly id?: string;
-  readonly kind?: string;
-  readonly label?: string;
-  readonly language?: string;
+export interface IAudioTrackProperties {
+  enabled?: boolean;
+  id?: string;
+  kind?: string;
+  label?: string;
+  language?: string;
 }
 
-export function setAudioTrackRps(instance: IAudioTrack, data: IAudioTrackRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpAudioTrackKeys.has(key)) {
-      throw new Error(`${key} is not a property of AudioTrack`);
-    }
-    properties[key] = value;
-  });
+export interface IAudioTrackReadonlyProperties {
+  id?: string;
+  kind?: string;
+  label?: string;
+  language?: string;
 }
+
+export const { getState, setState, setReadonlyOfAudioTrack } = InternalStateGenerator<
+  IAudioTrack,
+  IAudioTrackProperties,
+  IAudioTrackReadonlyProperties
+>('AudioTrack');

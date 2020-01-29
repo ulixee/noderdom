@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IEventListenerOrEventListenerObject, IAddEventListenerOptions, IEventListenerOptions, IEvent, IEventTarget } from '../interfaces';
 
 export default class EventTarget implements IEventTarget {
@@ -15,8 +16,14 @@ export default class EventTarget implements IEventTarget {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpEventTargetKeys: Set<string> = new Set([]);
+export interface IEventTargetProperties {}
 
-export interface IEventTargetRps {}
+export interface IEventTargetReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfEventTarget } = InternalStateGenerator<
+  IEventTarget,
+  IEventTargetProperties,
+  IEventTargetReadonlyProperties
+>('EventTarget');

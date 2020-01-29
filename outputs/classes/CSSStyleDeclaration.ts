@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ICSSRule, ICSSStyleDeclaration } from '../interfaces';
 
 export default class CSSStyleDeclaration implements ICSSStyleDeclaration {
-  protected readonly _: ICSSStyleDeclarationRps = {};
-
-  // properties
-
   public get cssFloat(): string {
     return InternalHandler.get<ICSSStyleDeclaration, string>(this, 'cssFloat');
   }
@@ -55,22 +52,22 @@ export default class CSSStyleDeclaration implements ICSSStyleDeclaration {
   [index: number]: string;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpCSSStyleDeclarationKeys: Set<string> = new Set([]);
-
-export interface ICSSStyleDeclarationRps {
-  readonly length?: number;
-  readonly parentRule?: ICSSRule | null;
+export interface ICSSStyleDeclarationProperties {
+  cssFloat?: string;
+  cssText?: string;
+  length?: number;
+  parentRule?: ICSSRule | null;
 }
 
-export function setCSSStyleDeclarationRps(instance: ICSSStyleDeclaration, data: ICSSStyleDeclarationRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpCSSStyleDeclarationKeys.has(key)) {
-      throw new Error(`${key} is not a property of CSSStyleDeclaration`);
-    }
-    properties[key] = value;
-  });
+export interface ICSSStyleDeclarationReadonlyProperties {
+  length?: number;
+  parentRule?: ICSSRule | null;
 }
+
+export const { getState, setState, setReadonlyOfCSSStyleDeclaration } = InternalStateGenerator<
+  ICSSStyleDeclaration,
+  ICSSStyleDeclarationProperties,
+  ICSSStyleDeclarationReadonlyProperties
+>('CSSStyleDeclaration');

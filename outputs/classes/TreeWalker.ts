@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { INode, INodeFilter, ITreeWalker } from '../interfaces';
 
 export default class TreeWalker implements ITreeWalker {
-  protected readonly _: ITreeWalkerRps = {};
-
-  // properties
-
   public get currentNode(): INode {
     return InternalHandler.get<ITreeWalker, INode>(this, 'currentNode');
   }
@@ -57,23 +54,23 @@ export default class TreeWalker implements ITreeWalker {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpTreeWalkerKeys: Set<string> = new Set([]);
-
-export interface ITreeWalkerRps {
-  readonly filter?: INodeFilter | null;
-  readonly root?: INode;
-  readonly whatToShow?: number;
+export interface ITreeWalkerProperties {
+  currentNode?: INode;
+  filter?: INodeFilter | null;
+  root?: INode;
+  whatToShow?: number;
 }
 
-export function setTreeWalkerRps(instance: ITreeWalker, data: ITreeWalkerRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpTreeWalkerKeys.has(key)) {
-      throw new Error(`${key} is not a property of TreeWalker`);
-    }
-    properties[key] = value;
-  });
+export interface ITreeWalkerReadonlyProperties {
+  filter?: INodeFilter | null;
+  root?: INode;
+  whatToShow?: number;
 }
+
+export const { getState, setState, setReadonlyOfTreeWalker } = InternalStateGenerator<
+  ITreeWalker,
+  ITreeWalkerProperties,
+  ITreeWalkerReadonlyProperties
+>('TreeWalker');

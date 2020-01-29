@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IDOMTokenList } from '../interfaces';
 
 export default class DOMTokenList implements IDOMTokenList {
-  protected readonly _: IDOMTokenListRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<IDOMTokenList, number>(this, 'length');
   }
@@ -59,21 +56,19 @@ export default class DOMTokenList implements IDOMTokenList {
   [index: number]: string;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpDOMTokenListKeys: Set<string> = new Set([]);
-
-export interface IDOMTokenListRps {
-  readonly length?: number;
+export interface IDOMTokenListProperties {
+  length?: number;
+  value?: string;
 }
 
-export function setDOMTokenListRps(instance: IDOMTokenList, data: IDOMTokenListRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpDOMTokenListKeys.has(key)) {
-      throw new Error(`${key} is not a property of DOMTokenList`);
-    }
-    properties[key] = value;
-  });
+export interface IDOMTokenListReadonlyProperties {
+  length?: number;
 }
+
+export const { getState, setState, setReadonlyOfDOMTokenList } = InternalStateGenerator<
+  IDOMTokenList,
+  IDOMTokenListProperties,
+  IDOMTokenListReadonlyProperties
+>('DOMTokenList');

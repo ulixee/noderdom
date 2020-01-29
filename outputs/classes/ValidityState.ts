@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IValidityState } from '../interfaces';
 
 export default class ValidityState implements IValidityState {
-  protected readonly _: IValidityStateRps = {};
-
-  // properties
-
   public get badInput(): boolean {
     return InternalHandler.get<IValidityState, boolean>(this, 'badInput');
   }
@@ -51,31 +48,38 @@ export default class ValidityState implements IValidityState {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpValidityStateKeys: Set<string> = new Set([]);
-
-export interface IValidityStateRps {
-  readonly badInput?: boolean;
-  readonly customError?: boolean;
-  readonly patternMismatch?: boolean;
-  readonly rangeOverflow?: boolean;
-  readonly rangeUnderflow?: boolean;
-  readonly stepMismatch?: boolean;
-  readonly tooLong?: boolean;
-  readonly tooShort?: boolean;
-  readonly typeMismatch?: boolean;
-  readonly valid?: boolean;
-  readonly valueMissing?: boolean;
+export interface IValidityStateProperties {
+  badInput?: boolean;
+  customError?: boolean;
+  patternMismatch?: boolean;
+  rangeOverflow?: boolean;
+  rangeUnderflow?: boolean;
+  stepMismatch?: boolean;
+  tooLong?: boolean;
+  tooShort?: boolean;
+  typeMismatch?: boolean;
+  valid?: boolean;
+  valueMissing?: boolean;
 }
 
-export function setValidityStateRps(instance: IValidityState, data: IValidityStateRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpValidityStateKeys.has(key)) {
-      throw new Error(`${key} is not a property of ValidityState`);
-    }
-    properties[key] = value;
-  });
+export interface IValidityStateReadonlyProperties {
+  badInput?: boolean;
+  customError?: boolean;
+  patternMismatch?: boolean;
+  rangeOverflow?: boolean;
+  rangeUnderflow?: boolean;
+  stepMismatch?: boolean;
+  tooLong?: boolean;
+  tooShort?: boolean;
+  typeMismatch?: boolean;
+  valid?: boolean;
+  valueMissing?: boolean;
 }
+
+export const { getState, setState, setReadonlyOfValidityState } = InternalStateGenerator<
+  IValidityState,
+  IValidityStateProperties,
+  IValidityStateReadonlyProperties
+>('ValidityState');

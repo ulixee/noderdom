@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { INode, INodeList } from '../interfaces';
 
 export default class NodeList<T extends INode = INode> implements INodeList<T> {
-  protected readonly _: INodeListRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<INodeList<T>, number>(this, 'length');
   }
@@ -23,21 +20,18 @@ export default class NodeList<T extends INode = INode> implements INodeList<T> {
   [index: number]: T;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpNodeListKeys: Set<string> = new Set([]);
-
-export interface INodeListRps {
-  readonly length?: number;
+export interface INodeListProperties {
+  length?: number;
 }
 
-export function setNodeListRps(instance: INodeList<INode>, data: INodeListRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpNodeListKeys.has(key)) {
-      throw new Error(`${key} is not a property of NodeList`);
-    }
-    properties[key] = value;
-  });
+export interface INodeListReadonlyProperties {
+  length?: number;
 }
+
+export const { getState, setState, setReadonlyOfNodeList } = InternalStateGenerator<
+  INodeList,
+  INodeListProperties,
+  INodeListReadonlyProperties
+>('NodeList');

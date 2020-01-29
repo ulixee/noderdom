@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IDocumentType, IXMLDocument, IDocument, IDOMImplementation } from '../interfaces';
 
 export default class DOMImplementation implements IDOMImplementation {
@@ -19,8 +20,14 @@ export default class DOMImplementation implements IDOMImplementation {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpDOMImplementationKeys: Set<string> = new Set([]);
+export interface IDOMImplementationProperties {}
 
-export interface IDOMImplementationRps {}
+export interface IDOMImplementationReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfDOMImplementation } = InternalStateGenerator<
+  IDOMImplementation,
+  IDOMImplementationProperties,
+  IDOMImplementationReadonlyProperties
+>('DOMImplementation');

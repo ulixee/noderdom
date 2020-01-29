@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IAttr, INamedNodeMap } from '../interfaces';
 
 export default class NamedNodeMap implements INamedNodeMap {
-  protected readonly _: INamedNodeMapRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<INamedNodeMap, number>(this, 'length');
   }
@@ -43,21 +40,18 @@ export default class NamedNodeMap implements INamedNodeMap {
   [index: number]: IAttr;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpNamedNodeMapKeys: Set<string> = new Set([]);
-
-export interface INamedNodeMapRps {
-  readonly length?: number;
+export interface INamedNodeMapProperties {
+  length?: number;
 }
 
-export function setNamedNodeMapRps(instance: INamedNodeMap, data: INamedNodeMapRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpNamedNodeMapKeys.has(key)) {
-      throw new Error(`${key} is not a property of NamedNodeMap`);
-    }
-    properties[key] = value;
-  });
+export interface INamedNodeMapReadonlyProperties {
+  length?: number;
 }
+
+export const { getState, setState, setReadonlyOfNamedNodeMap } = InternalStateGenerator<
+  INamedNodeMap,
+  INamedNodeMapProperties,
+  INamedNodeMapReadonlyProperties
+>('NamedNodeMap');

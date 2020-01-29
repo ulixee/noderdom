@@ -6,13 +6,17 @@ import TsExtractor from './src/TsExtractor';
 
 async function run() {
   const outputsDir = Path.join(__dirname, 'outputs');
-  const compiledDir = Path.join(__dirname, 'compiled');
+  const webIDLOverridesDir = Path.join(__dirname, 'inputs/webidl-overrides');
 
   if (!Fs.existsSync(outputsDir)) Fs.mkdirSync(outputsDir);
-  if (!Fs.existsSync(compiledDir)) Fs.mkdirSync(compiledDir);
 
-  const internalHandlerFilepath = Path.join(__dirname, 'src/export/InternalHandler.ts');
-  Fs.copyFileSync(internalHandlerFilepath, `${outputsDir}/InternalHandler.ts`);
+  const srcExportsDir = Path.join(__dirname, 'src/exports');
+  for (const filename of Fs.readdirSync(srcExportsDir)) {
+    if (!filename.match(/\.ts$/)) continue;
+    const fromFilepath = Path.resolve(srcExportsDir, filename);
+    const toFilepath = Path.resolve(outputsDir, filename);
+    Fs.copyFileSync(fromFilepath, toFilepath);
+  }
 
   // load componentizer
   const componentizer = new Componentizer();
@@ -22,11 +26,18 @@ async function run() {
     componentizer.addWebIDL(webidl, filename);
   }
 
+  for (const filename of Fs.readdirSync(webIDLOverridesDir)) {
+    if (!filename.match(/\.webidl$/)) continue;
+    const filepath = Path.resolve(webIDLOverridesDir, filename);
+    const webidl = Fs.readFileSync(filepath, 'utf-8');
+    componentizer.addWebIDL(webidl, filename);
+  }
+
   // compile components
   const components = componentizer.run();
 
   // save components.json in case we want to investigate
-  const componentsOutputPath = Path.join(compiledDir, 'components.json');
+  const componentsOutputPath = Path.join(outputsDir, 'components.json');
   Fs.writeFileSync(componentsOutputPath, JSON.stringify(components, null, 2));
 
   // cleanup components (i.e., remove unused types)

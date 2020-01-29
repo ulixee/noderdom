@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IDOMException } from '../interfaces';
 
 export default class DOMException implements IDOMException {
@@ -54,10 +55,6 @@ export default class DOMException implements IDOMException {
   public readonly VALIDATION_ERR: number = 16;
   public readonly WRONG_DOCUMENT_ERR: number = 4;
 
-  // store readonly properties
-
-  protected readonly _: IDOMExceptionRps = {};
-
   // constructor required for this class
 
   constructor(message?: string, name?: string) {
@@ -79,23 +76,22 @@ export default class DOMException implements IDOMException {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpDOMExceptionKeys: Set<string> = new Set([]);
-
-export interface IDOMExceptionRps {
-  readonly code?: number;
-  readonly message?: string;
-  readonly name?: string;
+export interface IDOMExceptionProperties {
+  code?: number;
+  message?: string;
+  name?: string;
 }
 
-export function setDOMExceptionRps(instance: IDOMException, data: IDOMExceptionRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpDOMExceptionKeys.has(key)) {
-      throw new Error(`${key} is not a property of DOMException`);
-    }
-    properties[key] = value;
-  });
+export interface IDOMExceptionReadonlyProperties {
+  code?: number;
+  message?: string;
+  name?: string;
 }
+
+export const { getState, setState, setReadonlyOfDOMException } = InternalStateGenerator<
+  IDOMException,
+  IDOMExceptionProperties,
+  IDOMExceptionReadonlyProperties
+>('DOMException');

@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ISVGAnimatedString } from '../interfaces';
 
 export default class SVGAnimatedString implements ISVGAnimatedString {
-  protected readonly _: ISVGAnimatedStringRps = {};
-
-  // properties
-
   public get animVal(): string {
     return InternalHandler.get<ISVGAnimatedString, string>(this, 'animVal');
   }
@@ -19,21 +16,19 @@ export default class SVGAnimatedString implements ISVGAnimatedString {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpSVGAnimatedStringKeys: Set<string> = new Set([]);
-
-export interface ISVGAnimatedStringRps {
-  readonly animVal?: string;
+export interface ISVGAnimatedStringProperties {
+  animVal?: string;
+  baseVal?: string;
 }
 
-export function setSVGAnimatedStringRps(instance: ISVGAnimatedString, data: ISVGAnimatedStringRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpSVGAnimatedStringKeys.has(key)) {
-      throw new Error(`${key} is not a property of SVGAnimatedString`);
-    }
-    properties[key] = value;
-  });
+export interface ISVGAnimatedStringReadonlyProperties {
+  animVal?: string;
 }
+
+export const { getState, setState, setReadonlyOfSVGAnimatedString } = InternalStateGenerator<
+  ISVGAnimatedString,
+  ISVGAnimatedStringProperties,
+  ISVGAnimatedStringReadonlyProperties
+>('SVGAnimatedString');

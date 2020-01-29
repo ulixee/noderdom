@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IEventTarget, IEventInit, IEvent } from '../interfaces';
 
 export default class Event implements IEvent {
@@ -11,10 +12,6 @@ export default class Event implements IEvent {
   public readonly BUBBLING_PHASE: number = 3;
   public readonly CAPTURING_PHASE: number = 1;
   public readonly NONE: number = 0;
-
-  // store readonly properties
-
-  protected readonly _: IEventRps = {};
 
   // constructor required for this class
 
@@ -107,31 +104,40 @@ export default class Event implements IEvent {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpEventKeys: Set<string> = new Set([]);
-
-export interface IEventRps {
-  readonly bubbles?: boolean;
-  readonly cancelable?: boolean;
-  readonly composed?: boolean;
-  readonly currentTarget?: IEventTarget | null;
-  readonly defaultPrevented?: boolean;
-  readonly eventPhase?: number;
-  readonly isTrusted?: boolean;
-  readonly srcElement?: IEventTarget | null;
-  readonly target?: IEventTarget | null;
-  readonly timeStamp?: number;
-  readonly type?: string;
+export interface IEventProperties {
+  bubbles?: boolean;
+  cancelBubble?: boolean;
+  cancelable?: boolean;
+  composed?: boolean;
+  currentTarget?: IEventTarget | null;
+  defaultPrevented?: boolean;
+  eventPhase?: number;
+  isTrusted?: boolean;
+  returnValue?: boolean;
+  srcElement?: IEventTarget | null;
+  target?: IEventTarget | null;
+  timeStamp?: number;
+  type?: string;
 }
 
-export function setEventRps(instance: IEvent, data: IEventRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpEventKeys.has(key)) {
-      throw new Error(`${key} is not a property of Event`);
-    }
-    properties[key] = value;
-  });
+export interface IEventReadonlyProperties {
+  bubbles?: boolean;
+  cancelable?: boolean;
+  composed?: boolean;
+  currentTarget?: IEventTarget | null;
+  defaultPrevented?: boolean;
+  eventPhase?: number;
+  isTrusted?: boolean;
+  srcElement?: IEventTarget | null;
+  target?: IEventTarget | null;
+  timeStamp?: number;
+  type?: string;
 }
+
+export const { getState, setState, setReadonlyOfEvent } = InternalStateGenerator<
+  IEvent,
+  IEventProperties,
+  IEventReadonlyProperties
+>('Event');

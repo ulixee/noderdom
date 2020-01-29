@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IDOMRectInit, IDOMRectReadOnly } from '../interfaces';
 
 export default class DOMRectReadOnly implements IDOMRectReadOnly {
-  protected readonly _: IDOMRectReadOnlyRps = {};
-
-  // constructor required for this class
-
   constructor(x?: number, y?: number, width?: number, height?: number) {
     InternalHandler.construct(this, [x, y, width, height]);
   }
@@ -55,28 +52,32 @@ export default class DOMRectReadOnly implements IDOMRectReadOnly {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpDOMRectReadOnlyKeys: Set<string> = new Set([]);
-
-export interface IDOMRectReadOnlyRps {
-  readonly bottom?: number;
-  readonly height?: number;
-  readonly left?: number;
-  readonly right?: number;
-  readonly top?: number;
-  readonly width?: number;
-  readonly x?: number;
-  readonly y?: number;
+export interface IDOMRectReadOnlyProperties {
+  bottom?: number;
+  height?: number;
+  left?: number;
+  right?: number;
+  top?: number;
+  width?: number;
+  x?: number;
+  y?: number;
 }
 
-export function setDOMRectReadOnlyRps(instance: IDOMRectReadOnly, data: IDOMRectReadOnlyRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpDOMRectReadOnlyKeys.has(key)) {
-      throw new Error(`${key} is not a property of DOMRectReadOnly`);
-    }
-    properties[key] = value;
-  });
+export interface IDOMRectReadOnlyReadonlyProperties {
+  bottom?: number;
+  height?: number;
+  left?: number;
+  right?: number;
+  top?: number;
+  width?: number;
+  x?: number;
+  y?: number;
 }
+
+export const { getState, setState, setReadonlyOfDOMRectReadOnly } = InternalStateGenerator<
+  IDOMRectReadOnly,
+  IDOMRectReadOnlyProperties,
+  IDOMRectReadOnlyReadonlyProperties
+>('DOMRectReadOnly');

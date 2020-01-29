@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { INode, IRange, ISelection } from '../interfaces';
 
 export default class Selection implements ISelection {
-  protected readonly _: ISelectionRps = {};
-
-  // properties
-
   public get anchorNode(): INode | null {
     return InternalHandler.get<ISelection, INode | null>(this, 'anchorNode');
   }
@@ -97,27 +94,30 @@ export default class Selection implements ISelection {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpSelectionKeys: Set<string> = new Set([]);
-
-export interface ISelectionRps {
-  readonly anchorNode?: INode | null;
-  readonly anchorOffset?: number;
-  readonly focusNode?: INode | null;
-  readonly focusOffset?: number;
-  readonly isCollapsed?: boolean;
-  readonly rangeCount?: number;
-  readonly type?: string;
+export interface ISelectionProperties {
+  anchorNode?: INode | null;
+  anchorOffset?: number;
+  focusNode?: INode | null;
+  focusOffset?: number;
+  isCollapsed?: boolean;
+  rangeCount?: number;
+  type?: string;
 }
 
-export function setSelectionRps(instance: ISelection, data: ISelectionRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpSelectionKeys.has(key)) {
-      throw new Error(`${key} is not a property of Selection`);
-    }
-    properties[key] = value;
-  });
+export interface ISelectionReadonlyProperties {
+  anchorNode?: INode | null;
+  anchorOffset?: number;
+  focusNode?: INode | null;
+  focusOffset?: number;
+  isCollapsed?: boolean;
+  rangeCount?: number;
+  type?: string;
 }
+
+export const { getState, setState, setReadonlyOfSelection } = InternalStateGenerator<
+  ISelection,
+  ISelectionProperties,
+  ISelectionReadonlyProperties
+>('Selection');

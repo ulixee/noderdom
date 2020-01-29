@@ -17,26 +17,35 @@ export default class TsInterfaceExtractor {
   private readonly printer = new Printer();
   private readonly components: Components;
   private readonly i: Types.Interface;
+  private readonly extensions: string[];
 
   constructor(components: Components, i: Types.Interface) {
     this.i = i;
     this.components = components;
+    this.extensions = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
   }
 
   public run() {
-    this.emitInterfaceEventMap();
+    this.printInterfaceEventMap();
+    this.printInterface(true);
+    // if (this.extensions.length) {
+    //   this.printer.endLine();
+    //   this.printer.printSeparatorLine();
+    //   this.printInterface(false);
+    // }
 
-    this.emitInterfaceDeclaration();
+    return this.printer.getResult();
+  }
+
+  private printInterface(shouldPrintExtensions: boolean) {
+    this.printInterfaceDeclaration(shouldPrintExtensions);
     this.printer.increaseIndent();
-
     this.printConstants();
     this.printMembers(Types.EmitScope.InstanceOnly);
     this.printEventHandlers(/*prefix*/ '');
     this.printIndexers(Types.EmitScope.InstanceOnly);
-
     this.printer.decreaseIndent();
     this.printer.print('}');
-    return this.printer.getResult();
   }
 
   private printIndexers(emitScope: Types.EmitScope) {
@@ -171,7 +180,7 @@ export default class TsInterfaceExtractor {
     this.printer.printLine(`readonly ${c.name}: ${this.components.convertDomTypeToTsType(c)};`);
   }
 
-  private emitInterfaceEventMap() {
+  private printInterfaceEventMap() {
     const i: Types.Interface = this.i;
     const { iNameToEhList, iNameToAttributelessEhList, iNameToEhParents } = this.components;
     const hasEventHandlers = iNameToEhList[i.name] && iNameToEhList[i.name].length;
@@ -204,17 +213,15 @@ export default class TsInterfaceExtractor {
     this.printer.printLine(`${eHandler.eventName}: ${eventType};`);
   }
 
-  private emitInterfaceDeclaration() {
+  private printInterfaceDeclaration(shouldPrintExtensions: boolean) {
     const i: Types.Interface = this.i;
+    const name = getNameWithTypeParameter(i, shouldPrintExtensions ? i.name : `${i.name}Only`, true);
     this.printer.printComment(i.comment);
-    this.printer.print(`export interface ${getNameWithTypeParameter(i, i.name, true)}`);
-
-    const finalExtends = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
-
-    if (finalExtends.length) {
-      this.printer.print(` extends ${finalExtends.map(toIType).join(', ')}`);
+    this.printer.print(`export interface ${name}`);
+    if (shouldPrintExtensions && this.extensions.length) {
+      this.printer.print(` extends ${this.extensions.map(toIType).join(', ')}`);
     }
-    this.printer.print(' {');
+    this.printer.print(` {`);
     this.printer.endLine();
   }
 
@@ -348,98 +355,11 @@ export default class TsInterfaceExtractor {
   }
 
   private printMethod(m: Types.Method) {
-    // const i: Types.Interface = this.i;
     if (m.deprecated) this.printer.printDepreciated();
     this.printer.printComment(m.comment);
-
-    switch (m.name) {
-      case 'createElement':
-        return this.emitCreateElementOverloads(m);
-      case 'createEvent':
-        return this.emitCreateEventOverloads(m);
-      case 'getElementsByTagName':
-        return this.emitGetElementsByTagNameOverloads(m);
-      case 'querySelector':
-        return this.emitQuerySelectorOverloads(m);
-      case 'querySelectorAll':
-        return this.emitQuerySelectorAllOverloads(m);
-    }
-
     this.printer.printSignatures(m, m.name, this.components);
     if (m.stringifier) {
       this.printer.printLine('toString(): string;');
-    }
-  }
-
-  /// Emit overloads for the createElement method
-  private emitCreateElementOverloads(m: Types.Method) {
-    const expectedParamType = ['string', 'string | ElementCreationOptions'];
-    const isMatch = this.components.matchParamMethodSignature(m, 'createElement', 'Element', expectedParamType);
-    if (isMatch) {
-      this.printer.printLine(
-        'createElement<K extends keyof IHTMLElementTagNameMap>(tagName: K, options?: IElementCreationOptions): IHTMLElementTagNameMap[K];',
-      );
-      this.printer.printLine('createElement(tagName: string, options?: ElementCreationOptions): HTMLElement;');
-    }
-  }
-
-  // Emit overloads for the createEvent method
-  private emitCreateEventOverloads(m: Types.Method) {
-    if (this.components.matchParamMethodSignature(m, 'createEvent', 'Event', 'string')) {
-      // Emit plurals. For example, Events, MutationEvents
-      const hasPlurals = ['IEvent', 'IMutationEvent', 'IMouseEvent', 'ISVGZoomEvent', 'IUIEvent'];
-      for (const x of this.components.distinctETypeList) {
-        this.printer.printLine(`createEvent(eventInterface: '${x}'): ${x};`);
-        if (hasPlurals.includes(x)) {
-          this.printer.printLine(`createEvent(eventInterface: '${x}s'): ${x};`);
-        }
-      }
-      this.printer.printLine('createEvent(eventInterface: string): IEvent;');
-    }
-  }
-
-  // Emit overloads for the getElementsByTagName method
-  private emitGetElementsByTagNameOverloads(m: Types.Method) {
-    if (this.components.matchParamMethodSignature(m, 'getElementsByTagName', 'HTMLCollection', 'string')) {
-      this.printer.printLine(
-        `getElementsByTagName<K extends keyof IHTMLElementTagNameMap>(${
-          m.signature[0].param![0].name
-        }: K): IHTMLCollection<IHTMLElementTagNameMap[K]>;`,
-      );
-      this.printer.printLine(
-        `getElementsByTagName<K extends keyof ISVGElementTagNameMap>(${
-          m.signature[0].param![0].name
-        }: K): IHTMLCollection<ISVGElementTagNameMap[K]>;`,
-      );
-      this.printer.printLine(
-        `getElementsByTagName(${m.signature[0].param![0].name}: string): IHTMLCollection<IElement>;`,
-      );
-    }
-  }
-
-  // Emit overloads for the querySelector method
-  private emitQuerySelectorOverloads(m: Types.Method) {
-    if (this.components.matchParamMethodSignature(m, 'querySelector', 'Element | null', 'string')) {
-      this.printer.printLine(
-        'querySelector<K extends keyof IHTMLElementTagNameMap>(selectors: K): IHTMLElementTagNameMap[K] | null;',
-      );
-      this.printer.printLine(
-        'querySelector<K extends keyof ISVGElementTagNameMap>(selectors: K): ISVGElementTagNameMap[K] | null;',
-      );
-      this.printer.printLine('querySelector<E extends IElement = IElement>(selectors: string): E | null;');
-    }
-  }
-
-  // Emit overloads for the querySelectorAll method
-  private emitQuerySelectorAllOverloads(m: Types.Method) {
-    if (this.components.matchParamMethodSignature(m, 'querySelectorAll', 'NodeList', 'string')) {
-      this.printer.printLine(
-        'querySelectorAll<K extends keyof IHTMLElementTagNameMap>(selectors: K): INodeList<IHTMLElementTagNameMap[K]>;',
-      );
-      this.printer.printLine(
-        'querySelectorAll<K extends keyof ISVGElementTagNameMap>(selectors: K): INodeList<ISVGElementTagNameMap[K]>;',
-      );
-      this.printer.printLine('querySelectorAll<E extends IElement = IElement>(selectors: string): INodeList<E>;');
     }
   }
 }

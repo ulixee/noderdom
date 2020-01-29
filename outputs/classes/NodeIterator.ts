@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { INode, INodeFilter, INodeIterator } from '../interfaces';
 
 export default class NodeIterator implements INodeIterator {
-  protected readonly _: INodeIteratorRps = {};
-
-  // properties
-
   public get filter(): INodeFilter | null {
     return InternalHandler.get<INodeIterator, INodeFilter | null>(this, 'filter');
   }
@@ -41,25 +38,26 @@ export default class NodeIterator implements INodeIterator {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpNodeIteratorKeys: Set<string> = new Set([]);
-
-export interface INodeIteratorRps {
-  readonly filter?: INodeFilter | null;
-  readonly pointerBeforeReferenceNode?: boolean;
-  readonly referenceNode?: INode;
-  readonly root?: INode;
-  readonly whatToShow?: number;
+export interface INodeIteratorProperties {
+  filter?: INodeFilter | null;
+  pointerBeforeReferenceNode?: boolean;
+  referenceNode?: INode;
+  root?: INode;
+  whatToShow?: number;
 }
 
-export function setNodeIteratorRps(instance: INodeIterator, data: INodeIteratorRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpNodeIteratorKeys.has(key)) {
-      throw new Error(`${key} is not a property of NodeIterator`);
-    }
-    properties[key] = value;
-  });
+export interface INodeIteratorReadonlyProperties {
+  filter?: INodeFilter | null;
+  pointerBeforeReferenceNode?: boolean;
+  referenceNode?: INode;
+  root?: INode;
+  whatToShow?: number;
 }
+
+export const { getState, setState, setReadonlyOfNodeIterator } = InternalStateGenerator<
+  INodeIterator,
+  INodeIteratorProperties,
+  INodeIteratorReadonlyProperties
+>('NodeIterator');

@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IMediaList } from '../interfaces';
 
 export default class MediaList implements IMediaList {
-  protected readonly _: IMediaListRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<IMediaList, number>(this, 'length');
   }
@@ -39,21 +36,19 @@ export default class MediaList implements IMediaList {
   [index: number]: string;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpMediaListKeys: Set<string> = new Set([]);
-
-export interface IMediaListRps {
-  readonly length?: number;
+export interface IMediaListProperties {
+  length?: number;
+  mediaText?: string;
 }
 
-export function setMediaListRps(instance: IMediaList, data: IMediaListRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpMediaListKeys.has(key)) {
-      throw new Error(`${key} is not a property of MediaList`);
-    }
-    properties[key] = value;
-  });
+export interface IMediaListReadonlyProperties {
+  length?: number;
 }
+
+export const { getState, setState, setReadonlyOfMediaList } = InternalStateGenerator<
+  IMediaList,
+  IMediaListProperties,
+  IMediaListReadonlyProperties
+>('MediaList');

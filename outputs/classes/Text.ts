@@ -1,49 +1,48 @@
+import ClassMixer from '../ClassMixer';
+import Constructable from '../Constructable';
 import InternalHandler from '../InternalHandler';
-import { IText } from '../interfaces';
-import CharacterData, { ICharacterDataRps, rpCharacterDataKeys } from './CharacterData';
-import Slotable, { ISlotableRps, rpSlotableKeys } from '../mixins/Slotable';
+import InternalStateGenerator from '../InternalStateGenerator';
+import { ICharacterData, ISlotable, IText } from '../interfaces';
+import { ICharacterDataProperties, ICharacterDataReadonlyProperties } from './CharacterData';
+import { ISlotableProperties, ISlotableReadonlyProperties } from '../mixins/Slotable';
 
 // tslint:disable-next-line:variable-name
-const TextBase = Slotable(CharacterData);
+export function TextGenerator(CharacterData: Constructable<ICharacterData>, Slotable: Constructable<ISlotable>) {
+  // tslint:disable-next-line:variable-name
+  const Parent = (ClassMixer(CharacterData, [Slotable]) as unknown) as Constructable<ICharacterData & ISlotable>;
 
-export default class Text extends TextBase implements IText {
-  protected readonly _: ITextRps = {};
-
-  // constructor required for this class
-
-  constructor(data?: string) {
-    super();
-    InternalHandler.construct(this, [data]);
-  }
-
-  // properties
-
-  public get wholeText(): string {
-    return InternalHandler.get<IText, string>(this, 'wholeText');
-  }
-
-  // methods
-
-  public splitText(offset: number): IText {
-    return InternalHandler.run<IText, IText>(this, 'splitText', [offset]);
-  }
-}
-
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
-
-export const rpTextKeys: Set<string> = new Set([...rpCharacterDataKeys, ...rpSlotableKeys]);
-
-export interface ITextRps extends ICharacterDataRps, ISlotableRps {
-  readonly wholeText?: string;
-}
-
-export function setTextRps(instance: IText, data: ITextRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpTextKeys.has(key)) {
-      throw new Error(`${key} is not a property of Text`);
+  return class Text extends Parent implements IText {
+    constructor(data?: string) {
+      super();
+      InternalHandler.construct(this, [data]);
     }
-    properties[key] = value;
-  });
+
+    // properties
+
+    public get wholeText(): string {
+      return InternalHandler.get<IText, string>(this, 'wholeText');
+    }
+
+    // methods
+
+    public splitText(offset: number): IText {
+      return InternalHandler.run<IText, IText>(this, 'splitText', [offset]);
+    }
+  };
 }
+
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
+
+export interface ITextProperties extends ICharacterDataProperties, ISlotableProperties {
+  wholeText?: string;
+}
+
+export interface ITextReadonlyProperties extends ICharacterDataReadonlyProperties, ISlotableReadonlyProperties {
+  wholeText?: string;
+}
+
+export const { getState, setState, setReadonlyOfText } = InternalStateGenerator<
+  IText,
+  ITextProperties,
+  ITextReadonlyProperties
+>('Text');

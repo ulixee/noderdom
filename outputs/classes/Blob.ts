@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IBlob, IBlobPart, IBlobPropertyBag } from '../interfaces';
 
 export default class Blob implements IBlob {
-  protected readonly _: IBlobRps = {};
-
-  // constructor required for this class
-
   constructor(blobParts?: Iterable<IBlobPart>, options?: IBlobPropertyBag) {
     InternalHandler.construct(this, [blobParts, options]);
   }
@@ -27,22 +24,20 @@ export default class Blob implements IBlob {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpBlobKeys: Set<string> = new Set([]);
-
-export interface IBlobRps {
-  readonly size?: number;
-  readonly type?: string;
+export interface IBlobProperties {
+  size?: number;
+  type?: string;
 }
 
-export function setBlobRps(instance: IBlob, data: IBlobRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpBlobKeys.has(key)) {
-      throw new Error(`${key} is not a property of Blob`);
-    }
-    properties[key] = value;
-  });
+export interface IBlobReadonlyProperties {
+  size?: number;
+  type?: string;
 }
+
+export const { getState, setState, setReadonlyOfBlob } = InternalStateGenerator<
+  IBlob,
+  IBlobProperties,
+  IBlobReadonlyProperties
+>('Blob');

@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ITimeRanges } from '../interfaces';
 
 export default class TimeRanges implements ITimeRanges {
-  protected readonly _: ITimeRangesRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<ITimeRanges, number>(this, 'length');
   }
@@ -21,21 +18,18 @@ export default class TimeRanges implements ITimeRanges {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpTimeRangesKeys: Set<string> = new Set([]);
-
-export interface ITimeRangesRps {
-  readonly length?: number;
+export interface ITimeRangesProperties {
+  length?: number;
 }
 
-export function setTimeRangesRps(instance: ITimeRanges, data: ITimeRangesRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpTimeRangesKeys.has(key)) {
-      throw new Error(`${key} is not a property of TimeRanges`);
-    }
-    properties[key] = value;
-  });
+export interface ITimeRangesReadonlyProperties {
+  length?: number;
 }
+
+export const { getState, setState, setReadonlyOfTimeRanges } = InternalStateGenerator<
+  ITimeRanges,
+  ITimeRangesProperties,
+  ITimeRangesReadonlyProperties
+>('TimeRanges');

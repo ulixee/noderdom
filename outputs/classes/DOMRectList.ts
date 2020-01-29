@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IDOMRect, IDOMRectList } from '../interfaces';
 
 export default class DOMRectList implements IDOMRectList {
-  protected readonly _: IDOMRectListRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<IDOMRectList, number>(this, 'length');
   }
@@ -19,21 +16,18 @@ export default class DOMRectList implements IDOMRectList {
   [index: number]: IDOMRect;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpDOMRectListKeys: Set<string> = new Set([]);
-
-export interface IDOMRectListRps {
-  readonly length?: number;
+export interface IDOMRectListProperties {
+  length?: number;
 }
 
-export function setDOMRectListRps(instance: IDOMRectList, data: IDOMRectListRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpDOMRectListKeys.has(key)) {
-      throw new Error(`${key} is not a property of DOMRectList`);
-    }
-    properties[key] = value;
-  });
+export interface IDOMRectListReadonlyProperties {
+  length?: number;
 }
+
+export const { getState, setState, setReadonlyOfDOMRectList } = InternalStateGenerator<
+  IDOMRectList,
+  IDOMRectListProperties,
+  IDOMRectListReadonlyProperties
+>('DOMRectList');

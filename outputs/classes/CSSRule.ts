@@ -1,4 +1,5 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ICSSRule, ICSSStyleSheet } from '../interfaces';
 
 export default class CSSRule implements ICSSRule {
@@ -19,10 +20,6 @@ export default class CSSRule implements ICSSRule {
   public readonly NAMESPACE_RULE: number = 10;
   public readonly PAGE_RULE: number = 6;
   public readonly STYLE_RULE: number = 1;
-
-  // store readonly properties
-
-  protected readonly _: ICSSRuleRps = {};
 
   // properties
 
@@ -47,23 +44,23 @@ export default class CSSRule implements ICSSRule {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpCSSRuleKeys: Set<string> = new Set([]);
-
-export interface ICSSRuleRps {
-  readonly parentRule?: ICSSRule | null;
-  readonly parentStyleSheet?: ICSSStyleSheet | null;
-  readonly type?: number;
+export interface ICSSRuleProperties {
+  cssText?: string;
+  parentRule?: ICSSRule | null;
+  parentStyleSheet?: ICSSStyleSheet | null;
+  type?: number;
 }
 
-export function setCSSRuleRps(instance: ICSSRule, data: ICSSRuleRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpCSSRuleKeys.has(key)) {
-      throw new Error(`${key} is not a property of CSSRule`);
-    }
-    properties[key] = value;
-  });
+export interface ICSSRuleReadonlyProperties {
+  parentRule?: ICSSRule | null;
+  parentStyleSheet?: ICSSStyleSheet | null;
+  type?: number;
 }
+
+export const { getState, setState, setReadonlyOfCSSRule } = InternalStateGenerator<
+  ICSSRule,
+  ICSSRuleProperties,
+  ICSSRuleReadonlyProperties
+>('CSSRule');

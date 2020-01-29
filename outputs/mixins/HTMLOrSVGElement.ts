@@ -1,46 +1,46 @@
 import InternalHandler from '../InternalHandler';
 import { IDOMStringMap, IHTMLOrSVGElement } from '../interfaces';
 
-type Constructor<T = {}> = new (...args: any[]) => T;
+export default class HTMLOrSVGElement implements IHTMLOrSVGElement {
+  public get dataset(): IDOMStringMap {
+    return InternalHandler.get<IHTMLOrSVGElement, IDOMStringMap>(this, 'dataset');
+  }
 
-export default function HTMLOrSVGElement<TBase extends Constructor>(base: TBase) {
-  return class extends base implements IHTMLOrSVGElement {
-    public get dataset(): IDOMStringMap {
-      return InternalHandler.get<IHTMLOrSVGElement, IDOMStringMap>(this, 'dataset');
-    }
+  public get nonce(): string {
+    return InternalHandler.get<IHTMLOrSVGElement, string>(this, 'nonce');
+  }
 
-    public get nonce(): string {
-      return InternalHandler.get<IHTMLOrSVGElement, string>(this, 'nonce');
-    }
+  public set nonce(value: string) {
+    InternalHandler.set<IHTMLOrSVGElement, string>(this, 'nonce', value);
+  }
 
-    public set nonce(value: string) {
-      InternalHandler.set<IHTMLOrSVGElement, string>(this, 'nonce', value);
-    }
+  public get tabIndex(): number {
+    return InternalHandler.get<IHTMLOrSVGElement, number>(this, 'tabIndex');
+  }
 
-    public get tabIndex(): number {
-      return InternalHandler.get<IHTMLOrSVGElement, number>(this, 'tabIndex');
-    }
+  public set tabIndex(value: number) {
+    InternalHandler.set<IHTMLOrSVGElement, number>(this, 'tabIndex', value);
+  }
 
-    public set tabIndex(value: number) {
-      InternalHandler.set<IHTMLOrSVGElement, number>(this, 'tabIndex', value);
-    }
+  // methods
 
-    // methods
+  public blur(): void {
+    InternalHandler.run<IHTMLOrSVGElement, void>(this, 'blur', []);
+  }
 
-    public blur(): void {
-      InternalHandler.run<IHTMLOrSVGElement, void>(this, 'blur', []);
-    }
-
-    public focus(): void {
-      InternalHandler.run<IHTMLOrSVGElement, void>(this, 'focus', []);
-    }
-  };
+  public focus(): void {
+    InternalHandler.run<IHTMLOrSVGElement, void>(this, 'focus', []);
+  }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpHTMLOrSVGElementKeys: Set<string> = new Set([]);
+export interface IHTMLOrSVGElementProperties {
+  dataset?: IDOMStringMap;
+  nonce?: string;
+  tabIndex?: number;
+}
 
-export interface IHTMLOrSVGElementRps {
-  readonly dataset?: IDOMStringMap;
+export interface IHTMLOrSVGElementReadonlyProperties {
+  dataset?: IDOMStringMap;
 }

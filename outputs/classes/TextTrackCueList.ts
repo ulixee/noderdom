@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { ITextTrackCue, ITextTrackCueList } from '../interfaces';
 
 export default class TextTrackCueList implements ITextTrackCueList {
-  protected readonly _: ITextTrackCueListRps = {};
-
-  // properties
-
   public get length(): number {
     return InternalHandler.get<ITextTrackCueList, number>(this, 'length');
   }
@@ -19,21 +16,18 @@ export default class TextTrackCueList implements ITextTrackCueList {
   [index: number]: ITextTrackCue;
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpTextTrackCueListKeys: Set<string> = new Set([]);
-
-export interface ITextTrackCueListRps {
-  readonly length?: number;
+export interface ITextTrackCueListProperties {
+  length?: number;
 }
 
-export function setTextTrackCueListRps(instance: ITextTrackCueList, data: ITextTrackCueListRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpTextTrackCueListKeys.has(key)) {
-      throw new Error(`${key} is not a property of TextTrackCueList`);
-    }
-    properties[key] = value;
-  });
+export interface ITextTrackCueListReadonlyProperties {
+  length?: number;
 }
+
+export const { getState, setState, setReadonlyOfTextTrackCueList } = InternalStateGenerator<
+  ITextTrackCueList,
+  ITextTrackCueListProperties,
+  ITextTrackCueListReadonlyProperties
+>('TextTrackCueList');

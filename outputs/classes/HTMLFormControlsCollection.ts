@@ -1,31 +1,26 @@
+import Constructable from '../Constructable';
 import InternalHandler from '../InternalHandler';
-import { IRadioNodeList, IElement, IHTMLFormControlsCollection } from '../interfaces';
-import HTMLCollectionBase, { IHTMLCollectionBaseRps, rpHTMLCollectionBaseKeys } from './HTMLCollectionBase';
+import InternalStateGenerator from '../InternalStateGenerator';
+import { IHTMLCollectionBase, IRadioNodeList, IElement, IHTMLFormControlsCollection } from '../interfaces';
+import { IHTMLCollectionBaseProperties, IHTMLCollectionBaseReadonlyProperties } from './HTMLCollectionBase';
 
-export default class HTMLFormControlsCollection extends HTMLCollectionBase implements IHTMLFormControlsCollection {
-  public namedItem(name: string): IRadioNodeList | IElement | null {
-    return InternalHandler.run<IHTMLFormControlsCollection, IRadioNodeList | IElement | null>(this, 'namedItem', [
-      name,
-    ]);
-  }
-}
-
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
-
-export const rpHTMLFormControlsCollectionKeys: Set<string> = new Set([...rpHTMLCollectionBaseKeys]);
-
-export interface IHTMLFormControlsCollectionRps extends IHTMLCollectionBaseRps {}
-
-export function setHTMLFormControlsCollectionRps(
-  instance: IHTMLFormControlsCollection,
-  data: IHTMLFormControlsCollectionRps,
-): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpHTMLFormControlsCollectionKeys.has(key)) {
-      throw new Error(`${key} is not a property of HTMLFormControlsCollection`);
+// tslint:disable-next-line:variable-name
+export function HTMLFormControlsCollectionGenerator(HTMLCollectionBase: Constructable<IHTMLCollectionBase>) {
+  return class HTMLFormControlsCollection extends HTMLCollectionBase implements IHTMLFormControlsCollection {
+    public namedItem(name: string): IRadioNodeList | IElement | null {
+      return InternalHandler.run<IHTMLFormControlsCollection, IRadioNodeList | IElement | null>(this, 'namedItem', [name]);
     }
-    properties[key] = value;
-  });
+  };
 }
+
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
+
+export interface IHTMLFormControlsCollectionProperties extends IHTMLCollectionBaseProperties {}
+
+export interface IHTMLFormControlsCollectionReadonlyProperties extends IHTMLCollectionBaseReadonlyProperties {}
+
+export const { getState, setState, setReadonlyOfHTMLFormControlsCollection } = InternalStateGenerator<
+  IHTMLFormControlsCollection,
+  IHTMLFormControlsCollectionProperties,
+  IHTMLFormControlsCollectionReadonlyProperties
+>('HTMLFormControlsCollection');

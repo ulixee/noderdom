@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { IVideoTrack } from '../interfaces';
 
 export default class VideoTrack implements IVideoTrack {
-  protected readonly _: IVideoTrackRps = {};
-
-  // properties
-
   public get id(): string {
     return InternalHandler.get<IVideoTrack, string>(this, 'id');
   }
@@ -31,24 +28,25 @@ export default class VideoTrack implements IVideoTrack {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpVideoTrackKeys: Set<string> = new Set([]);
-
-export interface IVideoTrackRps {
-  readonly id?: string;
-  readonly kind?: string;
-  readonly label?: string;
-  readonly language?: string;
+export interface IVideoTrackProperties {
+  id?: string;
+  kind?: string;
+  label?: string;
+  language?: string;
+  selected?: boolean;
 }
 
-export function setVideoTrackRps(instance: IVideoTrack, data: IVideoTrackRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpVideoTrackKeys.has(key)) {
-      throw new Error(`${key} is not a property of VideoTrack`);
-    }
-    properties[key] = value;
-  });
+export interface IVideoTrackReadonlyProperties {
+  id?: string;
+  kind?: string;
+  label?: string;
+  language?: string;
 }
+
+export const { getState, setState, setReadonlyOfVideoTrack } = InternalStateGenerator<
+  IVideoTrack,
+  IVideoTrackProperties,
+  IVideoTrackReadonlyProperties
+>('VideoTrack');

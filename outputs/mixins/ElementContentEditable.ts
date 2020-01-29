@@ -1,13 +1,9 @@
 import { IElementContentEditable } from '../interfaces';
 
-type Constructor<T = {}> = new (...args: any[]) => T;
+export default class ElementContentEditable implements IElementContentEditable {}
 
-export default function ElementContentEditable<TBase extends Constructor>(base: TBase) {
-  return class extends base implements IElementContentEditable {};
-}
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+export interface IElementContentEditableProperties {}
 
-export const rpElementContentEditableKeys: Set<string> = new Set([]);
-
-export interface IElementContentEditableRps {}
+export interface IElementContentEditableReadonlyProperties {}

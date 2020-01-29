@@ -1,11 +1,8 @@
 import InternalHandler from '../InternalHandler';
+import InternalStateGenerator from '../InternalStateGenerator';
 import { INode, IAbstractRange } from '../interfaces';
 
 export default class AbstractRange implements IAbstractRange {
-  protected readonly _: IAbstractRangeRps = {};
-
-  // properties
-
   public get collapsed(): boolean {
     return InternalHandler.get<IAbstractRange, boolean>(this, 'collapsed');
   }
@@ -27,25 +24,26 @@ export default class AbstractRange implements IAbstractRange {
   }
 }
 
-// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////
+// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////
 
-export const rpAbstractRangeKeys: Set<string> = new Set([]);
-
-export interface IAbstractRangeRps {
-  readonly collapsed?: boolean;
-  readonly endContainer?: INode;
-  readonly endOffset?: number;
-  readonly startContainer?: INode;
-  readonly startOffset?: number;
+export interface IAbstractRangeProperties {
+  collapsed?: boolean;
+  endContainer?: INode;
+  endOffset?: number;
+  startContainer?: INode;
+  startOffset?: number;
 }
 
-export function setAbstractRangeRps(instance: IAbstractRange, data: IAbstractRangeRps): void {
-  // @ts-ignore
-  const properties: Record<string, any> = instance._;
-  Object.entries(data).forEach(([key, value]: [string, any]) => {
-    if (!rpAbstractRangeKeys.has(key)) {
-      throw new Error(`${key} is not a property of AbstractRange`);
-    }
-    properties[key] = value;
-  });
+export interface IAbstractRangeReadonlyProperties {
+  collapsed?: boolean;
+  endContainer?: INode;
+  endOffset?: number;
+  startContainer?: INode;
+  startOffset?: number;
 }
+
+export const { getState, setState, setReadonlyOfAbstractRange } = InternalStateGenerator<
+  IAbstractRange,
+  IAbstractRangeProperties,
+  IAbstractRangeReadonlyProperties
+>('AbstractRange');

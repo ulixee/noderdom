@@ -10,11 +10,11 @@ export default class TsClasslike {
   public readonly hasMethods: boolean;
   public readonly hasIndexers: boolean;
   public usesInternalHandler: boolean;
+  public interfacesToImport: Set<string> = new Set();
   private readonly printer: Printer;
   private readonly components: Components;
   private readonly i: Types.Interface;
   private readonly indexers: Types.AnonymousMethod[];
-  private interfacesToImport: Set<string> = new Set();
 
   constructor(components: Components, printer: Printer, i: Types.Interface) {
     this.components = components;
@@ -171,28 +171,50 @@ export default class TsClasslike {
     return pType;
   }
 
-  public printReadonlyInterface(classesToImport: string[]) {
+  public printInternalStateHooks(classesToImport: string[], internalStateGenerator: boolean = true) {
     const i: Types.Interface = this.i;
-    const keys: string[] = [];
-    const extendsStr = classesToImport.length ? `extends ${classesToImport.map(x => `I${x}Rps`).join(', ')} ` : '';
     this.printer.printSeparatorLine();
-    this.printer.printSeparatorLine('// SUPPORT FOR UPDATING READONLY PROPERTIES ////////////////////////////////////');
+    this.printer.printSeparatorLine('// SUPPORT FOR INTERNAL STATE GENERATOR ////////////////////////////////////////');
     this.printer.printLine('');
-    keys.push(...classesToImport.map(c => `...rp${c}Keys`));
-    this.printer.printLine(`export const rp${i.name}Keys: Set<string> = new Set([${keys.join(', ')}]);`);
+    this.printPropertiesInterface(classesToImport, this.properties, false);
     this.printer.printLine('');
-    this.printer.print(`export interface I${i.name}Rps ${extendsStr}{`);
-    if (this.readonlyProperties.length) {
+    this.printPropertiesInterface(classesToImport, this.readonlyProperties, true);
+    if (internalStateGenerator) {
+      this.printer.printLine('');
+      this.printer.printLine(`export const { getState, setState, setReadonlyOf${i.name} } = InternalStateGenerator<`);
+      this.printer.printLine(`  I${i.name},`);
+      this.printer.printLine(`  I${i.name}Properties,`);
+      this.printer.printLine(`  I${i.name}ReadonlyProperties`);
+      this.printer.printLine(`>('${i.name}');`);
+    }
+  }
+
+  private printPropertiesInterface(classesToImport: string[], properties: Types.Property[], isReadonly: boolean) {
+    const i: Types.Interface = this.i;
+    const extendsSuffix = `${isReadonly ? 'Readonly' : ''}Properties`;
+    const extendsStr = classesToImport.length
+      ? `extends ${classesToImport.map(x => `I${x}${extendsSuffix}`).join(', ')} `
+      : '';
+    const interfaceName = `I${i.name}${isReadonly ? 'Readonly' : ''}Properties`;
+    this.printer.print(`export interface ${interfaceName} ${extendsStr}{`);
+    if (properties.length) {
       this.printer.endLine();
     }
     this.printer.increaseIndent();
-    for (const p of this.readonlyProperties) {
+    for (const p of properties) {
       const pType: string = this.extractPropertyType(p);
-      this.printer.printLine(`readonly ${p.name}?: ${pType};`);
-      keys.push(`'${p.name}'`);
+      this.printer.printLine(`${p.name}?: ${pType};`);
     }
     this.printer.decreaseIndent();
     this.printer.printLine(`}`);
+  }
+
+  public get class() {
+    const i: Types.Interface = this.i;
+    if (i['type-parameters'] && i['type-parameters'][0]) {
+      return `${i.name}<${i['type-parameters'][0].name}>`;
+    }
+    return i.name;
   }
 
   public get iClass() {
@@ -309,19 +331,6 @@ export default class TsClasslike {
     if (m.deprecated) this.printer.printDepreciated();
     this.printer.printComment(m.comment);
 
-    switch (m.name) {
-      case 'createElement':
-        return this.emitCreateElementOverloads(m);
-      case 'createEvent':
-        return this.emitCreateEventOverloads(m);
-      case 'getElementsByTagName':
-        return this.emitGetElementsByTagNameOverloads(m);
-      case 'querySelector':
-        return this.emitQuerySelectorOverloads(m);
-      case 'querySelectorAll':
-        return this.emitQuerySelectorAllOverloads(m);
-    }
-
     const firstTypeParam = i['type-parameters'] && i['type-parameters'][0];
     const extendedType = firstTypeParam && firstTypeParam.extends ? firstTypeParam.name : null;
 
@@ -348,123 +357,6 @@ export default class TsClasslike {
   private createMethodReturnType(signature: Types.Signature, convertToIType: boolean = false) {
     const returnType = this.components.convertDomTypeToTsType(signature, convertToIType);
     return signature.nullable ? makeNullable(returnType) : returnType;
-  }
-
-  /// Emit overloads for the createElement method
-  private emitCreateElementOverloads(m: Types.Method) {
-    const expectedParamType = ['string', 'string | ElementCreationOptions'];
-    const isMatch = this.components.matchParamMethodSignature(m, 'createElement', 'Element', expectedParamType);
-    if (!isMatch) return;
-
-    this.printer.printSeparatorLine();
-    this.printer.printLine(
-      'public createElement<K extends keyof IHTMLElementTagNameMap>(tagName: K, options?: IElementCreationOptions): IHTMLElementTagNameMap[K];',
-    );
-    this.printer.printLine('createElement(tagName: string, options?: ElementCreationOptions): HTMLElement {');
-    this.printer.printLine(
-      `  return InternalHandler.run<${this.iClass}, 'createElement', HTMLElement>(this, [tagName, options]);`,
-    );
-    this.printer.printLine('}');
-    this.usesInternalHandler = true;
-  }
-
-  // Emit overloads for the createEvent method
-  private emitCreateEventOverloads(m: Types.Method) {
-    const isMatch = this.components.matchParamMethodSignature(m, 'createEvent', 'Event', 'string');
-    if (!isMatch) return;
-
-    this.printer.printSeparatorLine();
-    // Emit plurals. For example, Events, MutationEvents
-    const hasPlurals = ['Event', 'MutationEvent', 'MouseEvent', 'SVGZoomEvent', 'UIEvent'];
-    for (const x of this.components.distinctETypeList) {
-      this.printer.printLine(`public createEvent(_eventInterface: 'I${x}'): I${x};`);
-      this.interfacesToImport.add(`I${x}`);
-      if (hasPlurals.includes(x)) {
-        this.printer.printLine(`public createEvent(_eventInterface: 'I${x}s'): I${x};`);
-        this.interfacesToImport.add(`I${x}s`);
-      }
-    }
-    this.printer.printLine('createEvent(eventInterface: string): IEvent {');
-    this.printer.printLine(
-      `  return InternalHandler.run<${this.iClass}, IEvent>(this, 'createEvent', [eventInterface]);`,
-    );
-    this.printer.printLine('}');
-    this.interfacesToImport.add('IEvent');
-    this.usesInternalHandler = true;
-  }
-
-  // Emit overloads for the getElementsByTagName method
-  private emitGetElementsByTagNameOverloads(m: Types.Method) {
-    const isMatch = this.components.matchParamMethodSignature(m, 'getElementsByTagName', 'HTMLCollection', 'string');
-    if (!isMatch) return;
-
-    const argName = m.signature[0].param![0].name;
-    this.printer.printSeparatorLine();
-    this.printer.printLine(
-      `public getElementsByTagName<K extends keyof IHTMLElementTagNameMap>(${argName}: K): IHTMLCollection<IHTMLElementTagNameMap[K]>;`,
-    );
-    this.printer.printLine(
-      `public getElementsByTagName<K extends keyof ISVGElementTagNameMap>(${argName}: K): IHTMLCollection<ISVGElementTagNameMap[K]>;`,
-    );
-    this.printer.printLine(`public getElementsByTagName(${argName}: string): IHTMLCollection<IElement> {`);
-    this.printer.printLine(
-      `  return InternalHandler.run<${this.iClass}, IHTMLCollection<IElement>>(this, 'getElementsByTagName', [${argName}]);`,
-    );
-    this.printer.printLine('}');
-    this.interfacesToImport.add('IHTMLElementTagNameMap');
-    this.interfacesToImport.add('ISVGElementTagNameMap');
-    this.interfacesToImport.add('IHTMLCollection');
-    this.interfacesToImport.add('IElement');
-    this.usesInternalHandler = true;
-  }
-
-  // Emit overloads for the querySelector method
-  private emitQuerySelectorOverloads(m: Types.Method) {
-    const isMatch = this.components.matchParamMethodSignature(m, 'querySelector', 'Element | null', 'string');
-    if (!isMatch) return;
-
-    this.printer.printSeparatorLine();
-    this.printer.printLine(
-      'public querySelector<K extends keyof IHTMLElementTagNameMap>(selectors: K): IHTMLElementTagNameMap[K] | null;',
-    );
-    this.printer.printLine(
-      'public querySelector<K extends keyof ISVGElementTagNameMap>(selectors: K): ISVGElementTagNameMap[K] | null;',
-    );
-    this.printer.printLine('public querySelector<E extends IElement = IElement>(selectors: string): E | null {');
-    this.printer.printLine(
-      `  return InternalHandler.run<${this.iClass}, E | null>(this, 'querySelector', [selectors]);`,
-    );
-    this.printer.printLine('}');
-    this.interfacesToImport.add('IHTMLElementTagNameMap');
-    this.interfacesToImport.add('ISVGElementTagNameMap');
-    this.interfacesToImport.add('IElement');
-    this.usesInternalHandler = true;
-  }
-
-  // Emit overloads for the querySelectorAll method
-  private emitQuerySelectorAllOverloads(m: Types.Method) {
-    const isMatch = this.components.matchParamMethodSignature(m, 'querySelectorAll', 'NodeList', 'string');
-    if (!isMatch) return;
-
-    this.printer.printSeparatorLine();
-    this.printer.printLine(
-      'public querySelectorAll<K extends keyof IHTMLElementTagNameMap>(selectors: K): INodeList<IHTMLElementTagNameMap[K]>;',
-    );
-    this.printer.printLine(
-      'public querySelectorAll<K extends keyof ISVGElementTagNameMap>(selectors: K): INodeList<ISVGElementTagNameMap[K]>;',
-    );
-    this.printer.printLine(
-      'public querySelectorAll<E extends IElement = IElement>(selectors: string): INodeList<E> {',
-    );
-    this.printer.printLine(
-      `  return InternalHandler.run<${this.iClass}, INodeList<E>>(this, 'querySelectorAll', [selectors]);`,
-    );
-    this.printer.printLine('}');
-    this.interfacesToImport.add('IHTMLElementTagNameMap');
-    this.interfacesToImport.add('INodeList');
-    this.interfacesToImport.add('ISVGElementTagNameMap');
-    this.interfacesToImport.add('IElement');
-    this.usesInternalHandler = true;
   }
 
   private emitIteratorForEach() {
