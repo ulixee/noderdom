@@ -1,5 +1,5 @@
 import Components from './Components';
-import { compareName } from './helpers';
+import { compareName } from './utils';
 import TsClassExtractor from './TsClassExtractor';
 
 export default class TsClassesExtractor {

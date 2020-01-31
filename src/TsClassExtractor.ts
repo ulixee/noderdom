@@ -1,8 +1,9 @@
-import { getNameWithTypeParameter } from './helpers';
+import { getNameWithTypeParameter } from './utils';
 import * as Types from './types';
 import Printer from './Printer';
 import Components from './Components';
 import TsClasslike from './TsClasslike';
+import Helpers from './Helpers';
 
 const classNamesToSkip = new Set(['Object']);
 
@@ -13,11 +14,13 @@ export default class TsClassExtractor {
   private readonly hasBody: boolean;
   private readonly hasConstructor: boolean;
   private readonly extensions: string[];
+  private readonly helpers: Helpers;
 
   constructor(components: Components, i: Types.Interface) {
     this.i = i;
     this.classlike = new TsClasslike(components, this.printer, i);
     this.extensions = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
+    this.helpers = new Helpers(components, this.printer, i, { isWithinClass: true });
 
     const constructorSignature = i.constructor && i.constructor.signature;
     const constructorParams = constructorSignature && constructorSignature[0] && constructorSignature[0].param;
@@ -60,7 +63,7 @@ export default class TsClassExtractor {
     const i: Types.Interface = this.i;
     const args: string[] = this.extensions.map(extension => {
       this.classlike.interfacesToImport.add(`I${extension}`);
-      return `${extension}: Constructable<I${extension}>`
+      return `${extension}: Constructable<I${extension}>`;
     });
     this.printer.printLine('// tslint:disable-next-line:variable-name');
     this.printer.printLine(`export function ${i.name}Generator(${args.join(', ')}) {`);
@@ -69,7 +72,7 @@ export default class TsClassExtractor {
 
   private printClassDeclaration() {
     const i: Types.Interface = this.i;
-    const iClass = this.classlike.iClass;
+    const iClass = this.helpers.iClass;
     const extensions = this.extensions;
 
     let extendsStr = '';
@@ -104,13 +107,13 @@ export default class TsClassExtractor {
 
     this.printer.printSeparatorLine(constructor.comment || '// constructor required for this class');
     this.printer.printSeparatorLine();
-    const methodArgs = this.classlike.extractMethodArgs(constructor.signature[0]);
+    const methodArgs = this.helpers.extractMethodArgs(constructor.signature[0]);
     this.printer.printLine(`constructor(${methodArgs}) {`);
     this.printer.increaseIndent();
     if (i.extends && !classNamesToSkip.has(i.extends)) {
       this.printer.printLine(`super();`);
     }
-    const methodArgNames = this.classlike.extractMethodArgNames(constructor.signature[0]);
+    const methodArgNames = this.helpers.extractMethodArgNames(constructor.signature[0]);
     this.printer.printLine(`InternalHandler.construct(this, [${methodArgNames.join(', ')}]);`);
     this.printer.decreaseIndent();
     this.printer.printLine('}');

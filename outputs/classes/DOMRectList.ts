@@ -13,6 +13,10 @@ export default class DOMRectList implements IDOMRectList {
     return InternalHandler.run<IDOMRectList, IDOMRect | null>(this, 'item', [index]);
   }
 
+  public [Symbol.iterator](): IterableIterator<IDOMRect> {
+    return InternalHandler.run<IDOMRectList, IterableIterator<IDOMRect>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: IDOMRect;
 }
 

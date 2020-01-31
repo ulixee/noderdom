@@ -37,6 +37,10 @@ export default class NamedNodeMap implements INamedNodeMap {
     return InternalHandler.run<INamedNodeMap, IAttr | null>(this, 'setNamedItemNS', [attr]);
   }
 
+  public [Symbol.iterator](): IterableIterator<IAttr> {
+    return InternalHandler.run<INamedNodeMap, IterableIterator<IAttr>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: IAttr;
 }
 

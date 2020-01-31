@@ -1,7 +1,9 @@
 import * as Types from './types';
 import Printer from './Printer';
 import Components from './Components';
-import { compareName, isEventHandler, makeNullable, map, distinct, nameWithForwardedTypes, toIType } from './helpers';
+import { compareName, isEventHandler, makeNullable, map, distinct, nameWithForwardedTypes, toIType } from './utils';
+import TsIteratorExtractor from './TsIteratorExtractor';
+import Helpers from './Helpers';
 
 export default class TsClasslike {
   public readonly properties: Types.Property[] = [];
@@ -9,17 +11,18 @@ export default class TsClasslike {
   public readonly hasProperties: boolean;
   public readonly hasMethods: boolean;
   public readonly hasIndexers: boolean;
-  public usesInternalHandler: boolean;
   public interfacesToImport: Set<string> = new Set();
   private readonly printer: Printer;
   private readonly components: Components;
   private readonly i: Types.Interface;
   private readonly indexers: Types.AnonymousMethod[];
+  private readonly helpers: Helpers;
 
   constructor(components: Components, printer: Printer, i: Types.Interface) {
     this.components = components;
     this.printer = printer;
     this.i = i;
+    this.helpers = new Helpers(components, printer, i, { isWithinClass: true });
 
     if (i.properties) {
       this.properties = Object.values(i.properties.property)
@@ -40,7 +43,10 @@ export default class TsClasslike {
     this.hasProperties = !!(i.properties && Object.keys(i.properties.property).length);
     this.hasMethods = !!(i.methods && Object.keys(i.methods.method).length);
     this.hasIndexers = !!this.indexers.length;
-    this.usesInternalHandler = this.hasProperties || this.hasMethods;
+  }
+
+  public usesInternalHandler() {
+    return this.helpers.usesInternalHandler || this.hasProperties || this.hasMethods;
   }
 
   public printBody(injectorFns: { afterConstants?: () => void } = {}) {
@@ -69,17 +75,14 @@ export default class TsClasslike {
       this.printMethods();
     }
 
-    this.emitIteratorForEach();
     this.printEventHandlers();
+
+    const iterators = new TsIteratorExtractor(this.components, this.i, { isWithinClass: true }).run();
+    if (iterators) {
+      this.printer.printSeparatorLine();
+      this.printer.printLines(iterators);
+    }
     this.printIndexers();
-  }
-
-  public extractMethodArgs(signature: Types.Signature, isUnused: boolean = false) {
-    return signature.param ? this.components.paramsToString(signature.param, true, isUnused) : '';
-  }
-
-  public extractMethodArgNames(signature: Types.Signature) {
-    return signature.param ? this.components.paramNames(signature.param) : [];
   }
 
   public extractInterfacesToImport() {
@@ -217,24 +220,6 @@ export default class TsClasslike {
     return i.name;
   }
 
-  public get iClass() {
-    const i: Types.Interface = this.i;
-    const iType = toIType(i.name);
-    if (i['type-parameters'] && i['type-parameters'][0]) {
-      return `${iType}<${i['type-parameters'][0].name}>`;
-    }
-    return iType;
-  }
-
-  public get iClassExtends() {
-    const i: Types.Interface = this.i;
-    const iType = toIType(i.name);
-    if (i['type-parameters'] && i['type-parameters'][0] && i['type-parameters'][0].extends) {
-      return `${iType}<${toIType(i['type-parameters'][0].extends)}>`;
-    }
-    return iType;
-  }
-
   // privates
 
   private extractInterfaceTypesFromTypeParent(parent: Types.Param | Types.Signature) {
@@ -270,18 +255,18 @@ export default class TsClasslike {
 
   private emitConstant(c: Types.Constant, isStatic: boolean = false) {
     const keywords = `public${isStatic ? ' static' : ''} readonly`;
-    this.printer.printComment(c.comment);
+    this.printer.printLines(c.comment);
     this.printer.printLine(`${keywords} ${c.name}: ${this.components.convertDomTypeToTsType(c)} = ${c.value};`);
   }
 
   private printProperty(p: Types.Property) {
-    this.printer.printComment(p.comment);
+    this.printer.printLines(p.comment);
 
     const pType: string = this.extractPropertyType(p);
     this.printer.printSeparatorLine();
     this.printer.printLine(`public get ${p.name}(): ${pType} {`);
     this.printer.increaseIndent();
-    this.printer.printLine(`return InternalHandler.get<${this.iClass}, ${pType}>(this, '${p.name}');`);
+    this.printer.printLine(`return InternalHandler.get<${this.helpers.iClass}, ${pType}>(this, '${p.name}');`);
     this.printer.decreaseIndent();
     this.printer.printLine('}');
 
@@ -289,7 +274,7 @@ export default class TsClasslike {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public set ${p.name}(value: ${pType}) {`);
       this.printer.increaseIndent();
-      this.printer.printLine(`InternalHandler.set<${this.iClass}, ${pType}>(this, '${p.name}', value);`);
+      this.printer.printLine(`InternalHandler.set<${this.helpers.iClass}, ${pType}>(this, '${p.name}', value);`);
       this.printer.decreaseIndent();
       this.printer.printLine('}');
     }
@@ -305,80 +290,14 @@ export default class TsClasslike {
     if (i.methods) {
       Object.values(i.methods.method)
         .sort(compareName)
-        .forEach(m => this.printMethod(m));
+        .forEach(m => this.helpers.printMethod(m));
     }
     if (i['anonymous-methods']) {
       const stringifier = i['anonymous-methods'].method.find(m => m.stringifier);
       if (stringifier) {
-        this.printToStringMethod();
+        this.helpers.printToStringMethod();
       }
     }
-  }
-
-  private printToStringMethod(propertyToPrint?: string) {
-    this.usesInternalHandler = true;
-    this.printer.printSeparatorLine();
-    this.printer.printLine('public toString(): string {');
-    this.printer.increaseIndent();
-    if (propertyToPrint) this.printer.printComment(`// should print ${propertyToPrint} as string`);
-    this.printer.printLine(`return InternalHandler.run<${this.iClass}, string>(this, 'string', []);`);
-    this.printer.decreaseIndent();
-    this.printer.printLine('}');
-  }
-
-  private printMethod(m: Types.Method) {
-    const i: Types.Interface = this.i;
-    if (m.deprecated) this.printer.printDepreciated();
-    this.printer.printComment(m.comment);
-
-    const firstTypeParam = i['type-parameters'] && i['type-parameters'][0];
-    const extendedType = firstTypeParam && firstTypeParam.extends ? firstTypeParam.name : null;
-
-    m.signature.forEach(signature => {
-      const methodArgs = this.extractMethodArgs(signature);
-      const returnType = this.createMethodReturnType(signature, !extendedType);
-      this.printer.printSeparatorLine();
-      this.printer.printLine(`public ${m.name}(${methodArgs}): ${returnType} {`);
-      this.printer.increaseIndent();
-      const methodArgNames = this.extractMethodArgNames(signature).join(', ');
-      const returnCmd = ['void', 'any'].includes(returnType) ? '' : 'return ';
-      this.printer.printLine(
-        `${returnCmd}InternalHandler.run<${this.iClass}, ${returnType}>(this, '${m.name}', [${methodArgNames}]);`,
-      );
-      this.printer.decreaseIndent();
-      this.printer.printLine('}');
-    });
-
-    if (m.stringifier) {
-      this.printToStringMethod(m.name);
-    }
-  }
-
-  private createMethodReturnType(signature: Types.Signature, convertToIType: boolean = false) {
-    const returnType = this.components.convertDomTypeToTsType(signature, convertToIType);
-    return signature.nullable ? makeNullable(returnType) : returnType;
-  }
-
-  private emitIteratorForEach() {
-    const i: Types.Interface = this.i;
-    if (!i.iterator) return;
-
-    const typeParam = i['type-parameters'] && i['type-parameters'] ? i['type-parameters'][0] : null;
-    const extendedType = typeParam && typeParam.extends ? typeParam.name : null;
-    const subtype = i.iterator.type.map(o => this.components.convertDomTypeToTsType(o));
-    const lastSubtype = subtype[subtype.length - 1];
-    const value = lastSubtype === extendedType ? lastSubtype : toIType(lastSubtype);
-    const key = subtype.length > 1 ? subtype[0] : i.iterator.kind === 'iterable' ? 'number' : value;
-    const name = i['type-parameters']
-      ? `${toIType(i.name)}<${i['type-parameters']!.map(p => p.name).join(', ')}>`
-      : toIType(i.name);
-    this.printer.printSeparatorLine();
-    this.printer.printLine(
-      `public forEach(callbackfn: (value: ${value}, key: ${key}, parent: ${name}) => void, thisArg?: any): void {`,
-    );
-    this.printer.printLine(`  InternalHandler.run<${this.iClass}, void>(this, 'forEach', [callbackfn, thisArg]);`);
-    this.printer.printLine('}');
-    this.usesInternalHandler = true;
   }
 
   private printEventHandlers() {
@@ -392,10 +311,10 @@ export default class TsClasslike {
           `public ${addOrRemove}EventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | ${optionsType}): void {`,
         );
         this.printer.printLine(
-          `  InternalHandler.run<${this.iClass}, void>(this, '${addOrRemove}EventListener', [type, listener, options]);`,
+          `  InternalHandler.run<${this.helpers.iClass}, void>(this, '${addOrRemove}EventListener', [type, listener, options]);`,
         );
         this.printer.printLine(`}`);
-        this.usesInternalHandler = true;
+        this.helpers.usesInternalHandler = true;
       }
     }
   }
@@ -463,9 +382,10 @@ export default class TsClasslike {
           const sig = meth.signature[0];
           const mTypes = distinct(
             (i.methods &&
-              map(i.methods.method, m => (m.signature && m.signature.length && m.signature[0].type) || 'void').filter(
-                t => t !== 'void',
-              )) ||
+              map(
+                i.methods.method,
+                (m: Types.Method) => (m.signature && m.signature.length && m.signature[0].type) || 'void',
+              ).filter((t: any) => t !== 'void')) ||
               [],
           );
           const amTypes = distinct(
@@ -474,7 +394,9 @@ export default class TsClasslike {
               [],
           ); // |>  Array.distinct
           const pTypes = distinct(
-            (i.properties && map(i.properties.property, m => m.type).filter(t => t !== 'void')) || [],
+            (i.properties &&
+              map(i.properties.property, (p: Types.Property) => p.type).filter((t: any) => t !== 'void')) ||
+              [],
           ); // |>  Array.distinct
 
           if (mTypes.length === 0 && amTypes.length === 1 && pTypes.length === 0) return amTypes[0] === sig.type;

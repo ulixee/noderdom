@@ -295,15 +295,6 @@ export function getNameWithTypeParameter(
   return `${iName}<${i['type-parameters'].map(p => typeParameterWithDefault(p, true)).join(', ')}>`;
 }
 
-export function markAsDeprecated(i: Types.Interface) {
-  for (const method of mapToArray(i.methods.method)) {
-    method.deprecated = 1;
-  }
-  for (const property of mapToArray(i.properties!.property)) {
-    property.deprecated = 1;
-  }
-}
-
 ///////
 
 export function toIType(type: string) {

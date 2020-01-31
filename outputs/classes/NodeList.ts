@@ -17,6 +17,22 @@ export default class NodeList<T extends INode = INode> implements INodeList<T> {
     InternalHandler.run<INodeList<T>, void>(this, 'forEach', [callbackfn, thisArg]);
   }
 
+  public entries(): IterableIterator<[number, INode]> {
+    return InternalHandler.run<INodeList<T>, IterableIterator<[number, INode]>>(this, 'entries', []);
+  }
+
+  public keys(): IterableIterator<number> {
+    return InternalHandler.run<INodeList<T>, IterableIterator<number>>(this, 'keys', []);
+  }
+
+  public values(): IterableIterator<INode> {
+    return InternalHandler.run<INodeList<T>, IterableIterator<INode>>(this, 'values', []);
+  }
+
+  public [Symbol.iterator](): IterableIterator<INode> {
+    return InternalHandler.run<INodeList<T>, IterableIterator<INode>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: T;
 }
 

@@ -1,5 +1,6 @@
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import InternalHandler from '../InternalHandler';
 import InternalStateGenerator from '../InternalStateGenerator';
 import { INode, INonElementParentNode, IParentNode, IDocumentFragment } from '../interfaces';
 import { INodeProperties, INodeReadonlyProperties } from './Node';

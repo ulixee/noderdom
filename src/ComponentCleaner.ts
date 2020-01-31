@@ -1,6 +1,6 @@
 import Components from './Components';
 import * as Browser from './types';
-import { filter, exposesTo, followTypeReferences, mapToArray, arrayToMap } from './helpers';
+import { filter, exposesTo, followTypeReferences, mapToArray, arrayToMap } from './utils';
 import { baseComponentNames } from './ComponentOverrides';
 
 export default class ComponentCleaner {

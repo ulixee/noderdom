@@ -151,6 +151,10 @@ export function HTMLSelectElementGenerator(HTMLElement: Constructable<IHTMLEleme
       InternalHandler.run<IHTMLSelectElement, void>(this, 'removeEventListener', [type, listener, options]);
     }
 
+    public [Symbol.iterator](): IterableIterator<IElement> {
+      return InternalHandler.run<IHTMLSelectElement, IterableIterator<IElement>>(this, '[Symbol.iterator]', []);
+    }
+
     [index: number]: IElement;
   };
 }

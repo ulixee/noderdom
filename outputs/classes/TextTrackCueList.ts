@@ -13,6 +13,10 @@ export default class TextTrackCueList implements ITextTrackCueList {
     return InternalHandler.run<ITextTrackCueList, ITextTrackCue | null>(this, 'getCueById', [id]);
   }
 
+  public [Symbol.iterator](): IterableIterator<ITextTrackCue> {
+    return InternalHandler.run<ITextTrackCueList, IterableIterator<ITextTrackCue>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: ITextTrackCue;
 }
 

@@ -1,4 +1,4 @@
-import { compareName, getNameWithTypeParameter } from './helpers';
+import { compareName, getNameWithTypeParameter } from './utils';
 import * as Types from './types';
 import Printer from './Printer';
 import Components from './Components';
@@ -50,7 +50,6 @@ export default class TsTypeExtractor {
   }
 
   private extractTypeDef(typeDef: Types.TypeDef, name: string) {
-    if (typeDef.deprecated) this.printer.printDepreciated();
     let tsIType = this.components.convertDomTypeToTsType(typeDef, true);
     // manual override
     if (name === 'EventListenerOrEventListenerObject') {
@@ -86,7 +85,7 @@ export default class TsTypeExtractor {
       Object.values(dict.members.member)
         .sort(compareName)
         .forEach(m => {
-          this.printer.printComment(m.comment);
+          this.printer.printLines(m.comment);
           this.printer.printLine(
             `${m.name}${m.required === 1 ? '' : '?'}: ${this.components.convertDomTypeToTsType(m, true)};`,
           );

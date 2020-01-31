@@ -67,7 +67,7 @@ export default class TsMixinExtractor {
   //   }
   //
   //   this.printer.printSeparatorLine();
-  //   this.printer.printComment('// tslint:disable-next-line:variable-name');
+  //   this.printer.printLine('// tslint:disable-next-line:variable-name');
   //   this.printer.printLine(`export default function ${i.name}<T extends Constructable>(Base: T) {`);
   // }
 

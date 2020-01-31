@@ -143,6 +143,8 @@ export interface IAudioTrackList extends IEventTarget {
   addEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IAddEventListenerOptions): void;
   removeEventListener<K extends keyof IAudioTrackListEventMap>(type: K, listener: (this: IAudioTrackList, ev: IAudioTrackListEventMap[K]) => any, options?: boolean | IEventListenerOptions): void;
   removeEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IEventListenerOptions): void;
+
+  [Symbol.iterator](): IterableIterator<IAudioTrack>;
   [index: number]: IAudioTrack;
 }
 
@@ -173,6 +175,8 @@ export interface ICSSRule {
 export interface ICSSRuleList {
   readonly length: number;
   item(index: number): ICSSRule | null;
+
+  [Symbol.iterator](): IterableIterator<ICSSRule>;
   [index: number]: ICSSRule;
 }
 
@@ -186,6 +190,8 @@ export interface ICSSStyleDeclaration {
   item(index: number): string;
   removeProperty(property: string): string;
   setProperty(property: string, value: string, priority?: string): void;
+
+  [Symbol.iterator](): IterableIterator<string>;
   [index: number]: string;
 }
 
@@ -268,6 +274,8 @@ export interface IDOMRect extends IDOMRectReadOnly {
 export interface IDOMRectList {
   readonly length: number;
   item(index: number): IDOMRect | null;
+
+  [Symbol.iterator](): IterableIterator<IDOMRect>;
   [index: number]: IDOMRect;
 }
 
@@ -298,7 +306,12 @@ export interface IDOMTokenList {
   supports(token: string): boolean;
   toggle(token: string, force?: boolean): boolean;
   toString(): string;
+
   forEach(callbackfn: (value: string, key: number, parent: IDOMTokenList) => void, thisArg?: any): void;
+  entries(): IterableIterator<[number, string]>;
+  keys(): IterableIterator<number>;
+  values(): IterableIterator<string>;
+  [Symbol.iterator](): IterableIterator<string>;
   [index: number]: string;
 }
 
@@ -487,6 +500,8 @@ export interface IFile extends IBlob {
 export interface IFileList {
   readonly length: number;
   item(index: number): IFile | null;
+
+  [Symbol.iterator](): IterableIterator<IFile>;
   [index: number]: IFile;
 }
 
@@ -631,6 +646,8 @@ export interface IHTMLCollection<T extends IElement = IElement> extends IHTMLCol
 export interface IHTMLCollectionBase {
   readonly length: number;
   item(index: number): IElement | null;
+
+  [Symbol.iterator](): IterableIterator<IElement>;
   [index: number]: IElement;
 }
 
@@ -748,6 +765,8 @@ export interface IMediaList {
   deleteMedium(medium: string): void;
   item(index: number): string | null;
   toString(): string;
+
+  [Symbol.iterator](): IterableIterator<string>;
   [index: number]: string;
 }
 
@@ -760,6 +779,8 @@ export interface INamedNodeMap {
   removeNamedItemNS(namespace: string | null, localName: string): IAttr;
   setNamedItem(attr: IAttr): IAttr | null;
   setNamedItemNS(attr: IAttr): IAttr | null;
+
+  [Symbol.iterator](): IterableIterator<IAttr>;
   [index: number]: IAttr;
 }
 
@@ -827,7 +848,12 @@ export interface INodeIterator {
 export interface INodeList<T extends INode = INode> {
   readonly length: number;
   item(index: number): T | null;
+
   forEach(callbackfn: (value: INode, key: number, parent: INodeList<T>) => void, thisArg?: any): void;
+  entries(): IterableIterator<[number, INode]>;
+  keys(): IterableIterator<number>;
+  values(): IterableIterator<INode>;
+  [Symbol.iterator](): IterableIterator<INode>;
   [index: number]: T;
 }
 
@@ -922,6 +948,8 @@ export interface ISVGStringList {
   insertItemBefore(newItem: string, index: number): string;
   removeItem(index: number): string;
   replaceItem(newItem: string, index: number): string;
+
+  [Symbol.iterator](): IterableIterator<string>;
   [index: number]: string;
 }
 
@@ -1027,6 +1055,8 @@ export interface ITextTrackCue extends IEventTarget {
 export interface ITextTrackCueList {
   readonly length: number;
   getCueById(id: string): ITextTrackCue | null;
+
+  [Symbol.iterator](): IterableIterator<ITextTrackCue>;
   [index: number]: ITextTrackCue;
 }
 
@@ -1046,6 +1076,8 @@ export interface ITextTrackList extends IEventTarget {
   addEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IAddEventListenerOptions): void;
   removeEventListener<K extends keyof ITextTrackListEventMap>(type: K, listener: (this: ITextTrackList, ev: ITextTrackListEventMap[K]) => any, options?: boolean | IEventListenerOptions): void;
   removeEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IEventListenerOptions): void;
+
+  [Symbol.iterator](): IterableIterator<ITextTrack>;
   [index: number]: ITextTrack;
 }
 
@@ -1108,6 +1140,8 @@ export interface IVideoTrackList extends IEventTarget {
   addEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IAddEventListenerOptions): void;
   removeEventListener<K extends keyof IVideoTrackListEventMap>(type: K, listener: (this: IVideoTrackList, ev: IVideoTrackListEventMap[K]) => any, options?: boolean | IEventListenerOptions): void;
   removeEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IEventListenerOptions): void;
+
+  [Symbol.iterator](): IterableIterator<IVideoTrack>;
   [index: number]: IVideoTrack;
 }
 
@@ -2013,6 +2047,8 @@ export interface IHTMLSelectElement extends IHTMLElement {
   addEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IAddEventListenerOptions): void;
   removeEventListener<K extends keyof IGlobalEventHandlersEventMap>(type: K, listener: (this: IHTMLSelectElement, ev: IGlobalEventHandlersEventMap[K]) => any, options?: boolean | IEventListenerOptions): void;
   removeEventListener(type: string, listener: IEventListenerOrEventListenerObject, options?: boolean | IEventListenerOptions): void;
+
+  [Symbol.iterator](): IterableIterator<IElement>;
   [index: number]: IElement;
 }
 

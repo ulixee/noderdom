@@ -1,5 +1,5 @@
 import Components from './Components';
-import { compareName } from './helpers';
+import { compareName } from './utils';
 import TsMixinExtractor from './TsMixinExtractor';
 
 export default class TsMixinsExtractor {

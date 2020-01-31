@@ -13,6 +13,10 @@ export default class CSSRuleList implements ICSSRuleList {
     return InternalHandler.run<ICSSRuleList, ICSSRule | null>(this, 'item', [index]);
   }
 
+  public [Symbol.iterator](): IterableIterator<ICSSRule> {
+    return InternalHandler.run<ICSSRuleList, IterableIterator<ICSSRule>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: ICSSRule;
 }
 

@@ -13,6 +13,10 @@ export default class HTMLCollectionBase implements IHTMLCollectionBase {
     return InternalHandler.run<IHTMLCollectionBase, IElement | null>(this, 'item', [index]);
   }
 
+  public [Symbol.iterator](): IterableIterator<IElement> {
+    return InternalHandler.run<IHTMLCollectionBase, IterableIterator<IElement>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: IElement;
 }
 

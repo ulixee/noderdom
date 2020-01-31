@@ -1,3 +1,4 @@
+import InternalHandler from '../InternalHandler';
 import InternalStateGenerator from '../InternalStateGenerator';
 import { IDOMStringMap } from '../interfaces';
 

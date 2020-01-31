@@ -11,7 +11,7 @@ import {
   makeArrayType,
   isEventHandler,
   toIType,
-} from './helpers';
+} from './utils';
 import ComponentCleaner from './ComponentCleaner';
 import ElementsMeta from './ElementsMeta';
 import IComponents from './interfaces/IComponents';

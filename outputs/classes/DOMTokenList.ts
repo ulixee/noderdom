@@ -53,6 +53,22 @@ export default class DOMTokenList implements IDOMTokenList {
     InternalHandler.run<IDOMTokenList, void>(this, 'forEach', [callbackfn, thisArg]);
   }
 
+  public entries(): IterableIterator<[number, string]> {
+    return InternalHandler.run<IDOMTokenList, IterableIterator<[number, string]>>(this, 'entries', []);
+  }
+
+  public keys(): IterableIterator<number> {
+    return InternalHandler.run<IDOMTokenList, IterableIterator<number>>(this, 'keys', []);
+  }
+
+  public values(): IterableIterator<string> {
+    return InternalHandler.run<IDOMTokenList, IterableIterator<string>>(this, 'values', []);
+  }
+
+  public [Symbol.iterator](): IterableIterator<string> {
+    return InternalHandler.run<IDOMTokenList, IterableIterator<string>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: string;
 }
 

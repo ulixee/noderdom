@@ -1,6 +1,6 @@
 import Printer from './Printer';
 import Components from './Components';
-import { toIType } from './helpers';
+import { toIType } from './utils';
 
 export default class TsTagNameMapExtractor {
   private printer = new Printer();

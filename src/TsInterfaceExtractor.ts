@@ -8,69 +8,82 @@ import {
   map,
   getNameWithTypeParameter,
   toIType,
-} from './helpers';
+} from './utils';
 import * as Types from './types';
 import Printer from './Printer';
 import Components from './Components';
+import TsIteratorExtractor from './TsIteratorExtractor';
 
 export default class TsInterfaceExtractor {
   private readonly printer = new Printer();
   private readonly components: Components;
   private readonly i: Types.Interface;
   private readonly extensions: string[];
+  private readonly indexers: Types.AnonymousMethod[];
 
   constructor(components: Components, i: Types.Interface) {
     this.i = i;
     this.components = components;
     this.extensions = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
+
+    this.indexers = Object.values<Types.AnonymousMethod>(i.methods && i.methods.method)
+      .concat((i['anonymous-methods'] && i['anonymous-methods']!.method) || [])
+      .filter(m => {
+        if (!this.shouldEmitIndexerSignature(m)) return false;
+        return m.signature && m.signature.length && m.signature[0].param && m.signature[0].param!.length
+          ? m.signature[0].param![0]
+          : undefined;
+      });
   }
 
   public run() {
+    const i: Types.Interface = this.i;
+
     this.printInterfaceEventMap();
-    this.printInterface(true);
-    // if (this.extensions.length) {
-    //   this.printer.endLine();
-    //   this.printer.printSeparatorLine();
-    //   this.printInterface(false);
-    // }
+    this.printInterfaceDeclaration();
+    this.printer.increaseIndent();
+    this.printConstants();
+
+    if (i.properties) {
+      const requiresToStringMethod = Object.values(i.properties.property).find((p: any) => p.stringifier);
+      if (requiresToStringMethod) {
+        i['anonymous-methods'] = i['anonymous-methods'] || { method: [] };
+        i['anonymous-methods'].method.push({ stringifier: 1, signature: [] });
+      }
+    }
+    this.printProperties(Types.EmitScope.InstanceOnly);
+    this.printMethods(Types.EmitScope.InstanceOnly);
+    this.printEventHandlers(/*prefix*/ '');
+
+    const iterators = new TsIteratorExtractor(this.components, this.i).run();
+    if (iterators || this.indexers.length) {
+      this.printer.printSeparatorLine();
+      this.printer.printLines(iterators);
+      this.printIndexers();
+    }
+
+    this.printer.decreaseIndent();
+    this.printer.print('}');
 
     return this.printer.getResult();
   }
 
-  private printInterface(shouldPrintExtensions: boolean) {
-    this.printInterfaceDeclaration(shouldPrintExtensions);
-    this.printer.increaseIndent();
-    this.printConstants();
-    this.printMembers(Types.EmitScope.InstanceOnly);
-    this.printEventHandlers(/*prefix*/ '');
-    this.printIndexers(Types.EmitScope.InstanceOnly);
-    this.printer.decreaseIndent();
-    this.printer.print('}');
-  }
+  //////////////////////////////////////////////////////////////////////////////
 
-  private printIndexers(emitScope: Types.EmitScope) {
+  private printIndexers() {
     const i: Types.Interface = this.i;
-    // The indices could be within either Methods or Anonymous Methods
-    const anonymousMethods = Object.values<Types.AnonymousMethod>(i.methods && i.methods.method)
-      .concat((i['anonymous-methods'] && i['anonymous-methods']!.method) || [])
-      .filter(m => this.shouldEmitIndexerSignature(m) && matchScope(emitScope, m));
-    anonymousMethods.forEach(m => {
-      const indexer =
-        m.signature && m.signature.length && m.signature[0].param && m.signature[0].param!.length
-          ? m.signature[0].param![0]
-          : undefined;
-      if (indexer) {
-        const firstTypeParam = i['type-parameters'] && i['type-parameters'][0];
-        const extendedType = firstTypeParam && firstTypeParam.extends ? firstTypeParam.name : null;
-        const tsType1 = this.components.convertDomTypeToTsType(indexer);
-        const typeObj2 = {
-          type: m.signature[0].type,
-          subtype: m.signature[0].subtype,
-          nullable: undefined,
-        };
-        const tsType2 = this.components.convertDomTypeToTsType(typeObj2, !extendedType);
-        this.printer.printLine(`[${indexer.name}: ${tsType1}]: ${tsType2};`);
-      }
+    this.indexers.forEach(m => {
+      const indexer = m.signature[0].param![0];
+      const firstTypeParam = i['type-parameters'] && i['type-parameters'][0];
+      const extendedType = firstTypeParam && firstTypeParam.extends ? firstTypeParam.name : null;
+      const tsType1 = this.components.convertDomTypeToTsType(indexer);
+      const typeObj2 = {
+        type: m.signature[0].type,
+        subtype: m.signature[0].subtype,
+        nullable: undefined,
+      };
+      const tsType2 = this.components.convertDomTypeToTsType(typeObj2, !extendedType);
+      this.printer.printLine(`[${indexer.name}: ${tsType1}]: ${tsType2};`);
     });
   }
 
@@ -176,7 +189,7 @@ export default class TsInterfaceExtractor {
   }
 
   private emitConstant(c: Types.Constant) {
-    this.printer.printComment(c.comment);
+    this.printer.printLines(c.comment);
     this.printer.printLine(`readonly ${c.name}: ${this.components.convertDomTypeToTsType(c)};`);
   }
 
@@ -213,82 +226,16 @@ export default class TsInterfaceExtractor {
     this.printer.printLine(`${eHandler.eventName}: ${eventType};`);
   }
 
-  private printInterfaceDeclaration(shouldPrintExtensions: boolean) {
+  private printInterfaceDeclaration() {
     const i: Types.Interface = this.i;
-    const name = getNameWithTypeParameter(i, shouldPrintExtensions ? i.name : `${i.name}Only`, true);
-    this.printer.printComment(i.comment);
+    const name = getNameWithTypeParameter(i, i.name, true);
+    this.printer.printLines(i.comment);
     this.printer.print(`export interface ${name}`);
-    if (shouldPrintExtensions && this.extensions.length) {
+    if (this.extensions.length) {
       this.printer.print(` extends ${this.extensions.map(toIType).join(', ')}`);
     }
     this.printer.print(` {`);
     this.printer.endLine();
-  }
-
-  //////////////////////////////////////////////////////////////////////////////
-
-  // These should probably be moved into the interfaces
-  // @ts-ignore
-  private extractNamedConstructors() {
-    return Object.values(this.components.interfaces)
-      .sort(compareName)
-      .map(i => {
-        const name = i.name;
-        const code = this.extractNamedConstructor(i);
-        return { type: 'NamedConstructor', name, code };
-      })
-      .filter(x => x.code);
-  }
-
-  private extractNamedConstructor(i: Types.Interface) {
-    // ToDO: I'm not sure how to implement class constructors that return another class instance
-    this.printer.reset();
-    const nc = i['named-constructor'];
-    if (nc) {
-      this.printer.printLine(`declare var ${nc.name}: {`);
-      this.printer.increaseIndent();
-      nc.signature.forEach(s => {
-        this.printer.printLine(`new(${s.param ? this.components.paramsToString(s.param) : ''}): ${i.name};`);
-      });
-      this.printer.decreaseIndent();
-      this.printer.print(`};`);
-    }
-    return this.printer.getResult();
-  }
-
-  // Emit the properties and methods of a given interface
-  private printMembers(emitScope: Types.EmitScope) {
-    const i: Types.Interface = this.i;
-    if (i.properties) {
-      const requiresToStringMethod = Object.values(i.properties.property).find((p: any) => p.stringifier);
-      if (requiresToStringMethod) {
-        i['anonymous-methods'] = i['anonymous-methods'] || { method: [] };
-        i['anonymous-methods'].method.push({ stringifier: 1, signature: [] });
-      }
-    }
-    this.printProperties(emitScope);
-    this.printMethods(emitScope);
-    if (emitScope === Types.EmitScope.InstanceOnly) {
-      this.emitIteratorForEach();
-    }
-  }
-
-  private emitIteratorForEach() {
-    const i: Types.Interface = this.i;
-    if (!i.iterator) return;
-
-    const typeParam = i['type-parameters'] && i['type-parameters'] ? i['type-parameters'][0] : null;
-    const extendedType = typeParam && typeParam.extends ? typeParam.name : null;
-    const subtype = i.iterator.type.map(o => this.components.convertDomTypeToTsType(o));
-    const lastSubtype = subtype[subtype.length - 1];
-    const value = lastSubtype === extendedType ? lastSubtype : toIType(lastSubtype);
-    const key = subtype.length > 1 ? subtype[0] : i.iterator.kind === 'iterable' ? 'number' : value;
-    const name = i['type-parameters']
-      ? `${toIType(i.name)}<${i['type-parameters']!.map(p => p.name).join(', ')}>`
-      : toIType(i.name);
-    this.printer.printLine(
-      `forEach(callbackfn: (value: ${value}, key: ${key}, parent: ${name}) => void, thisArg?: any): void;`,
-    );
   }
 
   private printProperties(emitScope: Types.EmitScope) {
@@ -304,7 +251,7 @@ export default class TsInterfaceExtractor {
 
   private printProperty(emitScope: Types.EmitScope, p: Types.Property) {
     const i: Types.Interface = this.i;
-    this.printer.printComment(p.comment);
+    this.printer.printLines(p.comment);
 
     // Treat window.name specially because of https://github.com/Microsoft/TypeScript/issues/9850
     if (p.name === 'name' && i.name === 'Window' && emitScope === Types.EmitScope.All) {
@@ -355,8 +302,7 @@ export default class TsInterfaceExtractor {
   }
 
   private printMethod(m: Types.Method) {
-    if (m.deprecated) this.printer.printDepreciated();
-    this.printer.printComment(m.comment);
+    this.printer.printLines(m.comment);
     this.printer.printSignatures(m, m.name, this.components);
     if (m.stringifier) {
       this.printer.printLine('toString(): string;');

@@ -41,6 +41,10 @@ export default class SVGStringList implements ISVGStringList {
     return InternalHandler.run<ISVGStringList, string>(this, 'replaceItem', [newItem, index]);
   }
 
+  public [Symbol.iterator](): IterableIterator<string> {
+    return InternalHandler.run<ISVGStringList, IterableIterator<string>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: string;
 }
 

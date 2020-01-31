@@ -1,4 +1,4 @@
-import { compareName } from './helpers';
+import { compareName } from './utils';
 import Components from './Components';
 import TsInterfaceExtractor from './TsInterfaceExtractor';
 

@@ -51,6 +51,10 @@ export function TextTrackListGenerator(EventTarget: Constructable<IEventTarget>)
       InternalHandler.run<ITextTrackList, void>(this, 'removeEventListener', [type, listener, options]);
     }
 
+    public [Symbol.iterator](): IterableIterator<ITextTrack> {
+      return InternalHandler.run<ITextTrackList, IterableIterator<ITextTrack>>(this, '[Symbol.iterator]', []);
+    }
+
     [index: number]: ITextTrack;
   };
 }

@@ -49,6 +49,10 @@ export default class CSSStyleDeclaration implements ICSSStyleDeclaration {
     InternalHandler.run<ICSSStyleDeclaration, void>(this, 'setProperty', [property, value, priority]);
   }
 
+  public [Symbol.iterator](): IterableIterator<string> {
+    return InternalHandler.run<ICSSStyleDeclaration, IterableIterator<string>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: string;
 }
 

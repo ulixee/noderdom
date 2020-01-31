@@ -33,6 +33,10 @@ export default class MediaList implements IMediaList {
     return InternalHandler.run<IMediaList, string>(this, 'string', []);
   }
 
+  public [Symbol.iterator](): IterableIterator<string> {
+    return InternalHandler.run<IMediaList, IterableIterator<string>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: string;
 }
 

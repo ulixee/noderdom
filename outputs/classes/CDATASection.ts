@@ -1,4 +1,5 @@
 import Constructable from '../Constructable';
+import InternalHandler from '../InternalHandler';
 import InternalStateGenerator from '../InternalStateGenerator';
 import { IText, ICDATASection } from '../interfaces';
 import { ITextProperties, ITextReadonlyProperties } from './Text';

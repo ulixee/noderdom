@@ -1,6 +1,6 @@
 import * as webidl2 from 'webidl2';
 import * as Types from './types';
-import { merge, resolveExposure } from './helpers';
+import { merge, resolveExposure } from './utils';
 import Components from './Components';
 import ElementsMeta from './ElementsMeta';
 import ComponentOverrides from './ComponentOverrides';

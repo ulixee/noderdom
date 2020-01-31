@@ -17,7 +17,6 @@ export interface Param extends Typed {
 export interface Signature extends Typed {
   param?: Param[];
   'param-min-required'?: number;
-  deprecated?: 1;
 }
 
 export interface Member extends Typed {
@@ -58,7 +57,6 @@ export interface Property extends Typed {
   comment?: string;
   required?: 1;
   specs?: string;
-  deprecated?: 1;
   interop?: 1;
   exposed?: string;
   constant?: 1;
@@ -88,7 +86,6 @@ export interface AnonymousMethod {
   comment?: string;
   specs?: string;
   exposed?: string;
-  deprecated?: 1;
   signature: Signature[];
 }
 
@@ -209,7 +206,6 @@ export interface Enum {
 
 export interface TypeDef extends Typed {
   'new-type': string;
-  deprecated?: 1;
   'legacy-namespace'?: string;
   'type-parameters'?: TypeParameter[];
 }

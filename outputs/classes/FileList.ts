@@ -13,6 +13,10 @@ export default class FileList implements IFileList {
     return InternalHandler.run<IFileList, IFile | null>(this, 'item', [index]);
   }
 
+  public [Symbol.iterator](): IterableIterator<IFile> {
+    return InternalHandler.run<IFileList, IterableIterator<IFile>>(this, '[Symbol.iterator]', []);
+  }
+
   [index: number]: IFile;
 }
 

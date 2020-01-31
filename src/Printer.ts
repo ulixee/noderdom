@@ -1,5 +1,5 @@
 import * as Types from './types';
-import { makeNullable } from './helpers';
+import { makeNullable } from './utils';
 import Components from './Components';
 
 export default class Printer {
@@ -23,9 +23,14 @@ export default class Printer {
     this.indent -= 1;
   }
 
-  public printLine(c: string = '') {
-    this.print(c);
+  public printLine(s: string = '') {
+    this.print(s);
     this.endLine();
+  }
+
+  public printLines(s: string | null | undefined) {
+    if (!s) return;
+    s.split('\n').forEach(l => this.printLine(l));
   }
 
   public prependLine(s: string) {
@@ -39,25 +44,16 @@ export default class Printer {
   public print(s: string) {
     this.isStartOfNewSection = false;
     if (this.lineStart) {
-      this.output += this.getIndentString(this.indent);
+      this.output += s ? this.getIndentString(this.indent) : '';
       this.lineStart = false;
     }
     this.output += s;
-  }
-
-  public printComment(comment: string | null | undefined) {
-    if (!comment) return;
-    comment.split('\n').forEach(l => this.printLine(l));
   }
 
   public printSeparatorLine(comment?: string) {
     if (this.isStartOfNewSection) return;
     this.endLine();
     if (comment) this.printLine(comment);
-  }
-
-  public printDepreciated() {
-    this.print(`/** @deprecated */`);
   }
 
   public reset(): void {
@@ -67,7 +63,10 @@ export default class Printer {
     // this.stack = [];
   }
 
-  public endLine() {
+  public endLine(s: string = '') {
+    if (s) {
+      this.output += s;
+    }
     this.output += this.newLine;
     this.lineStart = true;
   }
@@ -92,7 +91,6 @@ export default class Printer {
     const paramsString = s.param ? components.paramsToString(s.param, true) : '';
     let returnType = components.convertDomTypeToTsType(s, true);
     returnType = s.nullable ? makeNullable(returnType) : returnType;
-    if (s.deprecated) this.printDepreciated();
     this.printLine(`${name || ''}(${paramsString}): ${returnType};`);
   }
 

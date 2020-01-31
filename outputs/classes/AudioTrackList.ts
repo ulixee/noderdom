@@ -51,6 +51,10 @@ export function AudioTrackListGenerator(EventTarget: Constructable<IEventTarget>
       InternalHandler.run<IAudioTrackList, void>(this, 'removeEventListener', [type, listener, options]);
     }
 
+    public [Symbol.iterator](): IterableIterator<IAudioTrack> {
+      return InternalHandler.run<IAudioTrackList, IterableIterator<IAudioTrack>>(this, '[Symbol.iterator]', []);
+    }
+
     [index: number]: IAudioTrack;
   };
 }

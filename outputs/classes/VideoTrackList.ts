@@ -55,6 +55,10 @@ export function VideoTrackListGenerator(EventTarget: Constructable<IEventTarget>
       InternalHandler.run<IVideoTrackList, void>(this, 'removeEventListener', [type, listener, options]);
     }
 
+    public [Symbol.iterator](): IterableIterator<IVideoTrack> {
+      return InternalHandler.run<IVideoTrackList, IterableIterator<IVideoTrack>>(this, '[Symbol.iterator]', []);
+    }
+
     [index: number]: IVideoTrack;
   };
 }
