@@ -1,4 +1,4 @@
-const elementsMetaByName: Record<string, IElementMeta> = require('../inputs/elementsMeta.json');
+const elementsMetaByName: Record<string, IElementMeta> = require('../files/0-imported/elementsMeta.json');
 
 export interface IElementMeta {
   name: string;

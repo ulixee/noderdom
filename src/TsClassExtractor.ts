@@ -1,88 +1,94 @@
-import { getNameWithTypeParameter } from './utils';
-import * as Types from './types';
+import { getNameWithTypeParameter, toIType } from './utils';
+import * as Types from './Types';
 import Printer from './Printer';
 import Components from './Components';
-import TsClasslike from './TsClasslike';
-import Helpers from './Helpers';
+import TsBodyPrinter from './TsBodyPrinter';
+import TsStateMachinePrinter from './TsStateMachinePrinter';
+import TsExtractor from './TsExtractor';
 
-const classNamesToSkip = new Set(['Object']);
+interface IOptions {
+  baseDir: string;
+  definedTypes: Set<string>;
+  definedDom: Set<string>;
+  definedIsolates?: Set<string>;
+  definedIshes?: Set<string>;
+  isDynamic?: boolean;
+}
 
 export default class TsClassExtractor {
-  private readonly printer = new Printer();
   private readonly i: Types.Interface;
-  private readonly classlike: TsClasslike;
-  private readonly hasBody: boolean;
-  private readonly hasConstructor: boolean;
-  private readonly extensions: string[];
-  private readonly helpers: Helpers;
+  private readonly printer = new Printer();
+  private readonly components: Components;
+  private readonly inheritsFrom: string[];
+  private readonly bodyPrinter: TsBodyPrinter;
+  private readonly baseDir: string;
+  private readonly definedTypes: Set<string>;
+  private readonly definedDom: Set<string>;
+  private readonly definedIsolates: Set<string>;
+  private readonly definedIshes: Set<string>;
+  private readonly isDynamic: boolean;
 
-  constructor(components: Components, i: Types.Interface) {
+  constructor(i: Types.Interface, components: Components, options: IOptions) {
     this.i = i;
-    this.classlike = new TsClasslike(components, this.printer, i);
-    this.extensions = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
-    this.helpers = new Helpers(components, this.printer, i, { isWithinClass: true });
-
-    const constructorSignature = i.constructor && i.constructor.signature;
-    const constructorParams = constructorSignature && constructorSignature[0] && constructorSignature[0].param;
-    const hasConstructor = !!(constructorParams && constructorParams.length);
-    const { hasProperties, hasMethods, hasIndexers } = this.classlike;
-    this.hasBody = hasConstructor || hasProperties || hasMethods || hasIndexers;
-    this.hasConstructor = hasConstructor;
+    this.components = components;
+    this.baseDir = options.baseDir;
+    this.definedTypes = options.definedTypes;
+    this.definedDom = options.definedDom;
+    this.definedIsolates = options.definedIsolates || new Set();
+    this.definedIshes = options.definedIshes || new Set();
+    this.isDynamic = options.isDynamic || false;
+    this.inheritsFrom = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
+    this.bodyPrinter = new TsBodyPrinter(i, this.printer, components);
   }
 
   public run() {
-    if (this.extensions.length) {
+    if (this.inheritsFrom.length) {
       this.printClassGeneratorFunction();
     }
     this.printClassDeclaration();
     this.printer.increaseIndent();
 
-    this.classlike.printBody({
-      afterConstants: () => {
-        this.printConstructorSignature();
-      },
-    });
+    this.bodyPrinter.printAll();
 
     this.printer.decreaseIndent();
+    if (!this.bodyPrinter.didPrint) {
+      this.printer.deleteNewLine();
+    }
     this.printer.print('}');
 
-    if (this.extensions.length) {
+    if (this.inheritsFrom.length) {
       this.printer.printLine(';');
       this.printer.decreaseIndent();
       this.printer.print(`}`);
     }
-    const interfacesToImport = this.classlike.extractInterfacesToImport();
-    const classesToImport = this.extractClassesToImport();
-    this.classlike.printInternalStateHooks(classesToImport);
-    this.prependImports(interfacesToImport, classesToImport);
+
+    this.printStateMachineInterfaces();
+
+    this.prependImports();
 
     return this.printer.getResult().trim();
   }
 
   private printClassGeneratorFunction() {
     const i: Types.Interface = this.i;
-    const args: string[] = this.extensions.map(extension => {
-      this.classlike.interfacesToImport.add(`I${extension}`);
+    const args: string[] = this.inheritsFrom.map(extension => {
       return `${extension}: Constructable<I${extension}>`;
     });
-    this.printer.printLine('// tslint:disable-next-line:variable-name');
     this.printer.printLine(`export function ${i.name}Generator(${args.join(', ')}) {`);
     this.printer.increaseIndent();
   }
 
   private printClassDeclaration() {
     const i: Types.Interface = this.i;
-    const iClass = this.helpers.iClass;
-    const extensions = this.extensions;
+    const inheritsFrom = this.inheritsFrom;
 
     let extendsStr = '';
-    if (extensions.length > 1) {
-      const klass = extensions[0];
-      const mixins = extensions.slice(1);
+    if (inheritsFrom.length > 1) {
+      const klass = inheritsFrom[0];
+      const mixins = inheritsFrom.slice(1);
       const mixedClass = `ClassMixer(${klass}, [${mixins.join(', ')}])`;
-      const interfacesStr = extensions.map(e => `I${e}`).join(' & ');
+      const interfacesStr = inheritsFrom.map(e => `I${e}`).join(' & ');
       const parent = `(${mixedClass} as unknown) as Constructable<${interfacesStr}>`;
-      this.printer.printLine('// tslint:disable-next-line:variable-name');
       this.printer.printLine(`const Parent = ${parent};`);
       this.printer.printSeparatorLine();
       extendsStr = `extends Parent `;
@@ -90,74 +96,78 @@ export default class TsClassExtractor {
       extendsStr = `extends ${i.extends} `;
     }
 
-    const exportCmd = extensions.length ? 'return' : 'export default';
-    this.printer.print(
-      `${exportCmd} class ${getNameWithTypeParameter(i, i.name, false)} ${extendsStr}implements ${iClass} {`,
-    );
-    if (this.hasBody) {
-      this.printer.endLine();
-    }
+    const exportCmd = inheritsFrom.length ? 'return' : 'export default';
+    const className = getNameWithTypeParameter(i.typeParameters, i.name, false);
+    const typeParameterName = i.typeParameters && i.typeParameters[0] && i.typeParameters[0].name;
+    const iClassName = typeParameterName ? `${toIType(i.name)}<${typeParameterName}>` : toIType(i.name);
+    this.printer.printLine(`${exportCmd} class ${className} ${extendsStr}implements ${iClassName} {`);
   }
 
-  private printConstructorSignature() {
-    const i: Types.Interface = this.i;
-    const constructor = typeof i.constructor === 'object' ? i.constructor : undefined;
-    if (!constructor || !constructor.signature || !constructor.signature.length) return;
-    if (!constructor.signature[0].param || !constructor.signature[0].param.length) return;
-
-    this.printer.printSeparatorLine(constructor.comment || '// constructor required for this class');
-    this.printer.printSeparatorLine();
-    const methodArgs = this.helpers.extractMethodArgs(constructor.signature[0]);
-    this.printer.printLine(`constructor(${methodArgs}) {`);
-    this.printer.increaseIndent();
-    if (i.extends && !classNamesToSkip.has(i.extends)) {
-      this.printer.printLine(`super();`);
-    }
-    const methodArgNames = this.helpers.extractMethodArgNames(constructor.signature[0]);
-    this.printer.printLine(`InternalHandler.construct(this, [${methodArgNames.join(', ')}]);`);
-    this.printer.decreaseIndent();
-    this.printer.printLine('}');
+  private printStateMachineInterfaces() {
+    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components);
+    stateMachinePrinter.printInterfaces(this.inheritsFrom, this.bodyPrinter.constants, this.bodyPrinter.properties);
   }
 
-  private extractClassesToImport() {
+  private prependImports() {
     const i: Types.Interface = this.i;
-    const classesToImport: Set<string> = new Set();
+    const name = i.name;
 
-    if (i.extends && !classNamesToSkip.has(i.extends)) {
-      classesToImport.add(i.extends);
-    }
+    const printer = new Printer();
+    new TsStateMachinePrinter(this.i, printer, this.components).printInitializer(true);
+    const stateMachineInitializerCode = printer.getResult();
 
-    if (i.implements) {
-      i.implements.forEach(x => {
-        if (!classNamesToSkip.has(x)) classesToImport.add(x);
-      });
-    }
-
-    return Array.from(classesToImport);
-  }
-
-  private prependImports(interfacesToImport: string[], classesToImport: string[]) {
-    const i: Types.Interface = this.i;
-    const interfacesToPrepend = new Set(interfacesToImport);
-    interfacesToPrepend.add(`I${i.name}`);
-
+    const references: string[] = [name, ...this.inheritsFrom, ...this.bodyPrinter.referencedObjects];
+    const referencedTypes = TsExtractor.locateReferences(references, { use: Array.from(this.definedTypes) });
+    const referencedDom = TsExtractor.locateReferences(references, { use: Array.from(this.definedDom) });
+    const referencedIshes = TsExtractor.locateReferences(references, { use: Array.from(this.definedIshes) });
+    const referencedIsolates = TsExtractor.locateReferences(references, { use: Array.from(this.definedIsolates) });
     const printable = [];
-    if (this.extensions.length > 0) {
-      if (this.extensions.length > 1) {
-        printable.push(`import ClassMixer from '../ClassMixer';`);
-      }
-      printable.push(`import Constructable from '../Constructable';`);
-    }
-    if (this.hasConstructor || this.classlike.usesInternalHandler) {
-      printable.push(`import InternalHandler from '../InternalHandler';`);
-    }
-    printable.push(`import InternalStateGenerator from '../InternalStateGenerator';`);
-    printable.push(`import { ${Array.from(interfacesToPrepend).join(', ')} } from '../interfaces';`);
 
-    for (const className of classesToImport) {
-      const classPath = className === i.extends ? `./${className}` : `../mixins/${className}`;
-      printable.push(`import { I${className}Properties, I${className}ReadonlyProperties } from '${classPath}';`);
+    if (this.inheritsFrom.length > 0) {
+      if (this.inheritsFrom.length > 1) {
+        printable.push(`import ClassMixer from '${this.baseDir}/ClassMixer';`);
+      }
+      printable.push(`import Constructable from '${this.baseDir}/Constructable';`);
     }
+
+    const handlerFilename = `${this.isDynamic ? 'Dynamic' : 'Static'}Handler`;
+    printable.push(`import Handler, { initializeConstantsAndPrototypes } from '${this.baseDir}/${handlerFilename}';`);
+    printable.push(`import StateMachine from '${this.baseDir}/StateMachine';`);
+
+    if (referencedTypes.length) {
+      const imports = referencedTypes.map(n => `I${n}`).join(', ');
+      printable.push(`import { ${imports} } from '${this.baseDir}/interfaces/types';`);
+    }
+
+    if (referencedDom.length) {
+      const imports = referencedDom.map(n => `I${n}`).join(', ');
+      printable.push(`import { ${imports} } from '${this.baseDir}/interfaces/dom';`);
+    }
+
+    if (referencedIshes.length) {
+      const imports = referencedIshes.map(n => `I${n}`).join(', ');
+      printable.push(`import { ${imports} } from '${this.baseDir}/interfaces/ishes';`);
+    }
+
+    if (referencedIsolates.length) {
+      const imports = referencedIsolates.map(n => `I${n}`).join(', ');
+      printable.push(`import { ${imports} } from '${this.baseDir}/interfaces/isolates';`);
+    }
+
+    for (const inheritName of this.inheritsFrom) {
+      const isIsolate = this.definedIsolates.has(inheritName);
+      const classesDir = `${this.baseDir}/classes`;
+      const mixinsDir = isIsolate ? `${classesDir}/mixin-isolates` : `${classesDir}/mixins`;
+      const filePath = `${inheritName === i.extends ? classesDir : mixinsDir}/${inheritName}`;
+      printable.push(
+        `import { I${inheritName}Properties, I${inheritName}ReadonlyProperties, ${inheritName}PropertyKeys, ${inheritName}ConstantKeys } from '${filePath}';`,
+      );
+    }
+    printable.push('// tslint:disable:variable-name');
+    printable.push('');
+
+    printable.push(stateMachineInitializerCode);
+    printable.push(`export const handler = new Handler<I${name}>('${name}', getState, setState);`);
     printable.push('');
 
     this.printer.prependLine(printable.join('\n'));

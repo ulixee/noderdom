@@ -1,0 +1,845 @@
+{
+  "enums": {},
+  "mixins": {
+    "GlobalEventHandlers": {
+      "name": "GlobalEventHandlers",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "onabort": {
+          "name": "onabort",
+          "type": "EventHandler",
+          "eventHandler": "abort"
+        },
+        "onauxclick": {
+          "name": "onauxclick",
+          "type": "EventHandler",
+          "eventHandler": "auxclick"
+        },
+        "onblur": {
+          "name": "onblur",
+          "type": "EventHandler",
+          "eventHandler": "blur"
+        },
+        "oncancel": {
+          "name": "oncancel",
+          "type": "EventHandler",
+          "eventHandler": "cancel"
+        },
+        "oncanplay": {
+          "name": "oncanplay",
+          "type": "EventHandler",
+          "eventHandler": "canplay"
+        },
+        "oncanplaythrough": {
+          "name": "oncanplaythrough",
+          "type": "EventHandler",
+          "eventHandler": "canplaythrough"
+        },
+        "onchange": {
+          "name": "onchange",
+          "type": "EventHandler",
+          "eventHandler": "change"
+        },
+        "onclick": {
+          "name": "onclick",
+          "type": "EventHandler",
+          "eventHandler": "click"
+        },
+        "onclose": {
+          "name": "onclose",
+          "type": "EventHandler",
+          "eventHandler": "close"
+        },
+        "oncontextmenu": {
+          "name": "oncontextmenu",
+          "type": "EventHandler",
+          "eventHandler": "contextmenu"
+        },
+        "oncuechange": {
+          "name": "oncuechange",
+          "type": "EventHandler",
+          "eventHandler": "cuechange"
+        },
+        "ondblclick": {
+          "name": "ondblclick",
+          "type": "EventHandler",
+          "eventHandler": "dblclick"
+        },
+        "ondrag": {
+          "name": "ondrag",
+          "type": "EventHandler",
+          "eventHandler": "drag"
+        },
+        "ondragend": {
+          "name": "ondragend",
+          "type": "EventHandler",
+          "eventHandler": "dragend"
+        },
+        "ondragenter": {
+          "name": "ondragenter",
+          "type": "EventHandler",
+          "eventHandler": "dragenter"
+        },
+        "ondragleave": {
+          "name": "ondragleave",
+          "type": "EventHandler",
+          "eventHandler": "dragleave"
+        },
+        "ondragover": {
+          "name": "ondragover",
+          "type": "EventHandler",
+          "eventHandler": "dragover"
+        },
+        "ondragstart": {
+          "name": "ondragstart",
+          "type": "EventHandler",
+          "eventHandler": "dragstart"
+        },
+        "ondrop": {
+          "name": "ondrop",
+          "type": "EventHandler",
+          "eventHandler": "drop"
+        },
+        "ondurationchange": {
+          "name": "ondurationchange",
+          "type": "EventHandler",
+          "eventHandler": "durationchange"
+        },
+        "onemptied": {
+          "name": "onemptied",
+          "type": "EventHandler",
+          "eventHandler": "emptied"
+        },
+        "onended": {
+          "name": "onended",
+          "type": "EventHandler",
+          "eventHandler": "ended"
+        },
+        "onerror": {
+          "name": "onerror",
+          "type": "OnErrorEventHandler",
+          "eventHandler": "error"
+        },
+        "onfocus": {
+          "name": "onfocus",
+          "type": "EventHandler",
+          "eventHandler": "focus"
+        },
+        "onformdata": {
+          "name": "onformdata",
+          "type": "EventHandler",
+          "eventHandler": "formdata"
+        },
+        "oninput": {
+          "name": "oninput",
+          "type": "EventHandler",
+          "eventHandler": "input"
+        },
+        "oninvalid": {
+          "name": "oninvalid",
+          "type": "EventHandler",
+          "eventHandler": "invalid"
+        },
+        "onkeydown": {
+          "name": "onkeydown",
+          "type": "EventHandler",
+          "eventHandler": "keydown"
+        },
+        "onkeypress": {
+          "name": "onkeypress",
+          "type": "EventHandler",
+          "eventHandler": "keypress"
+        },
+        "onkeyup": {
+          "name": "onkeyup",
+          "type": "EventHandler",
+          "eventHandler": "keyup"
+        },
+        "onload": {
+          "name": "onload",
+          "type": "EventHandler",
+          "eventHandler": "load"
+        },
+        "onloadeddata": {
+          "name": "onloadeddata",
+          "type": "EventHandler",
+          "eventHandler": "loadeddata"
+        },
+        "onloadedmetadata": {
+          "name": "onloadedmetadata",
+          "type": "EventHandler",
+          "eventHandler": "loadedmetadata"
+        },
+        "onloadstart": {
+          "name": "onloadstart",
+          "type": "EventHandler",
+          "eventHandler": "loadstart"
+        },
+        "onmousedown": {
+          "name": "onmousedown",
+          "type": "EventHandler",
+          "eventHandler": "mousedown"
+        },
+        "onmouseenter": {
+          "name": "onmouseenter",
+          "type": "EventHandler",
+          "eventHandler": "mouseenter"
+        },
+        "onmouseleave": {
+          "name": "onmouseleave",
+          "type": "EventHandler",
+          "eventHandler": "mouseleave"
+        },
+        "onmousemove": {
+          "name": "onmousemove",
+          "type": "EventHandler",
+          "eventHandler": "mousemove"
+        },
+        "onmouseout": {
+          "name": "onmouseout",
+          "type": "EventHandler",
+          "eventHandler": "mouseout"
+        },
+        "onmouseover": {
+          "name": "onmouseover",
+          "type": "EventHandler",
+          "eventHandler": "mouseover"
+        },
+        "onmouseup": {
+          "name": "onmouseup",
+          "type": "EventHandler",
+          "eventHandler": "mouseup"
+        },
+        "onwheel": {
+          "name": "onwheel",
+          "type": "EventHandler",
+          "eventHandler": "wheel"
+        },
+        "onpause": {
+          "name": "onpause",
+          "type": "EventHandler",
+          "eventHandler": "pause"
+        },
+        "onplay": {
+          "name": "onplay",
+          "type": "EventHandler",
+          "eventHandler": "play"
+        },
+        "onplaying": {
+          "name": "onplaying",
+          "type": "EventHandler",
+          "eventHandler": "playing"
+        },
+        "onprogress": {
+          "name": "onprogress",
+          "type": "EventHandler",
+          "eventHandler": "progress"
+        },
+        "onratechange": {
+          "name": "onratechange",
+          "type": "EventHandler",
+          "eventHandler": "ratechange"
+        },
+        "onreset": {
+          "name": "onreset",
+          "type": "EventHandler",
+          "eventHandler": "reset"
+        },
+        "onresize": {
+          "name": "onresize",
+          "type": "EventHandler",
+          "eventHandler": "resize"
+        },
+        "onscroll": {
+          "name": "onscroll",
+          "type": "EventHandler",
+          "eventHandler": "scroll"
+        },
+        "onseeked": {
+          "name": "onseeked",
+          "type": "EventHandler",
+          "eventHandler": "seeked"
+        },
+        "onseeking": {
+          "name": "onseeking",
+          "type": "EventHandler",
+          "eventHandler": "seeking"
+        },
+        "onselect": {
+          "name": "onselect",
+          "type": "EventHandler",
+          "eventHandler": "select"
+        },
+        "onstalled": {
+          "name": "onstalled",
+          "type": "EventHandler",
+          "eventHandler": "stalled"
+        },
+        "onsubmit": {
+          "name": "onsubmit",
+          "type": "EventHandler",
+          "eventHandler": "submit"
+        },
+        "onsuspend": {
+          "name": "onsuspend",
+          "type": "EventHandler",
+          "eventHandler": "suspend"
+        },
+        "ontimeupdate": {
+          "name": "ontimeupdate",
+          "type": "EventHandler",
+          "eventHandler": "timeupdate"
+        },
+        "onvolumechange": {
+          "name": "onvolumechange",
+          "type": "EventHandler",
+          "eventHandler": "volumechange"
+        },
+        "onwaiting": {
+          "name": "onwaiting",
+          "type": "EventHandler",
+          "eventHandler": "waiting"
+        },
+        "onanimationstart": {
+          "name": "onanimationstart",
+          "type": "EventHandler",
+          "eventHandler": "animationstart"
+        },
+        "onanimationiteration": {
+          "name": "onanimationiteration",
+          "type": "EventHandler",
+          "eventHandler": "animationiteration"
+        },
+        "onanimationend": {
+          "name": "onanimationend",
+          "type": "EventHandler",
+          "eventHandler": "animationend"
+        },
+        "ongotpointercapture": {
+          "name": "ongotpointercapture",
+          "type": "EventHandler",
+          "eventHandler": "gotpointercapture"
+        },
+        "onlostpointercapture": {
+          "name": "onlostpointercapture",
+          "type": "EventHandler",
+          "eventHandler": "lostpointercapture"
+        },
+        "onpointerdown": {
+          "name": "onpointerdown",
+          "type": "EventHandler",
+          "eventHandler": "pointerdown"
+        },
+        "onpointermove": {
+          "name": "onpointermove",
+          "type": "EventHandler",
+          "eventHandler": "pointermove"
+        },
+        "onpointerup": {
+          "name": "onpointerup",
+          "type": "EventHandler",
+          "eventHandler": "pointerup"
+        },
+        "onpointercancel": {
+          "name": "onpointercancel",
+          "type": "EventHandler",
+          "eventHandler": "pointercancel"
+        },
+        "onpointerover": {
+          "name": "onpointerover",
+          "type": "EventHandler",
+          "eventHandler": "pointerover"
+        },
+        "onpointerout": {
+          "name": "onpointerout",
+          "type": "EventHandler",
+          "eventHandler": "pointerout"
+        },
+        "onpointerenter": {
+          "name": "onpointerenter",
+          "type": "EventHandler",
+          "eventHandler": "pointerenter"
+        },
+        "onpointerleave": {
+          "name": "onpointerleave",
+          "type": "EventHandler",
+          "eventHandler": "pointerleave"
+        },
+        "onselectstart": {
+          "name": "onselectstart",
+          "type": "EventHandler",
+          "eventHandler": "selectstart"
+        },
+        "onselectionchange": {
+          "name": "onselectionchange",
+          "type": "EventHandler",
+          "eventHandler": "selectionchange"
+        },
+        "ontouchstart": {
+          "name": "ontouchstart",
+          "type": "EventHandler",
+          "eventHandler": "touchstart"
+        },
+        "ontouchend": {
+          "name": "ontouchend",
+          "type": "EventHandler",
+          "eventHandler": "touchend"
+        },
+        "ontouchmove": {
+          "name": "ontouchmove",
+          "type": "EventHandler",
+          "eventHandler": "touchmove"
+        },
+        "ontouchcancel": {
+          "name": "ontouchcancel",
+          "type": "EventHandler",
+          "eventHandler": "touchcancel"
+        },
+        "ontransitionend": {
+          "name": "ontransitionend",
+          "type": "EventHandler",
+          "eventHandler": "transitionend"
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "DocumentAndElementEventHandlers": {
+      "name": "DocumentAndElementEventHandlers",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "oncopy": {
+          "name": "oncopy",
+          "type": "EventHandler",
+          "eventHandler": "copy"
+        },
+        "oncut": {
+          "name": "oncut",
+          "type": "EventHandler",
+          "eventHandler": "cut"
+        },
+        "onpaste": {
+          "name": "onpaste",
+          "type": "EventHandler",
+          "eventHandler": "paste"
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "FontFaceSource": {
+      "name": "FontFaceSource",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "fonts": {
+          "name": "fonts",
+          "type": "FontFaceSet",
+          "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "DocumentOrShadowRoot": {
+      "name": "DocumentOrShadowRoot",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "getSelection": {
+          "name": "getSelection",
+          "signatures": [
+            {
+              "type": "Selection",
+              "nullable": 1,
+              "params": []
+            }
+          ]
+        },
+        "elementFromPoint": {
+          "name": "elementFromPoint",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "x",
+                  "type": "double"
+                },
+                {
+                  "name": "y",
+                  "type": "double"
+                }
+              ]
+            }
+          ]
+        },
+        "elementsFromPoint": {
+          "name": "elementsFromPoint",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "Element"
+              },
+              "params": [
+                {
+                  "name": "x",
+                  "type": "double"
+                },
+                {
+                  "name": "y",
+                  "type": "double"
+                }
+              ]
+            }
+          ]
+        },
+        "caretPositionFromPoint": {
+          "name": "caretPositionFromPoint",
+          "signatures": [
+            {
+              "type": "CaretPosition",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "x",
+                  "type": "double"
+                },
+                {
+                  "name": "y",
+                  "type": "double"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "activeElement": {
+          "name": "activeElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1
+        },
+        "pointerLockElement": {
+          "name": "pointerLockElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1
+        },
+        "fullscreenElement": {
+          "name": "fullscreenElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "NonElementParentNode": {
+      "name": "NonElementParentNode",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "getElementById": {
+          "name": "getElementById",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "elementId",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "ParentNode": {
+      "name": "ParentNode",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "prepend": {
+          "name": "prepend",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "nodes",
+                  "type": [
+                    {
+                      "type": "Node"
+                    },
+                    {
+                      "type": "DOMString"
+                    }
+                  ],
+                  "variadic": 1
+                }
+              ]
+            }
+          ]
+        },
+        "append": {
+          "name": "append",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "nodes",
+                  "type": [
+                    {
+                      "type": "Node"
+                    },
+                    {
+                      "type": "DOMString"
+                    }
+                  ],
+                  "variadic": 1
+                }
+              ]
+            }
+          ]
+        },
+        "querySelector": {
+          "name": "querySelector",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ]
+        },
+        "querySelectorAll": {
+          "name": "querySelectorAll",
+          "signatures": [
+            {
+              "type": "NodeList",
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "children": {
+          "name": "children",
+          "type": "HTMLCollection",
+          "readOnly": 1
+        },
+        "firstElementChild": {
+          "name": "firstElementChild",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1
+        },
+        "lastElementChild": {
+          "name": "lastElementChild",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1
+        },
+        "childElementCount": {
+          "name": "childElementCount",
+          "type": "unsigned long",
+          "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "XPathEvaluatorBase": {
+      "name": "XPathEvaluatorBase",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "createExpression": {
+          "name": "createExpression",
+          "signatures": [
+            {
+              "type": "XPathExpression",
+              "params": [
+                {
+                  "name": "expression",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "resolver",
+                  "type": "XPathNSResolver",
+                  "nullable": 1,
+                  "optional": 1
+                }
+              ]
+            }
+          ]
+        },
+        "createNSResolver": {
+          "name": "createNSResolver",
+          "signatures": [
+            {
+              "type": "XPathNSResolver",
+              "params": [
+                {
+                  "name": "nodeResolver",
+                  "type": "Node"
+                }
+              ]
+            }
+          ]
+        },
+        "evaluate": {
+          "name": "evaluate",
+          "signatures": [
+            {
+              "type": "XPathResult",
+              "params": [
+                {
+                  "name": "expression",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "contextNode",
+                  "type": "Node"
+                },
+                {
+                  "name": "resolver",
+                  "type": "XPathNSResolver",
+                  "nullable": 1,
+                  "optional": 1
+                },
+                {
+                  "name": "type",
+                  "type": "unsigned short",
+                  "optional": 1
+                },
+                {
+                  "name": "result",
+                  "type": "XPathResult",
+                  "nullable": 1,
+                  "optional": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    }
+  },
+  "typedefs": [],
+  "dictionaries": {},
+  "interfaces": {
+    "Document": {
+      "name": "Document",
+      "extends": "Node",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "body": {
+          "name": "body",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "exposed": "Window"
+        },
+        "anchors": {
+          "name": "anchors",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Document",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [
+        "GlobalEventHandlers",
+        "DocumentAndElementEventHandlers",
+        "FontFaceSource",
+        "DocumentOrShadowRoot",
+        "NonElementParentNode",
+        "ParentNode",
+        "XPathEvaluatorBase"
+      ]
+    }
+  },
+  "callbackFunctions": {},
+  "callbackInterfaces": {
+    "XPathNSResolver": {
+      "name": "XPathNSResolver",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "lookupNamespaceURI": {
+          "name": "lookupNamespaceURI",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "prefix",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "legacyWindowAlias": []
+    }
+  }
+}

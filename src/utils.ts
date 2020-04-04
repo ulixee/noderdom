@@ -1,4 +1,4 @@
-import * as Types from './types';
+import * as Types from './Types';
 
 // Extended types used but not defined in the spec
 export const bufferSourceTypes = new Set([
@@ -37,6 +37,7 @@ export const baseTypeConversionMap = new Map<string, string>([
   ['object', 'any'],
   ['sequence', 'Array'],
   ['record', 'Record'],
+  ['Void', 'void'],
   ['FrozenArray', 'ReadonlyArray'],
   ['EventHandler', 'EventHandler'],
 ]);
@@ -93,29 +94,20 @@ export function merge<T>(target: T, src: T, shallow?: boolean): T {
   return target;
 }
 
-function mergeNamedArrays<T extends { name: string; 'new-type': string }>(targetProp: T[], srcProp: T[]) {
+function mergeNamedArrays<T extends { name: string; newType: string }>(targetProp: T[], srcProp: T[]) {
   const mapped: any = {};
-  const indexed: any = {};
 
-  targetProp.forEach((t, index) => {
-    const name = t.name || t['new-type'];
+  targetProp.forEach(t => {
+    const name = t.name || t.newType;
     if (name) {
       mapped[name] = t;
     }
-    indexed[index.toString()] = t;
   });
 
   srcProp.forEach(s => {
-    // @ts-ignore
-    const updateIndex = `${s._updateIndex}`;
-    // @ts-ignore
-    delete s._updateIndex;
-
-    const name = s.name || s['new-type'];
+    const name = s.name || s.newType;
     if (name && mapped[name]) {
       merge(mapped[name], s);
-    } else if (updateIndex && indexed[updateIndex]) {
-      merge(indexed[updateIndex], s);
     } else {
       targetProp.push(s);
     }
@@ -247,7 +239,7 @@ function getNonValueTypeMap(webidl: Types.WebIdl) {
     ...mapToArray(webidl.mixins!),
   ];
   const mapped = new Map(namedTypes.map(t => [t.name, t] as [string, any]));
-  webidl.typedefs!.map(typedef => mapped.set(typedef['new-type'], typedef));
+  webidl.typedefs!.map(typedef => mapped.set(typedef.newType, typedef));
   return mapped;
 }
 
@@ -266,14 +258,16 @@ export function followTypeReferences(webidl: Types.WebIdl, filteredInterfaces: R
     if (!type) {
       return;
     }
-    if (!set.has(type.name || type['new-type'])) {
-      set.add(type.name || type['new-type']);
+    if (!set.has(type.name || type.newType)) {
+      set.add(type.name || type.newType);
       collectTypeReferences(type).forEach(follow);
     }
   }
 }
 
 export function compareName(c1: { name: string }, c2: { name: string }) {
+  const eventListenerRegexp = /^(add|remove)EventListener$/;
+  if (!c1.name.match(eventListenerRegexp) && c2.name.match(eventListenerRegexp)) return -1;
   return c1.name < c2.name ? -1 : c1.name > c2.name ? 1 : 0;
 }
 
@@ -284,22 +278,29 @@ function typeParameterWithDefault(type: Types.TypeParameter, convertToIType: boo
 }
 
 export function getNameWithTypeParameter(
-  i: Types.Interface | Types.Dictionary | Types.CallbackFunction | Types.TypeDef,
+  typeParameter: Types.TypeParameter[] | undefined,
   name: string,
   convertToIType: boolean = false,
 ) {
   const iName = convertToIType ? toIType(name) : name;
-  if (!i['type-parameters']) {
-    return iName;
-  }
-  return `${iName}<${i['type-parameters'].map(p => typeParameterWithDefault(p, true)).join(', ')}>`;
+  if (!typeParameter) return iName;
+
+  return `${iName}<${typeParameter.map(p => typeParameterWithDefault(p, true)).join(', ')}>`;
 }
 
 ///////
 
+export function isCustomType(type: string): boolean {
+  if (['Iterable', 'Promise', 'ArrayBufferView', 'ArrayBuffer', 'T'].includes(type)) return false;
+  return type[0] === type[0].toUpperCase();
+}
+
+export function isNativeType(type: string): boolean {
+  return !isCustomType(type);
+}
+
 export function toIType(type: string) {
-  if (['Iterable', 'Promise', 'ArrayBufferView', 'ArrayBuffer', 'T'].includes(type)) return type;
-  if (type[0] === type[0].toLowerCase()) return type;
+  if (!isCustomType(type)) return type;
   return type[0] === 'I' && type[1] === type[1].toUpperCase() ? type : `I${type}`;
 }
 
@@ -335,7 +336,7 @@ export function arrayify(obj: undefined | Types.Typed | Types.Typed[]) {
 }
 
 export function nameWithForwardedTypes(i: Types.Interface, convertToIType: boolean = false) {
-  const typeParameters = i['type-parameters'];
+  const typeParameters = i.typeParameters;
 
   if (!typeParameters) return convertToIType ? toIType(i.name) : i.name;
   if (!typeParameters.length) return convertToIType ? toIType(i.name) : i.name;
@@ -343,12 +344,6 @@ export function nameWithForwardedTypes(i: Types.Interface, convertToIType: boole
   return `${i.name}<${typeParameters.map(t => t.name)}>`;
 }
 
-// Used to decide if a member should be emitted given its static property and
-// the intended scope level.
-export function matchScope(scope: Types.EmitScope, x: { static?: 1 | undefined }) {
-  return scope === Types.EmitScope.All || (scope === Types.EmitScope.StaticOnly) === !!x.static;
-}
-
 export function isEventHandler(p: Types.Property) {
-  return typeof p['event-handler'] === 'string';
+  return typeof p.eventHandler === 'string';
 }

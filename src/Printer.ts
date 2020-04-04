@@ -1,25 +1,29 @@
-import * as Types from './types';
-import { makeNullable } from './utils';
-import Components from './Components';
-
 export default class Printer {
-  private output: string;
-  private indent: number;
-  private lineStart: boolean;
-  private isStartOfNewSection: boolean = true;
-  // private stack: { content: string; indent: number }[] = [];
+  public didPrint: boolean = false;
+  private local: {
+    output: string;
+    indent: number;
+    lineStart: boolean;
+  };
+  private isStartOfSection: boolean;
+  private readonly parent: Printer;
+  private readonly newLine: string = '\n';
 
-  constructor(private newLine: string = '\n') {
+  constructor(parent?: Printer) {
+    if (parent) {
+      this.parent = parent;
+      this.parent.endLine();
+    }
     this.reset();
   }
 
   public increaseIndent() {
-    this.isStartOfNewSection = true;
+    this.isStartOfSection = true;
     this.indent += 1;
   }
 
   public decreaseIndent() {
-    this.isStartOfNewSection = false;
+    this.isStartOfSection = false;
     this.indent -= 1;
   }
 
@@ -42,7 +46,7 @@ export default class Printer {
   }
 
   public print(s: string) {
-    this.isStartOfNewSection = false;
+    this.isStartOfSection = false;
     if (this.lineStart) {
       this.output += s ? this.getIndentString(this.indent) : '';
       this.lineStart = false;
@@ -51,47 +55,71 @@ export default class Printer {
   }
 
   public printSeparatorLine(comment?: string) {
-    if (this.isStartOfNewSection) return;
-    this.endLine();
-    if (comment) this.printLine(comment);
+    if (this.isStartOfSection && this.lineStart) return;
+    this.printLine(comment);
   }
 
   public reset(): void {
-    this.output = '';
-    this.indent = 0;
-    this.lineStart = true;
-    // this.stack = [];
+    this.isStartOfSection = true;
+    this.local = {
+      output: '',
+      indent: 0,
+      lineStart: true,
+    };
   }
 
   public endLine(s: string = '') {
     if (s) {
       this.output += s;
     }
-    this.output += this.newLine;
-    this.lineStart = true;
-  }
-
-  public printSignatures(
-    method: {
-      signature?: Types.Signature[];
-    },
-    name: string,
-    components: Components,
-  ) {
-    if (method.signature) {
-      method.signature.forEach(s => this.printSignature(s, name, components));
+    if (!this.lineStart) {
+      this.output += this.newLine;
+      this.lineStart = true;
     }
   }
 
-  private printSignature(
-    s: Types.Signature,
-    name: string | undefined,
-    components: Components,
-  ) {
-    const paramsString = s.param ? components.paramsToString(s.param, true) : '';
-    let returnType = components.convertDomTypeToTsType(s, true);
-    returnType = s.nullable ? makeNullable(returnType) : returnType;
-    this.printLine(`${name || ''}(${paramsString}): ${returnType};`);
+  public deleteNewLine() {
+    if (!this.lineStart) return;
+    this.output = this.output.slice(0, -this.newLine.length);
+  }
+
+  // PRIVATE ////////
+
+  private get output(): string {
+    return this.parent ? this.parent.output : this.local.output;
+  }
+
+  private set output(value: string) {
+    this.didPrint = !!value;
+    if (this.parent) {
+      this.parent.output = value;
+    } else {
+      this.local.output = value;
+    }
+  }
+
+  private get indent(): number {
+    return this.parent ? this.parent.indent : this.local.indent;
+  }
+
+  private set indent(value: number) {
+    if (this.parent) {
+      this.parent.indent = value;
+    } else {
+      this.local.indent = value;
+    }
+  }
+
+  private get lineStart(): boolean {
+    return this.parent ? this.parent.lineStart : this.local.lineStart;
+  }
+
+  private set lineStart(value: boolean) {
+    if (this.parent) {
+      this.parent.lineStart = value;
+    } else {
+      this.local.lineStart = value;
+    }
   }
 
   private getIndentString(level: number) {

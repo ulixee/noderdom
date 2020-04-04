@@ -1,46 +1,41 @@
+import * as Fs from 'fs';
 import Components from './Components';
-import * as Browser from './types';
-import { filter, exposesTo, followTypeReferences, mapToArray, arrayToMap } from './utils';
-import { baseComponentNames } from './ComponentOverrides';
+import * as Types from './Types';
+import { filter, exposesTo, followTypeReferences, mapToArray } from './utils';
+import IComponentFilters, { IComponentFilter } from './interfaces/IComponentFilters';
 
 export default class ComponentCleaner {
   private referencedIDLTypes: Set<string>;
   private unexposedTypes = new Set<string>();
+  private readonly components: Components;
+  private readonly componentFiltersPath: string;
 
-  constructor(private components: Components, private target: 'Window') {}
+  constructor(components: Components, componentFilteringPath?: string) {
+    this.components = components;
+    this.componentFiltersPath = componentFilteringPath || '';
+  }
 
   public run() {
-    const original = this.components;
-    const target = this.target;
-    const filtered = new Components();
+    this.runComponentFiltering();
 
-    filtered.namespaces = original.namespaces.filter(o => exposesTo(o, target));
+    const original = this.components;
+    const filtered = new Components();
+    const target = 'Window';
+
     filtered.interfaces = filter(original.interfaces, i => exposesTo(i, target));
     const unexposedInterfaces = mapToArray(original.interfaces).filter(i => !i.exposed || !i.exposed.includes(target));
     for (const i of unexposedInterfaces) {
       this.unexposedTypes.add(i.name);
     }
 
-    this.referencedIDLTypes = new Set([
-      ...baseComponentNames,
-      ...followTypeReferences(original, filtered.interfaces!),
-      ...followTypeReferences(
-        original,
-        arrayToMap(
-          filtered.namespaces!,
-          i => i.name,
-          i => i,
-        ),
-      ),
-    ]);
+    this.referencedIDLTypes = new Set([...followTypeReferences(original, filtered.interfaces!)]);
 
-    const referencedTypes = original.typedefs.filter(t => this.referencedIDLTypes.has(t['new-type']));
+    const referencedTypes = original.typedefs.filter(t => this.referencedIDLTypes.has(t.newType));
     const { exposed, removed } = this.filterTypedefs(referencedTypes, this.unexposedTypes);
     const exposedMixins = filter(original.mixins, o => exposesTo(o, target));
 
     removed.forEach(s => this.unexposedTypes.add(s));
     filtered.typedefs = exposed;
-
     filtered.callbackFunctions! = this.filterProperties(original.callbackFunctions, 'callbackFunction');
     filtered.callbackInterfaces! = this.filterProperties(original.callbackInterfaces, 'callbackInterface');
     filtered.dictionaries = this.filterProperties(original.dictionaries, 'dictionary');
@@ -52,17 +47,64 @@ export default class ComponentCleaner {
         const type = this.filterUnexposedTypeFromUnion(c.type, this.unexposedTypes);
         return { ...c, type };
       }
-      if (Array.isArray(c.signature)) {
-        const signature = c.signature.map((s: Browser.Signature) =>
+      if (Array.isArray(c.signatures)) {
+        const signatures = c.signatures.map((s: Types.Signature) =>
           this.filterUnknownTypeFromSignature(s, this.unexposedTypes),
         );
-        return { ...c, signature };
+        return { ...c, signatures };
       }
     });
 
-    this.mergeNamesakes(final);
+    final.dynamicIshes = original.dynamicIshes;
+    final.dynamicIsolates = original.dynamicIsolates;
 
-    return this.components.load(final);
+    this.components.load(final);
+
+    return this.components;
+  }
+
+  private runComponentFiltering() {
+    if (!this.componentFiltersPath) return;
+    const componentFilters: IComponentFilters = JSON.parse(Fs.readFileSync(this.componentFiltersPath, 'utf-8'));
+
+    Object.keys(this.components.interfaces).forEach(name => {
+      const i = this.components.interfaces[name];
+      const componentFilter: IComponentFilter = componentFilters[name];
+
+      if (!componentFilter) return;
+      if (!componentFilter.isEnabled) {
+        delete this.components.interfaces[name];
+        delete this.components.callbackInterfaces[name];
+        delete this.components.mixins[name];
+        return;
+      }
+
+      if (i.extends && componentFilters[i.extends] && !componentFilters[i.extends].isEnabled) {
+        i.extends = 'Object';
+      }
+
+      if (i.implements) {
+        i.implements = i.implements.filter(n => {
+          return !componentFilters[n] || componentFilters[n].isEnabled;
+        });
+      }
+
+      Object.keys(i.properties!).forEach(pName => {
+        const pFilter = componentFilter.propertiesByName[pName];
+        if (!componentFilter.isEnabled || (pFilter && !pFilter.isEnabled)) {
+          delete i.properties![pName];
+        } else if (pFilter && !pFilter.isWritable) {
+          i.properties![pName].readOnly = 1;
+        }
+      });
+
+      Object.keys(i.methods!).forEach(mName => {
+        const mFilter = componentFilter.methodsByName[mName];
+        if (!componentFilter.isEnabled || (mFilter && !mFilter.isEnabled)) {
+          delete i.methods![mName];
+        }
+      });
+    });
   }
 
   private filterProperties<T, U extends T>(obj: Record<string, U>, objName: string): Record<string, U> {
@@ -79,8 +121,8 @@ export default class ComponentCleaner {
     return result;
   }
 
-  private filterUnexposedTypeFromUnion(union: Browser.Typed[], unexposedTypes: Set<string>): Browser.Typed[] {
-    const result: Browser.Typed[] = [];
+  private filterUnexposedTypeFromUnion(union: Types.Typed[], unexposedTypes: Set<string>): Types.Typed[] {
+    const result: Types.Typed[] = [];
     for (const type of union) {
       if (Array.isArray(type.type)) {
         const filteredUnion = this.filterUnexposedTypeFromUnion(type.type, unexposedTypes);
@@ -116,7 +158,7 @@ export default class ComponentCleaner {
     return this.referencedIDLTypes.has(name);
   }
 
-  private flattenType(type: Browser.Typed[]) {
+  private flattenType(type: Types.Typed[]) {
     if (type.length > 1) {
       return type;
     }
@@ -126,35 +168,16 @@ export default class ComponentCleaner {
     throw new Error('Cannot process empty union type');
   }
 
-  private mergeNamesakes(filtered: Components) {
-    const targets = [
-      ...Object.values(filtered.interfaces!),
-      ...Object.values(filtered.mixins!),
-      ...filtered.namespaces!,
-    ];
-    for (const i of targets) {
-      if (!i.properties || !i.properties.namesakes) {
-        continue;
-      }
-      const { property } = i.properties!;
-      for (const [prop] of Object.values(i.properties.namesakes)) {
-        if (prop && !(prop.name in property)) {
-          property[prop.name] = prop;
-        }
-      }
-    }
-  }
-
-  private filterUnknownTypeFromSignature(signature: Browser.Signature, unexposedTypes: Set<string>) {
-    if (!signature.param) {
+  private filterUnknownTypeFromSignature(signature: Types.Signature, unexposedTypes: Set<string>) {
+    if (!signature.params) {
       return signature;
     }
-    const param: Browser.Param[] = [];
-    for (const p of signature.param) {
-      const types = Array.isArray(p.type) ? p.type : [p];
-      const filtered = this.filterUnexposedTypeFromUnion(types, unexposedTypes);
+    const params: Types.Param[] = [];
+    for (const p of signature.params) {
+      const type = Array.isArray(p.type) ? p.type : [p];
+      const filtered = this.filterUnexposedTypeFromUnion(type, unexposedTypes);
       if (filtered.length >= 1) {
-        param.push({ ...p, type: this.flattenType(filtered) });
+        params.push({ ...p, type: this.flattenType(filtered) });
       } else if (!p.optional) {
         throw new Error('A non-optional parameter has unknown type');
       } else {
@@ -162,7 +185,7 @@ export default class ComponentCleaner {
         break;
       }
     }
-    return { ...signature, param };
+    return { ...signature, params };
   }
 
   /**
@@ -172,22 +195,22 @@ export default class ComponentCleaner {
    * @param unexposedTypes type names to be filtered out
    */
   private filterTypedefs(
-    typedefs: Browser.TypeDef[],
+    typedefs: Types.TypeDef[],
     unexposedTypes: Set<string>,
-  ): { exposed: Browser.TypeDef[]; removed: Set<string> } {
-    const exposed: Browser.TypeDef[] = [];
+  ): { exposed: Types.TypeDef[]; removed: Set<string> } {
+    const exposed: Types.TypeDef[] = [];
     const removed = new Set<string>();
 
     typedefs.forEach(typedef => {
       if (Array.isArray(typedef.type)) {
         const filteredType = this.filterUnexposedTypeFromUnion(typedef.type, unexposedTypes);
         if (!filteredType.length) {
-          removed.add(typedef['new-type']);
+          removed.add(typedef.newType);
         } else {
           exposed.push({ ...typedef, type: this.flattenType(filteredType) });
         }
       } else if (unexposedTypes.has(typedef.type)) {
-        removed.add(typedef['new-type']);
+        removed.add(typedef.newType);
       } else {
         exposed.push(typedef);
       }

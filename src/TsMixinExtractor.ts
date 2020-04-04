@@ -1,81 +1,103 @@
-import * as Types from './types';
+import * as Types from './Types';
 import Printer from './Printer';
 import Components from './Components';
-import TsClasslike from './TsClasslike';
+import TsStateMachinePrinter from './TsStateMachinePrinter';
+import TsBodyPrinter from './TsBodyPrinter';
+import TsExtractor from './TsExtractor';
+
+interface IOptions {
+  baseDir: string;
+  definedTypes: Set<string>;
+  definedDom: Set<string>;
+  definedIsolates?: Set<string>;
+  isDynamic?: boolean;
+}
 
 export default class TsMixinExtractor {
-  private readonly printer = new Printer();
-  private readonly classlike: TsClasslike;
   private readonly i: Types.Interface;
-  private readonly hasBody: boolean;
-  private readonly hasInternalHandler: boolean;
+  private readonly printer = new Printer();
+  private readonly components: Components;
+  private readonly bodyPrinter: TsBodyPrinter;
+  private readonly baseDir: string;
+  private readonly definedTypes: Set<string>;
+  private readonly definedDom: Set<string>;
+  private readonly definedIsolates: Set<string>;
+  private readonly isDynamic: boolean;
 
-  constructor(components: Components, i: Types.Interface) {
+  constructor(i: Types.Interface, components: Components, options: IOptions) {
     this.i = i;
-    this.classlike = new TsClasslike(components, this.printer, i);
-
-    const { hasProperties, hasMethods, hasIndexers } = this.classlike;
-    this.hasBody = hasProperties || hasMethods || hasIndexers;
-    this.hasInternalHandler = hasProperties || hasMethods;
+    this.components = components;
+    this.baseDir = options.baseDir;
+    this.definedTypes = options.definedTypes;
+    this.definedDom = options.definedDom;
+    this.definedIsolates = options.definedIsolates || new Set();
+    this.isDynamic = options.isDynamic || false;
+    this.bodyPrinter = new TsBodyPrinter(i, this.printer, components, { skipConstructor: true });
   }
 
   public run() {
-    // this.printFunctionDeclaration();
-    // this.printer.increaseIndent();
-
     this.printClassDeclaration();
     this.printer.increaseIndent();
 
-    this.classlike.printBody();
-
-    // this.printer.decreaseIndent();
-    // this.printer.printLine('};');
+    this.bodyPrinter.printAll();
+    if (!this.bodyPrinter.didPrint) this.printer.deleteNewLine();
 
     this.printer.decreaseIndent();
     this.printer.print('}');
 
-    const interfacesToImport = this.classlike.extractInterfacesToImport();
-    this.classlike.printInternalStateHooks([], false);
-    this.prependImports(interfacesToImport);
+    this.printStateMachineInterfaces();
+
+    this.prependImports();
 
     return this.printer.getResult().trim();
   }
 
-  private prependImports(interfacesToImport: string[]) {
+  private printClassDeclaration() {
     const i: Types.Interface = this.i;
-    const interfacesToPrepend = new Set(interfacesToImport);
-    interfacesToPrepend.add(`I${i.name}`);
+    this.printer.printLine(`export default class ${i.name} implements I${i.name} {`);
+  }
 
+  private printStateMachineInterfaces() {
+    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components);
+    stateMachinePrinter.printInterfaces([], this.bodyPrinter.constants, this.bodyPrinter.properties);
+  }
+
+  private prependImports() {
+    const i: Types.Interface = this.i;
+    const name = i.name;
+
+    const printer = new Printer();
+    new TsStateMachinePrinter(this.i, printer, this.components).printInitializer(true);
+    const stateMachineInitializerCode = printer.getResult();
+
+    const references: string[] = [name, ...this.bodyPrinter.referencedObjects];
+    const referencedTypes = TsExtractor.locateReferences(references, { use: Array.from(this.definedTypes) });
+    const referencedDom = TsExtractor.locateReferences(references, { use: Array.from(this.definedDom) });
+    const referencedIsolates = TsExtractor.locateReferences(references, { use: Array.from(this.definedIsolates) });
+    const interfacesDir = `${this.baseDir}/interfaces`;
     const printable = [];
-    // printable.push(`import Constructable from '../Constructable';`);
-    if (this.hasInternalHandler) {
-      printable.push(`import InternalHandler from '../InternalHandler';`);
+
+    const handlerFilename = `${this.isDynamic ? 'Dynamic' : 'Static'}Handler`;
+    printable.push(`import Handler from '${this.baseDir}/${handlerFilename}';`);
+    printable.push(`import StateMachine from '${this.baseDir}/StateMachine';`);
+
+    if (referencedIsolates.length) {
+      printable.push(`import { ${referencedIsolates.map(n => `I${n}`).join(', ')} } from '${interfacesDir}/isolates';`);
     }
-    printable.push(`import { ${Array.from(interfacesToPrepend).join(', ')} } from '../interfaces';`);
+    if (referencedDom.length) {
+      printable.push(`import { ${referencedDom.map(n => `I${n}`).join(', ')} } from '${interfacesDir}/dom';`);
+    }
+    if (referencedTypes.length) {
+      printable.push(`import { ${referencedTypes.map(n => `I${n}`).join(', ')} } from '${interfacesDir}/types';`);
+    }
+
+    printable.push('// tslint:disable:variable-name');
+    printable.push('');
+
+    printable.push(stateMachineInitializerCode);
+    printable.push(`export const handler = new Handler<I${name}>('${name}', getState, setState);`);
     printable.push('');
 
     this.printer.prependLine(printable.join('\n'));
-  }
-
-  // private printFunctionDeclaration() {
-  //   const i: Types.Interface = this.i;
-  //   const classesToExtend: Set<string> = new Set();
-  //   if (i.implements) {
-  //     i.implements.forEach(x => {
-  //       classesToExtend.add(x);
-  //     });
-  //   }
-  //
-  //   this.printer.printSeparatorLine();
-  //   this.printer.printLine('// tslint:disable-next-line:variable-name');
-  //   this.printer.printLine(`export default function ${i.name}<T extends Constructable>(Base: T) {`);
-  // }
-
-  private printClassDeclaration() {
-    const i: Types.Interface = this.i;
-    this.printer.print(`export default class ${i.name} implements I${i.name} {`);
-    if (this.hasBody) {
-      this.printer.endLine();
-    }
   }
 }

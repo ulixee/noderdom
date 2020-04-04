@@ -22,14 +22,16 @@
     "build": "tsc",
     "clean": "tsc --build --clean",
     "develop": "ts-node index.ts",
-    "prepublishOnly": "npm run lint && npm run build && npm test"
-  },
-  "bin": {
-    "noderdom-scaffolding": "./bin/cli.js"
+    "prepublishOnly": "npm run lint && npm run build && npm test",
+    "db:create": "ts-node ./db/scripts/create.ts",
+    "db:drop": "ts-node ./db/scripts/drop.ts",
+    "db:reset": "npm run db:drop && npm run db:create"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^5.4.0",
     "@types/parse5": "^5.0.2",
     "@types/underscore": "^1.9.4",
+    "better-sqlite3": "^5.4.3",
     "underscore": "^1.9.1"
   },
   "devDependencies": {
@@ -41,6 +43,7 @@
     "jest-environment-node": "^24.9.0",
     "jest-junit": "^6.3.0",
     "jest-summary-reporter": "^0.0.2",
+    "noderdom": "https://gitlab.com/DataLiberationFoundation/noderdom.git#dist",
     "prettier": "^1.19.1",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.6.2",
@@ -53,6 +56,8 @@
     "tslint-no-circular-imports": "^0.7.0",
     "tslint-plugin-prettier": "^2.1.0",
     "typescript": "^3.7.5",
+    "vue-property-decorator": "^8.4.0",
+    "vue-runner": "^0.1.4",
     "webidl2": "^23.10.1"
   },
   "repository": {
