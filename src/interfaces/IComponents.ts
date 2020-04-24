@@ -8,6 +8,6 @@ export default interface IComponents {
   callbackFunctions: Record<string, Types.CallbackFunction>;
   callbackInterfaces: Record<string, Types.Interface>;
   dictionaries: Record<string, Types.Dictionary>;
-  dynamicIshes?: Record<string, Types.Interface>;
-  dynamicIsolates?: Record<string, Types.Interface>;
+  awaitedSupers?: Record<string, Types.Interface>;
+  awaitedIsolates?: Record<string, Types.Interface>;
 }

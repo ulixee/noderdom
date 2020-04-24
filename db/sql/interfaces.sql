@@ -6,6 +6,7 @@ CREATE TABLE interfaces (
 
   docOverview TEXT,
 
+  isSuper BOOLEAN NOT NULL DEFAULT 0,
   isDeprecated BOOLEAN NOT NULL DEFAULT 0,
   isExperimental BOOLEAN NOT NULL DEFAULT 0,
   isObsolete BOOLEAN NOT NULL DEFAULT 0,

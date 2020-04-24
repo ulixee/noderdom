@@ -4,6 +4,11 @@ import Printer from './Printer';
 import Components from './Components';
 import ICodeModule from './interfaces/ICodeModule';
 import TsBodyPrinter from './TsBodyPrinter';
+import IBuildType from './interfaces/IBuildType';
+
+interface IOptions {
+  buildType: IBuildType;
+}
 
 export default class TsInterfaceExtractor {
   public readonly map: any = { properties: {}, methods: {} };
@@ -13,16 +18,19 @@ export default class TsInterfaceExtractor {
   private readonly extends: string[];
   private readonly definedObjects: Set<string> = new Set();
   private readonly referencedObjects: Set<string> = new Set();
+  private readonly buildType: IBuildType;
 
-  constructor(components: Components, i: Types.Interface) {
+  constructor(components: Components, i: Types.Interface, options: IOptions) {
     this.i = i;
     this.components = components;
+    this.buildType = options.buildType;
     this.extends = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
   }
 
   public run(): ICodeModule {
-    const i: Types.Interface = this.i;
-    const bodyPrinter = new TsBodyPrinter(this.i, this.printer, this.components, { skipImplementation: true });
+    const { i, buildType } = this;
+    const options = { buildType, skipImplementation: true };
+    const bodyPrinter = new TsBodyPrinter(this.i, this.printer, this.components, options);
 
     this.printer.printLine(`// ${i.name} //////////`);
     this.printer.printLine('');

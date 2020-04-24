@@ -4,16 +4,17 @@ import * as Path from 'path';
 import Exports from './Exports';
 import Components from './Components';
 import ICodeModule from './interfaces/ICodeModule';
+import IBuildType from './interfaces/IBuildType';
 
 interface IOptions {
   baseDir: string;
-  isDynamic?: boolean;
+  buildType: IBuildType;
 }
 
 export default class DOMCreator {
   private readonly components: Components;
   private readonly baseDir: string;
-  private readonly isDynamic: boolean;
+  private readonly buildType: IBuildType;
   private readonly interfacesDir: string;
   private readonly classesDir: string;
   private readonly mixinsDir: string;
@@ -25,10 +26,10 @@ export default class DOMCreator {
   constructor(components: Components, options: IOptions) {
     this.components = components;
     this.baseDir = options.baseDir;
-    this.isDynamic = options.isDynamic || false;
+    this.buildType = options.buildType;
     this.interfacesDir = Path.join(this.baseDir, 'interfaces');
     this.classesDir = Path.join(this.baseDir, 'classes');
-    this.mixinsDir = Path.join(this.classesDir, 'mixins');
+    this.mixinsDir = Path.join(this.baseDir, 'mixins');
 
     if (!Fs.existsSync(this.baseDir)) Fs.mkdirSync(this.baseDir);
     if (!Fs.existsSync(this.interfacesDir)) Fs.mkdirSync(this.interfacesDir);
@@ -37,7 +38,8 @@ export default class DOMCreator {
   }
 
   public createBasics() {
-    const typescriptExtractor = new TsExtractor(this.components);
+    const { buildType } = this;
+    const typescriptExtractor = new TsExtractor(this.components, { buildType });
 
     const basicTypes = typescriptExtractor.extractTypes();
     const basicTypesOutput = [DOMCreator.outputIntro, basicTypes.map(t => t.code).join('\n\n')].join('');
@@ -47,13 +49,13 @@ export default class DOMCreator {
     const stringifiedTypescriptInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, domInterfaces);
     Fs.writeFileSync(`${this.interfacesDir}/dom.ts`, stringifiedTypescriptInterfaces);
 
-    const definedTypes = new Set(basicTypes.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []));
-    const definedDom = new Set(domInterfaces.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []));
+    const definedTypes: Set<string> = new Set(basicTypes.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []));
+    const definedDom: Set<string> = new Set(domInterfaces.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []));
 
     const tagNameMap = [DOMCreator.outputIntro, typescriptExtractor.extractTagNameMap().join('\n\n')];
     Fs.writeFileSync(`${this.interfacesDir}/tags.ts`, tagNameMap.join(''));
 
-    const typescriptClasses = typescriptExtractor.extractClasses(definedTypes, definedDom, this.isDynamic);
+    const typescriptClasses = typescriptExtractor.extractClasses(definedTypes, definedDom);
     typescriptClasses.forEach(c => {
       const classOutputPath = Path.join(this.classesDir, `${c.name}.ts`);
       Fs.writeFileSync(classOutputPath, `${c.code}\n`);
@@ -72,13 +74,13 @@ export default class DOMCreator {
   }
 
   public createIsolates() {
-    const { definedTypes, definedDom } = this;
-    const typescriptExtractor = new TsExtractor(this.components);
+    const { definedTypes, definedDom, buildType } = this;
+    const typescriptExtractor = new TsExtractor(this.components, { buildType });
     const isolateInterfaces = typescriptExtractor.extractIsolateInterfaces(definedTypes, definedDom);
     const stringifiedIsolateInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, isolateInterfaces);
     Fs.writeFileSync(`${this.interfacesDir}/isolates.ts`, stringifiedIsolateInterfaces);
 
-    const isolateDir = Path.join(this.classesDir, 'mixin-isolates');
+    const isolateDir = Path.join(this.baseDir, 'isolates');
     if (!Fs.existsSync(isolateDir)) Fs.mkdirSync(isolateDir);
 
     const isolateMixins = typescriptExtractor.extractIsolateMixins(definedTypes, definedDom);
@@ -89,22 +91,27 @@ export default class DOMCreator {
     this.definedIsolates = new Set(isolateMixins.map(x => x.name));
   }
 
-  public createIshes() {
-    const { definedTypes, definedDom, definedIsolates } = this;
-    const typescriptExtractor = new TsExtractor(this.components);
-    const ishInterfaces = typescriptExtractor.extractIshInterfaces(definedTypes, definedDom, definedIsolates);
-    const definedIshes = new Set(ishInterfaces.map(x => x.name));
+  public createSupers() {
+    const { definedTypes, definedDom, definedIsolates, buildType } = this;
+    const typescriptExtractor = new TsExtractor(this.components, { buildType });
+    const superInterfaces = typescriptExtractor.extractSuperInterfaces(definedTypes, definedDom, definedIsolates);
+    const definedSupers = new Set(superInterfaces.map(x => x.name));
 
-    const stringifiedIshInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, ishInterfaces);
-    Fs.writeFileSync(`${this.interfacesDir}/ishes.ts`, stringifiedIshInterfaces);
+    const stringifiedSuperInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, superInterfaces);
+    Fs.writeFileSync(`${this.interfacesDir}/supers.ts`, stringifiedSuperInterfaces);
 
-    const ishClasses = typescriptExtractor.extractIshClasses(definedTypes, definedDom, definedIshes, definedIsolates);
-    const ishDir = Path.join(this.classesDir, 'ishes');
-    if (!Fs.existsSync(ishDir)) Fs.mkdirSync(ishDir);
+    const superClasses = typescriptExtractor.extractSuperClasses(
+      definedTypes,
+      definedDom,
+      definedSupers,
+      definedIsolates,
+    );
+    const superDir = Path.join(this.baseDir, 'supers');
+    if (!Fs.existsSync(superDir)) Fs.mkdirSync(superDir);
 
-    ishClasses.forEach(c => {
-      const ishOutputPath = Path.join(ishDir, `${c.name}.ts`);
-      Fs.writeFileSync(ishOutputPath, `${c.code}\n`);
+    superClasses.forEach(c => {
+      const superOutputPath = Path.join(superDir, `${c.name}.ts`);
+      Fs.writeFileSync(superOutputPath, `${c.code}\n`);
     });
   }
 

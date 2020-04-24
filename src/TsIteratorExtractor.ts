@@ -3,8 +3,10 @@ import { arrayToMap, integerTypes, compareName, toIType } from './utils';
 import Printer from './Printer';
 import Components from './Components';
 import TypeUtils from './TypeUtils';
+import IBuildType from './interfaces/IBuildType';
 
 interface IOptions {
+  buildType: IBuildType;
   skipImplementation?: boolean;
 }
 
@@ -23,11 +25,13 @@ export default class TsIteratorExtractor {
   private readonly components: Components;
   private readonly sequenceTypedefMap: Record<string, Types.TypeDef>;
   private readonly skipImplementation: boolean;
+  private readonly handler: string;
 
-  constructor(i: Types.Interface, components: Components, { skipImplementation }: IOptions = {}) {
+  constructor(i: Types.Interface, components: Components, options: IOptions) {
     this.i = i;
     this.components = components;
-    this.skipImplementation = skipImplementation || false;
+    this.skipImplementation = options.skipImplementation || false;
+    this.handler = `${options.buildType}Handler`;
 
     const sequenceTypedefs = (this.components.typedefs || [])
       .filter(typedef => Array.isArray(typedef.type))
@@ -103,18 +107,15 @@ export default class TsIteratorExtractor {
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public [Symbol.iterator](): ${returnType} {`);
-      this.printer.printLine(`  return handler.run<${returnType}>(this, '[Symbol.iterator]', []);`);
+      this.printer.printLine(`  return ${this.handler}.runMethod<${returnType}>(this, '[Symbol.iterator]', []);`);
       this.printer.printLine('}');
     }
   }
 
   private printIteratorForEach() {
     const i: Types.Interface = this.i;
-    const typeParam = i.typeParameters && i.typeParameters ? i.typeParameters[0] : null;
-    const extendedType = typeParam && typeParam.extends ? typeParam.name : null;
-    const subtype = i.iterator!.type.map(o => TypeUtils.convertDomTypeToTsType(o));
-    const lastSubtype = subtype[subtype.length - 1];
-    const value = lastSubtype === extendedType ? lastSubtype : toIType(lastSubtype);
+    const subtype = i.iterator!.type.map(o => TypeUtils.convertDomTypeToTsType(o, true));
+    const value = subtype[subtype.length - 1];
     const key = subtype.length > 1 ? subtype[0] : i.iterator!.kind === 'iterable' ? 'number' : value;
     const iType = toIType(i.name);
     const name = i.typeParameters ? `${iType}<${i.typeParameters!.map(p => p.name).join(', ')}>` : iType;
@@ -124,7 +125,7 @@ export default class TsIteratorExtractor {
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public forEach(callbackfn: (${args}) => void, thisArg?: any): void {`);
-      this.printer.printLine(`  handler.run<void>(this, 'forEach', [callbackfn, thisArg]);`);
+      this.printer.printLine(`  ${this.handler}.runMethod<void>(this, 'forEach', [callbackfn, thisArg]);`);
       this.printer.printLine('}');
     }
   }
@@ -186,7 +187,7 @@ export default class TsIteratorExtractor {
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public ${m.name}(): ${m.definition} {`);
-      this.printer.printLine(`  return handler.run<${m.definition}>(this, '${m.name}', []);`);
+      this.printer.printLine(`  return ${this.handler}.runMethod<${m.definition}>(this, '${m.name}', []);`);
       this.printer.printLine('}');
     }
   }

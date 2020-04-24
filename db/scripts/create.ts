@@ -4,7 +4,15 @@ import db from '../index';
 
 const sqlDir = Path.resolve(__dirname, '../sql');
 
-const sqlFilenames = ['interfaces', 'interface_relationships', 'methods', 'properties', 'selection_choices'];
+const sqlFilenames = [
+  'interfaces',
+  'interface_relationships',
+  'methods',
+  'properties',
+  'component_filters',
+  'supers',
+  'super_isolates',
+];
 
 for (const sqlFilename of sqlFilenames) {
   try {

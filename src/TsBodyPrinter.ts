@@ -5,8 +5,10 @@ import Components from './Components';
 import TsIteratorExtractor from './TsIteratorExtractor';
 import TypeUtils from './TypeUtils';
 import ParamUtils from './ParamUtils';
+import IBuildType, { BuildType } from './interfaces/IBuildType';
 
 interface IOptions {
+  buildType: IBuildType;
   skipImplementation?: boolean;
   skipConstructor?: boolean;
   skipEventHandlers?: boolean;
@@ -24,17 +26,21 @@ export default class TsBodyPrinter {
   private readonly i: Types.Interface;
   private readonly printer: Printer;
   private readonly components: Components;
+  private readonly buildType: IBuildType;
   private readonly skipImplementation: boolean = false;
   private readonly skipConstructor: boolean = false;
   private readonly skipEventHandlers: boolean = false;
+  private readonly handler: string;
 
-  constructor(i: Types.Interface, printer: Printer, components: Components, options: IOptions = {}) {
+  constructor(i: Types.Interface, printer: Printer, components: Components, options: IOptions) {
     this.i = i;
     this.printer = new Printer(printer);
     this.components = components;
+    this.buildType = options.buildType;
     this.skipImplementation = options.skipImplementation || false;
     this.skipConstructor = options.skipConstructor || false;
     this.skipEventHandlers = options.skipEventHandlers || false;
+    this.handler = `${options.buildType}Handler`;
 
     this.constants = Object.values(i.constants || {}).sort(compareName);
 
@@ -61,7 +67,8 @@ export default class TsBodyPrinter {
       .filter(m => this.hasIndexerSignature(m))
       .filter(m => this.hasSignatureParams(m));
 
-    const iteratorOptions = { skipImplementation: this.skipImplementation };
+    const { buildType, skipImplementation } = this;
+    const iteratorOptions = { buildType, skipImplementation };
     this.iteratorExtractor = new TsIteratorExtractor(this.i, this.components, iteratorOptions);
   }
 
@@ -123,7 +130,7 @@ export default class TsBodyPrinter {
         this.printer.printLine(`super();`);
       }
       this.printer.printLine(
-        `initializeConstantsAndPrototypes<${i.name}>(${i.name}, this, handler, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
+        `initializeConstantsAndProperties<${i.name}>(${i.name}, this, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
       );
       this.printer.decreaseIndent();
       this.printer.printLine('}');
@@ -138,13 +145,13 @@ export default class TsBodyPrinter {
 
   public printProperties(properties?: Types.Property[], forceOptional: boolean = false) {
     if (!properties && !this.properties.length) return;
-    this.printer.printSeparatorLine(this.skipImplementation ? '' : '// properties');
+    this.printer.printSeparatorLine(this.skipImplementation ? '' : '\n// properties');
     (properties || this.properties).forEach(p => this.printProperty(p, forceOptional));
   }
 
   public printMethods() {
     if (!this.methods.length) return;
-    this.printer.printSeparatorLine(this.skipImplementation ? '' : '// methods');
+    this.printer.printSeparatorLine(this.skipImplementation ? '' : '\n// methods');
     this.methods.forEach(m => this.printMethod(m));
   }
 
@@ -159,27 +166,41 @@ export default class TsBodyPrinter {
   }
 
   public printProperty(property: Types.Property, forceOptional: boolean = false) {
-    const pType: string = this.extractPropertyType(property);
+    const i: Types.Interface = this.i;
     const isReadonly = property.readOnly === 1;
+    const isAwaited = this.buildType === BuildType.awaited;
+    const isLocal = isAwaited && property.isLocal === 1;
+    const valueType: string = this.extractPropertyValueType(property);
+    const returnType: string = this.extractPropertyReturnType(property);
     if (this.skipImplementation) {
       const isRequired = forceOptional ? false : property.required === undefined || property.required === 1;
       const requiredModifier = isRequired ? '' : '?';
       const readOnlyModifier = isReadonly ? 'readonly ' : '';
-      this.printer.printLine(`${readOnlyModifier}${property.name}${requiredModifier}: ${pType};`);
+      this.printer.printLine(`${readOnlyModifier}${property.name}${requiredModifier}: ${returnType};`);
     } else {
-      const hasNullDefault = pType.includes(' | null');
+      const hasNullDefault = this.extractPropertyTypeHasNullDefault(property);
       this.printer.printSeparatorLine();
-      this.printer.printLine(`public get ${property.name}(): ${pType} {`);
+      this.printer.printLine(`public get ${property.name}(): ${returnType} {`);
       this.printer.increaseIndent();
-      this.printer.printLine(`return handler.get<${pType}>(this, '${property.name}', ${hasNullDefault});`);
+      if (isLocal) {
+        this.printer.printLine(`throw new Error('${i.name}.${property.name} getter not implemented');`);
+      } else {
+        this.printer.printLine(
+          `return ${this.handler}.getProperty<${valueType}>(this, '${property.name}', ${hasNullDefault});`,
+        );
+      }
       this.printer.decreaseIndent();
       this.printer.printLine('}');
 
       if (!isReadonly) {
         this.printer.printSeparatorLine();
-        this.printer.printLine(`public set ${property.name}(value: ${pType}) {`);
+        this.printer.printLine(`public set ${property.name}(value: ${valueType}) {`);
         this.printer.increaseIndent();
-        this.printer.printLine(`handler.set<${pType}>(this, '${property.name}', value);`);
+        if (isLocal) {
+          this.printer.printLine(`throw new Error('${i.name}.${property.name} setter not implemented');`);
+        } else {
+          this.printer.printLine(`${this.handler}.setProperty<${valueType}>(this, '${property.name}', value);`);
+        }
         this.printer.decreaseIndent();
         this.printer.printLine('}');
       }
@@ -187,8 +208,11 @@ export default class TsBodyPrinter {
   }
 
   public printMethod(method: Types.Method) {
+    const i: Types.Interface = this.i;
+    const isAwaited = this.buildType === BuildType.awaited;
+    const isLocal = isAwaited && method.isLocal === 1;
     method.signatures.forEach(signature => {
-      const signatureStr = this.createSignature(method, signature);
+      const signatureStr = this.createMethodSignature(method, signature);
       if (this.skipImplementation && method.static) {
         this.printer.printLine(`// ${signatureStr}`);
         return;
@@ -198,16 +222,20 @@ export default class TsBodyPrinter {
         this.printer.printLine(`${signatureStr};`);
       } else {
         this.printer.printSeparatorLine();
+        const argNames = signature.params ? ParamUtils.paramNames(signature.params).join(', ') : '';
+        const valueType = this.extractMethodValueType(method, signature);
+        const returnType = this.extractMethodReturnType(method, signature);
+        const returnCmd = ['void', 'any'].includes(returnType) ? '' : 'return ';
+        const handlerMethod = method.static ? 'runStatic' : 'runMethod';
         this.printer.printLine(`public ${signatureStr} {`);
         this.printer.increaseIndent();
-        const argNames = signature.params ? ParamUtils.paramNames(signature.params).join(', ') : '';
-        const rawReturnType = TypeUtils.convertDomTypeToTsType(signature, true);
-        const returnType = signature.nullable ? makeNullable(rawReturnType) : rawReturnType;
-        const returnCmd = ['void', 'any'].includes(returnType) ? '' : 'return ';
-        const handlerMethod = method.static ? 'runStatic' : 'run';
-        this.printer.printLine(
-          `${returnCmd}handler.${handlerMethod}<${returnType}>(this, '${method.name}', [${argNames}]);`,
-        );
+        if (isLocal) {
+          this.printer.printLine(`throw new Error('${i.name}.${method.name} not implemented');`);
+        } else {
+          this.printer.printLine(
+            `${returnCmd}${this.handler}.${handlerMethod}<${valueType}>(this, '${method.name}', [${argNames}]);`,
+          );
+        }
         this.printer.decreaseIndent();
         this.printer.printLine('}');
       }
@@ -221,7 +249,31 @@ export default class TsBodyPrinter {
 
   //////////////////////////////////////////////////////////////////////////////
 
-  private extractPropertyType(p: Types.Property) {
+  private extractMethodReturnType(m: Types.Method, signature: Types.Signature) {
+    let mType = TypeUtils.convertDomTypeToTsType(signature, true);
+    mType = signature.nullable ? makeNullable(mType) : mType;
+    if (this.buildType === BuildType.awaited) {
+      if (m.isLocal === 1) {
+        mType = mType.replace(' | null', '');
+      } else {
+        mType = `Promise<${mType}>`;
+      }
+    }
+    return mType;
+  }
+
+  private extractMethodValueType(m: Types.Method, signature: Types.Signature) {
+    let mType = TypeUtils.convertDomTypeToTsType(signature, true);
+    mType = signature.nullable ? makeNullable(mType) : mType;
+    if (this.buildType === BuildType.awaited) {
+      if (m.isLocal === 1) {
+        mType = mType.replace(' | null', '');
+      }
+    }
+    return mType;
+  }
+
+  private extractPropertyReturnType(p: Types.Property) {
     const i: Types.Interface = this.i;
     let pType: string;
     if (isEventHandler(p)) {
@@ -238,19 +290,56 @@ export default class TsBodyPrinter {
       pType = TypeUtils.convertDomTypeToTsType(p, true);
       TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
     }
-    pType = p.nullable ? makeNullable(pType) : pType;
-    const isRequired = p.required === undefined || p.required === 1;
-    if (!isRequired) {
-      pType += ' | undefined';
+
+    if (this.buildType === BuildType.awaited) {
+      if (p.isLocal === 1) {
+        pType = pType.replace(' | null', '');
+      } else {
+        pType = `Promise<${pType}>`;
+      }
+    } else {
+      const isRequired = p.required === undefined || p.required === 1;
+      if (!isRequired) {
+        pType += ' | undefined';
+      }
     }
     return pType;
   }
 
-  private createSignature(method: Types.Method, signature: Types.Signature) {
+  private extractPropertyValueType(p: Types.Property) {
+    const i: Types.Interface = this.i;
+    let pType: string;
+    if (isEventHandler(p)) {
+      // Sometimes event handlers with the same name may actually handle different
+      // events in different interfaces. For example, onerror handles ErrorEvent
+      // normally, but in SVGSVGElement it handles SVGError event instead.
+      const eType = toIType(p.eventHandler ? this.components.getEventTypeInInterface(p.eventHandler!, i) : 'Event');
+      this.referencedObjects.add(nameWithForwardedTypes(i, true).slice(1)).add(eType.slice(1));
+      pType = `(this: ${nameWithForwardedTypes(i, true)}, ev: ${eType}) => any`;
+      if (typeof p.type === 'string' && !p.type.endsWith('NonNull')) {
+        pType = `(${pType}) | null`;
+      }
+    } else {
+      pType = TypeUtils.convertDomTypeToTsType(p, true);
+      TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
+    }
+
+    return pType;
+  }
+
+  private extractPropertyTypeHasNullDefault(p: Types.Property) {
+    if (isEventHandler(p)) {
+      if (typeof p.type === 'string' && !p.type.endsWith('NonNull')) {
+        return true;
+      }
+    }
+    return !!p.nullable;
+  }
+
+  private createMethodSignature(method: Types.Method, signature: Types.Signature) {
     const isStatic = !!method.static;
     const args = signature.params ? ParamUtils.paramsToString(signature.params, true) : '';
-    let returnType = TypeUtils.convertDomTypeToTsType(signature, true);
-    returnType = signature.nullable ? makeNullable(returnType) : returnType;
+    const returnType = this.extractMethodReturnType(method, signature);
     return `${isStatic ? 'static ' : ''}${method.name || ''}(${args}): ${returnType}`;
   }
 
@@ -267,7 +356,7 @@ export default class TsBodyPrinter {
         this.printer.printLine(`${methodName}(${args}): void;`);
       } else {
         this.printer.printLine(`public ${methodName}(${args}): void {`);
-        this.printer.printLine(`  handler.run<void>(this, '${methodName}', [type, listener, options]);`);
+        this.printer.printLine(`  ${this.handler}.runMethod<void>(this, '${methodName}', [type, listener, options]);`);
         this.printer.printLine(`}`);
       }
       this.referencedObjects.add('EventListener').add(optionsType.slice(1));

@@ -1,0 +1,6 @@
+CREATE TABLE supers (
+  name TEXT PRIMARY KEY,
+  interfaceName TEXT NOT NULL,
+
+  FOREIGN KEY(interfaceName) REFERENCES interfaces(name) ON UPDATE CASCADE ON DELETE CASCADE
+);

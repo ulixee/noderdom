@@ -5,12 +5,13 @@ const srcDir = Path.join(__dirname, './exports');
 
 export default class Exports {
   public static moveToDir(dir: string) {
-    const isDynamic = dir.match(/([^\/]+)\/?$/)![1] === 'dynamic';
-    const isStatic = dir.match(/([^\/]+)\/?$/)![1] === 'static';
+    const dirName = dir.match(/([^\/]+)\/?$/)![1] || '';
+    const isAwaited = dirName.includes('awaited');
+    const isDetached = dirName.includes('detached');
     for (const filename of Fs.readdirSync(srcDir)) {
       if (!filename.match(/\.ts$/)) continue;
-      if (filename.match(/^Dynamic/) && !isDynamic) continue;
-      if (filename.match(/^Static/) && !isStatic) continue;
+      if (filename.match(/^Awaited/) && !isAwaited) continue;
+      if (filename.match(/^Detached/) && !isDetached) continue;
       const fromFilepath = Path.resolve(srcDir, filename);
       const toFilepath = Path.resolve(dir, filename);
       Fs.copyFileSync(fromFilepath, toFilepath);

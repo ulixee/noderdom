@@ -8,14 +8,21 @@ import TsInterfaceExtractor from './TsInterfaceExtractor';
 import TsClassExtractor from './TsClassExtractor';
 import ICodeModule from './interfaces/ICodeModule';
 import TsIsolateExtractor from './TsIsolateExtractor';
+import IBuildType, { BuildType } from './interfaces/IBuildType';
+
+interface IOptions {
+  buildType: IBuildType;
+}
 
 export default class TsExtractor {
   private mixins: Types.Interface[];
   private interfaces: Types.Interface[];
   private klasses: Types.Interface[];
+  private readonly buildType: IBuildType;
 
-  constructor(private components: Components) {
+  constructor(private components: Components, options: IOptions) {
     const allInterfaces = this.components.allNonCallbackInterfaces;
+    this.buildType = options.buildType;
     this.interfaces = allInterfaces.sort(compareName).filter(i => !i.legacyNamespace);
     this.klasses = allInterfaces.sort(compareName).filter(i => !i.legacyNamespace && !i.noInterfaceObject);
     this.mixins = allInterfaces.sort(compareName).filter(i => !i.legacyNamespace && i.noInterfaceObject);
@@ -30,7 +37,9 @@ export default class TsExtractor {
   }
 
   public extractInterfaces() {
-    const codeModules = this.interfaces.map(i => new TsInterfaceExtractor(this.components, i).run());
+    const { buildType } = this;
+    const options = { buildType };
+    const codeModules = this.interfaces.map(i => new TsInterfaceExtractor(this.components, i, options).run());
     const defines = codeModules.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []);
     const references = codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []);
     const referencedTypes = this.findExternalReferences(references, { ignore: defines });
@@ -40,9 +49,11 @@ export default class TsExtractor {
   }
 
   public extractIsolateInterfaces(definedTypes: Set<string>, definedDom: Set<string>) {
+    const { buildType } = this;
+    const options = { buildType };
     const codeModules: ICodeModule[] = [];
-    for (const i of Object.values(this.components.dynamicIsolates)) {
-      codeModules.push(new TsIsolateExtractor(this.components, i).run());
+    for (const i of Object.values(this.components.awaitedIsolates)) {
+      codeModules.push(new TsIsolateExtractor(this.components, i, options).run());
     }
 
     const references = codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []);
@@ -56,9 +67,11 @@ export default class TsExtractor {
     return codeModules;
   }
 
-  public extractIshInterfaces(definedTypes: Set<string>, definedDom: Set<string>, definedIsolates: Set<string>) {
-    const codeModules = Object.values(this.components.dynamicIshes).map(i => {
-      return new TsInterfaceExtractor(this.components, i).run();
+  public extractSuperInterfaces(definedTypes: Set<string>, definedDom: Set<string>, definedIsolates: Set<string>) {
+    const { buildType } = this;
+    const options = { buildType };
+    const codeModules = Object.values(this.components.awaitedSupers).map(i => {
+      return new TsInterfaceExtractor(this.components, i, options).run();
     });
     const references = codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []);
     const referencedTypes = this.findExternalReferences(references, { use: Array.from(definedTypes) });
@@ -73,12 +86,13 @@ export default class TsExtractor {
   }
 
   public extractIsolateMixins(definedTypes: Set<string>, definedDom: Set<string>) {
+    if (this.buildType !== BuildType.awaited) throw new Error('Isolates can only be created for AwaitedDOM');
+    const { buildType } = this;
     const response = [];
-    for (const i of Object.values(this.components.dynamicIsolates)) {
+    for (const i of Object.values(this.components.awaitedIsolates)) {
       const definedIsolates = new Set([i.name]);
-      const baseDir = '../..';
-      const isDynamic = true;
-      const options = { baseDir, definedTypes, definedDom, definedIsolates, isDynamic };
+      const baseDir = '..';
+      const options = { baseDir, definedTypes, definedDom, definedIsolates, buildType };
       const tsMixinExtractor = new TsMixinExtractor(i, this.components, options);
       const code = tsMixinExtractor.run();
       response.push({ type: 'IsolateClass', name: i.name, code });
@@ -86,27 +100,29 @@ export default class TsExtractor {
     return response;
   }
 
-  public extractIshClasses(
+  public extractSuperClasses(
     definedTypes: Set<string>,
     definedDom: Set<string>,
-    definedIshes: Set<string>,
+    definedSupers: Set<string>,
     definedIsolates: Set<string>,
   ) {
-    const baseDir = '../..';
-    const isDynamic = true;
-    const options = { baseDir, definedTypes, definedDom, definedIsolates, definedIshes, isDynamic };
-    return Object.values(this.components.dynamicIshes).map(i => {
+    if (this.buildType !== BuildType.awaited) throw new Error('Supers can only be created for AwaitedDOM');
+    const baseDir = '..';
+    const { buildType } = this;
+    const options = { baseDir, definedTypes, definedDom, definedIsolates, definedSupers, buildType };
+    return Object.values(this.components.awaitedSupers).map(i => {
       const tsClassExtractor = new TsClassExtractor(i, this.components, options);
       const code = tsClassExtractor.run();
-      return { type: 'Ish', name: i.name, code };
+      return { type: 'Super', name: i.name, code };
     });
   }
 
-  public extractClasses(definedTypes: Set<string>, definedDom: Set<string>, isDynamic: boolean) {
+  public extractClasses(definedTypes: Set<string>, definedDom: Set<string>) {
+    const { buildType } = this;
     return this.klasses.map(i => {
       const name = i.name;
       const baseDir = '..';
-      const options = { baseDir, definedTypes, definedDom, isDynamic };
+      const options = { baseDir, definedTypes, definedDom, buildType };
       const tsClassExtractor = new TsClassExtractor(i, this.components, options);
       const code = tsClassExtractor.run();
       return { type: 'Class', name, code };
@@ -114,9 +130,10 @@ export default class TsExtractor {
   }
 
   public extractMixins(definedTypes: Set<string>, definedDom: Set<string>) {
+    const { buildType } = this;
     return this.mixins.map(i => {
-      const baseDir = '../..';
-      const options = { baseDir, definedTypes, definedDom };
+      const baseDir = '..';
+      const options = { baseDir, definedTypes, definedDom, buildType };
       const tsMixinExtractor = new TsMixinExtractor(i, this.components, options);
       const name = i.name;
       const code = tsMixinExtractor.run();

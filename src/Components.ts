@@ -27,8 +27,8 @@ export default class Components implements IComponents {
   public callbackFunctions: Record<string, Types.CallbackFunction> = {};
   public callbackInterfaces: Record<string, Types.Interface> = {};
   public dictionaries: Record<string, Types.Dictionary> = {};
-  public dynamicIshes: Record<string, Types.Interface>;
-  public dynamicIsolates: Record<string, Types.Interface>;
+  public awaitedSupers: Record<string, Types.Interface>;
+  public awaitedIsolates: Record<string, Types.Interface>;
 
   public allNonCallbackInterfaces: Types.Interface[];
   public allInterfaces: Types.Interface[];
@@ -63,8 +63,8 @@ export default class Components implements IComponents {
     this.callbackFunctions = data ? data.callbackFunctions : {};
     this.callbackInterfaces = data ? data.callbackInterfaces : {};
     this.dictionaries = data ? data.dictionaries : {};
-    this.dynamicIshes = data ? data.dynamicIshes || {} : {};
-    this.dynamicIsolates = data ? data.dynamicIsolates || {} : {};
+    this.awaitedSupers = data ? data.awaitedSupers || {} : {};
+    this.awaitedIsolates = data ? data.awaitedIsolates || {} : {};
 
     this.initialize();
     return this;
@@ -84,8 +84,8 @@ export default class Components implements IComponents {
       interfaces: this.interfaces,
       callbackFunctions: this.callbackFunctions,
       callbackInterfaces: this.callbackInterfaces,
-      dynamicIshes: Object.values(this.dynamicIshes).length ? this.dynamicIshes : undefined,
-      dynamicIsolates: Object.values(this.dynamicIsolates).length ? this.dynamicIsolates : undefined,
+      awaitedSupers: Object.values(this.awaitedSupers).length ? this.awaitedSupers : undefined,
+      awaitedIsolates: Object.values(this.awaitedIsolates).length ? this.awaitedIsolates : undefined,
     };
   }
 

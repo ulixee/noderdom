@@ -33,7 +33,7 @@ export default class Printer {
   }
 
   public printLines(s: string | null | undefined) {
-    if (!s) return;
+    if (s === null || s === undefined) return;
     s.split('\n').forEach(l => this.printLine(l));
   }
 
@@ -56,7 +56,7 @@ export default class Printer {
 
   public printSeparatorLine(comment?: string) {
     if (this.isStartOfSection && this.lineStart) return;
-    this.printLine(comment);
+    this.printLines(comment || '');
   }
 
   public reset(): void {

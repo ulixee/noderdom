@@ -1,4 +1,5 @@
 import * as Path from 'path';
+import { dbPath } from './db';
 
 const dbDir = Path.resolve(__dirname, 'db');
 const filesDir = Path.resolve(__dirname, 'files');
@@ -8,6 +9,7 @@ const filesFinalizedDir = Path.join(filesDir, '2-finalized');
 
 export default {
   dbDir,
+  dbPath,
   filesDir,
   filesImportedDir,
   filesProcessedDir,

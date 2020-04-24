@@ -10138,10 +10138,10 @@ vue-property-decorator@^8.3.0, vue-property-decorator@^8.4.0:
   dependencies:
     vue-class-component "^7.1.0"
 
-vue-runner@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/vue-runner/-/vue-runner-0.1.4.tgz#8947548c7e207242c78d55bcadf14a670bce0ef7"
-  integrity sha512-7lZ0ux8va9XSIKe+8kPQLWs/jzYpwxWGmtH4gzmmfKsecLfBA2gYgYxBnIlUQoQoFI169aUs+tKiQ7Qp73+Q9w==
+vue-runner@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/vue-runner/-/vue-runner-0.1.6.tgz#c0ba6b3f3dcfb41f3240718502f081aaf73e39b9"
+  integrity sha512-JpMz8EY08AzcLFbDzFWKb9MoKRLH2hhnyVfTWMl0XZleJJuJKPKoWBgDZh2NEHQilY+lWZp3B5QVWlN2r+Tz0A==
   dependencies:
     "@types/axios" "^0.14.0"
     "@types/express" "^4.17.2"

@@ -57,7 +57,7 @@
     "tslint-plugin-prettier": "^2.1.0",
     "typescript": "^3.7.5",
     "vue-property-decorator": "^8.4.0",
-    "vue-runner": "^0.1.4",
+    "vue-runner": "^0.1.6",
     "webidl2": "^23.10.1"
   },
   "repository": {

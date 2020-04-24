@@ -1,0 +1,5324 @@
+{
+  "enums": {
+    "DocumentReadyState": {
+      "name": "DocumentReadyState",
+      "value": [
+        "loading",
+        "interactive",
+        "complete"
+      ]
+    },
+    "VisibilityState": {
+      "name": "VisibilityState",
+      "value": [
+        "hidden",
+        "visible",
+        "prerender"
+      ]
+    },
+    "ScrollBehavior": {
+      "name": "ScrollBehavior",
+      "value": [
+        "auto",
+        "smooth"
+      ]
+    },
+    "ScrollLogicalPosition": {
+      "name": "ScrollLogicalPosition",
+      "value": [
+        "start",
+        "center",
+        "end",
+        "nearest"
+      ]
+    },
+    "FontFaceLoadStatus": {
+      "name": "FontFaceLoadStatus",
+      "value": [
+        "unloaded",
+        "loading",
+        "loaded",
+        "error"
+      ]
+    },
+    "FullscreenNavigationUI": {
+      "name": "FullscreenNavigationUI",
+      "value": [
+        "auto",
+        "show",
+        "hide"
+      ]
+    }
+  },
+  "mixins": {},
+  "typedefs": [
+    {
+      "newType": "BinaryData",
+      "type": [
+        {
+          "type": "ArrayBuffer"
+        },
+        {
+          "type": "ArrayBufferView"
+        }
+      ]
+    },
+    {
+      "newType": "UnsupportedFeature",
+      "type": "Void"
+    },
+    {
+      "newType": "WindowProxy",
+      "type": "UnsupportedFeature"
+    }
+  ],
+  "dictionaries": {
+    "ScrollOptions": {
+      "name": "ScrollOptions",
+      "extends": "Object",
+      "members": {
+        "behavior": {
+          "name": "behavior",
+          "default": "\"auto\"",
+          "type": "ScrollBehavior"
+        }
+      }
+    },
+    "ScrollIntoViewOptions": {
+      "name": "ScrollIntoViewOptions",
+      "extends": "ScrollOptions",
+      "members": {
+        "block": {
+          "name": "block",
+          "default": "\"start\"",
+          "type": "ScrollLogicalPosition"
+        },
+        "inline": {
+          "name": "inline",
+          "default": "\"nearest\"",
+          "type": "ScrollLogicalPosition"
+        }
+      }
+    },
+    "GetRootNodeOptions": {
+      "name": "GetRootNodeOptions",
+      "extends": "Object",
+      "members": {
+        "composed": {
+          "name": "composed",
+          "default": "false",
+          "type": "boolean"
+        }
+      }
+    },
+    "FontFaceDescriptors": {
+      "name": "FontFaceDescriptors",
+      "extends": "Object",
+      "members": {
+        "style": {
+          "name": "style",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "weight": {
+          "name": "weight",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "stretch": {
+          "name": "stretch",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "unicodeRange": {
+          "name": "unicodeRange",
+          "default": "\"U+0-10FFFF\"",
+          "type": "CSSOMString"
+        },
+        "variant": {
+          "name": "variant",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "featureSettings": {
+          "name": "featureSettings",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "variationSettings": {
+          "name": "variationSettings",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "display": {
+          "name": "display",
+          "default": "\"auto\"",
+          "type": "CSSOMString"
+        }
+      }
+    },
+    "FullscreenOptions": {
+      "name": "FullscreenOptions",
+      "extends": "Object",
+      "members": {
+        "navigationUI": {
+          "name": "navigationUI",
+          "default": "\"auto\"",
+          "type": "FullscreenNavigationUI"
+        }
+      }
+    }
+  },
+  "interfaces": {
+    "Location": {
+      "name": "Location",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "assign": {
+          "name": "assign",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "url",
+                  "type": "USVString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "replace": {
+          "name": "replace",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "url",
+                  "type": "USVString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reload": {
+          "name": "reload",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "href": {
+          "name": "href",
+          "type": "USVString",
+          "stringifier": 1,
+          "exposed": "Window"
+        },
+        "origin": {
+          "name": "origin",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "protocol": {
+          "name": "protocol",
+          "type": "USVString",
+          "exposed": "Window"
+        },
+        "host": {
+          "name": "host",
+          "type": "USVString",
+          "exposed": "Window"
+        },
+        "hostname": {
+          "name": "hostname",
+          "type": "USVString",
+          "exposed": "Window"
+        },
+        "port": {
+          "name": "port",
+          "type": "USVString",
+          "exposed": "Window"
+        },
+        "pathname": {
+          "name": "pathname",
+          "type": "USVString",
+          "exposed": "Window"
+        },
+        "search": {
+          "name": "search",
+          "type": "USVString",
+          "exposed": "Window"
+        },
+        "hash": {
+          "name": "hash",
+          "type": "USVString",
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "DOMRect": {
+      "name": "DOMRect",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "DOMRect",
+            "params": [
+              {
+                "name": "x",
+                "type": "unrestricted double",
+                "optional": 1
+              },
+              {
+                "name": "y",
+                "type": "unrestricted double",
+                "optional": 1
+              },
+              {
+                "name": "width",
+                "type": "unrestricted double",
+                "optional": 1
+              },
+              {
+                "name": "height",
+                "type": "unrestricted double",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": [
+        "SVGRect"
+      ]
+    },
+    "DOMRectList": {
+      "name": "DOMRectList",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "Attr": {
+      "name": "Attr",
+      "extends": "Node",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "namespaceURI": {
+          "name": "namespaceURI",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "localName": {
+          "name": "localName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "ownerElement": {
+          "name": "ownerElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "specified": {
+          "name": "specified",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "NamedNodeMap": {
+      "name": "NamedNodeMap",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getNamedItem": {
+          "name": "getNamedItem",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getNamedItemNS": {
+          "name": "getNamedItemNS",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "StyleSheet": {
+      "name": "StyleSheet",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "CSSStyleValue": {
+      "name": "CSSStyleValue",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "parse": {
+          "name": "parse",
+          "signatures": [
+            {
+              "type": "CSSStyleValue",
+              "params": [
+                {
+                  "name": "property",
+                  "type": "USVString"
+                },
+                {
+                  "name": "cssText",
+                  "type": "USVString"
+                }
+              ]
+            }
+          ],
+          "static": 1,
+          "exposed": "Window"
+        },
+        "parseAll": {
+          "name": "parseAll",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "CSSStyleValue"
+              },
+              "params": [
+                {
+                  "name": "property",
+                  "type": "USVString"
+                },
+                {
+                  "name": "cssText",
+                  "type": "USVString"
+                }
+              ]
+            }
+          ],
+          "static": 1,
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [
+        {
+          "signatures": [
+            {
+              "type": "DOMString",
+              "params": []
+            }
+          ],
+          "stringifier": 1,
+          "exposed": "Window Worker PaintWorklet LayoutWorklet"
+        }
+      ],
+      "properties": {},
+      "exposed": "Window Worker PaintWorklet LayoutWorklet",
+      "legacyWindowAlias": []
+    },
+    "StylePropertyMapReadOnly": {
+      "name": "StylePropertyMapReadOnly",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window Worker PaintWorklet LayoutWorklet",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "iterable",
+        "readonly": false,
+        "type": [
+          {
+            "type": "USVString"
+          },
+          {
+            "type": "sequence",
+            "subtype": {
+              "type": "CSSStyleValue"
+            }
+          }
+        ]
+      }
+    },
+    "CharacterData": {
+      "name": "CharacterData",
+      "extends": "Node",
+      "constants": {},
+      "methods": {
+        "substringData": {
+          "name": "substringData",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "params": [
+                {
+                  "name": "offset",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "count",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "data": {
+          "name": "data",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "Document": {
+      "name": "Document",
+      "extends": "Node",
+      "constants": {},
+      "methods": {
+        "getElementsByTagName": {
+          "name": "getElementsByTagName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByTagNameNS": {
+          "name": "getElementsByTagNameNS",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByClassName": {
+          "name": "getElementsByClassName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "classNames",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByName": {
+          "name": "getElementsByName",
+          "signatures": [
+            {
+              "type": "NodeList",
+              "params": [
+                {
+                  "name": "elementName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hasFocus": {
+          "name": "hasFocus",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitPointerLock": {
+          "name": "exitPointerLock",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitFullscreen": {
+          "name": "exitFullscreen",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "void"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "implementation": {
+          "name": "implementation",
+          "type": "DOMImplementation",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "URL": {
+          "name": "URL",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "documentURI": {
+          "name": "documentURI",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "compatMode": {
+          "name": "compatMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "characterSet": {
+          "name": "characterSet",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "contentType": {
+          "name": "contentType",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "doctype": {
+          "name": "doctype",
+          "type": "DocumentType",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "documentElement": {
+          "name": "documentElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "location": {
+          "name": "location",
+          "type": "Location",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "domain": {
+          "name": "domain",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "cookie": {
+          "name": "cookie",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "lastModified": {
+          "name": "lastModified",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readyState": {
+          "name": "readyState",
+          "type": "DocumentReadyState",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "title": {
+          "name": "title",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dir": {
+          "name": "dir",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "body": {
+          "name": "body",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "head": {
+          "name": "head",
+          "type": "HTMLHeadElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "images": {
+          "name": "images",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "embeds": {
+          "name": "embeds",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "plugins": {
+          "name": "plugins",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "links": {
+          "name": "links",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "forms": {
+          "name": "forms",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scripts": {
+          "name": "scripts",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "defaultView": {
+          "name": "defaultView",
+          "type": "WindowProxy",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "designMode": {
+          "name": "designMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "anchors": {
+          "name": "anchors",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "visibilityState": {
+          "name": "visibilityState",
+          "type": "VisibilityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "featurePolicy": {
+          "name": "featurePolicy",
+          "type": "FeaturePolicy",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scrollingElement": {
+          "name": "scrollingElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "fullscreenEnabled": {
+          "name": "fullscreenEnabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "fonts": {
+          "name": "fonts",
+          "type": "FontFaceSet",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Document",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "DocumentType": {
+      "name": "DocumentType",
+      "extends": "Node",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "publicId": {
+          "name": "publicId",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "systemId": {
+          "name": "systemId",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "DOMImplementation": {
+      "name": "DOMImplementation",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "hasFeature": {
+          "name": "hasFeature",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "DOMTokenList": {
+      "name": "DOMTokenList",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "iterable",
+        "readonly": false,
+        "type": [
+          {
+            "type": "DOMString"
+          }
+        ]
+      }
+    },
+    "Element": {
+      "name": "Element",
+      "extends": "Node",
+      "constants": {},
+      "methods": {
+        "hasAttributes": {
+          "name": "hasAttributes",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNames": {
+          "name": "getAttributeNames",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "DOMString"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttribute": {
+          "name": "getAttribute",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNS": {
+          "name": "getAttributeNS",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasAttribute": {
+          "name": "hasAttribute",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasAttributeNS": {
+          "name": "hasAttributeNS",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNode": {
+          "name": "getAttributeNode",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getAttributeNodeNS": {
+          "name": "getAttributeNodeNS",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "closest": {
+          "name": "closest",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "matches": {
+          "name": "matches",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getElementsByTagName": {
+          "name": "getElementsByTagName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByTagNameNS": {
+          "name": "getElementsByTagNameNS",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByClassName": {
+          "name": "getElementsByClassName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "classNames",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getClientRects": {
+          "name": "getClientRects",
+          "signatures": [
+            {
+              "type": "DOMRectList",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getBoundingClientRect": {
+          "name": "getBoundingClientRect",
+          "signatures": [
+            {
+              "type": "DOMRect",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scrollIntoView": {
+          "name": "scrollIntoView",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "arg",
+                  "type": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "ScrollIntoViewOptions"
+                    }
+                  ],
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "requestPointerLock": {
+          "name": "requestPointerLock",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasPointerCapture": {
+          "name": "hasPointerCapture",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "pointerId",
+                  "type": "long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "computedStyleMap": {
+          "name": "computedStyleMap",
+          "signatures": [
+            {
+              "type": "StylePropertyMapReadOnly",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "requestFullscreen": {
+          "name": "requestFullscreen",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "void"
+              },
+              "params": [
+                {
+                  "name": "options",
+                  "type": "FullscreenOptions",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "namespaceURI": {
+          "name": "namespaceURI",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "localName": {
+          "name": "localName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "tagName": {
+          "name": "tagName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "className": {
+          "name": "className",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "classList": {
+          "name": "classList",
+          "type": "DOMTokenList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "slot": {
+          "name": "slot",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "attributes": {
+          "name": "attributes",
+          "type": "NamedNodeMap",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "shadowRoot": {
+          "name": "shadowRoot",
+          "type": "ShadowRoot",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "innerHTML": {
+          "name": "innerHTML",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "outerHTML": {
+          "name": "outerHTML",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollTop": {
+          "name": "scrollTop",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollLeft": {
+          "name": "scrollLeft",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollWidth": {
+          "name": "scrollWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollHeight": {
+          "name": "scrollHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientTop": {
+          "name": "clientTop",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientLeft": {
+          "name": "clientLeft",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientWidth": {
+          "name": "clientWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientHeight": {
+          "name": "clientHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "part": {
+          "name": "part",
+          "type": "DOMTokenList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "HTMLElement": {
+      "name": "HTMLElement",
+      "extends": "Element",
+      "constants": {},
+      "methods": {
+        "click": {
+          "name": "click",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "title": {
+          "name": "title",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "lang": {
+          "name": "lang",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "translate": {
+          "name": "translate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dir": {
+          "name": "dir",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "accessKey": {
+          "name": "accessKey",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "draggable": {
+          "name": "draggable",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "spellcheck": {
+          "name": "spellcheck",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autoCapitalize": {
+          "name": "autoCapitalize",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "innerText": {
+          "name": "innerText",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetParent": {
+          "name": "offsetParent",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "offsetTop": {
+          "name": "offsetTop",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetLeft": {
+          "name": "offsetLeft",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetWidth": {
+          "name": "offsetWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetHeight": {
+          "name": "offsetHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "inert": {
+          "name": "inert",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [],
+      "element": {
+        "name": "HTMLElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "noframes"
+          },
+          {
+            "name": "noscript"
+          },
+          {
+            "name": "wbr",
+            "selfClosing": 1
+          },
+          {
+            "name": "section"
+          },
+          {
+            "name": "nav"
+          },
+          {
+            "name": "article"
+          },
+          {
+            "name": "aside"
+          },
+          {
+            "name": "hgroup"
+          },
+          {
+            "name": "header"
+          },
+          {
+            "name": "footer"
+          },
+          {
+            "name": "figure"
+          },
+          {
+            "name": "figcaption"
+          },
+          {
+            "name": "mark"
+          },
+          {
+            "name": "dd"
+          },
+          {
+            "name": "dt"
+          },
+          {
+            "name": "abbr"
+          },
+          {
+            "name": "acronym"
+          },
+          {
+            "name": "b"
+          },
+          {
+            "name": "bdo"
+          },
+          {
+            "name": "big"
+          },
+          {
+            "name": "cite"
+          },
+          {
+            "name": "code"
+          },
+          {
+            "name": "dfn"
+          },
+          {
+            "name": "em"
+          },
+          {
+            "name": "i"
+          },
+          {
+            "name": "kbd"
+          },
+          {
+            "name": "nobr"
+          },
+          {
+            "name": "rt"
+          },
+          {
+            "name": "ruby"
+          },
+          {
+            "name": "s"
+          },
+          {
+            "name": "samp"
+          },
+          {
+            "name": "small"
+          },
+          {
+            "name": "strike"
+          },
+          {
+            "name": "strong"
+          },
+          {
+            "name": "sub"
+          },
+          {
+            "name": "sup"
+          },
+          {
+            "name": "tt"
+          },
+          {
+            "name": "u"
+          },
+          {
+            "name": "var"
+          },
+          {
+            "name": "address"
+          },
+          {
+            "name": "center"
+          },
+          {
+            "name": "keygen",
+            "selfClosing": 1
+          },
+          {
+            "name": "plaintext"
+          },
+          {
+            "name": "bdi"
+          },
+          {
+            "name": "main"
+          },
+          {
+            "name": "rp"
+          },
+          {
+            "name": "summary"
+          }
+        ]
+      }
+    },
+    "HTMLHeadElement": {
+      "name": "HTMLHeadElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLHeadElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "head"
+          }
+        ]
+      }
+    },
+    "Node": {
+      "name": "Node",
+      "extends": "Object",
+      "constants": {
+        "ELEMENT_NODE": {
+          "name": "ELEMENT_NODE",
+          "type": "unsigned short",
+          "value": "1"
+        },
+        "ATTRIBUTE_NODE": {
+          "name": "ATTRIBUTE_NODE",
+          "type": "unsigned short",
+          "value": "2"
+        },
+        "TEXT_NODE": {
+          "name": "TEXT_NODE",
+          "type": "unsigned short",
+          "value": "3"
+        },
+        "CDATA_SECTION_NODE": {
+          "name": "CDATA_SECTION_NODE",
+          "type": "unsigned short",
+          "value": "4"
+        },
+        "ENTITY_REFERENCE_NODE": {
+          "name": "ENTITY_REFERENCE_NODE",
+          "type": "unsigned short",
+          "value": "5"
+        },
+        "ENTITY_NODE": {
+          "name": "ENTITY_NODE",
+          "type": "unsigned short",
+          "value": "6"
+        },
+        "PROCESSING_INSTRUCTION_NODE": {
+          "name": "PROCESSING_INSTRUCTION_NODE",
+          "type": "unsigned short",
+          "value": "7"
+        },
+        "COMMENT_NODE": {
+          "name": "COMMENT_NODE",
+          "type": "unsigned short",
+          "value": "8"
+        },
+        "DOCUMENT_NODE": {
+          "name": "DOCUMENT_NODE",
+          "type": "unsigned short",
+          "value": "9"
+        },
+        "DOCUMENT_TYPE_NODE": {
+          "name": "DOCUMENT_TYPE_NODE",
+          "type": "unsigned short",
+          "value": "10"
+        },
+        "DOCUMENT_FRAGMENT_NODE": {
+          "name": "DOCUMENT_FRAGMENT_NODE",
+          "type": "unsigned short",
+          "value": "11"
+        },
+        "NOTATION_NODE": {
+          "name": "NOTATION_NODE",
+          "type": "unsigned short",
+          "value": "12"
+        },
+        "DOCUMENT_POSITION_DISCONNECTED": {
+          "name": "DOCUMENT_POSITION_DISCONNECTED",
+          "type": "unsigned short",
+          "value": "0x01"
+        },
+        "DOCUMENT_POSITION_PRECEDING": {
+          "name": "DOCUMENT_POSITION_PRECEDING",
+          "type": "unsigned short",
+          "value": "0x02"
+        },
+        "DOCUMENT_POSITION_FOLLOWING": {
+          "name": "DOCUMENT_POSITION_FOLLOWING",
+          "type": "unsigned short",
+          "value": "0x04"
+        },
+        "DOCUMENT_POSITION_CONTAINS": {
+          "name": "DOCUMENT_POSITION_CONTAINS",
+          "type": "unsigned short",
+          "value": "0x08"
+        },
+        "DOCUMENT_POSITION_CONTAINED_BY": {
+          "name": "DOCUMENT_POSITION_CONTAINED_BY",
+          "type": "unsigned short",
+          "value": "0x10"
+        },
+        "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC": {
+          "name": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
+          "type": "unsigned short",
+          "value": "0x20"
+        }
+      },
+      "methods": {
+        "getRootNode": {
+          "name": "getRootNode",
+          "signatures": [
+            {
+              "type": "Node",
+              "params": [
+                {
+                  "name": "options",
+                  "type": "GetRootNodeOptions",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hasChildNodes": {
+          "name": "hasChildNodes",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "normalize": {
+          "name": "normalize",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "isEqualNode": {
+          "name": "isEqualNode",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "otherNode",
+                  "type": "Node",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "isSameNode": {
+          "name": "isSameNode",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "otherNode",
+                  "type": "Node",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "compareDocumentPosition": {
+          "name": "compareDocumentPosition",
+          "signatures": [
+            {
+              "type": "unsigned short",
+              "params": [
+                {
+                  "name": "other",
+                  "type": "Node"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "contains": {
+          "name": "contains",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "other",
+                  "type": "Node",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "lookupPrefix": {
+          "name": "lookupPrefix",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "lookupNamespaceURI": {
+          "name": "lookupNamespaceURI",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "prefix",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "isDefaultNamespace": {
+          "name": "isDefaultNamespace",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "nodeType": {
+          "name": "nodeType",
+          "type": "unsigned short",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "nodeName": {
+          "name": "nodeName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "baseURI": {
+          "name": "baseURI",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "isConnected": {
+          "name": "isConnected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "ownerDocument": {
+          "name": "ownerDocument",
+          "type": "Document",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "parentNode": {
+          "name": "parentNode",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "parentElement": {
+          "name": "parentElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "childNodes": {
+          "name": "childNodes",
+          "type": "NodeList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "firstChild": {
+          "name": "firstChild",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "lastChild": {
+          "name": "lastChild",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "previousSibling": {
+          "name": "previousSibling",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "nextSibling": {
+          "name": "nextSibling",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "nodeValue": {
+          "name": "nodeValue",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "textContent": {
+          "name": "textContent",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "NodeList": {
+      "name": "NodeList",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Node",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "iterable",
+        "readonly": false,
+        "type": [
+          {
+            "type": "Node"
+          }
+        ]
+      }
+    },
+    "ShadowRoot": {
+      "name": "ShadowRoot",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "Text": {
+      "name": "Text",
+      "extends": "CharacterData",
+      "constants": {},
+      "methods": {
+        "splitText": {
+          "name": "splitText",
+          "signatures": [
+            {
+              "type": "Text",
+              "params": [
+                {
+                  "name": "offset",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "wholeText": {
+          "name": "wholeText",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Text",
+            "params": [
+              {
+                "name": "data",
+                "type": "DOMString",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "FontFaceSet": {
+      "name": "FontFaceSet",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "FontFaceSet",
+            "params": [
+              {
+                "name": "initialFaces",
+                "type": "sequence",
+                "subtype": {
+                  "type": "FontFace"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "setlike",
+        "readonly": false,
+        "type": [
+          {
+            "type": "FontFace"
+          }
+        ]
+      }
+    },
+    "FontFace": {
+      "name": "FontFace",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "load": {
+          "name": "load",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "FontFace"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "family": {
+          "name": "family",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "style": {
+          "name": "style",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "weight": {
+          "name": "weight",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "stretch": {
+          "name": "stretch",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "unicodeRange": {
+          "name": "unicodeRange",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "variant": {
+          "name": "variant",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "featureSettings": {
+          "name": "featureSettings",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "variationSettings": {
+          "name": "variationSettings",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "display": {
+          "name": "display",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "status": {
+          "name": "status",
+          "type": "FontFaceLoadStatus",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "loaded": {
+          "name": "loaded",
+          "type": "Promise",
+          "subtype": {
+            "type": "FontFace"
+          },
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "FontFace",
+            "params": [
+              {
+                "name": "family",
+                "type": "CSSOMString"
+              },
+              {
+                "name": "source",
+                "type": [
+                  {
+                    "type": "CSSOMString"
+                  },
+                  {
+                    "type": "BinaryData"
+                  }
+                ]
+              },
+              {
+                "name": "descriptors",
+                "type": "FontFaceDescriptors",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
+    "FeaturePolicy": {
+      "name": "FeaturePolicy",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "HTMLCollection": {
+      "name": "HTMLCollection",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "namedItem": {
+          "name": "namedItem",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "name",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    }
+  },
+  "callbackFunctions": {},
+  "callbackInterfaces": {},
+  "awaitedSupers": {
+    "SuperDocument": {
+      "name": "SuperDocument",
+      "constants": {},
+      "methods": {
+        "getElementsByTagName": {
+          "name": "getElementsByTagName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByTagNameNS": {
+          "name": "getElementsByTagNameNS",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByClassName": {
+          "name": "getElementsByClassName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "classNames",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByName": {
+          "name": "getElementsByName",
+          "signatures": [
+            {
+              "type": "NodeList",
+              "params": [
+                {
+                  "name": "elementName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hasFocus": {
+          "name": "hasFocus",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitPointerLock": {
+          "name": "exitPointerLock",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitFullscreen": {
+          "name": "exitFullscreen",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "void"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "implementation": {
+          "name": "implementation",
+          "type": "DOMImplementation",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "URL": {
+          "name": "URL",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "documentURI": {
+          "name": "documentURI",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "compatMode": {
+          "name": "compatMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "characterSet": {
+          "name": "characterSet",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "contentType": {
+          "name": "contentType",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "doctype": {
+          "name": "doctype",
+          "type": "DocumentType",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "documentElement": {
+          "name": "documentElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "location": {
+          "name": "location",
+          "type": "Location",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "domain": {
+          "name": "domain",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "cookie": {
+          "name": "cookie",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "lastModified": {
+          "name": "lastModified",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readyState": {
+          "name": "readyState",
+          "type": "DocumentReadyState",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "title": {
+          "name": "title",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dir": {
+          "name": "dir",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "body": {
+          "name": "body",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "head": {
+          "name": "head",
+          "type": "HTMLHeadElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "images": {
+          "name": "images",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "embeds": {
+          "name": "embeds",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "plugins": {
+          "name": "plugins",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "links": {
+          "name": "links",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "forms": {
+          "name": "forms",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scripts": {
+          "name": "scripts",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "defaultView": {
+          "name": "defaultView",
+          "type": "WindowProxy",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "designMode": {
+          "name": "designMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "anchors": {
+          "name": "anchors",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "visibilityState": {
+          "name": "visibilityState",
+          "type": "VisibilityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "featurePolicy": {
+          "name": "featurePolicy",
+          "type": "FeaturePolicy",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scrollingElement": {
+          "name": "scrollingElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "fullscreenEnabled": {
+          "name": "fullscreenEnabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "fonts": {
+          "name": "fonts",
+          "type": "FontFaceSet",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Document",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "SuperElement": {
+      "name": "SuperElement",
+      "constants": {},
+      "methods": {
+        "hasAttributes": {
+          "name": "hasAttributes",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNames": {
+          "name": "getAttributeNames",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "DOMString"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttribute": {
+          "name": "getAttribute",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNS": {
+          "name": "getAttributeNS",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasAttribute": {
+          "name": "hasAttribute",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasAttributeNS": {
+          "name": "hasAttributeNS",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNode": {
+          "name": "getAttributeNode",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getAttributeNodeNS": {
+          "name": "getAttributeNodeNS",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "closest": {
+          "name": "closest",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "matches": {
+          "name": "matches",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getElementsByTagName": {
+          "name": "getElementsByTagName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByTagNameNS": {
+          "name": "getElementsByTagNameNS",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByClassName": {
+          "name": "getElementsByClassName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "classNames",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getClientRects": {
+          "name": "getClientRects",
+          "signatures": [
+            {
+              "type": "DOMRectList",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getBoundingClientRect": {
+          "name": "getBoundingClientRect",
+          "signatures": [
+            {
+              "type": "DOMRect",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scrollIntoView": {
+          "name": "scrollIntoView",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "arg",
+                  "type": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "ScrollIntoViewOptions"
+                    }
+                  ],
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "requestPointerLock": {
+          "name": "requestPointerLock",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasPointerCapture": {
+          "name": "hasPointerCapture",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "pointerId",
+                  "type": "long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "computedStyleMap": {
+          "name": "computedStyleMap",
+          "signatures": [
+            {
+              "type": "StylePropertyMapReadOnly",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "requestFullscreen": {
+          "name": "requestFullscreen",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "void"
+              },
+              "params": [
+                {
+                  "name": "options",
+                  "type": "FullscreenOptions",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "namespaceURI": {
+          "name": "namespaceURI",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "localName": {
+          "name": "localName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "tagName": {
+          "name": "tagName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "className": {
+          "name": "className",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "classList": {
+          "name": "classList",
+          "type": "DOMTokenList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "slot": {
+          "name": "slot",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "attributes": {
+          "name": "attributes",
+          "type": "NamedNodeMap",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "shadowRoot": {
+          "name": "shadowRoot",
+          "type": "ShadowRoot",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "innerHTML": {
+          "name": "innerHTML",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "outerHTML": {
+          "name": "outerHTML",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollTop": {
+          "name": "scrollTop",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollLeft": {
+          "name": "scrollLeft",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollWidth": {
+          "name": "scrollWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollHeight": {
+          "name": "scrollHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientTop": {
+          "name": "clientTop",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientLeft": {
+          "name": "clientLeft",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientWidth": {
+          "name": "clientWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientHeight": {
+          "name": "clientHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "part": {
+          "name": "part",
+          "type": "DOMTokenList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [
+        "HTMLElementIsolate",
+        "HTMLHeadElementIsolate"
+      ]
+    },
+    "SuperNode": {
+      "name": "SuperNode",
+      "constants": {
+        "ELEMENT_NODE": {
+          "name": "ELEMENT_NODE",
+          "type": "unsigned short",
+          "value": "1"
+        },
+        "ATTRIBUTE_NODE": {
+          "name": "ATTRIBUTE_NODE",
+          "type": "unsigned short",
+          "value": "2"
+        },
+        "TEXT_NODE": {
+          "name": "TEXT_NODE",
+          "type": "unsigned short",
+          "value": "3"
+        },
+        "CDATA_SECTION_NODE": {
+          "name": "CDATA_SECTION_NODE",
+          "type": "unsigned short",
+          "value": "4"
+        },
+        "ENTITY_REFERENCE_NODE": {
+          "name": "ENTITY_REFERENCE_NODE",
+          "type": "unsigned short",
+          "value": "5"
+        },
+        "ENTITY_NODE": {
+          "name": "ENTITY_NODE",
+          "type": "unsigned short",
+          "value": "6"
+        },
+        "PROCESSING_INSTRUCTION_NODE": {
+          "name": "PROCESSING_INSTRUCTION_NODE",
+          "type": "unsigned short",
+          "value": "7"
+        },
+        "COMMENT_NODE": {
+          "name": "COMMENT_NODE",
+          "type": "unsigned short",
+          "value": "8"
+        },
+        "DOCUMENT_NODE": {
+          "name": "DOCUMENT_NODE",
+          "type": "unsigned short",
+          "value": "9"
+        },
+        "DOCUMENT_TYPE_NODE": {
+          "name": "DOCUMENT_TYPE_NODE",
+          "type": "unsigned short",
+          "value": "10"
+        },
+        "DOCUMENT_FRAGMENT_NODE": {
+          "name": "DOCUMENT_FRAGMENT_NODE",
+          "type": "unsigned short",
+          "value": "11"
+        },
+        "NOTATION_NODE": {
+          "name": "NOTATION_NODE",
+          "type": "unsigned short",
+          "value": "12"
+        },
+        "DOCUMENT_POSITION_DISCONNECTED": {
+          "name": "DOCUMENT_POSITION_DISCONNECTED",
+          "type": "unsigned short",
+          "value": "0x01"
+        },
+        "DOCUMENT_POSITION_PRECEDING": {
+          "name": "DOCUMENT_POSITION_PRECEDING",
+          "type": "unsigned short",
+          "value": "0x02"
+        },
+        "DOCUMENT_POSITION_FOLLOWING": {
+          "name": "DOCUMENT_POSITION_FOLLOWING",
+          "type": "unsigned short",
+          "value": "0x04"
+        },
+        "DOCUMENT_POSITION_CONTAINS": {
+          "name": "DOCUMENT_POSITION_CONTAINS",
+          "type": "unsigned short",
+          "value": "0x08"
+        },
+        "DOCUMENT_POSITION_CONTAINED_BY": {
+          "name": "DOCUMENT_POSITION_CONTAINED_BY",
+          "type": "unsigned short",
+          "value": "0x10"
+        },
+        "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC": {
+          "name": "DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC",
+          "type": "unsigned short",
+          "value": "0x20"
+        }
+      },
+      "methods": {
+        "getRootNode": {
+          "name": "getRootNode",
+          "signatures": [
+            {
+              "type": "Node",
+              "params": [
+                {
+                  "name": "options",
+                  "type": "GetRootNodeOptions",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hasChildNodes": {
+          "name": "hasChildNodes",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "normalize": {
+          "name": "normalize",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "isEqualNode": {
+          "name": "isEqualNode",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "otherNode",
+                  "type": "Node",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "isSameNode": {
+          "name": "isSameNode",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "otherNode",
+                  "type": "Node",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "compareDocumentPosition": {
+          "name": "compareDocumentPosition",
+          "signatures": [
+            {
+              "type": "unsigned short",
+              "params": [
+                {
+                  "name": "other",
+                  "type": "Node"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "contains": {
+          "name": "contains",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "other",
+                  "type": "Node",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "lookupPrefix": {
+          "name": "lookupPrefix",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "lookupNamespaceURI": {
+          "name": "lookupNamespaceURI",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "prefix",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "isDefaultNamespace": {
+          "name": "isDefaultNamespace",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "nodeType": {
+          "name": "nodeType",
+          "type": "unsigned short",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "nodeName": {
+          "name": "nodeName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "baseURI": {
+          "name": "baseURI",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "isConnected": {
+          "name": "isConnected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "ownerDocument": {
+          "name": "ownerDocument",
+          "type": "Document",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "parentNode": {
+          "name": "parentNode",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "parentElement": {
+          "name": "parentElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "childNodes": {
+          "name": "childNodes",
+          "type": "NodeList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "firstChild": {
+          "name": "firstChild",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "lastChild": {
+          "name": "lastChild",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "previousSibling": {
+          "name": "previousSibling",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "nextSibling": {
+          "name": "nextSibling",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "nodeValue": {
+          "name": "nodeValue",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "textContent": {
+          "name": "textContent",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [
+        "AttrIsolate",
+        "CharacterDataIsolate",
+        "TextIsolate",
+        "DocumentIsolate",
+        "DocumentTypeIsolate",
+        "ElementIsolate",
+        "HTMLElementIsolate",
+        "HTMLHeadElementIsolate"
+      ]
+    },
+    "SuperNodeList": {
+      "name": "SuperNodeList",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Node",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "iterable",
+        "readonly": false,
+        "type": [
+          {
+            "type": "Node"
+          }
+        ]
+      },
+      "implements": []
+    },
+    "SuperHTMLCollection": {
+      "name": "SuperHTMLCollection",
+      "constants": {},
+      "methods": {
+        "namedItem": {
+          "name": "namedItem",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "name",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "SuperText": {
+      "name": "SuperText",
+      "constants": {},
+      "methods": {
+        "splitText": {
+          "name": "splitText",
+          "signatures": [
+            {
+              "type": "Text",
+              "params": [
+                {
+                  "name": "offset",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "wholeText": {
+          "name": "wholeText",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Text",
+            "params": [
+              {
+                "name": "data",
+                "type": "DOMString",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "SuperCharacterData": {
+      "name": "SuperCharacterData",
+      "constants": {},
+      "methods": {
+        "substringData": {
+          "name": "substringData",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "params": [
+                {
+                  "name": "offset",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "count",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "data": {
+          "name": "data",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [
+        "TextIsolate"
+      ]
+    },
+    "SuperHTMLElement": {
+      "name": "SuperHTMLElement",
+      "constants": {},
+      "methods": {
+        "click": {
+          "name": "click",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "title": {
+          "name": "title",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "lang": {
+          "name": "lang",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "translate": {
+          "name": "translate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dir": {
+          "name": "dir",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "accessKey": {
+          "name": "accessKey",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "draggable": {
+          "name": "draggable",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "spellcheck": {
+          "name": "spellcheck",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autoCapitalize": {
+          "name": "autoCapitalize",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "innerText": {
+          "name": "innerText",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetParent": {
+          "name": "offsetParent",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "offsetTop": {
+          "name": "offsetTop",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetLeft": {
+          "name": "offsetLeft",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetWidth": {
+          "name": "offsetWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetHeight": {
+          "name": "offsetHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "inert": {
+          "name": "inert",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [
+        "HTMLHeadElementIsolate"
+      ],
+      "element": {
+        "name": "HTMLElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "noframes"
+          },
+          {
+            "name": "noscript"
+          },
+          {
+            "name": "wbr",
+            "selfClosing": 1
+          },
+          {
+            "name": "section"
+          },
+          {
+            "name": "nav"
+          },
+          {
+            "name": "article"
+          },
+          {
+            "name": "aside"
+          },
+          {
+            "name": "hgroup"
+          },
+          {
+            "name": "header"
+          },
+          {
+            "name": "footer"
+          },
+          {
+            "name": "figure"
+          },
+          {
+            "name": "figcaption"
+          },
+          {
+            "name": "mark"
+          },
+          {
+            "name": "dd"
+          },
+          {
+            "name": "dt"
+          },
+          {
+            "name": "abbr"
+          },
+          {
+            "name": "acronym"
+          },
+          {
+            "name": "b"
+          },
+          {
+            "name": "bdo"
+          },
+          {
+            "name": "big"
+          },
+          {
+            "name": "cite"
+          },
+          {
+            "name": "code"
+          },
+          {
+            "name": "dfn"
+          },
+          {
+            "name": "em"
+          },
+          {
+            "name": "i"
+          },
+          {
+            "name": "kbd"
+          },
+          {
+            "name": "nobr"
+          },
+          {
+            "name": "rt"
+          },
+          {
+            "name": "ruby"
+          },
+          {
+            "name": "s"
+          },
+          {
+            "name": "samp"
+          },
+          {
+            "name": "small"
+          },
+          {
+            "name": "strike"
+          },
+          {
+            "name": "strong"
+          },
+          {
+            "name": "sub"
+          },
+          {
+            "name": "sup"
+          },
+          {
+            "name": "tt"
+          },
+          {
+            "name": "u"
+          },
+          {
+            "name": "var"
+          },
+          {
+            "name": "address"
+          },
+          {
+            "name": "center"
+          },
+          {
+            "name": "keygen",
+            "selfClosing": 1
+          },
+          {
+            "name": "plaintext"
+          },
+          {
+            "name": "bdi"
+          },
+          {
+            "name": "main"
+          },
+          {
+            "name": "rp"
+          },
+          {
+            "name": "summary"
+          }
+        ]
+      }
+    },
+    "SuperStyleSheet": {
+      "name": "SuperStyleSheet",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    }
+  },
+  "awaitedIsolates": {
+    "HTMLElementIsolate": {
+      "name": "HTMLElementIsolate",
+      "extends": "Element",
+      "constants": {},
+      "methods": {
+        "click": {
+          "name": "click",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "title": {
+          "name": "title",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "lang": {
+          "name": "lang",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "translate": {
+          "name": "translate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dir": {
+          "name": "dir",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "accessKey": {
+          "name": "accessKey",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "draggable": {
+          "name": "draggable",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "spellcheck": {
+          "name": "spellcheck",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autoCapitalize": {
+          "name": "autoCapitalize",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "innerText": {
+          "name": "innerText",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetParent": {
+          "name": "offsetParent",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "offsetTop": {
+          "name": "offsetTop",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetLeft": {
+          "name": "offsetLeft",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetWidth": {
+          "name": "offsetWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offsetHeight": {
+          "name": "offsetHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "inert": {
+          "name": "inert",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [],
+      "element": {
+        "name": "HTMLElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "noframes"
+          },
+          {
+            "name": "noscript"
+          },
+          {
+            "name": "wbr",
+            "selfClosing": 1
+          },
+          {
+            "name": "section"
+          },
+          {
+            "name": "nav"
+          },
+          {
+            "name": "article"
+          },
+          {
+            "name": "aside"
+          },
+          {
+            "name": "hgroup"
+          },
+          {
+            "name": "header"
+          },
+          {
+            "name": "footer"
+          },
+          {
+            "name": "figure"
+          },
+          {
+            "name": "figcaption"
+          },
+          {
+            "name": "mark"
+          },
+          {
+            "name": "dd"
+          },
+          {
+            "name": "dt"
+          },
+          {
+            "name": "abbr"
+          },
+          {
+            "name": "acronym"
+          },
+          {
+            "name": "b"
+          },
+          {
+            "name": "bdo"
+          },
+          {
+            "name": "big"
+          },
+          {
+            "name": "cite"
+          },
+          {
+            "name": "code"
+          },
+          {
+            "name": "dfn"
+          },
+          {
+            "name": "em"
+          },
+          {
+            "name": "i"
+          },
+          {
+            "name": "kbd"
+          },
+          {
+            "name": "nobr"
+          },
+          {
+            "name": "rt"
+          },
+          {
+            "name": "ruby"
+          },
+          {
+            "name": "s"
+          },
+          {
+            "name": "samp"
+          },
+          {
+            "name": "small"
+          },
+          {
+            "name": "strike"
+          },
+          {
+            "name": "strong"
+          },
+          {
+            "name": "sub"
+          },
+          {
+            "name": "sup"
+          },
+          {
+            "name": "tt"
+          },
+          {
+            "name": "u"
+          },
+          {
+            "name": "var"
+          },
+          {
+            "name": "address"
+          },
+          {
+            "name": "center"
+          },
+          {
+            "name": "keygen",
+            "selfClosing": 1
+          },
+          {
+            "name": "plaintext"
+          },
+          {
+            "name": "bdi"
+          },
+          {
+            "name": "main"
+          },
+          {
+            "name": "rp"
+          },
+          {
+            "name": "summary"
+          }
+        ]
+      }
+    },
+    "HTMLHeadElementIsolate": {
+      "name": "HTMLHeadElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLHeadElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "head"
+          }
+        ]
+      }
+    },
+    "AttrIsolate": {
+      "name": "AttrIsolate",
+      "extends": "Node",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "namespaceURI": {
+          "name": "namespaceURI",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "localName": {
+          "name": "localName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "ownerElement": {
+          "name": "ownerElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "specified": {
+          "name": "specified",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "CharacterDataIsolate": {
+      "name": "CharacterDataIsolate",
+      "extends": "Node",
+      "constants": {},
+      "methods": {
+        "substringData": {
+          "name": "substringData",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "params": [
+                {
+                  "name": "offset",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "count",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "data": {
+          "name": "data",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "TextIsolate": {
+      "name": "TextIsolate",
+      "extends": "CharacterData",
+      "constants": {},
+      "methods": {
+        "splitText": {
+          "name": "splitText",
+          "signatures": [
+            {
+              "type": "Text",
+              "params": [
+                {
+                  "name": "offset",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "wholeText": {
+          "name": "wholeText",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Text",
+            "params": [
+              {
+                "name": "data",
+                "type": "DOMString",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "DocumentIsolate": {
+      "name": "DocumentIsolate",
+      "extends": "Node",
+      "constants": {},
+      "methods": {
+        "getElementsByTagName": {
+          "name": "getElementsByTagName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByTagNameNS": {
+          "name": "getElementsByTagNameNS",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByClassName": {
+          "name": "getElementsByClassName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "classNames",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByName": {
+          "name": "getElementsByName",
+          "signatures": [
+            {
+              "type": "NodeList",
+              "params": [
+                {
+                  "name": "elementName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hasFocus": {
+          "name": "hasFocus",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitPointerLock": {
+          "name": "exitPointerLock",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitFullscreen": {
+          "name": "exitFullscreen",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "void"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "implementation": {
+          "name": "implementation",
+          "type": "DOMImplementation",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "URL": {
+          "name": "URL",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "documentURI": {
+          "name": "documentURI",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "compatMode": {
+          "name": "compatMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "characterSet": {
+          "name": "characterSet",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "contentType": {
+          "name": "contentType",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "doctype": {
+          "name": "doctype",
+          "type": "DocumentType",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "documentElement": {
+          "name": "documentElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "location": {
+          "name": "location",
+          "type": "Location",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "domain": {
+          "name": "domain",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "cookie": {
+          "name": "cookie",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "lastModified": {
+          "name": "lastModified",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readyState": {
+          "name": "readyState",
+          "type": "DocumentReadyState",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "title": {
+          "name": "title",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dir": {
+          "name": "dir",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "body": {
+          "name": "body",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "head": {
+          "name": "head",
+          "type": "HTMLHeadElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "images": {
+          "name": "images",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "embeds": {
+          "name": "embeds",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "plugins": {
+          "name": "plugins",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "links": {
+          "name": "links",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "forms": {
+          "name": "forms",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scripts": {
+          "name": "scripts",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "defaultView": {
+          "name": "defaultView",
+          "type": "WindowProxy",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "designMode": {
+          "name": "designMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "anchors": {
+          "name": "anchors",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "visibilityState": {
+          "name": "visibilityState",
+          "type": "VisibilityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "featurePolicy": {
+          "name": "featurePolicy",
+          "type": "FeaturePolicy",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scrollingElement": {
+          "name": "scrollingElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "fullscreenEnabled": {
+          "name": "fullscreenEnabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "fonts": {
+          "name": "fonts",
+          "type": "FontFaceSet",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Document",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "DocumentTypeIsolate": {
+      "name": "DocumentTypeIsolate",
+      "extends": "Node",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "publicId": {
+          "name": "publicId",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "systemId": {
+          "name": "systemId",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    },
+    "ElementIsolate": {
+      "name": "ElementIsolate",
+      "extends": "Node",
+      "constants": {},
+      "methods": {
+        "hasAttributes": {
+          "name": "hasAttributes",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNames": {
+          "name": "getAttributeNames",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "DOMString"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttribute": {
+          "name": "getAttribute",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNS": {
+          "name": "getAttributeNS",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasAttribute": {
+          "name": "hasAttribute",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasAttributeNS": {
+          "name": "hasAttributeNS",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getAttributeNode": {
+          "name": "getAttributeNode",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getAttributeNodeNS": {
+          "name": "getAttributeNodeNS",
+          "signatures": [
+            {
+              "type": "Attr",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "closest": {
+          "name": "closest",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "matches": {
+          "name": "matches",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getElementsByTagName": {
+          "name": "getElementsByTagName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByTagNameNS": {
+          "name": "getElementsByTagNameNS",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getElementsByClassName": {
+          "name": "getElementsByClassName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "classNames",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getClientRects": {
+          "name": "getClientRects",
+          "signatures": [
+            {
+              "type": "DOMRectList",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "getBoundingClientRect": {
+          "name": "getBoundingClientRect",
+          "signatures": [
+            {
+              "type": "DOMRect",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "scrollIntoView": {
+          "name": "scrollIntoView",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "arg",
+                  "type": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "ScrollIntoViewOptions"
+                    }
+                  ],
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "requestPointerLock": {
+          "name": "requestPointerLock",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "hasPointerCapture": {
+          "name": "hasPointerCapture",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "pointerId",
+                  "type": "long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "computedStyleMap": {
+          "name": "computedStyleMap",
+          "signatures": [
+            {
+              "type": "StylePropertyMapReadOnly",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "requestFullscreen": {
+          "name": "requestFullscreen",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "void"
+              },
+              "params": [
+                {
+                  "name": "options",
+                  "type": "FullscreenOptions",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "namespaceURI": {
+          "name": "namespaceURI",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "localName": {
+          "name": "localName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "tagName": {
+          "name": "tagName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "className": {
+          "name": "className",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "classList": {
+          "name": "classList",
+          "type": "DOMTokenList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "slot": {
+          "name": "slot",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "attributes": {
+          "name": "attributes",
+          "type": "NamedNodeMap",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "shadowRoot": {
+          "name": "shadowRoot",
+          "type": "ShadowRoot",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        },
+        "innerHTML": {
+          "name": "innerHTML",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "outerHTML": {
+          "name": "outerHTML",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollTop": {
+          "name": "scrollTop",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollLeft": {
+          "name": "scrollLeft",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollWidth": {
+          "name": "scrollWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "scrollHeight": {
+          "name": "scrollHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientTop": {
+          "name": "clientTop",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientLeft": {
+          "name": "clientLeft",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientWidth": {
+          "name": "clientWidth",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "clientHeight": {
+          "name": "clientHeight",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "part": {
+          "name": "part",
+          "type": "DOMTokenList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isLocal": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": []
+    }
+  }
+}

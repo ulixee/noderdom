@@ -55,8 +55,8 @@ export default class ComponentCleaner {
       }
     });
 
-    final.dynamicIshes = original.dynamicIshes;
-    final.dynamicIsolates = original.dynamicIsolates;
+    final.awaitedSupers = original.awaitedSupers;
+    final.awaitedIsolates = original.awaitedIsolates;
 
     this.components.load(final);
 
@@ -90,18 +90,29 @@ export default class ComponentCleaner {
       }
 
       Object.keys(i.properties!).forEach(pName => {
-        const pFilter = componentFilter.propertiesByName[pName];
-        if (!componentFilter.isEnabled || (pFilter && !pFilter.isEnabled)) {
+        const cFilter = componentFilter.propertiesByName[pName];
+        if (!componentFilter.isEnabled || (cFilter && !cFilter.isEnabled)) {
           delete i.properties![pName];
-        } else if (pFilter && !pFilter.isWritable) {
+          return;
+        }
+        if (!cFilter) return;
+        if (!cFilter.isWritable) {
           i.properties![pName].readOnly = 1;
+        }
+        if (cFilter.isLocal) {
+          i.properties![pName].isLocal = 1;
         }
       });
 
       Object.keys(i.methods!).forEach(mName => {
-        const mFilter = componentFilter.methodsByName[mName];
-        if (!componentFilter.isEnabled || (mFilter && !mFilter.isEnabled)) {
+        const cFilter = componentFilter.methodsByName[mName];
+        if (!componentFilter.isEnabled || (cFilter && !cFilter.isEnabled)) {
           delete i.methods![mName];
+          return;
+        }
+        if (!cFilter) return;
+        if (cFilter.isLocal) {
+          i.methods![mName].isLocal = 1;
         }
       });
     });

@@ -5,14 +5,15 @@ import Components from './Components';
 import TsBodyPrinter from './TsBodyPrinter';
 import TsStateMachinePrinter from './TsStateMachinePrinter';
 import TsExtractor from './TsExtractor';
+import IBuildType, { BuildType } from './interfaces/IBuildType';
 
 interface IOptions {
   baseDir: string;
+  buildType: IBuildType;
   definedTypes: Set<string>;
   definedDom: Set<string>;
   definedIsolates?: Set<string>;
-  definedIshes?: Set<string>;
-  isDynamic?: boolean;
+  definedSupers?: Set<string>;
 }
 
 export default class TsClassExtractor {
@@ -22,11 +23,11 @@ export default class TsClassExtractor {
   private readonly inheritsFrom: string[];
   private readonly bodyPrinter: TsBodyPrinter;
   private readonly baseDir: string;
+  private readonly buildType: IBuildType;
   private readonly definedTypes: Set<string>;
   private readonly definedDom: Set<string>;
   private readonly definedIsolates: Set<string>;
-  private readonly definedIshes: Set<string>;
-  private readonly isDynamic: boolean;
+  private readonly definedSupers: Set<string>;
 
   constructor(i: Types.Interface, components: Components, options: IOptions) {
     this.i = i;
@@ -35,10 +36,10 @@ export default class TsClassExtractor {
     this.definedTypes = options.definedTypes;
     this.definedDom = options.definedDom;
     this.definedIsolates = options.definedIsolates || new Set();
-    this.definedIshes = options.definedIshes || new Set();
-    this.isDynamic = options.isDynamic || false;
+    this.definedSupers = options.definedSupers || new Set();
+    this.buildType = options.buildType;
     this.inheritsFrom = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
-    this.bodyPrinter = new TsBodyPrinter(i, this.printer, components);
+    this.bodyPrinter = new TsBodyPrinter(i, this.printer, components, { buildType: this.buildType });
   }
 
   public run() {
@@ -94,6 +95,8 @@ export default class TsClassExtractor {
       extendsStr = `extends Parent `;
     } else if (i.extends && i.extends !== 'Object') {
       extendsStr = `extends ${i.extends} `;
+    } else if (inheritsFrom.length === 1) {
+      extendsStr = `extends ${inheritsFrom[0]} `;
     }
 
     const exportCmd = inheritsFrom.length ? 'return' : 'export default';
@@ -104,7 +107,7 @@ export default class TsClassExtractor {
   }
 
   private printStateMachineInterfaces() {
-    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components);
+    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components, this.buildType);
     stateMachinePrinter.printInterfaces(this.inheritsFrom, this.bodyPrinter.constants, this.bodyPrinter.properties);
   }
 
@@ -113,15 +116,15 @@ export default class TsClassExtractor {
     const name = i.name;
 
     const printer = new Printer();
-    new TsStateMachinePrinter(this.i, printer, this.components).printInitializer(true);
+    new TsStateMachinePrinter(this.i, printer, this.components, this.buildType).printInitializer(true);
     const stateMachineInitializerCode = printer.getResult();
 
     const references: string[] = [name, ...this.inheritsFrom, ...this.bodyPrinter.referencedObjects];
     const referencedTypes = TsExtractor.locateReferences(references, { use: Array.from(this.definedTypes) });
     const referencedDom = TsExtractor.locateReferences(references, { use: Array.from(this.definedDom) });
-    const referencedIshes = TsExtractor.locateReferences(references, { use: Array.from(this.definedIshes) });
+    const referencedSupers = TsExtractor.locateReferences(references, { use: Array.from(this.definedSupers) });
     const referencedIsolates = TsExtractor.locateReferences(references, { use: Array.from(this.definedIsolates) });
-    const printable = [];
+    const printable = ['// tslint:disable:variable-name'];
 
     if (this.inheritsFrom.length > 0) {
       if (this.inheritsFrom.length > 1) {
@@ -130,8 +133,10 @@ export default class TsClassExtractor {
       printable.push(`import Constructable from '${this.baseDir}/Constructable';`);
     }
 
-    const handlerFilename = `${this.isDynamic ? 'Dynamic' : 'Static'}Handler`;
-    printable.push(`import Handler, { initializeConstantsAndPrototypes } from '${this.baseDir}/${handlerFilename}';`);
+    const isAwaited = this.buildType === BuildType.awaited;
+    const handlerClassName = `${isAwaited ? 'Awaited' : 'Detached'}Handler`;
+    printable.push(`import ${handlerClassName} from '${this.baseDir}/${handlerClassName}';`);
+    printable.push(`import initializeConstantsAndProperties from '${this.baseDir}/initializeConstantsAndProperties';`);
     printable.push(`import StateMachine from '${this.baseDir}/StateMachine';`);
 
     if (referencedTypes.length) {
@@ -144,9 +149,9 @@ export default class TsClassExtractor {
       printable.push(`import { ${imports} } from '${this.baseDir}/interfaces/dom';`);
     }
 
-    if (referencedIshes.length) {
-      const imports = referencedIshes.map(n => `I${n}`).join(', ');
-      printable.push(`import { ${imports} } from '${this.baseDir}/interfaces/ishes';`);
+    if (referencedSupers.length) {
+      const imports = referencedSupers.map(n => `I${n}`).join(', ');
+      printable.push(`import { ${imports} } from '${this.baseDir}/interfaces/supers';`);
     }
 
     if (referencedIsolates.length) {
@@ -157,17 +162,17 @@ export default class TsClassExtractor {
     for (const inheritName of this.inheritsFrom) {
       const isIsolate = this.definedIsolates.has(inheritName);
       const classesDir = `${this.baseDir}/classes`;
-      const mixinsDir = isIsolate ? `${classesDir}/mixin-isolates` : `${classesDir}/mixins`;
+      const mixinsDir = isIsolate ? `${this.baseDir}/isolates` : `${this.baseDir}/mixins`;
       const filePath = `${inheritName === i.extends ? classesDir : mixinsDir}/${inheritName}`;
       printable.push(
         `import { I${inheritName}Properties, I${inheritName}ReadonlyProperties, ${inheritName}PropertyKeys, ${inheritName}ConstantKeys } from '${filePath}';`,
       );
     }
-    printable.push('// tslint:disable:variable-name');
     printable.push('');
-
     printable.push(stateMachineInitializerCode);
-    printable.push(`export const handler = new Handler<I${name}>('${name}', getState, setState);`);
+
+    const handlerName = `${this.buildType}Handler`;
+    printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
     printable.push('');
 
     this.printer.prependLine(printable.join('\n'));

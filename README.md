@@ -2,22 +2,43 @@ Noderdom Scaffolding is used to generate Typescript interfaces, classes and mixi
 
 This tool is heavily based on the fantastic work by the Typescript team to generate their dom.generated.d.ts files: [TSJS-lib-generator](https://github.com/typescript/tsjs-lib-generator).
 
-# How to Use
+# Install
 
 Install from NPM:
 ```
 npm install noderdom-scaffolding
 ```
 
-Generate classes and mixins to current folder:
+# How to Use
+
+First, either create or recreate the database:
+```bash
+yarn db:create
 ```
-noderdom-scaffolding generate
+or
+```bash
+yarn db:reset
 ```
 
-# ToDo
+## Step 1 - Process
 
-- Add DynamicHandler (get/set/run) that is default for each method. By default, not-implemented error will be thrown.
+Generate database records:
+```bash
+./scripts/1-process/dbGenerator/insertInterfaces.ts
+./scripts/1-process/dbGenerator/insertPropertiesAndMethods.ts
+./scripts/1-process/dbGenerator/insertMDNDocumentation.ts
+./scripts/1-process/dbGenerator/insertSupers.ts
+./scripts/1-process/dbGenerator/insertComponentFilters.ts
+```
 
-- Do away with idea of CLI and instead add scripts along with package.json commands.
+Run customizer:
+```bash
+./scripts/1-process/customizer.ts
+```
 
-- Extract documentation from Mozilla's MDN.
+Create DOM:
+```bash
+./scripts/0-import/importComponentFiltersFromDb.ts awaited
+./scripts/1-process/compileAwaitedComponents.ts
+./scripts/2-finalize/generateDOM.ts awaited
+```

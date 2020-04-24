@@ -4,13 +4,14 @@ import Components from './Components';
 import TsStateMachinePrinter from './TsStateMachinePrinter';
 import TsBodyPrinter from './TsBodyPrinter';
 import TsExtractor from './TsExtractor';
+import IBuildType, { BuildType } from './interfaces/IBuildType';
 
 interface IOptions {
   baseDir: string;
+  buildType: IBuildType;
   definedTypes: Set<string>;
   definedDom: Set<string>;
   definedIsolates?: Set<string>;
-  isDynamic?: boolean;
 }
 
 export default class TsMixinExtractor {
@@ -19,20 +20,21 @@ export default class TsMixinExtractor {
   private readonly components: Components;
   private readonly bodyPrinter: TsBodyPrinter;
   private readonly baseDir: string;
+  private readonly buildType: IBuildType;
   private readonly definedTypes: Set<string>;
   private readonly definedDom: Set<string>;
   private readonly definedIsolates: Set<string>;
-  private readonly isDynamic: boolean;
 
   constructor(i: Types.Interface, components: Components, options: IOptions) {
     this.i = i;
     this.components = components;
     this.baseDir = options.baseDir;
+    this.buildType = options.buildType;
     this.definedTypes = options.definedTypes;
     this.definedDom = options.definedDom;
     this.definedIsolates = options.definedIsolates || new Set();
-    this.isDynamic = options.isDynamic || false;
-    this.bodyPrinter = new TsBodyPrinter(i, this.printer, components, { skipConstructor: true });
+    const bodyPrinterOptions = { buildType: this.buildType, skipConstructor: true };
+    this.bodyPrinter = new TsBodyPrinter(i, this.printer, components, bodyPrinterOptions);
   }
 
   public run() {
@@ -58,7 +60,7 @@ export default class TsMixinExtractor {
   }
 
   private printStateMachineInterfaces() {
-    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components);
+    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components, this.buildType);
     stateMachinePrinter.printInterfaces([], this.bodyPrinter.constants, this.bodyPrinter.properties);
   }
 
@@ -67,7 +69,7 @@ export default class TsMixinExtractor {
     const name = i.name;
 
     const printer = new Printer();
-    new TsStateMachinePrinter(this.i, printer, this.components).printInitializer(true);
+    new TsStateMachinePrinter(this.i, printer, this.components, this.buildType).printInitializer(true);
     const stateMachineInitializerCode = printer.getResult();
 
     const references: string[] = [name, ...this.bodyPrinter.referencedObjects];
@@ -75,10 +77,11 @@ export default class TsMixinExtractor {
     const referencedDom = TsExtractor.locateReferences(references, { use: Array.from(this.definedDom) });
     const referencedIsolates = TsExtractor.locateReferences(references, { use: Array.from(this.definedIsolates) });
     const interfacesDir = `${this.baseDir}/interfaces`;
-    const printable = [];
+    const printable = ['// tslint:disable:variable-name'];
 
-    const handlerFilename = `${this.isDynamic ? 'Dynamic' : 'Static'}Handler`;
-    printable.push(`import Handler from '${this.baseDir}/${handlerFilename}';`);
+    const isAwaited = this.buildType === BuildType.awaited;
+    const handlerClassName = `${isAwaited ? 'Awaited' : 'Detached'}Handler`;
+    printable.push(`import ${handlerClassName} from '${this.baseDir}/${handlerClassName}';`);
     printable.push(`import StateMachine from '${this.baseDir}/StateMachine';`);
 
     if (referencedIsolates.length) {
@@ -91,11 +94,11 @@ export default class TsMixinExtractor {
       printable.push(`import { ${referencedTypes.map(n => `I${n}`).join(', ')} } from '${interfacesDir}/types';`);
     }
 
-    printable.push('// tslint:disable:variable-name');
     printable.push('');
-
     printable.push(stateMachineInitializerCode);
-    printable.push(`export const handler = new Handler<I${name}>('${name}', getState, setState);`);
+
+    const handlerName = `${this.buildType}Handler`;
+    printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
     printable.push('');
 
     this.printer.prependLine(printable.join('\n'));

@@ -2,8 +2,9 @@
 .ChooseProperties
   link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
   .topbar
-    .left
-      | {{coreCount}}/{{coreCount}} core klasses, {{enabledCount}}/{{klasses.length}} total klasses
+    .left(v-if="klasses")
+      a(@click="scrollToTop") {{coreKlasses.length}}/{{coreKlasses.length}} core klasses
+      | , {{enabledCount}}/{{klasses.length}} total klasses
       //| show
       //select
         option custom
@@ -13,19 +14,30 @@
     .right
       label Build
       select(v-model="buildType" @change="refreshBuildData")
-        option dynamic
-        option static
+        option awaited
+        option detached
       button.save(@click="saveSelection" :class="{ error: hadErrorSaving }")
         template(v-if="isSaving") saving...
         template(v-else-if="hadErrorSaving") error saving
         template(v-else) save
+
+  .core-klasses
+    ul.core-klasses-list(v-if="klasses")
+      li(v-for="klass of coreKlasses" :key="klass.name")
+        a(:href="`#${klass.name}`") {{klass.name}}
+
   form(v-if="klasses")
     ul.klasses
       li(v-for="klass of klasses" :key="klass.name" :enabled="klass.meta.isEnabled")
         .klass-name(:id="klass.name")
-          input(type="checkbox" v-model="klass.meta.isEnabled")
-          span {{klass.name}} {{klass.isCore ? '(core)' : ''}}
-          a.hide(@click="toggleHideKlass(klass)" :class="{ hidden: klass.meta.isHidden }" :title="klass.isCore ? 'Core interfaces cannot be hidden' : ''")
+          a(@click="toggleEnableKlass(klass)")
+            input(type="checkbox" v-model="klass.meta.isEnabled")
+            span
+              | {{klass.name}}
+              i.tag(v-if='klass.meta.isCore') Core
+              i.tag(v-if='klass.meta.isSuper') Super
+              i.tag(v-if='klass.meta.isSuperDescendent') SuperDescendent
+          a.hide(@click="toggleHideKlass(klass)" :class="{ hidden: klass.meta.isHidden }" :title="klass.meta.isCore ? 'Core interfaces cannot be hidden' : ''")
             i(class="material-icons") remove_red_eye
         template(v-if="klass.isEnabled || !klass.meta.isHidden")
           .klass.desc
@@ -62,11 +74,13 @@
                     span(v-for="type of property.nativeTypes") {{type}}
                   .desc(v-html="property.docOverview")
                 .actions
-                  input(type="checkbox" :id="`${property.name}:enabled`" v-model="property.meta.isEnabled" @click="toggleItem($event, property)")
-                  label(:for="`${property.name}:enabled`") readable
+                  ul.toggle
+                    li(@click="toggleItem($event, property)" :id="`${property.name}:false`" :class="{ selected: !property.meta.isEnabled }") off
+                    li(@click="toggleItem($event, property)" :id="`${property.name}:true`" :class="{ selected: property.meta.isEnabled && !property.meta.isLocal }") on
+                    li(@click="toggleItem($event, property)" :id="`${property.name}:local`" :class="{ selected: property.meta.isEnabled && property.meta.isLocal }") local
                   template(v-if="!property.isReadonly")
                     input(type="checkbox" :id="`${property.name}:writable`" v-model="property.meta.isWritable" @click="toggleItem($event, property)")
-                    label(:for="`${property.name}:writable`") writable
+                    label(:for="`${property.name}:writable`" :class="{ selected: property.meta.isWritable }") writable
                   a.hide(@click="toggleHideItem(property)" :class="{ hidden: property.meta.isHidden }")
                     i(class="material-icons") remove_red_eye
 
@@ -85,8 +99,10 @@
                     span(v-for="type of method.nativeReturnTypes") {{type}},
                   .desc(v-html="method.docOverview")
                 .actions
-                  input(type="checkbox" :id="`${method.name}:enabled`" @click="toggleItem($event, method)" v-model="method.meta.isEnabled")
-                  label(:for="`${method.name}:enabled`") enabled
+                  ul.toggle
+                    li(@click="toggleItem($event, method)" :id="`${method.name}:false`" :class="{ selected: !method.meta.isEnabled }") off
+                    li(@click="toggleItem($event, method)" :id="`${method.name}:true`" :class="{ selected: method.meta.isEnabled && !method.meta.isLocal }") on
+                    li(@click="toggleItem($event, method)" :id="`${method.name}:local`" :class="{ selected: method.meta.isEnabled && method.meta.isLocal }") local
                   a.hide(@click="toggleHideItem(method)" :class="{ hidden: method.meta.isHidden }")
                     i(class="material-icons") remove_red_eye
 </template>
@@ -111,18 +127,22 @@
   export default class App extends Vue {
     private klasses: any[] | null = null;
     private klassesByName: { [name: string]: any } = {};
-    private coreCount: number = 0;
     private isSaving: boolean = false;
     private hadErrorSaving: boolean = false;
-    private buildType: 'dynamic' | 'static' = 'static';
-    private choicesMetaMap: { [buildType: string]: { [name: string]: IChoiceMeta } } = { static: {}, dynamic: {} };
+    private buildType: 'awaited' | 'detached' = 'awaited';
+    private choicesMetaMap: { [buildType: string]: { [name: string]: IChoiceMeta } } = { detached: {}, awaited: {} };
+    private coreKlasses: any[] = [];
 
     private get enabledCount(): number {
       let enabledCount: number = 0;
-      for (const { meta } of this.klasses) {
+      if (this.klasses) for (const { meta } of this.klasses) {
         if (meta.isEnabled) enabledCount += 1;
       }
       return enabledCount;
+    }
+
+    private scrollToTop() {
+      window.scrollTo(0, 0);
     }
 
     private isActiveDependency(name: string) {
@@ -137,6 +157,17 @@
 
     private isActiveReferencedBy(klass: any, reference: string) {
       klass.extra.activelyReferencedBy.has(reference)
+    }
+
+    private toggleEnableKlass(klass: any) {
+      if (klass.meta.isCore) return;
+      if (klass.meta.isEnabled && !this.klassHasActiveItems(klass)) {
+        klass.meta.isEnabled = false;
+        klass.meta.isHidden = true;
+      } else {
+        klass.meta.isEnabled = true;
+        klass.meta.isHidden = false;
+      }
     }
 
     private toggleHideKlass(klass: any) {
@@ -167,10 +198,17 @@
       try {
         const id = event.originalTarget.id;
         const type = id.replace(`${item.name}:`, '');
-        if (type === 'enabled') {
-          item.meta.isEnabled = !item.meta.isEnabled;
+        if (type === 'true') {
+          item.meta.isEnabled = true;
+        } else if (type === 'false') {
+          item.meta.isEnabled = false;
         } else if (type === 'writable') {
           item.meta.isWritable = !item.meta.isWritable;
+        }
+        if (type === 'local') {
+          item.meta.isLocal = true;
+        } else if (item.meta.hasOwnProperty('isLocal')) {
+          item.meta.isLocal = false;
         }
         this.calcKlassStatus(item.klass);
       } catch (error) {
@@ -306,7 +344,7 @@
           method.meta = metaByName[method.name];
         }
         if (klass.meta.isCore) {
-          this.coreCount += 1;
+          this.coreKlasses.push(klass);
         }
         this.klassesByName[klass.name] = klass;
       }
@@ -322,6 +360,8 @@
 </script>
 
 <style lang="scss">
+  $panelWidth: 325px;
+
   @mixin reset-ul {
     list-style-type: none;
     list-style-position: outside;
@@ -354,7 +394,7 @@
       content: "";
       position: absolute;
       top: 0;
-      right: 260px;
+      right: $panelWidth + 10px;
       height: 100vh;
       width: 1px;
       background: rgba(0,0,0,0.1);
@@ -364,11 +404,11 @@
       float: left;
       padding-left: 10px;
       box-sizing: border-box;
-      width: calc(100% - 260px);
+      width: calc(100% - #{$panelWidth + 10px});
     }
     .right {
       float: right;
-      width: 250px;
+      width: $panelWidth;
       box-sizing: border-box;
     }
     select {
@@ -385,6 +425,19 @@
       &.error {
         background: red;
         color: pink;
+      }
+    }
+  }
+
+  .core-klasses {
+    margin-top: 50px;
+    ul {
+      @include reset-ul();
+      li {
+        padding: 0 0 20px 20px;
+        display: inline-block;
+        width: 33.333%;
+        box-sizing: border-box;
       }
     }
   }
@@ -417,13 +470,26 @@
     font-size: 18px;
     margin-bottom: 16px;
     input[type='checkbox'] {
-      pointer-events: none;
       width: 16px;
       height: 16px;
       margin-left: -1px;
+      pointer-events: none;
     }
     label {
       padding-left: 5px;
+    }
+    i.tag {
+      display: inline-block;
+      margin-left: 10px;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 2px;
+      font-style: normal;
+      font-weight: 100;
+      font-size: 14px;
+      color: rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 0 white;
+      padding: 2px 5px 1px;
     }
   }
   .title {
@@ -438,7 +504,7 @@
   .desc {
     opacity: 0.5;
     pointer-events: none;
-    width: calc(100% - 260px);
+    width: calc(100% - #{$panelWidth + 10px});
     a {
       color: black;
       text-decoration: none;
@@ -470,20 +536,74 @@
       vertical-align: top;
     }
     .details {
-      width: calc(100% - 250px);
+      width: calc(100% - #{$panelWidth});
     }
     .actions {
-      width: 250px;
+      width: $panelWidth;
       box-sizing: border-box;
       line-height: 16px;
       input[type='checkbox'] {
         margin-left: 15px;
+        cursor: pointer;
       }
       input[type='checkbox']:first-child {
         margin-left: 10px;
       }
       label {
         padding-left: 3px;
+        text-transform: uppercase;
+        font-weight: 100;
+        font-size: 13px;
+        color: rgba(0,0,0,0.5);
+        &.selected {
+          color: black;
+        }
+        cursor: pointer
+      }
+      ul.toggle {
+        @include reset-ul();
+        display: inline-block;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 3px;
+        margin-left: 5px;
+        margin-top: 2px;
+        text-transform: uppercase;
+        font-weight: 100;
+        font-size: 13px;
+        li {
+          display: inline-block;
+          padding: 2px 5px 0px;
+          color: rgba(0,0,0,0.5);
+          position: relative;
+          cursor: pointer;
+          min-width: 35px;
+          text-align: center;
+          &:nth-child(1) {
+            border-radius: 3px 0 0 3px;
+            &.selected {
+              background: gray;
+            }
+          }
+          &:nth-child(2) {
+            border: 1px solid rgba(0,0,0,0.1);
+            border-top: none;
+            border-bottom: none;
+            &.selected {
+              background: dodgerblue;
+            }
+          }
+          &:nth-child(3) {
+            border-radius: 0 3px 3px 0;
+            &.selected {
+              background: deeppink;
+              box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1), 0 -1px 0 rgba(0,0,0,0.3), 0 1px 0 rgba(0,0,0,0.5);
+            }
+          }
+          &.selected {
+            color: white;
+            box-shadow: inset 1px 1px 0 rgba(255,255,255,0.1), 0 -1px 0 rgba(0,0,0,0.5), 0 1px 0 rgba(0,0,0,0.5);
+          }
+        }
       }
     }
   }
@@ -491,7 +611,7 @@
     margin-bottom: 20px;
   }
   .dependencies, .dependents, .referenced-by {
-    width: calc(100% - 250px);
+    width: calc(100% - #{$panelWidth});
     font-size: 15px;
     margin-bottom: 10px;
     line-height: 1.3em;

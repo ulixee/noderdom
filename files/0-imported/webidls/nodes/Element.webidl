@@ -91,6 +91,19 @@ partial interface Element {
   readonly attribute long clientHeight;
 };
 
+// https://drafts.csswg.org/cssom-view/#extensions-to-the-window-interface
+
+enum ScrollBehavior { "auto", "smooth" };
+
+dictionary ScrollOptions {
+    ScrollBehavior behavior = "auto";
+};
+dictionary ScrollToOptions : ScrollOptions {
+    unrestricted double left;
+    unrestricted double top;
+};
+
+
 // https://www.w3.org/TR/css-shadow-parts-1/#idl
 partial interface Element {
   [SameObject, PutForwards=value] readonly attribute DOMTokenList part;

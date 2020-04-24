@@ -32,7 +32,7 @@ export default [
   'css/CSSRuleList.webidl',
   'css/StyleSheet.webidl',
   'css/MediaList.webidl',
-  'css/CSSStyleValue,webidl',
+  'css/CSSStyleValue.webidl',
   'css/StylePropertyMap.webidl',
 
   // domparsing
@@ -178,11 +178,12 @@ export default [
   'validation/ValidityState.webidl',
 
   // fonts
-  'FontFaceSet.webidl',
-  'FeaturePolicy.webidl',
+  'fonts/FontFaceSet.webidl',
+  'fonts/FontFace.webidl',
 
   // misc
   'Fullscreen.webidl',
+  'FeaturePolicy.webidl',
 
   // xpath
   'xpath/XPathEvaluator.webidl',
