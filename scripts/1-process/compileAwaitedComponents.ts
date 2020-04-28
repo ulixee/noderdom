@@ -14,8 +14,8 @@ import config from '../../config';
 import TsBodyPrinter from '../../src/TsBodyPrinter';
 import Printer from '../../src/Printer';
 import TypeUtils from '../../src/TypeUtils';
-import Supers from '../../src/Supers';
-import { BuildType } from '../../src/interfaces/IBuildType';
+import SuperGenerator from '../../src/SuperGenerator';
+import { DomType } from '../../src/interfaces/IDomType';
 
 const webIDLDir = Path.join(config.filesImportedDir, 'webidls');
 const webIDLExtensionsDir = Path.join(config.filesImportedDir, 'webidl-extensions');
@@ -24,7 +24,7 @@ const componentFiltersPath = Path.join(config.filesImportedDir, 'component-filte
 
 function run() {
   const components = createComponents();
-  const superInterfaces = Object.values(Supers.injectIntoComponents(components).awaitedSupers);
+  const superInterfaces = Object.values(SuperGenerator.injectIntoComponents(components).awaitedSupers);
 
   resolveConflicts(superInterfaces, components, 'property');
   resolveConflicts(superInterfaces, components, 'method');
@@ -47,7 +47,10 @@ function resolveConflicts(superInterfaces: Types.Interface[], components: Compon
     for (const isolateName of superInterface.implements!) {
       const isolateInterface = components.awaitedIsolates[isolateName];
       const printer = new Printer();
-      const bodyPrinterOptions = { buildType: BuildType.awaited, skipImplementation: true };
+      const bodyPrinterOptions = {
+        domType: DomType.standard,
+        skipImplementation: true,
+      };
       const tsBodyPrinter = new TsBodyPrinter(isolateInterface, printer, components, bodyPrinterOptions);
       const records = Object.values(isolateInterface[type === 'property' ? 'properties' : 'methods'] || {});
 
@@ -93,7 +96,10 @@ function resolveConflicts(superInterfaces: Types.Interface[], components: Compon
 
       const printer = new Printer();
       const relatedIsolate = components.awaitedIsolates[definitions[0].klass];
-      const bodyPrinterOptions = { buildType: BuildType.awaited, skipImplementation: true };
+      const bodyPrinterOptions = {
+        domType: DomType.standard,
+        skipImplementation: true,
+      };
       const tsBodyPrinter = new TsBodyPrinter(relatedIsolate, printer, components, bodyPrinterOptions);
       if (type === 'property') {
         tsBodyPrinter.printProperty(relatedIsolate.properties![definitionName]);

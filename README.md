@@ -20,6 +20,12 @@ or
 yarn db:reset
 ```
 
+## Step 0 - Import
+
+```bash
+./scripts/0-import/importDocsFromMDN.ts
+```
+
 ## Step 1 - Process
 
 Generate database records:

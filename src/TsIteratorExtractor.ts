@@ -3,9 +3,11 @@ import { arrayToMap, integerTypes, compareName, toIType } from './utils';
 import Printer from './Printer';
 import Components from './Components';
 import TypeUtils from './TypeUtils';
-import IBuildType from './interfaces/IBuildType';
+import IDomType from './interfaces/IDomType';
+import IBuildType, { BuildType } from './interfaces/IBuildType';
 
 interface IOptions {
+  domType: IDomType;
   buildType: IBuildType;
   skipImplementation?: boolean;
 }
@@ -17,21 +19,21 @@ interface IDeclarationMethod {
 
 export default class TsIteratorExtractor {
   public readonly methodNames: string[] = [];
+  private readonly i: Types.Interface;
   private readonly hasForEach: boolean;
   private readonly sequenceMethods: Types.Method[];
   private readonly declarationMethods: IDeclarationMethod[] = [];
-  private readonly i: Types.Interface;
   private readonly printer: Printer = new Printer();
   private readonly components: Components;
   private readonly sequenceTypedefMap: Record<string, Types.TypeDef>;
   private readonly skipImplementation: boolean;
-  private readonly handler: string;
+  private readonly buildType: IBuildType;
 
   constructor(i: Types.Interface, components: Components, options: IOptions) {
     this.i = i;
     this.components = components;
     this.skipImplementation = options.skipImplementation || false;
-    this.handler = `${options.buildType}Handler`;
+    this.buildType = options.buildType;
 
     const sequenceTypedefs = (this.components.typedefs || [])
       .filter(typedef => Array.isArray(typedef.type))
@@ -85,6 +87,11 @@ export default class TsIteratorExtractor {
   }
 
   public run(printMethod: (m: Types.Method) => void) {
+    // these next three lines are a hack since customizer UI doesn't allow turning off iterators.
+    const hasEnabledMethods = Object.values(this.i.methods).length;
+    const hasEnabledProperties = Object.values(this.i.methods).length;
+    if (!hasEnabledProperties && !hasEnabledMethods) return;
+
     if (this.hasForEach) {
       this.printIteratorForEach();
     }
@@ -98,6 +105,7 @@ export default class TsIteratorExtractor {
   }
 
   private printIterableIterator() {
+    const i: Types.Interface = this.i;
     const subtypes = this.getIteratorSubtypes();
     if (!subtypes || this.getIteratorExtends(subtypes)) return;
 
@@ -107,7 +115,11 @@ export default class TsIteratorExtractor {
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public [Symbol.iterator](): ${returnType} {`);
-      this.printer.printLine(`  return ${this.handler}.runMethod<${returnType}>(this, '[Symbol.iterator]', []);`);
+      if (this.buildType === BuildType.base) {
+        this.printer.printLine(`  throw new Error('${i.name}[Symbol.iterator] not implemented');`);
+      } else {
+        this.printer.printLine(`  // implementation required`);
+      }
       this.printer.printLine('}');
     }
   }
@@ -125,7 +137,11 @@ export default class TsIteratorExtractor {
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public forEach(callbackfn: (${args}) => void, thisArg?: any): void {`);
-      this.printer.printLine(`  ${this.handler}.runMethod<void>(this, 'forEach', [callbackfn, thisArg]);`);
+      if (this.buildType === BuildType.base) {
+        this.printer.printLine(`  throw new Error('${i.name}.forEach not implemented');`);
+      } else {
+        this.printer.printLine(`  // implementation required`);
+      }
       this.printer.printLine('}');
     }
   }
@@ -182,12 +198,17 @@ export default class TsIteratorExtractor {
   }
 
   private printDeclarationMethod(m: IDeclarationMethod) {
+    const i: Types.Interface = this.i;
     if (this.skipImplementation) {
       this.printer.printLine(`${m.name}(): ${m.definition};`);
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public ${m.name}(): ${m.definition} {`);
-      this.printer.printLine(`  return ${this.handler}.runMethod<${m.definition}>(this, '${m.name}', []);`);
+      if (this.buildType === BuildType.base) {
+        this.printer.printLine(`  throw new Error('${i.name}.${m.name} not implemented');`);
+      } else {
+        this.printer.printLine(`  // implementation required`);
+      }
       this.printer.printLine('}');
     }
   }

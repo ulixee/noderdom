@@ -62,14 +62,6 @@
           "type": "ArrayBufferView"
         }
       ]
-    },
-    {
-      "newType": "UnsupportedFeature",
-      "type": "Void"
-    },
-    {
-      "newType": "WindowProxy",
-      "type": "UnsupportedFeature"
     }
   ],
   "dictionaries": {
@@ -365,7 +357,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "specified": {
           "name": "specified",
@@ -398,7 +390,7 @@
           ],
           "getter": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getNamedItem": {
           "name": "getNamedItem",
@@ -416,7 +408,7 @@
           ],
           "getter": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getNamedItemNS": {
           "name": "getNamedItemNS",
@@ -438,7 +430,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
@@ -528,31 +520,6 @@
       "exposed": "Window Worker PaintWorklet LayoutWorklet",
       "legacyWindowAlias": []
     },
-    "StylePropertyMapReadOnly": {
-      "name": "StylePropertyMapReadOnly",
-      "extends": "Object",
-      "constants": {},
-      "methods": {},
-      "anonymousMethods": [],
-      "properties": {},
-      "exposed": "Window Worker PaintWorklet LayoutWorklet",
-      "legacyWindowAlias": [],
-      "iterator": {
-        "kind": "iterable",
-        "readonly": false,
-        "type": [
-          {
-            "type": "USVString"
-          },
-          {
-            "type": "sequence",
-            "subtype": {
-              "type": "CSSStyleValue"
-            }
-          }
-        ]
-      }
-    },
     "CharacterData": {
       "name": "CharacterData",
       "extends": "Node",
@@ -616,7 +583,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -637,7 +604,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -653,7 +620,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByName": {
           "name": "getElementsByName",
@@ -669,7 +636,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hasFocus": {
           "name": "hasFocus",
@@ -712,7 +679,7 @@
           "type": "DOMImplementation",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "URL": {
           "name": "URL",
@@ -750,7 +717,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "documentElement": {
           "name": "documentElement",
@@ -758,7 +725,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "location": {
           "name": "location",
@@ -766,7 +733,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "domain": {
           "name": "domain",
@@ -797,7 +764,7 @@
           "type": "DocumentReadyState",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "title": {
           "name": "title",
@@ -817,7 +784,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "head": {
           "name": "head",
@@ -825,57 +792,49 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "images": {
           "name": "images",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "embeds": {
           "name": "embeds",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "plugins": {
           "name": "plugins",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "links": {
           "name": "links",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "forms": {
           "name": "forms",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scripts": {
           "name": "scripts",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
-        },
-        "defaultView": {
-          "name": "defaultView",
-          "type": "WindowProxy",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "designMode": {
           "name": "designMode",
@@ -888,7 +847,7 @@
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hidden": {
           "name": "hidden",
@@ -907,7 +866,7 @@
           "type": "FeaturePolicy",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scrollingElement": {
           "name": "scrollingElement",
@@ -915,20 +874,13 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "fullscreenEnabled": {
           "name": "fullscreenEnabled",
           "type": "boolean",
           "readOnly": 1,
           "exposed": "Window"
-        },
-        "fonts": {
-          "name": "fonts",
-          "type": "FontFaceSet",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isLocal": 1
         }
       },
       "constructor": {
@@ -1128,7 +1080,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getAttributeNodeNS": {
           "name": "getAttributeNodeNS",
@@ -1150,7 +1102,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "closest": {
           "name": "closest",
@@ -1167,7 +1119,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "matches": {
           "name": "matches",
@@ -1198,7 +1150,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -1219,7 +1171,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -1235,7 +1187,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getClientRects": {
           "name": "getClientRects",
@@ -1246,7 +1198,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getBoundingClientRect": {
           "name": "getBoundingClientRect",
@@ -1257,7 +1209,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scrollIntoView": {
           "name": "scrollIntoView",
@@ -1306,17 +1258,6 @@
             }
           ],
           "exposed": "Window"
-        },
-        "computedStyleMap": {
-          "name": "computedStyleMap",
-          "signatures": [
-            {
-              "type": "StylePropertyMapReadOnly",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isLocal": 1
         },
         "requestFullscreen": {
           "name": "requestFullscreen",
@@ -1383,7 +1324,7 @@
           "type": "DOMTokenList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "slot": {
           "name": "slot",
@@ -1396,7 +1337,7 @@
           "type": "NamedNodeMap",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "shadowRoot": {
           "name": "shadowRoot",
@@ -1404,7 +1345,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "innerHTML": {
           "name": "innerHTML",
@@ -1471,7 +1412,7 @@
           "type": "DOMTokenList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "exposed": "Window",
@@ -1562,7 +1503,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "offsetTop": {
           "name": "offsetTop",
@@ -1878,7 +1819,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hasChildNodes": {
           "name": "hasChildNodes",
@@ -2046,7 +1987,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "parentNode": {
           "name": "parentNode",
@@ -2054,7 +1995,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "parentElement": {
           "name": "parentElement",
@@ -2062,14 +2003,14 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "childNodes": {
           "name": "childNodes",
           "type": "NodeList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "firstChild": {
           "name": "firstChild",
@@ -2077,7 +2018,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "lastChild": {
           "name": "lastChild",
@@ -2085,7 +2026,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "previousSibling": {
           "name": "previousSibling",
@@ -2093,7 +2034,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "nextSibling": {
           "name": "nextSibling",
@@ -2101,7 +2042,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "nodeValue": {
           "name": "nodeValue",
@@ -2142,7 +2083,7 @@
           ],
           "getter": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
@@ -2224,41 +2165,6 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": []
-    },
-    "FontFaceSet": {
-      "name": "FontFaceSet",
-      "extends": "Object",
-      "constants": {},
-      "methods": {},
-      "anonymousMethods": [],
-      "properties": {},
-      "constructor": {
-        "signatures": [
-          {
-            "type": "FontFaceSet",
-            "params": [
-              {
-                "name": "initialFaces",
-                "type": "sequence",
-                "subtype": {
-                  "type": "FontFace"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "exposed": "Window Worker",
-      "legacyWindowAlias": [],
-      "iterator": {
-        "kind": "setlike",
-        "readonly": false,
-        "type": [
-          {
-            "type": "FontFace"
-          }
-        ]
-      }
     },
     "FontFace": {
       "name": "FontFace",
@@ -2405,7 +2311,7 @@
           ],
           "getter": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
@@ -2435,7 +2341,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -2456,7 +2362,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -2472,7 +2378,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByName": {
           "name": "getElementsByName",
@@ -2488,7 +2394,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hasFocus": {
           "name": "hasFocus",
@@ -2531,7 +2437,7 @@
           "type": "DOMImplementation",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "URL": {
           "name": "URL",
@@ -2569,7 +2475,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "documentElement": {
           "name": "documentElement",
@@ -2577,7 +2483,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "location": {
           "name": "location",
@@ -2585,7 +2491,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "domain": {
           "name": "domain",
@@ -2616,7 +2522,7 @@
           "type": "DocumentReadyState",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "title": {
           "name": "title",
@@ -2636,7 +2542,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "head": {
           "name": "head",
@@ -2644,57 +2550,49 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "images": {
           "name": "images",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "embeds": {
           "name": "embeds",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "plugins": {
           "name": "plugins",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "links": {
           "name": "links",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "forms": {
           "name": "forms",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scripts": {
           "name": "scripts",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
-        },
-        "defaultView": {
-          "name": "defaultView",
-          "type": "WindowProxy",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "designMode": {
           "name": "designMode",
@@ -2707,7 +2605,7 @@
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hidden": {
           "name": "hidden",
@@ -2726,7 +2624,7 @@
           "type": "FeaturePolicy",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scrollingElement": {
           "name": "scrollingElement",
@@ -2734,20 +2632,13 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "fullscreenEnabled": {
           "name": "fullscreenEnabled",
           "type": "boolean",
           "readOnly": 1,
           "exposed": "Window"
-        },
-        "fonts": {
-          "name": "fonts",
-          "type": "FontFaceSet",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isLocal": 1
         }
       },
       "constructor": {
@@ -2876,7 +2767,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getAttributeNodeNS": {
           "name": "getAttributeNodeNS",
@@ -2898,7 +2789,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "closest": {
           "name": "closest",
@@ -2915,7 +2806,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "matches": {
           "name": "matches",
@@ -2946,7 +2837,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -2967,7 +2858,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -2983,7 +2874,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getClientRects": {
           "name": "getClientRects",
@@ -2994,7 +2885,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getBoundingClientRect": {
           "name": "getBoundingClientRect",
@@ -3005,7 +2896,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scrollIntoView": {
           "name": "scrollIntoView",
@@ -3054,17 +2945,6 @@
             }
           ],
           "exposed": "Window"
-        },
-        "computedStyleMap": {
-          "name": "computedStyleMap",
-          "signatures": [
-            {
-              "type": "StylePropertyMapReadOnly",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isLocal": 1
         },
         "requestFullscreen": {
           "name": "requestFullscreen",
@@ -3131,7 +3011,7 @@
           "type": "DOMTokenList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "slot": {
           "name": "slot",
@@ -3144,7 +3024,7 @@
           "type": "NamedNodeMap",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "shadowRoot": {
           "name": "shadowRoot",
@@ -3152,7 +3032,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "innerHTML": {
           "name": "innerHTML",
@@ -3219,7 +3099,7 @@
           "type": "DOMTokenList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "exposed": "Window",
@@ -3339,7 +3219,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hasChildNodes": {
           "name": "hasChildNodes",
@@ -3507,7 +3387,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "parentNode": {
           "name": "parentNode",
@@ -3515,7 +3395,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "parentElement": {
           "name": "parentElement",
@@ -3523,14 +3403,14 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "childNodes": {
           "name": "childNodes",
           "type": "NodeList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "firstChild": {
           "name": "firstChild",
@@ -3538,7 +3418,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "lastChild": {
           "name": "lastChild",
@@ -3546,7 +3426,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "previousSibling": {
           "name": "previousSibling",
@@ -3554,7 +3434,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "nextSibling": {
           "name": "nextSibling",
@@ -3562,7 +3442,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "nodeValue": {
           "name": "nodeValue",
@@ -3612,7 +3492,7 @@
           ],
           "getter": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
@@ -3657,7 +3537,7 @@
           ],
           "getter": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
@@ -3841,7 +3721,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "offsetTop": {
           "name": "offsetTop",
@@ -4125,7 +4005,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "offsetTop": {
           "name": "offsetTop",
@@ -4375,7 +4255,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "specified": {
           "name": "specified",
@@ -4498,7 +4378,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -4519,7 +4399,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -4535,7 +4415,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByName": {
           "name": "getElementsByName",
@@ -4551,7 +4431,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hasFocus": {
           "name": "hasFocus",
@@ -4594,7 +4474,7 @@
           "type": "DOMImplementation",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "URL": {
           "name": "URL",
@@ -4632,7 +4512,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "documentElement": {
           "name": "documentElement",
@@ -4640,7 +4520,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "location": {
           "name": "location",
@@ -4648,7 +4528,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "domain": {
           "name": "domain",
@@ -4679,7 +4559,7 @@
           "type": "DocumentReadyState",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "title": {
           "name": "title",
@@ -4699,7 +4579,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "head": {
           "name": "head",
@@ -4707,57 +4587,49 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "images": {
           "name": "images",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "embeds": {
           "name": "embeds",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "plugins": {
           "name": "plugins",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "links": {
           "name": "links",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "forms": {
           "name": "forms",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scripts": {
           "name": "scripts",
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
-        },
-        "defaultView": {
-          "name": "defaultView",
-          "type": "WindowProxy",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "designMode": {
           "name": "designMode",
@@ -4770,7 +4642,7 @@
           "type": "HTMLCollection",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "hidden": {
           "name": "hidden",
@@ -4789,7 +4661,7 @@
           "type": "FeaturePolicy",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scrollingElement": {
           "name": "scrollingElement",
@@ -4797,20 +4669,13 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "fullscreenEnabled": {
           "name": "fullscreenEnabled",
           "type": "boolean",
           "readOnly": 1,
           "exposed": "Window"
-        },
-        "fonts": {
-          "name": "fonts",
-          "type": "FontFaceSet",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isLocal": 1
         }
       },
       "constructor": {
@@ -4970,7 +4835,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getAttributeNodeNS": {
           "name": "getAttributeNodeNS",
@@ -4992,7 +4857,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "closest": {
           "name": "closest",
@@ -5009,7 +4874,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "matches": {
           "name": "matches",
@@ -5040,7 +4905,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -5061,7 +4926,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -5077,7 +4942,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getClientRects": {
           "name": "getClientRects",
@@ -5088,7 +4953,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "getBoundingClientRect": {
           "name": "getBoundingClientRect",
@@ -5099,7 +4964,7 @@
             }
           ],
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "scrollIntoView": {
           "name": "scrollIntoView",
@@ -5148,17 +5013,6 @@
             }
           ],
           "exposed": "Window"
-        },
-        "computedStyleMap": {
-          "name": "computedStyleMap",
-          "signatures": [
-            {
-              "type": "StylePropertyMapReadOnly",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isLocal": 1
         },
         "requestFullscreen": {
           "name": "requestFullscreen",
@@ -5225,7 +5079,7 @@
           "type": "DOMTokenList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "slot": {
           "name": "slot",
@@ -5238,7 +5092,7 @@
           "type": "NamedNodeMap",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "shadowRoot": {
           "name": "shadowRoot",
@@ -5246,7 +5100,7 @@
           "nullable": 1,
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         },
         "innerHTML": {
           "name": "innerHTML",
@@ -5313,7 +5167,7 @@
           "type": "DOMTokenList",
           "readOnly": 1,
           "exposed": "Window",
-          "isLocal": 1
+          "isAbstract": 1
         }
       },
       "exposed": "Window",

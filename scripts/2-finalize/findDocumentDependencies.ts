@@ -1,7 +1,7 @@
 import * as Fs from 'fs';
 import * as Path from 'path';
 import config from '../../config';
-import TsExtractor from '../../src/TsExtractor';
+import TsBuilder from '../../src/TsBuilder';
 import Components from '../../src/Components';
 import ICodeModule from '../../src/interfaces/ICodeModule';
 
@@ -17,13 +17,13 @@ async function run() {
   // cleanup components (i.e., remove unused types);
   components.cleanup();
 
-  const typescriptExtractor = new TsExtractor(components);
+  const typescriptExtractor = new TsBuilder(components);
 
   const basicTypes: { [name: string]: ICodeModule } = {};
-  typescriptExtractor.extractTypes().forEach(m => (basicTypes[m.name] = m));
+  typescriptExtractor.extractBasicInterfaces().forEach(m => (basicTypes[m.name] = m));
 
   const interfaceClasses: { [name: string]: ICodeModule } = {};
-  typescriptExtractor.extractInterfaces().forEach(m => (interfaceClasses[m.name] = m));
+  typescriptExtractor.extractOfficialInterfaces().forEach(m => (interfaceClasses[m.name] = m));
 
   const visited: ICodeModulesByName = {};
   const unvisited: ICodeModulesByName = Object.assign({}, basicTypes, interfaceClasses);

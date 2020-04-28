@@ -10,9 +10,10 @@ import * as Path from 'path';
 import webIDLFilenames from '../../files/0-imported/webidls';
 import Componentizer from '../../src/Componentizer';
 import config from '../../config';
+import { DomType } from '../../src/interfaces/IDomType';
 
-const buildType = process.argv[2];
-if (!['static', 'standard'].includes(buildType)) {
+const domType = process.argv[2];
+if (!['static', 'standard'].includes(domType)) {
   throw new Error('first arg must be static or standard');
 }
 
@@ -30,8 +31,8 @@ async function run() {
   loadWebidls(componentizer, webIDLReplacementsDir, Fs.readdirSync(webIDLReplacementsDir));
 
   // compile components
-  const components = componentizer.run().cleanup(buildType === 'static' ? componentFiltersPath : undefined);
-  const componentsOutputPath = Path.join(config.filesProcessedDir, `components-${buildType}.json`);
+  const components = componentizer.run().cleanup(domType === DomType.detached ? componentFiltersPath : undefined);
+  const componentsOutputPath = Path.join(config.filesProcessedDir, `components-${domType}.json`);
   Fs.writeFileSync(componentsOutputPath, JSON.stringify(components, null, 2));
 }
 

@@ -16,24 +16,24 @@ vueRunner.attachAPI((apiServer: any) => {
   });
 
   apiServer.post('/choices', (req: any, res: any) => {
-    const { buildType, metasByName } = req.body;
+    const { domType, metasByName } = req.body;
     Object.entries(metasByName).forEach(entry => {
       const [name, meta]: [string, any] = entry;
-      const primaryKey = [name, buildType];
-      const existing = db.prepare('SELECT * FROM component_filters WHERE name=? AND buildType=?').get(primaryKey);
+      const primaryKey = [name, domType];
+      const existing = db.prepare('SELECT * FROM component_filters WHERE name=? AND domType=?').get(primaryKey);
       const data = {
         name,
-        buildType,
+        domType,
         itemType: meta.itemType,
         isCore: Number(meta.isCore || 0),
-        isLocal: Number(meta.isLocal || 0),
+        isAbstract: Number(meta.isAbstract || 0),
         isEnabled: Number(meta.isEnabled || 0),
         isHidden: Number(meta.isHidden || 0),
         isWritable: Number(meta.isWritable || 0),
       };
       if (existing) {
         const values = [...Object.values(data), ...primaryKey];
-        const sql = `UPDATE component_filters SET ${Object.keys(data).map(k => `${k}=?`)} WHERE name=? AND buildType=?`;
+        const sql = `UPDATE component_filters SET ${Object.keys(data).map(k => `${k}=?`)} WHERE name=? AND domType=?`;
         db.prepare(sql).run(values);
       } else {
         const fields = Object.keys(data).join(', ');

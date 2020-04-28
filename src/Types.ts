@@ -40,7 +40,7 @@ export interface Property extends Typed {
   interop?: 1;
   exposed?: string;
   constant?: 1;
-  isLocal?: 1;
+  isAbstract?: 1;
 }
 
 export interface Event {
@@ -68,7 +68,7 @@ export interface AnonymousMethod {
   specs?: string;
   exposed?: string;
   signatures: Signature[];
-  isLocal?: 1;
+  isAbstract?: 1;
 }
 
 export interface Method extends AnonymousMethod {

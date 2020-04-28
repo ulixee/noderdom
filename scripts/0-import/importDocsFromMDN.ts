@@ -19,6 +19,7 @@ const cherryPickedInterfaceNames = [
   'Blob',
   'File',
   'FileList',
+  'FontFace',
   'ShadowRoot',
   'AbstractRange',
   'StaticRange',

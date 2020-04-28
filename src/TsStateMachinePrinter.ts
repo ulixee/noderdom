@@ -2,46 +2,41 @@ import * as Types from './Types';
 import Printer from './Printer';
 import Components from './Components';
 import TsBodyPrinter from './TsBodyPrinter';
+import IDomType from './interfaces/IDomType';
 import IBuildType from './interfaces/IBuildType';
+
+interface IOptions {
+  domType: IDomType;
+  buildType: IBuildType;
+}
 
 export default class TsStateMachinePrinter {
   private readonly i: Types.Interface;
   private readonly printer: Printer;
   private readonly components: Components;
+  private readonly domType: IDomType;
   private readonly buildType: IBuildType;
 
-  constructor(i: Types.Interface, printer: Printer, components: Components, buildType: IBuildType) {
+  constructor(i: Types.Interface, printer: Printer, components: Components, options: IOptions) {
     this.i = i;
     this.printer = printer;
     this.components = components;
-    this.buildType = buildType;
+    this.domType = options.domType;
+    this.buildType = options.buildType;
   }
 
-  public printInitializer(includeReadonly: boolean) {
+  public printInitializer() {
     const i: Types.Interface = this.i;
-    const vars = ['getState', 'setState', 'setHiddenState'];
-    if (includeReadonly) {
-      vars.push(`setReadonlyOf${i.name}`);
-    }
-    this.printer.printLine(`export const { ${vars.join(', ')} } = StateMachine<`);
-    this.printer.printLine(`  I${i.name},`);
-    this.printer.printLine(`  I${i.name}Properties,`);
-    this.printer.printLine(`  I${i.name}ReadonlyProperties`);
-    this.printer.printLine(`>('${i.name}');`);
+    const vars = ['getState', 'setState'];
+    this.printer.print(`export const { ${vars.join(', ')} } = StateMachine<I${i.name}, I${i.name}Properties>();`);
   }
 
   public printInterfaces(classNames: string[], constants: Types.Constant[], properties: Types.Property[]) {
-    const readonlyProperties = properties.filter(p => p.readOnly === 1);
-    const notReadonlyProperties = properties.filter(p => p.readOnly !== 1);
-
     this.printer.printSeparatorLine();
     this.printer.printSeparatorLine('\n// INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////');
 
     this.printer.printLine('');
-    this.printPropertiesInterface(classNames, readonlyProperties, true);
-
-    this.printer.printLine('');
-    this.printPropertiesInterface(classNames, notReadonlyProperties, false);
+    this.printPropertiesInterface(classNames, properties);
 
     this.printPropertyKeys(classNames, properties);
     this.printConstantKeys(classNames, constants);
@@ -65,18 +60,14 @@ export default class TsStateMachinePrinter {
 
   // privates
 
-  private printPropertiesInterface(classNames: string[], properties: Types.Property[], isReadonly: boolean) {
+  private printPropertiesInterface(classNames: string[], properties: Types.Property[]) {
     const i: Types.Interface = this.i;
-    const extendsSuffix = `${isReadonly ? 'Readonly' : ''}Properties`;
-    const allExtensions = isReadonly ? classNames : [`${i.name}Readonly`, ...classNames];
-    const extendsStr = allExtensions.length
-      ? ` extends ${allExtensions.map(x => `I${x}${extendsSuffix}`).join(', ')}`
-      : '';
-    const interfaceName = `I${i.name}${isReadonly ? 'Readonly' : ''}Properties`;
+    const extendsStr = classNames.length ? ` extends ${classNames.map(x => `I${x}Properties`).join(', ')}` : '';
+    const interfaceName = `I${i.name}Properties`;
     this.printer.printLine(`export interface ${interfaceName}${extendsStr} {`);
     this.printer.increaseIndent();
 
-    const bodyPrinterOptions = { buildType: this.buildType, skipImplementation: true };
+    const bodyPrinterOptions = { domType: this.domType, buildType: this.buildType, skipImplementation: true };
     const bodyPrinter = new TsBodyPrinter(i, this.printer, this.components, bodyPrinterOptions);
     bodyPrinter.printProperties(properties, true);
     if (!bodyPrinter.didPrint) this.printer.deleteNewLine();

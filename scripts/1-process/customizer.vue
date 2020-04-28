@@ -13,7 +13,7 @@
         option inactive
     .right
       label Build
-      select(v-model="buildType" @change="refreshBuildData")
+      select(v-model="domType" @change="refreshBuildData")
         option awaited
         option detached
       button.save(@click="saveSelection" :class="{ error: hadErrorSaving }")
@@ -76,8 +76,8 @@
                 .actions
                   ul.toggle
                     li(@click="toggleItem($event, property)" :id="`${property.name}:false`" :class="{ selected: !property.meta.isEnabled }") off
-                    li(@click="toggleItem($event, property)" :id="`${property.name}:true`" :class="{ selected: property.meta.isEnabled && !property.meta.isLocal }") on
-                    li(@click="toggleItem($event, property)" :id="`${property.name}:local`" :class="{ selected: property.meta.isEnabled && property.meta.isLocal }") local
+                    li(@click="toggleItem($event, property)" :id="`${property.name}:true`" :class="{ selected: property.meta.isEnabled && !property.meta.isAbstract }") on
+                    li(@click="toggleItem($event, property)" :id="`${property.name}:local`" :class="{ selected: property.meta.isEnabled && property.meta.isAbstract }") abstract
                   template(v-if="!property.isReadonly")
                     input(type="checkbox" :id="`${property.name}:writable`" v-model="property.meta.isWritable" @click="toggleItem($event, property)")
                     label(:for="`${property.name}:writable`" :class="{ selected: property.meta.isWritable }") writable
@@ -101,8 +101,8 @@
                 .actions
                   ul.toggle
                     li(@click="toggleItem($event, method)" :id="`${method.name}:false`" :class="{ selected: !method.meta.isEnabled }") off
-                    li(@click="toggleItem($event, method)" :id="`${method.name}:true`" :class="{ selected: method.meta.isEnabled && !method.meta.isLocal }") on
-                    li(@click="toggleItem($event, method)" :id="`${method.name}:local`" :class="{ selected: method.meta.isEnabled && method.meta.isLocal }") local
+                    li(@click="toggleItem($event, method)" :id="`${method.name}:true`" :class="{ selected: method.meta.isEnabled && !method.meta.isAbstract }") on
+                    li(@click="toggleItem($event, method)" :id="`${method.name}:local`" :class="{ selected: method.meta.isEnabled && method.meta.isAbstract }") abstract
                   a.hide(@click="toggleHideItem(method)" :class="{ hidden: method.meta.isHidden }")
                     i(class="material-icons") remove_red_eye
 </template>
@@ -111,6 +111,7 @@
   import API from 'vue-runner/API';
   import { Component, Vue } from 'vue-property-decorator';
   import IChoiceMeta from './customizer/IChoiceMeta';
+  import { DomType } from '../../src/interfaces/IDomType';
 
   interface IKlassExtra {
     hasEnabledProperties: boolean;
@@ -129,8 +130,8 @@
     private klassesByName: { [name: string]: any } = {};
     private isSaving: boolean = false;
     private hadErrorSaving: boolean = false;
-    private buildType: 'awaited' | 'detached' = 'awaited';
-    private choicesMetaMap: { [buildType: string]: { [name: string]: IChoiceMeta } } = { detached: {}, awaited: {} };
+    private domType: DomType.awaited | DomType.detached = DomType.awaited;
+    private choicesMetaMap: { [domType: string]: { [name: string]: IChoiceMeta } } = { detached: {}, awaited: {} };
     private coreKlasses: any[] = [];
 
     private get enabledCount(): number {
@@ -206,9 +207,9 @@
           item.meta.isWritable = !item.meta.isWritable;
         }
         if (type === 'local') {
-          item.meta.isLocal = true;
-        } else if (item.meta.hasOwnProperty('isLocal')) {
-          item.meta.isLocal = false;
+          item.meta.isAbstract = true;
+        } else if (item.meta.hasOwnProperty('isAbstract')) {
+          item.meta.isAbstract = false;
         }
         this.calcKlassStatus(item.klass);
       } catch (error) {
@@ -284,7 +285,7 @@
         klass.methods.forEach(m => metasByName[m.name] = m.meta);
       });
 
-      const params = { buildType: this.buildType, metasByName };
+      const params = { domType: this.domType, metasByName };
       try {
         await API.post('/choices', params);
       } catch (error) {
@@ -309,7 +310,7 @@
     }
 
     private refreshBuildData() {
-      const metaByName = this.choicesMetaMap[this.buildType];
+      const metaByName = this.choicesMetaMap[this.domType];
 
       for (const klass of this.klasses) {
         klass.extra = this.createKlassExtra();
@@ -329,7 +330,7 @@
 
     async mounted() {
       const { klasses, choicesMetaMap }: any = await API.get('/data');
-      const metaByName = choicesMetaMap[this.buildType];
+      const metaByName = choicesMetaMap[this.domType];
 
       for (const klass of klasses) {
         klass.extra = this.createKlassExtra();

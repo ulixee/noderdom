@@ -2,16 +2,16 @@ import * as Fs from 'fs';
 import * as Path from 'path';
 import config from '../../config';
 import ComponentFilters from '../../src/ComponentFilters';
-import { IBuildType, BuildType } from '../../src/interfaces/IBuildType';
+import { IDomType, DomType } from '../../src/interfaces/IDomType';
 
 const shouldForce = process.argv[2] === '-f';
 
 if (!shouldForce) {
-  Object.keys(BuildType).forEach(buildType => {
-    const componentFilters = new ComponentFilters(buildType as IBuildType);
+  Object.keys(DomType).forEach(domType => {
+    const componentFilters = new ComponentFilters(domType as IDomType);
     if (!componentFilters.records.length) return;
 
-    const componentFiltersFilename = `component-filters-${buildType}.json`;
+    const componentFiltersFilename = `component-filters-${domType}.json`;
     const componentFiltersPath = Path.join(config.filesImportedDir, componentFiltersFilename);
     const componentFiltersSaved = Fs.readFileSync(componentFiltersPath, 'utf-8');
     const componentFiltersMap = componentFilters.toMap();

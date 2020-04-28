@@ -13,7 +13,7 @@
       },
       "ownerElement": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "prefix": {
         "isEnabled": true
@@ -78,11 +78,11 @@
       },
       "anchors": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "body": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "characterSet": {
         "isEnabled": true
@@ -97,8 +97,8 @@
         "isEnabled": true
       },
       "defaultView": {
-        "isEnabled": true,
-        "isLocal": true
+        "isEnabled": false,
+        "isAbstract": true
       },
       "designMode": {
         "isEnabled": true
@@ -108,11 +108,11 @@
       },
       "doctype": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "documentElement": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "documentURI": {
         "isEnabled": true
@@ -122,91 +122,91 @@
       },
       "embeds": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "featurePolicy": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "fonts": {
-        "isEnabled": true,
-        "isLocal": true
+        "isEnabled": false,
+        "isAbstract": true
       },
       "forms": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "fullscreenEnabled": {
         "isEnabled": true
       },
       "head": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "hidden": {
         "isEnabled": true
       },
       "images": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "implementation": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "lastModified": {
         "isEnabled": true
       },
       "links": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "location": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "onfullscreenchange": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "onfullscreenerror": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "onpointerlockchange": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "onpointerlockerror": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "onreadystatechange": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "onvisibilitychange": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "plugins": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "readyState": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "referrer": {
         "isEnabled": true
       },
       "scripts": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "scrollingElement": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "title": {
         "isEnabled": true
@@ -272,19 +272,19 @@
       },
       "getElementsByClassName": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getElementsByName": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getElementsByTagName": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getElementsByTagNameNS": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getSelection": {
         "isEnabled": false
@@ -357,11 +357,11 @@
     "propertiesByName": {
       "length": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "value": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       }
     },
     "methodsByName": {
@@ -405,11 +405,11 @@
     "propertiesByName": {
       "attributes": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "classList": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "className": {
         "isEnabled": true
@@ -440,18 +440,18 @@
       },
       "onfullscreenchange": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "onfullscreenerror": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "outerHTML": {
         "isEnabled": true
       },
       "part": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "prefix": {
         "isEnabled": true
@@ -470,7 +470,7 @@
       },
       "shadowRoot": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "slot": {
         "isEnabled": true
@@ -485,11 +485,11 @@
       },
       "closest": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "computedStyleMap": {
-        "isEnabled": true,
-        "isLocal": true
+        "isEnabled": false,
+        "isAbstract": true
       },
       "getAttribute": {
         "isEnabled": true
@@ -502,31 +502,31 @@
       },
       "getAttributeNode": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getAttributeNodeNS": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getBoundingClientRect": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getClientRects": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getElementsByClassName": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getElementsByTagName": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getElementsByTagNameNS": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "hasAttribute": {
         "isEnabled": true
@@ -542,7 +542,7 @@
       },
       "insertAdjacentElement": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "insertAdjacentHTML": {
         "isEnabled": false
@@ -591,7 +591,7 @@
       },
       "setAttributeNode": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "setAttributeNodeNS": {
         "isEnabled": false
@@ -624,11 +624,11 @@
     "methodsByName": {
       "namedItem": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "item": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       }
     }
   },
@@ -642,15 +642,15 @@
     "methodsByName": {
       "getNamedItem": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "getNamedItemNS": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "item": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "removeNamedItem": {
         "isEnabled": false
@@ -674,22 +674,22 @@
       },
       "childNodes": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "firstChild": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "isConnected": {
         "isEnabled": true
       },
       "lastChild": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "nextSibling": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "nodeName": {
         "isEnabled": true
@@ -702,19 +702,19 @@
       },
       "ownerDocument": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "parentElement": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "parentNode": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "previousSibling": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "textContent": {
         "isEnabled": true
@@ -735,7 +735,7 @@
       },
       "getRootNode": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "hasChildNodes": {
         "isEnabled": true
@@ -789,7 +789,7 @@
     "methodsByName": {
       "item": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "entries": {
         "isEnabled": true
@@ -1033,7 +1033,7 @@
       },
       "offsetParent": {
         "isEnabled": true,
-        "isLocal": true
+        "isAbstract": true
       },
       "offsetTop": {
         "isEnabled": true
@@ -1466,19 +1466,19 @@
     "propertiesByName": {
       "height": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "width": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "x": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "y": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       }
     },
     "methodsByName": {
@@ -1512,31 +1512,31 @@
     "propertiesByName": {
       "disabled": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "href": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "media": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "ownerNode": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "parentStyleSheet": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "title": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "type": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       }
     },
     "methodsByName": {}
@@ -1576,19 +1576,19 @@
     "propertiesByName": {
       "delegatesFocus": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "host": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "innerHTML": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       },
       "mode": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       }
     },
     "methodsByName": {}
@@ -1643,7 +1643,7 @@
     "propertiesByName": {
       "length": {
         "isEnabled": false,
-        "isLocal": true
+        "isAbstract": true
       }
     },
     "methodsByName": {
@@ -1663,36 +1663,9 @@
     "methodsByName": {}
   },
   "StylePropertyMapReadOnly": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "size": {
-        "isEnabled": false,
-        "isLocal": true
-      }
-    },
-    "methodsByName": {
-      "get": {
-        "isEnabled": false
-      },
-      "getAll": {
-        "isEnabled": false
-      },
-      "has": {
-        "isEnabled": false
-      },
-      "entries": {
-        "isEnabled": false
-      },
-      "keys": {
-        "isEnabled": false
-      },
-      "values": {
-        "isEnabled": false
-      },
-      "forEach": {
-        "isEnabled": false
-      }
-    }
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
   },
   "StylePropertyMap": {
     "isEnabled": false,
@@ -1720,49 +1693,9 @@
     "methodsByName": {}
   },
   "FontFaceSet": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "onloading": {
-        "isEnabled": false,
-        "isLocal": true
-      },
-      "onloadingdone": {
-        "isEnabled": false,
-        "isLocal": true
-      },
-      "onloadingerror": {
-        "isEnabled": false,
-        "isLocal": true
-      },
-      "ready": {
-        "isEnabled": false,
-        "isLocal": true
-      },
-      "status": {
-        "isEnabled": false,
-        "isLocal": true
-      }
-    },
-    "methodsByName": {
-      "add": {
-        "isEnabled": false
-      },
-      "check": {
-        "isEnabled": false
-      },
-      "clear": {
-        "isEnabled": false
-      },
-      "delete": {
-        "isEnabled": false
-      },
-      "load": {
-        "isEnabled": false
-      },
-      "forEach": {
-        "isEnabled": false
-      }
-    }
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
   },
   "FeaturePolicy": {
     "isEnabled": true,

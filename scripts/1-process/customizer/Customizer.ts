@@ -3,7 +3,7 @@ import IChoiceMeta, { ChoiceItemType, IChoiceItemType } from './IChoiceMeta';
 
 export default class Customizer {
   public readonly klasses: any[];
-  public readonly choicesMetaMap: { [buildType: string]: { [name: string]: IChoiceMeta } } = { detached: {}, awaited: {} };
+  public readonly choicesMetaMap: { [domType: string]: { [name: string]: IChoiceMeta } } = { detached: {}, awaited: {} };
   private allInterfaces = db.prepare('SELECT * FROM interfaces WHERE hasDefinedIDL=1').all();
   private allComponentFilters = db.prepare('SELECT * FROM component_filters').all();
   private coreInterfaceNames = ['Document'];
@@ -14,9 +14,9 @@ export default class Customizer {
   constructor() {
     this.allComponentFilters.forEach((componentFilter: any) => {
       const name = componentFilter.name;
-      const choicesByName = this.choicesMetaMap[componentFilter.buildType as string];
-      const { isCore, isEnabled, isHidden, isWritable, isLocal } = componentFilter;
-      const options = { isCore, isEnabled, isHidden, isWritable, isLocal };
+      const choicesByName = this.choicesMetaMap[componentFilter.domType as string];
+      const { isCore, isEnabled, isHidden, isWritable, isAbstract } = componentFilter;
+      const options = { isCore, isEnabled, isHidden, isWritable, isAbstract };
       choicesByName[name] = this.createChoiceMeta(componentFilter.name, componentFilter.itemType, options);
     });
 
@@ -87,7 +87,7 @@ export default class Customizer {
       meta.isSuperDescendent = true;
     }
     if (itemType === ChoiceItemType.property || itemType === ChoiceItemType.method) {
-      meta.isLocal = options.isLocal || false;
+      meta.isAbstract = options.isAbstract || false;
     }
     return meta;
   }
@@ -126,8 +126,8 @@ export default class Customizer {
       const methods = db.prepare(`SELECT * FROM methods WHERE interfaceName=?`).all([inter.name]);
       methods.forEach(method => {
         this.ensureChoiceMeta(method.name, 'method');
-        Object.assign(this.choicesMetaMap.awaited[method.name], { itemType: 'method', isLocal: false });
-        Object.assign(this.choicesMetaMap.detached[method.name], { itemType: 'method', isLocal: false });
+        Object.assign(this.choicesMetaMap.awaited[method.name], { itemType: 'method', isAbstract: false });
+        Object.assign(this.choicesMetaMap.detached[method.name], { itemType: 'method', isAbstract: false });
         method.nativeArtTypes = (method.nativeArtTypes || '').split(',').filter((t: string) => t);
         method.customArgTypes = (method.customArgTypes || '').split(',').filter((t: string) => t);
         method.argTypes = method.nativeArtTypes.concat(method.customArgTypes);

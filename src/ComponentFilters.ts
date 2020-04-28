@@ -1,21 +1,21 @@
 import db from '../db';
 import IComponentFilters, { IComponentFilter, IComponentFilterItem } from './interfaces/IComponentFilters';
-import IBuildType from './interfaces/IBuildType';
+import IDomType from './interfaces/IDomType';
 
 export default class ComponentFilters {
   public readonly records: any[];
 
-  constructor(buildType: IBuildType, records?: any[]) {
-    this.records = records || db.prepare('SELECT * FROM component_filters WHERE buildType=?').all(buildType);
+  constructor(domType: IDomType, records?: any[]) {
+    this.records = records || db.prepare('SELECT * FROM component_filters WHERE domType=?').all(domType);
   }
 
   public saveToDb() {
     this.records.forEach(record => {
-      const primaryKey = [record.name, record.buildType];
-      const existing = db.prepare('SELECT * FROM component_filters WHERE name=? AND buildType=?').get(primaryKey);
+      const primaryKey = [record.name, record.domType];
+      const existing = db.prepare('SELECT * FROM component_filters WHERE name=? AND domType=?').get(primaryKey);
       if (existing) {
         const values = [...Object.values(record), ...primaryKey];
-        const sql = `UPDATE component_filters SET ${Object.keys(record).map(k => `${k}=?`)} WHERE name=? AND buildType=?`;
+        const sql = `UPDATE component_filters SET ${Object.keys(record).map(k => `${k}=?`)} WHERE name=? AND domType=?`;
         db.prepare(sql).run(values);
       } else {
         const fields = Object.keys(record).join(', ');
@@ -36,7 +36,7 @@ export default class ComponentFilters {
         isEnabled: record.isCore || record.isEnabled ? true : false,
       };
       if (record.isWritable) choicesByName[record.name].isWritable = true;
-      if (record.isLocal) choicesByName[record.name].isLocal = true;
+      if (record.isAbstract) choicesByName[record.name].isAbstract = true;
     });
 
     allInterfaces.forEach(inter => {
@@ -62,19 +62,19 @@ export default class ComponentFilters {
     return componentFiltersMap;
   }
 
-  public static fromMap(buildType: IBuildType, map: { [name: string]: IComponentFilter }) {
+  public static fromMap(domType: IDomType, map: { [name: string]: IComponentFilter }) {
     const records: any[] = [];
     Object.entries(map).forEach(([interName, interObj]) => {
       records.push({
         name: interName,
-        buildType,
+        domType,
         itemType: 'interface',
         isEnabled: interObj.isEnabled ? 1 : 0,
       });
       Object.entries(interObj.propertiesByName).forEach(([propName, propObj]) => {
         records.push({
           name: `${interName}.${propName}`,
-          buildType,
+          domType,
           itemType: 'property',
           isEnabled: propObj.isEnabled ? 1 : 0,
           isWritable: propObj.isWritable ? 1 : 0,
@@ -83,13 +83,13 @@ export default class ComponentFilters {
       Object.entries(interObj.methodsByName).forEach(([methodName, methodObj]) => {
         records.push({
           name: `${interName}.${methodName}`,
-          buildType,
+          domType,
           itemType: 'property',
           isEnabled: methodObj.isEnabled ? 1 : 0,
         });
       });
     });
 
-    return new ComponentFilters(buildType, records);
+    return new ComponentFilters(domType, records);
   }
 }

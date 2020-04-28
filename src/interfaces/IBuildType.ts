@@ -1,7 +1,6 @@
 export enum BuildType {
-  awaited = 'awaited',
-  detached = 'detached',
-  standard = 'standard',
+  base = 'base',
+  impl = 'impl',
 }
 export type IBuildType = keyof typeof BuildType;
 

@@ -1,7 +1,8 @@
-import TsExtractor from '../src/TsExtractor';
+import TsBuilder from './TsBuilder';
 import Components from '../src/Components';
 import ICodeModule from '../src/interfaces/ICodeModule';
-import IBuildType from './interfaces/IBuildType';
+import IDomType from './interfaces/IDomType';
+import { BuildType } from './interfaces/IBuildType';
 
 interface ICodeModulesByName {
   [name: string]: ICodeModule;
@@ -14,10 +15,10 @@ interface ICodeDependenciesByName {
 export default class DependencyCollector {
   private readonly dependenciesByName: ICodeDependenciesByName = {};
 
-  constructor(components: Components, buildType: IBuildType) {
-    const typescriptExtractor = new TsExtractor(components, { buildType });
+  constructor(components: Components, domType: IDomType) {
+    const typescriptExtractor = new TsBuilder(components, { domType, buildType: BuildType.base });
     const interfaceClasses: { [name: string]: ICodeModule } = {};
-    typescriptExtractor.extractInterfaces().forEach(m => (interfaceClasses[m.name] = m));
+    typescriptExtractor.extractOfficialInterfaces().forEach(m => (interfaceClasses[m.name] = m));
 
     const codeModulesByName: ICodeModulesByName = interfaceClasses; // Object.assign({}, basicTypes, interfaceClasses);
     for (const codeModule of Object.values(codeModulesByName)) {

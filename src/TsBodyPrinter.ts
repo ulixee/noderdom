@@ -5,10 +5,12 @@ import Components from './Components';
 import TsIteratorExtractor from './TsIteratorExtractor';
 import TypeUtils from './TypeUtils';
 import ParamUtils from './ParamUtils';
+import IDomType, { DomType } from './interfaces/IDomType';
 import IBuildType, { BuildType } from './interfaces/IBuildType';
 
 interface IOptions {
-  buildType: IBuildType;
+  domType?: IDomType;
+  buildType?: IBuildType;
   skipImplementation?: boolean;
   skipConstructor?: boolean;
   skipEventHandlers?: boolean;
@@ -21,45 +23,59 @@ export default class TsBodyPrinter {
   public readonly staticMethods: Types.Method[];
   public readonly indexers: Types.AnonymousMethod[];
   public readonly referencedObjects: Set<string> = new Set();
+  public readonly referencedCreateMethods: Set<string> = new Set();
   public readonly iteratorExtractor: TsIteratorExtractor;
 
   private readonly i: Types.Interface;
   private readonly printer: Printer;
   private readonly components: Components;
+  private readonly handler: string;
+  private readonly domType: IDomType;
   private readonly buildType: IBuildType;
+
   private readonly skipImplementation: boolean = false;
   private readonly skipConstructor: boolean = false;
   private readonly skipEventHandlers: boolean = false;
-  private readonly handler: string;
 
-  constructor(i: Types.Interface, printer: Printer, components: Components, options: IOptions) {
+  constructor(i: Types.Interface, printer: Printer, components: Components, options: IOptions = {}) {
     this.i = i;
     this.printer = new Printer(printer);
     this.components = components;
-    this.buildType = options.buildType;
+
+    this.domType = options.domType || DomType.standard;
+    this.buildType = options.buildType || BuildType.base;
+    this.handler = `${this.domType}Handler`;
+
     this.skipImplementation = options.skipImplementation || false;
     this.skipConstructor = options.skipConstructor || false;
     this.skipEventHandlers = options.skipEventHandlers || false;
-    this.handler = `${options.buildType}Handler`;
 
     this.constants = Object.values(i.constants || {}).sort(compareName);
 
     this.properties = Object.values(i.properties || {})
       .filter(m => !this.skipImplementation || !m.static)
       .filter(p => !this.components.isCovariantEventHandler(i, p))
+      .filter(p => this.buildType !== BuildType.impl || this.isAbstract(p))
       .sort(compareName);
 
-    this.methods = Object.values(i.methods || {}).filter(m => !m.static);
-    if (this.properties.find((p: any) => p.stringifier)) {
-      this.methods.push({ name: 'toString', signatures: [{ type: 'DOMString' }] });
+    this.methods = Object.values(i.methods || {})
+      .filter(m => !m.static)
+      .filter(m => this.buildType !== BuildType.impl || this.isAbstract(m));
+
+    if (this.buildType === BuildType.base) {
+      if (this.properties.find((p: any) => p.stringifier)) {
+        this.methods.push({ name: 'toString', signatures: [{ type: 'DOMString' }] });
+      }
+      if (i.anonymousMethods && i.anonymousMethods.find(m => m.stringifier)) {
+        this.methods.push({ name: 'toString', signatures: [{ type: 'DOMString' }] });
+      }
     }
-    if (i.anonymousMethods && i.anonymousMethods.find(m => m.stringifier)) {
-      this.methods.push({ name: 'toString', signatures: [{ type: 'DOMString' }] });
-    }
+
     this.methods = this.methods.sort(compareName);
 
     this.staticMethods = Object.values(i.methods || {})
       .filter(m => !!m.static)
+      .filter(p => this.buildType !== BuildType.impl || this.isAbstract(p))
       .sort(compareName);
 
     this.indexers = Object.values<Types.AnonymousMethod>(i.methods)
@@ -67,8 +83,8 @@ export default class TsBodyPrinter {
       .filter(m => this.hasIndexerSignature(m))
       .filter(m => this.hasSignatureParams(m));
 
-    const { buildType, skipImplementation } = this;
-    const iteratorOptions = { buildType, skipImplementation };
+    const { domType, buildType, skipImplementation } = this;
+    const iteratorOptions = { domType, buildType, skipImplementation };
     this.iteratorExtractor = new TsIteratorExtractor(this.i, this.components, iteratorOptions);
   }
 
@@ -77,19 +93,28 @@ export default class TsBodyPrinter {
   }
 
   public printAll(): void {
-    this.printConstants();
+    if (this.buildType === BuildType.base) {
+      this.printConstants();
+    }
     this.printConstructor();
     this.printProperties();
     this.printMethods();
     if (!this.skipEventHandlers) this.printEventHandlerMethods();
 
     const iterators = this.iteratorExtractor.run(m => this.printMethod(m));
-    if (iterators || this.indexers.length) {
+    if (this.buildType === BuildType.base && (iterators || this.indexers.length)) {
       this.printer.printSeparatorLine();
       this.printer.printLines(iterators);
       this.printIndexers();
     }
 
+    this.printStaticMethods();
+  }
+
+  public printAbstractImplementations(): void {
+    this.printConstructor();
+    this.printProperties();
+    this.printMethods();
     this.printStaticMethods();
   }
 
@@ -126,12 +151,10 @@ export default class TsBodyPrinter {
       const isChildClass = (i.extends && i.extends !== 'Object') || (i.implements && i.implements.length);
       this.printer.printLine(`constructor(${args}) {`);
       this.printer.increaseIndent();
-      if (isChildClass) {
+      if (isChildClass || this.buildType === BuildType.impl) {
         this.printer.printLine(`super();`);
       }
-      this.printer.printLine(
-        `initializeConstantsAndProperties<${i.name}>(${i.name}, this, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
-      );
+      this.printer.printLine(`initialize(${i.name}, this);`);
       this.printer.decreaseIndent();
       this.printer.printLine('}');
       if (signature) {
@@ -168,49 +191,59 @@ export default class TsBodyPrinter {
   public printProperty(property: Types.Property, forceOptional: boolean = false) {
     const i: Types.Interface = this.i;
     const isReadonly = property.readOnly === 1;
-    const isAwaited = this.buildType === BuildType.awaited;
-    const isLocal = isAwaited && property.isLocal === 1;
+    const isAbstract = this.isAbstract(property);
     const valueType: string = this.extractPropertyValueType(property);
+    const valueTypeCleaned: string = valueType.replace(' | any', '');
     const returnType: string = this.extractPropertyReturnType(property);
+    const returnTypeCleaned: string = returnType.replace(' | any', '');
+
     if (this.skipImplementation) {
       const isRequired = forceOptional ? false : property.required === undefined || property.required === 1;
       const requiredModifier = isRequired ? '' : '?';
       const readOnlyModifier = isReadonly ? 'readonly ' : '';
       this.printer.printLine(`${readOnlyModifier}${property.name}${requiredModifier}: ${returnType};`);
+      return;
+    }
+
+    const hasNullDefault = this.extractPropertyTypeHasNullDefault(property);
+    this.printer.printSeparatorLine();
+    this.printer.printLine(`public get ${property.name}(): ${returnType} {`);
+    this.printer.increaseIndent();
+    if (isAbstract && this.buildType === BuildType.base) {
+      this.printer.printLine(`throw new Error('${i.name}.${property.name} getter not implemented');`);
+    } else if (isAbstract) {
+      const returnClass = returnTypeCleaned.replace(/^I([A-Z])/, '$1');
+      this.printer.printLine(`const { awaitedPath, awaitedOptions } = getState(this);`);
+      this.printer.printLine(
+        `return create${returnClass}(awaitedPath.addProperty('${property.name}'), awaitedOptions);`,
+      );
+      this.referencedCreateMethods.add(returnClass);
     } else {
-      const hasNullDefault = this.extractPropertyTypeHasNullDefault(property);
+      this.printer.printLine(
+        `return ${this.handler}.getProperty<${valueTypeCleaned}>(this, '${property.name}', ${hasNullDefault});`,
+      );
+    }
+    this.printer.decreaseIndent();
+    this.printer.printLine('}');
+
+    if (!isReadonly) {
       this.printer.printSeparatorLine();
-      this.printer.printLine(`public get ${property.name}(): ${returnType} {`);
+      this.printer.printLine(`public set ${property.name}(value: ${valueType}) {`);
       this.printer.increaseIndent();
-      if (isLocal) {
-        this.printer.printLine(`throw new Error('${i.name}.${property.name} getter not implemented');`);
+      if (isAbstract) {
+        this.printer.printLine(`throw new Error('${i.name}.${property.name} setter not implemented');`);
       } else {
-        this.printer.printLine(
-          `return ${this.handler}.getProperty<${valueType}>(this, '${property.name}', ${hasNullDefault});`,
-        );
+        this.printer.printLine(`${this.handler}.setProperty<${valueTypeCleaned}>(this, '${property.name}', value);`);
       }
       this.printer.decreaseIndent();
       this.printer.printLine('}');
-
-      if (!isReadonly) {
-        this.printer.printSeparatorLine();
-        this.printer.printLine(`public set ${property.name}(value: ${valueType}) {`);
-        this.printer.increaseIndent();
-        if (isLocal) {
-          this.printer.printLine(`throw new Error('${i.name}.${property.name} setter not implemented');`);
-        } else {
-          this.printer.printLine(`${this.handler}.setProperty<${valueType}>(this, '${property.name}', value);`);
-        }
-        this.printer.decreaseIndent();
-        this.printer.printLine('}');
-      }
     }
   }
 
   public printMethod(method: Types.Method) {
     const i: Types.Interface = this.i;
-    const isAwaited = this.buildType === BuildType.awaited;
-    const isLocal = isAwaited && method.isLocal === 1;
+    const isAbstract = this.isAbstract(method);
+
     method.signatures.forEach(signature => {
       const signatureStr = this.createMethodSignature(method, signature);
       if (this.skipImplementation && method.static) {
@@ -229,8 +262,15 @@ export default class TsBodyPrinter {
         const handlerMethod = method.static ? 'runStatic' : 'runMethod';
         this.printer.printLine(`public ${signatureStr} {`);
         this.printer.increaseIndent();
-        if (isLocal) {
+        if (isAbstract && this.buildType === BuildType.base) {
           this.printer.printLine(`throw new Error('${i.name}.${method.name} not implemented');`);
+        } else if (isAbstract) {
+          const returnClass = returnType.replace(/^I([A-Z])/, '$1');
+          this.printer.printLine(`const { awaitedPath, awaitedOptions } = getState(this);`);
+          this.printer.printLine(
+            `return create${returnClass}(awaitedPath.addMethod('${method.name}', [${argNames}]), awaitedOptions);`,
+          );
+          this.referencedCreateMethods.add(returnClass);
         } else {
           this.printer.printLine(
             `${returnCmd}${this.handler}.${handlerMethod}<${valueType}>(this, '${method.name}', [${argNames}]);`,
@@ -252,8 +292,8 @@ export default class TsBodyPrinter {
   private extractMethodReturnType(m: Types.Method, signature: Types.Signature) {
     let mType = TypeUtils.convertDomTypeToTsType(signature, true);
     mType = signature.nullable ? makeNullable(mType) : mType;
-    if (this.buildType === BuildType.awaited) {
-      if (m.isLocal === 1) {
+    if (this.domType === DomType.awaited) {
+      if (m.isAbstract === 1) {
         mType = mType.replace(' | null', '');
       } else {
         mType = `Promise<${mType}>`;
@@ -265,8 +305,8 @@ export default class TsBodyPrinter {
   private extractMethodValueType(m: Types.Method, signature: Types.Signature) {
     let mType = TypeUtils.convertDomTypeToTsType(signature, true);
     mType = signature.nullable ? makeNullable(mType) : mType;
-    if (this.buildType === BuildType.awaited) {
-      if (m.isLocal === 1) {
+    if (this.domType === DomType.awaited) {
+      if (m.isAbstract === 1) {
         mType = mType.replace(' | null', '');
       }
     }
@@ -291,11 +331,15 @@ export default class TsBodyPrinter {
       TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
     }
 
-    if (this.buildType === BuildType.awaited) {
-      if (p.isLocal === 1) {
+    if (this.domType === DomType.awaited) {
+      if (p.isAbstract === 1) {
         pType = pType.replace(' | null', '');
       } else {
         pType = `Promise<${pType}>`;
+        const isReadonly = p.readOnly === 1;
+        if (!isReadonly) {
+          pType += ' | any';
+        }
       }
     } else {
       const isRequired = p.required === undefined || p.required === 1;
@@ -322,6 +366,11 @@ export default class TsBodyPrinter {
     } else {
       pType = TypeUtils.convertDomTypeToTsType(p, true);
       TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
+      const isReadonly = p.readOnly === 1;
+      const isAbstract = this.isAbstract(p);
+      if (!isAbstract && !isReadonly) {
+        pType += ' | any';
+      }
     }
 
     return pType;
@@ -453,6 +502,11 @@ export default class TsBodyPrinter {
       }
     }
     return false;
+  }
+
+  private isAbstract(property: Types.Property | Types.Method) {
+    const isAwaited = this.domType === DomType.awaited;
+    return isAwaited && property.isAbstract === 1;
   }
 
   private hasSignatureParams(m: Types.AnonymousMethod) {

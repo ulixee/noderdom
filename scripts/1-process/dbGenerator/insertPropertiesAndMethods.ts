@@ -117,9 +117,7 @@ function insertMethods(interfaceName: string, methods: IIDLMethodItem[]) {
 function fetchFromIDL(name: string, i: Types.Interface) {
   const printer = new Printer();
   const bodyPrinter = new TsBodyPrinter(i, printer, components);
-
   const properties: IIDLPropertyItem[] = bodyPrinter.properties.map(p => createPropertyItem(p.name, !!p.readOnly, p));
-
   const methods: IIDLMethodItem[] = [];
   bodyPrinter.methods.forEach(m => {
     methods.push(createMethodItem(m.name, false, m));

@@ -5,14 +5,14 @@ import * as Path from 'path';
 import Components from '../../../src/Components';
 import config from '../../../config';
 import db from '../../../db';
-import Supers from '../../../src/Supers';
+import SuperGenerator from '../../../src/SuperGenerator';
 
 const componentsPath = Path.resolve(__dirname, config.filesProcessedDir, 'components-standard.json');
 if (!Fs.existsSync(componentsPath)) throw new Error(`components-standard.json was not found: ${componentsPath}`);
 
 const componentsData = JSON.parse(Fs.readFileSync(componentsPath, 'utf-8'));
 const components = new Components(componentsData);
-const superInterfaces = Object.values(Supers.injectIntoComponents(components).awaitedSupers);
+const superInterfaces = Object.values(SuperGenerator.injectIntoComponents(components).awaitedSupers);
 
 console.log(''.padEnd(100, '-'));
 console.log('INSERTING INTO DB...');

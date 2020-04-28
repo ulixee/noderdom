@@ -99,8 +99,8 @@ export default class ComponentCleaner {
         if (!cFilter.isWritable) {
           i.properties![pName].readOnly = 1;
         }
-        if (cFilter.isLocal) {
-          i.properties![pName].isLocal = 1;
+        if (cFilter.isAbstract) {
+          i.properties![pName].isAbstract = 1;
         }
       });
 
@@ -111,8 +111,8 @@ export default class ComponentCleaner {
           return;
         }
         if (!cFilter) return;
-        if (cFilter.isLocal) {
-          i.methods![mName].isLocal = 1;
+        if (cFilter.isAbstract) {
+          i.methods![mName].isAbstract = 1;
         }
       });
     });

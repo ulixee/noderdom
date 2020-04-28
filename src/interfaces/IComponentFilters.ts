@@ -1,7 +1,7 @@
 export interface IComponentFilterItem {
   isEnabled: boolean;
   isWritable?: boolean;
-  isLocal?: boolean;
+  isAbstract?: boolean;
 }
 
 export interface IComponentFilter extends IComponentFilterItem {

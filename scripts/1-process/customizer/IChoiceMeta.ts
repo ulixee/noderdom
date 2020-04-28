@@ -6,7 +6,7 @@ export default interface IChoiceMeta {
   isCore?: boolean;
   isSuper?: boolean;
   isSuperDescendent?: boolean;
-  isLocal?: boolean;
+  isAbstract?: boolean;
 }
 
 export enum ChoiceItemType {
