@@ -64,7 +64,7 @@ export interface IDocumentIsolate {
   readonly links: IHTMLCollection;
   readonly location: ILocation;
   readonly plugins: IHTMLCollection;
-  readonly readyState: IDocumentReadyState;
+  readonly readyState: Promise<IDocumentReadyState>;
   readonly referrer: Promise<string>;
   readonly scripts: IHTMLCollection;
   readonly scrollingElement: IElement;
@@ -73,10 +73,10 @@ export interface IDocumentIsolate {
 
   exitFullscreen(): Promise<Promise<void>>;
   exitPointerLock(): Promise<void>;
-  getElementsByClassName(classNames: string): IHTMLCollection;
-  getElementsByName(elementName: string): INodeList;
-  getElementsByTagName(qualifiedName: string): IHTMLCollection;
-  getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection;
+  getElementsByClassName(classNames: string): Promise<IHTMLCollection>;
+  getElementsByName(elementName: string): Promise<INodeList>;
+  getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection>;
+  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection>;
   hasFocus(): Promise<boolean>;
 }
 
@@ -113,17 +113,17 @@ export interface IElementIsolate {
   readonly slot: Promise<string>;
   readonly tagName: Promise<string>;
 
-  closest(selectors: string): IElement;
+  closest(selectors: string): Promise<IElement | null>;
   getAttribute(qualifiedName: string): Promise<string | null>;
   getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
   getAttributeNames(): Promise<Iterable<string>>;
-  getAttributeNode(qualifiedName: string): IAttr;
-  getAttributeNodeNS(namespace: string | null, localName: string): IAttr;
-  getBoundingClientRect(): IDOMRect;
-  getClientRects(): IDOMRectList;
-  getElementsByClassName(classNames: string): IHTMLCollection;
-  getElementsByTagName(qualifiedName: string): IHTMLCollection;
-  getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection;
+  getAttributeNode(qualifiedName: string): Promise<IAttr | null>;
+  getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null>;
+  getBoundingClientRect(): Promise<IDOMRect>;
+  getClientRects(): Promise<IDOMRectList>;
+  getElementsByClassName(classNames: string): Promise<IHTMLCollection>;
+  getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection>;
+  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection>;
   hasAttribute(qualifiedName: string): Promise<boolean>;
   hasAttributeNS(namespace: string | null, localName: string): Promise<boolean>;
   hasAttributes(): Promise<boolean>;

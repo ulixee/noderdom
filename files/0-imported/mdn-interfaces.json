@@ -1,8 +1,8 @@
 [
   {
     "name": "Attr",
-    "mdnFilename": "en-US:docs:Web:API:Attr.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Attr",
+    "filename": "en-US:docs:Web:API:Attr.html",
+    "urlPath": "/en-US/docs/Web/API/Attr",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -13,8 +13,8 @@
   },
   {
     "name": "CDATASection",
-    "mdnFilename": "en-US:docs:Web:API:CDATASection.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/CDATASection",
+    "filename": "en-US:docs:Web:API:CDATASection.html",
+    "urlPath": "/en-US/docs/Web/API/CDATASection",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -25,8 +25,8 @@
   },
   {
     "name": "CharacterData",
-    "mdnFilename": "en-US:docs:Web:API:CharacterData.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/CharacterData",
+    "filename": "en-US:docs:Web:API:CharacterData.html",
+    "urlPath": "/en-US/docs/Web/API/CharacterData",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -37,8 +37,8 @@
   },
   {
     "name": "ChildNode",
-    "mdnFilename": "en-US:docs:Web:API:ChildNode.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/ChildNode",
+    "filename": "en-US:docs:Web:API:ChildNode.html",
+    "urlPath": "/en-US/docs/Web/API/ChildNode",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": true,
@@ -49,8 +49,8 @@
   },
   {
     "name": "Comment",
-    "mdnFilename": "en-US:docs:Web:API:Comment.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Comment",
+    "filename": "en-US:docs:Web:API:Comment.html",
+    "urlPath": "/en-US/docs/Web/API/Comment",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -61,8 +61,8 @@
   },
   {
     "name": "CustomEvent",
-    "mdnFilename": "en-US:docs:Web:API:CustomEvent.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/CustomEvent",
+    "filename": "en-US:docs:Web:API:CustomEvent.html",
+    "urlPath": "/en-US/docs/Web/API/CustomEvent",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -73,8 +73,8 @@
   },
   {
     "name": "Document",
-    "mdnFilename": "en-US:docs:Web:API:Document.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Document",
+    "filename": "en-US:docs:Web:API:Document.html",
+    "urlPath": "/en-US/docs/Web/API/Document",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -85,8 +85,8 @@
   },
   {
     "name": "DocumentFragment",
-    "mdnFilename": "en-US:docs:Web:API:DocumentFragment.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DocumentFragment",
+    "filename": "en-US:docs:Web:API:DocumentFragment.html",
+    "urlPath": "/en-US/docs/Web/API/DocumentFragment",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -97,8 +97,8 @@
   },
   {
     "name": "DocumentType",
-    "mdnFilename": "en-US:docs:Web:API:DocumentType.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DocumentType",
+    "filename": "en-US:docs:Web:API:DocumentType.html",
+    "urlPath": "/en-US/docs/Web/API/DocumentType",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -109,8 +109,8 @@
   },
   {
     "name": "DOMError",
-    "mdnFilename": "en-US:docs:Web:API:DOMError.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMError",
+    "filename": "en-US:docs:Web:API:DOMError.html",
+    "urlPath": "/en-US/docs/Web/API/DOMError",
     "category": "DOMCore",
     "isDeprecated": true,
     "isExperimental": false,
@@ -121,8 +121,8 @@
   },
   {
     "name": "DOMException",
-    "mdnFilename": "en-US:docs:Web:API:DOMException.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMException",
+    "filename": "en-US:docs:Web:API:DOMException.html",
+    "urlPath": "/en-US/docs/Web/API/DOMException",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -133,8 +133,8 @@
   },
   {
     "name": "DOMImplementation",
-    "mdnFilename": "en-US:docs:Web:API:DOMImplementation.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMImplementation",
+    "filename": "en-US:docs:Web:API:DOMImplementation.html",
+    "urlPath": "/en-US/docs/Web/API/DOMImplementation",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -145,8 +145,8 @@
   },
   {
     "name": "DOMString",
-    "mdnFilename": "en-US:docs:Web:API:DOMString.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMString",
+    "filename": "en-US:docs:Web:API:DOMString.html",
+    "urlPath": "/en-US/docs/Web/API/DOMString",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -157,8 +157,8 @@
   },
   {
     "name": "DOMTimeStamp",
-    "mdnFilename": "en-US:docs:Web:API:DOMTimeStamp.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMTimeStamp",
+    "filename": "en-US:docs:Web:API:DOMTimeStamp.html",
+    "urlPath": "/en-US/docs/Web/API/DOMTimeStamp",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -169,8 +169,8 @@
   },
   {
     "name": "DOMStringList",
-    "mdnFilename": "en-US:docs:Web:API:DOMStringList.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMStringList",
+    "filename": "en-US:docs:Web:API:DOMStringList.html",
+    "urlPath": "/en-US/docs/Web/API/DOMStringList",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -181,8 +181,8 @@
   },
   {
     "name": "DOMTokenList",
-    "mdnFilename": "en-US:docs:Web:API:DOMTokenList.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMTokenList",
+    "filename": "en-US:docs:Web:API:DOMTokenList.html",
+    "urlPath": "/en-US/docs/Web/API/DOMTokenList",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -193,8 +193,8 @@
   },
   {
     "name": "Element",
-    "mdnFilename": "en-US:docs:Web:API:Element.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Element",
+    "filename": "en-US:docs:Web:API:Element.html",
+    "urlPath": "/en-US/docs/Web/API/Element",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -205,8 +205,8 @@
   },
   {
     "name": "Event",
-    "mdnFilename": "en-US:docs:Web:API:Event.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Event",
+    "filename": "en-US:docs:Web:API:Event.html",
+    "urlPath": "/en-US/docs/Web/API/Event",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -217,8 +217,8 @@
   },
   {
     "name": "EventTarget",
-    "mdnFilename": "en-US:docs:Web:API:EventTarget.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/EventTarget",
+    "filename": "en-US:docs:Web:API:EventTarget.html",
+    "urlPath": "/en-US/docs/Web/API/EventTarget",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -229,8 +229,8 @@
   },
   {
     "name": "HTMLCollection",
-    "mdnFilename": "en-US:docs:Web:API:HTMLCollection.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/HTMLCollection",
+    "filename": "en-US:docs:Web:API:HTMLCollection.html",
+    "urlPath": "/en-US/docs/Web/API/HTMLCollection",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -241,8 +241,8 @@
   },
   {
     "name": "MutationObserver",
-    "mdnFilename": "en-US:docs:Web:API:MutationObserver.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/MutationObserver",
+    "filename": "en-US:docs:Web:API:MutationObserver.html",
+    "urlPath": "/en-US/docs/Web/API/MutationObserver",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -253,8 +253,8 @@
   },
   {
     "name": "MutationRecord",
-    "mdnFilename": "en-US:docs:Web:API:MutationRecord.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/MutationRecord",
+    "filename": "en-US:docs:Web:API:MutationRecord.html",
+    "urlPath": "/en-US/docs/Web/API/MutationRecord",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -265,8 +265,8 @@
   },
   {
     "name": "NamedNodeMap",
-    "mdnFilename": "en-US:docs:Web:API:NamedNodeMap.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/NamedNodeMap",
+    "filename": "en-US:docs:Web:API:NamedNodeMap.html",
+    "urlPath": "/en-US/docs/Web/API/NamedNodeMap",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -277,8 +277,8 @@
   },
   {
     "name": "Node",
-    "mdnFilename": "en-US:docs:Web:API:Node.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Node",
+    "filename": "en-US:docs:Web:API:Node.html",
+    "urlPath": "/en-US/docs/Web/API/Node",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -289,8 +289,8 @@
   },
   {
     "name": "NodeFilter",
-    "mdnFilename": "en-US:docs:Web:API:NodeFilter.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/NodeFilter",
+    "filename": "en-US:docs:Web:API:NodeFilter.html",
+    "urlPath": "/en-US/docs/Web/API/NodeFilter",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -301,8 +301,8 @@
   },
   {
     "name": "NodeIterator",
-    "mdnFilename": "en-US:docs:Web:API:NodeIterator.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/NodeIterator",
+    "filename": "en-US:docs:Web:API:NodeIterator.html",
+    "urlPath": "/en-US/docs/Web/API/NodeIterator",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -313,8 +313,8 @@
   },
   {
     "name": "NodeList",
-    "mdnFilename": "en-US:docs:Web:API:NodeList.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/NodeList",
+    "filename": "en-US:docs:Web:API:NodeList.html",
+    "urlPath": "/en-US/docs/Web/API/NodeList",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -325,8 +325,8 @@
   },
   {
     "name": "NonDocumentTypeChildNode",
-    "mdnFilename": "en-US:docs:Web:API:NonDocumentTypeChildNode.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/NonDocumentTypeChildNode",
+    "filename": "en-US:docs:Web:API:NonDocumentTypeChildNode.html",
+    "urlPath": "/en-US/docs/Web/API/NonDocumentTypeChildNode",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -337,8 +337,8 @@
   },
   {
     "name": "ParentNode",
-    "mdnFilename": "en-US:docs:Web:API:ParentNode.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/ParentNode",
+    "filename": "en-US:docs:Web:API:ParentNode.html",
+    "urlPath": "/en-US/docs/Web/API/ParentNode",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -349,8 +349,8 @@
   },
   {
     "name": "ProcessingInstruction",
-    "mdnFilename": "en-US:docs:Web:API:ProcessingInstruction.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/ProcessingInstruction",
+    "filename": "en-US:docs:Web:API:ProcessingInstruction.html",
+    "urlPath": "/en-US/docs/Web/API/ProcessingInstruction",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -361,8 +361,8 @@
   },
   {
     "name": "Selection",
-    "mdnFilename": "en-US:docs:Web:API:Selection.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Selection",
+    "filename": "en-US:docs:Web:API:Selection.html",
+    "urlPath": "/en-US/docs/Web/API/Selection",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": true,
@@ -373,8 +373,8 @@
   },
   {
     "name": "Range",
-    "mdnFilename": "en-US:docs:Web:API:Range.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Range",
+    "filename": "en-US:docs:Web:API:Range.html",
+    "urlPath": "/en-US/docs/Web/API/Range",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -385,8 +385,8 @@
   },
   {
     "name": "Text",
-    "mdnFilename": "en-US:docs:Web:API:Text.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Text",
+    "filename": "en-US:docs:Web:API:Text.html",
+    "urlPath": "/en-US/docs/Web/API/Text",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -397,8 +397,8 @@
   },
   {
     "name": "TextDecoder",
-    "mdnFilename": "en-US:docs:Web:API:TextDecoder.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/TextDecoder",
+    "filename": "en-US:docs:Web:API:TextDecoder.html",
+    "urlPath": "/en-US/docs/Web/API/TextDecoder",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": true,
@@ -409,8 +409,8 @@
   },
   {
     "name": "TextEncoder",
-    "mdnFilename": "en-US:docs:Web:API:TextEncoder.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/TextEncoder",
+    "filename": "en-US:docs:Web:API:TextEncoder.html",
+    "urlPath": "/en-US/docs/Web/API/TextEncoder",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": true,
@@ -421,8 +421,8 @@
   },
   {
     "name": "TimeRanges",
-    "mdnFilename": "en-US:docs:Web:API:TimeRanges.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/TimeRanges",
+    "filename": "en-US:docs:Web:API:TimeRanges.html",
+    "urlPath": "/en-US/docs/Web/API/TimeRanges",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -433,8 +433,8 @@
   },
   {
     "name": "TreeWalker",
-    "mdnFilename": "en-US:docs:Web:API:TreeWalker.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/TreeWalker",
+    "filename": "en-US:docs:Web:API:TreeWalker.html",
+    "urlPath": "/en-US/docs/Web/API/TreeWalker",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -445,8 +445,8 @@
   },
   {
     "name": "URL",
-    "mdnFilename": "en-US:docs:Web:API:URL.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/URL",
+    "filename": "en-US:docs:Web:API:URL.html",
+    "urlPath": "/en-US/docs/Web/API/URL",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -457,8 +457,8 @@
   },
   {
     "name": "Window",
-    "mdnFilename": "en-US:docs:Web:API:Window.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Window",
+    "filename": "en-US:docs:Web:API:Window.html",
+    "urlPath": "/en-US/docs/Web/API/Window",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -469,8 +469,8 @@
   },
   {
     "name": "Worker",
-    "mdnFilename": "en-US:docs:Web:API:Worker.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Worker",
+    "filename": "en-US:docs:Web:API:Worker.html",
+    "urlPath": "/en-US/docs/Web/API/Worker",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -481,8 +481,8 @@
   },
   {
     "name": "XMLDocument",
-    "mdnFilename": "en-US:docs:Web:API:XMLDocument.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/XMLDocument",
+    "filename": "en-US:docs:Web:API:XMLDocument.html",
+    "urlPath": "/en-US/docs/Web/API/XMLDocument",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": true,
@@ -493,8 +493,8 @@
   },
   {
     "name": "DocumentTouch",
-    "mdnFilename": "en-US:docs:Web:API:DocumentTouch.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DocumentTouch",
+    "filename": "en-US:docs:Web:API:DocumentTouch.html",
+    "urlPath": "/en-US/docs/Web/API/DocumentTouch",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -505,8 +505,8 @@
   },
   {
     "name": "DOMConfiguration",
-    "mdnFilename": "en-US:docs:Web:API:DOMConfiguration.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMConfiguration",
+    "filename": "en-US:docs:Web:API:DOMConfiguration.html",
+    "urlPath": "/en-US/docs/Web/API/DOMConfiguration",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -517,8 +517,8 @@
   },
   {
     "name": "DOMErrorHandler",
-    "mdnFilename": "en-US:docs:Web:API:DOMErrorHandler.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMErrorHandler",
+    "filename": "en-US:docs:Web:API:DOMErrorHandler.html",
+    "urlPath": "/en-US/docs/Web/API/DOMErrorHandler",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -529,8 +529,8 @@
   },
   {
     "name": "DOMImplementationList",
-    "mdnFilename": "en-US:docs:Web:API:DOMImplementationList.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMImplementationList",
+    "filename": "en-US:docs:Web:API:DOMImplementationList.html",
+    "urlPath": "/en-US/docs/Web/API/DOMImplementationList",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -541,8 +541,8 @@
   },
   {
     "name": "DOMImplementationRegistry",
-    "mdnFilename": "en-US:docs:Web:API:DOMImplementationRegistry.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMImplementationRegistry",
+    "filename": "en-US:docs:Web:API:DOMImplementationRegistry.html",
+    "urlPath": "/en-US/docs/Web/API/DOMImplementationRegistry",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -553,8 +553,8 @@
   },
   {
     "name": "DOMImplementationSource",
-    "mdnFilename": "en-US:docs:Web:API:DOMImplementationSource.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMImplementationSource",
+    "filename": "en-US:docs:Web:API:DOMImplementationSource.html",
+    "urlPath": "/en-US/docs/Web/API/DOMImplementationSource",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -565,8 +565,8 @@
   },
   {
     "name": "DOMLocator",
-    "mdnFilename": "en-US:docs:Web:API:DOMLocator.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMLocator",
+    "filename": "en-US:docs:Web:API:DOMLocator.html",
+    "urlPath": "/en-US/docs/Web/API/DOMLocator",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -577,8 +577,8 @@
   },
   {
     "name": "DOMObject",
-    "mdnFilename": "en-US:docs:Web:API:DOMObject.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMObject",
+    "filename": "en-US:docs:Web:API:DOMObject.html",
+    "urlPath": "/en-US/docs/Web/API/DOMObject",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -589,8 +589,8 @@
   },
   {
     "name": "DOMSettableTokenList",
-    "mdnFilename": "en-US:docs:Web:API:DOMSettableTokenList.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMSettableTokenList",
+    "filename": "en-US:docs:Web:API:DOMSettableTokenList.html",
+    "urlPath": "/en-US/docs/Web/API/DOMSettableTokenList",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -601,8 +601,8 @@
   },
   {
     "name": "DOMUserData",
-    "mdnFilename": "en-US:docs:Web:API:DOMUserData.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/DOMUserData",
+    "filename": "en-US:docs:Web:API:DOMUserData.html",
+    "urlPath": "/en-US/docs/Web/API/DOMUserData",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -613,8 +613,8 @@
   },
   {
     "name": "ElementTraversal",
-    "mdnFilename": "en-US:docs:Web:API:ElementTraversal.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/ElementTraversal",
+    "filename": "en-US:docs:Web:API:ElementTraversal.html",
+    "urlPath": "/en-US/docs/Web/API/ElementTraversal",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -625,8 +625,8 @@
   },
   {
     "name": "Entity",
-    "mdnFilename": "en-US:docs:Web:API:Entity.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Entity",
+    "filename": "en-US:docs:Web:API:Entity.html",
+    "urlPath": "/en-US/docs/Web/API/Entity",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -637,8 +637,8 @@
   },
   {
     "name": "EntityReference",
-    "mdnFilename": "en-US:docs:Web:API:EntityReference.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/EntityReference",
+    "filename": "en-US:docs:Web:API:EntityReference.html",
+    "urlPath": "/en-US/docs/Web/API/EntityReference",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -649,8 +649,8 @@
   },
   {
     "name": "NameList",
-    "mdnFilename": "en-US:docs:Web:API:NameList.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/NameList",
+    "filename": "en-US:docs:Web:API:NameList.html",
+    "urlPath": "/en-US/docs/Web/API/NameList",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -661,8 +661,8 @@
   },
   {
     "name": "Notation",
-    "mdnFilename": "en-US:docs:Web:API:Notation.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/Notation",
+    "filename": "en-US:docs:Web:API:Notation.html",
+    "urlPath": "/en-US/docs/Web/API/Notation",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -673,8 +673,8 @@
   },
   {
     "name": "TypeInfo",
-    "mdnFilename": "en-US:docs:Web:API:TypeInfo.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/TypeInfo",
+    "filename": "en-US:docs:Web:API:TypeInfo.html",
+    "urlPath": "/en-US/docs/Web/API/TypeInfo",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -685,8 +685,8 @@
   },
   {
     "name": "UserDataHandler",
-    "mdnFilename": "en-US:docs:Web:API:UserDataHandler.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/UserDataHandler",
+    "filename": "en-US:docs:Web:API:UserDataHandler.html",
+    "urlPath": "/en-US/docs/Web/API/UserDataHandler",
     "category": "DOMCore",
     "isDeprecated": false,
     "isExperimental": false,
@@ -697,8 +697,8 @@
   },
   {
     "name": "SVGAElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAElement",
+    "filename": "en-US:docs:Web:API:SVGAElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -709,8 +709,8 @@
   },
   {
     "name": "SVGAltGlyphElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAltGlyphElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAltGlyphElement",
+    "filename": "en-US:docs:Web:API:SVGAltGlyphElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAltGlyphElement",
     "category": "SVGElements",
     "isDeprecated": true,
     "isExperimental": false,
@@ -721,8 +721,8 @@
   },
   {
     "name": "SVGAltGlyphDefElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAltGlyphDefElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAltGlyphDefElement",
+    "filename": "en-US:docs:Web:API:SVGAltGlyphDefElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAltGlyphDefElement",
     "category": "SVGElements",
     "isDeprecated": true,
     "isExperimental": false,
@@ -733,8 +733,8 @@
   },
   {
     "name": "SVGAltGlyphItemElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAltGlyphItemElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAltGlyphItemElement",
+    "filename": "en-US:docs:Web:API:SVGAltGlyphItemElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAltGlyphItemElement",
     "category": "SVGElements",
     "isDeprecated": true,
     "isExperimental": false,
@@ -745,8 +745,8 @@
   },
   {
     "name": "SVGAnimationElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimationElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAnimationElement",
+    "filename": "en-US:docs:Web:API:SVGAnimationElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAnimationElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -757,8 +757,8 @@
   },
   {
     "name": "SVGAnimateElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimateElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAnimateElement",
+    "filename": "en-US:docs:Web:API:SVGAnimateElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAnimateElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -769,8 +769,8 @@
   },
   {
     "name": "SVGAnimateColorElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimateColorElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAnimateColorElement",
+    "filename": "en-US:docs:Web:API:SVGAnimateColorElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAnimateColorElement",
     "category": "SVGElements",
     "isDeprecated": true,
     "isExperimental": false,
@@ -781,8 +781,8 @@
   },
   {
     "name": "SVGAnimateMotionElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimateMotionElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAnimateMotionElement",
+    "filename": "en-US:docs:Web:API:SVGAnimateMotionElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAnimateMotionElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -793,8 +793,8 @@
   },
   {
     "name": "SVGAnimateTransformElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimateTransformElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGAnimateTransformElement",
+    "filename": "en-US:docs:Web:API:SVGAnimateTransformElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGAnimateTransformElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -805,8 +805,8 @@
   },
   {
     "name": "SVGCircleElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGCircleElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGCircleElement",
+    "filename": "en-US:docs:Web:API:SVGCircleElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGCircleElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -817,8 +817,8 @@
   },
   {
     "name": "SVGClipPathElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGClipPathElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGClipPathElement",
+    "filename": "en-US:docs:Web:API:SVGClipPathElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGClipPathElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -829,8 +829,8 @@
   },
   {
     "name": "SVGColorProfileElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGColorProfileElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGColorProfileElement",
+    "filename": "en-US:docs:Web:API:SVGColorProfileElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGColorProfileElement",
     "category": "SVGElements",
     "isDeprecated": true,
     "isExperimental": false,
@@ -841,8 +841,8 @@
   },
   {
     "name": "SVGComponentTransferFunctionElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGComponentTransferFunctionElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGComponentTransferFunctionElement",
+    "filename": "en-US:docs:Web:API:SVGComponentTransferFunctionElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGComponentTransferFunctionElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -853,8 +853,8 @@
   },
   {
     "name": "SVGCursorElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGCursorElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGCursorElement",
+    "filename": "en-US:docs:Web:API:SVGCursorElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGCursorElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -865,8 +865,8 @@
   },
   {
     "name": "SVGDefsElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGDefsElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGDefsElement",
+    "filename": "en-US:docs:Web:API:SVGDefsElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGDefsElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -877,8 +877,8 @@
   },
   {
     "name": "SVGDescElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGDescElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGDescElement",
+    "filename": "en-US:docs:Web:API:SVGDescElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGDescElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -889,8 +889,8 @@
   },
   {
     "name": "SVGElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGElement",
+    "filename": "en-US:docs:Web:API:SVGElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -901,8 +901,8 @@
   },
   {
     "name": "SVGEllipseElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGEllipseElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGEllipseElement",
+    "filename": "en-US:docs:Web:API:SVGEllipseElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGEllipseElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -913,8 +913,8 @@
   },
   {
     "name": "SVGFEBlendElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEBlendElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGFEBlendElement",
+    "filename": "en-US:docs:Web:API:SVGFEBlendElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGFEBlendElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -925,8 +925,8 @@
   },
   {
     "name": "SVGFEColorMatrixElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEColorMatrixElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGFEColorMatrixElement",
+    "filename": "en-US:docs:Web:API:SVGFEColorMatrixElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGFEColorMatrixElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -937,8 +937,8 @@
   },
   {
     "name": "SVGFEComponentTransferElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEComponentTransferElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGFEComponentTransferElement",
+    "filename": "en-US:docs:Web:API:SVGFEComponentTransferElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGFEComponentTransferElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -949,8 +949,8 @@
   },
   {
     "name": "SVGFECompositeElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFECompositeElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGFECompositeElement",
+    "filename": "en-US:docs:Web:API:SVGFECompositeElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGFECompositeElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -961,8 +961,8 @@
   },
   {
     "name": "SVGFEConvolveMatrixElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEConvolveMatrixElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGFEConvolveMatrixElement",
+    "filename": "en-US:docs:Web:API:SVGFEConvolveMatrixElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGFEConvolveMatrixElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -973,8 +973,8 @@
   },
   {
     "name": "SVGFEDiffuseLightingElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEDiffuseLightingElement.html",
-    "mdnDocumentationPath": "/en-US/docs/Web/API/SVGFEDiffuseLightingElement",
+    "filename": "en-US:docs:Web:API:SVGFEDiffuseLightingElement.html",
+    "urlPath": "/en-US/docs/Web/API/SVGFEDiffuseLightingElement",
     "category": "SVGElements",
     "isDeprecated": false,
     "isExperimental": false,
@@ -985,7 +985,7 @@
   },
   {
     "name": "SVGFEDisplacementMapElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEDisplacementMapElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEDisplacementMapElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEDisplacementMapElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -997,7 +997,7 @@
   },
   {
     "name": "SVGFEDistantLightElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEDistantLightElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEDistantLightElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEDistantLightElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1009,7 +1009,7 @@
   },
   {
     "name": "SVGFEDropShadowElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEDropShadowElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEDropShadowElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEDropShadowElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1021,7 +1021,7 @@
   },
   {
     "name": "SVGFEFloodElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEFloodElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEFloodElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEFloodElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1033,7 +1033,7 @@
   },
   {
     "name": "SVGFEFuncAElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEFuncAElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEFuncAElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEFuncAElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1045,7 +1045,7 @@
   },
   {
     "name": "SVGFEFuncBElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEFuncBElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEFuncBElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEFuncBElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1057,7 +1057,7 @@
   },
   {
     "name": "SVGFEFuncGElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEFuncGElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEFuncGElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEFuncGElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1069,7 +1069,7 @@
   },
   {
     "name": "SVGFEFuncRElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEFuncRElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEFuncRElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEFuncRElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1081,7 +1081,7 @@
   },
   {
     "name": "SVGFEGaussianBlurElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEGaussianBlurElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEGaussianBlurElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEGaussianBlurElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1093,7 +1093,7 @@
   },
   {
     "name": "SVGFEImageElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEImageElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEImageElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEImageElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1105,7 +1105,7 @@
   },
   {
     "name": "SVGFEMergeElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEMergeElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEMergeElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEMergeElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1117,7 +1117,7 @@
   },
   {
     "name": "SVGFEMergeNodeElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEMergeNodeElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEMergeNodeElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEMergeNodeElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1129,7 +1129,7 @@
   },
   {
     "name": "SVGFEMorphologyElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEMorphologyElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEMorphologyElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEMorphologyElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1141,7 +1141,7 @@
   },
   {
     "name": "SVGFEOffsetElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEOffsetElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEOffsetElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEOffsetElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1153,7 +1153,7 @@
   },
   {
     "name": "SVGFEPointLightElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFEPointLightElement.html",
+    "filename": "en-US:docs:Web:API:SVGFEPointLightElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFEPointLightElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1165,7 +1165,7 @@
   },
   {
     "name": "SVGFESpecularLightingElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFESpecularLightingElement.html",
+    "filename": "en-US:docs:Web:API:SVGFESpecularLightingElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFESpecularLightingElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1177,7 +1177,7 @@
   },
   {
     "name": "SVGFESpotLightElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFESpotLightElement.html",
+    "filename": "en-US:docs:Web:API:SVGFESpotLightElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFESpotLightElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1189,7 +1189,7 @@
   },
   {
     "name": "SVGFETileElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFETileElement.html",
+    "filename": "en-US:docs:Web:API:SVGFETileElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFETileElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1201,7 +1201,7 @@
   },
   {
     "name": "SVGFETurbulenceElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFETurbulenceElement.html",
+    "filename": "en-US:docs:Web:API:SVGFETurbulenceElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFETurbulenceElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1213,7 +1213,7 @@
   },
   {
     "name": "SVGFilterElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFilterElement.html",
+    "filename": "en-US:docs:Web:API:SVGFilterElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFilterElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1225,7 +1225,7 @@
   },
   {
     "name": "SVGFilterPrimitiveStandardAttributes",
-    "mdnFilename": "en-US:docs:Web:API:SVGFilterPrimitiveStandardAttributes.html",
+    "filename": "en-US:docs:Web:API:SVGFilterPrimitiveStandardAttributes.html",
     "urlPath": "/en-US/docs/Web/API/SVGFilterPrimitiveStandardAttributes",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1237,7 +1237,7 @@
   },
   {
     "name": "SVGFontElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFontElement.html",
+    "filename": "en-US:docs:Web:API:SVGFontElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFontElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1249,7 +1249,7 @@
   },
   {
     "name": "SVGFontFaceElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFontFaceElement.html",
+    "filename": "en-US:docs:Web:API:SVGFontFaceElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFontFaceElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1261,7 +1261,7 @@
   },
   {
     "name": "SVGFontFaceFormatElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFontFaceFormatElement.html",
+    "filename": "en-US:docs:Web:API:SVGFontFaceFormatElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFontFaceFormatElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1273,7 +1273,7 @@
   },
   {
     "name": "SVGFontFaceNameElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFontFaceNameElement.html",
+    "filename": "en-US:docs:Web:API:SVGFontFaceNameElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFontFaceNameElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1285,7 +1285,7 @@
   },
   {
     "name": "SVGFontFaceSrcElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFontFaceSrcElement.html",
+    "filename": "en-US:docs:Web:API:SVGFontFaceSrcElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFontFaceSrcElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1297,7 +1297,7 @@
   },
   {
     "name": "SVGFontFaceUriElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGFontFaceUriElement.html",
+    "filename": "en-US:docs:Web:API:SVGFontFaceUriElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGFontFaceUriElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1309,7 +1309,7 @@
   },
   {
     "name": "SVGForeignObjectElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGForeignObjectElement.html",
+    "filename": "en-US:docs:Web:API:SVGForeignObjectElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGForeignObjectElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1321,7 +1321,7 @@
   },
   {
     "name": "SVGGElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGGElement.html",
+    "filename": "en-US:docs:Web:API:SVGGElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGGElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1333,7 +1333,7 @@
   },
   {
     "name": "SVGGeometryElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGGeometryElement.html",
+    "filename": "en-US:docs:Web:API:SVGGeometryElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGGeometryElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1345,7 +1345,7 @@
   },
   {
     "name": "SVGGlyphElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGGlyphElement.html",
+    "filename": "en-US:docs:Web:API:SVGGlyphElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGGlyphElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1357,7 +1357,7 @@
   },
   {
     "name": "SVGGlyphRefElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGGlyphRefElement.html",
+    "filename": "en-US:docs:Web:API:SVGGlyphRefElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGGlyphRefElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1369,7 +1369,7 @@
   },
   {
     "name": "SVGGradientElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGGradientElement.html",
+    "filename": "en-US:docs:Web:API:SVGGradientElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGGradientElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1381,7 +1381,7 @@
   },
   {
     "name": "SVGGraphicsElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGGraphicsElement.html",
+    "filename": "en-US:docs:Web:API:SVGGraphicsElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGGraphicsElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1393,7 +1393,7 @@
   },
   {
     "name": "SVGHatchElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGHatchElement.html",
+    "filename": "en-US:docs:Web:API:SVGHatchElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGHatchElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1405,7 +1405,7 @@
   },
   {
     "name": "SVGHatchpathElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGHatchpathElement.html",
+    "filename": "en-US:docs:Web:API:SVGHatchpathElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGHatchpathElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1417,7 +1417,7 @@
   },
   {
     "name": "SVGHKernElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGHKernElement.html",
+    "filename": "en-US:docs:Web:API:SVGHKernElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGHKernElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1429,7 +1429,7 @@
   },
   {
     "name": "SVGImageElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGImageElement.html",
+    "filename": "en-US:docs:Web:API:SVGImageElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGImageElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1441,7 +1441,7 @@
   },
   {
     "name": "SVGLinearGradientElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGLinearGradientElement.html",
+    "filename": "en-US:docs:Web:API:SVGLinearGradientElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGLinearGradientElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1453,7 +1453,7 @@
   },
   {
     "name": "SVGLineElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGLineElement.html",
+    "filename": "en-US:docs:Web:API:SVGLineElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGLineElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1465,7 +1465,7 @@
   },
   {
     "name": "SVGMarkerElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMarkerElement.html",
+    "filename": "en-US:docs:Web:API:SVGMarkerElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMarkerElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1477,7 +1477,7 @@
   },
   {
     "name": "SVGMaskElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMaskElement.html",
+    "filename": "en-US:docs:Web:API:SVGMaskElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMaskElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1489,7 +1489,7 @@
   },
   {
     "name": "SVGMeshElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMeshElement.html",
+    "filename": "en-US:docs:Web:API:SVGMeshElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMeshElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1501,7 +1501,7 @@
   },
   {
     "name": "SVGMeshGradientElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMeshGradientElement.html",
+    "filename": "en-US:docs:Web:API:SVGMeshGradientElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMeshGradientElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1513,7 +1513,7 @@
   },
   {
     "name": "SVGMeshpatchElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMeshpatchElement.html",
+    "filename": "en-US:docs:Web:API:SVGMeshpatchElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMeshpatchElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1525,7 +1525,7 @@
   },
   {
     "name": "SVGMeshrowElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMeshrowElement.html",
+    "filename": "en-US:docs:Web:API:SVGMeshrowElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMeshrowElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1537,7 +1537,7 @@
   },
   {
     "name": "SVGMetadataElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMetadataElement.html",
+    "filename": "en-US:docs:Web:API:SVGMetadataElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMetadataElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1549,7 +1549,7 @@
   },
   {
     "name": "SVGMissingGlyphElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMissingGlyphElement.html",
+    "filename": "en-US:docs:Web:API:SVGMissingGlyphElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMissingGlyphElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1561,7 +1561,7 @@
   },
   {
     "name": "SVGMPathElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGMPathElement.html",
+    "filename": "en-US:docs:Web:API:SVGMPathElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGMPathElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1573,7 +1573,7 @@
   },
   {
     "name": "SVGPathElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathElement.html",
+    "filename": "en-US:docs:Web:API:SVGPathElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1585,7 +1585,7 @@
   },
   {
     "name": "SVGPatternElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGPatternElement.html",
+    "filename": "en-US:docs:Web:API:SVGPatternElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGPatternElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1597,7 +1597,7 @@
   },
   {
     "name": "SVGPolylineElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGPolylineElement.html",
+    "filename": "en-US:docs:Web:API:SVGPolylineElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGPolylineElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1609,7 +1609,7 @@
   },
   {
     "name": "SVGPolygonElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGPolygonElement.html",
+    "filename": "en-US:docs:Web:API:SVGPolygonElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGPolygonElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1621,7 +1621,7 @@
   },
   {
     "name": "SVGRadialGradientElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGRadialGradientElement.html",
+    "filename": "en-US:docs:Web:API:SVGRadialGradientElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGRadialGradientElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1633,7 +1633,7 @@
   },
   {
     "name": "SVGRectElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGRectElement.html",
+    "filename": "en-US:docs:Web:API:SVGRectElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGRectElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1645,7 +1645,7 @@
   },
   {
     "name": "SVGScriptElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGScriptElement.html",
+    "filename": "en-US:docs:Web:API:SVGScriptElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGScriptElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1657,7 +1657,7 @@
   },
   {
     "name": "SVGSetElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGSetElement.html",
+    "filename": "en-US:docs:Web:API:SVGSetElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGSetElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1669,7 +1669,7 @@
   },
   {
     "name": "SVGSolidcolorElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGSolidcolorElement.html",
+    "filename": "en-US:docs:Web:API:SVGSolidcolorElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGSolidcolorElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1681,7 +1681,7 @@
   },
   {
     "name": "SVGStopElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGStopElement.html",
+    "filename": "en-US:docs:Web:API:SVGStopElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGStopElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1693,7 +1693,7 @@
   },
   {
     "name": "SVGStyleElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGStyleElement.html",
+    "filename": "en-US:docs:Web:API:SVGStyleElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGStyleElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1705,7 +1705,7 @@
   },
   {
     "name": "SVGSVGElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGSVGElement.html",
+    "filename": "en-US:docs:Web:API:SVGSVGElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGSVGElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1717,7 +1717,7 @@
   },
   {
     "name": "SVGSwitchElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGSwitchElement.html",
+    "filename": "en-US:docs:Web:API:SVGSwitchElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGSwitchElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1729,7 +1729,7 @@
   },
   {
     "name": "SVGSymbolElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGSymbolElement.html",
+    "filename": "en-US:docs:Web:API:SVGSymbolElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGSymbolElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1741,7 +1741,7 @@
   },
   {
     "name": "SVGTextContentElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGTextContentElement.html",
+    "filename": "en-US:docs:Web:API:SVGTextContentElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGTextContentElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1753,7 +1753,7 @@
   },
   {
     "name": "SVGTextElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGTextElement.html",
+    "filename": "en-US:docs:Web:API:SVGTextElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGTextElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1765,7 +1765,7 @@
   },
   {
     "name": "SVGTextPathElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGTextPathElement.html",
+    "filename": "en-US:docs:Web:API:SVGTextPathElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGTextPathElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1777,7 +1777,7 @@
   },
   {
     "name": "SVGTextPositioningElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGTextPositioningElement.html",
+    "filename": "en-US:docs:Web:API:SVGTextPositioningElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGTextPositioningElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1789,7 +1789,7 @@
   },
   {
     "name": "SVGTitleElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGTitleElement.html",
+    "filename": "en-US:docs:Web:API:SVGTitleElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGTitleElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1801,7 +1801,7 @@
   },
   {
     "name": "SVGTRefElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGTRefElement.html",
+    "filename": "en-US:docs:Web:API:SVGTRefElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGTRefElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1813,7 +1813,7 @@
   },
   {
     "name": "SVGTSpanElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGTSpanElement.html",
+    "filename": "en-US:docs:Web:API:SVGTSpanElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGTSpanElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1825,7 +1825,7 @@
   },
   {
     "name": "SVGUseElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGUseElement.html",
+    "filename": "en-US:docs:Web:API:SVGUseElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGUseElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1837,7 +1837,7 @@
   },
   {
     "name": "SVGUnknownElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGUnknownElement.html",
+    "filename": "en-US:docs:Web:API:SVGUnknownElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGUnknownElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1849,7 +1849,7 @@
   },
   {
     "name": "SVGViewElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGViewElement.html",
+    "filename": "en-US:docs:Web:API:SVGViewElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGViewElement",
     "category": "SVGElements",
     "isDeprecated": false,
@@ -1861,7 +1861,7 @@
   },
   {
     "name": "SVGVKernElement",
-    "mdnFilename": "en-US:docs:Web:API:SVGVKernElement.html",
+    "filename": "en-US:docs:Web:API:SVGVKernElement.html",
     "urlPath": "/en-US/docs/Web/API/SVGVKernElement",
     "category": "SVGElements",
     "isDeprecated": true,
@@ -1873,7 +1873,7 @@
   },
   {
     "name": "SVGAngle",
-    "mdnFilename": "en-US:docs:Web:API:SVGAngle.html",
+    "filename": "en-US:docs:Web:API:SVGAngle.html",
     "urlPath": "/en-US/docs/Web/API/SVGAngle",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -1885,7 +1885,7 @@
   },
   {
     "name": "SVGColor",
-    "mdnFilename": "en-US:docs:Web:API:SVGColor.html",
+    "filename": "en-US:docs:Web:API:SVGColor.html",
     "urlPath": "/en-US/docs/Web/API/SVGColor",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -1897,7 +1897,7 @@
   },
   {
     "name": "SVGICCColor",
-    "mdnFilename": "en-US:docs:Web:API:SVGICCColor.html",
+    "filename": "en-US:docs:Web:API:SVGICCColor.html",
     "urlPath": "/en-US/docs/Web/API/SVGICCColor",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -1909,7 +1909,7 @@
   },
   {
     "name": "SVGElementInstance",
-    "mdnFilename": "en-US:docs:Web:API:SVGElementInstance.html",
+    "filename": "en-US:docs:Web:API:SVGElementInstance.html",
     "urlPath": "/en-US/docs/Web/API/SVGElementInstance",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -1921,7 +1921,7 @@
   },
   {
     "name": "SVGElementInstanceList",
-    "mdnFilename": "en-US:docs:Web:API:SVGElementInstanceList.html",
+    "filename": "en-US:docs:Web:API:SVGElementInstanceList.html",
     "urlPath": "/en-US/docs/Web/API/SVGElementInstanceList",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -1933,7 +1933,7 @@
   },
   {
     "name": "SVGLength",
-    "mdnFilename": "en-US:docs:Web:API:SVGLength.html",
+    "filename": "en-US:docs:Web:API:SVGLength.html",
     "urlPath": "/en-US/docs/Web/API/SVGLength",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -1945,7 +1945,7 @@
   },
   {
     "name": "SVGLengthList",
-    "mdnFilename": "en-US:docs:Web:API:SVGLengthList.html",
+    "filename": "en-US:docs:Web:API:SVGLengthList.html",
     "urlPath": "/en-US/docs/Web/API/SVGLengthList",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -1957,7 +1957,7 @@
   },
   {
     "name": "SVGMatrix",
-    "mdnFilename": "en-US:docs:Web:API:SVGMatrix.html",
+    "filename": "en-US:docs:Web:API:SVGMatrix.html",
     "urlPath": "/en-US/docs/Web/API/SVGMatrix",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -1969,7 +1969,7 @@
   },
   {
     "name": "SVGNameList",
-    "mdnFilename": "en-US:docs:Web:API:SVGNameList.html",
+    "filename": "en-US:docs:Web:API:SVGNameList.html",
     "urlPath": "/en-US/docs/Web/API/SVGNameList",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -1981,7 +1981,7 @@
   },
   {
     "name": "SVGNumber",
-    "mdnFilename": "en-US:docs:Web:API:SVGNumber.html",
+    "filename": "en-US:docs:Web:API:SVGNumber.html",
     "urlPath": "/en-US/docs/Web/API/SVGNumber",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -1993,7 +1993,7 @@
   },
   {
     "name": "SVGNumberList",
-    "mdnFilename": "en-US:docs:Web:API:SVGNumberList.html",
+    "filename": "en-US:docs:Web:API:SVGNumberList.html",
     "urlPath": "/en-US/docs/Web/API/SVGNumberList",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -2005,7 +2005,7 @@
   },
   {
     "name": "SVGPaint",
-    "mdnFilename": "en-US:docs:Web:API:SVGPaint.html",
+    "filename": "en-US:docs:Web:API:SVGPaint.html",
     "urlPath": "/en-US/docs/Web/API/SVGPaint",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -2017,7 +2017,7 @@
   },
   {
     "name": "SVGPathSeg",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSeg.html",
+    "filename": "en-US:docs:Web:API:SVGPathSeg.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSeg",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2029,7 +2029,7 @@
   },
   {
     "name": "SVGPathSegClosePath",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegClosePath.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegClosePath.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegClosePath",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2041,7 +2041,7 @@
   },
   {
     "name": "SVGPathSegMovetoAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegMovetoAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegMovetoAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegMovetoAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2053,7 +2053,7 @@
   },
   {
     "name": "SVGPathSegMovetoRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegMovetoRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegMovetoRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegMovetoRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2065,7 +2065,7 @@
   },
   {
     "name": "SVGPathSegLinetoAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegLinetoAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegLinetoAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegLinetoAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2077,7 +2077,7 @@
   },
   {
     "name": "SVGPathSegLinetoRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegLinetoRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegLinetoRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegLinetoRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2089,7 +2089,7 @@
   },
   {
     "name": "SVGPathSegCurvetoCubicAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoCubicAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2101,7 +2101,7 @@
   },
   {
     "name": "SVGPathSegCurvetoCubicRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoCubicRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2113,7 +2113,7 @@
   },
   {
     "name": "SVGPathSegCurvetoQuadraticAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoQuadraticAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2125,7 +2125,7 @@
   },
   {
     "name": "SVGPathSegCurvetoQuadraticRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoQuadraticRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2137,7 +2137,7 @@
   },
   {
     "name": "SVGPathSegArcAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegArcAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegArcAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegArcAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2149,7 +2149,7 @@
   },
   {
     "name": "SVGPathSegArcRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegArcRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegArcRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegArcRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2161,7 +2161,7 @@
   },
   {
     "name": "SVGPathSegLinetoHorizontalAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegLinetoHorizontalAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegLinetoHorizontalAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegLinetoHorizontalAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2173,7 +2173,7 @@
   },
   {
     "name": "SVGPathSegLinetoHorizontalRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegLinetoHorizontalRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegLinetoHorizontalRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegLinetoHorizontalRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2185,7 +2185,7 @@
   },
   {
     "name": "SVGPathSegLinetoVerticalAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegLinetoVerticalAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegLinetoVerticalAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegLinetoVerticalAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2197,7 +2197,7 @@
   },
   {
     "name": "SVGPathSegLinetoVerticalRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegLinetoVerticalRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegLinetoVerticalRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegLinetoVerticalRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2209,7 +2209,7 @@
   },
   {
     "name": "SVGPathSegCurvetoCubicSmoothAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicSmoothAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicSmoothAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoCubicSmoothAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2221,7 +2221,7 @@
   },
   {
     "name": "SVGPathSegCurvetoCubicSmoothRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicSmoothRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoCubicSmoothRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoCubicSmoothRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2233,7 +2233,7 @@
   },
   {
     "name": "SVGPathSegCurvetoQuadraticSmoothAbs",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticSmoothAbs.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticSmoothAbs.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoQuadraticSmoothAbs",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2245,7 +2245,7 @@
   },
   {
     "name": "SVGPathSegCurvetoQuadraticSmoothRel",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticSmoothRel.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegCurvetoQuadraticSmoothRel.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegCurvetoQuadraticSmoothRel",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2257,7 +2257,7 @@
   },
   {
     "name": "SVGPathSegList",
-    "mdnFilename": "en-US:docs:Web:API:SVGPathSegList.html",
+    "filename": "en-US:docs:Web:API:SVGPathSegList.html",
     "urlPath": "/en-US/docs/Web/API/SVGPathSegList",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2269,7 +2269,7 @@
   },
   {
     "name": "SVGPoint",
-    "mdnFilename": "en-US:docs:Web:API:SVGPoint.html",
+    "filename": "en-US:docs:Web:API:SVGPoint.html",
     "urlPath": "/en-US/docs/Web/API/SVGPoint",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2281,7 +2281,7 @@
   },
   {
     "name": "SVGPointList",
-    "mdnFilename": "en-US:docs:Web:API:SVGPointList.html",
+    "filename": "en-US:docs:Web:API:SVGPointList.html",
     "urlPath": "/en-US/docs/Web/API/SVGPointList",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2293,7 +2293,7 @@
   },
   {
     "name": "SVGPreserveAspectRatio",
-    "mdnFilename": "en-US:docs:Web:API:SVGPreserveAspectRatio.html",
+    "filename": "en-US:docs:Web:API:SVGPreserveAspectRatio.html",
     "urlPath": "/en-US/docs/Web/API/SVGPreserveAspectRatio",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -2305,7 +2305,7 @@
   },
   {
     "name": "SVGRect",
-    "mdnFilename": "en-US:docs:Web:API:SVGRect.html",
+    "filename": "en-US:docs:Web:API:SVGRect.html",
     "urlPath": "/en-US/docs/Web/API/SVGRect",
     "category": "SVGStaticTypes",
     "isDeprecated": true,
@@ -2317,7 +2317,7 @@
   },
   {
     "name": "SVGStringList",
-    "mdnFilename": "en-US:docs:Web:API:SVGStringList.html",
+    "filename": "en-US:docs:Web:API:SVGStringList.html",
     "urlPath": "/en-US/docs/Web/API/SVGStringList",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -2329,7 +2329,7 @@
   },
   {
     "name": "SVGTransform",
-    "mdnFilename": "en-US:docs:Web:API:SVGTransform.html",
+    "filename": "en-US:docs:Web:API:SVGTransform.html",
     "urlPath": "/en-US/docs/Web/API/SVGTransform",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -2341,7 +2341,7 @@
   },
   {
     "name": "SVGTransformList",
-    "mdnFilename": "en-US:docs:Web:API:SVGTransformList.html",
+    "filename": "en-US:docs:Web:API:SVGTransformList.html",
     "urlPath": "/en-US/docs/Web/API/SVGTransformList",
     "category": "SVGStaticTypes",
     "isDeprecated": false,
@@ -2353,7 +2353,7 @@
   },
   {
     "name": "SVGAnimatedAngle",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedAngle.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedAngle.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedAngle",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2365,7 +2365,7 @@
   },
   {
     "name": "SVGAnimatedBoolean",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedBoolean.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedBoolean.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedBoolean",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2377,7 +2377,7 @@
   },
   {
     "name": "SVGAnimatedEnumeration",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedEnumeration.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedEnumeration.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedEnumeration",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2389,7 +2389,7 @@
   },
   {
     "name": "SVGAnimatedInteger",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedInteger.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedInteger.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedInteger",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2401,7 +2401,7 @@
   },
   {
     "name": "SVGAnimatedLength",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedLength.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedLength.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedLength",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2413,7 +2413,7 @@
   },
   {
     "name": "SVGAnimatedLengthList",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedLengthList.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedLengthList.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedLengthList",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2425,7 +2425,7 @@
   },
   {
     "name": "SVGAnimatedNumber",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedNumber.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedNumber.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedNumber",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2437,7 +2437,7 @@
   },
   {
     "name": "SVGAnimatedNumberList",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedNumberList.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedNumberList.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedNumberList",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2449,7 +2449,7 @@
   },
   {
     "name": "SVGAnimatedPathData",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedPathData.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedPathData.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedPathData",
     "category": "SVGAnimatedTypes",
     "isDeprecated": true,
@@ -2461,7 +2461,7 @@
   },
   {
     "name": "SVGAnimatedPoints",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedPoints.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedPoints.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedPoints",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2473,7 +2473,7 @@
   },
   {
     "name": "SVGAnimatedPreserveAspectRatio",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedPreserveAspectRatio.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedPreserveAspectRatio.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedPreserveAspectRatio",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2485,7 +2485,7 @@
   },
   {
     "name": "SVGAnimatedRect",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedRect.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedRect.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedRect",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2497,7 +2497,7 @@
   },
   {
     "name": "SVGAnimatedString",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedString.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedString.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedString",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2509,7 +2509,7 @@
   },
   {
     "name": "SVGAnimatedTransformList",
-    "mdnFilename": "en-US:docs:Web:API:SVGAnimatedTransformList.html",
+    "filename": "en-US:docs:Web:API:SVGAnimatedTransformList.html",
     "urlPath": "/en-US/docs/Web/API/SVGAnimatedTransformList",
     "category": "SVGAnimatedTypes",
     "isDeprecated": false,
@@ -2521,7 +2521,7 @@
   },
   {
     "name": "ElementTimeControl",
-    "mdnFilename": "en-US:docs:Web:API:ElementTimeControl.html",
+    "filename": "en-US:docs:Web:API:ElementTimeControl.html",
     "urlPath": "/en-US/docs/Web/API/ElementTimeControl",
     "category": "SVGSMIL",
     "isDeprecated": false,
@@ -2533,7 +2533,7 @@
   },
   {
     "name": "TimeEvent",
-    "mdnFilename": "en-US:docs:Web:API:TimeEvent.html",
+    "filename": "en-US:docs:Web:API:TimeEvent.html",
     "urlPath": "/en-US/docs/Web/API/TimeEvent",
     "category": "SVGSMIL",
     "isDeprecated": false,
@@ -2545,7 +2545,7 @@
   },
   {
     "name": "GetSVGDocument",
-    "mdnFilename": "en-US:docs:Web:API:GetSVGDocument.html",
+    "filename": "en-US:docs:Web:API:GetSVGDocument.html",
     "urlPath": "/en-US/docs/Web/API/GetSVGDocument",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2557,7 +2557,7 @@
   },
   {
     "name": "ShadowAnimation",
-    "mdnFilename": "en-US:docs:Web:API:ShadowAnimation.html",
+    "filename": "en-US:docs:Web:API:ShadowAnimation.html",
     "urlPath": "/en-US/docs/Web/API/ShadowAnimation",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2569,7 +2569,7 @@
   },
   {
     "name": "SVGColorProfileRule",
-    "mdnFilename": "en-US:docs:Web:API:SVGColorProfileRule.html",
+    "filename": "en-US:docs:Web:API:SVGColorProfileRule.html",
     "urlPath": "/en-US/docs/Web/API/SVGColorProfileRule",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2581,7 +2581,7 @@
   },
   {
     "name": "SVGCSSRule",
-    "mdnFilename": "en-US:docs:Web:API:SVGCSSRule.html",
+    "filename": "en-US:docs:Web:API:SVGCSSRule.html",
     "urlPath": "/en-US/docs/Web/API/SVGCSSRule",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2593,7 +2593,7 @@
   },
   {
     "name": "SVGDocument",
-    "mdnFilename": "en-US:docs:Web:API:SVGDocument.html",
+    "filename": "en-US:docs:Web:API:SVGDocument.html",
     "urlPath": "/en-US/docs/Web/API/SVGDocument",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2605,7 +2605,7 @@
   },
   {
     "name": "SVGException",
-    "mdnFilename": "en-US:docs:Web:API:SVGException.html",
+    "filename": "en-US:docs:Web:API:SVGException.html",
     "urlPath": "/en-US/docs/Web/API/SVGException",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2617,7 +2617,7 @@
   },
   {
     "name": "SVGExternalResourcesRequired",
-    "mdnFilename": "en-US:docs:Web:API:SVGExternalResourcesRequired.html",
+    "filename": "en-US:docs:Web:API:SVGExternalResourcesRequired.html",
     "urlPath": "/en-US/docs/Web/API/SVGExternalResourcesRequired",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2629,7 +2629,7 @@
   },
   {
     "name": "SVGFitToViewBox",
-    "mdnFilename": "en-US:docs:Web:API:SVGFitToViewBox.html",
+    "filename": "en-US:docs:Web:API:SVGFitToViewBox.html",
     "urlPath": "/en-US/docs/Web/API/SVGFitToViewBox",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2641,7 +2641,7 @@
   },
   {
     "name": "SVGLangSpace",
-    "mdnFilename": "en-US:docs:Web:API:SVGLangSpace.html",
+    "filename": "en-US:docs:Web:API:SVGLangSpace.html",
     "urlPath": "/en-US/docs/Web/API/SVGLangSpace",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2653,7 +2653,7 @@
   },
   {
     "name": "SVGLocatable",
-    "mdnFilename": "en-US:docs:Web:API:SVGLocatable.html",
+    "filename": "en-US:docs:Web:API:SVGLocatable.html",
     "urlPath": "/en-US/docs/Web/API/SVGLocatable",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2665,7 +2665,7 @@
   },
   {
     "name": "SVGRenderingIntent",
-    "mdnFilename": "en-US:docs:Web:API:SVGRenderingIntent.html",
+    "filename": "en-US:docs:Web:API:SVGRenderingIntent.html",
     "urlPath": "/en-US/docs/Web/API/SVGRenderingIntent",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2677,7 +2677,7 @@
   },
   {
     "name": "SVGStylable",
-    "mdnFilename": "en-US:docs:Web:API:SVGStylable.html",
+    "filename": "en-US:docs:Web:API:SVGStylable.html",
     "urlPath": "/en-US/docs/Web/API/SVGStylable",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2689,7 +2689,7 @@
   },
   {
     "name": "SVGTests",
-    "mdnFilename": "en-US:docs:Web:API:SVGTests.html",
+    "filename": "en-US:docs:Web:API:SVGTests.html",
     "urlPath": "/en-US/docs/Web/API/SVGTests",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2701,7 +2701,7 @@
   },
   {
     "name": "SVGTransformable",
-    "mdnFilename": "en-US:docs:Web:API:SVGTransformable.html",
+    "filename": "en-US:docs:Web:API:SVGTransformable.html",
     "urlPath": "/en-US/docs/Web/API/SVGTransformable",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2713,7 +2713,7 @@
   },
   {
     "name": "SVGUnitTypes",
-    "mdnFilename": "en-US:docs:Web:API:SVGUnitTypes.html",
+    "filename": "en-US:docs:Web:API:SVGUnitTypes.html",
     "urlPath": "/en-US/docs/Web/API/SVGUnitTypes",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2725,7 +2725,7 @@
   },
   {
     "name": "SVGUseElementShadowRoot",
-    "mdnFilename": "en-US:docs:Web:API:SVGUseElementShadowRoot.html",
+    "filename": "en-US:docs:Web:API:SVGUseElementShadowRoot.html",
     "urlPath": "/en-US/docs/Web/API/SVGUseElementShadowRoot",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2737,7 +2737,7 @@
   },
   {
     "name": "SVGURIReference",
-    "mdnFilename": "en-US:docs:Web:API:SVGURIReference.html",
+    "filename": "en-US:docs:Web:API:SVGURIReference.html",
     "urlPath": "/en-US/docs/Web/API/SVGURIReference",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2749,7 +2749,7 @@
   },
   {
     "name": "SVGViewSpec",
-    "mdnFilename": "en-US:docs:Web:API:SVGViewSpec.html",
+    "filename": "en-US:docs:Web:API:SVGViewSpec.html",
     "urlPath": "/en-US/docs/Web/API/SVGViewSpec",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2761,7 +2761,7 @@
   },
   {
     "name": "SVGZoomAndPan",
-    "mdnFilename": "en-US:docs:Web:API:SVGZoomAndPan.html",
+    "filename": "en-US:docs:Web:API:SVGZoomAndPan.html",
     "urlPath": "/en-US/docs/Web/API/SVGZoomAndPan",
     "category": "SVGOther",
     "isDeprecated": false,
@@ -2773,7 +2773,7 @@
   },
   {
     "name": "SVGZoomEvent",
-    "mdnFilename": "en-US:docs:Web:API:SVGZoomEvent.html",
+    "filename": "en-US:docs:Web:API:SVGZoomEvent.html",
     "urlPath": "/en-US/docs/Web/API/SVGZoomEvent",
     "category": "SVGOther",
     "isDeprecated": true,
@@ -2785,7 +2785,7 @@
   },
   {
     "name": "ApplicationCache",
-    "mdnFilename": "en-US:docs:Web:API:ApplicationCache.html",
+    "filename": "en-US:docs:Web:API:ApplicationCache.html",
     "urlPath": "/en-US/docs/Web/API/ApplicationCache",
     "category": "BrowserWindow",
     "isDeprecated": false,
@@ -2797,7 +2797,7 @@
   },
   {
     "name": "BarProp",
-    "mdnFilename": "en-US:docs:Web:API:BarProp.html",
+    "filename": "en-US:docs:Web:API:BarProp.html",
     "urlPath": "/en-US/docs/Web/API/BarProp",
     "category": "BrowserWindow",
     "isDeprecated": false,
@@ -2809,7 +2809,7 @@
   },
   {
     "name": "External",
-    "mdnFilename": "en-US:docs:Web:API:External.html",
+    "filename": "en-US:docs:Web:API:External.html",
     "urlPath": "/en-US/docs/Web/API/External",
     "category": "BrowserWindow",
     "isDeprecated": true,
@@ -2821,7 +2821,7 @@
   },
   {
     "name": "Navigator",
-    "mdnFilename": "en-US:docs:Web:API:Navigator.html",
+    "filename": "en-US:docs:Web:API:Navigator.html",
     "urlPath": "/en-US/docs/Web/API/Navigator",
     "category": "BrowserWindow",
     "isDeprecated": false,
@@ -2833,7 +2833,7 @@
   },
   {
     "name": "Plugin",
-    "mdnFilename": "en-US:docs:Web:API:Plugin.html",
+    "filename": "en-US:docs:Web:API:Plugin.html",
     "urlPath": "/en-US/docs/Web/API/Plugin",
     "category": "BrowserWindow",
     "isDeprecated": false,
@@ -2845,7 +2845,7 @@
   },
   {
     "name": "PluginArray",
-    "mdnFilename": "en-US:docs:Web:API:PluginArray.html",
+    "filename": "en-US:docs:Web:API:PluginArray.html",
     "urlPath": "/en-US/docs/Web/API/PluginArray",
     "category": "BrowserWindow",
     "isDeprecated": false,
@@ -2857,7 +2857,7 @@
   },
   {
     "name": "Window",
-    "mdnFilename": "en-US:docs:Web:API:Window.html",
+    "filename": "en-US:docs:Web:API:Window.html",
     "urlPath": "/en-US/docs/Web/API/Window",
     "category": "BrowserWindow",
     "isDeprecated": false,
@@ -2869,7 +2869,7 @@
   },
   {
     "name": "CanvasGradient",
-    "mdnFilename": "en-US:docs:Web:API:CanvasGradient.html",
+    "filename": "en-US:docs:Web:API:CanvasGradient.html",
     "urlPath": "/en-US/docs/Web/API/CanvasGradient",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2881,7 +2881,7 @@
   },
   {
     "name": "CanvasPattern",
-    "mdnFilename": "en-US:docs:Web:API:CanvasPattern.html",
+    "filename": "en-US:docs:Web:API:CanvasPattern.html",
     "urlPath": "/en-US/docs/Web/API/CanvasPattern",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2893,7 +2893,7 @@
   },
   {
     "name": "CanvasRenderingContext2D",
-    "mdnFilename": "en-US:docs:Web:API:CanvasRenderingContext2D.html",
+    "filename": "en-US:docs:Web:API:CanvasRenderingContext2D.html",
     "urlPath": "/en-US/docs/Web/API/CanvasRenderingContext2D",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2905,7 +2905,7 @@
   },
   {
     "name": "ImageBitmap",
-    "mdnFilename": "en-US:docs:Web:API:ImageBitmap.html",
+    "filename": "en-US:docs:Web:API:ImageBitmap.html",
     "urlPath": "/en-US/docs/Web/API/ImageBitmap",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2917,7 +2917,7 @@
   },
   {
     "name": "ImageBitmapRenderingContext",
-    "mdnFilename": "en-US:docs:Web:API:ImageBitmapRenderingContext.html",
+    "filename": "en-US:docs:Web:API:ImageBitmapRenderingContext.html",
     "urlPath": "/en-US/docs/Web/API/ImageBitmapRenderingContext",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2929,7 +2929,7 @@
   },
   {
     "name": "ImageData",
-    "mdnFilename": "en-US:docs:Web:API:ImageData.html",
+    "filename": "en-US:docs:Web:API:ImageData.html",
     "urlPath": "/en-US/docs/Web/API/ImageData",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2941,7 +2941,7 @@
   },
   {
     "name": "OffscreenCanvas",
-    "mdnFilename": "en-US:docs:Web:API:OffscreenCanvas.html",
+    "filename": "en-US:docs:Web:API:OffscreenCanvas.html",
     "urlPath": "/en-US/docs/Web/API/OffscreenCanvas",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2953,7 +2953,7 @@
   },
   {
     "name": "OffscreenCanvasRenderingContext2D",
-    "mdnFilename": "en-US:docs:Web:API:OffscreenCanvasRenderingContext2D.html",
+    "filename": "en-US:docs:Web:API:OffscreenCanvasRenderingContext2D.html",
     "urlPath": "/en-US/docs/Web/API/OffscreenCanvasRenderingContext2D",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2965,7 +2965,7 @@
   },
   {
     "name": "Path2D",
-    "mdnFilename": "en-US:docs:Web:API:Path2D.html",
+    "filename": "en-US:docs:Web:API:Path2D.html",
     "urlPath": "/en-US/docs/Web/API/Path2D",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2977,7 +2977,7 @@
   },
   {
     "name": "TextMetrics",
-    "mdnFilename": "en-US:docs:Web:API:TextMetrics.html",
+    "filename": "en-US:docs:Web:API:TextMetrics.html",
     "urlPath": "/en-US/docs/Web/API/TextMetrics",
     "category": "CanvasAndImage",
     "isDeprecated": false,
@@ -2989,7 +2989,7 @@
   },
   {
     "name": "DataTransfer",
-    "mdnFilename": "en-US:docs:Web:API:DataTransfer.html",
+    "filename": "en-US:docs:Web:API:DataTransfer.html",
     "urlPath": "/en-US/docs/Web/API/DataTransfer",
     "category": "DragDrop",
     "isDeprecated": false,
@@ -3001,7 +3001,7 @@
   },
   {
     "name": "DataTransferItem",
-    "mdnFilename": "en-US:docs:Web:API:DataTransferItem.html",
+    "filename": "en-US:docs:Web:API:DataTransferItem.html",
     "urlPath": "/en-US/docs/Web/API/DataTransferItem",
     "category": "DragDrop",
     "isDeprecated": false,
@@ -3013,7 +3013,7 @@
   },
   {
     "name": "DataTransferItemList",
-    "mdnFilename": "en-US:docs:Web:API:DataTransferItemList.html",
+    "filename": "en-US:docs:Web:API:DataTransferItemList.html",
     "urlPath": "/en-US/docs/Web/API/DataTransferItemList",
     "category": "DragDrop",
     "isDeprecated": false,
@@ -3025,7 +3025,7 @@
   },
   {
     "name": "DragEvent",
-    "mdnFilename": "en-US:docs:Web:API:DragEvent.html",
+    "filename": "en-US:docs:Web:API:DragEvent.html",
     "urlPath": "/en-US/docs/Web/API/DragEvent",
     "category": "DragDrop",
     "isDeprecated": false,
@@ -3037,7 +3037,7 @@
   },
   {
     "name": "HTMLAnchorElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLAnchorElement.html",
+    "filename": "en-US:docs:Web:API:HTMLAnchorElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLAnchorElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3049,7 +3049,7 @@
   },
   {
     "name": "HTMLAreaElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLAreaElement.html",
+    "filename": "en-US:docs:Web:API:HTMLAreaElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLAreaElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3061,7 +3061,7 @@
   },
   {
     "name": "HTMLAudioElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLAudioElement.html",
+    "filename": "en-US:docs:Web:API:HTMLAudioElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLAudioElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3073,7 +3073,7 @@
   },
   {
     "name": "HTMLBRElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLBRElement.html",
+    "filename": "en-US:docs:Web:API:HTMLBRElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLBRElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3085,7 +3085,7 @@
   },
   {
     "name": "HTMLBaseElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLBaseElement.html",
+    "filename": "en-US:docs:Web:API:HTMLBaseElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLBaseElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3097,7 +3097,7 @@
   },
   {
     "name": "HTMLBaseFontElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLBaseFontElement.html",
+    "filename": "en-US:docs:Web:API:HTMLBaseFontElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLBaseFontElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3109,7 +3109,7 @@
   },
   {
     "name": "HTMLBodyElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLBodyElement.html",
+    "filename": "en-US:docs:Web:API:HTMLBodyElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLBodyElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3121,7 +3121,7 @@
   },
   {
     "name": "HTMLButtonElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLButtonElement.html",
+    "filename": "en-US:docs:Web:API:HTMLButtonElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLButtonElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3133,7 +3133,7 @@
   },
   {
     "name": "HTMLCanvasElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLCanvasElement.html",
+    "filename": "en-US:docs:Web:API:HTMLCanvasElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLCanvasElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3145,7 +3145,7 @@
   },
   {
     "name": "HTMLDListElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDListElement.html",
+    "filename": "en-US:docs:Web:API:HTMLDListElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDListElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3157,7 +3157,7 @@
   },
   {
     "name": "HTMLDataElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDataElement.html",
+    "filename": "en-US:docs:Web:API:HTMLDataElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDataElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3169,7 +3169,7 @@
   },
   {
     "name": "HTMLDataListElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDataListElement.html",
+    "filename": "en-US:docs:Web:API:HTMLDataListElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDataListElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3181,7 +3181,7 @@
   },
   {
     "name": "HTMLDetailsElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDetailsElement.html",
+    "filename": "en-US:docs:Web:API:HTMLDetailsElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDetailsElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3193,7 +3193,7 @@
   },
   {
     "name": "HTMLDialogElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDialogElement.html",
+    "filename": "en-US:docs:Web:API:HTMLDialogElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDialogElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3205,7 +3205,7 @@
   },
   {
     "name": "HTMLDirectoryElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDirectoryElement.html",
+    "filename": "en-US:docs:Web:API:HTMLDirectoryElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDirectoryElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3217,7 +3217,7 @@
   },
   {
     "name": "HTMLDivElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDivElement.html",
+    "filename": "en-US:docs:Web:API:HTMLDivElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDivElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3229,7 +3229,7 @@
   },
   {
     "name": "HTMLElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLElement.html",
+    "filename": "en-US:docs:Web:API:HTMLElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3241,7 +3241,7 @@
   },
   {
     "name": "HTMLEmbedElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLEmbedElement.html",
+    "filename": "en-US:docs:Web:API:HTMLEmbedElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLEmbedElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3253,7 +3253,7 @@
   },
   {
     "name": "HTMLFieldSetElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLFieldSetElement.html",
+    "filename": "en-US:docs:Web:API:HTMLFieldSetElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLFieldSetElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3265,7 +3265,7 @@
   },
   {
     "name": "HTMLFontElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLFontElement.html",
+    "filename": "en-US:docs:Web:API:HTMLFontElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLFontElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3277,7 +3277,7 @@
   },
   {
     "name": "HTMLFormElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLFormElement.html",
+    "filename": "en-US:docs:Web:API:HTMLFormElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLFormElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3289,7 +3289,7 @@
   },
   {
     "name": "HTMLFrameElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLFrameElement.html",
+    "filename": "en-US:docs:Web:API:HTMLFrameElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLFrameElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3301,7 +3301,7 @@
   },
   {
     "name": "HTMLFrameSetElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLFrameSetElement.html",
+    "filename": "en-US:docs:Web:API:HTMLFrameSetElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLFrameSetElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3313,7 +3313,7 @@
   },
   {
     "name": "HTMLHRElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLHRElement.html",
+    "filename": "en-US:docs:Web:API:HTMLHRElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLHRElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3325,7 +3325,7 @@
   },
   {
     "name": "HTMLHeadElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLHeadElement.html",
+    "filename": "en-US:docs:Web:API:HTMLHeadElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLHeadElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3337,7 +3337,7 @@
   },
   {
     "name": "HTMLHeadingElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLHeadingElement.html",
+    "filename": "en-US:docs:Web:API:HTMLHeadingElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLHeadingElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3349,7 +3349,7 @@
   },
   {
     "name": "HTMLHtmlElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLHtmlElement.html",
+    "filename": "en-US:docs:Web:API:HTMLHtmlElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLHtmlElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3361,7 +3361,7 @@
   },
   {
     "name": "HTMLIFrameElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLIFrameElement.html",
+    "filename": "en-US:docs:Web:API:HTMLIFrameElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLIFrameElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3373,7 +3373,7 @@
   },
   {
     "name": "HTMLImageElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLImageElement.html",
+    "filename": "en-US:docs:Web:API:HTMLImageElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLImageElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3385,7 +3385,7 @@
   },
   {
     "name": "HTMLInputElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLInputElement.html",
+    "filename": "en-US:docs:Web:API:HTMLInputElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLInputElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3397,7 +3397,7 @@
   },
   {
     "name": "HTMLIsIndexElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLIsIndexElement.html",
+    "filename": "en-US:docs:Web:API:HTMLIsIndexElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLIsIndexElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3409,7 +3409,7 @@
   },
   {
     "name": "HTMLLIElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLLIElement.html",
+    "filename": "en-US:docs:Web:API:HTMLLIElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLLIElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3421,7 +3421,7 @@
   },
   {
     "name": "HTMLLabelElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLLabelElement.html",
+    "filename": "en-US:docs:Web:API:HTMLLabelElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLLabelElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3433,7 +3433,7 @@
   },
   {
     "name": "HTMLLegendElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLLegendElement.html",
+    "filename": "en-US:docs:Web:API:HTMLLegendElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLLegendElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3445,7 +3445,7 @@
   },
   {
     "name": "HTMLLinkElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLLinkElement.html",
+    "filename": "en-US:docs:Web:API:HTMLLinkElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLLinkElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3457,7 +3457,7 @@
   },
   {
     "name": "HTMLMapElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLMapElement.html",
+    "filename": "en-US:docs:Web:API:HTMLMapElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLMapElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3469,7 +3469,7 @@
   },
   {
     "name": "HTMLMarqueeElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLMarqueeElement.html",
+    "filename": "en-US:docs:Web:API:HTMLMarqueeElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLMarqueeElement",
     "category": "HTMLElements",
     "isDeprecated": true,
@@ -3481,7 +3481,7 @@
   },
   {
     "name": "HTMLMediaElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLMediaElement.html",
+    "filename": "en-US:docs:Web:API:HTMLMediaElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLMediaElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3493,7 +3493,7 @@
   },
   {
     "name": "HTMLMenuElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLMenuElement.html",
+    "filename": "en-US:docs:Web:API:HTMLMenuElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLMenuElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3505,7 +3505,7 @@
   },
   {
     "name": "HTMLMenuItemElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLMenuItemElement.html",
+    "filename": "en-US:docs:Web:API:HTMLMenuItemElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLMenuItemElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3517,7 +3517,7 @@
   },
   {
     "name": "HTMLMetaElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLMetaElement.html",
+    "filename": "en-US:docs:Web:API:HTMLMetaElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLMetaElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3529,7 +3529,7 @@
   },
   {
     "name": "HTMLMeterElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLMeterElement.html",
+    "filename": "en-US:docs:Web:API:HTMLMeterElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLMeterElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3541,7 +3541,7 @@
   },
   {
     "name": "HTMLModElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLModElement.html",
+    "filename": "en-US:docs:Web:API:HTMLModElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLModElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3553,7 +3553,7 @@
   },
   {
     "name": "HTMLOListElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLOListElement.html",
+    "filename": "en-US:docs:Web:API:HTMLOListElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLOListElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3565,7 +3565,7 @@
   },
   {
     "name": "HTMLObjectElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLObjectElement.html",
+    "filename": "en-US:docs:Web:API:HTMLObjectElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLObjectElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3577,7 +3577,7 @@
   },
   {
     "name": "HTMLOptGroupElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLOptGroupElement.html",
+    "filename": "en-US:docs:Web:API:HTMLOptGroupElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLOptGroupElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3589,7 +3589,7 @@
   },
   {
     "name": "HTMLOptionElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLOptionElement.html",
+    "filename": "en-US:docs:Web:API:HTMLOptionElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLOptionElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3601,7 +3601,7 @@
   },
   {
     "name": "HTMLOutputElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLOutputElement.html",
+    "filename": "en-US:docs:Web:API:HTMLOutputElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLOutputElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3613,7 +3613,7 @@
   },
   {
     "name": "HTMLParagraphElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLParagraphElement.html",
+    "filename": "en-US:docs:Web:API:HTMLParagraphElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLParagraphElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3625,7 +3625,7 @@
   },
   {
     "name": "HTMLParamElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLParamElement.html",
+    "filename": "en-US:docs:Web:API:HTMLParamElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLParamElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3637,7 +3637,7 @@
   },
   {
     "name": "HTMLPictureElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLPictureElement.html",
+    "filename": "en-US:docs:Web:API:HTMLPictureElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLPictureElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3649,7 +3649,7 @@
   },
   {
     "name": "HTMLPreElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLPreElement.html",
+    "filename": "en-US:docs:Web:API:HTMLPreElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLPreElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3661,7 +3661,7 @@
   },
   {
     "name": "HTMLProgressElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLProgressElement.html",
+    "filename": "en-US:docs:Web:API:HTMLProgressElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLProgressElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3673,7 +3673,7 @@
   },
   {
     "name": "HTMLQuoteElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLQuoteElement.html",
+    "filename": "en-US:docs:Web:API:HTMLQuoteElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLQuoteElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3685,7 +3685,7 @@
   },
   {
     "name": "HTMLScriptElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLScriptElement.html",
+    "filename": "en-US:docs:Web:API:HTMLScriptElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLScriptElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3697,7 +3697,7 @@
   },
   {
     "name": "HTMLSelectElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLSelectElement.html",
+    "filename": "en-US:docs:Web:API:HTMLSelectElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLSelectElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3709,7 +3709,7 @@
   },
   {
     "name": "HTMLSlotElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLSlotElement.html",
+    "filename": "en-US:docs:Web:API:HTMLSlotElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLSlotElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3721,7 +3721,7 @@
   },
   {
     "name": "HTMLSourceElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLSourceElement.html",
+    "filename": "en-US:docs:Web:API:HTMLSourceElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLSourceElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3733,7 +3733,7 @@
   },
   {
     "name": "HTMLSpanElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLSpanElement.html",
+    "filename": "en-US:docs:Web:API:HTMLSpanElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLSpanElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3745,7 +3745,7 @@
   },
   {
     "name": "HTMLStyleElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLStyleElement.html",
+    "filename": "en-US:docs:Web:API:HTMLStyleElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLStyleElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3757,7 +3757,7 @@
   },
   {
     "name": "HTMLTableCaptionElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTableCaptionElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTableCaptionElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTableCaptionElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3769,7 +3769,7 @@
   },
   {
     "name": "HTMLTableCellElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTableCellElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTableCellElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTableCellElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3781,7 +3781,7 @@
   },
   {
     "name": "HTMLTableColElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTableColElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTableColElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTableColElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3793,7 +3793,7 @@
   },
   {
     "name": "HTMLTableElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTableElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTableElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTableElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3805,7 +3805,7 @@
   },
   {
     "name": "HTMLTableRowElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTableRowElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTableRowElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTableRowElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3817,7 +3817,7 @@
   },
   {
     "name": "HTMLTableSectionElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTableSectionElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTableSectionElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTableSectionElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3829,7 +3829,7 @@
   },
   {
     "name": "HTMLTemplateElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTemplateElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTemplateElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTemplateElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3841,7 +3841,7 @@
   },
   {
     "name": "HTMLTextAreaElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTextAreaElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTextAreaElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTextAreaElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3853,7 +3853,7 @@
   },
   {
     "name": "HTMLTimeElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTimeElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTimeElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTimeElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3865,7 +3865,7 @@
   },
   {
     "name": "HTMLTitleElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTitleElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTitleElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTitleElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3877,7 +3877,7 @@
   },
   {
     "name": "HTMLTrackElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLTrackElement.html",
+    "filename": "en-US:docs:Web:API:HTMLTrackElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLTrackElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3889,7 +3889,7 @@
   },
   {
     "name": "HTMLUListElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLUListElement.html",
+    "filename": "en-US:docs:Web:API:HTMLUListElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLUListElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3901,7 +3901,7 @@
   },
   {
     "name": "HTMLUnknownElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLUnknownElement.html",
+    "filename": "en-US:docs:Web:API:HTMLUnknownElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLUnknownElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3913,7 +3913,7 @@
   },
   {
     "name": "HTMLVideoElement",
-    "mdnFilename": "en-US:docs:Web:API:HTMLVideoElement.html",
+    "filename": "en-US:docs:Web:API:HTMLVideoElement.html",
     "urlPath": "/en-US/docs/Web/API/HTMLVideoElement",
     "category": "HTMLElements",
     "isDeprecated": false,
@@ -3925,7 +3925,7 @@
   },
   {
     "name": "FormDataEvent",
-    "mdnFilename": "en-US:docs:Web:API:FormDataEvent.html",
+    "filename": "en-US:docs:Web:API:FormDataEvent.html",
     "urlPath": "/en-US/docs/Web/API/FormDataEvent",
     "category": "FormSupport",
     "isDeprecated": false,
@@ -3937,7 +3937,7 @@
   },
   {
     "name": "HTMLFormControlsCollection",
-    "mdnFilename": "en-US:docs:Web:API:HTMLFormControlsCollection.html",
+    "filename": "en-US:docs:Web:API:HTMLFormControlsCollection.html",
     "urlPath": "/en-US/docs/Web/API/HTMLFormControlsCollection",
     "category": "FormSupport",
     "isDeprecated": false,
@@ -3949,7 +3949,7 @@
   },
   {
     "name": "HTMLOptionsCollection",
-    "mdnFilename": "en-US:docs:Web:API:HTMLOptionsCollection.html",
+    "filename": "en-US:docs:Web:API:HTMLOptionsCollection.html",
     "urlPath": "/en-US/docs/Web/API/HTMLOptionsCollection",
     "category": "FormSupport",
     "isDeprecated": false,
@@ -3961,7 +3961,7 @@
   },
   {
     "name": "RadioNodeList",
-    "mdnFilename": "en-US:docs:Web:API:RadioNodeList.html",
+    "filename": "en-US:docs:Web:API:RadioNodeList.html",
     "urlPath": "/en-US/docs/Web/API/RadioNodeList",
     "category": "FormSupport",
     "isDeprecated": false,
@@ -3973,7 +3973,7 @@
   },
   {
     "name": "ValidityState",
-    "mdnFilename": "en-US:docs:Web:API:ValidityState.html",
+    "filename": "en-US:docs:Web:API:ValidityState.html",
     "urlPath": "/en-US/docs/Web/API/ValidityState",
     "category": "FormSupport",
     "isDeprecated": false,
@@ -3985,7 +3985,7 @@
   },
   {
     "name": "AudioTrack",
-    "mdnFilename": "en-US:docs:Web:API:AudioTrack.html",
+    "filename": "en-US:docs:Web:API:AudioTrack.html",
     "urlPath": "/en-US/docs/Web/API/AudioTrack",
     "category": "Media",
     "isDeprecated": false,
@@ -3997,7 +3997,7 @@
   },
   {
     "name": "AudioTrackList",
-    "mdnFilename": "en-US:docs:Web:API:AudioTrackList.html",
+    "filename": "en-US:docs:Web:API:AudioTrackList.html",
     "urlPath": "/en-US/docs/Web/API/AudioTrackList",
     "category": "Media",
     "isDeprecated": false,
@@ -4009,7 +4009,7 @@
   },
   {
     "name": "MediaError",
-    "mdnFilename": "en-US:docs:Web:API:MediaError.html",
+    "filename": "en-US:docs:Web:API:MediaError.html",
     "urlPath": "/en-US/docs/Web/API/MediaError",
     "category": "Media",
     "isDeprecated": false,
@@ -4021,7 +4021,7 @@
   },
   {
     "name": "TextTrack",
-    "mdnFilename": "en-US:docs:Web:API:TextTrack.html",
+    "filename": "en-US:docs:Web:API:TextTrack.html",
     "urlPath": "/en-US/docs/Web/API/TextTrack",
     "category": "Media",
     "isDeprecated": false,
@@ -4033,7 +4033,7 @@
   },
   {
     "name": "TextTrackCue",
-    "mdnFilename": "en-US:docs:Web:API:TextTrackCue.html",
+    "filename": "en-US:docs:Web:API:TextTrackCue.html",
     "urlPath": "/en-US/docs/Web/API/TextTrackCue",
     "category": "Media",
     "isDeprecated": false,
@@ -4045,7 +4045,7 @@
   },
   {
     "name": "TextTrackCueList",
-    "mdnFilename": "en-US:docs:Web:API:TextTrackCueList.html",
+    "filename": "en-US:docs:Web:API:TextTrackCueList.html",
     "urlPath": "/en-US/docs/Web/API/TextTrackCueList",
     "category": "Media",
     "isDeprecated": false,
@@ -4057,7 +4057,7 @@
   },
   {
     "name": "TextTrackList",
-    "mdnFilename": "en-US:docs:Web:API:TextTrackList.html",
+    "filename": "en-US:docs:Web:API:TextTrackList.html",
     "urlPath": "/en-US/docs/Web/API/TextTrackList",
     "category": "Media",
     "isDeprecated": false,
@@ -4069,7 +4069,7 @@
   },
   {
     "name": "TimeRanges",
-    "mdnFilename": "en-US:docs:Web:API:TimeRanges.html",
+    "filename": "en-US:docs:Web:API:TimeRanges.html",
     "urlPath": "/en-US/docs/Web/API/TimeRanges",
     "category": "Media",
     "isDeprecated": false,
@@ -4081,7 +4081,7 @@
   },
   {
     "name": "TrackEvent",
-    "mdnFilename": "en-US:docs:Web:API:TrackEvent.html",
+    "filename": "en-US:docs:Web:API:TrackEvent.html",
     "urlPath": "/en-US/docs/Web/API/TrackEvent",
     "category": "Media",
     "isDeprecated": false,
@@ -4093,7 +4093,7 @@
   },
   {
     "name": "VideoTrack",
-    "mdnFilename": "en-US:docs:Web:API:VideoTrack.html",
+    "filename": "en-US:docs:Web:API:VideoTrack.html",
     "urlPath": "/en-US/docs/Web/API/VideoTrack",
     "category": "Media",
     "isDeprecated": false,
@@ -4105,7 +4105,7 @@
   },
   {
     "name": "VideoTrackList",
-    "mdnFilename": "en-US:docs:Web:API:VideoTrackList.html",
+    "filename": "en-US:docs:Web:API:VideoTrackList.html",
     "urlPath": "/en-US/docs/Web/API/VideoTrackList",
     "category": "Media",
     "isDeprecated": false,
@@ -4117,7 +4117,7 @@
   },
   {
     "name": "DOMStringList",
-    "mdnFilename": "en-US:docs:Web:API:DOMStringList.html",
+    "filename": "en-US:docs:Web:API:DOMStringList.html",
     "urlPath": "/en-US/docs/Web/API/DOMStringList",
     "category": "Miscellaneous",
     "isDeprecated": false,
@@ -4129,7 +4129,7 @@
   },
   {
     "name": "DOMStringMap",
-    "mdnFilename": "en-US:docs:Web:API:DOMStringMap.html",
+    "filename": "en-US:docs:Web:API:DOMStringMap.html",
     "urlPath": "/en-US/docs/Web/API/DOMStringMap",
     "category": "Miscellaneous",
     "isDeprecated": false,
@@ -4141,7 +4141,7 @@
   },
   {
     "name": "ErrorEvent",
-    "mdnFilename": "en-US:docs:Web:API:ErrorEvent.html",
+    "filename": "en-US:docs:Web:API:ErrorEvent.html",
     "urlPath": "/en-US/docs/Web/API/ErrorEvent",
     "category": "Miscellaneous",
     "isDeprecated": false,
@@ -4153,7 +4153,7 @@
   },
   {
     "name": "HTMLAllCollection",
-    "mdnFilename": "en-US:docs:Web:API:HTMLAllCollection.html",
+    "filename": "en-US:docs:Web:API:HTMLAllCollection.html",
     "urlPath": "/en-US/docs/Web/API/HTMLAllCollection",
     "category": "Miscellaneous",
     "isDeprecated": false,
@@ -4165,7 +4165,7 @@
   },
   {
     "name": "MimeType",
-    "mdnFilename": "en-US:docs:Web:API:MimeType.html",
+    "filename": "en-US:docs:Web:API:MimeType.html",
     "urlPath": "/en-US/docs/Web/API/MimeType",
     "category": "Miscellaneous",
     "isDeprecated": false,
@@ -4177,7 +4177,7 @@
   },
   {
     "name": "MimeTypeArray",
-    "mdnFilename": "en-US:docs:Web:API:MimeTypeArray.html",
+    "filename": "en-US:docs:Web:API:MimeTypeArray.html",
     "urlPath": "/en-US/docs/Web/API/MimeTypeArray",
     "category": "Miscellaneous",
     "isDeprecated": false,
@@ -4189,7 +4189,7 @@
   },
   {
     "name": "PromiseRejectionEvent",
-    "mdnFilename": "en-US:docs:Web:API:PromiseRejectionEvent.html",
+    "filename": "en-US:docs:Web:API:PromiseRejectionEvent.html",
     "urlPath": "/en-US/docs/Web/API/PromiseRejectionEvent",
     "category": "Miscellaneous",
     "isDeprecated": false,
@@ -4201,7 +4201,7 @@
   },
   {
     "name": "BeforeUnloadEvent",
-    "mdnFilename": "en-US:docs:Web:API:BeforeUnloadEvent.html",
+    "filename": "en-US:docs:Web:API:BeforeUnloadEvent.html",
     "urlPath": "/en-US/docs/Web/API/BeforeUnloadEvent",
     "category": "PageHistory",
     "isDeprecated": false,
@@ -4213,7 +4213,7 @@
   },
   {
     "name": "HashChangeEvent",
-    "mdnFilename": "en-US:docs:Web:API:HashChangeEvent.html",
+    "filename": "en-US:docs:Web:API:HashChangeEvent.html",
     "urlPath": "/en-US/docs/Web/API/HashChangeEvent",
     "category": "PageHistory",
     "isDeprecated": false,
@@ -4225,7 +4225,7 @@
   },
   {
     "name": "History",
-    "mdnFilename": "en-US:docs:Web:API:History.html",
+    "filename": "en-US:docs:Web:API:History.html",
     "urlPath": "/en-US/docs/Web/API/History",
     "category": "PageHistory",
     "isDeprecated": false,
@@ -4237,7 +4237,7 @@
   },
   {
     "name": "Location",
-    "mdnFilename": "en-US:docs:Web:API:Location.html",
+    "filename": "en-US:docs:Web:API:Location.html",
     "urlPath": "/en-US/docs/Web/API/Location",
     "category": "PageHistory",
     "isDeprecated": false,
@@ -4249,7 +4249,7 @@
   },
   {
     "name": "PageTransitionEvent",
-    "mdnFilename": "en-US:docs:Web:API:PageTransitionEvent.html",
+    "filename": "en-US:docs:Web:API:PageTransitionEvent.html",
     "urlPath": "/en-US/docs/Web/API/PageTransitionEvent",
     "category": "PageHistory",
     "isDeprecated": false,
@@ -4261,7 +4261,7 @@
   },
   {
     "name": "PopStateEvent",
-    "mdnFilename": "en-US:docs:Web:API:PopStateEvent.html",
+    "filename": "en-US:docs:Web:API:PopStateEvent.html",
     "urlPath": "/en-US/docs/Web/API/PopStateEvent",
     "category": "PageHistory",
     "isDeprecated": false,
@@ -4273,7 +4273,7 @@
   },
   {
     "name": "CustomElementRegistry",
-    "mdnFilename": "en-US:docs:Web:API:CustomElementRegistry.html",
+    "filename": "en-US:docs:Web:API:CustomElementRegistry.html",
     "urlPath": "/en-US/docs/Web/API/CustomElementRegistry",
     "category": "WebComponents",
     "isDeprecated": false,
@@ -4285,7 +4285,7 @@
   },
   {
     "name": "Storage",
-    "mdnFilename": "en-US:docs:Web:API:Storage.html",
+    "filename": "en-US:docs:Web:API:Storage.html",
     "urlPath": "/en-US/docs/Web/API/Storage",
     "category": "ExternalWebStorage",
     "isDeprecated": false,
@@ -4297,7 +4297,7 @@
   },
   {
     "name": "StorageEvent",
-    "mdnFilename": "en-US:docs:Web:API:StorageEvent.html",
+    "filename": "en-US:docs:Web:API:StorageEvent.html",
     "urlPath": "/en-US/docs/Web/API/StorageEvent",
     "category": "ExternalWebStorage",
     "isDeprecated": false,
@@ -4309,7 +4309,7 @@
   },
   {
     "name": "BroadcastChannel",
-    "mdnFilename": "en-US:docs:Web:API:BroadcastChannel.html",
+    "filename": "en-US:docs:Web:API:BroadcastChannel.html",
     "urlPath": "/en-US/docs/Web/API/BroadcastChannel",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4321,7 +4321,7 @@
   },
   {
     "name": "DedicatedWorkerGlobalScope",
-    "mdnFilename": "en-US:docs:Web:API:DedicatedWorkerGlobalScope.html",
+    "filename": "en-US:docs:Web:API:DedicatedWorkerGlobalScope.html",
     "urlPath": "/en-US/docs/Web/API/DedicatedWorkerGlobalScope",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4333,7 +4333,7 @@
   },
   {
     "name": "MessageChannel",
-    "mdnFilename": "en-US:docs:Web:API:MessageChannel.html",
+    "filename": "en-US:docs:Web:API:MessageChannel.html",
     "urlPath": "/en-US/docs/Web/API/MessageChannel",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4345,7 +4345,7 @@
   },
   {
     "name": "MessageEvent",
-    "mdnFilename": "en-US:docs:Web:API:MessageEvent.html",
+    "filename": "en-US:docs:Web:API:MessageEvent.html",
     "urlPath": "/en-US/docs/Web/API/MessageEvent",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4357,7 +4357,7 @@
   },
   {
     "name": "MessagePort",
-    "mdnFilename": "en-US:docs:Web:API:MessagePort.html",
+    "filename": "en-US:docs:Web:API:MessagePort.html",
     "urlPath": "/en-US/docs/Web/API/MessagePort",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4369,7 +4369,7 @@
   },
   {
     "name": "SharedWorker",
-    "mdnFilename": "en-US:docs:Web:API:SharedWorker.html",
+    "filename": "en-US:docs:Web:API:SharedWorker.html",
     "urlPath": "/en-US/docs/Web/API/SharedWorker",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4381,7 +4381,7 @@
   },
   {
     "name": "SharedWorkerGlobalScope",
-    "mdnFilename": "en-US:docs:Web:API:SharedWorkerGlobalScope.html",
+    "filename": "en-US:docs:Web:API:SharedWorkerGlobalScope.html",
     "urlPath": "/en-US/docs/Web/API/SharedWorkerGlobalScope",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4393,7 +4393,7 @@
   },
   {
     "name": "Worker",
-    "mdnFilename": "en-US:docs:Web:API:Worker.html",
+    "filename": "en-US:docs:Web:API:Worker.html",
     "urlPath": "/en-US/docs/Web/API/Worker",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4405,7 +4405,7 @@
   },
   {
     "name": "WorkerGlobalScope",
-    "mdnFilename": "en-US:docs:Web:API:WorkerGlobalScope.html",
+    "filename": "en-US:docs:Web:API:WorkerGlobalScope.html",
     "urlPath": "/en-US/docs/Web/API/WorkerGlobalScope",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4417,7 +4417,7 @@
   },
   {
     "name": "WorkerLocation",
-    "mdnFilename": "en-US:docs:Web:API:WorkerLocation.html",
+    "filename": "en-US:docs:Web:API:WorkerLocation.html",
     "urlPath": "/en-US/docs/Web/API/WorkerLocation",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4428,8 +4428,8 @@
     "sourcedAtPath": "/en-US/docs/Web/API/HTML_DOM_API"
   },
   {
-    "name": "WorkerNavigator",
-    "mdnFilename": "en-US:docs:Web:API:WorkerNavigator .html",
+    "name": "WorkerNavigator ",
+    "filename": "en-US:docs:Web:API:WorkerNavigator .html",
     "urlPath": "/en-US/docs/Web/API/WorkerNavigator ",
     "category": "ExternalWebWorkers",
     "isDeprecated": false,
@@ -4441,7 +4441,7 @@
   },
   {
     "name": "CloseEvent",
-    "mdnFilename": "en-US:docs:Web:API:CloseEvent.html",
+    "filename": "en-US:docs:Web:API:CloseEvent.html",
     "urlPath": "/en-US/docs/Web/API/CloseEvent",
     "category": "ExternalWebSocket",
     "isDeprecated": false,
@@ -4453,7 +4453,7 @@
   },
   {
     "name": "WebSocket",
-    "mdnFilename": "en-US:docs:Web:API:WebSocket.html",
+    "filename": "en-US:docs:Web:API:WebSocket.html",
     "urlPath": "/en-US/docs/Web/API/WebSocket",
     "category": "ExternalWebSocket",
     "isDeprecated": false,
@@ -4465,7 +4465,7 @@
   },
   {
     "name": "EventSource",
-    "mdnFilename": "en-US:docs:Web:API:EventSource.html",
+    "filename": "en-US:docs:Web:API:EventSource.html",
     "urlPath": "/en-US/docs/Web/API/EventSource",
     "category": "ExternalServerSentEvents",
     "isDeprecated": false,
@@ -4477,7 +4477,7 @@
   },
   {
     "name": "DOMRectReadOnly",
-    "mdnFilename": "en-US:docs:Web:API:DOMRectReadOnly.html",
+    "filename": "en-US:docs:Web:API:DOMRectReadOnly.html",
     "urlPath": "/en-US/docs/Web/API/DOMRectReadOnly",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4489,7 +4489,7 @@
   },
   {
     "name": "DOMRect",
-    "mdnFilename": "en-US:docs:Web:API:DOMRect.html",
+    "filename": "en-US:docs:Web:API:DOMRect.html",
     "urlPath": "/en-US/docs/Web/API/DOMRect",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4501,7 +4501,7 @@
   },
   {
     "name": "CSSStyleDeclaration",
-    "mdnFilename": "en-US:docs:Web:API:CSSStyleDeclaration.html",
+    "filename": "en-US:docs:Web:API:CSSStyleDeclaration.html",
     "urlPath": "/en-US/docs/Web/API/CSSStyleDeclaration",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4513,7 +4513,7 @@
   },
   {
     "name": "CSSRule",
-    "mdnFilename": "en-US:docs:Web:API:CSSRule.html",
+    "filename": "en-US:docs:Web:API:CSSRule.html",
     "urlPath": "/en-US/docs/Web/API/CSSRule",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4525,7 +4525,7 @@
   },
   {
     "name": "CSSStyleSheet",
-    "mdnFilename": "en-US:docs:Web:API:CSSStyleSheet.html",
+    "filename": "en-US:docs:Web:API:CSSStyleSheet.html",
     "urlPath": "/en-US/docs/Web/API/CSSStyleSheet",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4537,7 +4537,7 @@
   },
   {
     "name": "CSSRuleList",
-    "mdnFilename": "en-US:docs:Web:API:CSSRuleList.html",
+    "filename": "en-US:docs:Web:API:CSSRuleList.html",
     "urlPath": "/en-US/docs/Web/API/CSSRuleList",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4549,7 +4549,7 @@
   },
   {
     "name": "StyleSheet",
-    "mdnFilename": "en-US:docs:Web:API:StyleSheet.html",
+    "filename": "en-US:docs:Web:API:StyleSheet.html",
     "urlPath": "/en-US/docs/Web/API/StyleSheet",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4561,7 +4561,7 @@
   },
   {
     "name": "MediaList",
-    "mdnFilename": "en-US:docs:Web:API:MediaList.html",
+    "filename": "en-US:docs:Web:API:MediaList.html",
     "urlPath": "/en-US/docs/Web/API/MediaList",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4573,7 +4573,7 @@
   },
   {
     "name": "DOMParser",
-    "mdnFilename": "en-US:docs:Web:API:DOMParser.html",
+    "filename": "en-US:docs:Web:API:DOMParser.html",
     "urlPath": "/en-US/docs/Web/API/DOMParser",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4585,7 +4585,7 @@
   },
   {
     "name": "XMLSerializer",
-    "mdnFilename": "en-US:docs:Web:API:XMLSerializer.html",
+    "filename": "en-US:docs:Web:API:XMLSerializer.html",
     "urlPath": "/en-US/docs/Web/API/XMLSerializer",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4597,7 +4597,7 @@
   },
   {
     "name": "Blob",
-    "mdnFilename": "en-US:docs:Web:API:Blob.html",
+    "filename": "en-US:docs:Web:API:Blob.html",
     "urlPath": "/en-US/docs/Web/API/Blob",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4609,7 +4609,7 @@
   },
   {
     "name": "File",
-    "mdnFilename": "en-US:docs:Web:API:File.html",
+    "filename": "en-US:docs:Web:API:File.html",
     "urlPath": "/en-US/docs/Web/API/File",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4621,7 +4621,7 @@
   },
   {
     "name": "FileList",
-    "mdnFilename": "en-US:docs:Web:API:FileList.html",
+    "filename": "en-US:docs:Web:API:FileList.html",
     "urlPath": "/en-US/docs/Web/API/FileList",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4632,8 +4632,20 @@
     "sourcedAtPath": "/en-US/docs/Web/API"
   },
   {
+    "name": "FontFace",
+    "filename": "en-US:docs:Web:API:FontFace.html",
+    "urlPath": "/en-US/docs/Web/API/FontFace",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": false,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
     "name": "ShadowRoot",
-    "mdnFilename": "en-US:docs:Web:API:ShadowRoot.html",
+    "filename": "en-US:docs:Web:API:ShadowRoot.html",
     "urlPath": "/en-US/docs/Web/API/ShadowRoot",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4645,7 +4657,7 @@
   },
   {
     "name": "AbstractRange",
-    "mdnFilename": "en-US:docs:Web:API:AbstractRange.html",
+    "filename": "en-US:docs:Web:API:AbstractRange.html",
     "urlPath": "/en-US/docs/Web/API/AbstractRange",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4657,7 +4669,7 @@
   },
   {
     "name": "StaticRange",
-    "mdnFilename": "en-US:docs:Web:API:StaticRange.html",
+    "filename": "en-US:docs:Web:API:StaticRange.html",
     "urlPath": "/en-US/docs/Web/API/StaticRange",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4669,7 +4681,7 @@
   },
   {
     "name": "HTMLDocument",
-    "mdnFilename": "en-US:docs:Web:API:HTMLDocument.html",
+    "filename": "en-US:docs:Web:API:HTMLDocument.html",
     "urlPath": "/en-US/docs/Web/API/HTMLDocument",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4681,7 +4693,7 @@
   },
   {
     "name": "EventListener",
-    "mdnFilename": "en-US:docs:Web:API:EventListener.html",
+    "filename": "en-US:docs:Web:API:EventListener.html",
     "urlPath": "/en-US/docs/Web/API/EventListener",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4693,7 +4705,7 @@
   },
   {
     "name": "DocumentOrShadowRoot",
-    "mdnFilename": "en-US:docs:Web:API:DocumentOrShadowRoot.html",
+    "filename": "en-US:docs:Web:API:DocumentOrShadowRoot.html",
     "urlPath": "/en-US/docs/Web/API/DocumentOrShadowRoot",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4705,7 +4717,7 @@
   },
   {
     "name": "GlobalEventHandlers",
-    "mdnFilename": "en-US:docs:Web:API:GlobalEventHandlers.html",
+    "filename": "en-US:docs:Web:API:GlobalEventHandlers.html",
     "urlPath": "/en-US/docs/Web/API/GlobalEventHandlers",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4717,7 +4729,7 @@
   },
   {
     "name": "HTMLHyperlinkElementUtils",
-    "mdnFilename": "en-US:docs:Web:API:HTMLHyperlinkElementUtils.html",
+    "filename": "en-US:docs:Web:API:HTMLHyperlinkElementUtils.html",
     "urlPath": "/en-US/docs/Web/API/HTMLHyperlinkElementUtils",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4729,7 +4741,7 @@
   },
   {
     "name": "LinkStyle",
-    "mdnFilename": "en-US:docs:Web:API:LinkStyle.html",
+    "filename": "en-US:docs:Web:API:LinkStyle.html",
     "urlPath": "/en-US/docs/Web/API/LinkStyle",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4741,7 +4753,7 @@
   },
   {
     "name": "Slotable",
-    "mdnFilename": "en-US:docs:Web:API:Slotable.html",
+    "filename": "en-US:docs:Web:API:Slotable.html",
     "urlPath": "/en-US/docs/Web/API/Slotable",
     "category": "CherryPicked",
     "isDeprecated": false,
@@ -4753,7 +4765,7 @@
   },
   {
     "name": "WindowEventHandlers",
-    "mdnFilename": "en-US:docs:Web:API:WindowEventHandlers.html",
+    "filename": "en-US:docs:Web:API:WindowEventHandlers.html",
     "urlPath": "/en-US/docs/Web/API/WindowEventHandlers",
     "category": "CherryPicked",
     "isDeprecated": false,

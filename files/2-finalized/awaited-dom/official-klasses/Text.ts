@@ -17,7 +17,7 @@ export default class Text extends TextBase implements IText {
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createText(awaitedPath: AwaitedPath, awaitedOptions: any): Text {
+export function createText<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IText {
   const instance = new Text();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

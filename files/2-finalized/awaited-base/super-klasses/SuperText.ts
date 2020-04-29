@@ -1,17 +1,23 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import { ISuperText } from '../interfaces/super';
-import { IText } from '../interfaces/official';
+import { ICharacterData, INode, IText } from '../interfaces/official';
+import { ICharacterDataProperties, CharacterDataPropertyKeys, CharacterDataConstantKeys } from '../official-klasses/CharacterData';
+import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperText, ISuperTextProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperText>('SuperText', getState, setState);
 
-export function SuperTextGenerator() {
-  return class SuperText implements ISuperText {
+export function SuperTextGenerator(CharacterData: Constructable<ICharacterData>, Node: Constructable<INode>) {
+  const Parent = (ClassMixer(CharacterData, [Node]) as unknown) as Constructable<ICharacterData & INode>;
+
+  return class SuperText extends Parent implements ISuperText {
     constructor(_data?: string) {
+      super();
       initialize(SuperText, this);
     }
 
@@ -31,13 +37,13 @@ export function SuperTextGenerator() {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperTextProperties {
+export interface ISuperTextProperties extends ICharacterDataProperties, INodeProperties {
   readonly wholeText?: Promise<string>;
 }
 
-export const SuperTextPropertyKeys = ['wholeText'];
+export const SuperTextPropertyKeys = [...CharacterDataPropertyKeys, ...NodePropertyKeys, 'wholeText'];
 
-export const SuperTextConstantKeys = [];
+export const SuperTextConstantKeys = [...CharacterDataConstantKeys, ...NodeConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

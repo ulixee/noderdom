@@ -2,6 +2,7 @@ import TsBuildInterfacesBasic from './TsBuildInterfacesBasic';
 import TsElementExtractor from './TsElementExtractor';
 import Components from './Components';
 import { compareName } from './utils';
+import * as Path from 'path';
 import * as Types from './Types';
 import TsBuildMixin from './TsBuildMixin';
 import TsInterfaceExtractor from './TsInterfaceExtractor';
@@ -272,6 +273,32 @@ export default class TsBuilder {
       delete codeModule.tsBuildMixin;
       return codeModule;
     });
+  }
+
+  public extractCreateDocumentForNode() {
+    const { objectMetaByName, pathsByBuildType } = this;
+    const printable: string[] = [];
+    const currentDir = pathsByBuildType.impl.root;
+    const baseDir = Path.relative(currentDir, pathsByBuildType.base.root);
+    const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };
+    const tsImporter = new TsImporter(tsImporterOptions);
+
+    printable.push(`import AwaitedPath from '${baseDir}/AwaitedPath';`);
+    printable.push(tsImporter.extractAll(['Document'], BuildType.base, ObjectStruct.interface));
+    printable.push(tsImporter.extractSingle('Document', null, ['setState'], BuildType.base, ObjectStruct.class));
+    printable.push('');
+    printable.push('// tslint:disable-next-line:variable-name');
+    printable.push('let Document: any;');
+    printable.push('');
+    printable.push(
+      'export default function createDocument<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDocument {',
+    );
+    printable.push("  const instance = new (Document = Document || require('./Document'))();");
+    printable.push('  setState(instance, { awaitedPath, awaitedOptions });');
+    printable.push('  return instance;');
+    printable.push('}');
+
+    return printable.join('\n');
   }
 
   private extractImportCodeModule(

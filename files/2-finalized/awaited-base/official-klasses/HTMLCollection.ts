@@ -16,8 +16,8 @@ export function HTMLCollectionGenerator() {
 
     // methods
 
-    public namedItem(name: string): IElement {
-      throw new Error('HTMLCollection.namedItem not implemented');
+    public namedItem(name: string): Promise<IElement | null> {
+      return awaitedHandler.runMethod<IElement | null>(this, 'namedItem', [name]);
     }
   };
 }

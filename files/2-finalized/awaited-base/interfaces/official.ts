@@ -2,7 +2,7 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions, IFontFaceLoadStatus, IGetRootNodeOptions } from './basic';
+import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './basic';
 
 // Attr //////////
 
@@ -14,15 +14,6 @@ export interface IAttr extends INode {
   readonly prefix: Promise<string | null>;
   readonly specified: Promise<boolean>;
   readonly value: Promise<string>;
-}
-
-// CSSStyleValue //////////
-
-export interface ICSSStyleValue {
-  toString(): Promise<string>;
-
-  // static parse(property: string, cssText: string): Promise<ICSSStyleValue>
-  // static parseAll(property: string, cssText: string): Promise<Iterable<ICSSStyleValue>>
 }
 
 // CharacterData //////////
@@ -56,7 +47,7 @@ export interface IDOMTokenList {}
 
 // Document //////////
 
-export interface IDocument extends INode {
+export interface IDocument extends INode, IParentNode {
   readonly URL: Promise<string>;
   readonly anchors: IHTMLCollection;
   readonly body: IHTMLElement;
@@ -82,7 +73,7 @@ export interface IDocument extends INode {
   readonly links: IHTMLCollection;
   readonly location: ILocation;
   readonly plugins: IHTMLCollection;
-  readonly readyState: IDocumentReadyState;
+  readonly readyState: Promise<IDocumentReadyState>;
   readonly referrer: Promise<string>;
   readonly scripts: IHTMLCollection;
   readonly scrollingElement: IElement;
@@ -91,10 +82,10 @@ export interface IDocument extends INode {
 
   exitFullscreen(): Promise<Promise<void>>;
   exitPointerLock(): Promise<void>;
-  getElementsByClassName(classNames: string): IHTMLCollection;
-  getElementsByName(elementName: string): INodeList;
-  getElementsByTagName(qualifiedName: string): IHTMLCollection;
-  getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection;
+  getElementsByClassName(classNames: string): Promise<IHTMLCollection>;
+  getElementsByName(elementName: string): Promise<INodeList>;
+  getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection>;
+  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection>;
   hasFocus(): Promise<boolean>;
 }
 
@@ -108,7 +99,7 @@ export interface IDocumentType extends INode {
 
 // Element //////////
 
-export interface IElement extends INode {
+export interface IElement extends INode, IParentNode {
   readonly attributes: INamedNodeMap;
   readonly classList: IDOMTokenList;
   readonly className: Promise<string>;
@@ -131,17 +122,17 @@ export interface IElement extends INode {
   readonly slot: Promise<string>;
   readonly tagName: Promise<string>;
 
-  closest(selectors: string): IElement;
+  closest(selectors: string): Promise<IElement | null>;
   getAttribute(qualifiedName: string): Promise<string | null>;
   getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
   getAttributeNames(): Promise<Iterable<string>>;
-  getAttributeNode(qualifiedName: string): IAttr;
-  getAttributeNodeNS(namespace: string | null, localName: string): IAttr;
-  getBoundingClientRect(): IDOMRect;
-  getClientRects(): IDOMRectList;
-  getElementsByClassName(classNames: string): IHTMLCollection;
-  getElementsByTagName(qualifiedName: string): IHTMLCollection;
-  getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection;
+  getAttributeNode(qualifiedName: string): Promise<IAttr | null>;
+  getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null>;
+  getBoundingClientRect(): Promise<IDOMRect>;
+  getClientRects(): Promise<IDOMRectList>;
+  getElementsByClassName(classNames: string): Promise<IHTMLCollection>;
+  getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection>;
+  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection>;
   hasAttribute(qualifiedName: string): Promise<boolean>;
   hasAttributeNS(namespace: string | null, localName: string): Promise<boolean>;
   hasAttributes(): Promise<boolean>;
@@ -156,30 +147,10 @@ export interface IElement extends INode {
 
 export interface IFeaturePolicy {}
 
-// FontFace //////////
-
-export interface IFontFace {
-  // constructor(family: string, source: string | IBinaryData, descriptors?: IFontFaceDescriptors)
-
-  display: Promise<string> | any;
-  family: Promise<string> | any;
-  featureSettings: Promise<string> | any;
-  readonly loaded: Promise<Promise<IFontFace>>;
-  readonly status: Promise<IFontFaceLoadStatus>;
-  stretch: Promise<string> | any;
-  style: Promise<string> | any;
-  unicodeRange: Promise<string> | any;
-  variant: Promise<string> | any;
-  variationSettings: Promise<string> | any;
-  weight: Promise<string> | any;
-
-  load(): Promise<Promise<IFontFace>>;
-}
-
 // HTMLCollection //////////
 
 export interface IHTMLCollection {
-  namedItem(name: string): IElement;
+  namedItem(name: string): Promise<IElement | null>;
 }
 
 // Location //////////
@@ -206,9 +177,9 @@ export interface ILocation {
 export interface INamedNodeMap {
   readonly length: Promise<number>;
 
-  getNamedItem(qualifiedName: string): IAttr;
-  getNamedItemNS(namespace: string | null, localName: string): IAttr;
-  item(index: number): IAttr;
+  getNamedItem(qualifiedName: string): Promise<IAttr | null>;
+  getNamedItemNS(namespace: string | null, localName: string): Promise<IAttr | null>;
+  item(index: number): Promise<IAttr | null>;
 
   [Symbol.iterator](): IterableIterator<IAttr>;
 }
@@ -252,7 +223,7 @@ export interface INode {
 
   compareDocumentPosition(other: INode): Promise<number>;
   contains(other: INode | null): Promise<boolean>;
-  getRootNode(options?: IGetRootNodeOptions): INode;
+  getRootNode(options?: IGetRootNodeOptions): Promise<INode>;
   hasChildNodes(): Promise<boolean>;
   isDefaultNamespace(namespace: string | null): Promise<boolean>;
   isEqualNode(otherNode: INode | null): Promise<boolean>;
@@ -267,13 +238,23 @@ export interface INode {
 export interface INodeList {
   readonly length: Promise<number>;
 
-  item(index: number): INode;
+  item(index: number): Promise<INode | null>;
 
   forEach(callbackfn: (value: INode, key: number, parent: INodeList) => void, thisArg?: any): void;
   entries(): IterableIterator<[number, INode]>;
   keys(): IterableIterator<number>;
   values(): IterableIterator<INode>;
   [Symbol.iterator](): IterableIterator<INode>;
+}
+
+// ParentNode //////////
+
+export interface IParentNode {
+  readonly childElementCount: Promise<number>;
+  readonly firstElementChild: IElement;
+  readonly lastElementChild: IElement;
+
+  querySelector(selectors: string): IElement;
 }
 
 // ShadowRoot //////////

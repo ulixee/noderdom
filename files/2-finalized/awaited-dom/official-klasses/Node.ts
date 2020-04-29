@@ -1,11 +1,10 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { INode, INodeList, IDocument, IElement } from '../../awaited-base/interfaces/official';
-import { IGetRootNodeOptions } from '../../awaited-base/interfaces/basic';
 import { NodeGenerator, initialize, INodeProperties } from '../../awaited-base/official-klasses/Node';
 import { createNodeList } from './NodeList';
-import { createDocument } from './Document';
 import { createElement } from './Element';
+import createDocument from '../createDocumentForNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INode, INodeProperties>();
@@ -58,18 +57,11 @@ export default class Node extends NodeBase implements INode {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
   }
-
-  // methods
-
-  public getRootNode(options?: IGetRootNodeOptions): INode {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createNode(awaitedPath.addMethod('getRootNode', [options]), awaitedOptions);
-  }
 }
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createNode(awaitedPath: AwaitedPath, awaitedOptions: any): Node {
+export function createNode<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): INode {
   const instance = new Node();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

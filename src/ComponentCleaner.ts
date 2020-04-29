@@ -67,12 +67,18 @@ export default class ComponentCleaner {
     if (!this.componentFiltersPath) return;
     const componentFilters: IComponentFilters = JSON.parse(Fs.readFileSync(this.componentFiltersPath, 'utf-8'));
 
-    Object.keys(this.components.interfaces).forEach(name => {
-      const i = this.components.interfaces[name];
+    const callbackInterfaceNames = Object.keys(this.components.callbackInterfaces);
+    const interfacesNames = Object.keys(this.components.interfaces);
+    const mixinNames = Object.keys(this.components.mixins);
+    const names = [...callbackInterfaceNames, ...interfacesNames, ...mixinNames];
+    names.forEach(name => {
+      const i = this.components.allInterfacesMap[name];
       const componentFilter: IComponentFilter = componentFilters[name];
 
-      if (!componentFilter) return;
-      if (!componentFilter.isEnabled) {
+      if (!componentFilter) {
+        console.log(`${name} IS MISSING from Component Filters`);
+      }
+      if (!componentFilter || !componentFilter.isEnabled) {
         delete this.components.interfaces[name];
         delete this.components.callbackInterfaces[name];
         delete this.components.mixins[name];

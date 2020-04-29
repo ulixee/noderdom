@@ -95,8 +95,8 @@ export default class ElementIsolate implements IElementIsolate {
 
   // methods
 
-  public closest(selectors: string): IElement {
-    throw new Error('ElementIsolate.closest not implemented');
+  public closest(selectors: string): Promise<IElement | null> {
+    return awaitedHandler.runMethod<IElement | null>(this, 'closest', [selectors]);
   }
 
   public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -111,32 +111,32 @@ export default class ElementIsolate implements IElementIsolate {
     return awaitedHandler.runMethod<Iterable<string>>(this, 'getAttributeNames', []);
   }
 
-  public getAttributeNode(qualifiedName: string): IAttr {
-    throw new Error('ElementIsolate.getAttributeNode not implemented');
+  public getAttributeNode(qualifiedName: string): Promise<IAttr | null> {
+    return awaitedHandler.runMethod<IAttr | null>(this, 'getAttributeNode', [qualifiedName]);
   }
 
-  public getAttributeNodeNS(namespace: string | null, localName: string): IAttr {
-    throw new Error('ElementIsolate.getAttributeNodeNS not implemented');
+  public getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null> {
+    return awaitedHandler.runMethod<IAttr | null>(this, 'getAttributeNodeNS', [namespace, localName]);
   }
 
-  public getBoundingClientRect(): IDOMRect {
-    throw new Error('ElementIsolate.getBoundingClientRect not implemented');
+  public getBoundingClientRect(): Promise<IDOMRect> {
+    return awaitedHandler.runMethod<IDOMRect>(this, 'getBoundingClientRect', []);
   }
 
-  public getClientRects(): IDOMRectList {
-    throw new Error('ElementIsolate.getClientRects not implemented');
+  public getClientRects(): Promise<IDOMRectList> {
+    return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
   }
 
-  public getElementsByClassName(classNames: string): IHTMLCollection {
-    throw new Error('ElementIsolate.getElementsByClassName not implemented');
+  public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
+    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
   }
 
-  public getElementsByTagName(qualifiedName: string): IHTMLCollection {
-    throw new Error('ElementIsolate.getElementsByTagName not implemented');
+  public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
+    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection {
-    throw new Error('ElementIsolate.getElementsByTagNameNS not implemented');
+  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
+    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
   }
 
   public hasAttribute(qualifiedName: string): Promise<boolean> {

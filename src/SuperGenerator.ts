@@ -23,20 +23,34 @@ export default class SuperGenerator {
     this.baseNames.forEach(baseName => {
       const superName = `Super${baseName}`;
       const inheritsFrom = dependencyCollector.get(baseName);
+      // console.log('--------------------------------');
+      // console.log(baseName);
+      // console.log(inheritsFrom);
       if (!components.allInterfacesMap[baseName]) return;
       const superInterface = Object.assign({}, components.allInterfacesMap[baseName], { name: superName });
       delete superInterface.extends;
 
-      superInterface.implements = inheritsFrom.map(n => {
-        const isolateName = `${n}Isolate`;
-        const isolateInterface = Object.assign({}, components.allInterfacesMap[n], { name: isolateName });
+      superInterface.implements = [];
+
+      inheritsFrom.officialKlasses.forEach(name => {
+        superInterface.implements!.push(name);
+      });
+
+      inheritsFrom.officialMixins.forEach(name => {
+        superInterface.implements!.push(name);
+      });
+
+      inheritsFrom.isolateMixins.forEach(name => {
+        const isolateName = `${name}Isolate`;
+        const isolateInterface = Object.assign({}, components.allInterfacesMap[name], { name: isolateName });
 
         isolateInterface.properties = Object.assign({}, isolateInterface.properties);
         isolateInterface.methods = Object.assign({}, isolateInterface.methods);
 
         components.awaitedIsolates[isolateName] = isolateInterface;
-        return isolateName;
+        superInterface.implements!.push(isolateName);
       });
+
       components.awaitedSupers[superName] = superInterface;
     });
 

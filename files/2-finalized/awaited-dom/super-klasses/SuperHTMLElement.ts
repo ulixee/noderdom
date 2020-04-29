@@ -3,12 +3,13 @@ import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { ISuperHTMLElement } from '../../awaited-base/interfaces/super';
 import { IElement } from '../../awaited-base/interfaces/official';
 import { SuperHTMLElementGenerator, initialize, ISuperHTMLElementProperties } from '../../awaited-base/super-klasses/SuperHTMLElement';
-import { createElement } from '../official-klasses/Element';
-import HTMLHeadElementIsolate from './HTMLHeadElementIsolate';
+import Element, { createElement } from '../official-klasses/Element';
+import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
+import Node from '../official-klasses/Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
-const SuperHTMLElementBase = SuperHTMLElementGenerator(HTMLHeadElementIsolate);
+const SuperHTMLElementBase = SuperHTMLElementGenerator(Element, HTMLHeadElementIsolate, Node);
 
 export default class SuperHTMLElement extends SuperHTMLElementBase implements ISuperHTMLElement {
   constructor() {
@@ -26,7 +27,7 @@ export default class SuperHTMLElement extends SuperHTMLElementBase implements IS
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createSuperHTMLElement(awaitedPath: AwaitedPath, awaitedOptions: any): SuperHTMLElement {
+export function createSuperHTMLElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperHTMLElement {
   const instance = new SuperHTMLElement();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

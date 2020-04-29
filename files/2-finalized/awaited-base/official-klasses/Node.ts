@@ -120,8 +120,8 @@ export function NodeGenerator() {
       return awaitedHandler.runMethod<boolean>(this, 'contains', [other]);
     }
 
-    public getRootNode(options?: IGetRootNodeOptions): INode {
-      throw new Error('Node.getRootNode not implemented');
+    public getRootNode(options?: IGetRootNodeOptions): Promise<INode> {
+      return awaitedHandler.runMethod<INode>(this, 'getRootNode', [options]);
     }
 
     public hasChildNodes(): Promise<boolean> {

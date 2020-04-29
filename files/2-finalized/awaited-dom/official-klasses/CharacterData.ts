@@ -17,7 +17,7 @@ export default class CharacterData extends CharacterDataBase implements ICharact
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createCharacterData(awaitedPath: AwaitedPath, awaitedOptions: any): CharacterData {
+export function createCharacterData<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ICharacterData {
   const instance = new CharacterData();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

@@ -16,7 +16,7 @@ export default class DOMTokenList extends DOMTokenListBase implements IDOMTokenL
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createDOMTokenList(awaitedPath: AwaitedPath, awaitedOptions: any): DOMTokenList {
+export function createDOMTokenList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMTokenList {
   const instance = new DOMTokenList();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

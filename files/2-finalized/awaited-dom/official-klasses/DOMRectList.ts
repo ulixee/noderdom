@@ -16,7 +16,7 @@ export default class DOMRectList extends DOMRectListBase implements IDOMRectList
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createDOMRectList(awaitedPath: AwaitedPath, awaitedOptions: any): DOMRectList {
+export function createDOMRectList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMRectList {
   const instance = new DOMRectList();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

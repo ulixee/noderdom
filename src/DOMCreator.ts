@@ -68,16 +68,16 @@ export default class DOMCreator {
     const elementMap = [DOMCreator.outputIntro, tsBuilder.extractElementInterfaces().join('\n\n')];
     Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.element}.ts`, elementMap.join(''));
 
-    const tsClasses = tsBuilder.extractOfficialKlasses();
-    tsClasses.forEach(c => {
-      const classOutputPath = Path.join(pathsByBuildType.base.officialKlasses, `${c.name}.ts`);
-      Fs.writeFileSync(classOutputPath, `${c.code}\n`);
-    });
-
     const tsMixins = tsBuilder.extractOfficialMixins();
     tsMixins.forEach(c => {
       const mixinOutputPath = Path.join(pathsByBuildType.base.officialMixins, `${c.name}.ts`);
       Fs.writeFileSync(mixinOutputPath, `${c.code}\n`);
+    });
+
+    const tsClasses = tsBuilder.extractOfficialKlasses();
+    tsClasses.forEach(c => {
+      const classOutputPath = Path.join(pathsByBuildType.base.officialKlasses, `${c.name}.ts`);
+      Fs.writeFileSync(classOutputPath, `${c.code}\n`);
     });
 
     Exports.moveToDir(pathsByBuildType.base.root);
@@ -121,21 +121,24 @@ export default class DOMCreator {
     const tsBuilderOptions = { domType, buildType: BuildType.impl, pathsByBuildType, objectMetaByName };
     const tsBuilder = new TsBuilder(this.components, tsBuilderOptions);
 
-    const typescriptClasses = tsBuilder.extractOfficialKlasses();
-    typescriptClasses.forEach(c => {
-      const classOutputPath = Path.join(pathsByBuildType.impl.officialKlasses, `${c.name}.ts`);
-      Fs.writeFileSync(classOutputPath, `${c.code}\n`);
-    });
-
     const typescriptMixins = tsBuilder.extractOfficialMixins();
     typescriptMixins.forEach(c => {
       const mixinOutputPath = Path.join(pathsByBuildType.impl.officialMixins, `${c.name}.ts`);
       Fs.writeFileSync(mixinOutputPath, `${c.code}\n`);
     });
 
+    const typescriptClasses = tsBuilder.extractOfficialKlasses();
+    typescriptClasses.forEach(c => {
+      const classOutputPath = Path.join(pathsByBuildType.impl.officialKlasses, `${c.name}.ts`);
+      Fs.writeFileSync(classOutputPath, `${c.code}\n`);
+    });
+
     if (domType === DomType.awaited) {
       this.createImplIsolates(tsBuilder);
       this.createImplSupers(tsBuilder);
+
+      const code = tsBuilder.extractCreateDocumentForNode();
+      Fs.writeFileSync(`${pathsByBuildType.impl.root}/createDocumentForNode.ts`, `${code}\n`);
     }
   }
 

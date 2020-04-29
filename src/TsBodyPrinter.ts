@@ -268,7 +268,7 @@ export default class TsBodyPrinter {
           const returnClass = returnType.replace(/^I([A-Z])/, '$1');
           this.printer.printLine(`const { awaitedPath, awaitedOptions } = getState(this);`);
           this.printer.printLine(
-            `return create${returnClass}(awaitedPath.addMethod('${method.name}', [${argNames}]), awaitedOptions);`,
+            `return create${returnClass}(awaitedPath.addMethod('${method.name}', ${argNames}), awaitedOptions);`,
           );
           this.referencedCreateMethods.add(returnClass);
         } else {

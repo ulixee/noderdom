@@ -16,7 +16,7 @@ export default class FeaturePolicy extends FeaturePolicyBase implements IFeature
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createFeaturePolicy(awaitedPath: AwaitedPath, awaitedOptions: any): FeaturePolicy {
+export function createFeaturePolicy<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFeaturePolicy {
   const instance = new FeaturePolicy();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

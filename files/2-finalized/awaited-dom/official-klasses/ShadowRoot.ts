@@ -16,7 +16,7 @@ export default class ShadowRoot extends ShadowRootBase implements IShadowRoot {
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createShadowRoot(awaitedPath: AwaitedPath, awaitedOptions: any): ShadowRoot {
+export function createShadowRoot<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IShadowRoot {
   const instance = new ShadowRoot();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

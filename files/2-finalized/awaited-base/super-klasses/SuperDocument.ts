@@ -1,18 +1,24 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import { ISuperDocument } from '../interfaces/super';
-import { IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList } from '../interfaces/official';
+import { INode, IParentNode, IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList } from '../interfaces/official';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
+import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
+import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
 
-export function SuperDocumentGenerator() {
-  return class SuperDocument implements ISuperDocument {
+export function SuperDocumentGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
+  const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
+
+  return class SuperDocument extends Parent implements ISuperDocument {
     constructor() {
+      super();
       initialize(SuperDocument, this);
     }
 
@@ -118,8 +124,8 @@ export function SuperDocumentGenerator() {
       throw new Error('SuperDocument.plugins getter not implemented');
     }
 
-    public get readyState(): IDocumentReadyState {
-      throw new Error('SuperDocument.readyState getter not implemented');
+    public get readyState(): Promise<IDocumentReadyState> {
+      return awaitedHandler.getProperty<IDocumentReadyState>(this, 'readyState', false);
     }
 
     public get referrer(): Promise<string> {
@@ -152,20 +158,20 @@ export function SuperDocumentGenerator() {
       return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
     }
 
-    public getElementsByClassName(classNames: string): IHTMLCollection {
-      throw new Error('SuperDocument.getElementsByClassName not implemented');
+    public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
     }
 
-    public getElementsByName(elementName: string): INodeList {
-      throw new Error('SuperDocument.getElementsByName not implemented');
+    public getElementsByName(elementName: string): Promise<INodeList> {
+      return awaitedHandler.runMethod<INodeList>(this, 'getElementsByName', [elementName]);
     }
 
-    public getElementsByTagName(qualifiedName: string): IHTMLCollection {
-      throw new Error('SuperDocument.getElementsByTagName not implemented');
+    public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection {
-      throw new Error('SuperDocument.getElementsByTagNameNS not implemented');
+    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
     }
 
     public hasFocus(): Promise<boolean> {
@@ -176,7 +182,7 @@ export function SuperDocumentGenerator() {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperDocumentProperties {
+export interface ISuperDocumentProperties extends INodeProperties, IParentNodeProperties {
   readonly URL?: Promise<string>;
   readonly anchors?: IHTMLCollection;
   readonly body?: IHTMLElement;
@@ -202,7 +208,7 @@ export interface ISuperDocumentProperties {
   readonly links?: IHTMLCollection;
   readonly location?: ILocation;
   readonly plugins?: IHTMLCollection;
-  readonly readyState?: IDocumentReadyState;
+  readonly readyState?: Promise<IDocumentReadyState>;
   readonly referrer?: Promise<string>;
   readonly scripts?: IHTMLCollection;
   readonly scrollingElement?: IElement;
@@ -210,9 +216,9 @@ export interface ISuperDocumentProperties {
   readonly visibilityState?: Promise<IVisibilityState>;
 }
 
-export const SuperDocumentPropertyKeys = ['URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+export const SuperDocumentPropertyKeys = [...NodePropertyKeys, ...ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
 
-export const SuperDocumentConstantKeys = [];
+export const SuperDocumentConstantKeys = [...NodeConstantKeys, ...ParentNodeConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

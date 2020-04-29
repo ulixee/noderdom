@@ -16,7 +16,7 @@ export default class SuperStyleSheet extends SuperStyleSheetBase implements ISup
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createSuperStyleSheet(awaitedPath: AwaitedPath, awaitedOptions: any): SuperStyleSheet {
+export function createSuperStyleSheet<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperStyleSheet {
   const instance = new SuperStyleSheet();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

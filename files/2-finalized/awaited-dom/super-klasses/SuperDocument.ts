@@ -1,8 +1,7 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { ISuperDocument } from '../../awaited-base/interfaces/super';
-import { IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList } from '../../awaited-base/interfaces/official';
-import { IDocumentReadyState } from '../../awaited-base/interfaces/basic';
+import { IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../awaited-base/interfaces/official';
 import { SuperDocumentGenerator, initialize, ISuperDocumentProperties } from '../../awaited-base/super-klasses/SuperDocument';
 import { createHTMLCollection } from '../official-klasses/HTMLCollection';
 import { createHTMLElement } from '../official-klasses/HTMLElement';
@@ -12,11 +11,12 @@ import { createFeaturePolicy } from '../official-klasses/FeaturePolicy';
 import { createHTMLHeadElement } from '../official-klasses/HTMLHeadElement';
 import { createDOMImplementation } from '../official-klasses/DOMImplementation';
 import { createLocation } from '../official-klasses/Location';
-import { createNodeList } from '../official-klasses/NodeList';
+import Node from '../official-klasses/Node';
+import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
-const SuperDocumentBase = SuperDocumentGenerator();
+const SuperDocumentBase = SuperDocumentGenerator(Node, ParentNode);
 
 export default class SuperDocument extends SuperDocumentBase implements ISuperDocument {
   constructor() {
@@ -91,11 +91,6 @@ export default class SuperDocument extends SuperDocumentBase implements ISuperDo
     return createHTMLCollection(awaitedPath.addProperty('plugins'), awaitedOptions);
   }
 
-  public get readyState(): IDocumentReadyState {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createDocumentReadyState(awaitedPath.addProperty('readyState'), awaitedOptions);
-  }
-
   public get scripts(): IHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createHTMLCollection(awaitedPath.addProperty('scripts'), awaitedOptions);
@@ -105,33 +100,11 @@ export default class SuperDocument extends SuperDocumentBase implements ISuperDo
     const { awaitedPath, awaitedOptions } = getState(this);
     return createElement(awaitedPath.addProperty('scrollingElement'), awaitedOptions);
   }
-
-  // methods
-
-  public getElementsByClassName(classNames: string): IHTMLCollection {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLCollection(awaitedPath.addMethod('getElementsByClassName', [classNames]), awaitedOptions);
-  }
-
-  public getElementsByName(elementName: string): INodeList {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createNodeList(awaitedPath.addMethod('getElementsByName', [elementName]), awaitedOptions);
-  }
-
-  public getElementsByTagName(qualifiedName: string): IHTMLCollection {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLCollection(awaitedPath.addMethod('getElementsByTagName', [qualifiedName]), awaitedOptions);
-  }
-
-  public getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLCollection(awaitedPath.addMethod('getElementsByTagNameNS', [namespace, localName]), awaitedOptions);
-  }
 }
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createSuperDocument(awaitedPath: AwaitedPath, awaitedOptions: any): SuperDocument {
+export function createSuperDocument<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperDocument {
   const instance = new SuperDocument();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

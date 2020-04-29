@@ -1,9 +1,7 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
-import { IElement } from '../../awaited-base/interfaces/official';
 import { SuperHTMLCollectionGenerator, initialize, ISuperHTMLCollectionProperties } from '../../awaited-base/super-klasses/SuperHTMLCollection';
-import { createElement } from '../official-klasses/Element';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
@@ -14,18 +12,11 @@ export default class SuperHTMLCollection extends SuperHTMLCollectionBase impleme
     super();
     initialize(SuperHTMLCollection, this);
   }
-
-  // methods
-
-  public namedItem(name: string): IElement {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addMethod('namedItem', [name]), awaitedOptions);
-  }
 }
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createSuperHTMLCollection(awaitedPath: AwaitedPath, awaitedOptions: any): SuperHTMLCollection {
+export function createSuperHTMLCollection<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperHTMLCollection {
   const instance = new SuperHTMLCollection();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

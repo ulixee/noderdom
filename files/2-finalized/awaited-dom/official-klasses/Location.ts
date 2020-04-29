@@ -16,7 +16,7 @@ export default class Location extends LocationBase implements ILocation {
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createLocation(awaitedPath: AwaitedPath, awaitedOptions: any): Location {
+export function createLocation<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ILocation {
   const instance = new Location();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

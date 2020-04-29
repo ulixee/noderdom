@@ -16,7 +16,7 @@ export default class DOMImplementation extends DOMImplementationBase implements 
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createDOMImplementation(awaitedPath: AwaitedPath, awaitedOptions: any): DOMImplementation {
+export function createDOMImplementation<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMImplementation {
   const instance = new DOMImplementation();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

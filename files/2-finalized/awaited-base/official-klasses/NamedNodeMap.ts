@@ -22,16 +22,16 @@ export function NamedNodeMapGenerator() {
 
     // methods
 
-    public getNamedItem(qualifiedName: string): IAttr {
-      throw new Error('NamedNodeMap.getNamedItem not implemented');
+    public getNamedItem(qualifiedName: string): Promise<IAttr | null> {
+      return awaitedHandler.runMethod<IAttr | null>(this, 'getNamedItem', [qualifiedName]);
     }
 
-    public getNamedItemNS(namespace: string | null, localName: string): IAttr {
-      throw new Error('NamedNodeMap.getNamedItemNS not implemented');
+    public getNamedItemNS(namespace: string | null, localName: string): Promise<IAttr | null> {
+      return awaitedHandler.runMethod<IAttr | null>(this, 'getNamedItemNS', [namespace, localName]);
     }
 
-    public item(index: number): IAttr {
-      throw new Error('NamedNodeMap.item not implemented');
+    public item(index: number): Promise<IAttr | null> {
+      return awaitedHandler.runMethod<IAttr | null>(this, 'item', [index]);
     }
 
     public [Symbol.iterator](): IterableIterator<IAttr> {

@@ -17,7 +17,7 @@ export default class HTMLHeadElement extends HTMLHeadElementBase implements IHTM
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createHTMLHeadElement(awaitedPath: AwaitedPath, awaitedOptions: any): HTMLHeadElement {
+export function createHTMLHeadElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLHeadElement {
   const instance = new HTMLHeadElement();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

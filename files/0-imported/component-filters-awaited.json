@@ -194,8 +194,7 @@
         "isAbstract": true
       },
       "readyState": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "referrer": {
         "isEnabled": true
@@ -271,20 +270,16 @@
         "isEnabled": true
       },
       "getElementsByClassName": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getElementsByName": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getElementsByTagName": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getElementsByTagNameNS": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getSelection": {
         "isEnabled": false
@@ -484,12 +479,10 @@
         "isEnabled": false
       },
       "closest": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "computedStyleMap": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": false
       },
       "getAttribute": {
         "isEnabled": true
@@ -501,32 +494,25 @@
         "isEnabled": true
       },
       "getAttributeNode": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getAttributeNodeNS": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getBoundingClientRect": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getClientRects": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getElementsByClassName": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getElementsByTagName": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getElementsByTagNameNS": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "hasAttribute": {
         "isEnabled": true
@@ -541,8 +527,7 @@
         "isEnabled": true
       },
       "insertAdjacentElement": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": false
       },
       "insertAdjacentHTML": {
         "isEnabled": false
@@ -590,8 +575,7 @@
         "isEnabled": false
       },
       "setAttributeNode": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": false
       },
       "setAttributeNodeNS": {
         "isEnabled": false
@@ -623,12 +607,10 @@
     },
     "methodsByName": {
       "namedItem": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "item": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       }
     }
   },
@@ -641,16 +623,13 @@
     },
     "methodsByName": {
       "getNamedItem": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "getNamedItemNS": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "item": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "removeNamedItem": {
         "isEnabled": false
@@ -734,8 +713,7 @@
         "isEnabled": true
       },
       "getRootNode": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "hasChildNodes": {
         "isEnabled": true
@@ -788,8 +766,7 @@
     },
     "methodsByName": {
       "item": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "entries": {
         "isEnabled": true
@@ -811,9 +788,39 @@
     "methodsByName": {}
   },
   "ParentNode": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "childElementCount": {
+        "isEnabled": true
+      },
+      "children": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "firstElementChild": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "lastElementChild": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
+    "methodsByName": {
+      "append": {
+        "isEnabled": false
+      },
+      "prepend": {
+        "isEnabled": false
+      },
+      "querySelector": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "querySelectorAll": {
+        "isEnabled": false
+      }
+    }
   },
   "ProcessingInstruction": {
     "isEnabled": false,

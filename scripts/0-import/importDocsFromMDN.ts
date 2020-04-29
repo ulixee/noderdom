@@ -1,3 +1,5 @@
+#!/usr/bin/env ts-node
+
 import * as Fs from 'fs';
 import * as Path from 'path';
 import Axios from 'axios';

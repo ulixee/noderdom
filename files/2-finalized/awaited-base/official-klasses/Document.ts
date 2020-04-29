@@ -1,17 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { IDocument, INode, IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList } from '../interfaces/official';
+import { IDocument, INode, IParentNode, IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList } from '../interfaces/official';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
+import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocument>('Document', getState, setState);
 
-export function DocumentGenerator(Node: Constructable<INode>) {
-  return class Document extends Node implements IDocument {
+export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
+  const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
+
+  return class Document extends Parent implements IDocument {
     constructor() {
       super();
       initialize(Document, this);
@@ -119,8 +123,8 @@ export function DocumentGenerator(Node: Constructable<INode>) {
       throw new Error('Document.plugins getter not implemented');
     }
 
-    public get readyState(): IDocumentReadyState {
-      throw new Error('Document.readyState getter not implemented');
+    public get readyState(): Promise<IDocumentReadyState> {
+      return awaitedHandler.getProperty<IDocumentReadyState>(this, 'readyState', false);
     }
 
     public get referrer(): Promise<string> {
@@ -153,20 +157,20 @@ export function DocumentGenerator(Node: Constructable<INode>) {
       return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
     }
 
-    public getElementsByClassName(classNames: string): IHTMLCollection {
-      throw new Error('Document.getElementsByClassName not implemented');
+    public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
     }
 
-    public getElementsByName(elementName: string): INodeList {
-      throw new Error('Document.getElementsByName not implemented');
+    public getElementsByName(elementName: string): Promise<INodeList> {
+      return awaitedHandler.runMethod<INodeList>(this, 'getElementsByName', [elementName]);
     }
 
-    public getElementsByTagName(qualifiedName: string): IHTMLCollection {
-      throw new Error('Document.getElementsByTagName not implemented');
+    public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection {
-      throw new Error('Document.getElementsByTagNameNS not implemented');
+    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
     }
 
     public hasFocus(): Promise<boolean> {
@@ -177,7 +181,7 @@ export function DocumentGenerator(Node: Constructable<INode>) {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IDocumentProperties extends INodeProperties {
+export interface IDocumentProperties extends INodeProperties, IParentNodeProperties {
   readonly URL?: Promise<string>;
   readonly anchors?: IHTMLCollection;
   readonly body?: IHTMLElement;
@@ -203,7 +207,7 @@ export interface IDocumentProperties extends INodeProperties {
   readonly links?: IHTMLCollection;
   readonly location?: ILocation;
   readonly plugins?: IHTMLCollection;
-  readonly readyState?: IDocumentReadyState;
+  readonly readyState?: Promise<IDocumentReadyState>;
   readonly referrer?: Promise<string>;
   readonly scripts?: IHTMLCollection;
   readonly scrollingElement?: IElement;
@@ -211,9 +215,9 @@ export interface IDocumentProperties extends INodeProperties {
   readonly visibilityState?: Promise<IVisibilityState>;
 }
 
-export const DocumentPropertyKeys = [...NodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+export const DocumentPropertyKeys = [...NodePropertyKeys, ...ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
 
-export const DocumentConstantKeys = [...NodeConstantKeys];
+export const DocumentConstantKeys = [...NodeConstantKeys, ...ParentNodeConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

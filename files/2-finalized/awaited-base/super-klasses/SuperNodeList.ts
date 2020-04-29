@@ -23,8 +23,8 @@ export function SuperNodeListGenerator() {
 
     // methods
 
-    public item(index: number): INode {
-      throw new Error('SuperNodeList.item not implemented');
+    public item(index: number): Promise<INode | null> {
+      return awaitedHandler.runMethod<INode | null>(this, 'item', [index]);
     }
 
     public forEach(callbackfn: (value: INode, key: number, parent: ISuperNodeList) => void, thisArg?: any): void {

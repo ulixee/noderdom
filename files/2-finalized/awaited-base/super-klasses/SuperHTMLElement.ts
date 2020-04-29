@@ -1,18 +1,23 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import { ISuperHTMLElement } from '../interfaces/super';
+import { IElement, INode } from '../interfaces/official';
 import { IHTMLHeadElementIsolate } from '../interfaces/isolate';
-import { IElement } from '../interfaces/official';
+import { IElementProperties, ElementPropertyKeys, ElementConstantKeys } from '../official-klasses/Element';
 import { IHTMLHeadElementIsolateProperties, HTMLHeadElementIsolatePropertyKeys, HTMLHeadElementIsolateConstantKeys } from '../isolate-mixins/HTMLHeadElementIsolate';
+import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperHTMLElement>('SuperHTMLElement', getState, setState);
 
-export function SuperHTMLElementGenerator(HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>) {
-  return class SuperHTMLElement extends HTMLHeadElementIsolate implements ISuperHTMLElement {
+export function SuperHTMLElementGenerator(Element: Constructable<IElement>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, Node: Constructable<INode>) {
+  const Parent = (ClassMixer(Element, [HTMLHeadElementIsolate, Node]) as unknown) as Constructable<IElement & IHTMLHeadElementIsolate & INode>;
+
+  return class SuperHTMLElement extends Parent implements ISuperHTMLElement {
     constructor() {
       super();
       initialize(SuperHTMLElement, this);
@@ -94,7 +99,7 @@ export function SuperHTMLElementGenerator(HTMLHeadElementIsolate: Constructable<
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperHTMLElementProperties extends IHTMLHeadElementIsolateProperties {
+export interface ISuperHTMLElementProperties extends IElementProperties, IHTMLHeadElementIsolateProperties, INodeProperties {
   readonly accessKey?: Promise<string>;
   readonly autoCapitalize?: Promise<string>;
   readonly dir?: Promise<string>;
@@ -113,9 +118,9 @@ export interface ISuperHTMLElementProperties extends IHTMLHeadElementIsolateProp
   readonly translate?: Promise<boolean>;
 }
 
-export const SuperHTMLElementPropertyKeys = [...HTMLHeadElementIsolatePropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
+export const SuperHTMLElementPropertyKeys = [...ElementPropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...NodePropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
 
-export const SuperHTMLElementConstantKeys = [...HTMLHeadElementIsolateConstantKeys];
+export const SuperHTMLElementConstantKeys = [...ElementConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...NodeConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

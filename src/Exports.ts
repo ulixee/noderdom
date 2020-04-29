@@ -1,7 +1,7 @@
 import * as Path from 'path';
 import * as Fs from 'fs';
 
-const srcDir = Path.join(__dirname, './exports');
+const srcDir = Path.join(__dirname, './exports-for-base');
 
 export default class Exports {
   public static moveToDir(dir: string) {

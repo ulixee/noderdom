@@ -16,7 +16,7 @@ export default class StyleSheet extends StyleSheetBase implements IStyleSheet {
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createStyleSheet(awaitedPath: AwaitedPath, awaitedOptions: any): StyleSheet {
+export function createStyleSheet<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IStyleSheet {
   const instance = new StyleSheet();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

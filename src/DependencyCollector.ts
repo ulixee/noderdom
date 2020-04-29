@@ -13,14 +13,15 @@ interface ICodeDependenciesByName {
 }
 
 export default class DependencyCollector {
-  private readonly dependenciesByName: ICodeDependenciesByName = {};
+  private readonly isolateMixinsByName: ICodeDependenciesByName = {};
+  private readonly officialMixinsByName: ICodeDependenciesByName = {};
+  private readonly officialKlassesByName: ICodeDependenciesByName = {};
 
   constructor(components: Components, domType: IDomType) {
-    const typescriptExtractor = new TsBuilder(components, { domType, buildType: BuildType.base });
-    const interfaceClasses: { [name: string]: ICodeModule } = {};
-    typescriptExtractor.extractOfficialInterfaces().forEach(m => (interfaceClasses[m.name] = m));
+    const tsBuilder = new TsBuilder(components, { domType, buildType: BuildType.base });
+    const codeModulesByName: ICodeModulesByName = {};
+    tsBuilder.extractOfficialInterfaces().forEach(m => (codeModulesByName[m.name] = m));
 
-    const codeModulesByName: ICodeModulesByName = interfaceClasses; // Object.assign({}, basicTypes, interfaceClasses);
     for (const codeModule of Object.values(codeModulesByName)) {
       for (const defined of codeModule.definedObjects) {
         codeModulesByName[defined] = codeModule;
@@ -29,43 +30,81 @@ export default class DependencyCollector {
     delete codeModulesByName.Import;
 
     for (const codeModule of Object.values(codeModulesByName)) {
-      findDependencies(codeModule, components, this.dependenciesByName);
+      findIsolateMixins(codeModule, components, this.isolateMixinsByName);
+      findOfficialMixins(codeModule, components, this.officialMixinsByName);
+      findOfficialKlasses(codeModule, components, this.officialKlassesByName);
     }
   }
 
   public get(name: string) {
-    return collectAllDependencies(this.dependenciesByName, name);
+    return {
+      isolateMixins: this.collectAll(this.isolateMixinsByName, name),
+      officialMixins: this.collectAll(this.officialMixinsByName, name),
+      officialKlasses: this.collectAll(this.officialKlassesByName, name),
+    };
+  }
+
+  private collectAll(byName: ICodeDependenciesByName, name: string): string[] {
+    const names: string[] = [];
+    if (!byName[name]) return names;
+    for (const n of byName[name]) {
+      names.push(n);
+      names.push(...this.collectAll(byName, n));
+    }
+    return names;
   }
 }
 
-function collectAllDependencies(dependenciesByName: ICodeDependenciesByName, name: string): string[] {
-  const dependencies: string[] = [];
-  if (!dependenciesByName[name]) return dependencies;
-  for (const n of dependenciesByName[name]) {
-    dependencies.push(n);
-    dependencies.push(...collectAllDependencies(dependenciesByName, n));
-  }
-  return dependencies;
-}
-
-function findDependencies(
+function findIsolateMixins(
   codeModule: ICodeModule,
   components: Components,
-  dependenciesByName: ICodeDependenciesByName,
+  isolateMixinsByName: ICodeDependenciesByName,
 ) {
   const inter = components.allInterfacesMap[codeModule.name];
   if (inter.extends && inter.extends !== 'Object') {
     const name = inter.extends;
-    getDependencies(dependenciesByName, name).add(codeModule.name);
+    getByName(isolateMixinsByName, name).add(codeModule.name);
   }
   if (inter.implements) {
     for (const name of inter.implements) {
       if (components.mixins[name]) continue;
-      getDependencies(dependenciesByName, name).add(codeModule.name);
+      getByName(isolateMixinsByName, name).add(codeModule.name);
     }
   }
 }
 
-function getDependencies(dependenciesByName: ICodeDependenciesByName, name: string) {
-  return (dependenciesByName[name] = dependenciesByName[name] || new Set());
+function findOfficialMixins(
+  codeModule: ICodeModule,
+  components: Components,
+  officialMixinsByName: ICodeDependenciesByName,
+) {
+  const inter = components.allInterfacesMap[codeModule.name];
+  if (inter.implements) {
+    for (const name of inter.implements) {
+      if (!components.mixins[name]) continue;
+      getByName(officialMixinsByName, codeModule.name).add(name);
+    }
+  }
+}
+
+function findOfficialKlasses(
+  codeModule: ICodeModule,
+  components: Components,
+  officialKlassesByName: ICodeDependenciesByName,
+) {
+  const inter = components.allInterfacesMap[codeModule.name];
+  if (inter.extends && inter.extends !== 'Object') {
+    const name = inter.extends;
+    getByName(officialKlassesByName, codeModule.name).add(name);
+  }
+  if (inter.implements) {
+    for (const name of inter.implements) {
+      if (components.mixins[name]) continue;
+      getByName(officialKlassesByName, codeModule.name).add(name);
+    }
+  }
+}
+
+function getByName(mixinsByName: ICodeDependenciesByName, name: string) {
+  return (mixinsByName[name] = mixinsByName[name] || new Set());
 }

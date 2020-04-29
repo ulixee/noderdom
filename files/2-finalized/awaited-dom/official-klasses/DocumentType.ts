@@ -17,7 +17,7 @@ export default class DocumentType extends DocumentTypeBase implements IDocumentT
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createDocumentType(awaitedPath: AwaitedPath, awaitedOptions: any): DocumentType {
+export function createDocumentType<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDocumentType {
   const instance = new DocumentType();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

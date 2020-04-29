@@ -2,8 +2,7 @@ import StateMachine from '../../awaited-base/StateMachine';
 import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { IHTMLElement, IElement } from '../../awaited-base/interfaces/official';
 import { HTMLElementGenerator, initialize, IHTMLElementProperties } from '../../awaited-base/official-klasses/HTMLElement';
-import { createElement } from './Element';
-import Element from './Element';
+import Element, { createElement } from './Element';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
@@ -25,7 +24,7 @@ export default class HTMLElement extends HTMLElementBase implements IHTMLElement
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createHTMLElement(awaitedPath: AwaitedPath, awaitedOptions: any): HTMLElement {
+export function createHTMLElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLElement {
   const instance = new HTMLElement();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

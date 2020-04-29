@@ -77,7 +77,7 @@
                   ul.toggle
                     li(@click="toggleItem($event, property)" :id="`${property.name}:false`" :class="{ selected: !property.meta.isEnabled }") off
                     li(@click="toggleItem($event, property)" :id="`${property.name}:true`" :class="{ selected: property.meta.isEnabled && !property.meta.isAbstract }") on
-                    li(@click="toggleItem($event, property)" :id="`${property.name}:local`" :class="{ selected: property.meta.isEnabled && property.meta.isAbstract }") abstract
+                    li(@click="toggleItem($event, property)" :id="`${property.name}:abstract`" :class="{ selected: property.meta.isEnabled && property.meta.isAbstract }") abstract
                   template(v-if="!property.isReadonly")
                     input(type="checkbox" :id="`${property.name}:writable`" v-model="property.meta.isWritable" @click="toggleItem($event, property)")
                     label(:for="`${property.name}:writable`" :class="{ selected: property.meta.isWritable }") writable
@@ -102,7 +102,7 @@
                   ul.toggle
                     li(@click="toggleItem($event, method)" :id="`${method.name}:false`" :class="{ selected: !method.meta.isEnabled }") off
                     li(@click="toggleItem($event, method)" :id="`${method.name}:true`" :class="{ selected: method.meta.isEnabled && !method.meta.isAbstract }") on
-                    li(@click="toggleItem($event, method)" :id="`${method.name}:local`" :class="{ selected: method.meta.isEnabled && method.meta.isAbstract }") abstract
+                    li(@click="toggleItem($event, method)" :id="`${method.name}:abstract`" :class="{ selected: method.meta.isEnabled && method.meta.isAbstract }") abstract
                   a.hide(@click="toggleHideItem(method)" :class="{ hidden: method.meta.isHidden }")
                     i(class="material-icons") remove_red_eye
 </template>
@@ -206,7 +206,8 @@
         } else if (type === 'writable') {
           item.meta.isWritable = !item.meta.isWritable;
         }
-        if (type === 'local') {
+        if (type === 'abstract') {
+          item.meta.isEnabled = true;
           item.meta.isAbstract = true;
         } else if (item.meta.hasOwnProperty('isAbstract')) {
           item.meta.isAbstract = false;

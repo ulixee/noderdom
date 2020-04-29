@@ -1,17 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { IElement, INode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IHTMLCollection } from '../interfaces/official';
+import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IHTMLCollection } from '../interfaces/official';
 import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
+import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
 
-export function ElementGenerator(Node: Constructable<INode>) {
-  return class Element extends Node implements IElement {
+export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
+  const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
+
+  return class Element extends Parent implements IElement {
     constructor() {
       super();
       initialize(Element, this);
@@ -105,8 +109,8 @@ export function ElementGenerator(Node: Constructable<INode>) {
 
     // methods
 
-    public closest(selectors: string): IElement {
-      throw new Error('Element.closest not implemented');
+    public closest(selectors: string): Promise<IElement | null> {
+      return awaitedHandler.runMethod<IElement | null>(this, 'closest', [selectors]);
     }
 
     public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -121,32 +125,32 @@ export function ElementGenerator(Node: Constructable<INode>) {
       return awaitedHandler.runMethod<Iterable<string>>(this, 'getAttributeNames', []);
     }
 
-    public getAttributeNode(qualifiedName: string): IAttr {
-      throw new Error('Element.getAttributeNode not implemented');
+    public getAttributeNode(qualifiedName: string): Promise<IAttr | null> {
+      return awaitedHandler.runMethod<IAttr | null>(this, 'getAttributeNode', [qualifiedName]);
     }
 
-    public getAttributeNodeNS(namespace: string | null, localName: string): IAttr {
-      throw new Error('Element.getAttributeNodeNS not implemented');
+    public getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null> {
+      return awaitedHandler.runMethod<IAttr | null>(this, 'getAttributeNodeNS', [namespace, localName]);
     }
 
-    public getBoundingClientRect(): IDOMRect {
-      throw new Error('Element.getBoundingClientRect not implemented');
+    public getBoundingClientRect(): Promise<IDOMRect> {
+      return awaitedHandler.runMethod<IDOMRect>(this, 'getBoundingClientRect', []);
     }
 
-    public getClientRects(): IDOMRectList {
-      throw new Error('Element.getClientRects not implemented');
+    public getClientRects(): Promise<IDOMRectList> {
+      return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
     }
 
-    public getElementsByClassName(classNames: string): IHTMLCollection {
-      throw new Error('Element.getElementsByClassName not implemented');
+    public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
     }
 
-    public getElementsByTagName(qualifiedName: string): IHTMLCollection {
-      throw new Error('Element.getElementsByTagName not implemented');
+    public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection {
-      throw new Error('Element.getElementsByTagNameNS not implemented');
+    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
+      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
     }
 
     public hasAttribute(qualifiedName: string): Promise<boolean> {
@@ -185,7 +189,7 @@ export function ElementGenerator(Node: Constructable<INode>) {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IElementProperties extends INodeProperties {
+export interface IElementProperties extends INodeProperties, IParentNodeProperties {
   readonly attributes?: INamedNodeMap;
   readonly classList?: IDOMTokenList;
   readonly className?: Promise<string>;
@@ -209,9 +213,9 @@ export interface IElementProperties extends INodeProperties {
   readonly tagName?: Promise<string>;
 }
 
-export const ElementPropertyKeys = [...NodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
+export const ElementPropertyKeys = [...NodePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
 
-export const ElementConstantKeys = [...NodeConstantKeys];
+export const ElementConstantKeys = [...NodeConstantKeys, ...ParentNodeConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

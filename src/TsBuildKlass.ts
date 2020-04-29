@@ -124,7 +124,9 @@ export default class TsBuildKlass {
     const className = getNameWithTypeParameter(i.typeParameters, i.name, false);
     const typeParameterName = i.typeParameters && i.typeParameters[0] && i.typeParameters[0].name;
     const iClassName = typeParameterName ? `${toIType(i.name)}<${typeParameterName}>` : toIType(i.name);
-    this.printer.printLine(`export default class ${className} extends ${i.name}Base implements ${iClassName} {`);
+    this.printer.printLine(
+      `export default class ${className} extends ${i.name}Base implements ${iClassName} {`,
+    );
   }
 
   private printStateMachineInterfaces() {
@@ -153,7 +155,7 @@ export default class TsBuildKlass {
     this.printer.printSeparatorLine('\n// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////');
     this.printer.printLine();
     this.printer.printLine(
-      `export function create${i.name}(awaitedPath: AwaitedPath, awaitedOptions: any): ${i.name} {`,
+      `export function create${i.name}<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): I${i.name} {`,
     );
     this.printer.increaseIndent();
     this.printer.printLine(`const instance = new ${i.name}();`);
@@ -209,11 +211,12 @@ export default class TsBuildKlass {
     const references: string[] = [i.name, ...this.inheritsFrom, ...this.bodyPrinter.referencedObjects];
     printable.push(tsImporter.extractAll(references, BuildType.base, ObjectStruct.interface));
 
-    for (const name of this.inheritsFrom) {
+    this.inheritsFrom.forEach(name => {
       const objectsToImport = [`I${name}Properties`, `${name}PropertyKeys`, `${name}ConstantKeys`];
       const importCode = tsImporter.extractSingle(name, null, objectsToImport, BuildType.base, ObjectStruct.class);
       if (importCode) printable.push(importCode);
-    }
+    });
+
     printable.push('');
 
     return printable.join('\n');
@@ -222,6 +225,7 @@ export default class TsBuildKlass {
   private importsForImpl() {
     const i: Types.Interface = this.i;
     const baseDir = Path.relative(this.currentDir, this.pathsByBuildType.base.root) || '.';
+    const implDir = Path.relative(this.currentDir, this.pathsByBuildType.impl.root) || '.';
     const printable: string[] = [];
 
     printable.push(`import StateMachine from '${baseDir}/StateMachine';`);
@@ -239,13 +243,20 @@ export default class TsBuildKlass {
     printable.push(tsImporter.extractSingle(i.name, null, baseProps, BuildType.base, ObjectStruct.class));
 
     this.bodyPrinter.referencedCreateMethods.forEach(name => {
-      if (name === i.name) return;
-      const imports = tsImporter.extractSingle(name, null, [`create${name}`], BuildType.impl, ObjectStruct.class);
+      if (i.name === name || (i.name === 'Node' && name === 'Document')) return;
+      const dName = this.inheritsFrom.includes(name) ? name : null;
+      const imports = tsImporter.extractSingle(name, dName, [`create${name}`], BuildType.impl, ObjectStruct.class);
       if (imports) printable.push(imports);
     });
 
-    this.inheritsFrom.forEach(inheritedName => {
-      printable.push(`import ${inheritedName} from './${inheritedName}';`);
+    if (i.name === 'Node') {
+      printable.push(`import createDocument from '${implDir}/createDocumentForNode';`);
+    }
+
+    this.inheritsFrom.forEach(name => {
+      if (this.bodyPrinter.referencedCreateMethods.has(name)) return;
+      const importCode = tsImporter.extractSingle(name, name, [], BuildType.impl, ObjectStruct.class);
+      if (importCode) printable.push(importCode);
     });
 
     printable.push('');

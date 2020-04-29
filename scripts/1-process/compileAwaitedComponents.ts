@@ -44,15 +44,15 @@ function resolveConflicts(superInterfaces: Types.Interface[], components: Compon
     let hasMultipleDefinitions = false;
     const definitionsByName: { [name: string]: IDefinition[] } = {};
 
-    for (const isolateName of superInterface.implements!) {
-      const isolateInterface = components.awaitedIsolates[isolateName];
+    for (const name of superInterface.implements!) {
+      const i = components.awaitedIsolates[name] || components.mixins[name] || components.interfaces[name];
       const printer = new Printer();
       const bodyPrinterOptions = {
         domType: DomType.standard,
         skipImplementation: true,
       };
-      const tsBodyPrinter = new TsBodyPrinter(isolateInterface, printer, components, bodyPrinterOptions);
-      const records = Object.values(isolateInterface[type === 'property' ? 'properties' : 'methods'] || {});
+      const tsBodyPrinter = new TsBodyPrinter(i, printer, components, bodyPrinterOptions);
+      const records = Object.values(i[type === 'property' ? 'properties' : 'methods'] || {});
 
       for (const record of records) {
         printer.reset();
@@ -64,7 +64,7 @@ function resolveConflicts(superInterfaces: Types.Interface[], components: Compon
 
         const value = printer.getResult().trim();
         definitionsByName[record.name] = definitionsByName[record.name] || [];
-        definitionsByName[record.name].push({ klass: isolateName, name: record.name, value: value });
+        definitionsByName[record.name].push({ klass: name, name: record.name, value: value });
         if (Object.keys(definitionsByName[record.name]).length > 1) hasMultipleDefinitions = true;
       }
     }

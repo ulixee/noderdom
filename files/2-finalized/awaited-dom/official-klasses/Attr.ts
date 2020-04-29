@@ -25,7 +25,7 @@ export default class Attr extends AttrBase implements IAttr {
 
 // FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
 
-export function createAttr(awaitedPath: AwaitedPath, awaitedOptions: any): Attr {
+export function createAttr<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IAttr {
   const instance = new Attr();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;

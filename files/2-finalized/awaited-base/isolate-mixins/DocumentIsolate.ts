@@ -109,8 +109,8 @@ export default class DocumentIsolate implements IDocumentIsolate {
     throw new Error('DocumentIsolate.plugins getter not implemented');
   }
 
-  public get readyState(): IDocumentReadyState {
-    throw new Error('DocumentIsolate.readyState getter not implemented');
+  public get readyState(): Promise<IDocumentReadyState> {
+    return awaitedHandler.getProperty<IDocumentReadyState>(this, 'readyState', false);
   }
 
   public get referrer(): Promise<string> {
@@ -143,20 +143,20 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
   }
 
-  public getElementsByClassName(classNames: string): IHTMLCollection {
-    throw new Error('DocumentIsolate.getElementsByClassName not implemented');
+  public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
+    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
   }
 
-  public getElementsByName(elementName: string): INodeList {
-    throw new Error('DocumentIsolate.getElementsByName not implemented');
+  public getElementsByName(elementName: string): Promise<INodeList> {
+    return awaitedHandler.runMethod<INodeList>(this, 'getElementsByName', [elementName]);
   }
 
-  public getElementsByTagName(qualifiedName: string): IHTMLCollection {
-    throw new Error('DocumentIsolate.getElementsByTagName not implemented');
+  public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
+    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): IHTMLCollection {
-    throw new Error('DocumentIsolate.getElementsByTagNameNS not implemented');
+  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
+    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
   }
 
   public hasFocus(): Promise<boolean> {
@@ -192,7 +192,7 @@ export interface IDocumentIsolateProperties {
   readonly links?: IHTMLCollection;
   readonly location?: ILocation;
   readonly plugins?: IHTMLCollection;
-  readonly readyState?: IDocumentReadyState;
+  readonly readyState?: Promise<IDocumentReadyState>;
   readonly referrer?: Promise<string>;
   readonly scripts?: IHTMLCollection;
   readonly scrollingElement?: IElement;
