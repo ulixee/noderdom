@@ -2,7 +2,7 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { IElement, IText, IHTMLCollection, IHTMLElement, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from './official';
+import { IText, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLCollection, INodeList, INamedNodeMap, IDOMTokenList, IShadowRoot, IElement, IAttr, IDOMRect, IDOMRectList } from './official';
 import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions } from './basic';
 
 // AttrIsolate //////////
@@ -11,7 +11,7 @@ export interface IAttrIsolate {
   readonly localName: Promise<string>;
   readonly name: Promise<string>;
   readonly namespaceURI: Promise<string | null>;
-  readonly ownerElement: IElement;
+  readonly ownerElement: ISuperElement;
   readonly prefix: Promise<string | null>;
   readonly specified: Promise<boolean>;
   readonly value: Promise<string>;
@@ -40,8 +40,8 @@ export interface ITextIsolate {
 
 export interface IDocumentIsolate {
   readonly URL: Promise<string>;
-  readonly anchors: IHTMLCollection;
-  readonly body: IHTMLElement;
+  readonly anchors: ISuperHTMLCollection;
+  readonly body: ISuperHTMLElement;
   readonly characterSet: Promise<string>;
   readonly compatMode: Promise<string>;
   readonly contentType: Promise<string>;
@@ -49,25 +49,25 @@ export interface IDocumentIsolate {
   readonly designMode: Promise<string>;
   readonly dir: Promise<string>;
   readonly doctype: IDocumentType;
-  readonly documentElement: IElement;
+  readonly documentElement: ISuperElement;
   readonly documentURI: Promise<string>;
   readonly domain: Promise<string>;
-  readonly embeds: IHTMLCollection;
+  readonly embeds: ISuperHTMLCollection;
   readonly featurePolicy: IFeaturePolicy;
-  readonly forms: IHTMLCollection;
+  readonly forms: ISuperHTMLCollection;
   readonly fullscreenEnabled: Promise<boolean>;
   readonly head: IHTMLHeadElement;
   readonly hidden: Promise<boolean>;
-  readonly images: IHTMLCollection;
+  readonly images: ISuperHTMLCollection;
   readonly implementation: IDOMImplementation;
   readonly lastModified: Promise<string>;
-  readonly links: IHTMLCollection;
+  readonly links: ISuperHTMLCollection;
   readonly location: ILocation;
-  readonly plugins: IHTMLCollection;
+  readonly plugins: ISuperHTMLCollection;
   readonly readyState: Promise<IDocumentReadyState>;
   readonly referrer: Promise<string>;
-  readonly scripts: IHTMLCollection;
-  readonly scrollingElement: IElement;
+  readonly scripts: ISuperHTMLCollection;
+  readonly scrollingElement: ISuperElement;
   readonly title: Promise<string>;
   readonly visibilityState: Promise<IVisibilityState>;
 
@@ -149,7 +149,7 @@ export interface IHTMLElementIsolate {
   readonly lang: Promise<string>;
   readonly offsetHeight: Promise<number>;
   readonly offsetLeft: Promise<number>;
-  readonly offsetParent: IElement;
+  readonly offsetParent: ISuperElement;
   readonly offsetTop: Promise<number>;
   readonly offsetWidth: Promise<number>;
   readonly spellcheck: Promise<boolean>;
@@ -162,6 +162,12 @@ export interface IHTMLElementIsolate {
 // HTMLHeadElementIsolate //////////
 
 export interface IHTMLHeadElementIsolate {}
+
+// HTMLInputElementIsolate //////////
+
+export interface IHTMLInputElementIsolate {
+  select(): Promise<void>;
+}
 
 // SVG ELEMENTS
 

@@ -3,19 +3,21 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { ISuperHTMLElement } from '../interfaces/super';
-import { IElement, INode } from '../interfaces/official';
-import { IHTMLHeadElementIsolate } from '../interfaces/isolate';
+import { ISuperHTMLElement, ISuperElement } from '../interfaces/super';
+import { IElement, IHTMLOrSVGElement, INode } from '../interfaces/official';
+import { IHTMLHeadElementIsolate, IHTMLInputElementIsolate } from '../interfaces/isolate';
 import { IElementProperties, ElementPropertyKeys, ElementConstantKeys } from '../official-klasses/Element';
 import { IHTMLHeadElementIsolateProperties, HTMLHeadElementIsolatePropertyKeys, HTMLHeadElementIsolateConstantKeys } from '../isolate-mixins/HTMLHeadElementIsolate';
+import { IHTMLInputElementIsolateProperties, HTMLInputElementIsolatePropertyKeys, HTMLInputElementIsolateConstantKeys } from '../isolate-mixins/HTMLInputElementIsolate';
+import { IHTMLOrSVGElementProperties, HTMLOrSVGElementPropertyKeys, HTMLOrSVGElementConstantKeys } from '../official-mixins/HTMLOrSVGElement';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperHTMLElement>('SuperHTMLElement', getState, setState);
 
-export function SuperHTMLElementGenerator(Element: Constructable<IElement>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, Node: Constructable<INode>) {
-  const Parent = (ClassMixer(Element, [HTMLHeadElementIsolate, Node]) as unknown) as Constructable<IElement & IHTMLHeadElementIsolate & INode>;
+export function SuperHTMLElementGenerator(Element: Constructable<IElement>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, Node: Constructable<INode>) {
+  const Parent = (ClassMixer(Element, [HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, Node]) as unknown) as Constructable<IElement & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & IHTMLOrSVGElement & INode>;
 
   return class SuperHTMLElement extends Parent implements ISuperHTMLElement {
     constructor() {
@@ -65,7 +67,7 @@ export function SuperHTMLElementGenerator(Element: Constructable<IElement>, HTML
       return awaitedHandler.getProperty<number>(this, 'offsetLeft', false);
     }
 
-    public get offsetParent(): IElement {
+    public get offsetParent(): ISuperElement {
       throw new Error('SuperHTMLElement.offsetParent getter not implemented');
     }
 
@@ -99,7 +101,7 @@ export function SuperHTMLElementGenerator(Element: Constructable<IElement>, HTML
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperHTMLElementProperties extends IElementProperties, IHTMLHeadElementIsolateProperties, INodeProperties {
+export interface ISuperHTMLElementProperties extends IElementProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, IHTMLOrSVGElementProperties, INodeProperties {
   readonly accessKey?: Promise<string>;
   readonly autoCapitalize?: Promise<string>;
   readonly dir?: Promise<string>;
@@ -110,7 +112,7 @@ export interface ISuperHTMLElementProperties extends IElementProperties, IHTMLHe
   readonly lang?: Promise<string>;
   readonly offsetHeight?: Promise<number>;
   readonly offsetLeft?: Promise<number>;
-  readonly offsetParent?: IElement;
+  readonly offsetParent?: ISuperElement;
   readonly offsetTop?: Promise<number>;
   readonly offsetWidth?: Promise<number>;
   readonly spellcheck?: Promise<boolean>;
@@ -118,9 +120,9 @@ export interface ISuperHTMLElementProperties extends IElementProperties, IHTMLHe
   readonly translate?: Promise<boolean>;
 }
 
-export const SuperHTMLElementPropertyKeys = [...ElementPropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...NodePropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
+export const SuperHTMLElementPropertyKeys = [...ElementPropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...HTMLInputElementIsolatePropertyKeys, ...HTMLOrSVGElementPropertyKeys, ...NodePropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
 
-export const SuperHTMLElementConstantKeys = [...ElementConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...NodeConstantKeys];
+export const SuperHTMLElementConstantKeys = [...ElementConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...HTMLInputElementIsolateConstantKeys, ...HTMLOrSVGElementConstantKeys, ...NodeConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

@@ -1,15 +1,16 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
-import { ISuperHTMLElement } from '../../awaited-base/interfaces/super';
-import { IElement } from '../../awaited-base/interfaces/official';
+import { ISuperHTMLElement, ISuperElement } from '../../awaited-base/interfaces/super';
 import { SuperHTMLElementGenerator, initialize, ISuperHTMLElementProperties } from '../../awaited-base/super-klasses/SuperHTMLElement';
-import Element, { createElement } from '../official-klasses/Element';
+import { createSuperElement } from '../create';
+import Element from '../official-klasses/Element';
 import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
+import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
+import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
 import Node from '../official-klasses/Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
-const SuperHTMLElementBase = SuperHTMLElementGenerator(Element, HTMLHeadElementIsolate, Node);
+const SuperHTMLElementBase = SuperHTMLElementGenerator(Element, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, Node);
 
 export default class SuperHTMLElement extends SuperHTMLElementBase implements ISuperHTMLElement {
   constructor() {
@@ -19,16 +20,8 @@ export default class SuperHTMLElement extends SuperHTMLElementBase implements IS
 
   // properties
 
-  public get offsetParent(): IElement {
+  public get offsetParent(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createSuperHTMLElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperHTMLElement {
-  const instance = new SuperHTMLElement();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

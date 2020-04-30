@@ -2,7 +2,6 @@ import TsBuildInterfacesBasic from './TsBuildInterfacesBasic';
 import TsElementExtractor from './TsElementExtractor';
 import Components from './Components';
 import { compareName } from './utils';
-import * as Path from 'path';
 import * as Types from './Types';
 import TsBuildMixin from './TsBuildMixin';
 import TsInterfaceExtractor from './TsInterfaceExtractor';
@@ -15,6 +14,7 @@ import IObjectType, { ObjectType } from './interfaces/IObjectType';
 import IObjectStruct, { ObjectStruct } from './interfaces/IObjectStruct';
 import { IPathsByBuildType, IPathType, PathType } from './interfaces/IPaths';
 import TsImporter from './TsImporter';
+import TsBuildCreateFunctions from './TsBuildCreateFunctions';
 
 interface IOptions {
   domType: IDomType;
@@ -88,7 +88,7 @@ export default class TsBuilder {
     });
     if (importsCodeModule) codeModules.unshift(importsCodeModule);
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.basic,
       ObjectStruct.interface,
       PathType.interfaces,
@@ -109,7 +109,7 @@ export default class TsBuilder {
     });
     if (importsCodeModule) codeModules.unshift(importsCodeModule);
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.official,
       ObjectStruct.interface,
       PathType.interfaces,
@@ -133,7 +133,7 @@ export default class TsBuilder {
     });
     if (importsCodeModule) codeModules.unshift(importsCodeModule);
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.isolate,
       ObjectStruct.interface,
       PathType.interfaces,
@@ -155,7 +155,7 @@ export default class TsBuilder {
     });
     if (importsCodeModule) codeModules.unshift(importsCodeModule);
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.super,
       ObjectStruct.interface,
       PathType.interfaces,
@@ -177,7 +177,7 @@ export default class TsBuilder {
       return { type: 'Class', name, code, tsBuildKlass };
     });
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.official,
       ObjectStruct.class,
       PathType.officialKlasses,
@@ -185,7 +185,7 @@ export default class TsBuilder {
     );
 
     return codeModules.map(codeModule => {
-      const imports = codeModule.tsBuildKlass.imports();
+      const imports = codeModule.tsBuildKlass.extractImports();
       codeModule.code = `${imports}\n${codeModule.code}`;
       delete codeModule.tsBuildKlass;
       return codeModule;
@@ -204,7 +204,7 @@ export default class TsBuilder {
       return { type: 'Mixin', name, code, tsBuildMixin };
     });
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.official,
       ObjectStruct.class,
       PathType.officialMixins,
@@ -231,7 +231,7 @@ export default class TsBuilder {
       return { type: 'Super', name: i.name, code, tsBuildKlass };
     });
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.super,
       ObjectStruct.class,
       PathType.superKlasses,
@@ -239,7 +239,7 @@ export default class TsBuilder {
     );
 
     return codeModules.map(codeModule => {
-      const imports = codeModule.tsBuildKlass.imports();
+      const imports = codeModule.tsBuildKlass.extractImports();
       codeModule.code = `${imports}\n${codeModule.code}`;
       delete codeModule.tsBuildKlass;
       return codeModule;
@@ -260,7 +260,7 @@ export default class TsBuilder {
       codeModules.push({ type: 'IsolateClass', name: i.name, code, tsBuildMixin });
     }
 
-    this.addToObjectDefinitions(
+    this.addToObjectMeta(
       ObjectType.isolate,
       ObjectStruct.class,
       PathType.isolateMixins,
@@ -275,30 +275,12 @@ export default class TsBuilder {
     });
   }
 
-  public extractCreateDocumentForNode() {
+  public extractCreateFunctions(): string {
     const { objectMetaByName, pathsByBuildType } = this;
-    const printable: string[] = [];
     const currentDir = pathsByBuildType.impl.root;
-    const baseDir = Path.relative(currentDir, pathsByBuildType.base.root);
-    const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };
-    const tsImporter = new TsImporter(tsImporterOptions);
-
-    printable.push(`import AwaitedPath from '${baseDir}/AwaitedPath';`);
-    printable.push(tsImporter.extractAll(['Document'], BuildType.base, ObjectStruct.interface));
-    printable.push(tsImporter.extractSingle('Document', null, ['setState'], BuildType.base, ObjectStruct.class));
-    printable.push('');
-    printable.push('// tslint:disable-next-line:variable-name');
-    printable.push('let Document: any;');
-    printable.push('');
-    printable.push(
-      'export default function createDocument<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDocument {',
-    );
-    printable.push("  const instance = new (Document = Document || require('./Document'))();");
-    printable.push('  setState(instance, { awaitedPath, awaitedOptions });');
-    printable.push('  return instance;');
-    printable.push('}');
-
-    return printable.join('\n');
+    const tsBuildOptions = { currentDir, objectMetaByName, pathsByBuildType };
+    const tsBuildCreateFunctions = new TsBuildCreateFunctions(tsBuildOptions);
+    return tsBuildCreateFunctions.run();
   }
 
   private extractImportCodeModule(
@@ -320,12 +302,7 @@ export default class TsBuilder {
     } as ICodeModule;
   }
 
-  private addToObjectDefinitions(
-    objectType: IObjectType,
-    objectStruct: IObjectStruct,
-    pathType: IPathType,
-    names: string[],
-  ) {
+  private addToObjectMeta(objectType: IObjectType, objectStruct: IObjectStruct, pathType: IPathType, names: string[]) {
     names.forEach(name => {
       const objectMeta = this.objectMetaByName[name] || { objectType, pathTypeByObjectStruct: new Map() };
       if (this.objectMetaByName[name] && objectMeta.objectType !== objectType) {

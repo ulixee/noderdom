@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { IText } from '../../awaited-base/interfaces/official';
 import { TextGenerator, initialize, ITextProperties } from '../../awaited-base/official-klasses/Text';
 import CharacterData from './CharacterData';
@@ -13,12 +12,4 @@ export default class Text extends TextBase implements IText {
     super();
     initialize(Text, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createText<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IText {
-  const instance = new Text();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

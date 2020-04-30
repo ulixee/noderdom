@@ -125,6 +125,7 @@ export default class TsBuildMixin {
   private importsForImpl() {
     const i: Types.Interface = this.i;
     const baseDir = Path.relative(this.currentDir, this.pathsByBuildType.base.root) || '.';
+    const implDir = Path.relative(this.currentDir, this.pathsByBuildType.impl.root) || '.';
     const printable: string[] = [];
 
     printable.push(`import StateMachine from '${baseDir}/StateMachine';`);
@@ -141,11 +142,10 @@ export default class TsBuildMixin {
     const baseProps = [`I${i.name}Properties`];
     printable.push(tsImporter.extractSingle(i.name, baseName, baseProps, BuildType.base, ObjectStruct.class));
 
-    this.bodyPrinter.referencedCreateMethods.forEach(name => {
-      if (name === i.name) return;
-      const imports = tsImporter.extractSingle(name, null, [`create${name}`], BuildType.impl, ObjectStruct.class);
-      if (imports) printable.push(imports);
-    });
+    if (this.bodyPrinter.referencedCreateMethods.size) {
+      const names = Array.from(this.bodyPrinter.referencedCreateMethods);
+      printable.push(`import { ${names.map(n => `create${n}`).join(', ')} } from '${implDir}/create';`);
+    }
 
     printable.push('');
     return printable.join('\n');

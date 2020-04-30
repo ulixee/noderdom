@@ -42,6 +42,36 @@
     }
   },
   "mixins": {
+    "HTMLOrSVGElement": {
+      "name": "HTMLOrSVGElement",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "focus": {
+          "name": "focus",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ]
+        },
+        "blur": {
+          "name": "blur",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
     "ParentNode": {
       "name": "ParentNode",
       "extends": "Object",
@@ -1443,7 +1473,9 @@
       },
       "exposed": "Window",
       "legacyWindowAlias": [],
-      "implements": [],
+      "implements": [
+        "HTMLOrSVGElement"
+      ],
       "element": {
         "name": "HTMLElement",
         "namespace": "HTML",
@@ -1609,6 +1641,37 @@
         "tags": [
           {
             "name": "head"
+          }
+        ]
+      }
+    },
+    "HTMLInputElement": {
+      "name": "HTMLInputElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "select": {
+          "name": "select",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLInputElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "input",
+            "selfClosing": 1
           }
         ]
       }
@@ -2886,7 +2949,8 @@
         "Node",
         "ParentNode",
         "HTMLElementIsolate",
-        "HTMLHeadElementIsolate"
+        "HTMLHeadElementIsolate",
+        "HTMLInputElementIsolate"
       ]
     },
     "SuperNode": {
@@ -3248,7 +3312,8 @@
         "DocumentTypeIsolate",
         "ElementIsolate",
         "HTMLElementIsolate",
-        "HTMLHeadElementIsolate"
+        "HTMLHeadElementIsolate",
+        "HTMLInputElementIsolate"
       ]
     },
     "SuperNodeList": {
@@ -3540,7 +3605,9 @@
       "implements": [
         "Element",
         "Node",
-        "HTMLHeadElementIsolate"
+        "HTMLOrSVGElement",
+        "HTMLHeadElementIsolate",
+        "HTMLInputElementIsolate"
       ],
       "element": {
         "name": "HTMLElement",
@@ -3823,7 +3890,9 @@
       },
       "exposed": "Window",
       "legacyWindowAlias": [],
-      "implements": [],
+      "implements": [
+        "HTMLOrSVGElement"
+      ],
       "element": {
         "name": "HTMLElement",
         "namespace": "HTML",
@@ -3989,6 +4058,37 @@
         "tags": [
           {
             "name": "head"
+          }
+        ]
+      }
+    },
+    "HTMLInputElementIsolate": {
+      "name": "HTMLInputElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "select": {
+          "name": "select",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLInputElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "input",
+            "selfClosing": 1
           }
         ]
       }

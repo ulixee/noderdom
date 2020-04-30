@@ -1,26 +1,27 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import { IParentNode, IElement } from '../../awaited-base/interfaces/official';
+import { IParentNode } from '../../awaited-base/interfaces/official';
+import { ISuperElement } from '../../awaited-base/interfaces/super';
 import ParentNodeBase, { IParentNodeProperties } from '../../awaited-base/official-mixins/ParentNode';
-import { createElement } from '../official-klasses/Element';
+import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IParentNode, IParentNodeProperties>();
 
 export default class ParentNode extends ParentNodeBase implements IParentNode {
-  public get firstElementChild(): IElement {
+  public get firstElementChild(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addProperty('firstElementChild'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty('firstElementChild'), awaitedOptions);
   }
 
-  public get lastElementChild(): IElement {
+  public get lastElementChild(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addProperty('lastElementChild'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty('lastElementChild'), awaitedOptions);
   }
 
   // methods
 
-  public querySelector(selectors: string): IElement {
+  public querySelector(selectors: string): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addMethod('querySelector', selectors), awaitedOptions);
+    return createSuperElement(awaitedPath.addMethod('querySelector', selectors), awaitedOptions);
   }
 }

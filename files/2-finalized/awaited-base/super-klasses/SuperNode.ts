@@ -3,9 +3,9 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { ISuperNode } from '../interfaces/super';
-import { IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, ITextIsolate } from '../interfaces/isolate';
-import { INodeList, INode, IDocument, IElement } from '../interfaces/official';
+import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../interfaces/super';
+import { IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, ITextIsolate } from '../interfaces/isolate';
+import { INode } from '../interfaces/official';
 import { IGetRootNodeOptions } from '../interfaces/basic';
 import { IAttrIsolateProperties, AttrIsolatePropertyKeys, AttrIsolateConstantKeys } from '../isolate-mixins/AttrIsolate';
 import { ICharacterDataIsolateProperties, CharacterDataIsolatePropertyKeys, CharacterDataIsolateConstantKeys } from '../isolate-mixins/CharacterDataIsolate';
@@ -14,14 +14,15 @@ import { IDocumentTypeIsolateProperties, DocumentTypeIsolatePropertyKeys, Docume
 import { IElementIsolateProperties, ElementIsolatePropertyKeys, ElementIsolateConstantKeys } from '../isolate-mixins/ElementIsolate';
 import { IHTMLElementIsolateProperties, HTMLElementIsolatePropertyKeys, HTMLElementIsolateConstantKeys } from '../isolate-mixins/HTMLElementIsolate';
 import { IHTMLHeadElementIsolateProperties, HTMLHeadElementIsolatePropertyKeys, HTMLHeadElementIsolateConstantKeys } from '../isolate-mixins/HTMLHeadElementIsolate';
+import { IHTMLInputElementIsolateProperties, HTMLInputElementIsolatePropertyKeys, HTMLInputElementIsolateConstantKeys } from '../isolate-mixins/HTMLInputElementIsolate';
 import { ITextIsolateProperties, TextIsolatePropertyKeys, TextIsolateConstantKeys } from '../isolate-mixins/TextIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNode>('SuperNode', getState, setState);
 
-export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, CharacterDataIsolate: Constructable<ICharacterDataIsolate>, DocumentIsolate: Constructable<IDocumentIsolate>, DocumentTypeIsolate: Constructable<IDocumentTypeIsolate>, ElementIsolate: Constructable<IElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, TextIsolate: Constructable<ITextIsolate>) {
-  const Parent = (ClassMixer(AttrIsolate, [CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, TextIsolate]) as unknown) as Constructable<IAttrIsolate & ICharacterDataIsolate & IDocumentIsolate & IDocumentTypeIsolate & IElementIsolate & IHTMLElementIsolate & IHTMLHeadElementIsolate & ITextIsolate>;
+export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, CharacterDataIsolate: Constructable<ICharacterDataIsolate>, DocumentIsolate: Constructable<IDocumentIsolate>, DocumentTypeIsolate: Constructable<IDocumentTypeIsolate>, ElementIsolate: Constructable<IElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, TextIsolate: Constructable<ITextIsolate>) {
+  const Parent = (ClassMixer(AttrIsolate, [CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, TextIsolate]) as unknown) as Constructable<IAttrIsolate & ICharacterDataIsolate & IDocumentIsolate & IDocumentTypeIsolate & IElementIsolate & IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & ITextIsolate>;
 
   return class SuperNode extends Parent implements ISuperNode {
     public static readonly ATTRIBUTE_NODE: number = 2;
@@ -72,11 +73,11 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
       return awaitedHandler.getProperty<string>(this, 'baseURI', false);
     }
 
-    public get childNodes(): INodeList {
+    public get childNodes(): ISuperNodeList {
       throw new Error('SuperNode.childNodes getter not implemented');
     }
 
-    public get firstChild(): INode {
+    public get firstChild(): ISuperNode {
       throw new Error('SuperNode.firstChild getter not implemented');
     }
 
@@ -84,11 +85,11 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
       return awaitedHandler.getProperty<boolean>(this, 'isConnected', false);
     }
 
-    public get lastChild(): INode {
+    public get lastChild(): ISuperNode {
       throw new Error('SuperNode.lastChild getter not implemented');
     }
 
-    public get nextSibling(): INode {
+    public get nextSibling(): ISuperNode {
       throw new Error('SuperNode.nextSibling getter not implemented');
     }
 
@@ -104,19 +105,19 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
       return awaitedHandler.getProperty<string | null>(this, 'nodeValue', true);
     }
 
-    public get ownerDocument(): IDocument {
+    public get ownerDocument(): ISuperDocument {
       throw new Error('SuperNode.ownerDocument getter not implemented');
     }
 
-    public get parentElement(): IElement {
+    public get parentElement(): ISuperElement {
       throw new Error('SuperNode.parentElement getter not implemented');
     }
 
-    public get parentNode(): INode {
+    public get parentNode(): ISuperNode {
       throw new Error('SuperNode.parentNode getter not implemented');
     }
 
-    public get previousSibling(): INode {
+    public get previousSibling(): ISuperNode {
       throw new Error('SuperNode.previousSibling getter not implemented');
     }
 
@@ -170,26 +171,26 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperNodeProperties extends IAttrIsolateProperties, ICharacterDataIsolateProperties, IDocumentIsolateProperties, IDocumentTypeIsolateProperties, IElementIsolateProperties, IHTMLElementIsolateProperties, IHTMLHeadElementIsolateProperties, ITextIsolateProperties {
+export interface ISuperNodeProperties extends IAttrIsolateProperties, ICharacterDataIsolateProperties, IDocumentIsolateProperties, IDocumentTypeIsolateProperties, IElementIsolateProperties, IHTMLElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, ITextIsolateProperties {
   readonly baseURI?: Promise<string>;
-  readonly childNodes?: INodeList;
-  readonly firstChild?: INode;
+  readonly childNodes?: ISuperNodeList;
+  readonly firstChild?: ISuperNode;
   readonly isConnected?: Promise<boolean>;
-  readonly lastChild?: INode;
-  readonly nextSibling?: INode;
+  readonly lastChild?: ISuperNode;
+  readonly nextSibling?: ISuperNode;
   readonly nodeName?: Promise<string>;
   readonly nodeType?: Promise<number>;
   readonly nodeValue?: Promise<string | null>;
-  readonly ownerDocument?: IDocument;
-  readonly parentElement?: IElement;
-  readonly parentNode?: INode;
-  readonly previousSibling?: INode;
+  readonly ownerDocument?: ISuperDocument;
+  readonly parentElement?: ISuperElement;
+  readonly parentNode?: ISuperNode;
+  readonly previousSibling?: ISuperNode;
   readonly textContent?: Promise<string | null>;
 }
 
-export const SuperNodePropertyKeys = [...AttrIsolatePropertyKeys, ...CharacterDataIsolatePropertyKeys, ...DocumentIsolatePropertyKeys, ...DocumentTypeIsolatePropertyKeys, ...ElementIsolatePropertyKeys, ...HTMLElementIsolatePropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...TextIsolatePropertyKeys, 'baseURI', 'childNodes', 'firstChild', 'isConnected', 'lastChild', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'ownerDocument', 'parentElement', 'parentNode', 'previousSibling', 'textContent'];
+export const SuperNodePropertyKeys = [...AttrIsolatePropertyKeys, ...CharacterDataIsolatePropertyKeys, ...DocumentIsolatePropertyKeys, ...DocumentTypeIsolatePropertyKeys, ...ElementIsolatePropertyKeys, ...HTMLElementIsolatePropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...HTMLInputElementIsolatePropertyKeys, ...TextIsolatePropertyKeys, 'baseURI', 'childNodes', 'firstChild', 'isConnected', 'lastChild', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'ownerDocument', 'parentElement', 'parentNode', 'previousSibling', 'textContent'];
 
-export const SuperNodeConstantKeys = [...AttrIsolateConstantKeys, ...CharacterDataIsolateConstantKeys, ...DocumentIsolateConstantKeys, ...DocumentTypeIsolateConstantKeys, ...ElementIsolateConstantKeys, ...HTMLElementIsolateConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...TextIsolateConstantKeys, 'ATTRIBUTE_NODE', 'CDATA_SECTION_NODE', 'COMMENT_NODE', 'DOCUMENT_FRAGMENT_NODE', 'DOCUMENT_NODE', 'DOCUMENT_POSITION_CONTAINED_BY', 'DOCUMENT_POSITION_CONTAINS', 'DOCUMENT_POSITION_DISCONNECTED', 'DOCUMENT_POSITION_FOLLOWING', 'DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC', 'DOCUMENT_POSITION_PRECEDING', 'DOCUMENT_TYPE_NODE', 'ELEMENT_NODE', 'ENTITY_NODE', 'ENTITY_REFERENCE_NODE', 'NOTATION_NODE', 'PROCESSING_INSTRUCTION_NODE', 'TEXT_NODE'];
+export const SuperNodeConstantKeys = [...AttrIsolateConstantKeys, ...CharacterDataIsolateConstantKeys, ...DocumentIsolateConstantKeys, ...DocumentTypeIsolateConstantKeys, ...ElementIsolateConstantKeys, ...HTMLElementIsolateConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...HTMLInputElementIsolateConstantKeys, ...TextIsolateConstantKeys, 'ATTRIBUTE_NODE', 'CDATA_SECTION_NODE', 'COMMENT_NODE', 'DOCUMENT_FRAGMENT_NODE', 'DOCUMENT_NODE', 'DOCUMENT_POSITION_CONTAINED_BY', 'DOCUMENT_POSITION_CONTAINS', 'DOCUMENT_POSITION_DISCONNECTED', 'DOCUMENT_POSITION_FOLLOWING', 'DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC', 'DOCUMENT_POSITION_PRECEDING', 'DOCUMENT_TYPE_NODE', 'ELEMENT_NODE', 'ENTITY_NODE', 'ENTITY_REFERENCE_NODE', 'NOTATION_NODE', 'PROCESSING_INSTRUCTION_NODE', 'TEXT_NODE'];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

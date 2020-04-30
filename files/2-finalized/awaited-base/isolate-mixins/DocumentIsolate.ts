@@ -1,7 +1,8 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import { IDocumentIsolate } from '../interfaces/isolate';
-import { IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList } from '../interfaces/official';
+import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../interfaces/super';
+import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLCollection, INodeList } from '../interfaces/official';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 
 // tslint:disable:variable-name
@@ -13,11 +14,11 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.getProperty<string>(this, 'URL', false);
   }
 
-  public get anchors(): IHTMLCollection {
+  public get anchors(): ISuperHTMLCollection {
     throw new Error('DocumentIsolate.anchors getter not implemented');
   }
 
-  public get body(): IHTMLElement {
+  public get body(): ISuperHTMLElement {
     throw new Error('DocumentIsolate.body getter not implemented');
   }
 
@@ -49,7 +50,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     throw new Error('DocumentIsolate.doctype getter not implemented');
   }
 
-  public get documentElement(): IElement {
+  public get documentElement(): ISuperElement {
     throw new Error('DocumentIsolate.documentElement getter not implemented');
   }
 
@@ -61,7 +62,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.getProperty<string>(this, 'domain', false);
   }
 
-  public get embeds(): IHTMLCollection {
+  public get embeds(): ISuperHTMLCollection {
     throw new Error('DocumentIsolate.embeds getter not implemented');
   }
 
@@ -69,7 +70,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     throw new Error('DocumentIsolate.featurePolicy getter not implemented');
   }
 
-  public get forms(): IHTMLCollection {
+  public get forms(): ISuperHTMLCollection {
     throw new Error('DocumentIsolate.forms getter not implemented');
   }
 
@@ -85,7 +86,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.getProperty<boolean>(this, 'hidden', false);
   }
 
-  public get images(): IHTMLCollection {
+  public get images(): ISuperHTMLCollection {
     throw new Error('DocumentIsolate.images getter not implemented');
   }
 
@@ -97,7 +98,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.getProperty<string>(this, 'lastModified', false);
   }
 
-  public get links(): IHTMLCollection {
+  public get links(): ISuperHTMLCollection {
     throw new Error('DocumentIsolate.links getter not implemented');
   }
 
@@ -105,7 +106,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     throw new Error('DocumentIsolate.location getter not implemented');
   }
 
-  public get plugins(): IHTMLCollection {
+  public get plugins(): ISuperHTMLCollection {
     throw new Error('DocumentIsolate.plugins getter not implemented');
   }
 
@@ -117,11 +118,11 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.getProperty<string>(this, 'referrer', false);
   }
 
-  public get scripts(): IHTMLCollection {
+  public get scripts(): ISuperHTMLCollection {
     throw new Error('DocumentIsolate.scripts getter not implemented');
   }
 
-  public get scrollingElement(): IElement {
+  public get scrollingElement(): ISuperElement {
     throw new Error('DocumentIsolate.scrollingElement getter not implemented');
   }
 
@@ -168,8 +169,8 @@ export default class DocumentIsolate implements IDocumentIsolate {
 
 export interface IDocumentIsolateProperties {
   readonly URL?: Promise<string>;
-  readonly anchors?: IHTMLCollection;
-  readonly body?: IHTMLElement;
+  readonly anchors?: ISuperHTMLCollection;
+  readonly body?: ISuperHTMLElement;
   readonly characterSet?: Promise<string>;
   readonly compatMode?: Promise<string>;
   readonly contentType?: Promise<string>;
@@ -177,25 +178,25 @@ export interface IDocumentIsolateProperties {
   readonly designMode?: Promise<string>;
   readonly dir?: Promise<string>;
   readonly doctype?: IDocumentType;
-  readonly documentElement?: IElement;
+  readonly documentElement?: ISuperElement;
   readonly documentURI?: Promise<string>;
   readonly domain?: Promise<string>;
-  readonly embeds?: IHTMLCollection;
+  readonly embeds?: ISuperHTMLCollection;
   readonly featurePolicy?: IFeaturePolicy;
-  readonly forms?: IHTMLCollection;
+  readonly forms?: ISuperHTMLCollection;
   readonly fullscreenEnabled?: Promise<boolean>;
   readonly head?: IHTMLHeadElement;
   readonly hidden?: Promise<boolean>;
-  readonly images?: IHTMLCollection;
+  readonly images?: ISuperHTMLCollection;
   readonly implementation?: IDOMImplementation;
   readonly lastModified?: Promise<string>;
-  readonly links?: IHTMLCollection;
+  readonly links?: ISuperHTMLCollection;
   readonly location?: ILocation;
-  readonly plugins?: IHTMLCollection;
+  readonly plugins?: ISuperHTMLCollection;
   readonly readyState?: Promise<IDocumentReadyState>;
   readonly referrer?: Promise<string>;
-  readonly scripts?: IHTMLCollection;
-  readonly scrollingElement?: IElement;
+  readonly scripts?: ISuperHTMLCollection;
+  readonly scrollingElement?: ISuperElement;
   readonly title?: Promise<string>;
   readonly visibilityState?: Promise<IVisibilityState>;
 }

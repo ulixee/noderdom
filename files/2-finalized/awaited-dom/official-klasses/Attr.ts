@@ -1,8 +1,8 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
-import { IAttr, IElement } from '../../awaited-base/interfaces/official';
+import { IAttr } from '../../awaited-base/interfaces/official';
+import { ISuperElement } from '../../awaited-base/interfaces/super';
 import { AttrGenerator, initialize, IAttrProperties } from '../../awaited-base/official-klasses/Attr';
-import { createElement } from './Element';
+import { createSuperElement } from '../create';
 import Node from './Node';
 
 // tslint:disable:variable-name
@@ -17,16 +17,8 @@ export default class Attr extends AttrBase implements IAttr {
 
   // properties
 
-  public get ownerElement(): IElement {
+  public get ownerElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createAttr<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IAttr {
-  const instance = new Attr();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

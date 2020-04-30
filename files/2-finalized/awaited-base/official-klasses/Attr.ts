@@ -2,7 +2,8 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import Constructable from '../Constructable';
-import { IAttr, INode, IElement } from '../interfaces/official';
+import { IAttr, INode } from '../interfaces/official';
+import { ISuperElement } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 
 // tslint:disable:variable-name
@@ -30,7 +31,7 @@ export function AttrGenerator(Node: Constructable<INode>) {
       return awaitedHandler.getProperty<string | null>(this, 'namespaceURI', true);
     }
 
-    public get ownerElement(): IElement {
+    public get ownerElement(): ISuperElement {
       throw new Error('Attr.ownerElement getter not implemented');
     }
 
@@ -54,7 +55,7 @@ export interface IAttrProperties extends INodeProperties {
   readonly localName?: Promise<string>;
   readonly name?: Promise<string>;
   readonly namespaceURI?: Promise<string | null>;
-  readonly ownerElement?: IElement;
+  readonly ownerElement?: ISuperElement;
   readonly prefix?: Promise<string | null>;
   readonly specified?: Promise<boolean>;
   readonly value?: Promise<string>;

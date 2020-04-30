@@ -10,7 +10,7 @@ export interface IAttr extends INode {
   readonly localName: Promise<string>;
   readonly name: Promise<string>;
   readonly namespaceURI: Promise<string | null>;
-  readonly ownerElement: IElement;
+  readonly ownerElement: ISuperElement;
   readonly prefix: Promise<string | null>;
   readonly specified: Promise<boolean>;
   readonly value: Promise<string>;
@@ -49,8 +49,8 @@ export interface IDOMTokenList {}
 
 export interface IDocument extends INode, IParentNode {
   readonly URL: Promise<string>;
-  readonly anchors: IHTMLCollection;
-  readonly body: IHTMLElement;
+  readonly anchors: ISuperHTMLCollection;
+  readonly body: ISuperHTMLElement;
   readonly characterSet: Promise<string>;
   readonly compatMode: Promise<string>;
   readonly contentType: Promise<string>;
@@ -58,25 +58,25 @@ export interface IDocument extends INode, IParentNode {
   readonly designMode: Promise<string>;
   readonly dir: Promise<string>;
   readonly doctype: IDocumentType;
-  readonly documentElement: IElement;
+  readonly documentElement: ISuperElement;
   readonly documentURI: Promise<string>;
   readonly domain: Promise<string>;
-  readonly embeds: IHTMLCollection;
+  readonly embeds: ISuperHTMLCollection;
   readonly featurePolicy: IFeaturePolicy;
-  readonly forms: IHTMLCollection;
+  readonly forms: ISuperHTMLCollection;
   readonly fullscreenEnabled: Promise<boolean>;
   readonly head: IHTMLHeadElement;
   readonly hidden: Promise<boolean>;
-  readonly images: IHTMLCollection;
+  readonly images: ISuperHTMLCollection;
   readonly implementation: IDOMImplementation;
   readonly lastModified: Promise<string>;
-  readonly links: IHTMLCollection;
+  readonly links: ISuperHTMLCollection;
   readonly location: ILocation;
-  readonly plugins: IHTMLCollection;
+  readonly plugins: ISuperHTMLCollection;
   readonly readyState: Promise<IDocumentReadyState>;
   readonly referrer: Promise<string>;
-  readonly scripts: IHTMLCollection;
-  readonly scrollingElement: IElement;
+  readonly scripts: ISuperHTMLCollection;
+  readonly scrollingElement: ISuperElement;
   readonly title: Promise<string>;
   readonly visibilityState: Promise<IVisibilityState>;
 
@@ -153,6 +153,13 @@ export interface IHTMLCollection {
   namedItem(name: string): Promise<IElement | null>;
 }
 
+// HTMLOrSVGElement //////////
+
+export interface IHTMLOrSVGElement {
+  blur(): Promise<void>;
+  focus(): Promise<void>;
+}
+
 // Location //////////
 
 export interface ILocation {
@@ -207,18 +214,18 @@ export interface INode {
   readonly TEXT_NODE: number;
 
   readonly baseURI: Promise<string>;
-  readonly childNodes: INodeList;
-  readonly firstChild: INode;
+  readonly childNodes: ISuperNodeList;
+  readonly firstChild: ISuperNode;
   readonly isConnected: Promise<boolean>;
-  readonly lastChild: INode;
-  readonly nextSibling: INode;
+  readonly lastChild: ISuperNode;
+  readonly nextSibling: ISuperNode;
   readonly nodeName: Promise<string>;
   readonly nodeType: Promise<number>;
   readonly nodeValue: Promise<string | null>;
-  readonly ownerDocument: IDocument;
-  readonly parentElement: IElement;
-  readonly parentNode: INode;
-  readonly previousSibling: INode;
+  readonly ownerDocument: ISuperDocument;
+  readonly parentElement: ISuperElement;
+  readonly parentNode: ISuperNode;
+  readonly previousSibling: ISuperNode;
   readonly textContent: Promise<string | null>;
 
   compareDocumentPosition(other: INode): Promise<number>;
@@ -251,10 +258,10 @@ export interface INodeList {
 
 export interface IParentNode {
   readonly childElementCount: Promise<number>;
-  readonly firstElementChild: IElement;
-  readonly lastElementChild: IElement;
+  readonly firstElementChild: ISuperElement;
+  readonly lastElementChild: ISuperElement;
 
-  querySelector(selectors: string): IElement;
+  querySelector(selectors: string): ISuperElement;
 }
 
 // ShadowRoot //////////
@@ -279,7 +286,7 @@ export interface IText extends ICharacterData {
 
 // HTMLElement //////////
 
-export interface IHTMLElement extends IElement {
+export interface IHTMLElement extends IElement, IHTMLOrSVGElement {
   readonly accessKey: Promise<string>;
   readonly autoCapitalize: Promise<string>;
   readonly dir: Promise<string>;
@@ -290,7 +297,7 @@ export interface IHTMLElement extends IElement {
   readonly lang: Promise<string>;
   readonly offsetHeight: Promise<number>;
   readonly offsetLeft: Promise<number>;
-  readonly offsetParent: IElement;
+  readonly offsetParent: ISuperElement;
   readonly offsetTop: Promise<number>;
   readonly offsetWidth: Promise<number>;
   readonly spellcheck: Promise<boolean>;
@@ -303,6 +310,12 @@ export interface IHTMLElement extends IElement {
 // HTMLHeadElement //////////
 
 export interface IHTMLHeadElement extends IHTMLElement {}
+
+// HTMLInputElement //////////
+
+export interface IHTMLInputElement extends IHTMLElement {
+  select(): Promise<void>;
+}
 
 // SVG ELEMENTS
 

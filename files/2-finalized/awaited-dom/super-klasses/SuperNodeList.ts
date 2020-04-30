@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { ISuperNodeList } from '../../awaited-base/interfaces/super';
 import { SuperNodeListGenerator, initialize, ISuperNodeListProperties } from '../../awaited-base/super-klasses/SuperNodeList';
 
@@ -12,12 +11,4 @@ export default class SuperNodeList extends SuperNodeListBase implements ISuperNo
     super();
     initialize(SuperNodeList, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createSuperNodeList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperNodeList {
-  const instance = new SuperNodeList();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

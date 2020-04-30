@@ -3,7 +3,8 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { IDocument, INode, IParentNode, IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList } from '../interfaces/official';
+import { IDocument, INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLCollection, INodeList } from '../interfaces/official';
+import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../interfaces/super';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
@@ -27,11 +28,11 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       return awaitedHandler.getProperty<string>(this, 'URL', false);
     }
 
-    public get anchors(): IHTMLCollection {
+    public get anchors(): ISuperHTMLCollection {
       throw new Error('Document.anchors getter not implemented');
     }
 
-    public get body(): IHTMLElement {
+    public get body(): ISuperHTMLElement {
       throw new Error('Document.body getter not implemented');
     }
 
@@ -63,7 +64,7 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       throw new Error('Document.doctype getter not implemented');
     }
 
-    public get documentElement(): IElement {
+    public get documentElement(): ISuperElement {
       throw new Error('Document.documentElement getter not implemented');
     }
 
@@ -75,7 +76,7 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       return awaitedHandler.getProperty<string>(this, 'domain', false);
     }
 
-    public get embeds(): IHTMLCollection {
+    public get embeds(): ISuperHTMLCollection {
       throw new Error('Document.embeds getter not implemented');
     }
 
@@ -83,7 +84,7 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       throw new Error('Document.featurePolicy getter not implemented');
     }
 
-    public get forms(): IHTMLCollection {
+    public get forms(): ISuperHTMLCollection {
       throw new Error('Document.forms getter not implemented');
     }
 
@@ -99,7 +100,7 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       return awaitedHandler.getProperty<boolean>(this, 'hidden', false);
     }
 
-    public get images(): IHTMLCollection {
+    public get images(): ISuperHTMLCollection {
       throw new Error('Document.images getter not implemented');
     }
 
@@ -111,7 +112,7 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       return awaitedHandler.getProperty<string>(this, 'lastModified', false);
     }
 
-    public get links(): IHTMLCollection {
+    public get links(): ISuperHTMLCollection {
       throw new Error('Document.links getter not implemented');
     }
 
@@ -119,7 +120,7 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       throw new Error('Document.location getter not implemented');
     }
 
-    public get plugins(): IHTMLCollection {
+    public get plugins(): ISuperHTMLCollection {
       throw new Error('Document.plugins getter not implemented');
     }
 
@@ -131,11 +132,11 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       return awaitedHandler.getProperty<string>(this, 'referrer', false);
     }
 
-    public get scripts(): IHTMLCollection {
+    public get scripts(): ISuperHTMLCollection {
       throw new Error('Document.scripts getter not implemented');
     }
 
-    public get scrollingElement(): IElement {
+    public get scrollingElement(): ISuperElement {
       throw new Error('Document.scrollingElement getter not implemented');
     }
 
@@ -183,8 +184,8 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
 
 export interface IDocumentProperties extends INodeProperties, IParentNodeProperties {
   readonly URL?: Promise<string>;
-  readonly anchors?: IHTMLCollection;
-  readonly body?: IHTMLElement;
+  readonly anchors?: ISuperHTMLCollection;
+  readonly body?: ISuperHTMLElement;
   readonly characterSet?: Promise<string>;
   readonly compatMode?: Promise<string>;
   readonly contentType?: Promise<string>;
@@ -192,25 +193,25 @@ export interface IDocumentProperties extends INodeProperties, IParentNodePropert
   readonly designMode?: Promise<string>;
   readonly dir?: Promise<string>;
   readonly doctype?: IDocumentType;
-  readonly documentElement?: IElement;
+  readonly documentElement?: ISuperElement;
   readonly documentURI?: Promise<string>;
   readonly domain?: Promise<string>;
-  readonly embeds?: IHTMLCollection;
+  readonly embeds?: ISuperHTMLCollection;
   readonly featurePolicy?: IFeaturePolicy;
-  readonly forms?: IHTMLCollection;
+  readonly forms?: ISuperHTMLCollection;
   readonly fullscreenEnabled?: Promise<boolean>;
   readonly head?: IHTMLHeadElement;
   readonly hidden?: Promise<boolean>;
-  readonly images?: IHTMLCollection;
+  readonly images?: ISuperHTMLCollection;
   readonly implementation?: IDOMImplementation;
   readonly lastModified?: Promise<string>;
-  readonly links?: IHTMLCollection;
+  readonly links?: ISuperHTMLCollection;
   readonly location?: ILocation;
-  readonly plugins?: IHTMLCollection;
+  readonly plugins?: ISuperHTMLCollection;
   readonly readyState?: Promise<IDocumentReadyState>;
   readonly referrer?: Promise<string>;
-  readonly scripts?: IHTMLCollection;
-  readonly scrollingElement?: IElement;
+  readonly scripts?: ISuperHTMLCollection;
+  readonly scrollingElement?: ISuperElement;
   readonly title?: Promise<string>;
   readonly visibilityState?: Promise<IVisibilityState>;
 }

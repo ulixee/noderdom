@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { IDOMImplementation } from '../../awaited-base/interfaces/official';
 import { DOMImplementationGenerator, initialize, IDOMImplementationProperties } from '../../awaited-base/official-klasses/DOMImplementation';
 
@@ -12,12 +11,4 @@ export default class DOMImplementation extends DOMImplementationBase implements 
     super();
     initialize(DOMImplementation, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createDOMImplementation<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMImplementation {
-  const instance = new DOMImplementation();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

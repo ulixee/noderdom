@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { IDOMTokenList } from '../../awaited-base/interfaces/official';
 import { DOMTokenListGenerator, initialize, IDOMTokenListProperties } from '../../awaited-base/official-klasses/DOMTokenList';
 
@@ -12,12 +11,4 @@ export default class DOMTokenList extends DOMTokenListBase implements IDOMTokenL
     super();
     initialize(DOMTokenList, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createDOMTokenList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMTokenList {
-  const instance = new DOMTokenList();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

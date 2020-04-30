@@ -70,8 +70,6 @@ export default class TsBuildKlass {
 
       this.printStateMachineInterfaces();
       this.printInitializeFunction();
-    } else {
-      this.printCreateFunction();
     }
 
     this.prependInitializerCode();
@@ -79,7 +77,7 @@ export default class TsBuildKlass {
     return this.printer.getResult().trim();
   }
 
-  public imports() {
+  public extractImports() {
     const isBaseBuild = this.buildType === BuildType.base;
     return isBaseBuild ? this.importsForBase() : this.importsForImpl();
   }
@@ -149,22 +147,6 @@ export default class TsBuildKlass {
     this.printer.printLine('}');
   }
 
-  private printCreateFunction() {
-    const i: Types.Interface = this.i;
-    this.printer.printLine();
-    this.printer.printSeparatorLine('\n// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////');
-    this.printer.printLine();
-    this.printer.printLine(
-      `export function create${i.name}<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): I${i.name} {`,
-    );
-    this.printer.increaseIndent();
-    this.printer.printLine(`const instance = new ${i.name}();`);
-    this.printer.printLine(`setState(instance, { awaitedPath, awaitedOptions });`);
-    this.printer.printLine(`return instance;`);
-    this.printer.decreaseIndent();
-    this.printer.printLine(`}`);
-  }
-
   private prependInitializerCode() {
     const i: Types.Interface = this.i;
     const name = i.name;
@@ -229,7 +211,6 @@ export default class TsBuildKlass {
     const printable: string[] = [];
 
     printable.push(`import StateMachine from '${baseDir}/StateMachine';`);
-    printable.push(`import AwaitedPath from '${baseDir}/AwaitedPath';`);
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;
     const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };
@@ -242,19 +223,12 @@ export default class TsBuildKlass {
     const baseProps = [`${i.name}Generator`, 'initialize', `I${i.name}Properties`];
     printable.push(tsImporter.extractSingle(i.name, null, baseProps, BuildType.base, ObjectStruct.class));
 
-    this.bodyPrinter.referencedCreateMethods.forEach(name => {
-      if (i.name === name || (i.name === 'Node' && name === 'Document')) return;
-      const dName = this.inheritsFrom.includes(name) ? name : null;
-      const imports = tsImporter.extractSingle(name, dName, [`create${name}`], BuildType.impl, ObjectStruct.class);
-      if (imports) printable.push(imports);
-    });
-
-    if (i.name === 'Node') {
-      printable.push(`import createDocument from '${implDir}/createDocumentForNode';`);
+    if (this.bodyPrinter.referencedCreateMethods.size) {
+      const names = Array.from(this.bodyPrinter.referencedCreateMethods);
+      printable.push(`import { ${names.map(n => `create${n}`).join(', ')} } from '${implDir}/create';`);
     }
 
     this.inheritsFrom.forEach(name => {
-      if (this.bodyPrinter.referencedCreateMethods.has(name)) return;
       const importCode = tsImporter.extractSingle(name, name, [], BuildType.impl, ObjectStruct.class);
       if (importCode) printable.push(importCode);
     });

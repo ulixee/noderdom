@@ -2,7 +2,8 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import Constructable from '../Constructable';
-import { INode, INodeList, IDocument, IElement } from '../interfaces/official';
+import { INode } from '../interfaces/official';
+import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
 import { IGetRootNodeOptions } from '../interfaces/basic';
 
 // tslint:disable:variable-name
@@ -58,11 +59,11 @@ export function NodeGenerator() {
       return awaitedHandler.getProperty<string>(this, 'baseURI', false);
     }
 
-    public get childNodes(): INodeList {
+    public get childNodes(): ISuperNodeList {
       throw new Error('Node.childNodes getter not implemented');
     }
 
-    public get firstChild(): INode {
+    public get firstChild(): ISuperNode {
       throw new Error('Node.firstChild getter not implemented');
     }
 
@@ -70,11 +71,11 @@ export function NodeGenerator() {
       return awaitedHandler.getProperty<boolean>(this, 'isConnected', false);
     }
 
-    public get lastChild(): INode {
+    public get lastChild(): ISuperNode {
       throw new Error('Node.lastChild getter not implemented');
     }
 
-    public get nextSibling(): INode {
+    public get nextSibling(): ISuperNode {
       throw new Error('Node.nextSibling getter not implemented');
     }
 
@@ -90,19 +91,19 @@ export function NodeGenerator() {
       return awaitedHandler.getProperty<string | null>(this, 'nodeValue', true);
     }
 
-    public get ownerDocument(): IDocument {
+    public get ownerDocument(): ISuperDocument {
       throw new Error('Node.ownerDocument getter not implemented');
     }
 
-    public get parentElement(): IElement {
+    public get parentElement(): ISuperElement {
       throw new Error('Node.parentElement getter not implemented');
     }
 
-    public get parentNode(): INode {
+    public get parentNode(): ISuperNode {
       throw new Error('Node.parentNode getter not implemented');
     }
 
-    public get previousSibling(): INode {
+    public get previousSibling(): ISuperNode {
       throw new Error('Node.previousSibling getter not implemented');
     }
 
@@ -158,18 +159,18 @@ export function NodeGenerator() {
 
 export interface INodeProperties {
   readonly baseURI?: Promise<string>;
-  readonly childNodes?: INodeList;
-  readonly firstChild?: INode;
+  readonly childNodes?: ISuperNodeList;
+  readonly firstChild?: ISuperNode;
   readonly isConnected?: Promise<boolean>;
-  readonly lastChild?: INode;
-  readonly nextSibling?: INode;
+  readonly lastChild?: ISuperNode;
+  readonly nextSibling?: ISuperNode;
   readonly nodeName?: Promise<string>;
   readonly nodeType?: Promise<number>;
   readonly nodeValue?: Promise<string | null>;
-  readonly ownerDocument?: IDocument;
-  readonly parentElement?: IElement;
-  readonly parentNode?: INode;
-  readonly previousSibling?: INode;
+  readonly ownerDocument?: ISuperDocument;
+  readonly parentElement?: ISuperElement;
+  readonly parentNode?: ISuperNode;
+  readonly previousSibling?: ISuperNode;
   readonly textContent?: Promise<string | null>;
 }
 

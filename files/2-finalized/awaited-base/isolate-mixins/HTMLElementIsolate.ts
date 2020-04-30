@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import { IHTMLElementIsolate } from '../interfaces/isolate';
-import { IElement } from '../interfaces/official';
+import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElementIsolate, IHTMLElementIsolateProperties>();
@@ -48,7 +48,7 @@ export default class HTMLElementIsolate implements IHTMLElementIsolate {
     return awaitedHandler.getProperty<number>(this, 'offsetLeft', false);
   }
 
-  public get offsetParent(): IElement {
+  public get offsetParent(): ISuperElement {
     throw new Error('HTMLElementIsolate.offsetParent getter not implemented');
   }
 
@@ -92,7 +92,7 @@ export interface IHTMLElementIsolateProperties {
   readonly lang?: Promise<string>;
   readonly offsetHeight?: Promise<number>;
   readonly offsetLeft?: Promise<number>;
-  readonly offsetParent?: IElement;
+  readonly offsetParent?: ISuperElement;
   readonly offsetTop?: Promise<number>;
   readonly offsetWidth?: Promise<number>;
   readonly spellcheck?: Promise<boolean>;

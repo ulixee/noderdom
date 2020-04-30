@@ -1,12 +1,14 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
-import { IHTMLElement, IElement } from '../../awaited-base/interfaces/official';
+import { IHTMLElement } from '../../awaited-base/interfaces/official';
+import { ISuperElement } from '../../awaited-base/interfaces/super';
 import { HTMLElementGenerator, initialize, IHTMLElementProperties } from '../../awaited-base/official-klasses/HTMLElement';
-import Element, { createElement } from './Element';
+import { createSuperElement } from '../create';
+import Element from './Element';
+import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
-const HTMLElementBase = HTMLElementGenerator(Element);
+const HTMLElementBase = HTMLElementGenerator(Element, HTMLOrSVGElement);
 
 export default class HTMLElement extends HTMLElementBase implements IHTMLElement {
   constructor() {
@@ -16,16 +18,8 @@ export default class HTMLElement extends HTMLElementBase implements IHTMLElement
 
   // properties
 
-  public get offsetParent(): IElement {
+  public get offsetParent(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createHTMLElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLElement {
-  const instance = new HTMLElement();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

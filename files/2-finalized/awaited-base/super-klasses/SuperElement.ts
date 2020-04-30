@@ -4,11 +4,12 @@ import StateMachine from '../StateMachine';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import { ISuperElement } from '../interfaces/super';
-import { IHTMLElementIsolate, IHTMLHeadElementIsolate } from '../interfaces/isolate';
+import { IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate } from '../interfaces/isolate';
 import { INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IElement, IAttr, IDOMRect, IDOMRectList, IHTMLCollection } from '../interfaces/official';
 import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
 import { IHTMLElementIsolateProperties, HTMLElementIsolatePropertyKeys, HTMLElementIsolateConstantKeys } from '../isolate-mixins/HTMLElementIsolate';
 import { IHTMLHeadElementIsolateProperties, HTMLHeadElementIsolatePropertyKeys, HTMLHeadElementIsolateConstantKeys } from '../isolate-mixins/HTMLHeadElementIsolate';
+import { IHTMLInputElementIsolateProperties, HTMLInputElementIsolatePropertyKeys, HTMLInputElementIsolateConstantKeys } from '../isolate-mixins/HTMLInputElementIsolate';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
@@ -16,8 +17,8 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperElement>('SuperElement', getState, setState);
 
-export function SuperElementGenerator(HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
-  const Parent = (ClassMixer(HTMLElementIsolate, [HTMLHeadElementIsolate, Node, ParentNode]) as unknown) as Constructable<IHTMLElementIsolate & IHTMLHeadElementIsolate & INode & IParentNode>;
+export function SuperElementGenerator(HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
+  const Parent = (ClassMixer(HTMLElementIsolate, [HTMLHeadElementIsolate, HTMLInputElementIsolate, Node, ParentNode]) as unknown) as Constructable<IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & INode & IParentNode>;
 
   return class SuperElement extends Parent implements ISuperElement {
     constructor() {
@@ -193,7 +194,7 @@ export function SuperElementGenerator(HTMLElementIsolate: Constructable<IHTMLEle
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperElementProperties extends IHTMLElementIsolateProperties, IHTMLHeadElementIsolateProperties, INodeProperties, IParentNodeProperties {
+export interface ISuperElementProperties extends IHTMLElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, INodeProperties, IParentNodeProperties {
   readonly attributes?: INamedNodeMap;
   readonly classList?: IDOMTokenList;
   readonly className?: Promise<string>;
@@ -217,9 +218,9 @@ export interface ISuperElementProperties extends IHTMLElementIsolateProperties, 
   readonly tagName?: Promise<string>;
 }
 
-export const SuperElementPropertyKeys = [...HTMLElementIsolatePropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...NodePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
+export const SuperElementPropertyKeys = [...HTMLElementIsolatePropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...HTMLInputElementIsolatePropertyKeys, ...NodePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
 
-export const SuperElementConstantKeys = [...HTMLElementIsolateConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...NodeConstantKeys, ...ParentNodeConstantKeys];
+export const SuperElementConstantKeys = [...HTMLElementIsolateConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...HTMLInputElementIsolateConstantKeys, ...NodeConstantKeys, ...ParentNodeConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { IFeaturePolicy } from '../../awaited-base/interfaces/official';
 import { FeaturePolicyGenerator, initialize, IFeaturePolicyProperties } from '../../awaited-base/official-klasses/FeaturePolicy';
 
@@ -12,12 +11,4 @@ export default class FeaturePolicy extends FeaturePolicyBase implements IFeature
     super();
     initialize(FeaturePolicy, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createFeaturePolicy<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFeaturePolicy {
-  const instance = new FeaturePolicy();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

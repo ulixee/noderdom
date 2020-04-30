@@ -1,16 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { IHTMLElement, IElement } from '../interfaces/official';
+import { IHTMLElement, IElement, IHTMLOrSVGElement } from '../interfaces/official';
+import { ISuperElement } from '../interfaces/super';
 import { IElementProperties, ElementPropertyKeys, ElementConstantKeys } from './Element';
+import { IHTMLOrSVGElementProperties, HTMLOrSVGElementPropertyKeys, HTMLOrSVGElementConstantKeys } from '../official-mixins/HTMLOrSVGElement';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLElement>('HTMLElement', getState, setState);
 
-export function HTMLElementGenerator(Element: Constructable<IElement>) {
-  return class HTMLElement extends Element implements IHTMLElement {
+export function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>) {
+  const Parent = (ClassMixer(Element, [HTMLOrSVGElement]) as unknown) as Constructable<IElement & IHTMLOrSVGElement>;
+
+  return class HTMLElement extends Parent implements IHTMLElement {
     constructor() {
       super();
       initialize(HTMLElement, this);
@@ -58,7 +63,7 @@ export function HTMLElementGenerator(Element: Constructable<IElement>) {
       return awaitedHandler.getProperty<number>(this, 'offsetLeft', false);
     }
 
-    public get offsetParent(): IElement {
+    public get offsetParent(): ISuperElement {
       throw new Error('HTMLElement.offsetParent getter not implemented');
     }
 
@@ -92,7 +97,7 @@ export function HTMLElementGenerator(Element: Constructable<IElement>) {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IHTMLElementProperties extends IElementProperties {
+export interface IHTMLElementProperties extends IElementProperties, IHTMLOrSVGElementProperties {
   readonly accessKey?: Promise<string>;
   readonly autoCapitalize?: Promise<string>;
   readonly dir?: Promise<string>;
@@ -103,7 +108,7 @@ export interface IHTMLElementProperties extends IElementProperties {
   readonly lang?: Promise<string>;
   readonly offsetHeight?: Promise<number>;
   readonly offsetLeft?: Promise<number>;
-  readonly offsetParent?: IElement;
+  readonly offsetParent?: ISuperElement;
   readonly offsetTop?: Promise<number>;
   readonly offsetWidth?: Promise<number>;
   readonly spellcheck?: Promise<boolean>;
@@ -111,9 +116,9 @@ export interface IHTMLElementProperties extends IElementProperties {
   readonly translate?: Promise<boolean>;
 }
 
-export const HTMLElementPropertyKeys = [...ElementPropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
+export const HTMLElementPropertyKeys = [...ElementPropertyKeys, ...HTMLOrSVGElementPropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
 
-export const HTMLElementConstantKeys = [...ElementConstantKeys];
+export const HTMLElementConstantKeys = [...ElementConstantKeys, ...HTMLOrSVGElementConstantKeys];
 
 // INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
 

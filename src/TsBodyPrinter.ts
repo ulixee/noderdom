@@ -158,7 +158,7 @@ export default class TsBodyPrinter {
       this.printer.decreaseIndent();
       this.printer.printLine('}');
       if (signature) {
-        TypeUtils.extractCustomTypesFromParams(signature.params).forEach(
+        TypeUtils.extractCustomTypesFromParams(signature.params, false).forEach(
           this.referencedObjects.add,
           this.referencedObjects,
         );
@@ -279,21 +279,22 @@ export default class TsBodyPrinter {
         this.printer.decreaseIndent();
         this.printer.printLine('}');
       }
-      TypeUtils.extractCustomTypesFromParams(signature.params).forEach(
+      TypeUtils.extractCustomTypesFromParams(signature.params, isAbstract).forEach(
         this.referencedObjects.add,
         this.referencedObjects,
       );
-      TypeUtils.extractCustomTypes(signature).forEach(this.referencedObjects.add, this.referencedObjects);
+      TypeUtils.extractCustomTypes(signature, isAbstract).forEach(this.referencedObjects.add, this.referencedObjects);
     });
   }
 
   //////////////////////////////////////////////////////////////////////////////
 
-  private extractMethodReturnType(m: Types.Method, signature: Types.Signature) {
-    let mType = TypeUtils.convertDomTypeToTsType(signature, true);
+  private extractMethodReturnType(method: Types.Method, signature: Types.Signature) {
+    const isAbstract = this.isAbstract(method);
+    let mType = TypeUtils.convertDomTypeToTsType(signature, true, isAbstract);
     mType = signature.nullable ? makeNullable(mType) : mType;
     if (this.domType === DomType.awaited) {
-      if (m.isAbstract === 1) {
+      if (isAbstract) {
         mType = mType.replace(' | null', '');
       } else {
         mType = `Promise<${mType}>`;
@@ -302,11 +303,12 @@ export default class TsBodyPrinter {
     return mType;
   }
 
-  private extractMethodValueType(m: Types.Method, signature: Types.Signature) {
-    let mType = TypeUtils.convertDomTypeToTsType(signature, true);
+  private extractMethodValueType(method: Types.Method, signature: Types.Signature) {
+    const isAbstract = this.isAbstract(method);
+    let mType = TypeUtils.convertDomTypeToTsType(signature, true, isAbstract);
     mType = signature.nullable ? makeNullable(mType) : mType;
     if (this.domType === DomType.awaited) {
-      if (m.isAbstract === 1) {
+      if (isAbstract) {
         mType = mType.replace(' | null', '');
       }
     }
@@ -315,6 +317,7 @@ export default class TsBodyPrinter {
 
   private extractPropertyReturnType(p: Types.Property) {
     const i: Types.Interface = this.i;
+    const isAbstract = this.isAbstract(p);
     let pType: string;
     if (isEventHandler(p)) {
       // Sometimes event handlers with the same name may actually handle different
@@ -327,12 +330,12 @@ export default class TsBodyPrinter {
         pType = `(${pType}) | null`;
       }
     } else {
-      pType = TypeUtils.convertDomTypeToTsType(p, true);
-      TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
+      pType = TypeUtils.convertDomTypeToTsType(p, true, isAbstract);
+      TypeUtils.extractCustomTypes(p, isAbstract).forEach(this.referencedObjects.add, this.referencedObjects);
     }
 
     if (this.domType === DomType.awaited) {
-      if (p.isAbstract === 1) {
+      if (isAbstract) {
         pType = pType.replace(' | null', '');
       } else {
         pType = `Promise<${pType}>`;
@@ -352,6 +355,7 @@ export default class TsBodyPrinter {
 
   private extractPropertyValueType(p: Types.Property) {
     const i: Types.Interface = this.i;
+    const isAbstract = this.isAbstract(p);
     let pType: string;
     if (isEventHandler(p)) {
       // Sometimes event handlers with the same name may actually handle different
@@ -364,10 +368,9 @@ export default class TsBodyPrinter {
         pType = `(${pType}) | null`;
       }
     } else {
-      pType = TypeUtils.convertDomTypeToTsType(p, true);
-      TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
+      pType = TypeUtils.convertDomTypeToTsType(p, true, isAbstract);
+      TypeUtils.extractCustomTypes(p, isAbstract).forEach(this.referencedObjects.add, this.referencedObjects);
       const isReadonly = p.readOnly === 1;
-      const isAbstract = this.isAbstract(p);
       if (!isAbstract && !isReadonly) {
         pType += ' | any';
       }

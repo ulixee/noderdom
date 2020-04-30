@@ -54,10 +54,12 @@ export default class DOMCreator {
     const tsBuilderOptions = { domType, buildType: BuildType.base, pathsByBuildType };
     const tsBuilder = new TsBuilder(this.components, tsBuilderOptions);
 
+    // BASIC INTERFACES
     const basicTypes = tsBuilder.extractBasicInterfaces();
     const basicTypesOutput = [DOMCreator.outputIntro, basicTypes.map(t => t.code).join('\n\n')].join('');
     Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.basic}.ts`, basicTypesOutput);
 
+    // OFFICIAL INTERFACES
     const officialInterfaces = tsBuilder.extractOfficialInterfaces();
     const stringifiedTypescriptInterfaces = this.stringifyInterfaceCodeModules(
       DOMCreator.outputIntro,
@@ -65,53 +67,65 @@ export default class DOMCreator {
     );
     Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.official}.ts`, stringifiedTypescriptInterfaces);
 
+    // ELEMENT INTERFACES
     const elementMap = [DOMCreator.outputIntro, tsBuilder.extractElementInterfaces().join('\n\n')];
     Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.element}.ts`, elementMap.join(''));
 
+    // ISOLATE INTERFACES
+    if (domType === DomType.awaited) {
+      const isolateInterfaces = tsBuilder.extractIsolateInterfaces();
+      const stringifiedIsolateInterfaces = this.stringifyInterfaceCodeModules(
+        DOMCreator.outputIntro,
+        isolateInterfaces,
+      );
+      Fs.writeFileSync(
+        `${this.pathsByBuildType.base.interfaces}/${ObjectType.isolate}.ts`,
+        stringifiedIsolateInterfaces,
+      );
+    }
+
+    // SUPER INTERFACES
+    if (domType === DomType.awaited) {
+      const superInterfaces = tsBuilder.extractSuperInterfaces();
+      const stringifiedSuperInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, superInterfaces);
+      Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.super}.ts`, stringifiedSuperInterfaces);
+    }
+
+    // OFFICIAL MIXINS
     const tsMixins = tsBuilder.extractOfficialMixins();
     tsMixins.forEach(c => {
       const mixinOutputPath = Path.join(pathsByBuildType.base.officialMixins, `${c.name}.ts`);
       Fs.writeFileSync(mixinOutputPath, `${c.code}\n`);
     });
 
+    // OFFICIAL KLASSES
     const tsClasses = tsBuilder.extractOfficialKlasses();
     tsClasses.forEach(c => {
       const classOutputPath = Path.join(pathsByBuildType.base.officialKlasses, `${c.name}.ts`);
       Fs.writeFileSync(classOutputPath, `${c.code}\n`);
     });
 
-    Exports.moveToDir(pathsByBuildType.base.root);
-
+    // ISOLATE MIXINS
     if (domType === DomType.awaited) {
-      this.createBaseIsolates(tsBuilder);
-      this.createBaseSupers(tsBuilder);
+      const isolateMixins = tsBuilder.extractIsolateMixins();
+      isolateMixins.forEach(c => {
+        const isolateOutputPath = Path.join(this.pathsByBuildType.base.isolateMixins, `${c.name}.ts`);
+        Fs.writeFileSync(isolateOutputPath, `${c.code}\n`);
+      });
     }
 
+    // SUPER KLASSES
+    if (domType === DomType.awaited) {
+      const superClasses = tsBuilder.extractSuperKlasses();
+      superClasses.forEach(c => {
+        const superOutputPath = Path.join(this.pathsByBuildType.base.superKlasses, `${c.name}.ts`);
+        Fs.writeFileSync(superOutputPath, `${c.code}\n`);
+      });
+    }
+
+    Exports.moveToDir(pathsByBuildType.base.root);
+
     return tsBuilder.objectMetaByName;
-  }
-
-  private createBaseIsolates(tsBuilder: TsBuilder) {
-    const isolateInterfaces = tsBuilder.extractIsolateInterfaces();
-    const stringifiedIsolateInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, isolateInterfaces);
-    Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.isolate}.ts`, stringifiedIsolateInterfaces);
-
-    const isolateMixins = tsBuilder.extractIsolateMixins();
-    isolateMixins.forEach(c => {
-      const isolateOutputPath = Path.join(this.pathsByBuildType.base.isolateMixins, `${c.name}.ts`);
-      Fs.writeFileSync(isolateOutputPath, `${c.code}\n`);
-    });
-  }
-
-  private createBaseSupers(tsBuilder: TsBuilder) {
-    const superInterfaces = tsBuilder.extractSuperInterfaces();
-    const stringifiedSuperInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, superInterfaces);
-    Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.super}.ts`, stringifiedSuperInterfaces);
-
-    const superClasses = tsBuilder.extractSuperKlasses();
-    superClasses.forEach(c => {
-      const superOutputPath = Path.join(this.pathsByBuildType.base.superKlasses, `${c.name}.ts`);
-      Fs.writeFileSync(superOutputPath, `${c.code}\n`);
-    });
   }
 
   private createImpl(objectMetaByName: IObjectMetaByName) {
@@ -136,10 +150,13 @@ export default class DOMCreator {
     if (domType === DomType.awaited) {
       this.createImplIsolates(tsBuilder);
       this.createImplSupers(tsBuilder);
-
-      const code = tsBuilder.extractCreateDocumentForNode();
-      Fs.writeFileSync(`${pathsByBuildType.impl.root}/createDocumentForNode.ts`, `${code}\n`);
+      this.createImplCreateFunctions(tsBuilder);
     }
+  }
+
+  private createImplCreateFunctions(tsBuilder: TsBuilder) {
+    const createFunctionsOutput = tsBuilder.extractCreateFunctions();
+    Fs.writeFileSync(`${this.pathsByBuildType.impl.root}/create.ts`, `${createFunctionsOutput}\n`);
   }
 
   private createImplIsolates(tsBuilder: TsBuilder) {

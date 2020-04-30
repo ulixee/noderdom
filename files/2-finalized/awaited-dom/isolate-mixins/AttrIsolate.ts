@@ -1,15 +1,15 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IAttrIsolate } from '../../awaited-base/interfaces/isolate';
-import { IElement } from '../../awaited-base/interfaces/official';
+import { ISuperElement } from '../../awaited-base/interfaces/super';
 import AttrIsolateBase, { IAttrIsolateProperties } from '../../awaited-base/isolate-mixins/AttrIsolate';
-import { createElement } from '../official-klasses/Element';
+import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
 
 export default class AttrIsolate extends AttrIsolateBase implements IAttrIsolate {
-  public get ownerElement(): IElement {
+  public get ownerElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
   }
 }

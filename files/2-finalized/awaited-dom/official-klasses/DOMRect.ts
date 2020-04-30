@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { IDOMRect } from '../../awaited-base/interfaces/official';
 import { DOMRectGenerator, initialize, IDOMRectProperties } from '../../awaited-base/official-klasses/DOMRect';
 
@@ -12,12 +11,4 @@ export default class DOMRect extends DOMRectBase implements IDOMRect {
     super();
     initialize(DOMRect, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createDOMRect<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMRect {
-  const instance = new DOMRect();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

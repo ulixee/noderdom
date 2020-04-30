@@ -2,7 +2,7 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { IHTMLElement, IHTMLHeadElement } from './official';
+import { IHTMLElement, IHTMLHeadElement, IHTMLInputElement } from './official';
 
 export interface IHTMLElementTagNameMap {
   abbr: IHTMLElement;
@@ -28,6 +28,7 @@ export interface IHTMLElementTagNameMap {
   header: IHTMLElement;
   hgroup: IHTMLElement;
   i: IHTMLElement;
+  input: IHTMLInputElement;
   kbd: IHTMLElement;
   keygen: IHTMLElement;
   main: IHTMLElement;

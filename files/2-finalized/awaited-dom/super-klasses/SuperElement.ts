@@ -1,19 +1,17 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { ISuperElement } from '../../awaited-base/interfaces/super';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../awaited-base/interfaces/official';
 import { SuperElementGenerator, initialize, ISuperElementProperties } from '../../awaited-base/super-klasses/SuperElement';
-import { createNamedNodeMap } from '../official-klasses/NamedNodeMap';
-import { createDOMTokenList } from '../official-klasses/DOMTokenList';
-import { createShadowRoot } from '../official-klasses/ShadowRoot';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot } from '../create';
 import HTMLElementIsolate from '../isolate-mixins/HTMLElementIsolate';
 import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
+import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
 import Node from '../official-klasses/Node';
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
-const SuperElementBase = SuperElementGenerator(HTMLElementIsolate, HTMLHeadElementIsolate, Node, ParentNode);
+const SuperElementBase = SuperElementGenerator(HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, Node, ParentNode);
 
 export default class SuperElement extends SuperElementBase implements ISuperElement {
   constructor() {
@@ -42,12 +40,4 @@ export default class SuperElement extends SuperElementBase implements ISuperElem
     const { awaitedPath, awaitedOptions } = getState(this);
     return createShadowRoot(awaitedPath.addProperty('shadowRoot'), awaitedOptions);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createSuperElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperElement {
-  const instance = new SuperElement();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

@@ -1,12 +1,7 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
-import { ISuperNode } from '../../awaited-base/interfaces/super';
-import { INodeList, INode, IDocument, IElement } from '../../awaited-base/interfaces/official';
+import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../../awaited-base/interfaces/super';
 import { SuperNodeGenerator, initialize, ISuperNodeProperties } from '../../awaited-base/super-klasses/SuperNode';
-import { createNodeList } from '../official-klasses/NodeList';
-import { createNode } from '../official-klasses/Node';
-import { createDocument } from '../official-klasses/Document';
-import { createElement } from '../official-klasses/Element';
+import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';
 import AttrIsolate from '../isolate-mixins/AttrIsolate';
 import CharacterDataIsolate from '../isolate-mixins/CharacterDataIsolate';
 import DocumentIsolate from '../isolate-mixins/DocumentIsolate';
@@ -14,11 +9,12 @@ import DocumentTypeIsolate from '../isolate-mixins/DocumentTypeIsolate';
 import ElementIsolate from '../isolate-mixins/ElementIsolate';
 import HTMLElementIsolate from '../isolate-mixins/HTMLElementIsolate';
 import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
+import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
 import TextIsolate from '../isolate-mixins/TextIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
-const SuperNodeBase = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, TextIsolate);
+const SuperNodeBase = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, TextIsolate);
 
 export default class SuperNode extends SuperNodeBase implements ISuperNode {
   constructor() {
@@ -28,51 +24,43 @@ export default class SuperNode extends SuperNodeBase implements ISuperNode {
 
   // properties
 
-  public get childNodes(): INodeList {
+  public get childNodes(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);
   }
 
-  public get firstChild(): INode {
+  public get firstChild(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createNode(awaitedPath.addProperty('firstChild'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty('firstChild'), awaitedOptions);
   }
 
-  public get lastChild(): INode {
+  public get lastChild(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createNode(awaitedPath.addProperty('lastChild'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty('lastChild'), awaitedOptions);
   }
 
-  public get nextSibling(): INode {
+  public get nextSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createNode(awaitedPath.addProperty('nextSibling'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty('nextSibling'), awaitedOptions);
   }
 
-  public get ownerDocument(): IDocument {
+  public get ownerDocument(): ISuperDocument {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDocument(awaitedPath.addProperty('ownerDocument'), awaitedOptions);
+    return createSuperDocument(awaitedPath.addProperty('ownerDocument'), awaitedOptions);
   }
 
-  public get parentElement(): IElement {
+  public get parentElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createElement(awaitedPath.addProperty('parentElement'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty('parentElement'), awaitedOptions);
   }
 
-  public get parentNode(): INode {
+  public get parentNode(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createNode(awaitedPath.addProperty('parentNode'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty('parentNode'), awaitedOptions);
   }
 
-  public get previousSibling(): INode {
+  public get previousSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createSuperNode<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperNode {
-  const instance = new SuperNode();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

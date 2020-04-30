@@ -17,6 +17,10 @@ const BASE_NAMES = [
 export default class SuperGenerator {
   public static baseNames: string[] = BASE_NAMES;
 
+  public static superizeName(baseName: string) {
+    return BASE_NAMES.includes(baseName) ? `Super${baseName}` : baseName;
+  }
+
   public static injectIntoComponents(components: Components) {
     const dependencyCollector = new DependencyCollector(components, DomType.awaited);
 

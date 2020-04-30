@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
 import { SuperHTMLCollectionGenerator, initialize, ISuperHTMLCollectionProperties } from '../../awaited-base/super-klasses/SuperHTMLCollection';
 
@@ -12,12 +11,4 @@ export default class SuperHTMLCollection extends SuperHTMLCollectionBase impleme
     super();
     initialize(SuperHTMLCollection, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createSuperHTMLCollection<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperHTMLCollection {
-  const instance = new SuperHTMLCollection();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

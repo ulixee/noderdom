@@ -1,5 +1,4 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import AwaitedPath from '../../awaited-base/AwaitedPath';
 import { ICharacterData } from '../../awaited-base/interfaces/official';
 import { CharacterDataGenerator, initialize, ICharacterDataProperties } from '../../awaited-base/official-klasses/CharacterData';
 import Node from './Node';
@@ -13,12 +12,4 @@ export default class CharacterData extends CharacterDataBase implements ICharact
     super();
     initialize(CharacterData, this);
   }
-}
-
-// FUNCTION TO CREATE INSTANCE ///////////////////////////////////////////////
-
-export function createCharacterData<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ICharacterData {
-  const instance = new CharacterData();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
 }

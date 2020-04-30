@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
-import { IParentNode, IElement } from '../interfaces/official';
+import { IParentNode } from '../interfaces/official';
+import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IParentNode, IParentNodeProperties>();
@@ -11,17 +12,17 @@ export default class ParentNode implements IParentNode {
     return awaitedHandler.getProperty<number>(this, 'childElementCount', false);
   }
 
-  public get firstElementChild(): IElement {
+  public get firstElementChild(): ISuperElement {
     throw new Error('ParentNode.firstElementChild getter not implemented');
   }
 
-  public get lastElementChild(): IElement {
+  public get lastElementChild(): ISuperElement {
     throw new Error('ParentNode.lastElementChild getter not implemented');
   }
 
   // methods
 
-  public querySelector(selectors: string): IElement {
+  public querySelector(selectors: string): ISuperElement {
     throw new Error('ParentNode.querySelector not implemented');
   }
 }
@@ -30,8 +31,8 @@ export default class ParentNode implements IParentNode {
 
 export interface IParentNodeProperties {
   readonly childElementCount?: Promise<number>;
-  readonly firstElementChild?: IElement;
-  readonly lastElementChild?: IElement;
+  readonly firstElementChild?: ISuperElement;
+  readonly lastElementChild?: ISuperElement;
 }
 
 export const ParentNodePropertyKeys = ['childElementCount', 'firstElementChild', 'lastElementChild'];

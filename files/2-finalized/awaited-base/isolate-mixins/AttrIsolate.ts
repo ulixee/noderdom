@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import { IAttrIsolate } from '../interfaces/isolate';
-import { IElement } from '../interfaces/official';
+import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
@@ -20,7 +20,7 @@ export default class AttrIsolate implements IAttrIsolate {
     return awaitedHandler.getProperty<string | null>(this, 'namespaceURI', true);
   }
 
-  public get ownerElement(): IElement {
+  public get ownerElement(): ISuperElement {
     throw new Error('AttrIsolate.ownerElement getter not implemented');
   }
 
@@ -43,7 +43,7 @@ export interface IAttrIsolateProperties {
   readonly localName?: Promise<string>;
   readonly name?: Promise<string>;
   readonly namespaceURI?: Promise<string | null>;
-  readonly ownerElement?: IElement;
+  readonly ownerElement?: ISuperElement;
   readonly prefix?: Promise<string | null>;
   readonly specified?: Promise<boolean>;
   readonly value?: Promise<string>;

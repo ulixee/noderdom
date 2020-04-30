@@ -1125,9 +1125,215 @@
     "methodsByName": {}
   },
   "HTMLInputElement": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "accept": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "alt": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "autocomplete": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "autofocus": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "checked": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "defaultChecked": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "defaultValue": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "dirName": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "disabled": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "files": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "form": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "formAction": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "formEnctype": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "formMethod": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "formNoValidate": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "formTarget": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "height": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "indeterminate": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "inputMode": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "labels": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "list": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "max": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "maxLength": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "min": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "minLength": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "multiple": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "name": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "pattern": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "placeholder": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "readOnly": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "required": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "selectionDirection": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "selectionEnd": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "selectionStart": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "size": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "src": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "step": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "type": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "validationMessage": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "validity": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "value": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "valueAsDate": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "valueAsNumber": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "width": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "willValidate": {
+        "isEnabled": false,
+        "isAbstract": true
+      }
+    },
+    "methodsByName": {
+      "checkValidity": {
+        "isEnabled": false
+      },
+      "reportValidity": {
+        "isEnabled": false
+      },
+      "select": {
+        "isEnabled": true
+      },
+      "setCustomValidity": {
+        "isEnabled": false
+      },
+      "setRangeText": {
+        "isEnabled": false
+      },
+      "setSelectionRange": {
+        "isEnabled": false
+      },
+      "stepDown": {
+        "isEnabled": false
+      },
+      "stepUp": {
+        "isEnabled": false
+      }
+    }
   },
   "HTMLLIElement": {
     "isEnabled": false,
@@ -1773,9 +1979,29 @@
     "methodsByName": {}
   },
   "HTMLOrSVGElement": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "dataset": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "nonce": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "tabIndex": {
+        "isEnabled": false,
+        "isAbstract": true
+      }
+    },
+    "methodsByName": {
+      "blur": {
+        "isEnabled": true
+      },
+      "focus": {
+        "isEnabled": true
+      }
+    }
   },
   "NonElementParentNode": {
     "isEnabled": false,

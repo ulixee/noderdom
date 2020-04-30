@@ -2,9 +2,7 @@ import StateMachine from '../../awaited-base/StateMachine';
 import { IElementIsolate } from '../../awaited-base/interfaces/isolate';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../awaited-base/interfaces/official';
 import ElementIsolateBase, { IElementIsolateProperties } from '../../awaited-base/isolate-mixins/ElementIsolate';
-import { createNamedNodeMap } from '../official-klasses/NamedNodeMap';
-import { createDOMTokenList } from '../official-klasses/DOMTokenList';
-import { createShadowRoot } from '../official-klasses/ShadowRoot';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot } from '../create';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();

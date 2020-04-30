@@ -2,16 +2,16 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { INode, IParentNode, IHTMLCollection, IHTMLElement, IDocumentType, IElement, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, INodeList, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IDocument, ICharacterData, IText } from './official';
+import { INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLCollection, INodeList, INamedNodeMap, IDOMTokenList, IShadowRoot, IElement, IAttr, IDOMRect, IDOMRectList, ICharacterData, IText, IHTMLOrSVGElement } from './official';
 import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './basic';
-import { IHTMLElementIsolate, IHTMLHeadElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, ITextIsolate } from './isolate';
+import { IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, ITextIsolate } from './isolate';
 
 // SuperDocument //////////
 
 export interface ISuperDocument extends INode, IParentNode {
   readonly URL: Promise<string>;
-  readonly anchors: IHTMLCollection;
-  readonly body: IHTMLElement;
+  readonly anchors: ISuperHTMLCollection;
+  readonly body: ISuperHTMLElement;
   readonly characterSet: Promise<string>;
   readonly compatMode: Promise<string>;
   readonly contentType: Promise<string>;
@@ -19,25 +19,25 @@ export interface ISuperDocument extends INode, IParentNode {
   readonly designMode: Promise<string>;
   readonly dir: Promise<string>;
   readonly doctype: IDocumentType;
-  readonly documentElement: IElement;
+  readonly documentElement: ISuperElement;
   readonly documentURI: Promise<string>;
   readonly domain: Promise<string>;
-  readonly embeds: IHTMLCollection;
+  readonly embeds: ISuperHTMLCollection;
   readonly featurePolicy: IFeaturePolicy;
-  readonly forms: IHTMLCollection;
+  readonly forms: ISuperHTMLCollection;
   readonly fullscreenEnabled: Promise<boolean>;
   readonly head: IHTMLHeadElement;
   readonly hidden: Promise<boolean>;
-  readonly images: IHTMLCollection;
+  readonly images: ISuperHTMLCollection;
   readonly implementation: IDOMImplementation;
   readonly lastModified: Promise<string>;
-  readonly links: IHTMLCollection;
+  readonly links: ISuperHTMLCollection;
   readonly location: ILocation;
-  readonly plugins: IHTMLCollection;
+  readonly plugins: ISuperHTMLCollection;
   readonly readyState: Promise<IDocumentReadyState>;
   readonly referrer: Promise<string>;
-  readonly scripts: IHTMLCollection;
-  readonly scrollingElement: IElement;
+  readonly scripts: ISuperHTMLCollection;
+  readonly scrollingElement: ISuperElement;
   readonly title: Promise<string>;
   readonly visibilityState: Promise<IVisibilityState>;
 
@@ -52,7 +52,7 @@ export interface ISuperDocument extends INode, IParentNode {
 
 // SuperElement //////////
 
-export interface ISuperElement extends IHTMLElementIsolate, IHTMLHeadElementIsolate, INode, IParentNode {
+export interface ISuperElement extends IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, INode, IParentNode {
   readonly attributes: INamedNodeMap;
   readonly classList: IDOMTokenList;
   readonly className: Promise<string>;
@@ -98,7 +98,7 @@ export interface ISuperElement extends IHTMLElementIsolate, IHTMLHeadElementIsol
 
 // SuperNode //////////
 
-export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, ITextIsolate {
+export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, ITextIsolate {
   readonly ATTRIBUTE_NODE: number;
   readonly CDATA_SECTION_NODE: number;
   readonly COMMENT_NODE: number;
@@ -119,18 +119,18 @@ export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocume
   readonly TEXT_NODE: number;
 
   readonly baseURI: Promise<string>;
-  readonly childNodes: INodeList;
-  readonly firstChild: INode;
+  readonly childNodes: ISuperNodeList;
+  readonly firstChild: ISuperNode;
   readonly isConnected: Promise<boolean>;
-  readonly lastChild: INode;
-  readonly nextSibling: INode;
+  readonly lastChild: ISuperNode;
+  readonly nextSibling: ISuperNode;
   readonly nodeName: Promise<string>;
   readonly nodeType: Promise<number>;
   readonly nodeValue: Promise<string | null>;
-  readonly ownerDocument: IDocument;
-  readonly parentElement: IElement;
-  readonly parentNode: INode;
-  readonly previousSibling: INode;
+  readonly ownerDocument: ISuperDocument;
+  readonly parentElement: ISuperElement;
+  readonly parentNode: ISuperNode;
+  readonly previousSibling: ISuperNode;
   readonly textContent: Promise<string | null>;
 
   compareDocumentPosition(other: INode): Promise<number>;
@@ -192,7 +192,7 @@ export interface ISuperStyleSheet {}
 
 // SuperHTMLElement //////////
 
-export interface ISuperHTMLElement extends IElement, IHTMLHeadElementIsolate, INode {
+export interface ISuperHTMLElement extends IElement, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INode {
   readonly accessKey: Promise<string>;
   readonly autoCapitalize: Promise<string>;
   readonly dir: Promise<string>;
@@ -203,7 +203,7 @@ export interface ISuperHTMLElement extends IElement, IHTMLHeadElementIsolate, IN
   readonly lang: Promise<string>;
   readonly offsetHeight: Promise<number>;
   readonly offsetLeft: Promise<number>;
-  readonly offsetParent: IElement;
+  readonly offsetParent: ISuperElement;
   readonly offsetTop: Promise<number>;
   readonly offsetWidth: Promise<number>;
   readonly spellcheck: Promise<boolean>;
