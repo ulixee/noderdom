@@ -74,10 +74,6 @@ export default class TsBuilder {
     this.mixins = allInterfaces.sort(compareName).filter(i => !i.legacyNamespace && i.noInterfaceObject);
   }
 
-  public extractElementInterfaces() {
-    return new TsElementExtractor(this.components).run();
-  }
-
   public extractBasicInterfaces() {
     const codeModules = new TsBuildInterfacesBasic(this.components).run();
 
@@ -97,17 +93,19 @@ export default class TsBuilder {
     return codeModules;
   }
 
-  public extractOfficialInterfaces() {
-    const { domType } = this;
-    const options = { domType };
-    const codeModules = this.interfaces.map(i => new TsInterfaceExtractor(this.components, i, options).run());
+  public extractElementInterfaces() {
+    return new TsElementExtractor(this.components).extract();
+  }
 
-    const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
-      currentDir: this.pathsByBuildType.base.interfaces,
-      references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
-      localReferences: codeModules.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
-    });
-    if (importsCodeModule) codeModules.unshift(importsCodeModule);
+  public extractElementInterfaceImports() {
+    const elementExtractor = new TsElementExtractor(this.components);
+    elementExtractor.extract();
+    return elementExtractor.extractImports();
+  }
+
+  public extractOfficialInterfaces() {
+    const options = { domType: this.domType };
+    const codeModules = this.interfaces.map(i => new TsInterfaceExtractor(this.components, i, options).run());
 
     this.addToObjectMeta(
       ObjectType.official,
@@ -119,19 +117,24 @@ export default class TsBuilder {
     return codeModules;
   }
 
-  public extractIsolateInterfaces() {
-    const { domType } = this;
-    const options = { domType };
-    const codeModules: ICodeModule[] = [];
-    for (const i of Object.values(this.components.awaitedIsolates)) {
-      codeModules.push(new TsBuildInterfaceIsolate(this.components, i, options).run());
-    }
+  public extractOfficialInterfaceImports() {
+    const options = { domType: this.domType };
+    const codeModules = this.interfaces.map(i => new TsInterfaceExtractor(this.components, i, options).run());
 
     const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
       currentDir: this.pathsByBuildType.base.interfaces,
       references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
+      localReferences: codeModules.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
     });
-    if (importsCodeModule) codeModules.unshift(importsCodeModule);
+    return importsCodeModule ? importsCodeModule.code : '';
+  }
+
+  public extractIsolateInterfaces() {
+    const options = { domType: this.domType };
+    const codeModules: ICodeModule[] = [];
+    for (const i of Object.values(this.components.awaitedIsolates)) {
+      codeModules.push(new TsBuildInterfaceIsolate(this.components, i, options).run());
+    }
 
     this.addToObjectMeta(
       ObjectType.isolate,
@@ -143,17 +146,25 @@ export default class TsBuilder {
     return codeModules;
   }
 
-  public extractSuperInterfaces() {
-    const { domType } = this;
-    const codeModules = Object.values(this.components.awaitedSupers).map(i => {
-      return new TsInterfaceExtractor(this.components, i, { domType }).run();
-    });
+  public extractIsolateInterfaceImports() {
+    const options = { domType: this.domType };
+    const codeModules: ICodeModule[] = [];
+    for (const i of Object.values(this.components.awaitedIsolates)) {
+      codeModules.push(new TsBuildInterfaceIsolate(this.components, i, options).run());
+    }
 
     const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
       currentDir: this.pathsByBuildType.base.interfaces,
       references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
     });
-    if (importsCodeModule) codeModules.unshift(importsCodeModule);
+
+    return importsCodeModule ? importsCodeModule.code : '';
+  }
+
+  public extractSuperInterfaces() {
+    const codeModules = Object.values(this.components.awaitedSupers).map(i => {
+      return new TsInterfaceExtractor(this.components, i, { domType: this.domType }).run();
+    });
 
     this.addToObjectMeta(
       ObjectType.super,
@@ -163,6 +174,20 @@ export default class TsBuilder {
     );
 
     return codeModules;
+  }
+
+  public extractSuperInterfaceImports() {
+    const codeModules = Object.values(this.components.awaitedSupers).map(i => {
+      return new TsInterfaceExtractor(this.components, i, { domType: this.domType }).run();
+    });
+
+    const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
+      currentDir: this.pathsByBuildType.base.interfaces,
+      references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
+      localReferences: codeModules.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
+    });
+
+    return importsCodeModule ? importsCodeModule.code : '';
   }
 
   public extractOfficialKlasses() {

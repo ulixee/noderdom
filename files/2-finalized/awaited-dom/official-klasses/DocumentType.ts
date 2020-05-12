@@ -1,6 +1,6 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IDocumentType } from '../../awaited-base/interfaces/official';
-import { DocumentTypeGenerator, initialize, IDocumentTypeProperties } from '../../awaited-base/official-klasses/DocumentType';
+import { DocumentTypeGenerator, IDocumentTypeProperties } from '../../awaited-base/official-klasses/DocumentType';
 import Node from './Node';
 
 // tslint:disable:variable-name
@@ -10,6 +10,5 @@ const DocumentTypeBase = DocumentTypeGenerator(Node);
 export default class DocumentType extends DocumentTypeBase implements IDocumentType {
   constructor() {
     super();
-    initialize(DocumentType, this);
   }
 }

@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import { IHTMLElement, IElement, IHTMLOrSVGElement } from '../interfaces/official';
@@ -18,7 +19,7 @@ export function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVG
   return class HTMLElement extends Parent implements IHTMLElement {
     constructor() {
       super();
-      initialize(HTMLElement, this);
+      initializeConstantsAndProperties<HTMLElement>(this, HTMLElementConstantKeys, HTMLElementPropertyKeys);
     }
 
     // properties
@@ -98,6 +99,8 @@ export function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVG
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IHTMLElementProperties extends IElementProperties, IHTMLOrSVGElementProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly accessKey?: Promise<string>;
   readonly autoCapitalize?: Promise<string>;
   readonly dir?: Promise<string>;
@@ -119,9 +122,3 @@ export interface IHTMLElementProperties extends IElementProperties, IHTMLOrSVGEl
 export const HTMLElementPropertyKeys = [...ElementPropertyKeys, ...HTMLOrSVGElementPropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
 
 export const HTMLElementConstantKeys = [...ElementConstantKeys, ...HTMLOrSVGElementConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IHTMLElement>, self: IHTMLElement) {
-  initializeConstantsAndProperties<IHTMLElement>(Klass, self, HTMLElementConstantKeys, HTMLElementPropertyKeys);
-}

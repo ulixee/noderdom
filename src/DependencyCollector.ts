@@ -8,16 +8,29 @@ interface ICodeModulesByName {
   [name: string]: ICodeModule;
 }
 
+type ICodeDependencies = Set<string>;
+
 interface ICodeDependenciesByName {
-  [name: string]: Set<string>;
+  [name: string]: ICodeDependencies;
+}
+
+interface IClassCollection {
+  officialMixins: Set<string>;
+  isolateMixins: Set<string>;
+}
+
+interface IVisits {
+  upstream: Set<string>;
+  downstream: Set<string>;
 }
 
 export default class DependencyCollector {
-  private readonly isolateMixinsByName: ICodeDependenciesByName = {};
-  private readonly officialMixinsByName: ICodeDependenciesByName = {};
-  private readonly officialKlassesByName: ICodeDependenciesByName = {};
+  private readonly components: Components;
+  private readonly upstreamByName: ICodeDependenciesByName = {};
+  private readonly downstreamByName: ICodeDependenciesByName = {};
 
   constructor(components: Components, domType: IDomType) {
+    this.components = components;
     const tsBuilder = new TsBuilder(components, { domType, buildType: BuildType.base });
     const codeModulesByName: ICodeModulesByName = {};
     tsBuilder.extractOfficialInterfaces().forEach(m => (codeModulesByName[m.name] = m));
@@ -30,77 +43,61 @@ export default class DependencyCollector {
     delete codeModulesByName.Import;
 
     for (const codeModule of Object.values(codeModulesByName)) {
-      findIsolateMixins(codeModule, components, this.isolateMixinsByName);
-      findOfficialMixins(codeModule, components, this.officialMixinsByName);
-      findOfficialKlasses(codeModule, components, this.officialKlassesByName);
+      this.organizeDependencies(codeModule, components);
     }
   }
 
   public get(name: string) {
+    const visits: IVisits = { upstream: new Set(), downstream: new Set() };
+    const classCollection: IClassCollection = {
+      isolateMixins: new Set(),
+      officialMixins: new Set(),
+    };
+
+    this.collectUpstreamClasses(name, classCollection, visits);
+    this.collectDownstreamClasses(name, classCollection, visits);
+
     return {
-      isolateMixins: this.collectAll(this.isolateMixinsByName, name),
-      officialMixins: this.collectAll(this.officialMixinsByName, name),
-      officialKlasses: this.collectAll(this.officialKlassesByName, name),
+      isolateMixins: Array.from(classCollection.isolateMixins),
+      officialMixins: Array.from(classCollection.officialMixins),
     };
   }
 
-  private collectAll(byName: ICodeDependenciesByName, name: string): string[] {
-    const names: string[] = [];
-    if (!byName[name]) return names;
-    for (const n of byName[name]) {
-      names.push(n);
-      names.push(...this.collectAll(byName, n));
-    }
-    return names;
-  }
-}
-
-function findIsolateMixins(
-  codeModule: ICodeModule,
-  components: Components,
-  isolateMixinsByName: ICodeDependenciesByName,
-) {
-  const inter = components.allInterfacesMap[codeModule.name];
-  if (inter.extends && inter.extends !== 'Object') {
-    const name = inter.extends;
-    getByName(isolateMixinsByName, name).add(codeModule.name);
-  }
-  if (inter.implements) {
-    for (const name of inter.implements) {
-      if (components.mixins[name]) continue;
-      getByName(isolateMixinsByName, name).add(codeModule.name);
+  private collectUpstreamClasses(name: string, classCollection: IClassCollection, visits: IVisits) {
+    if (!this.upstreamByName[name] || visits.upstream.has(name)) return;
+    visits.upstream.add(name);
+    for (const n of this.upstreamByName[name]) {
+      if (this.components.mixins[n]) {
+        classCollection.officialMixins.add(n);
+      } else {
+        classCollection.isolateMixins.add(n);
+      }
+      this.collectUpstreamClasses(n, classCollection, visits);
     }
   }
-}
 
-function findOfficialMixins(
-  codeModule: ICodeModule,
-  components: Components,
-  officialMixinsByName: ICodeDependenciesByName,
-) {
-  const inter = components.allInterfacesMap[codeModule.name];
-  if (inter.implements) {
-    for (const name of inter.implements) {
-      if (!components.mixins[name]) continue;
-      getByName(officialMixinsByName, codeModule.name).add(name);
+  private collectDownstreamClasses(name: string, classCollection: IClassCollection, visits: IVisits) {
+    if (!this.downstreamByName[name] || visits.downstream.has(name)) return;
+    visits.downstream.add(name);
+    for (const n of this.downstreamByName[name]) {
+      if (this.components.mixins[n]) {
+        classCollection.officialMixins.add(n);
+      } else {
+        classCollection.isolateMixins.add(n);
+      }
+      this.collectUpstreamClasses(n, classCollection, visits);
+      this.collectDownstreamClasses(n, classCollection, visits);
     }
   }
-}
 
-function findOfficialKlasses(
-  codeModule: ICodeModule,
-  components: Components,
-  officialKlassesByName: ICodeDependenciesByName,
-) {
-  const inter = components.allInterfacesMap[codeModule.name];
-  if (inter.extends && inter.extends !== 'Object') {
-    const name = inter.extends;
-    getByName(officialKlassesByName, codeModule.name).add(name);
-  }
-  if (inter.implements) {
-    for (const name of inter.implements) {
-      if (components.mixins[name]) continue;
-      getByName(officialKlassesByName, codeModule.name).add(name);
+  private organizeDependencies(codeModule: ICodeModule, components: Components) {
+    const inter = components.allInterfacesMap[codeModule.name];
+    const dependencies = inter.implements || [];
+    if (inter.extends && inter.extends !== 'Object') dependencies.push(inter.extends);
+
+    for (const name of dependencies) {
+      getByName(this.downstreamByName, name).add(codeModule.name);
+      getByName(this.upstreamByName, codeModule.name).add(name);
     }
   }
 }

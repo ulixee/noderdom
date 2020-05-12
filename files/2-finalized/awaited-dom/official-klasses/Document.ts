@@ -1,7 +1,7 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IDocument, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../awaited-base/interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../../awaited-base/interfaces/super';
-import { DocumentGenerator, initialize, IDocumentProperties } from '../../awaited-base/official-klasses/Document';
+import { DocumentGenerator, IDocumentProperties } from '../../awaited-base/official-klasses/Document';
 import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation } from '../create';
 import Node from './Node';
 import ParentNode from '../official-mixins/ParentNode';
@@ -13,7 +13,6 @@ const DocumentBase = DocumentGenerator(Node, ParentNode);
 export default class Document extends DocumentBase implements IDocument {
   constructor() {
     super();
-    initialize(Document, this);
   }
 
   // properties

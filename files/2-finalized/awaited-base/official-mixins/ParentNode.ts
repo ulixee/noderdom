@@ -1,5 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IParentNode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 
@@ -30,6 +31,8 @@ export default class ParentNode implements IParentNode {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IParentNodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly childElementCount?: Promise<number>;
   readonly firstElementChild?: ISuperElement;
   readonly lastElementChild?: ISuperElement;

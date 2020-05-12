@@ -1,25 +1,27 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../interfaces/super';
-import { INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLCollection, INodeList } from '../interfaces/official';
+import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
+import { INodeIsolate } from '../interfaces/isolate';
+import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
-import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
+import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKeys } from '../isolate-mixins/NodeIsolate';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
 
-export function SuperDocumentGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
-  const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
+export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
+  const Parent = (ClassMixer(NodeIsolate, [ParentNode]) as unknown) as Constructable<INodeIsolate & IParentNode>;
 
   return class SuperDocument extends Parent implements ISuperDocument {
     constructor() {
       super();
-      initialize(SuperDocument, this);
+      initializeConstantsAndProperties<SuperDocument>(this, SuperDocumentConstantKeys, SuperDocumentPropertyKeys);
     }
 
     // properties
@@ -158,20 +160,20 @@ export function SuperDocumentGenerator(Node: Constructable<INode>, ParentNode: C
       return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
     }
 
-    public getElementsByName(elementName: string): Promise<INodeList> {
-      return awaitedHandler.runMethod<INodeList>(this, 'getElementsByName', [elementName]);
+    public getElementsByName(elementName: string): Promise<ISuperNodeList> {
+      return awaitedHandler.runMethod<ISuperNodeList>(this, 'getElementsByName', [elementName]);
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
     }
 
     public hasFocus(): Promise<boolean> {
@@ -182,7 +184,9 @@ export function SuperDocumentGenerator(Node: Constructable<INode>, ParentNode: C
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperDocumentProperties extends INodeProperties, IParentNodeProperties {
+export interface ISuperDocumentProperties extends INodeIsolateProperties, IParentNodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly URL?: Promise<string>;
   readonly anchors?: ISuperHTMLCollection;
   readonly body?: ISuperHTMLElement;
@@ -216,12 +220,6 @@ export interface ISuperDocumentProperties extends INodeProperties, IParentNodePr
   readonly visibilityState?: Promise<IVisibilityState>;
 }
 
-export const SuperDocumentPropertyKeys = [...NodePropertyKeys, ...ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+export const SuperDocumentPropertyKeys = [...NodeIsolatePropertyKeys, ...ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
 
-export const SuperDocumentConstantKeys = [...NodeConstantKeys, ...ParentNodeConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<ISuperDocument>, self: ISuperDocument) {
-  initializeConstantsAndProperties<ISuperDocument>(Klass, self, SuperDocumentConstantKeys, SuperDocumentPropertyKeys);
-}
+export const SuperDocumentConstantKeys = [...NodeIsolateConstantKeys, ...ParentNodeConstantKeys];

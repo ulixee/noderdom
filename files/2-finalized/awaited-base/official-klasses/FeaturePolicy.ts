@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IFeaturePolicy } from '../interfaces/official';
 
@@ -11,21 +12,17 @@ export const awaitedHandler = new AwaitedHandler<IFeaturePolicy>('FeaturePolicy'
 export function FeaturePolicyGenerator() {
   return class FeaturePolicy implements IFeaturePolicy {
     constructor() {
-      initialize(FeaturePolicy, this);
+      initializeConstantsAndProperties<FeaturePolicy>(this, FeaturePolicyConstantKeys, FeaturePolicyPropertyKeys);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IFeaturePolicyProperties {}
+export interface IFeaturePolicyProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const FeaturePolicyPropertyKeys = [];
 
 export const FeaturePolicyConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IFeaturePolicy>, self: IFeaturePolicy) {
-  initializeConstantsAndProperties<IFeaturePolicy>(Klass, self, FeaturePolicyConstantKeys, FeaturePolicyPropertyKeys);
-}

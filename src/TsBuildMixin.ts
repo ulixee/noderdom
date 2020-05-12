@@ -110,6 +110,7 @@ export default class TsBuildMixin {
     const handlerClassName = `${isAwaited ? 'Awaited' : 'Detached'}Handler`;
     printable.push(`import ${handlerClassName} from '${baseDir}/${handlerClassName}';`);
     printable.push(`import StateMachine from '${baseDir}/StateMachine';`);
+    printable.push(`import AwaitedPath from '${baseDir}/AwaitedPath';`);
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;
     const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };

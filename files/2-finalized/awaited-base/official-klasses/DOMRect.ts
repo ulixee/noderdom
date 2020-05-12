@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IDOMRect } from '../interfaces/official';
 
@@ -11,21 +12,17 @@ export const awaitedHandler = new AwaitedHandler<IDOMRect>('DOMRect', getState, 
 export function DOMRectGenerator() {
   return class DOMRect implements IDOMRect {
     constructor(_x?: number, _y?: number, _width?: number, _height?: number) {
-      initialize(DOMRect, this);
+      initializeConstantsAndProperties<DOMRect>(this, DOMRectConstantKeys, DOMRectPropertyKeys);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IDOMRectProperties {}
+export interface IDOMRectProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const DOMRectPropertyKeys = [];
 
 export const DOMRectConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IDOMRect>, self: IDOMRect) {
-  initializeConstantsAndProperties<IDOMRect>(Klass, self, DOMRectConstantKeys, DOMRectPropertyKeys);
-}

@@ -1,7 +1,9 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IElementIsolate } from '../interfaces/isolate';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot, IElement, IAttr, IDOMRect, IDOMRectList, IHTMLCollection } from '../interfaces/official';
+import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
+import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
 
 // tslint:disable:variable-name
@@ -95,8 +97,8 @@ export default class ElementIsolate implements IElementIsolate {
 
   // methods
 
-  public closest(selectors: string): Promise<IElement | null> {
-    return awaitedHandler.runMethod<IElement | null>(this, 'closest', [selectors]);
+  public closest(selectors: string): Promise<ISuperElement | null> {
+    return awaitedHandler.runMethod<ISuperElement | null>(this, 'closest', [selectors]);
   }
 
   public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -127,16 +129,16 @@ export default class ElementIsolate implements IElementIsolate {
     return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
   }
 
-  public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
-    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+  public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
+    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
   }
 
-  public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
-    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+  public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
+    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
-    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
+    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
   }
 
   public hasAttribute(qualifiedName: string): Promise<boolean> {
@@ -175,6 +177,8 @@ export default class ElementIsolate implements IElementIsolate {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IElementIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly attributes?: INamedNodeMap;
   readonly classList?: IDOMTokenList;
   readonly className?: Promise<string>;

@@ -1,25 +1,26 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import { ISuperCharacterData } from '../interfaces/super';
-import { INode } from '../interfaces/official';
-import { ITextIsolate } from '../interfaces/isolate';
-import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
+import { ICharacterDataIsolate, INodeIsolate, ITextIsolate } from '../interfaces/isolate';
+import { ICharacterDataIsolateProperties, CharacterDataIsolatePropertyKeys, CharacterDataIsolateConstantKeys } from '../isolate-mixins/CharacterDataIsolate';
+import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKeys } from '../isolate-mixins/NodeIsolate';
 import { ITextIsolateProperties, TextIsolatePropertyKeys, TextIsolateConstantKeys } from '../isolate-mixins/TextIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperCharacterData, ISuperCharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperCharacterData>('SuperCharacterData', getState, setState);
 
-export function SuperCharacterDataGenerator(Node: Constructable<INode>, TextIsolate: Constructable<ITextIsolate>) {
-  const Parent = (ClassMixer(Node, [TextIsolate]) as unknown) as Constructable<INode & ITextIsolate>;
+export function SuperCharacterDataGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, TextIsolate: Constructable<ITextIsolate>) {
+  const Parent = (ClassMixer(CharacterDataIsolate, [NodeIsolate, TextIsolate]) as unknown) as Constructable<ICharacterDataIsolate & INodeIsolate & ITextIsolate>;
 
   return class SuperCharacterData extends Parent implements ISuperCharacterData {
     constructor() {
       super();
-      initialize(SuperCharacterData, this);
+      initializeConstantsAndProperties<SuperCharacterData>(this, SuperCharacterDataConstantKeys, SuperCharacterDataPropertyKeys);
     }
 
     // properties
@@ -42,17 +43,13 @@ export function SuperCharacterDataGenerator(Node: Constructable<INode>, TextIsol
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperCharacterDataProperties extends INodeProperties, ITextIsolateProperties {
+export interface ISuperCharacterDataProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties, ITextIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly data?: Promise<string>;
   readonly length?: Promise<number>;
 }
 
-export const SuperCharacterDataPropertyKeys = [...NodePropertyKeys, ...TextIsolatePropertyKeys, 'data', 'length'];
+export const SuperCharacterDataPropertyKeys = [...CharacterDataIsolatePropertyKeys, ...NodeIsolatePropertyKeys, ...TextIsolatePropertyKeys, 'data', 'length'];
 
-export const SuperCharacterDataConstantKeys = [...NodeConstantKeys, ...TextIsolateConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<ISuperCharacterData>, self: ISuperCharacterData) {
-  initializeConstantsAndProperties<ISuperCharacterData>(Klass, self, SuperCharacterDataConstantKeys, SuperCharacterDataPropertyKeys);
-}
+export const SuperCharacterDataConstantKeys = [...CharacterDataIsolateConstantKeys, ...NodeIsolateConstantKeys, ...TextIsolateConstantKeys];

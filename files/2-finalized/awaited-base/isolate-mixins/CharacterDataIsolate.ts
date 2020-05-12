@@ -1,5 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { ICharacterDataIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
@@ -25,6 +26,8 @@ export default class CharacterDataIsolate implements ICharacterDataIsolate {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface ICharacterDataIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly data?: Promise<string>;
   readonly length?: Promise<number>;
 }

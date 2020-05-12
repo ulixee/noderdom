@@ -30,13 +30,20 @@ function cloneClass(klass: Constructable) {
 
 function applyMixins(klass: any, otherKlasses: any[]): void {
   otherKlasses.forEach(otherKlass => {
-    Object.getOwnPropertyNames(otherKlass.prototype).forEach(name => {
-      if (name === 'constructor') return;
-      if (Object.getOwnPropertyDescriptor(klass.prototype, name)) {
-        throw new Error(`${otherKlass.name}.${name} conflicts with same property on ${klass.name}`);
-      }
-      Object.defineProperty(klass.prototype, name, Object.getOwnPropertyDescriptor(otherKlass.prototype, name) as any);
-    });
+    let currentPrototype = otherKlass.prototype;
+    let nextPrototype;
+    const props: Set<string> = new Set();
+    do {
+      nextPrototype = Object.getPrototypeOf(currentPrototype);
+      if (!nextPrototype) break;
+      Object.getOwnPropertyNames(currentPrototype).forEach(name => {
+        if (name === 'constructor') return;
+        if (props.has(name)) return;
+        const propertyDescriptor: any = Object.getOwnPropertyDescriptor(currentPrototype, name);
+        Object.defineProperty(klass.prototype, name, propertyDescriptor);
+        props.add(name);
+      });
+    } while ((currentPrototype = nextPrototype)); // tslint:disable-line:no-conditional-assignment
   });
   return klass;
 }

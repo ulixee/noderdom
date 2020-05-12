@@ -1,8 +1,9 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IDocumentIsolate } from '../interfaces/isolate';
-import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../interfaces/super';
-import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLCollection, INodeList } from '../interfaces/official';
+import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
+import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 
 // tslint:disable:variable-name
@@ -144,20 +145,20 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
   }
 
-  public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
-    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+  public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
+    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
   }
 
-  public getElementsByName(elementName: string): Promise<INodeList> {
-    return awaitedHandler.runMethod<INodeList>(this, 'getElementsByName', [elementName]);
+  public getElementsByName(elementName: string): Promise<ISuperNodeList> {
+    return awaitedHandler.runMethod<ISuperNodeList>(this, 'getElementsByName', [elementName]);
   }
 
-  public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
-    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+  public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
+    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
-    return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
+    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
   }
 
   public hasFocus(): Promise<boolean> {
@@ -168,6 +169,8 @@ export default class DocumentIsolate implements IDocumentIsolate {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IDocumentIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly URL?: Promise<string>;
   readonly anchors?: ISuperHTMLCollection;
   readonly body?: ISuperHTMLElement;

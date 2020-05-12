@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IDOMTokenList } from '../interfaces/official';
 
@@ -11,21 +12,17 @@ export const awaitedHandler = new AwaitedHandler<IDOMTokenList>('DOMTokenList', 
 export function DOMTokenListGenerator() {
   return class DOMTokenList implements IDOMTokenList {
     constructor() {
-      initialize(DOMTokenList, this);
+      initializeConstantsAndProperties<DOMTokenList>(this, DOMTokenListConstantKeys, DOMTokenListPropertyKeys);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IDOMTokenListProperties {}
+export interface IDOMTokenListProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const DOMTokenListPropertyKeys = [];
 
 export const DOMTokenListConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IDOMTokenList>, self: IDOMTokenList) {
-  initializeConstantsAndProperties<IDOMTokenList>(Klass, self, DOMTokenListConstantKeys, DOMTokenListPropertyKeys);
-}

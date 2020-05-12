@@ -1,5 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IAttrIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
 
@@ -40,6 +41,8 @@ export default class AttrIsolate implements IAttrIsolate {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IAttrIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly localName?: Promise<string>;
   readonly name?: Promise<string>;
   readonly namespaceURI?: Promise<string | null>;

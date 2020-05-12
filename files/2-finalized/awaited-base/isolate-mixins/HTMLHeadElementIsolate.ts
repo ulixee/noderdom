@@ -1,5 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IHTMLHeadElementIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
@@ -10,7 +11,9 @@ export default class HTMLHeadElementIsolate implements IHTMLHeadElementIsolate {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IHTMLHeadElementIsolateProperties {}
+export interface IHTMLHeadElementIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const HTMLHeadElementIsolatePropertyKeys = [];
 

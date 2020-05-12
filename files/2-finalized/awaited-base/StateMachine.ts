@@ -1,4 +1,4 @@
-const _objects = new WeakMap();
+const globalMap = new WeakMap();
 
 export default function StateMachine<IClass, IProperties>() {
   function setState<P = IProperties>(instance: IClass, properties: P): void {
@@ -6,11 +6,11 @@ export default function StateMachine<IClass, IProperties>() {
     Object.entries(properties).forEach(([key, value]: [string, any]) => {
       object[key] = value;
     });
-    _objects.set(instance as any, object);
+    globalMap.set(instance as any, object);
   }
 
-  function getState(instance: IClass) {
-    return _objects.get(instance as any) || {};
+  function getState<C = IClass, P = IProperties>(instance: C): P {
+    return globalMap.get(instance as any) || {};
   }
 
   return {

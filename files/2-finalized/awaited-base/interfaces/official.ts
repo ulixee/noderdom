@@ -2,6 +2,7 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+import { ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperNode, ISuperDocument, ISuperText } from './super';
 import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './basic';
 
 // Attr //////////
@@ -18,7 +19,7 @@ export interface IAttr extends INode {
 
 // CharacterData //////////
 
-export interface ICharacterData extends INode {
+export interface ICharacterData extends INode, INode {
   readonly data: Promise<string>;
   readonly length: Promise<number>;
 
@@ -47,7 +48,7 @@ export interface IDOMTokenList {}
 
 // Document //////////
 
-export interface IDocument extends INode, IParentNode {
+export interface IDocument extends INode, INode, IParentNode {
   readonly URL: Promise<string>;
   readonly anchors: ISuperHTMLCollection;
   readonly body: ISuperHTMLElement;
@@ -82,16 +83,16 @@ export interface IDocument extends INode, IParentNode {
 
   exitFullscreen(): Promise<Promise<void>>;
   exitPointerLock(): Promise<void>;
-  getElementsByClassName(classNames: string): Promise<IHTMLCollection>;
-  getElementsByName(elementName: string): Promise<INodeList>;
-  getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection>;
+  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
+  getElementsByName(elementName: string): Promise<ISuperNodeList>;
+  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
+  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
   hasFocus(): Promise<boolean>;
 }
 
 // DocumentType //////////
 
-export interface IDocumentType extends INode {
+export interface IDocumentType extends INode, INode {
   readonly name: Promise<string>;
   readonly publicId: Promise<string>;
   readonly systemId: Promise<string>;
@@ -99,7 +100,7 @@ export interface IDocumentType extends INode {
 
 // Element //////////
 
-export interface IElement extends INode, IParentNode {
+export interface IElement extends INode, INode, IParentNode {
   readonly attributes: INamedNodeMap;
   readonly classList: IDOMTokenList;
   readonly className: Promise<string>;
@@ -122,7 +123,7 @@ export interface IElement extends INode, IParentNode {
   readonly slot: Promise<string>;
   readonly tagName: Promise<string>;
 
-  closest(selectors: string): Promise<IElement | null>;
+  closest(selectors: string): Promise<ISuperElement | null>;
   getAttribute(qualifiedName: string): Promise<string | null>;
   getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
   getAttributeNames(): Promise<Iterable<string>>;
@@ -130,9 +131,9 @@ export interface IElement extends INode, IParentNode {
   getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null>;
   getBoundingClientRect(): Promise<IDOMRect>;
   getClientRects(): Promise<IDOMRectList>;
-  getElementsByClassName(classNames: string): Promise<IHTMLCollection>;
-  getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection>;
+  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
+  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
+  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
   hasAttribute(qualifiedName: string): Promise<boolean>;
   hasAttributeNS(namespace: string | null, localName: string): Promise<boolean>;
   hasAttributes(): Promise<boolean>;
@@ -150,7 +151,7 @@ export interface IFeaturePolicy {}
 // HTMLCollection //////////
 
 export interface IHTMLCollection {
-  namedItem(name: string): Promise<IElement | null>;
+  namedItem(name: string): Promise<ISuperElement | null>;
 }
 
 // HTMLOrSVGElement //////////
@@ -228,13 +229,13 @@ export interface INode {
   readonly previousSibling: ISuperNode;
   readonly textContent: Promise<string | null>;
 
-  compareDocumentPosition(other: INode): Promise<number>;
-  contains(other: INode | null): Promise<boolean>;
-  getRootNode(options?: IGetRootNodeOptions): Promise<INode>;
+  compareDocumentPosition(other: ISuperNode): Promise<number>;
+  contains(other: ISuperNode | null): Promise<boolean>;
+  getRootNode(options?: IGetRootNodeOptions): Promise<ISuperNode>;
   hasChildNodes(): Promise<boolean>;
   isDefaultNamespace(namespace: string | null): Promise<boolean>;
-  isEqualNode(otherNode: INode | null): Promise<boolean>;
-  isSameNode(otherNode: INode | null): Promise<boolean>;
+  isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
+  isSameNode(otherNode: ISuperNode | null): Promise<boolean>;
   lookupNamespaceURI(prefix: string | null): Promise<string | null>;
   lookupPrefix(namespace: string | null): Promise<string | null>;
   normalize(): Promise<void>;
@@ -245,13 +246,13 @@ export interface INode {
 export interface INodeList {
   readonly length: Promise<number>;
 
-  item(index: number): Promise<INode | null>;
+  item(index: number): Promise<ISuperNode | null>;
 
-  forEach(callbackfn: (value: INode, key: number, parent: INodeList) => void, thisArg?: any): void;
-  entries(): IterableIterator<[number, INode]>;
+  forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeList) => void, thisArg?: any): void;
+  entries(): IterableIterator<[number, ISuperNode]>;
   keys(): IterableIterator<number>;
-  values(): IterableIterator<INode>;
-  [Symbol.iterator](): IterableIterator<INode>;
+  values(): IterableIterator<ISuperNode>;
+  [Symbol.iterator](): IterableIterator<ISuperNode>;
 }
 
 // ParentNode //////////
@@ -274,19 +275,19 @@ export interface IStyleSheet {}
 
 // Text //////////
 
-export interface IText extends ICharacterData {
+export interface IText extends ICharacterData, ICharacterData {
   // constructor(data?: string)
 
   readonly wholeText: Promise<string>;
 
-  splitText(offset: number): Promise<IText>;
+  splitText(offset: number): Promise<ISuperText>;
 }
 
 // HTML ELEMENTS
 
 // HTMLElement //////////
 
-export interface IHTMLElement extends IElement, IHTMLOrSVGElement {
+export interface IHTMLElement extends IElement, IElement, IHTMLOrSVGElement {
   readonly accessKey: Promise<string>;
   readonly autoCapitalize: Promise<string>;
   readonly dir: Promise<string>;

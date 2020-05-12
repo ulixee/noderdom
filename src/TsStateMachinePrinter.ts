@@ -2,7 +2,7 @@ import * as Types from './Types';
 import Printer from './Printer';
 import Components from './Components';
 import TsBodyPrinter from './TsBodyPrinter';
-import IDomType from './interfaces/IDomType';
+import IDomType, { DomType } from './interfaces/IDomType';
 import IBuildType from './interfaces/IBuildType';
 
 interface IOptions {
@@ -37,14 +37,14 @@ export default class TsStateMachinePrinter {
 
     this.printer.printLine('');
     this.printPropertiesInterface(classNames, properties);
-
     this.printPropertyKeys(classNames, properties);
     this.printConstantKeys(classNames, constants);
   }
 
   private printPropertyKeys(classNames: string[], properties: Types.Property[]) {
     const i: Types.Interface = this.i;
-    const propertyKeys: string[] = classNames.map(c => `...${c}PropertyKeys`);
+    const propertyKeys: string[] = [];
+    propertyKeys.push(...classNames.map(c => `...${c}PropertyKeys`));
     propertyKeys.push(...properties.map(p => `'${p.name}'`));
     this.printer.printLine('');
     this.printer.printLine(`export const ${i.name}PropertyKeys = [${propertyKeys.join(', ')}];`);
@@ -66,7 +66,10 @@ export default class TsStateMachinePrinter {
     const interfaceName = `I${i.name}Properties`;
     this.printer.printLine(`export interface ${interfaceName}${extendsStr} {`);
     this.printer.increaseIndent();
-
+    if (this.domType === DomType.awaited) {
+      this.printer.printLine(`awaitedPath: AwaitedPath;`);
+      this.printer.printLine(`awaitedOptions: any;`);
+    }
     const bodyPrinterOptions = { domType: this.domType, buildType: this.buildType, skipImplementation: true };
     const bodyPrinter = new TsBodyPrinter(i, this.printer, this.components, bodyPrinterOptions);
     bodyPrinter.printProperties(properties, true);

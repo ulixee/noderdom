@@ -1,6 +1,6 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IElement, INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../awaited-base/interfaces/official';
-import { ElementGenerator, initialize, IElementProperties } from '../../awaited-base/official-klasses/Element';
+import { ElementGenerator, IElementProperties } from '../../awaited-base/official-klasses/Element';
 import { createNamedNodeMap, createDOMTokenList, createShadowRoot } from '../create';
 import Node from './Node';
 import ParentNode from '../official-mixins/ParentNode';
@@ -12,7 +12,6 @@ const ElementBase = ElementGenerator(Node, ParentNode);
 export default class Element extends ElementBase implements IElement {
   constructor() {
     super();
-    initialize(Element, this);
   }
 
   // properties

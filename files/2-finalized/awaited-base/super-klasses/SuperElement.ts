@@ -1,29 +1,32 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { ISuperElement } from '../interfaces/super';
-import { IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate } from '../interfaces/isolate';
-import { INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IElement, IAttr, IDOMRect, IDOMRectList, IHTMLCollection } from '../interfaces/official';
+import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
+import { IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, INodeIsolate } from '../interfaces/isolate';
+import { IHTMLOrSVGElement, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
 import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
+import { IElementIsolateProperties, ElementIsolatePropertyKeys, ElementIsolateConstantKeys } from '../isolate-mixins/ElementIsolate';
 import { IHTMLElementIsolateProperties, HTMLElementIsolatePropertyKeys, HTMLElementIsolateConstantKeys } from '../isolate-mixins/HTMLElementIsolate';
 import { IHTMLHeadElementIsolateProperties, HTMLHeadElementIsolatePropertyKeys, HTMLHeadElementIsolateConstantKeys } from '../isolate-mixins/HTMLHeadElementIsolate';
 import { IHTMLInputElementIsolateProperties, HTMLInputElementIsolatePropertyKeys, HTMLInputElementIsolateConstantKeys } from '../isolate-mixins/HTMLInputElementIsolate';
-import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from '../official-klasses/Node';
+import { IHTMLOrSVGElementProperties, HTMLOrSVGElementPropertyKeys, HTMLOrSVGElementConstantKeys } from '../official-mixins/HTMLOrSVGElement';
+import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKeys } from '../isolate-mixins/NodeIsolate';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperElement>('SuperElement', getState, setState);
 
-export function SuperElementGenerator(HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
-  const Parent = (ClassMixer(HTMLElementIsolate, [HTMLHeadElementIsolate, HTMLInputElementIsolate, Node, ParentNode]) as unknown) as Constructable<IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & INode & IParentNode>;
+export function SuperElementGenerator(ElementIsolate: Constructable<IElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
+  const Parent = (ClassMixer(ElementIsolate, [HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode]) as unknown) as Constructable<IElementIsolate & IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & IHTMLOrSVGElement & INodeIsolate & IParentNode>;
 
   return class SuperElement extends Parent implements ISuperElement {
     constructor() {
       super();
-      initialize(SuperElement, this);
+      initializeConstantsAndProperties<SuperElement>(this, SuperElementConstantKeys, SuperElementPropertyKeys);
     }
 
     // properties
@@ -114,8 +117,8 @@ export function SuperElementGenerator(HTMLElementIsolate: Constructable<IHTMLEle
 
     // methods
 
-    public closest(selectors: string): Promise<IElement | null> {
-      return awaitedHandler.runMethod<IElement | null>(this, 'closest', [selectors]);
+    public closest(selectors: string): Promise<ISuperElement | null> {
+      return awaitedHandler.runMethod<ISuperElement | null>(this, 'closest', [selectors]);
     }
 
     public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -146,16 +149,16 @@ export function SuperElementGenerator(HTMLElementIsolate: Constructable<IHTMLEle
       return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
     }
 
     public hasAttribute(qualifiedName: string): Promise<boolean> {
@@ -194,7 +197,9 @@ export function SuperElementGenerator(HTMLElementIsolate: Constructable<IHTMLEle
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperElementProperties extends IHTMLElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, INodeProperties, IParentNodeProperties {
+export interface ISuperElementProperties extends IElementIsolateProperties, IHTMLElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, IHTMLOrSVGElementProperties, INodeIsolateProperties, IParentNodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly attributes?: INamedNodeMap;
   readonly classList?: IDOMTokenList;
   readonly className?: Promise<string>;
@@ -218,12 +223,6 @@ export interface ISuperElementProperties extends IHTMLElementIsolateProperties, 
   readonly tagName?: Promise<string>;
 }
 
-export const SuperElementPropertyKeys = [...HTMLElementIsolatePropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...HTMLInputElementIsolatePropertyKeys, ...NodePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
+export const SuperElementPropertyKeys = [...ElementIsolatePropertyKeys, ...HTMLElementIsolatePropertyKeys, ...HTMLHeadElementIsolatePropertyKeys, ...HTMLInputElementIsolatePropertyKeys, ...HTMLOrSVGElementPropertyKeys, ...NodeIsolatePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
 
-export const SuperElementConstantKeys = [...HTMLElementIsolateConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...HTMLInputElementIsolateConstantKeys, ...NodeConstantKeys, ...ParentNodeConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<ISuperElement>, self: ISuperElement) {
-  initializeConstantsAndProperties<ISuperElement>(Klass, self, SuperElementConstantKeys, SuperElementPropertyKeys);
-}
+export const SuperElementConstantKeys = [...ElementIsolateConstantKeys, ...HTMLElementIsolateConstantKeys, ...HTMLHeadElementIsolateConstantKeys, ...HTMLInputElementIsolateConstantKeys, ...HTMLOrSVGElementConstantKeys, ...NodeIsolateConstantKeys, ...ParentNodeConstantKeys];

@@ -1,9 +1,11 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IHTMLCollection } from '../interfaces/official';
+import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
+import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
@@ -18,7 +20,7 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
   return class Element extends Parent implements IElement {
     constructor() {
       super();
-      initialize(Element, this);
+      initializeConstantsAndProperties<Element>(this, ElementConstantKeys, ElementPropertyKeys);
     }
 
     // properties
@@ -109,8 +111,8 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
 
     // methods
 
-    public closest(selectors: string): Promise<IElement | null> {
-      return awaitedHandler.runMethod<IElement | null>(this, 'closest', [selectors]);
+    public closest(selectors: string): Promise<ISuperElement | null> {
+      return awaitedHandler.runMethod<ISuperElement | null>(this, 'closest', [selectors]);
     }
 
     public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -141,16 +143,16 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
       return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
     }
 
     public hasAttribute(qualifiedName: string): Promise<boolean> {
@@ -190,6 +192,8 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IElementProperties extends INodeProperties, IParentNodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly attributes?: INamedNodeMap;
   readonly classList?: IDOMTokenList;
   readonly className?: Promise<string>;
@@ -216,9 +220,3 @@ export interface IElementProperties extends INodeProperties, IParentNodeProperti
 export const ElementPropertyKeys = [...NodePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
 
 export const ElementConstantKeys = [...NodeConstantKeys, ...ParentNodeConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IElement>, self: IElement) {
-  initializeConstantsAndProperties<IElement>(Klass, self, ElementConstantKeys, ElementPropertyKeys);
-}

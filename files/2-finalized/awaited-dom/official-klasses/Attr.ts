@@ -1,7 +1,7 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IAttr } from '../../awaited-base/interfaces/official';
 import { ISuperElement } from '../../awaited-base/interfaces/super';
-import { AttrGenerator, initialize, IAttrProperties } from '../../awaited-base/official-klasses/Attr';
+import { AttrGenerator, IAttrProperties } from '../../awaited-base/official-klasses/Attr';
 import { createSuperElement } from '../create';
 import Node from './Node';
 
@@ -12,7 +12,6 @@ const AttrBase = AttrGenerator(Node);
 export default class Attr extends AttrBase implements IAttr {
   constructor() {
     super();
-    initialize(Attr, this);
   }
 
   // properties

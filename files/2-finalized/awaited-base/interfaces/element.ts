@@ -1,8 +1,7 @@
+import { IHTMLElement, IHTMLHeadElement, IHTMLInputElement } from './official';
 // tslint:disable: prettier
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-import { IHTMLElement, IHTMLHeadElement, IHTMLInputElement } from './official';
 
 export interface IHTMLElementTagNameMap {
   abbr: IHTMLElement;

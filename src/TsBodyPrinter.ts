@@ -149,16 +149,22 @@ export default class TsBodyPrinter {
     if (!this.skipImplementation && !this.skipConstructor) {
       const args = signature ? ParamUtils.paramsToString(signature.params!, true, true) : '';
       const isChildClass = (i.extends && i.extends !== 'Object') || (i.implements && i.implements.length);
+      if (this.buildType !== BuildType.base && !isChildClass) return;
+
       this.printer.printLine(`constructor(${args}) {`);
       this.printer.increaseIndent();
-      if (isChildClass || this.buildType === BuildType.impl) {
+      if (isChildClass) {
         this.printer.printLine(`super();`);
       }
-      this.printer.printLine(`initialize(${i.name}, this);`);
+      if (this.buildType === BuildType.base) {
+        this.printer.printLine(
+          `initializeConstantsAndProperties<${i.name}>(this, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
+        );
+      }
       this.printer.decreaseIndent();
       this.printer.printLine('}');
       if (signature) {
-        TypeUtils.extractCustomTypesFromParams(signature.params, false).forEach(
+        TypeUtils.extractCustomTypesFromParams(signature.params).forEach(
           this.referencedObjects.add,
           this.referencedObjects,
         );
@@ -279,11 +285,11 @@ export default class TsBodyPrinter {
         this.printer.decreaseIndent();
         this.printer.printLine('}');
       }
-      TypeUtils.extractCustomTypesFromParams(signature.params, isAbstract).forEach(
+      TypeUtils.extractCustomTypesFromParams(signature.params).forEach(
         this.referencedObjects.add,
         this.referencedObjects,
       );
-      TypeUtils.extractCustomTypes(signature, isAbstract).forEach(this.referencedObjects.add, this.referencedObjects);
+      TypeUtils.extractCustomTypes(signature).forEach(this.referencedObjects.add, this.referencedObjects);
     });
   }
 
@@ -291,7 +297,7 @@ export default class TsBodyPrinter {
 
   private extractMethodReturnType(method: Types.Method, signature: Types.Signature) {
     const isAbstract = this.isAbstract(method);
-    let mType = TypeUtils.convertDomTypeToTsType(signature, true, isAbstract);
+    let mType = TypeUtils.convertDomTypeToTsType(signature, true);
     mType = signature.nullable ? makeNullable(mType) : mType;
     if (this.domType === DomType.awaited) {
       if (isAbstract) {
@@ -305,7 +311,7 @@ export default class TsBodyPrinter {
 
   private extractMethodValueType(method: Types.Method, signature: Types.Signature) {
     const isAbstract = this.isAbstract(method);
-    let mType = TypeUtils.convertDomTypeToTsType(signature, true, isAbstract);
+    let mType = TypeUtils.convertDomTypeToTsType(signature, true);
     mType = signature.nullable ? makeNullable(mType) : mType;
     if (this.domType === DomType.awaited) {
       if (isAbstract) {
@@ -330,8 +336,8 @@ export default class TsBodyPrinter {
         pType = `(${pType}) | null`;
       }
     } else {
-      pType = TypeUtils.convertDomTypeToTsType(p, true, isAbstract);
-      TypeUtils.extractCustomTypes(p, isAbstract).forEach(this.referencedObjects.add, this.referencedObjects);
+      pType = TypeUtils.convertDomTypeToTsType(p, true);
+      TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
     }
 
     if (this.domType === DomType.awaited) {
@@ -368,8 +374,8 @@ export default class TsBodyPrinter {
         pType = `(${pType}) | null`;
       }
     } else {
-      pType = TypeUtils.convertDomTypeToTsType(p, true, isAbstract);
-      TypeUtils.extractCustomTypes(p, isAbstract).forEach(this.referencedObjects.add, this.referencedObjects);
+      pType = TypeUtils.convertDomTypeToTsType(p, true);
+      TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
       const isReadonly = p.readOnly === 1;
       if (!isAbstract && !isReadonly) {
         pType += ' | any';

@@ -1,7 +1,8 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { ITextIsolate } from '../interfaces/isolate';
-import { IText } from '../interfaces/official';
+import { ISuperText } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ITextIsolate, ITextIsolateProperties>();
@@ -14,14 +15,16 @@ export default class TextIsolate implements ITextIsolate {
 
   // methods
 
-  public splitText(offset: number): Promise<IText> {
-    return awaitedHandler.runMethod<IText>(this, 'splitText', [offset]);
+  public splitText(offset: number): Promise<ISuperText> {
+    return awaitedHandler.runMethod<ISuperText>(this, 'splitText', [offset]);
   }
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface ITextIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly wholeText?: Promise<string>;
 }
 

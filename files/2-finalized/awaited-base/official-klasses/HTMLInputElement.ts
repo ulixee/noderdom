@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IHTMLInputElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -13,7 +14,7 @@ export function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElemen
   return class HTMLInputElement extends HTMLElement implements IHTMLInputElement {
     constructor() {
       super();
-      initialize(HTMLInputElement, this);
+      initializeConstantsAndProperties<HTMLInputElement>(this, HTMLInputElementConstantKeys, HTMLInputElementPropertyKeys);
     }
 
     // methods
@@ -26,14 +27,10 @@ export function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IHTMLInputElementProperties extends IHTMLElementProperties {}
+export interface IHTMLInputElementProperties extends IHTMLElementProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const HTMLInputElementPropertyKeys = [...HTMLElementPropertyKeys];
 
 export const HTMLInputElementConstantKeys = [...HTMLElementConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IHTMLInputElement>, self: IHTMLInputElement) {
-  initializeConstantsAndProperties<IHTMLInputElement>(Klass, self, HTMLInputElementConstantKeys, HTMLInputElementPropertyKeys);
-}

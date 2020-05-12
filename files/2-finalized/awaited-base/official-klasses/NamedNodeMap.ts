@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { INamedNodeMap, IAttr } from '../interfaces/official';
 
@@ -11,7 +12,7 @@ export const awaitedHandler = new AwaitedHandler<INamedNodeMap>('NamedNodeMap', 
 export function NamedNodeMapGenerator() {
   return class NamedNodeMap implements INamedNodeMap {
     constructor() {
-      initialize(NamedNodeMap, this);
+      initializeConstantsAndProperties<NamedNodeMap>(this, NamedNodeMapConstantKeys, NamedNodeMapPropertyKeys);
     }
 
     // properties
@@ -43,15 +44,11 @@ export function NamedNodeMapGenerator() {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface INamedNodeMapProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly length?: Promise<number>;
 }
 
 export const NamedNodeMapPropertyKeys = ['length'];
 
 export const NamedNodeMapConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<INamedNodeMap>, self: INamedNodeMap) {
-  initializeConstantsAndProperties<INamedNodeMap>(Klass, self, NamedNodeMapConstantKeys, NamedNodeMapPropertyKeys);
-}

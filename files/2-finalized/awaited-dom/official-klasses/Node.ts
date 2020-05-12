@@ -1,7 +1,7 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { INode } from '../../awaited-base/interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../../awaited-base/interfaces/super';
-import { NodeGenerator, initialize, INodeProperties } from '../../awaited-base/official-klasses/Node';
+import { NodeGenerator, INodeProperties } from '../../awaited-base/official-klasses/Node';
 import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';
 
 // tslint:disable:variable-name
@@ -9,13 +9,6 @@ export const { getState, setState } = StateMachine<INode, INodeProperties>();
 const NodeBase = NodeGenerator();
 
 export default class Node extends NodeBase implements INode {
-  constructor() {
-    super();
-    initialize(Node, this);
-  }
-
-  // properties
-
   public get childNodes(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);

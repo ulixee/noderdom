@@ -11,7 +11,7 @@ import * as Types from './Types';
 import SuperGenerator from './SuperGenerator';
 
 export default class TypeUtils {
-  public static extractCustomTypes(type: Types.Typed, trySuperize: boolean = false): string[] {
+  public static extractCustomTypes(type: Types.Typed): string[] {
     let names: string[] = [];
     if (typeof type.type === 'string') {
       names.push(this.convertDomTypeToTsTypeSimple(type.type));
@@ -25,11 +25,7 @@ export default class TypeUtils {
     }
     arrayify(type.subtype).forEach(t => names.push(...this.extractCustomTypes(t)));
 
-    names = names.filter(isCustomType);
-
-    if (trySuperize) {
-      names = names.map(n => SuperGenerator.superizeName(n));
-    }
+    names = names.filter(isCustomType).map(n => this.trySuperize(n));
 
     return Array.from(new Set(names.filter(isCustomType)) as Set<string>);
   }
@@ -50,35 +46,29 @@ export default class TypeUtils {
     return Array.from(new Set(names.filter(isNativeType)) as Set<string>);
   }
 
-  public static extractCustomTypesFromParams(params: Types.Param[] | undefined, trySuperize: boolean = false): string[] {
+  public static extractCustomTypesFromParams(params: Types.Param[] | undefined): string[] {
     if (!params) return [];
     let customTypes: string[] = [];
     params.forEach(p => {
       if (p.type === 'Promise' && !Array.isArray(p.subtype)) {
         p = { name: p.name, type: [p.subtype!, p] };
       }
-      customTypes.push(...this.extractCustomTypes(p, trySuperize));
+      customTypes.push(...this.extractCustomTypes(p));
     });
 
-    if (trySuperize) {
-      customTypes = customTypes.map(t => SuperGenerator.superizeName(t));
-    }
+    customTypes = customTypes.map(t => this.trySuperize(t));
 
     return Array.from(new Set(customTypes));
   }
 
   /// Get typescript type using object dom type, object name, and it's associated interface name
-  public static convertDomTypeToTsType(
-    obj: Types.Typed,
-    convertToIType: boolean = false,
-    trySuperize: boolean = false,
-  ): string {
+  public static convertDomTypeToTsType(obj: Types.Typed, convertToIType: boolean = false): string {
     if (!obj.type) throw new Error(`Missing type ${JSON.stringify(obj)}`);
-    const type = this.convertDomTypeToTsTypeWorker(obj, convertToIType, trySuperize);
+    const type = this.convertDomTypeToTsTypeWorker(obj, convertToIType);
     return type.nullable ? makeNullable(type.name) : type.name;
   }
 
-  public static convertDomTypeToTsTypeSimple(domType: string, trySuperize: boolean = false): string {
+  public static convertDomTypeToTsTypeSimple(domType: string): string {
     if (domType === 'sequence') {
       return 'Iterable';
     }
@@ -92,17 +82,16 @@ export default class TypeUtils {
         return 'number';
     }
 
-    return trySuperize ? SuperGenerator.superizeName(domType) : domType;
+    return this.trySuperize(domType);
   }
 
   private static convertDomTypeToTsTypeWorker(
     obj: Types.Typed,
     convertToIType: boolean = false,
-    trySuperize: boolean = false,
   ): { name: string; nullable: boolean } {
     let type;
     if (typeof obj.type === 'string') {
-      const name = this.convertDomTypeToTsTypeSimple(obj.type, trySuperize);
+      const name = this.convertDomTypeToTsTypeSimple(obj.type);
       type = { name: convertToIType ? toIType(name) : name, nullable: !!obj.nullable };
     } else {
       const typ = obj.type.map(t => {
@@ -135,5 +124,10 @@ export default class TypeUtils {
           : `${type.name}${subtypeString ? `<${subtypeString}>` : ''}`,
       nullable: type.nullable,
     };
+  }
+
+  private static trySuperize(baseName: string) {
+    // ToDo: ensure this isn't run if DomType !== 'awaited'
+    return SuperGenerator.baseNames.includes(baseName) ? `Super${baseName}` : baseName;
   }
 }

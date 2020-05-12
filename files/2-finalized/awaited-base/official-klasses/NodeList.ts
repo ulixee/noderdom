@@ -1,8 +1,10 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { INodeList, INode } from '../interfaces/official';
+import { INodeList } from '../interfaces/official';
+import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INodeList, INodeListProperties>();
@@ -11,7 +13,7 @@ export const awaitedHandler = new AwaitedHandler<INodeList>('NodeList', getState
 export function NodeListGenerator() {
   return class NodeList implements INodeList {
     constructor() {
-      initialize(NodeList, this);
+      initializeConstantsAndProperties<NodeList>(this, NodeListConstantKeys, NodeListPropertyKeys);
     }
 
     // properties
@@ -22,15 +24,15 @@ export function NodeListGenerator() {
 
     // methods
 
-    public item(index: number): Promise<INode | null> {
-      return awaitedHandler.runMethod<INode | null>(this, 'item', [index]);
+    public item(index: number): Promise<ISuperNode | null> {
+      return awaitedHandler.runMethod<ISuperNode | null>(this, 'item', [index]);
     }
 
-    public forEach(callbackfn: (value: INode, key: number, parent: INodeList) => void, thisArg?: any): void {
+    public forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeList) => void, thisArg?: any): void {
       throw new Error('NodeList.forEach not implemented');
     }
 
-    public entries(): IterableIterator<[number, INode]> {
+    public entries(): IterableIterator<[number, ISuperNode]> {
       throw new Error('NodeList.entries not implemented');
     }
 
@@ -38,11 +40,11 @@ export function NodeListGenerator() {
       throw new Error('NodeList.keys not implemented');
     }
 
-    public values(): IterableIterator<INode> {
+    public values(): IterableIterator<ISuperNode> {
       throw new Error('NodeList.values not implemented');
     }
 
-    public [Symbol.iterator](): IterableIterator<INode> {
+    public [Symbol.iterator](): IterableIterator<ISuperNode> {
       throw new Error('NodeList[Symbol.iterator] not implemented');
     }
   };
@@ -51,15 +53,11 @@ export function NodeListGenerator() {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface INodeListProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly length?: Promise<number>;
 }
 
 export const NodeListPropertyKeys = ['length'];
 
 export const NodeListConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<INodeList>, self: INodeList) {
-  initializeConstantsAndProperties<INodeList>(Klass, self, NodeListConstantKeys, NodeListPropertyKeys);
-}

@@ -1,8 +1,8 @@
 {
-  "name": "noderdom-scaffolding",
+  "name": "noderdom",
   "version": "0.3.1",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
-  "homepage": "https://github.com/ulixee/noderdom-scaffolding",
+  "homepage": "https://github.com/ulixee/noderdom",
   "author": {
     "name": "Caleb Clark"
   },
@@ -62,6 +62,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ulixee/noderdom-scaffolding"
+    "url": "git://github.com/ulixee/noderdom"
   }
 }

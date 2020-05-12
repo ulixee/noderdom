@@ -54,58 +54,72 @@ export default class DOMCreator {
     const tsBuilderOptions = { domType, buildType: BuildType.base, pathsByBuildType };
     const tsBuilder = new TsBuilder(this.components, tsBuilderOptions);
 
-    // BASIC INTERFACES
+    // INTERFACES /////////////////////////
+
     const basicTypes = tsBuilder.extractBasicInterfaces();
-    const basicTypesOutput = [DOMCreator.outputIntro, basicTypes.map(t => t.code).join('\n\n')].join('');
+    const officialInterfaces = tsBuilder.extractOfficialInterfaces();
+    const isolateInterfaces = domType === DomType.awaited ? tsBuilder.extractIsolateInterfaces() : [];
+    const superInterfaces = domType === DomType.awaited ? tsBuilder.extractSuperInterfaces() : [];
+
+    // basic interfaces
+    const basicTypesCode = basicTypes.map(t => t.code).filter(x => x);
+    const basicTypesOutput = [DOMCreator.outputIntro, basicTypesCode.join('\n\n')].join('');
     Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.basic}.ts`, basicTypesOutput);
 
-    // OFFICIAL INTERFACES
-    const officialInterfaces = tsBuilder.extractOfficialInterfaces();
-    const stringifiedTypescriptInterfaces = this.stringifyInterfaceCodeModules(
+    // official interfaces
+    const officialInterfaceImports = tsBuilder.extractOfficialInterfaceImports();
+    const officialInterfaceCode = this.stringifyInterfaceCodeModules(
       DOMCreator.outputIntro,
+      officialInterfaceImports,
       officialInterfaces,
     );
-    Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.official}.ts`, stringifiedTypescriptInterfaces);
+    Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.official}.ts`, officialInterfaceCode);
 
-    // ELEMENT INTERFACES
-    const elementMap = [DOMCreator.outputIntro, tsBuilder.extractElementInterfaces().join('\n\n')];
-    Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.element}.ts`, elementMap.join(''));
+    // element interfaces
+    const elementInterfaceImports = tsBuilder.extractElementInterfaceImports();
+    const elementInterfaces = [DOMCreator.outputIntro, tsBuilder.extractElementInterfaces().join('\n\n')];
+    const elementInterfaceCode = `${elementInterfaceImports}\n${elementInterfaces.join('')}`;
+    Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.element}.ts`, elementInterfaceCode);
 
-    // ISOLATE INTERFACES
-    if (domType === DomType.awaited) {
-      const isolateInterfaces = tsBuilder.extractIsolateInterfaces();
-      const stringifiedIsolateInterfaces = this.stringifyInterfaceCodeModules(
+    // isolate interfaces
+    if (isolateInterfaces.length) {
+      const isolateInterfaceImports = tsBuilder.extractIsolateInterfaceImports();
+      const isolateInterfaceCode = this.stringifyInterfaceCodeModules(
         DOMCreator.outputIntro,
+        isolateInterfaceImports,
         isolateInterfaces,
       );
-      Fs.writeFileSync(
-        `${this.pathsByBuildType.base.interfaces}/${ObjectType.isolate}.ts`,
-        stringifiedIsolateInterfaces,
+      Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.isolate}.ts`, isolateInterfaceCode);
+    }
+
+    // super interfaces
+    if (superInterfaces.length) {
+      const superInterfaceImports = tsBuilder.extractSuperInterfaceImports();
+      const superInterfaceCode = this.stringifyInterfaceCodeModules(
+        DOMCreator.outputIntro,
+        superInterfaceImports,
+        superInterfaces,
       );
+      Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.super}.ts`, superInterfaceCode);
     }
 
-    // SUPER INTERFACES
-    if (domType === DomType.awaited) {
-      const superInterfaces = tsBuilder.extractSuperInterfaces();
-      const stringifiedSuperInterfaces = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, superInterfaces);
-      Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.super}.ts`, stringifiedSuperInterfaces);
-    }
+    // CLASSES /////////////////////////
 
-    // OFFICIAL MIXINS
-    const tsMixins = tsBuilder.extractOfficialMixins();
-    tsMixins.forEach(c => {
+    // official mixins
+    const officialMixins = tsBuilder.extractOfficialMixins();
+    officialMixins.forEach(c => {
       const mixinOutputPath = Path.join(pathsByBuildType.base.officialMixins, `${c.name}.ts`);
       Fs.writeFileSync(mixinOutputPath, `${c.code}\n`);
     });
 
-    // OFFICIAL KLASSES
-    const tsClasses = tsBuilder.extractOfficialKlasses();
-    tsClasses.forEach(c => {
+    // official klasses
+    const officialKlasses = tsBuilder.extractOfficialKlasses();
+    officialKlasses.forEach(c => {
       const classOutputPath = Path.join(pathsByBuildType.base.officialKlasses, `${c.name}.ts`);
       Fs.writeFileSync(classOutputPath, `${c.code}\n`);
     });
 
-    // ISOLATE MIXINS
+    // isolate mixins
     if (domType === DomType.awaited) {
       const isolateMixins = tsBuilder.extractIsolateMixins();
       isolateMixins.forEach(c => {
@@ -114,10 +128,10 @@ export default class DOMCreator {
       });
     }
 
-    // SUPER KLASSES
+    // super klasses
     if (domType === DomType.awaited) {
-      const superClasses = tsBuilder.extractSuperKlasses();
-      superClasses.forEach(c => {
+      const superKlasses = tsBuilder.extractSuperKlasses();
+      superKlasses.forEach(c => {
         const superOutputPath = Path.join(this.pathsByBuildType.base.superKlasses, `${c.name}.ts`);
         Fs.writeFileSync(superOutputPath, `${c.code}\n`);
       });
@@ -177,7 +191,9 @@ export default class DOMCreator {
 
   // PRIVATE //////////
 
-  private stringifyInterfaceCodeModules(intro: string, codeModules: ICodeModule[]) {
+  private stringifyInterfaceCodeModules(intro: string, imports: string, codeModules: ICodeModule[]) {
+    const parts: string[] = [intro, imports, '\n\n'];
+
     const outputInterfaces = [
       codeModules
         .filter(m => !m.elementNamespace)
@@ -185,6 +201,7 @@ export default class DOMCreator {
         .join('\n\n'),
       '\n',
     ].join('\n');
+    if (outputInterfaces) parts.push(outputInterfaces);
 
     const outputHTMLElements = [
       '// HTML ELEMENTS\n',
@@ -194,6 +211,7 @@ export default class DOMCreator {
         .join('\n\n'),
       '\n',
     ].join('\n');
+    if (outputHTMLElements) parts.push(outputHTMLElements);
 
     const outputSVGElements = [
       '// SVG ELEMENTS\n',
@@ -203,8 +221,9 @@ export default class DOMCreator {
         .join('\n\n'),
       '',
     ].join('\n');
+    if (outputSVGElements) parts.push(outputSVGElements);
 
-    return [intro, outputInterfaces, outputHTMLElements, outputSVGElements].join('');
+    return parts.join('');
   }
 
   private static get outputIntro() {

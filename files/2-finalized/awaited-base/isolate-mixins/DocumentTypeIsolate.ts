@@ -1,5 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IDocumentTypeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
@@ -23,6 +24,8 @@ export default class DocumentTypeIsolate implements IDocumentTypeIsolate {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IDocumentTypeIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly name?: Promise<string>;
   readonly publicId?: Promise<string>;
   readonly systemId?: Promise<string>;

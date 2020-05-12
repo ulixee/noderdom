@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IShadowRoot } from '../interfaces/official';
 
@@ -11,21 +12,17 @@ export const awaitedHandler = new AwaitedHandler<IShadowRoot>('ShadowRoot', getS
 export function ShadowRootGenerator() {
   return class ShadowRoot implements IShadowRoot {
     constructor() {
-      initialize(ShadowRoot, this);
+      initializeConstantsAndProperties<ShadowRoot>(this, ShadowRootConstantKeys, ShadowRootPropertyKeys);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IShadowRootProperties {}
+export interface IShadowRootProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const ShadowRootPropertyKeys = [];
 
 export const ShadowRootConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IShadowRoot>, self: IShadowRoot) {
-  initializeConstantsAndProperties<IShadowRoot>(Klass, self, ShadowRootConstantKeys, ShadowRootPropertyKeys);
-}

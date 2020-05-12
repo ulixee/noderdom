@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IDocumentType, INode } from '../interfaces/official';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
@@ -13,7 +14,7 @@ export function DocumentTypeGenerator(Node: Constructable<INode>) {
   return class DocumentType extends Node implements IDocumentType {
     constructor() {
       super();
-      initialize(DocumentType, this);
+      initializeConstantsAndProperties<DocumentType>(this, DocumentTypeConstantKeys, DocumentTypePropertyKeys);
     }
 
     // properties
@@ -35,6 +36,8 @@ export function DocumentTypeGenerator(Node: Constructable<INode>) {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IDocumentTypeProperties extends INodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly name?: Promise<string>;
   readonly publicId?: Promise<string>;
   readonly systemId?: Promise<string>;
@@ -43,9 +46,3 @@ export interface IDocumentTypeProperties extends INodeProperties {
 export const DocumentTypePropertyKeys = [...NodePropertyKeys, 'name', 'publicId', 'systemId'];
 
 export const DocumentTypeConstantKeys = [...NodeConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IDocumentType>, self: IDocumentType) {
-  initializeConstantsAndProperties<IDocumentType>(Klass, self, DocumentTypeConstantKeys, DocumentTypePropertyKeys);
-}

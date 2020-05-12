@@ -1,31 +1,13 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../../awaited-base/interfaces/super';
-import { SuperNodeGenerator, ISuperNodeProperties } from '../../awaited-base/super-klasses/SuperNode';
+import { INodeIsolate } from '../../awaited-base/interfaces/isolate';
+import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../../awaited-base/interfaces/super';
+import NodeIsolateBase, { INodeIsolateProperties } from '../../awaited-base/isolate-mixins/NodeIsolate';
 import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';
-import AttrIsolate from '../isolate-mixins/AttrIsolate';
-import CharacterDataIsolate from '../isolate-mixins/CharacterDataIsolate';
-import DocumentIsolate from '../isolate-mixins/DocumentIsolate';
-import DocumentTypeIsolate from '../isolate-mixins/DocumentTypeIsolate';
-import ElementIsolate from '../isolate-mixins/ElementIsolate';
-import HTMLElementIsolate from '../isolate-mixins/HTMLElementIsolate';
-import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
-import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
-import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
-import NodeIsolate from '../isolate-mixins/NodeIsolate';
-import ParentNode from '../official-mixins/ParentNode';
-import TextIsolate from '../isolate-mixins/TextIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
-const SuperNodeBase = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode, TextIsolate);
+export const { getState, setState } = StateMachine<INodeIsolate, INodeIsolateProperties>();
 
-export default class SuperNode extends SuperNodeBase implements ISuperNode {
-  constructor() {
-    super();
-  }
-
-  // properties
-
+export default class NodeIsolate extends NodeIsolateBase implements INodeIsolate {
   public get childNodes(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);

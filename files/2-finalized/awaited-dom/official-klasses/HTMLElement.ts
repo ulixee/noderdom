@@ -1,7 +1,7 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IHTMLElement } from '../../awaited-base/interfaces/official';
 import { ISuperElement } from '../../awaited-base/interfaces/super';
-import { HTMLElementGenerator, initialize, IHTMLElementProperties } from '../../awaited-base/official-klasses/HTMLElement';
+import { HTMLElementGenerator, IHTMLElementProperties } from '../../awaited-base/official-klasses/HTMLElement';
 import { createSuperElement } from '../create';
 import Element from './Element';
 import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
@@ -13,7 +13,6 @@ const HTMLElementBase = HTMLElementGenerator(Element, HTMLOrSVGElement);
 export default class HTMLElement extends HTMLElementBase implements IHTMLElement {
   constructor() {
     super();
-    initialize(HTMLElement, this);
   }
 
   // properties

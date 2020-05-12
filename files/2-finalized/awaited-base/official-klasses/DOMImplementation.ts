@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IDOMImplementation } from '../interfaces/official';
 
@@ -11,7 +12,7 @@ export const awaitedHandler = new AwaitedHandler<IDOMImplementation>('DOMImpleme
 export function DOMImplementationGenerator() {
   return class DOMImplementation implements IDOMImplementation {
     constructor() {
-      initialize(DOMImplementation, this);
+      initializeConstantsAndProperties<DOMImplementation>(this, DOMImplementationConstantKeys, DOMImplementationPropertyKeys);
     }
 
     // methods
@@ -24,14 +25,10 @@ export function DOMImplementationGenerator() {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IDOMImplementationProperties {}
+export interface IDOMImplementationProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const DOMImplementationPropertyKeys = [];
 
 export const DOMImplementationConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IDOMImplementation>, self: IDOMImplementation) {
-  initializeConstantsAndProperties<IDOMImplementation>(Klass, self, DOMImplementationConstantKeys, DOMImplementationPropertyKeys);
-}

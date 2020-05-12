@@ -1,10 +1,11 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import { IDocument, INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLCollection, INodeList } from '../interfaces/official';
-import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../interfaces/super';
+import { IDocument, INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
+import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
@@ -19,7 +20,7 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
   return class Document extends Parent implements IDocument {
     constructor() {
       super();
-      initialize(Document, this);
+      initializeConstantsAndProperties<Document>(this, DocumentConstantKeys, DocumentPropertyKeys);
     }
 
     // properties
@@ -158,20 +159,20 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
     }
 
-    public getElementsByName(elementName: string): Promise<INodeList> {
-      return awaitedHandler.runMethod<INodeList>(this, 'getElementsByName', [elementName]);
+    public getElementsByName(elementName: string): Promise<ISuperNodeList> {
+      return awaitedHandler.runMethod<ISuperNodeList>(this, 'getElementsByName', [elementName]);
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<IHTMLCollection> {
-      return awaitedHandler.runMethod<IHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
+      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
     }
 
     public hasFocus(): Promise<boolean> {
@@ -183,6 +184,8 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IDocumentProperties extends INodeProperties, IParentNodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly URL?: Promise<string>;
   readonly anchors?: ISuperHTMLCollection;
   readonly body?: ISuperHTMLElement;
@@ -219,9 +222,3 @@ export interface IDocumentProperties extends INodeProperties, IParentNodePropert
 export const DocumentPropertyKeys = [...NodePropertyKeys, ...ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
 
 export const DocumentConstantKeys = [...NodeConstantKeys, ...ParentNodeConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IDocument>, self: IDocument) {
-  initializeConstantsAndProperties<IDocument>(Klass, self, DocumentConstantKeys, DocumentPropertyKeys);
-}

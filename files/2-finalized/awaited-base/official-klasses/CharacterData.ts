@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { ICharacterData, INode } from '../interfaces/official';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
@@ -13,7 +14,7 @@ export function CharacterDataGenerator(Node: Constructable<INode>) {
   return class CharacterData extends Node implements ICharacterData {
     constructor() {
       super();
-      initialize(CharacterData, this);
+      initializeConstantsAndProperties<CharacterData>(this, CharacterDataConstantKeys, CharacterDataPropertyKeys);
     }
 
     // properties
@@ -37,6 +38,8 @@ export function CharacterDataGenerator(Node: Constructable<INode>) {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface ICharacterDataProperties extends INodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly data?: Promise<string>;
   readonly length?: Promise<number>;
 }
@@ -44,9 +47,3 @@ export interface ICharacterDataProperties extends INodeProperties {
 export const CharacterDataPropertyKeys = [...NodePropertyKeys, 'data', 'length'];
 
 export const CharacterDataConstantKeys = [...NodeConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<ICharacterData>, self: ICharacterData) {
-  initializeConstantsAndProperties<ICharacterData>(Klass, self, CharacterDataConstantKeys, CharacterDataPropertyKeys);
-}

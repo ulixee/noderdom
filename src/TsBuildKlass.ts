@@ -40,7 +40,9 @@ export default class TsBuildKlass {
     this.domType = options.domType;
     this.buildType = options.buildType;
     this.objectMetaByName = options.objectMetaByName;
-    this.inheritsFrom = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
+
+    const inheritsFrom = [i.extends || 'Object'].concat((i.implements || []).sort()).filter(e => e !== 'Object');
+    this.inheritsFrom = [...new Set(inheritsFrom)];
 
     const bodyOptions = { domType: this.domType, buildType: this.buildType };
     this.bodyPrinter = new TsBodyPrinter(i, this.printer, components, bodyOptions);
@@ -69,7 +71,6 @@ export default class TsBuildKlass {
       this.printer.print(`}`);
 
       this.printStateMachineInterfaces();
-      this.printInitializeFunction();
     }
 
     this.prependInitializerCode();
@@ -122,29 +123,13 @@ export default class TsBuildKlass {
     const className = getNameWithTypeParameter(i.typeParameters, i.name, false);
     const typeParameterName = i.typeParameters && i.typeParameters[0] && i.typeParameters[0].name;
     const iClassName = typeParameterName ? `${toIType(i.name)}<${typeParameterName}>` : toIType(i.name);
-    this.printer.printLine(
-      `export default class ${className} extends ${i.name}Base implements ${iClassName} {`,
-    );
+    this.printer.printLine(`export default class ${className} extends ${i.name}Base implements ${iClassName} {`);
   }
 
   private printStateMachineInterfaces() {
     const stateOptions = { domType: this.domType, buildType: BuildType.base };
     const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components, stateOptions);
     stateMachinePrinter.printInterfaces(this.inheritsFrom, this.bodyPrinter.constants, this.bodyPrinter.properties);
-  }
-
-  private printInitializeFunction() {
-    const i: Types.Interface = this.i;
-    const iName = toIType(i.name);
-    this.printer.printSeparatorLine('\n// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////');
-    this.printer.printLine();
-    this.printer.printLine(`export function initialize(Klass: Constructable<${iName}>, self: ${iName}) {`);
-    this.printer.increaseIndent();
-    this.printer.printLine(
-      `initializeConstantsAndProperties<${iName}>(Klass, self, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
-    );
-    this.printer.decreaseIndent();
-    this.printer.printLine('}');
   }
 
   private prependInitializerCode() {
@@ -181,6 +166,7 @@ export default class TsBuildKlass {
     printable.push(`import ${handlerClassName} from '${baseDir}/${handlerClassName}';`);
     printable.push(`import initializeConstantsAndProperties from '${baseDir}/initializeConstantsAndProperties';`);
     printable.push(`import StateMachine from '${baseDir}/StateMachine';`);
+    printable.push(`import AwaitedPath from '${baseDir}/AwaitedPath';`);
     if (this.inheritsFrom.length > 1) {
       printable.push(`import ClassMixer from '${baseDir}/ClassMixer';`);
     }
@@ -220,7 +206,7 @@ export default class TsBuildKlass {
     const referencedImports = tsImporter.extractAll(references, BuildType.base, ObjectStruct.interface);
     if (referencedImports) printable.push(referencedImports);
 
-    const baseProps = [`${i.name}Generator`, 'initialize', `I${i.name}Properties`];
+    const baseProps = [`${i.name}Generator`, `I${i.name}Properties`];
     printable.push(tsImporter.extractSingle(i.name, null, baseProps, BuildType.base, ObjectStruct.class));
 
     if (this.bodyPrinter.referencedCreateMethods.size) {

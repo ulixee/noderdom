@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { INode } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
@@ -50,7 +51,7 @@ export function NodeGenerator() {
     public readonly PROCESSING_INSTRUCTION_NODE: number = 7;
     public readonly TEXT_NODE: number = 3;
     constructor() {
-      initialize(Node, this);
+      initializeConstantsAndProperties<Node>(this, NodeConstantKeys, NodePropertyKeys);
     }
 
     // properties
@@ -113,16 +114,16 @@ export function NodeGenerator() {
 
     // methods
 
-    public compareDocumentPosition(other: INode): Promise<number> {
+    public compareDocumentPosition(other: ISuperNode): Promise<number> {
       return awaitedHandler.runMethod<number>(this, 'compareDocumentPosition', [other]);
     }
 
-    public contains(other: INode | null): Promise<boolean> {
+    public contains(other: ISuperNode | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'contains', [other]);
     }
 
-    public getRootNode(options?: IGetRootNodeOptions): Promise<INode> {
-      return awaitedHandler.runMethod<INode>(this, 'getRootNode', [options]);
+    public getRootNode(options?: IGetRootNodeOptions): Promise<ISuperNode> {
+      return awaitedHandler.runMethod<ISuperNode>(this, 'getRootNode', [options]);
     }
 
     public hasChildNodes(): Promise<boolean> {
@@ -133,11 +134,11 @@ export function NodeGenerator() {
       return awaitedHandler.runMethod<boolean>(this, 'isDefaultNamespace', [namespace]);
     }
 
-    public isEqualNode(otherNode: INode | null): Promise<boolean> {
+    public isEqualNode(otherNode: ISuperNode | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'isEqualNode', [otherNode]);
     }
 
-    public isSameNode(otherNode: INode | null): Promise<boolean> {
+    public isSameNode(otherNode: ISuperNode | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'isSameNode', [otherNode]);
     }
 
@@ -158,6 +159,8 @@ export function NodeGenerator() {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface INodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly baseURI?: Promise<string>;
   readonly childNodes?: ISuperNodeList;
   readonly firstChild?: ISuperNode;
@@ -177,9 +180,3 @@ export interface INodeProperties {
 export const NodePropertyKeys = ['baseURI', 'childNodes', 'firstChild', 'isConnected', 'lastChild', 'nextSibling', 'nodeName', 'nodeType', 'nodeValue', 'ownerDocument', 'parentElement', 'parentNode', 'previousSibling', 'textContent'];
 
 export const NodeConstantKeys = ['ATTRIBUTE_NODE', 'CDATA_SECTION_NODE', 'COMMENT_NODE', 'DOCUMENT_FRAGMENT_NODE', 'DOCUMENT_NODE', 'DOCUMENT_POSITION_CONTAINED_BY', 'DOCUMENT_POSITION_CONTAINS', 'DOCUMENT_POSITION_DISCONNECTED', 'DOCUMENT_POSITION_FOLLOWING', 'DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC', 'DOCUMENT_POSITION_PRECEDING', 'DOCUMENT_TYPE_NODE', 'ELEMENT_NODE', 'ENTITY_NODE', 'ENTITY_REFERENCE_NODE', 'NOTATION_NODE', 'PROCESSING_INSTRUCTION_NODE', 'TEXT_NODE'];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<INode>, self: INode) {
-  initializeConstantsAndProperties<INode>(Klass, self, NodeConstantKeys, NodePropertyKeys);
-}

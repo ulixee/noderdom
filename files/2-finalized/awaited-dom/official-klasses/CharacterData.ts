@@ -1,6 +1,6 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { ICharacterData } from '../../awaited-base/interfaces/official';
-import { CharacterDataGenerator, initialize, ICharacterDataProperties } from '../../awaited-base/official-klasses/CharacterData';
+import { CharacterDataGenerator, ICharacterDataProperties } from '../../awaited-base/official-klasses/CharacterData';
 import Node from './Node';
 
 // tslint:disable:variable-name
@@ -10,6 +10,5 @@ const CharacterDataBase = CharacterDataGenerator(Node);
 export default class CharacterData extends CharacterDataBase implements ICharacterData {
   constructor() {
     super();
-    initialize(CharacterData, this);
   }
 }

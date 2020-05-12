@@ -1,12 +1,12 @@
-Noderdom Scaffolding is used to generate Typescript interfaces, classes and mixins representing the DOM structure as expressed in WebIDL.
+Noderdom is a library for generating Typescript interfaces, classes and mixins representing the DOM structure as expressed in WebIDL.
 
-This tool is heavily based on the fantastic work by the Typescript team to generate their dom.generated.d.ts files: [TSJS-lib-generator](https://github.com/typescript/tsjs-lib-generator).
+This tool was originally based on the fantastic work by the Typescript team for generating their dom.generated.d.ts files: [TSJS-lib-generator](https://github.com/typescript/tsjs-lib-generator).
 
 # Install
 
 Install from NPM:
 ```
-npm install noderdom-scaffolding
+npm install noderdom
 ```
 
 # How to Use

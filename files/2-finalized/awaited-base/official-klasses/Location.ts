@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { ILocation } from '../interfaces/official';
 
@@ -11,7 +12,7 @@ export const awaitedHandler = new AwaitedHandler<ILocation>('Location', getState
 export function LocationGenerator() {
   return class Location implements ILocation {
     constructor() {
-      initialize(Location, this);
+      initializeConstantsAndProperties<Location>(this, LocationConstantKeys, LocationPropertyKeys);
     }
 
     // properties
@@ -107,6 +108,8 @@ export function LocationGenerator() {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface ILocationProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   hash?: Promise<string> | any;
   host?: Promise<string> | any;
   hostname?: Promise<string> | any;
@@ -121,9 +124,3 @@ export interface ILocationProperties {
 export const LocationPropertyKeys = ['hash', 'host', 'hostname', 'href', 'origin', 'pathname', 'port', 'protocol', 'search'];
 
 export const LocationConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<ILocation>, self: ILocation) {
-  initializeConstantsAndProperties<ILocation>(Klass, self, LocationConstantKeys, LocationPropertyKeys);
-}

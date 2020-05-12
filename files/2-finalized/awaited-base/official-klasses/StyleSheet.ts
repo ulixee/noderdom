@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IStyleSheet } from '../interfaces/official';
 
@@ -11,21 +12,17 @@ export const awaitedHandler = new AwaitedHandler<IStyleSheet>('StyleSheet', getS
 export function StyleSheetGenerator() {
   return class StyleSheet implements IStyleSheet {
     constructor() {
-      initialize(StyleSheet, this);
+      initializeConstantsAndProperties<StyleSheet>(this, StyleSheetConstantKeys, StyleSheetPropertyKeys);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IStyleSheetProperties {}
+export interface IStyleSheetProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const StyleSheetPropertyKeys = [];
 
 export const StyleSheetConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IStyleSheet>, self: IStyleSheet) {
-  initializeConstantsAndProperties<IStyleSheet>(Klass, self, StyleSheetConstantKeys, StyleSheetPropertyKeys);
-}

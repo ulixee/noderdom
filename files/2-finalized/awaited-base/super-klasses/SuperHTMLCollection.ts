@@ -1,9 +1,9 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { ISuperHTMLCollection } from '../interfaces/super';
-import { IElement } from '../interfaces/official';
+import { ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
@@ -12,27 +12,23 @@ export const awaitedHandler = new AwaitedHandler<ISuperHTMLCollection>('SuperHTM
 export function SuperHTMLCollectionGenerator() {
   return class SuperHTMLCollection implements ISuperHTMLCollection {
     constructor() {
-      initialize(SuperHTMLCollection, this);
+      initializeConstantsAndProperties<SuperHTMLCollection>(this, SuperHTMLCollectionConstantKeys, SuperHTMLCollectionPropertyKeys);
     }
 
     // methods
 
-    public namedItem(name: string): Promise<IElement | null> {
-      return awaitedHandler.runMethod<IElement | null>(this, 'namedItem', [name]);
+    public namedItem(name: string): Promise<ISuperElement | null> {
+      return awaitedHandler.runMethod<ISuperElement | null>(this, 'namedItem', [name]);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperHTMLCollectionProperties {}
+export interface ISuperHTMLCollectionProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const SuperHTMLCollectionPropertyKeys = [];
 
 export const SuperHTMLCollectionConstantKeys = [];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<ISuperHTMLCollection>, self: ISuperHTMLCollection) {
-  initializeConstantsAndProperties<ISuperHTMLCollection>(Klass, self, SuperHTMLCollectionConstantKeys, SuperHTMLCollectionPropertyKeys);
-}

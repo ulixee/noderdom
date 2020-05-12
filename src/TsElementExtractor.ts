@@ -11,7 +11,7 @@ export default class TsElementExtractor {
     this.components = components;
   }
 
-  public run() {
+  public extract() {
     const tagNameToElementName = this.components.getTagNameToElementNameMap();
     const response = [
       this.printElementTagNameMap('IHTMLElementTagNameMap', tagNameToElementName.htmlResult.active),
@@ -19,16 +19,15 @@ export default class TsElementExtractor {
       this.printElementTagNameMap('ISVGElementTagNameMap', tagNameToElementName.svgResult.active),
       this.printElementTagNameMap('ISVGElementDeprecatedTagNameMap', tagNameToElementName.svgResult.deprecated),
     ];
-    const imports = this.printImports();
-    if (imports) response.unshift(imports);
     return response;
   }
 
-  private printImports() {
+  public extractImports() {
     if (!this.domTypes.size) return;
     this.printer.reset();
     this.printer.print(`import { ${Array.from(this.domTypes).join(', ')} } from './${ObjectType.official}';`);
-    return this.printer.getResult();
+    const results = this.printer.getResult();
+    return results;
   }
 
   private printElementTagNameMap(name: string, results: { [k: string]: string }) {

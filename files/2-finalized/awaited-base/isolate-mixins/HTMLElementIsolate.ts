@@ -1,5 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IHTMLElementIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
 
@@ -82,6 +83,8 @@ export default class HTMLElementIsolate implements IHTMLElementIsolate {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IHTMLElementIsolateProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly accessKey?: Promise<string>;
   readonly autoCapitalize?: Promise<string>;
   readonly dir?: Promise<string>;

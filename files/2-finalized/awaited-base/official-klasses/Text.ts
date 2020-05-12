@@ -1,8 +1,10 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IText, ICharacterData } from '../interfaces/official';
+import { ISuperText } from '../interfaces/super';
 import { ICharacterDataProperties, CharacterDataPropertyKeys, CharacterDataConstantKeys } from './CharacterData';
 
 // tslint:disable:variable-name
@@ -13,7 +15,7 @@ export function TextGenerator(CharacterData: Constructable<ICharacterData>) {
   return class Text extends CharacterData implements IText {
     constructor(_data?: string) {
       super();
-      initialize(Text, this);
+      initializeConstantsAndProperties<Text>(this, TextConstantKeys, TextPropertyKeys);
     }
 
     // properties
@@ -24,8 +26,8 @@ export function TextGenerator(CharacterData: Constructable<ICharacterData>) {
 
     // methods
 
-    public splitText(offset: number): Promise<IText> {
-      return awaitedHandler.runMethod<IText>(this, 'splitText', [offset]);
+    public splitText(offset: number): Promise<ISuperText> {
+      return awaitedHandler.runMethod<ISuperText>(this, 'splitText', [offset]);
     }
   };
 }
@@ -33,15 +35,11 @@ export function TextGenerator(CharacterData: Constructable<ICharacterData>) {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface ITextProperties extends ICharacterDataProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly wholeText?: Promise<string>;
 }
 
 export const TextPropertyKeys = [...CharacterDataPropertyKeys, 'wholeText'];
 
 export const TextConstantKeys = [...CharacterDataConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IText>, self: IText) {
-  initializeConstantsAndProperties<IText>(Klass, self, TextConstantKeys, TextPropertyKeys);
-}

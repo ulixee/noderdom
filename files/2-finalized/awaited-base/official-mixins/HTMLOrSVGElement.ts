@@ -1,5 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import { IHTMLOrSVGElement } from '../interfaces/official';
 
 // tslint:disable:variable-name
@@ -18,7 +19,9 @@ export default class HTMLOrSVGElement implements IHTMLOrSVGElement {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IHTMLOrSVGElementProperties {}
+export interface IHTMLOrSVGElementProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;}
 
 export const HTMLOrSVGElementPropertyKeys = [];
 

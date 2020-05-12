@@ -2,8 +2,6 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 export type IDocumentReadyState = 'complete' | 'interactive' | 'loading';
 
 export type IFullscreenNavigationUI = 'auto' | 'hide' | 'show';

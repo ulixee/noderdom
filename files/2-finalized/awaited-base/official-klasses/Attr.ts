@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
+import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IAttr, INode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
@@ -14,7 +15,7 @@ export function AttrGenerator(Node: Constructable<INode>) {
   return class Attr extends Node implements IAttr {
     constructor() {
       super();
-      initialize(Attr, this);
+      initializeConstantsAndProperties<Attr>(this, AttrConstantKeys, AttrPropertyKeys);
     }
 
     // properties
@@ -52,6 +53,8 @@ export function AttrGenerator(Node: Constructable<INode>) {
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
 export interface IAttrProperties extends INodeProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
   readonly localName?: Promise<string>;
   readonly name?: Promise<string>;
   readonly namespaceURI?: Promise<string | null>;
@@ -64,9 +67,3 @@ export interface IAttrProperties extends INodeProperties {
 export const AttrPropertyKeys = [...NodePropertyKeys, 'localName', 'name', 'namespaceURI', 'ownerElement', 'prefix', 'specified', 'value'];
 
 export const AttrConstantKeys = [...NodeConstantKeys];
-
-// INITIALIZE CONSTANTS AND PROPERTIES ///////////////////////////////////////
-
-export function initialize(Klass: Constructable<IAttr>, self: IAttr) {
-  initializeConstantsAndProperties<IAttr>(Klass, self, AttrConstantKeys, AttrPropertyKeys);
-}
