@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IParentNode } from '../interfaces/official';
-import { ISuperElement } from '../interfaces/super';
+import { ISuperElement, ISuperNodeList } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IParentNode, IParentNodeProperties>();
@@ -25,6 +25,10 @@ export default class ParentNode implements IParentNode {
 
   public querySelector(selectors: string): ISuperElement {
     throw new Error('ParentNode.querySelector not implemented');
+  }
+
+  public querySelectorAll(selectors: string): ISuperNodeList {
+    throw new Error('ParentNode.querySelectorAll not implemented');
   }
 }
 

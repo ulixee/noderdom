@@ -152,10 +152,10 @@ export interface ISuperNodeList {
 
   item(index: number): Promise<ISuperNode | null>;
 
-  forEach(callbackfn: (value: ISuperNode, key: number, parent: ISuperNodeList) => void, thisArg?: any): void;
-  entries(): IterableIterator<[number, ISuperNode]>;
-  keys(): IterableIterator<number>;
-  values(): IterableIterator<ISuperNode>;
+  forEach(callbackfn: (value: ISuperNode, key: number, parent: ISuperNodeList) => void, thisArg?: any): Promise<void>;
+  entries(): Promise<IterableIterator<[number, ISuperNode]>>;
+  keys(): Promise<IterableIterator<number>>;
+  values(): Promise<IterableIterator<ISuperNode>>;
   [Symbol.iterator](): IterableIterator<ISuperNode>;
 }
 

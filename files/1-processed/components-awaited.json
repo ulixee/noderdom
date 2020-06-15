@@ -92,6 +92,21 @@
             }
           ],
           "isAbstract": 1
+        },
+        "querySelectorAll": {
+          "name": "querySelectorAll",
+          "signatures": [
+            {
+              "type": "NodeList",
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],

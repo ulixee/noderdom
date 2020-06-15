@@ -3,11 +3,13 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
+import AwaitedIterator from '../AwaitedIterator';
 import { ISuperNodeList, ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNodeList>('SuperNodeList', getState, setState);
+const awaitedIterator = new AwaitedIterator<ISuperNodeList, ISuperNode>('createSuperNode', getState);
 
 export function SuperNodeListGenerator() {
   return class SuperNodeList implements ISuperNodeList {
@@ -27,24 +29,28 @@ export function SuperNodeListGenerator() {
       return awaitedHandler.runMethod<ISuperNode | null>(this, 'item', [index]);
     }
 
-    public forEach(callbackfn: (value: ISuperNode, key: number, parent: ISuperNodeList) => void, thisArg?: any): void {
-      throw new Error('SuperNodeList.forEach not implemented');
+    public forEach(callbackfn: (value: ISuperNode, key: number, parent: ISuperNodeList) => void, thisArg?: any): Promise<void> {
+      return awaitedIterator.createInstance(this, this.length).then(x => {
+        for (let i = 0; i < x.length; i += 1) {
+          callbackfn(x[i], i, this);
+        }
+      });
     }
 
-    public entries(): IterableIterator<[number, ISuperNode]> {
-      throw new Error('SuperNodeList.entries not implemented');
+    public entries(): Promise<IterableIterator<[number, ISuperNode]>> {
+      return awaitedIterator.createInstance(this, this.length).then(x => x.entries());
     }
 
-    public keys(): IterableIterator<number> {
-      throw new Error('SuperNodeList.keys not implemented');
+    public keys(): Promise<IterableIterator<number>> {
+      return awaitedIterator.createInstance(this, this.length).then(x => x.keys());
     }
 
-    public values(): IterableIterator<ISuperNode> {
-      throw new Error('SuperNodeList.values not implemented');
+    public values(): Promise<IterableIterator<ISuperNode>> {
+      return awaitedIterator.createInstance(this, this.length).then(x => x.values());
     }
 
-    public [Symbol.iterator](): IterableIterator<ISuperNode> {
-      throw new Error('SuperNodeList[Symbol.iterator] not implemented');
+    public *[Symbol.iterator](): IterableIterator<ISuperNode> {
+      return awaitedIterator.createInstance(this, this.length).then(x => yield x[Symbol.iterator]);
     }
   };
 }

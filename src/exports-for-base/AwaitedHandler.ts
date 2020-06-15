@@ -4,11 +4,9 @@ export class NotImplementedError extends Error {}
 
 export default class AwaitedHandler<TClass> {
   public static initializer: <TC>(self: AwaitedHandler<TC>) => void;
-  private readonly className: string;
-  // @ts-ignore
-  private readonly getState: any;
-  // @ts-ignore
-  private readonly setState: any;
+  public readonly getState: any;
+  public readonly setState: any;
+  public readonly className: string;
 
   constructor(className: string, getState: any, setState: any) {
     this.className = className;

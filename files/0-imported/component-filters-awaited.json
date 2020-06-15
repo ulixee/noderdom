@@ -818,7 +818,8 @@
         "isAbstract": true
       },
       "querySelectorAll": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },

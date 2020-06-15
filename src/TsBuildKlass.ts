@@ -147,6 +147,10 @@ export default class TsBuildKlass {
     if (this.buildType === BuildType.base) {
       const handlerName = `${this.domType}Handler`;
       printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
+
+      if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
+        printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer());
+      }
     } else {
       printable.push(`const ${i.name}Base = ${i.name}Generator(${this.inheritsFrom.join(', ')});`);
     }
@@ -171,6 +175,9 @@ export default class TsBuildKlass {
       printable.push(`import ClassMixer from '${baseDir}/ClassMixer';`);
     }
     printable.push(`import Constructable from '${baseDir}/Constructable';`);
+    if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
+      printable.push(`import AwaitedIterator from '${baseDir}/AwaitedIterator';`);
+    }
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;
     const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };

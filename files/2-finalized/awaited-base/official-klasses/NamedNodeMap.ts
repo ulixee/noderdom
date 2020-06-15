@@ -3,11 +3,13 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
+import AwaitedIterator from '../AwaitedIterator';
 import { INamedNodeMap, IAttr } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
 export const awaitedHandler = new AwaitedHandler<INamedNodeMap>('NamedNodeMap', getState, setState);
+const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>('createAttr', getState);
 
 export function NamedNodeMapGenerator() {
   return class NamedNodeMap implements INamedNodeMap {
@@ -35,8 +37,8 @@ export function NamedNodeMapGenerator() {
       return awaitedHandler.runMethod<IAttr | null>(this, 'item', [index]);
     }
 
-    public [Symbol.iterator](): IterableIterator<IAttr> {
-      throw new Error('NamedNodeMap[Symbol.iterator] not implemented');
+    public *[Symbol.iterator](): IterableIterator<IAttr> {
+      return awaitedIterator.createInstance(this, this.length).then(x => yield x[Symbol.iterator]);
     }
   };
 }
