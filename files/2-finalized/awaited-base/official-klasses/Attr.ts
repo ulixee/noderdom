@@ -3,6 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { IAttr, INode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
@@ -10,9 +11,10 @@ import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IAttr, IAttrProperties>();
 export const awaitedHandler = new AwaitedHandler<IAttr>('Attr', getState, setState);
+export const nodeAttacher = new NodeAttacher<IAttr>('createAttr', getState, setState, awaitedHandler);
 
 export function AttrGenerator(Node: Constructable<INode>) {
-  return class Attr extends Node implements IAttr {
+  return class Attr extends Node implements IAttr, PromiseLike<IAttr> {
     constructor() {
       super();
       initializeConstantsAndProperties<Attr>(this, AttrConstantKeys, AttrPropertyKeys);
@@ -46,6 +48,10 @@ export function AttrGenerator(Node: Constructable<INode>) {
 
     public get value(): Promise<string> {
       return awaitedHandler.getProperty<string>(this, 'value', false);
+    }
+
+    public then<TResult1 = IAttr, TResult2 = never>(onfulfilled?: ((value: IAttr) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

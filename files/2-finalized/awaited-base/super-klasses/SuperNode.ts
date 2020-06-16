@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../interfaces/super';
 import { IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, INodeIsolate, ITextIsolate } from '../interfaces/isolate';
 import { IHTMLOrSVGElement, IParentNode } from '../interfaces/official';
@@ -24,11 +25,12 @@ import { ITextIsolateProperties, TextIsolatePropertyKeys, TextIsolateConstantKey
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNode>('SuperNode', getState, setState);
+export const nodeAttacher = new NodeAttacher<ISuperNode>('createSuperNode', getState, setState, awaitedHandler);
 
 export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, CharacterDataIsolate: Constructable<ICharacterDataIsolate>, DocumentIsolate: Constructable<IDocumentIsolate>, DocumentTypeIsolate: Constructable<IDocumentTypeIsolate>, ElementIsolate: Constructable<IElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>, TextIsolate: Constructable<ITextIsolate>) {
   const Parent = (ClassMixer(AttrIsolate, [CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode, TextIsolate]) as unknown) as Constructable<IAttrIsolate & ICharacterDataIsolate & IDocumentIsolate & IDocumentTypeIsolate & IElementIsolate & IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & IHTMLOrSVGElement & INodeIsolate & IParentNode & ITextIsolate>;
 
-  return class SuperNode extends Parent implements ISuperNode {
+  return class SuperNode extends Parent implements ISuperNode, PromiseLike<ISuperNode> {
     public static readonly ATTRIBUTE_NODE: number = 2;
     public static readonly CDATA_SECTION_NODE: number = 4;
     public static readonly COMMENT_NODE: number = 8;
@@ -169,6 +171,10 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
 
     public normalize(): Promise<void> {
       return awaitedHandler.runMethod<void>(this, 'normalize', []);
+    }
+
+    public then<TResult1 = ISuperNode, TResult2 = never>(onfulfilled?: ((value: ISuperNode) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

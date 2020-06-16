@@ -5,4 +5,4 @@ import DocumentTypeIsolateBase, { IDocumentTypeIsolateProperties } from '../../a
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentTypeIsolate, IDocumentTypeIsolateProperties>();
 
-export default class DocumentTypeIsolate extends DocumentTypeIsolateBase implements IDocumentTypeIsolate {}
+export default class DocumentTypeIsolate extends DocumentTypeIsolateBase implements IDocumentTypeIsolate, PromiseLike<IDocumentTypeIsolate> {}

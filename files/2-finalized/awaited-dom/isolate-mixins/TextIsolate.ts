@@ -5,4 +5,4 @@ import TextIsolateBase, { ITextIsolateProperties } from '../../awaited-base/isol
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ITextIsolate, ITextIsolateProperties>();
 
-export default class TextIsolate extends TextIsolateBase implements ITextIsolate {}
+export default class TextIsolate extends TextIsolateBase implements ITextIsolate, PromiseLike<ITextIsolate> {}

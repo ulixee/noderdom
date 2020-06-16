@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
@@ -13,11 +14,12 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
+export const nodeAttacher = new NodeAttacher<IElement>('createElement', getState, setState, awaitedHandler);
 
 export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
 
-  return class Element extends Parent implements IElement {
+  return class Element extends Parent implements IElement, PromiseLike<IElement> {
     constructor() {
       super();
       initializeConstantsAndProperties<Element>(this, ElementConstantKeys, ElementPropertyKeys);
@@ -185,6 +187,10 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
 
     public scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void> {
       return awaitedHandler.runMethod<void>(this, 'scrollIntoView', [arg]);
+    }
+
+    public then<TResult1 = IElement, TResult2 = never>(onfulfilled?: ((value: IElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

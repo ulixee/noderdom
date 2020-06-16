@@ -1,26 +1,47 @@
 import AwaitedPath from './AwaitedPath';
+import AwaitedHandler from './AwaitedHandler';
 
 export default class AwaitedIterator<TClass, T> {
   public static creators = require('../awaited-dom/create');
   private readonly createItemName: string;
-  private readonly getState: any;
+  private readonly getState: (instance: TClass) => IAwaitedIteratorProperties;
+  private awaitedHandler: AwaitedHandler<TClass>;
 
-  constructor(createItemName: string, getState: any) {
+  constructor(
+    createItemName: string,
+    getState: (instance: TClass) => IAwaitedIteratorProperties,
+    awaitedHandler: AwaitedHandler<TClass>,
+  ) {
     this.createItemName = createItemName;
     this.getState = getState;
+    this.awaitedHandler = awaitedHandler;
   }
 
-  public async createInstance(instance: TClass, lengthPromise: Promise<number>): Promise<T[]> {
+  public iterateAttachedNodeIds(instance: TClass): IterableIterator<T> {
+    const { awaitedPath } = this.getState(instance);
+    return this.getNodeList(instance, awaitedPath.iterableIds ?? [])[Symbol.iterator]();
+  }
+
+  public async toArray(instance: TClass): Promise<T[]> {
+    const [, iterableIds] = await this.awaitedHandler.getNodeIds(instance);
+    return this.getNodeList(instance, iterableIds);
+  }
+
+  private getNodeList(instance: TClass, nodeIds: number[]): T[] {
+    if (!nodeIds) return [];
+
     const state = this.getState(instance);
     const awaitedPath = state.awaitedPath as AwaitedPath;
     const awaitedOptions = state.awaitedOptions;
-    const length = await lengthPromise;
     const createChild = AwaitedIterator.creators[this.createItemName];
-    return Array(length)
-      .fill(0)
-      .map((_, i) => {
-        const childPath = awaitedPath.addProperty(String(i));
-        return createChild(childPath, awaitedOptions);
-      });
+    return nodeIds.map(nodeId => {
+      const childPath = awaitedPath.withNodeId(nodeId);
+      return createChild(childPath, awaitedOptions) as T;
+    });
   }
+}
+
+export interface IAwaitedIteratorProperties {
+  awaitedPath: AwaitedPath;
+  awaitedOptions: any;
 }

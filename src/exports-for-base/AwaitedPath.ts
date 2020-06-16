@@ -1,4 +1,5 @@
 export default class AwaitedPath {
+  public iterableIds?: number[];
   private readonly jsPath: IJsPath;
 
   constructor(...jsPath: IJsPath) {
@@ -13,6 +14,14 @@ export default class AwaitedPath {
     return new AwaitedPath(...this.jsPath, [name, ...args]);
   }
 
+  public withNodeId(id: INodeId) {
+    return new AwaitedPath(id);
+  }
+
+  public setIterableIds(ids: INodeId[]) {
+    this.iterableIds = ids;
+  }
+
   public toJSON() {
     return this.jsPath;
   }
@@ -24,8 +33,9 @@ export default class AwaitedPath {
 }
 
 export type IJsPath = IPathStep[];
-export type IPathStep = IPropertyName | IMethod;
+export type IPathStep = IPropertyName | IMethod | INodeId;
 type IPropertyName = string;
 type IMethod = [IMethodName, ...IMethodArgs];
 type IMethodName = string;
 type IMethodArgs = any[];
+type INodeId = number;

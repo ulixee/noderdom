@@ -93,7 +93,7 @@ export default class TsIteratorExtractor {
     return false;
   }
 
-  public getIteratorInitializer() {
+  public getIteratorInitializer(handlerName: string) {
     const subtypes = this.getIteratorSubtypes();
     if (!subtypes) return '';
 
@@ -101,9 +101,9 @@ export default class TsIteratorExtractor {
     const iType = toIType(i.name);
     const name = i.typeParameters ? `${iType}<${i.typeParameters!.map(p => p.name).join(', ')}>` : iType;
     const iteratorType = this.stringifySingleOrTupleTypes(subtypes);
-    return `const awaitedIterator = new AwaitedIterator<${name}, ${iteratorType}>('create${iteratorType.substr(
+    return `export const awaitedIterator = new AwaitedIterator<${name}, ${iteratorType}>('create${iteratorType.substr(
       1,
-    )}', getState);`;
+    )}', getState, ${handlerName});`;
   }
 
   public run(printMethod: (m: Types.Method) => void) {
@@ -146,11 +146,9 @@ export default class TsIteratorExtractor {
       this.printer.printLine(`[Symbol.iterator](): ${returnType};`);
     } else {
       this.printer.printSeparatorLine();
-      this.printer.printLine(`public *[Symbol.iterator](): ${returnType} {`);
+      this.printer.printLine(`public [Symbol.iterator](): ${returnType} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(
-          `  return awaitedIterator.createInstance(this, this.length).then(x => yield x[Symbol.iterator]);`,
-        );
+        this.printer.printLine(`  return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }
@@ -170,18 +168,13 @@ export default class TsIteratorExtractor {
       this.printer.printLine(`forEach(callbackfn: (${args}) => void, thisArg?: any): Promise<void>;`);
     } else {
       this.printer.printSeparatorLine();
-      this.printer.printLine(`public forEach(callbackfn: (${args}) => void, thisArg?: any): Promise<void> {`);
+      this.printer.printLine(`public async forEach(callbackfn: (${args}) => void, thisArg?: any): Promise<void> {`);
       if (this.buildType === BuildType.base) {
         this.printer.increaseIndent();
-        this.printer.printLine(`return awaitedIterator.createInstance(this, this.length).then(x => {`);
-        this.printer.increaseIndent();
-        this.printer.printLine(`for (let i = 0; i < x.length; i += 1) {`);
-        this.printer.increaseIndent();
-        this.printer.printLine(`callbackfn(x[i], i, this);`);
-        this.printer.decreaseIndent();
+        this.printer.printLine(`const array = await awaitedIterator.toArray(this);`);
+        this.printer.printLine(`for (let i = 0; i < array.length; i += 1) {`);
+        this.printer.printLine(`  callbackfn(array[i], i, this);`);
         this.printer.printLine('}');
-        this.printer.decreaseIndent();
-        this.printer.printLine(`});`);
         this.printer.decreaseIndent();
       } else {
         this.printer.printLine(`  // implementation required`);
@@ -248,7 +241,7 @@ export default class TsIteratorExtractor {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public ${m.name}(): ${m.definition} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  return awaitedIterator.createInstance(this, this.length).then(x => x.${m.name}());`);
+        this.printer.printLine(`  return awaitedIterator.toArray(this).then(x => x.${m.name}());`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }

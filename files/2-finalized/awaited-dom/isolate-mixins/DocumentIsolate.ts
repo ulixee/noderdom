@@ -8,7 +8,7 @@ import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
 
-export default class DocumentIsolate extends DocumentIsolateBase implements IDocumentIsolate {
+export default class DocumentIsolate extends DocumentIsolateBase implements IDocumentIsolate, PromiseLike<IDocumentIsolate> {
   public get anchors(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperHTMLCollection(awaitedPath.addProperty('anchors'), awaitedOptions);

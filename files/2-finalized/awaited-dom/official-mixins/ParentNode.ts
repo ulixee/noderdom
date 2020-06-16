@@ -7,7 +7,7 @@ import { createSuperElement, createSuperNodeList } from '../create';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IParentNode, IParentNodeProperties>();
 
-export default class ParentNode extends ParentNodeBase implements IParentNode {
+export default class ParentNode extends ParentNodeBase implements IParentNode, PromiseLike<IParentNode> {
   public get firstElementChild(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperElement(awaitedPath.addProperty('firstElementChild'), awaitedOptions);

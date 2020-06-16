@@ -3,6 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { INode } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
 import { IGetRootNodeOptions } from '../interfaces/basic';
@@ -10,9 +11,10 @@ import { IGetRootNodeOptions } from '../interfaces/basic';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INode, INodeProperties>();
 export const awaitedHandler = new AwaitedHandler<INode>('Node', getState, setState);
+export const nodeAttacher = new NodeAttacher<INode>('createNode', getState, setState, awaitedHandler);
 
 export function NodeGenerator() {
-  return class Node implements INode {
+  return class Node implements INode, PromiseLike<INode> {
     public static readonly ATTRIBUTE_NODE: number = 2;
     public static readonly CDATA_SECTION_NODE: number = 4;
     public static readonly COMMENT_NODE: number = 8;
@@ -152,6 +154,10 @@ export function NodeGenerator() {
 
     public normalize(): Promise<void> {
       return awaitedHandler.runMethod<void>(this, 'normalize', []);
+    }
+
+    public then<TResult1 = INode, TResult2 = never>(onfulfilled?: ((value: INode) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

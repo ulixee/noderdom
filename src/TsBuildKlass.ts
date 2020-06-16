@@ -115,7 +115,9 @@ export default class TsBuildKlass {
     const className = getNameWithTypeParameter(i.typeParameters, i.name, false);
     const typeParameterName = i.typeParameters && i.typeParameters[0] && i.typeParameters[0].name;
     const iClassName = typeParameterName ? `${toIType(i.name)}<${typeParameterName}>` : toIType(i.name);
-    this.printer.printLine(`return class ${className} ${extendsStr}implements ${iClassName} {`);
+    this.printer.printLine(
+      `return class ${className} ${extendsStr}implements ${iClassName}, PromiseLike<${iClassName}> {`,
+    );
   }
 
   private printImplClassDeclaration() {
@@ -149,8 +151,12 @@ export default class TsBuildKlass {
       printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
 
       if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
-        printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer());
+        printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer(handlerName));
       }
+
+      printable.push(
+        `export const nodeAttacher = new NodeAttacher<I${name}>('create${name}', getState, setState, ${handlerName});`,
+      );
     } else {
       printable.push(`const ${i.name}Base = ${i.name}Generator(${this.inheritsFrom.join(', ')});`);
     }
@@ -178,6 +184,7 @@ export default class TsBuildKlass {
     if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
       printable.push(`import AwaitedIterator from '${baseDir}/AwaitedIterator';`);
     }
+    printable.push(`import NodeAttacher from '${baseDir}/NodeAttacher';`);
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;
     const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };

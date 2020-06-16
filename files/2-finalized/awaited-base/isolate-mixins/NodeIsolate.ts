@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import NodeAttacher from '../NodeAttacher';
 import { INodeIsolate } from '../interfaces/isolate';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
 import { IGetRootNodeOptions } from '../interfaces/basic';
@@ -8,8 +9,9 @@ import { IGetRootNodeOptions } from '../interfaces/basic';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INodeIsolate, INodeIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<INodeIsolate>('NodeIsolate', getState, setState);
+export const nodeAttacher = new NodeAttacher<INodeIsolate>('createNodeIsolate', getState, setState, awaitedHandler);
 
-export default class NodeIsolate implements INodeIsolate {
+export default class NodeIsolate implements INodeIsolate, PromiseLike<INodeIsolate> {
   public static readonly ATTRIBUTE_NODE: number = 2;
   public static readonly CDATA_SECTION_NODE: number = 4;
   public static readonly COMMENT_NODE: number = 8;
@@ -146,6 +148,10 @@ export default class NodeIsolate implements INodeIsolate {
 
   public normalize(): Promise<void> {
     return awaitedHandler.runMethod<void>(this, 'normalize', []);
+  }
+
+  public then<TResult1 = INodeIsolate, TResult2 = never>(onfulfilled?: ((value: INodeIsolate) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+    return nodeAttacher.attach(this).then(onfulfilled, onrejected);
   }
 }
 

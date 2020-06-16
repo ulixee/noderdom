@@ -1,14 +1,16 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import NodeAttacher from '../NodeAttacher';
 import { IHTMLElementIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElementIsolate, IHTMLElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLElementIsolate>('HTMLElementIsolate', getState, setState);
+export const nodeAttacher = new NodeAttacher<IHTMLElementIsolate>('createHTMLElementIsolate', getState, setState, awaitedHandler);
 
-export default class HTMLElementIsolate implements IHTMLElementIsolate {
+export default class HTMLElementIsolate implements IHTMLElementIsolate, PromiseLike<IHTMLElementIsolate> {
   public get accessKey(): Promise<string> {
     return awaitedHandler.getProperty<string>(this, 'accessKey', false);
   }
@@ -77,6 +79,10 @@ export default class HTMLElementIsolate implements IHTMLElementIsolate {
 
   public click(): Promise<void> {
     return awaitedHandler.runMethod<void>(this, 'click', []);
+  }
+
+  public then<TResult1 = IHTMLElementIsolate, TResult2 = never>(onfulfilled?: ((value: IHTMLElementIsolate) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+    return nodeAttacher.attach(this).then(onfulfilled, onrejected);
   }
 }
 

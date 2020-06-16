@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { IDocument, INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
@@ -13,11 +14,12 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocument>('Document', getState, setState);
+export const nodeAttacher = new NodeAttacher<IDocument>('createDocument', getState, setState, awaitedHandler);
 
 export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
 
-  return class Document extends Parent implements IDocument {
+  return class Document extends Parent implements IDocument, PromiseLike<IDocument> {
     constructor() {
       super();
       initializeConstantsAndProperties<Document>(this, DocumentConstantKeys, DocumentPropertyKeys);
@@ -177,6 +179,10 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
 
     public hasFocus(): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'hasFocus', []);
+    }
+
+    public then<TResult1 = IDocument, TResult2 = never>(onfulfilled?: ((value: IDocument) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

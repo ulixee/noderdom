@@ -3,14 +3,16 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { ILocation } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ILocation, ILocationProperties>();
 export const awaitedHandler = new AwaitedHandler<ILocation>('Location', getState, setState);
+export const nodeAttacher = new NodeAttacher<ILocation>('createLocation', getState, setState, awaitedHandler);
 
 export function LocationGenerator() {
-  return class Location implements ILocation {
+  return class Location implements ILocation, PromiseLike<ILocation> {
     constructor() {
       initializeConstantsAndProperties<Location>(this, LocationConstantKeys, LocationPropertyKeys);
     }
@@ -101,6 +103,10 @@ export function LocationGenerator() {
 
     public toString(): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'toString', []);
+    }
+
+    public then<TResult1 = ILocation, TResult2 = never>(onfulfilled?: ((value: ILocation) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

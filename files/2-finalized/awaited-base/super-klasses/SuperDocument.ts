@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
 import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
@@ -14,11 +15,12 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
+export const nodeAttacher = new NodeAttacher<ISuperDocument>('createSuperDocument', getState, setState, awaitedHandler);
 
 export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(NodeIsolate, [ParentNode]) as unknown) as Constructable<INodeIsolate & IParentNode>;
 
-  return class SuperDocument extends Parent implements ISuperDocument {
+  return class SuperDocument extends Parent implements ISuperDocument, PromiseLike<ISuperDocument> {
     constructor() {
       super();
       initializeConstantsAndProperties<SuperDocument>(this, SuperDocumentConstantKeys, SuperDocumentPropertyKeys);
@@ -178,6 +180,10 @@ export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>,
 
     public hasFocus(): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'hasFocus', []);
+    }
+
+    public then<TResult1 = ISuperDocument, TResult2 = never>(onfulfilled?: ((value: ISuperDocument) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

@@ -7,7 +7,7 @@ import { createSuperElement } from '../create';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElementIsolate, IHTMLElementIsolateProperties>();
 
-export default class HTMLElementIsolate extends HTMLElementIsolateBase implements IHTMLElementIsolate {
+export default class HTMLElementIsolate extends HTMLElementIsolateBase implements IHTMLElementIsolate, PromiseLike<IHTMLElementIsolate> {
   public get offsetParent(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);

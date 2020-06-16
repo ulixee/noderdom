@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { ISuperCharacterData } from '../interfaces/super';
 import { ICharacterDataIsolate, INodeIsolate, ITextIsolate } from '../interfaces/isolate';
 import { ICharacterDataIsolateProperties, CharacterDataIsolatePropertyKeys, CharacterDataIsolateConstantKeys } from '../isolate-mixins/CharacterDataIsolate';
@@ -13,11 +14,12 @@ import { ITextIsolateProperties, TextIsolatePropertyKeys, TextIsolateConstantKey
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperCharacterData, ISuperCharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperCharacterData>('SuperCharacterData', getState, setState);
+export const nodeAttacher = new NodeAttacher<ISuperCharacterData>('createSuperCharacterData', getState, setState, awaitedHandler);
 
 export function SuperCharacterDataGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, TextIsolate: Constructable<ITextIsolate>) {
   const Parent = (ClassMixer(CharacterDataIsolate, [NodeIsolate, TextIsolate]) as unknown) as Constructable<ICharacterDataIsolate & INodeIsolate & ITextIsolate>;
 
-  return class SuperCharacterData extends Parent implements ISuperCharacterData {
+  return class SuperCharacterData extends Parent implements ISuperCharacterData, PromiseLike<ISuperCharacterData> {
     constructor() {
       super();
       initializeConstantsAndProperties<SuperCharacterData>(this, SuperCharacterDataConstantKeys, SuperCharacterDataPropertyKeys);
@@ -37,6 +39,10 @@ export function SuperCharacterDataGenerator(CharacterDataIsolate: Constructable<
 
     public substringData(offset: number, count: number): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'substringData', [offset, count]);
+    }
+
+    public then<TResult1 = ISuperCharacterData, TResult2 = never>(onfulfilled?: ((value: ISuperCharacterData) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

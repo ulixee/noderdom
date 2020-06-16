@@ -31,6 +31,11 @@ export default class AwaitedHandler<TClass> {
   }
 
   // @ts-ignore
+  public getNodeIds(instance: TClass): Promise<[number, number[]]> {
+    throw new NotImplementedError(`AwaitedHandler.getNodeIds not implemented`);
+  }
+
+  // @ts-ignore
   public runMethod<T>(instance: TClass, name: string, args: any[]): Promise<T> {
     throw new NotImplementedError(`AwaitedHandler.runMethod not implemented`);
   }

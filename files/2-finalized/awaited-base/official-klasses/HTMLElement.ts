@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { IHTMLElement, IElement, IHTMLOrSVGElement } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { IElementProperties, ElementPropertyKeys, ElementConstantKeys } from './Element';
@@ -12,11 +13,12 @@ import { IHTMLOrSVGElementProperties, HTMLOrSVGElementPropertyKeys, HTMLOrSVGEle
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLElement>('HTMLElement', getState, setState);
+export const nodeAttacher = new NodeAttacher<IHTMLElement>('createHTMLElement', getState, setState, awaitedHandler);
 
 export function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>) {
   const Parent = (ClassMixer(Element, [HTMLOrSVGElement]) as unknown) as Constructable<IElement & IHTMLOrSVGElement>;
 
-  return class HTMLElement extends Parent implements IHTMLElement {
+  return class HTMLElement extends Parent implements IHTMLElement, PromiseLike<IHTMLElement> {
     constructor() {
       super();
       initializeConstantsAndProperties<HTMLElement>(this, HTMLElementConstantKeys, HTMLElementPropertyKeys);
@@ -92,6 +94,10 @@ export function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVG
 
     public click(): Promise<void> {
       return awaitedHandler.runMethod<void>(this, 'click', []);
+    }
+
+    public then<TResult1 = IHTMLElement, TResult2 = never>(onfulfilled?: ((value: IHTMLElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import NodeAttacher from '../NodeAttacher';
 import { IDocumentIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
@@ -9,8 +10,9 @@ import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentIsolate>('DocumentIsolate', getState, setState);
+export const nodeAttacher = new NodeAttacher<IDocumentIsolate>('createDocumentIsolate', getState, setState, awaitedHandler);
 
-export default class DocumentIsolate implements IDocumentIsolate {
+export default class DocumentIsolate implements IDocumentIsolate, PromiseLike<IDocumentIsolate> {
   public get URL(): Promise<string> {
     return awaitedHandler.getProperty<string>(this, 'URL', false);
   }
@@ -163,6 +165,10 @@ export default class DocumentIsolate implements IDocumentIsolate {
 
   public hasFocus(): Promise<boolean> {
     return awaitedHandler.runMethod<boolean>(this, 'hasFocus', []);
+  }
+
+  public then<TResult1 = IDocumentIsolate, TResult2 = never>(onfulfilled?: ((value: IDocumentIsolate) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+    return nodeAttacher.attach(this).then(onfulfilled, onrejected);
   }
 }
 

@@ -1,6 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import NodeAttacher from '../NodeAttacher';
 import { IElementIsolate } from '../interfaces/isolate';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
@@ -9,8 +10,9 @@ import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic'
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IElementIsolate>('ElementIsolate', getState, setState);
+export const nodeAttacher = new NodeAttacher<IElementIsolate>('createElementIsolate', getState, setState, awaitedHandler);
 
-export default class ElementIsolate implements IElementIsolate {
+export default class ElementIsolate implements IElementIsolate, PromiseLike<IElementIsolate> {
   public get attributes(): INamedNodeMap {
     throw new Error('ElementIsolate.attributes getter not implemented');
   }
@@ -171,6 +173,10 @@ export default class ElementIsolate implements IElementIsolate {
 
   public scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void> {
     return awaitedHandler.runMethod<void>(this, 'scrollIntoView', [arg]);
+  }
+
+  public then<TResult1 = IElementIsolate, TResult2 = never>(onfulfilled?: ((value: IElementIsolate) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+    return nodeAttacher.attach(this).then(onfulfilled, onrejected);
   }
 }
 

@@ -7,7 +7,7 @@ import { createNamedNodeMap, createDOMTokenList, createShadowRoot } from '../cre
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();
 
-export default class ElementIsolate extends ElementIsolateBase implements IElementIsolate {
+export default class ElementIsolate extends ElementIsolateBase implements IElementIsolate, PromiseLike<IElementIsolate> {
   public get attributes(): INamedNodeMap {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createNamedNodeMap(awaitedPath.addProperty('attributes'), awaitedOptions);
