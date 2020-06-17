@@ -7,7 +7,7 @@ import { createSuperElement } from '../create';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
 
-export default class AttrIsolate extends AttrIsolateBase implements IAttrIsolate, PromiseLike<IAttrIsolate> {
+export default class AttrIsolate extends AttrIsolateBase implements IAttrIsolate {
   public get ownerElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);

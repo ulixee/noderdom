@@ -6,48 +6,36 @@ export default class NodeAttacher<TClass> {
   private readonly getState: (instance: TClass) => INodeAttacherProperties;
   private readonly awaitedHandler: AwaitedHandler<TClass>;
 
-  private readonly setState: (instance: TClass, state: Partial<INodeAttacherProperties>) => any;
-  private readonly createInstanceName: string;
-
-  constructor(
-    createInstanceName: string,
-    getState: (instance: TClass) => INodeAttacherProperties,
-    setState: (instance: TClass, state: Partial<INodeAttacherProperties>) => any,
-    awaitedHandler: AwaitedHandler<TClass>,
-  ) {
-    this.createInstanceName = createInstanceName;
+  constructor(getState: (instance: TClass) => INodeAttacherProperties, awaitedHandler: AwaitedHandler<TClass>) {
     this.getState = getState;
-    this.setState = setState;
     this.awaitedHandler = awaitedHandler;
   }
 
   public async attach(instance: TClass): Promise<TClass> {
-    const { awaitedOptions, awaitedPath, originalAwaitedPath } = this.getState(instance);
+    const { awaitedOptions, awaitedPath, createInstanceName } = this.getState(instance);
     const [id, iterableIds] = await this.awaitedHandler.getNodeIds(instance);
-    const createNewInstance = NodeAttacher.creators[this.createInstanceName];
+    const createNewInstance = NodeAttacher.creators[createInstanceName];
     const attachedAwaitedPath = awaitedPath.withNodeId(id);
     if (iterableIds && iterableIds.length) {
       attachedAwaitedPath.setIterableIds(iterableIds);
     }
     const newInstance = createNewInstance(attachedAwaitedPath, awaitedOptions) as TClass;
-    this.setState(newInstance, {
-      originalAwaitedPath: originalAwaitedPath ?? awaitedPath,
-    });
 
     const thenable = (newInstance as unknown) as PromiseLike<TClass>;
     // return null first time to escape promise chain
     const originalThen = thenable.then;
     // @ts-ignore
-    thenable.then = () => {
+    thenable.then = null;
+    // relies on fact a calling promises will share the same microtask stack
+    process.nextTick(() => {
       thenable.then = originalThen;
-      return undefined;
-    };
+    });
     return newInstance;
   }
 }
 
 export interface INodeAttacherProperties {
-  originalAwaitedPath: AwaitedPath;
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
 }

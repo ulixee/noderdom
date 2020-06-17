@@ -70,7 +70,7 @@ export default class TsBuildMixin {
     const i: Types.Interface = this.i;
     const isBaseBuild = this.buildType === BuildType.base;
     const extendsStr = isBaseBuild ? '' : `extends ${i.name}Base `;
-    this.printer.printLine(`export default class ${i.name} ${extendsStr}implements I${i.name}, PromiseLike<I${i.name}> {`);
+    this.printer.printLine(`export default class ${i.name} ${extendsStr}implements I${i.name} {`);
   }
 
   private printStateMachineInterfaces() {
@@ -94,9 +94,9 @@ export default class TsBuildMixin {
     if (this.buildType === BuildType.base) {
       const handlerName = `${this.domType}Handler`;
       printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
-      printable.push(
-        `export const nodeAttacher = new NodeAttacher<I${name}>('create${name}', getState, setState, ${handlerName});`,
-      );
+      if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
+        printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer(handlerName));
+      }
     }
 
     printable.push('');
@@ -114,7 +114,10 @@ export default class TsBuildMixin {
     printable.push(`import ${handlerClassName} from '${baseDir}/${handlerClassName}';`);
     printable.push(`import StateMachine from '${baseDir}/StateMachine';`);
     printable.push(`import AwaitedPath from '${baseDir}/AwaitedPath';`);
-    printable.push(`import NodeAttacher from '${baseDir}/NodeAttacher';`);
+
+    if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
+      printable.push(`import AwaitedIterator from '${baseDir}/AwaitedIterator';`);
+    }
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;
     const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };

@@ -7,7 +7,7 @@ import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperE
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INodeIsolate, INodeIsolateProperties>();
 
-export default class NodeIsolate extends NodeIsolateBase implements INodeIsolate, PromiseLike<INodeIsolate> {
+export default class NodeIsolate extends NodeIsolateBase implements INodeIsolate {
   public get childNodes(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);

@@ -1,9 +1,11 @@
 export default class AwaitedPath {
   public iterableIds?: number[];
+  public readonly hasNodeId: boolean;
   private readonly jsPath: IJsPath;
 
   constructor(...jsPath: IJsPath) {
     this.jsPath = jsPath;
+    this.hasNodeId = jsPath && jsPath.length > 0 && typeof jsPath[0] === 'number';
   }
 
   public addProperty(name: IPropertyName) {

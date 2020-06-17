@@ -10,13 +10,16 @@ import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ICharacterData, ICharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ICharacterData>('CharacterData', getState, setState);
-export const nodeAttacher = new NodeAttacher<ICharacterData>('createCharacterData', getState, setState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<ICharacterData>(getState, awaitedHandler);
 
 export function CharacterDataGenerator(Node: Constructable<INode>) {
   return class CharacterData extends Node implements ICharacterData, PromiseLike<ICharacterData> {
     constructor() {
       super();
       initializeConstantsAndProperties<CharacterData>(this, CharacterDataConstantKeys, CharacterDataPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createCharacterData',
+      });
     }
 
     // properties

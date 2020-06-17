@@ -4,6 +4,6 @@ import { SuperNodeListGenerator, ISuperNodeListProperties } from '../../awaited-
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
-const SuperNodeListBase = SuperNodeListGenerator();
+const SuperNodeListBaseClass = SuperNodeListGenerator();
 
-export default class SuperNodeList extends SuperNodeListBase implements ISuperNodeList {}
+export default class SuperNodeList extends SuperNodeListBaseClass implements ISuperNodeList {}

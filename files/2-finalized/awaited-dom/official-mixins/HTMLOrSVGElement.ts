@@ -5,4 +5,4 @@ import HTMLOrSVGElementBase, { IHTMLOrSVGElementProperties } from '../../awaited
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLOrSVGElement, IHTMLOrSVGElementProperties>();
 
-export default class HTMLOrSVGElement extends HTMLOrSVGElementBase implements IHTMLOrSVGElement, PromiseLike<IHTMLOrSVGElement> {}
+export default class HTMLOrSVGElement extends HTMLOrSVGElementBase implements IHTMLOrSVGElement {}

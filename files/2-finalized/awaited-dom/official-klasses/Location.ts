@@ -4,6 +4,6 @@ import { LocationGenerator, ILocationProperties } from '../../awaited-base/offic
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ILocation, ILocationProperties>();
-const LocationBase = LocationGenerator();
+const LocationBaseClass = LocationGenerator();
 
-export default class Location extends LocationBase implements ILocation {}
+export default class Location extends LocationBaseClass implements ILocation {}

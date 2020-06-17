@@ -11,7 +11,7 @@ import { IGetRootNodeOptions } from '../interfaces/basic';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INode, INodeProperties>();
 export const awaitedHandler = new AwaitedHandler<INode>('Node', getState, setState);
-export const nodeAttacher = new NodeAttacher<INode>('createNode', getState, setState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<INode>(getState, awaitedHandler);
 
 export function NodeGenerator() {
   return class Node implements INode, PromiseLike<INode> {
@@ -54,6 +54,9 @@ export function NodeGenerator() {
     public readonly TEXT_NODE: number = 3;
     constructor() {
       initializeConstantsAndProperties<Node>(this, NodeConstantKeys, NodePropertyKeys);
+      setState(this, {
+        createInstanceName: 'createNode',
+      });
     }
 
     // properties

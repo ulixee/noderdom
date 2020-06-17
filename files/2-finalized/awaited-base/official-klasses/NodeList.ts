@@ -11,13 +11,17 @@ import { ISuperNode } from '../interfaces/super';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INodeList, INodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<INodeList>('NodeList', getState, setState);
-export const awaitedIterator = new AwaitedIterator<INodeList, ISuperNode>('createSuperNode', getState, awaitedHandler);
-export const nodeAttacher = new NodeAttacher<INodeList>('createNodeList', getState, setState, awaitedHandler);
+export const awaitedIterator = new AwaitedIterator<INodeList, ISuperNode>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<INodeList>(getState, awaitedHandler);
 
 export function NodeListGenerator() {
   return class NodeList implements INodeList, PromiseLike<INodeList> {
     constructor() {
       initializeConstantsAndProperties<NodeList>(this, NodeListConstantKeys, NodeListPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createNodeList',
+        createIterableName: 'createSuperNode',
+      });
     }
 
     // properties
@@ -39,7 +43,7 @@ export function NodeListGenerator() {
     public async forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeList) => void, thisArg?: any): Promise<void> {
       const array = await awaitedIterator.toArray(this);
       for (let i = 0; i < array.length; i += 1) {
-        callbackfn(array[i], i, this);
+        callbackfn.call(thisArg, array[i], i, this);
       }
     }
 

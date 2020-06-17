@@ -14,7 +14,7 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocument>('Document', getState, setState);
-export const nodeAttacher = new NodeAttacher<IDocument>('createDocument', getState, setState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IDocument>(getState, awaitedHandler);
 
 export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
@@ -23,6 +23,9 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
     constructor() {
       super();
       initializeConstantsAndProperties<Document>(this, DocumentConstantKeys, DocumentPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createDocument',
+      });
     }
 
     // properties
@@ -161,20 +164,20 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
       return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+      throw new Error('Document.getElementsByClassName not implemented');
     }
 
-    public getElementsByName(elementName: string): Promise<ISuperNodeList> {
-      return awaitedHandler.runMethod<ISuperNodeList>(this, 'getElementsByName', [elementName]);
+    public getElementsByName(elementName: string): ISuperNodeList {
+      throw new Error('Document.getElementsByName not implemented');
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+      throw new Error('Document.getElementsByTagName not implemented');
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+      throw new Error('Document.getElementsByTagNameNS not implemented');
     }
 
     public hasFocus(): Promise<boolean> {

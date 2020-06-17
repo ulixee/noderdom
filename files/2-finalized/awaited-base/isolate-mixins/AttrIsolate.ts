@@ -1,16 +1,14 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
-import NodeAttacher from '../NodeAttacher';
 import { IAttrIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IAttrIsolate>('AttrIsolate', getState, setState);
-export const nodeAttacher = new NodeAttacher<IAttrIsolate>('createAttrIsolate', getState, setState, awaitedHandler);
 
-export default class AttrIsolate implements IAttrIsolate, PromiseLike<IAttrIsolate> {
+export default class AttrIsolate implements IAttrIsolate {
   public get localName(): Promise<string> {
     return awaitedHandler.getProperty<string>(this, 'localName', false);
   }
@@ -37,10 +35,6 @@ export default class AttrIsolate implements IAttrIsolate, PromiseLike<IAttrIsola
 
   public get value(): Promise<string> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
-  }
-
-  public then<TResult1 = IAttrIsolate, TResult2 = never>(onfulfilled?: ((value: IAttrIsolate) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-    return nodeAttacher.attach(this).then(onfulfilled, onrejected);
   }
 }
 

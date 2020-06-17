@@ -4,6 +4,6 @@ import { DOMTokenListGenerator, IDOMTokenListProperties } from '../../awaited-ba
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDOMTokenList, IDOMTokenListProperties>();
-const DOMTokenListBase = DOMTokenListGenerator();
+const DOMTokenListBaseClass = DOMTokenListGenerator();
 
-export default class DOMTokenList extends DOMTokenListBase implements IDOMTokenList {}
+export default class DOMTokenList extends DOMTokenListBaseClass implements IDOMTokenList {}

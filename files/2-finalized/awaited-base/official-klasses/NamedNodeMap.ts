@@ -10,13 +10,17 @@ import { INamedNodeMap, IAttr } from '../interfaces/official';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
 export const awaitedHandler = new AwaitedHandler<INamedNodeMap>('NamedNodeMap', getState, setState);
-export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>('createAttr', getState, awaitedHandler);
-export const nodeAttacher = new NodeAttacher<INamedNodeMap>('createNamedNodeMap', getState, setState, awaitedHandler);
+export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<INamedNodeMap>(getState, awaitedHandler);
 
 export function NamedNodeMapGenerator() {
   return class NamedNodeMap implements INamedNodeMap, PromiseLike<INamedNodeMap> {
     constructor() {
       initializeConstantsAndProperties<NamedNodeMap>(this, NamedNodeMapConstantKeys, NamedNodeMapPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createNamedNodeMap',
+        createIterableName: 'createAttr',
+      });
     }
 
     // properties

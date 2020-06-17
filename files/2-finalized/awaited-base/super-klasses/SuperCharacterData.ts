@@ -14,7 +14,7 @@ import { ITextIsolateProperties, TextIsolatePropertyKeys, TextIsolateConstantKey
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperCharacterData, ISuperCharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperCharacterData>('SuperCharacterData', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperCharacterData>('createSuperCharacterData', getState, setState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<ISuperCharacterData>(getState, awaitedHandler);
 
 export function SuperCharacterDataGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, TextIsolate: Constructable<ITextIsolate>) {
   const Parent = (ClassMixer(CharacterDataIsolate, [NodeIsolate, TextIsolate]) as unknown) as Constructable<ICharacterDataIsolate & INodeIsolate & ITextIsolate>;
@@ -23,6 +23,9 @@ export function SuperCharacterDataGenerator(CharacterDataIsolate: Constructable<
     constructor() {
       super();
       initializeConstantsAndProperties<SuperCharacterData>(this, SuperCharacterDataConstantKeys, SuperCharacterDataPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createSuperCharacterData',
+      });
     }
 
     // properties

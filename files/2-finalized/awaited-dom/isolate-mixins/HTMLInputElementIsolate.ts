@@ -5,4 +5,4 @@ import HTMLInputElementIsolateBase, { IHTMLInputElementIsolateProperties } from 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLInputElementIsolate, IHTMLInputElementIsolateProperties>();
 
-export default class HTMLInputElementIsolate extends HTMLInputElementIsolateBase implements IHTMLInputElementIsolate, PromiseLike<IHTMLInputElementIsolate> {}
+export default class HTMLInputElementIsolate extends HTMLInputElementIsolateBase implements IHTMLInputElementIsolate {}

@@ -4,6 +4,6 @@ import { SuperStyleSheetGenerator, ISuperStyleSheetProperties } from '../../awai
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperStyleSheet, ISuperStyleSheetProperties>();
-const SuperStyleSheetBase = SuperStyleSheetGenerator();
+const SuperStyleSheetBaseClass = SuperStyleSheetGenerator();
 
-export default class SuperStyleSheet extends SuperStyleSheetBase implements ISuperStyleSheet {}
+export default class SuperStyleSheet extends SuperStyleSheetBaseClass implements ISuperStyleSheet {}

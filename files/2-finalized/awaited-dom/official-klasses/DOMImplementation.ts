@@ -4,6 +4,6 @@ import { DOMImplementationGenerator, IDOMImplementationProperties } from '../../
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDOMImplementation, IDOMImplementationProperties>();
-const DOMImplementationBase = DOMImplementationGenerator();
+const DOMImplementationBaseClass = DOMImplementationGenerator();
 
-export default class DOMImplementation extends DOMImplementationBase implements IDOMImplementation {}
+export default class DOMImplementation extends DOMImplementationBaseClass implements IDOMImplementation {}

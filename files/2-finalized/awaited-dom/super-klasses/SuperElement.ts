@@ -1,8 +1,8 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import { ISuperElement } from '../../awaited-base/interfaces/super';
+import { ISuperElement, ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../awaited-base/interfaces/official';
 import { SuperElementGenerator, ISuperElementProperties } from '../../awaited-base/super-klasses/SuperElement';
-import { createNamedNodeMap, createDOMTokenList, createShadowRoot } from '../create';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperHTMLCollection } from '../create';
 import ElementIsolate from '../isolate-mixins/ElementIsolate';
 import HTMLElementIsolate from '../isolate-mixins/HTMLElementIsolate';
 import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
@@ -13,9 +13,9 @@ import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
-const SuperElementBase = SuperElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode);
+const SuperElementBaseClass = SuperElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode);
 
-export default class SuperElement extends SuperElementBase implements ISuperElement {
+export default class SuperElement extends SuperElementBaseClass implements ISuperElement {
   constructor() {
     super();
   }
@@ -40,5 +40,22 @@ export default class SuperElement extends SuperElementBase implements ISuperElem
   public get shadowRoot(): IShadowRoot {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createShadowRoot(awaitedPath.addProperty('shadowRoot'), awaitedOptions);
+  }
+
+  // methods
+
+  public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByClassName', classNames), awaitedOptions);
+  }
+
+  public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagName', qualifiedName), awaitedOptions);
+  }
+
+  public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagNameNS', namespace, localName), awaitedOptions);
   }
 }

@@ -3,45 +3,44 @@ import AwaitedHandler from './AwaitedHandler';
 
 export default class AwaitedIterator<TClass, T> {
   public static creators = require('../awaited-dom/create');
-  private readonly createItemName: string;
   private readonly getState: (instance: TClass) => IAwaitedIteratorProperties;
   private awaitedHandler: AwaitedHandler<TClass>;
 
-  constructor(
-    createItemName: string,
-    getState: (instance: TClass) => IAwaitedIteratorProperties,
-    awaitedHandler: AwaitedHandler<TClass>,
-  ) {
-    this.createItemName = createItemName;
+  constructor(getState: (instance: TClass) => IAwaitedIteratorProperties, awaitedHandler: AwaitedHandler<TClass>) {
     this.getState = getState;
     this.awaitedHandler = awaitedHandler;
   }
 
-  public iterateAttachedNodeIds(instance: TClass): IterableIterator<T> {
+  public *iterateAttachedNodeIds(instance: TClass): IterableIterator<T> {
     const { awaitedPath } = this.getState(instance);
-    return this.getNodeList(instance, awaitedPath.iterableIds ?? [])[Symbol.iterator]();
+    const iterable = this.iterator(instance, awaitedPath.iterableIds);
+    yield* iterable;
   }
 
   public async toArray(instance: TClass): Promise<T[]> {
     const [, iterableIds] = await this.awaitedHandler.getNodeIds(instance);
-    return this.getNodeList(instance, iterableIds);
+    return [...this.iterator(instance, iterableIds)];
   }
 
-  private getNodeList(instance: TClass, nodeIds: number[]): T[] {
-    if (!nodeIds) return [];
-
+  private *iterator(instance: TClass, nodeIds: number[] | undefined) {
     const state = this.getState(instance);
     const awaitedPath = state.awaitedPath as AwaitedPath;
+
+    if (!nodeIds) throw new Error(`Please add an await to ${awaitedPath.hasNodeId ? 're-' : ''}run this iterator`);
+
     const awaitedOptions = state.awaitedOptions;
-    const createChild = AwaitedIterator.creators[this.createItemName];
-    return nodeIds.map(nodeId => {
+    const createChild = AwaitedIterator.creators[state.createIterableName];
+    for (const nodeId of nodeIds) {
       const childPath = awaitedPath.withNodeId(nodeId);
-      return createChild(childPath, awaitedOptions) as T;
-    });
+      yield createChild(childPath, awaitedOptions) as T;
+    }
+    // clear out iterable ids
+    awaitedPath.iterableIds = undefined;
   }
 }
 
 export interface IAwaitedIteratorProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createIterableName: string;
 }

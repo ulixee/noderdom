@@ -1,7 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
-import NodeAttacher from '../NodeAttacher';
 import { IDocumentIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
@@ -10,9 +9,8 @@ import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentIsolate>('DocumentIsolate', getState, setState);
-export const nodeAttacher = new NodeAttacher<IDocumentIsolate>('createDocumentIsolate', getState, setState, awaitedHandler);
 
-export default class DocumentIsolate implements IDocumentIsolate, PromiseLike<IDocumentIsolate> {
+export default class DocumentIsolate implements IDocumentIsolate {
   public get URL(): Promise<string> {
     return awaitedHandler.getProperty<string>(this, 'URL', false);
   }
@@ -147,28 +145,24 @@ export default class DocumentIsolate implements IDocumentIsolate, PromiseLike<ID
     return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
   }
 
-  public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+  public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+    throw new Error('DocumentIsolate.getElementsByClassName not implemented');
   }
 
-  public getElementsByName(elementName: string): Promise<ISuperNodeList> {
-    return awaitedHandler.runMethod<ISuperNodeList>(this, 'getElementsByName', [elementName]);
+  public getElementsByName(elementName: string): ISuperNodeList {
+    throw new Error('DocumentIsolate.getElementsByName not implemented');
   }
 
-  public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+  public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+    throw new Error('DocumentIsolate.getElementsByTagName not implemented');
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+  public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+    throw new Error('DocumentIsolate.getElementsByTagNameNS not implemented');
   }
 
   public hasFocus(): Promise<boolean> {
     return awaitedHandler.runMethod<boolean>(this, 'hasFocus', []);
-  }
-
-  public then<TResult1 = IDocumentIsolate, TResult2 = never>(onfulfilled?: ((value: IDocumentIsolate) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-    return nodeAttacher.attach(this).then(onfulfilled, onrejected);
   }
 }
 

@@ -1,6 +1,6 @@
 import AwaitedPath from '../awaited-base/AwaitedPath';
 import StateMachine from '../awaited-base/StateMachine';
-import { IAttr, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLCollection, IHTMLElement, IHTMLHeadElement, IHTMLInputElement, ILocation, INamedNodeMap, INode, INodeList, IShadowRoot, IStyleSheet, IText } from '../awaited-base/interfaces/official';
+import { IAttr, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLHeadElement, IHTMLInputElement, ILocation, INamedNodeMap, INode, INodeList, IShadowRoot, IStyleSheet, IText } from '../awaited-base/interfaces/official';
 import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperCharacterData, ISuperHTMLElement, ISuperStyleSheet } from '../awaited-base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
@@ -78,6 +78,13 @@ export function createFeaturePolicy<IAwaitedOptions = {}>(awaitedPath: AwaitedPa
 export function createHTMLCollection<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLCollection {
   const HTMLCollection = require('./official-klasses/HTMLCollection').default; // tslint:disable-line:variable-name
   const instance = new HTMLCollection();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLCollectionBase<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLCollectionBase {
+  const HTMLCollectionBase = require('./official-klasses/HTMLCollectionBase').default; // tslint:disable-line:variable-name
+  const instance = new HTMLCollectionBase();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }

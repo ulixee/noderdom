@@ -2,7 +2,7 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { INodeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, ITextIsolate } from './isolate';
+import { INodeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, ITextIsolate, IHTMLCollectionBaseIsolate } from './isolate';
 import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLOrSVGElement, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from './official';
 import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './basic';
 
@@ -43,10 +43,10 @@ export interface ISuperDocument extends INodeIsolate, IParentNode {
 
   exitFullscreen(): Promise<Promise<void>>;
   exitPointerLock(): Promise<void>;
-  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
-  getElementsByName(elementName: string): Promise<ISuperNodeList>;
-  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
+  getElementsByClassName(classNames: string): ISuperHTMLCollection;
+  getElementsByName(elementName: string): ISuperNodeList;
+  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
   hasFocus(): Promise<boolean>;
 }
 
@@ -83,9 +83,9 @@ export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHT
   getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null>;
   getBoundingClientRect(): Promise<IDOMRect>;
   getClientRects(): Promise<IDOMRectList>;
-  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
+  getElementsByClassName(classNames: string): ISuperHTMLCollection;
+  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
   hasAttribute(qualifiedName: string): Promise<boolean>;
   hasAttributeNS(namespace: string | null, localName: string): Promise<boolean>;
   hasAttributes(): Promise<boolean>;
@@ -161,8 +161,10 @@ export interface ISuperNodeList {
 
 // SuperHTMLCollection //////////
 
-export interface ISuperHTMLCollection {
+export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate {
   namedItem(name: string): Promise<ISuperElement | null>;
+
+  [Symbol.iterator](): IterableIterator<ISuperElement>;
 }
 
 // SuperText //////////

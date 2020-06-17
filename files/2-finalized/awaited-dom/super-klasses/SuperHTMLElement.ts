@@ -12,9 +12,9 @@ import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
-const SuperHTMLElementBase = SuperHTMLElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode);
+const SuperHTMLElementBaseClass = SuperHTMLElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode);
 
-export default class SuperHTMLElement extends SuperHTMLElementBase implements ISuperHTMLElement {
+export default class SuperHTMLElement extends SuperHTMLElementBaseClass implements ISuperHTMLElement {
   constructor() {
     super();
   }

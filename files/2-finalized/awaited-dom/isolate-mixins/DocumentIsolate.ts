@@ -1,14 +1,14 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IDocumentIsolate } from '../../awaited-base/interfaces/isolate';
-import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../../awaited-base/interfaces/super';
+import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../../awaited-base/interfaces/super';
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../awaited-base/interfaces/official';
 import DocumentIsolateBase, { IDocumentIsolateProperties } from '../../awaited-base/isolate-mixins/DocumentIsolate';
-import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation } from '../create';
+import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation, createSuperNodeList } from '../create';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
 
-export default class DocumentIsolate extends DocumentIsolateBase implements IDocumentIsolate, PromiseLike<IDocumentIsolate> {
+export default class DocumentIsolate extends DocumentIsolateBase implements IDocumentIsolate {
   public get anchors(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperHTMLCollection(awaitedPath.addProperty('anchors'), awaitedOptions);
@@ -82,5 +82,27 @@ export default class DocumentIsolate extends DocumentIsolateBase implements IDoc
   public get scrollingElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperElement(awaitedPath.addProperty('scrollingElement'), awaitedOptions);
+  }
+
+  // methods
+
+  public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByClassName', classNames), awaitedOptions);
+  }
+
+  public getElementsByName(elementName: string): ISuperNodeList {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperNodeList(awaitedPath.addMethod('getElementsByName', elementName), awaitedOptions);
+  }
+
+  public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagName', qualifiedName), awaitedOptions);
+  }
+
+  public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagNameNS', namespace, localName), awaitedOptions);
   }
 }

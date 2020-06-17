@@ -169,6 +169,19 @@ export default class TsBodyPrinter {
         this.printer.printLine(
           `initializeConstantsAndProperties<${i.name}>(this, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
         );
+        if (this.i.isNodeAttached || this.iteratorExtractor.hasIterable()) {
+          this.printer.printLine(`setState(this, {`);
+          this.printer.increaseIndent();
+          this.printer.printLine(`createInstanceName: 'create${i.name}',`);
+          // if iterable
+          if (this.iteratorExtractor.hasIterable()) {
+            this.printer.printLine(
+              `createIterableName: 'create${this.iteratorExtractor.getIteratableInterface().substr(1)}',`,
+            );
+          }
+          this.printer.decreaseIndent();
+          this.printer.printLine(`});`);
+        }
       }
       this.printer.decreaseIndent();
       this.printer.printLine('}');
@@ -303,7 +316,7 @@ export default class TsBodyPrinter {
   }
 
   public printPromiseLike() {
-    if (this.buildType !== BuildType.base || this.skipImplementation) return;
+    if (this.buildType !== BuildType.base || this.skipImplementation || !this.i.isNodeAttached) return;
     this.printer.printSeparatorLine();
 
     this.printer.printLine(

@@ -1,7 +1,6 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
-import NodeAttacher from '../NodeAttacher';
 import { IElementIsolate } from '../interfaces/isolate';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
@@ -10,9 +9,8 @@ import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic'
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IElementIsolate>('ElementIsolate', getState, setState);
-export const nodeAttacher = new NodeAttacher<IElementIsolate>('createElementIsolate', getState, setState, awaitedHandler);
 
-export default class ElementIsolate implements IElementIsolate, PromiseLike<IElementIsolate> {
+export default class ElementIsolate implements IElementIsolate {
   public get attributes(): INamedNodeMap {
     throw new Error('ElementIsolate.attributes getter not implemented');
   }
@@ -131,16 +129,16 @@ export default class ElementIsolate implements IElementIsolate, PromiseLike<IEle
     return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
   }
 
-  public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+  public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+    throw new Error('ElementIsolate.getElementsByClassName not implemented');
   }
 
-  public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+  public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+    throw new Error('ElementIsolate.getElementsByTagName not implemented');
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+  public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+    throw new Error('ElementIsolate.getElementsByTagNameNS not implemented');
   }
 
   public hasAttribute(qualifiedName: string): Promise<boolean> {
@@ -173,10 +171,6 @@ export default class ElementIsolate implements IElementIsolate, PromiseLike<IEle
 
   public scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void> {
     return awaitedHandler.runMethod<void>(this, 'scrollIntoView', [arg]);
-  }
-
-  public then<TResult1 = IElementIsolate, TResult2 = never>(onfulfilled?: ((value: IElementIsolate) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-    return nodeAttacher.attach(this).then(onfulfilled, onrejected);
   }
 }
 

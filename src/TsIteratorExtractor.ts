@@ -87,23 +87,29 @@ export default class TsIteratorExtractor {
   }
 
   public hasIterable() {
-    if (this.hasEnabledPropsOrMethods() && (this.methodNames.length || this.hasIterableIterator())) {
+    if (
+      this.hasEnabledPropsOrMethods() &&
+      (this.methodNames.length || this.hasIterableIterator() || this.extendsHtmlCollection())
+    ) {
       return true;
     }
     return false;
   }
 
-  public getIteratorInitializer(handlerName: string) {
+  public getIteratableInterface() {
     const subtypes = this.getIteratorSubtypes();
     if (!subtypes) return '';
+    return this.stringifySingleOrTupleTypes(subtypes);
+  }
+
+  public getIteratorInitializer(handlerName: string) {
+    const iteratorType = this.getIteratableInterface();
+    if (!iteratorType) return '';
 
     const i: Types.Interface = this.i;
     const iType = toIType(i.name);
     const name = i.typeParameters ? `${iType}<${i.typeParameters!.map(p => p.name).join(', ')}>` : iType;
-    const iteratorType = this.stringifySingleOrTupleTypes(subtypes);
-    return `export const awaitedIterator = new AwaitedIterator<${name}, ${iteratorType}>('create${iteratorType.substr(
-      1,
-    )}', getState, ${handlerName});`;
+    return `export const awaitedIterator = new AwaitedIterator<${name}, ${iteratorType}>(getState, ${handlerName});`;
   }
 
   public run(printMethod: (m: Types.Method) => void) {
@@ -121,6 +127,12 @@ export default class TsIteratorExtractor {
     return this.printer.getResult().trim();
   }
 
+  private extendsHtmlCollection() {
+    return (
+      this.i.extends === 'HTMLCollectionBaseIsolate' ||
+      (this.i.implements && this.i.implements.includes('HTMLCollectionBaseIsolate'))
+    );
+  }
   private hasEnabledPropsOrMethods() {
     // these next three lines are a hack since customizer UI doesn't allow turning off iterators.
     const hasEnabledMethods = Object.values(this.i.methods).length;
@@ -173,7 +185,7 @@ export default class TsIteratorExtractor {
         this.printer.increaseIndent();
         this.printer.printLine(`const array = await awaitedIterator.toArray(this);`);
         this.printer.printLine(`for (let i = 0; i < array.length; i += 1) {`);
-        this.printer.printLine(`  callbackfn(array[i], i, this);`);
+        this.printer.printLine(`  callbackfn.call(thisArg, array[i], i, this);`);
         this.printer.printLine('}');
         this.printer.decreaseIndent();
       } else {
@@ -223,6 +235,9 @@ export default class TsIteratorExtractor {
         this.findLengthProperty(i) || this.findLengthProperty(this.components.allInterfacesMap[i.extends]);
       if (iterableGetter && lengthProperty) {
         return [TypeUtils.convertDomTypeToTsType({ type: iterableGetter.signatures[0].type }, true)];
+      }
+      if (this.extendsHtmlCollection()) {
+        return ['ISuperElement'];
       }
     }
   }

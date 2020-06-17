@@ -5,4 +5,4 @@ import CharacterDataIsolateBase, { ICharacterDataIsolateProperties } from '../..
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ICharacterDataIsolate, ICharacterDataIsolateProperties>();
 
-export default class CharacterDataIsolate extends CharacterDataIsolateBase implements ICharacterDataIsolate, PromiseLike<ICharacterDataIsolate> {}
+export default class CharacterDataIsolate extends CharacterDataIsolateBase implements ICharacterDataIsolate {}

@@ -5,9 +5,9 @@ import Node from './Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentType, IDocumentTypeProperties>();
-const DocumentTypeBase = DocumentTypeGenerator(Node);
+const DocumentTypeBaseClass = DocumentTypeGenerator(Node);
 
-export default class DocumentType extends DocumentTypeBase implements IDocumentType {
+export default class DocumentType extends DocumentTypeBaseClass implements IDocumentType {
   constructor() {
     super();
   }

@@ -5,4 +5,4 @@ import HTMLHeadElementIsolateBase, { IHTMLHeadElementIsolateProperties } from '.
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLHeadElementIsolate, IHTMLHeadElementIsolateProperties>();
 
-export default class HTMLHeadElementIsolate extends HTMLHeadElementIsolateBase implements IHTMLHeadElementIsolate, PromiseLike<IHTMLHeadElementIsolate> {}
+export default class HTMLHeadElementIsolate extends HTMLHeadElementIsolateBase implements IHTMLHeadElementIsolate {}

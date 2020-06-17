@@ -4,6 +4,6 @@ import { ShadowRootGenerator, IShadowRootProperties } from '../../awaited-base/o
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IShadowRoot, IShadowRootProperties>();
-const ShadowRootBase = ShadowRootGenerator();
+const ShadowRootBaseClass = ShadowRootGenerator();
 
-export default class ShadowRoot extends ShadowRootBase implements IShadowRoot {}
+export default class ShadowRoot extends ShadowRootBaseClass implements IShadowRoot {}

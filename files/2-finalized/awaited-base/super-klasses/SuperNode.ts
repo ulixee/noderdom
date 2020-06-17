@@ -25,7 +25,7 @@ import { ITextIsolateProperties, TextIsolatePropertyKeys, TextIsolateConstantKey
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNode>('SuperNode', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperNode>('createSuperNode', getState, setState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<ISuperNode>(getState, awaitedHandler);
 
 export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, CharacterDataIsolate: Constructable<ICharacterDataIsolate>, DocumentIsolate: Constructable<IDocumentIsolate>, DocumentTypeIsolate: Constructable<IDocumentTypeIsolate>, ElementIsolate: Constructable<IElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>, TextIsolate: Constructable<ITextIsolate>) {
   const Parent = (ClassMixer(AttrIsolate, [CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode, TextIsolate]) as unknown) as Constructable<IAttrIsolate & ICharacterDataIsolate & IDocumentIsolate & IDocumentTypeIsolate & IElementIsolate & IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & IHTMLOrSVGElement & INodeIsolate & IParentNode & ITextIsolate>;
@@ -71,6 +71,9 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
     constructor() {
       super();
       initializeConstantsAndProperties<SuperNode>(this, SuperNodeConstantKeys, SuperNodePropertyKeys);
+      setState(this, {
+        createInstanceName: 'createSuperNode',
+      });
     }
 
     // properties

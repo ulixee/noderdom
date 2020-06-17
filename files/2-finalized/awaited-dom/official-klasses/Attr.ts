@@ -7,9 +7,9 @@ import Node from './Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IAttr, IAttrProperties>();
-const AttrBase = AttrGenerator(Node);
+const AttrBaseClass = AttrGenerator(Node);
 
-export default class Attr extends AttrBase implements IAttr {
+export default class Attr extends AttrBaseClass implements IAttr {
   constructor() {
     super();
   }

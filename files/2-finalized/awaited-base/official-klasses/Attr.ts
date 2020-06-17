@@ -11,13 +11,16 @@ import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IAttr, IAttrProperties>();
 export const awaitedHandler = new AwaitedHandler<IAttr>('Attr', getState, setState);
-export const nodeAttacher = new NodeAttacher<IAttr>('createAttr', getState, setState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IAttr>(getState, awaitedHandler);
 
 export function AttrGenerator(Node: Constructable<INode>) {
   return class Attr extends Node implements IAttr, PromiseLike<IAttr> {
     constructor() {
       super();
       initializeConstantsAndProperties<Attr>(this, AttrConstantKeys, AttrPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createAttr',
+      });
     }
 
     // properties
