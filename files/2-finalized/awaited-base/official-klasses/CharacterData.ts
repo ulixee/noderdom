@@ -3,18 +3,23 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { ICharacterData, INode } from '../interfaces/official';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ICharacterData, ICharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ICharacterData>('CharacterData', getState, setState);
+export const nodeAttacher = new NodeAttacher<ICharacterData>(getState, awaitedHandler);
 
 export function CharacterDataGenerator(Node: Constructable<INode>) {
-  return class CharacterData extends Node implements ICharacterData {
+  return class CharacterData extends Node implements ICharacterData, PromiseLike<ICharacterData> {
     constructor() {
       super();
       initializeConstantsAndProperties<CharacterData>(this, CharacterDataConstantKeys, CharacterDataPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createCharacterData',
+      });
     }
 
     // properties
@@ -31,6 +36,10 @@ export function CharacterDataGenerator(Node: Constructable<INode>) {
 
     public substringData(offset: number, count: number): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'substringData', [offset, count]);
+    }
+
+    public then<TResult1 = ICharacterData, TResult2 = never>(onfulfilled?: ((value: ICharacterData) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

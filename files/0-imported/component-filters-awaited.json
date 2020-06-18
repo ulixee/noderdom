@@ -270,16 +270,20 @@
         "isEnabled": true
       },
       "getElementsByClassName": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "getElementsByName": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "getElementsByTagName": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "getElementsByTagNameNS": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "getSelection": {
         "isEnabled": false
@@ -506,13 +510,16 @@
         "isEnabled": true
       },
       "getElementsByClassName": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "getElementsByTagName": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "getElementsByTagNameNS": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "hasAttribute": {
         "isEnabled": true
@@ -794,7 +801,7 @@
         "isEnabled": true
       },
       "children": {
-        "isEnabled": false,
+        "isEnabled": true,
         "isAbstract": true
       },
       "firstElementChild": {
@@ -818,7 +825,8 @@
         "isAbstract": true
       },
       "querySelectorAll": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -1944,9 +1952,17 @@
     "methodsByName": {}
   },
   "HTMLCollectionBase": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "length": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "item": {
+        "isEnabled": true
+      }
+    }
   },
   "XPathNSResolver": {
     "isEnabled": false,

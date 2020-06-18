@@ -3,16 +3,24 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
+import AwaitedIterator from '../AwaitedIterator';
+import NodeAttacher from '../NodeAttacher';
 import { INamedNodeMap, IAttr } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
 export const awaitedHandler = new AwaitedHandler<INamedNodeMap>('NamedNodeMap', getState, setState);
+export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<INamedNodeMap>(getState, awaitedHandler);
 
 export function NamedNodeMapGenerator() {
-  return class NamedNodeMap implements INamedNodeMap {
+  return class NamedNodeMap implements INamedNodeMap, PromiseLike<INamedNodeMap> {
     constructor() {
       initializeConstantsAndProperties<NamedNodeMap>(this, NamedNodeMapConstantKeys, NamedNodeMapPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createNamedNodeMap',
+        createIterableName: 'createAttr',
+      });
     }
 
     // properties
@@ -35,8 +43,12 @@ export function NamedNodeMapGenerator() {
       return awaitedHandler.runMethod<IAttr | null>(this, 'item', [index]);
     }
 
+    public then<TResult1 = INamedNodeMap, TResult2 = never>(onfulfilled?: ((value: INamedNodeMap) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+    }
+
     public [Symbol.iterator](): IterableIterator<IAttr> {
-      throw new Error('NamedNodeMap[Symbol.iterator] not implemented');
+      return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();
     }
   };
 }

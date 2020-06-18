@@ -4,6 +4,6 @@ import { NodeListGenerator, INodeListProperties } from '../../awaited-base/offic
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INodeList, INodeListProperties>();
-const NodeListBase = NodeListGenerator();
+const NodeListBaseClass = NodeListGenerator();
 
-export default class NodeList extends NodeListBase implements INodeList {}
+export default class NodeList extends NodeListBaseClass implements INodeList {}

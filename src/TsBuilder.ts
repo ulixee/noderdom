@@ -194,8 +194,23 @@ export default class TsBuilder {
     const { domType, buildType, pathsByBuildType, objectMetaByName } = this;
     const isBaseBuild = buildType === BuildType.base;
     const currentDir = isBaseBuild ? pathsByBuildType.base.officialKlasses : pathsByBuildType.impl.officialKlasses;
+
     const codeModules = this.klasses.map(i => {
       const name = i.name;
+
+      const nodeAttachedClasses = ['Node', 'HTMLElement'];
+
+      if (nodeAttachedClasses.includes(name) || nodeAttachedClasses.includes(i.extends)) {
+        i.isNodeAttached = true;
+      } else if (i.implements) {
+        for (const impl of i.implements) {
+          if (nodeAttachedClasses.includes(impl)) {
+            i.isNodeAttached = true;
+            break;
+          }
+        }
+      }
+
       const tsBuildOptions = { pathsByBuildType, currentDir, objectMetaByName, domType, buildType };
       const tsBuildKlass = new TsBuildKlass(i, this.components, tsBuildOptions);
       const code = tsBuildKlass.run();
@@ -251,6 +266,9 @@ export default class TsBuilder {
     const currentDir = isBaseBuild ? pathsByBuildType.base.superKlasses : pathsByBuildType.impl.superKlasses;
     const options = { pathsByBuildType, currentDir, objectMetaByName, domType, buildType };
     const codeModules = Object.values(this.components.awaitedSupers).map(i => {
+      if (i.implements) {
+        i.isNodeAttached = i.implements.includes('NodeIsolate') || i.implements.includes('HTMLCollectionBaseIsolate');
+      }
       const tsBuildKlass = new TsBuildKlass(i, this.components, options);
       const code = tsBuildKlass.run();
       return { type: 'Super', name: i.name, code, tsBuildKlass };

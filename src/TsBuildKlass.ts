@@ -46,6 +46,8 @@ export default class TsBuildKlass {
 
     const bodyOptions = { domType: this.domType, buildType: this.buildType };
     this.bodyPrinter = new TsBodyPrinter(i, this.printer, components, bodyOptions);
+
+    if (this.bodyPrinter.iteratorExtractor.hasIterable()) this.i.isNodeAttached = true;
   }
 
   public run() {
@@ -115,7 +117,11 @@ export default class TsBuildKlass {
     const className = getNameWithTypeParameter(i.typeParameters, i.name, false);
     const typeParameterName = i.typeParameters && i.typeParameters[0] && i.typeParameters[0].name;
     const iClassName = typeParameterName ? `${toIType(i.name)}<${typeParameterName}>` : toIType(i.name);
-    this.printer.printLine(`return class ${className} ${extendsStr}implements ${iClassName} {`);
+    const implementsList = [iClassName];
+    if (this.i.isNodeAttached) {
+      implementsList.push(`PromiseLike<${iClassName}>`);
+    }
+    this.printer.printLine(`return class ${className} ${extendsStr}implements ${implementsList.join(', ')} {`);
   }
 
   private printImplClassDeclaration() {
@@ -123,7 +129,7 @@ export default class TsBuildKlass {
     const className = getNameWithTypeParameter(i.typeParameters, i.name, false);
     const typeParameterName = i.typeParameters && i.typeParameters[0] && i.typeParameters[0].name;
     const iClassName = typeParameterName ? `${toIType(i.name)}<${typeParameterName}>` : toIType(i.name);
-    this.printer.printLine(`export default class ${className} extends ${i.name}Base implements ${iClassName} {`);
+    this.printer.printLine(`export default class ${className} extends ${i.name}BaseClass implements ${iClassName} {`);
   }
 
   private printStateMachineInterfaces() {
@@ -147,8 +153,16 @@ export default class TsBuildKlass {
     if (this.buildType === BuildType.base) {
       const handlerName = `${this.domType}Handler`;
       printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
+
+      if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
+        printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer(handlerName));
+      }
+
+      if (this.i.isNodeAttached) {
+        printable.push(`export const nodeAttacher = new NodeAttacher<I${name}>(getState, ${handlerName});`);
+      }
     } else {
-      printable.push(`const ${i.name}Base = ${i.name}Generator(${this.inheritsFrom.join(', ')});`);
+      printable.push(`const ${i.name}BaseClass = ${i.name}Generator(${this.inheritsFrom.join(', ')});`);
     }
 
     printable.push('');
@@ -171,6 +185,12 @@ export default class TsBuildKlass {
       printable.push(`import ClassMixer from '${baseDir}/ClassMixer';`);
     }
     printable.push(`import Constructable from '${baseDir}/Constructable';`);
+    if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
+      printable.push(`import AwaitedIterator from '${baseDir}/AwaitedIterator';`);
+    }
+    if (this.i.isNodeAttached) {
+      printable.push(`import NodeAttacher from '${baseDir}/NodeAttacher';`);
+    }
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;
     const tsImporterOptions = { currentDir, objectMetaByName, pathsByBuildType };

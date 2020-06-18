@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
@@ -13,14 +14,18 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
+export const nodeAttacher = new NodeAttacher<IElement>(getState, awaitedHandler);
 
 export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
 
-  return class Element extends Parent implements IElement {
+  return class Element extends Parent implements IElement, PromiseLike<IElement> {
     constructor() {
       super();
       initializeConstantsAndProperties<Element>(this, ElementConstantKeys, ElementPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createElement',
+      });
     }
 
     // properties
@@ -143,16 +148,16 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
       return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+      throw new Error('Element.getElementsByClassName not implemented');
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+      throw new Error('Element.getElementsByTagName not implemented');
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+      throw new Error('Element.getElementsByTagNameNS not implemented');
     }
 
     public hasAttribute(qualifiedName: string): Promise<boolean> {
@@ -185,6 +190,10 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
 
     public scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void> {
       return awaitedHandler.runMethod<void>(this, 'scrollIntoView', [arg]);
+    }
+
+    public then<TResult1 = IElement, TResult2 = never>(onfulfilled?: ((value: IElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

@@ -68,15 +68,15 @@ export default class TsIteratorExtractor {
       this.declarationMethods = [
         {
           name: 'entries',
-          definition: `IterableIterator<[${keyType}, ${valueType}]>`,
+          definition: `Promise<IterableIterator<[${keyType}, ${valueType}]>>`,
         },
         {
           name: 'keys',
-          definition: `IterableIterator<${keyType}>`,
+          definition: `Promise<IterableIterator<${keyType}>>`,
         },
         {
           name: 'values',
-          definition: `IterableIterator<${valueType}>`,
+          definition: `Promise<IterableIterator<${valueType}>>`,
         },
       ];
     }
@@ -86,11 +86,34 @@ export default class TsIteratorExtractor {
     if (this.hasForEach) this.methodNames.push('forEach');
   }
 
+  public hasIterable() {
+    if (
+      this.hasEnabledPropsOrMethods() &&
+      (this.methodNames.length || this.hasIterableIterator() || this.extendsHtmlCollection())
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  public getIteratableInterface() {
+    const subtypes = this.getIteratorSubtypes();
+    if (!subtypes) return '';
+    return this.stringifySingleOrTupleTypes(subtypes);
+  }
+
+  public getIteratorInitializer(handlerName: string) {
+    const iteratorType = this.getIteratableInterface();
+    if (!iteratorType) return '';
+
+    const i: Types.Interface = this.i;
+    const iType = toIType(i.name);
+    const name = i.typeParameters ? `${iType}<${i.typeParameters!.map(p => p.name).join(', ')}>` : iType;
+    return `export const awaitedIterator = new AwaitedIterator<${name}, ${iteratorType}>(getState, ${handlerName});`;
+  }
+
   public run(printMethod: (m: Types.Method) => void) {
-    // these next three lines are a hack since customizer UI doesn't allow turning off iterators.
-    const hasEnabledMethods = Object.values(this.i.methods).length;
-    const hasEnabledProperties = Object.values(this.i.methods).length;
-    if (!hasEnabledProperties && !hasEnabledMethods) return;
+    if (!this.hasEnabledPropsOrMethods()) return;
 
     if (this.hasForEach) {
       this.printIteratorForEach();
@@ -104,19 +127,40 @@ export default class TsIteratorExtractor {
     return this.printer.getResult().trim();
   }
 
-  private printIterableIterator() {
-    const i: Types.Interface = this.i;
-    const subtypes = this.getIteratorSubtypes();
-    if (!subtypes || this.getIteratorExtends(subtypes)) return;
+  private extendsHtmlCollection() {
+    return (
+      this.i.extends === 'HTMLCollectionBaseIsolate' ||
+      (this.i.implements && this.i.implements.includes('HTMLCollectionBaseIsolate'))
+    );
+  }
+  private hasEnabledPropsOrMethods() {
+    // these next three lines are a hack since customizer UI doesn't allow turning off iterators.
+    const hasEnabledMethods = Object.values(this.i.methods).length;
+    const hasEnabledProperties = Object.values(this.i.methods).length;
+    if (!hasEnabledProperties && !hasEnabledMethods) return false;
+    return true;
+  }
 
-    const returnType = `IterableIterator<${this.stringifySingleOrTupleTypes(subtypes)}>`;
+  private hasIterableIterator() {
+    const subtypes = this.getIteratorSubtypes();
+    if (!subtypes || this.getIteratorExtends(subtypes)) return false;
+    return true;
+  }
+
+  private printIterableIterator() {
+    if (!this.hasIterableIterator()) return;
+
+    const subtypes = this.getIteratorSubtypes();
+    const iteratorType = this.stringifySingleOrTupleTypes(subtypes as string[]);
+
+    const returnType = `IterableIterator<${iteratorType}>`;
     if (this.skipImplementation) {
       this.printer.printLine(`[Symbol.iterator](): ${returnType};`);
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public [Symbol.iterator](): ${returnType} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  throw new Error('${i.name}[Symbol.iterator] not implemented');`);
+        this.printer.printLine(`  return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }
@@ -133,12 +177,17 @@ export default class TsIteratorExtractor {
     const name = i.typeParameters ? `${iType}<${i.typeParameters!.map(p => p.name).join(', ')}>` : iType;
     const args = `value: ${value}, key: ${key}, parent: ${name}`;
     if (this.skipImplementation) {
-      this.printer.printLine(`forEach(callbackfn: (${args}) => void, thisArg?: any): void;`);
+      this.printer.printLine(`forEach(callbackfn: (${args}) => void, thisArg?: any): Promise<void>;`);
     } else {
       this.printer.printSeparatorLine();
-      this.printer.printLine(`public forEach(callbackfn: (${args}) => void, thisArg?: any): void {`);
+      this.printer.printLine(`public async forEach(callbackfn: (${args}) => void, thisArg?: any): Promise<void> {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  throw new Error('${i.name}.forEach not implemented');`);
+        this.printer.increaseIndent();
+        this.printer.printLine(`const array = await awaitedIterator.toArray(this);`);
+        this.printer.printLine(`for (let i = 0; i < array.length; i += 1) {`);
+        this.printer.printLine(`  callbackfn.call(thisArg, array[i], i, this);`);
+        this.printer.printLine('}');
+        this.printer.decreaseIndent();
       } else {
         this.printer.printLine(`  // implementation required`);
       }
@@ -187,6 +236,9 @@ export default class TsIteratorExtractor {
       if (iterableGetter && lengthProperty) {
         return [TypeUtils.convertDomTypeToTsType({ type: iterableGetter.signatures[0].type }, true)];
       }
+      if (this.extendsHtmlCollection()) {
+        return ['ISuperElement'];
+      }
     }
   }
 
@@ -198,14 +250,13 @@ export default class TsIteratorExtractor {
   }
 
   private printDeclarationMethod(m: IDeclarationMethod) {
-    const i: Types.Interface = this.i;
     if (this.skipImplementation) {
       this.printer.printLine(`${m.name}(): ${m.definition};`);
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public ${m.name}(): ${m.definition} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  throw new Error('${i.name}.${m.name} not implemented');`);
+        this.printer.printLine(`  return awaitedIterator.toArray(this).then(x => x.${m.name}());`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }

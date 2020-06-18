@@ -4,6 +4,6 @@ import { NamedNodeMapGenerator, INamedNodeMapProperties } from '../../awaited-ba
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
-const NamedNodeMapBase = NamedNodeMapGenerator();
+const NamedNodeMapBaseClass = NamedNodeMapGenerator();
 
-export default class NamedNodeMap extends NamedNodeMapBase implements INamedNodeMap {}
+export default class NamedNodeMap extends NamedNodeMapBaseClass implements INamedNodeMap {}

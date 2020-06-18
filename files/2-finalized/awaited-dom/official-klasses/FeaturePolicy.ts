@@ -4,6 +4,6 @@ import { FeaturePolicyGenerator, IFeaturePolicyProperties } from '../../awaited-
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IFeaturePolicy, IFeaturePolicyProperties>();
-const FeaturePolicyBase = FeaturePolicyGenerator();
+const FeaturePolicyBaseClass = FeaturePolicyGenerator();
 
-export default class FeaturePolicy extends FeaturePolicyBase implements IFeaturePolicy {}
+export default class FeaturePolicy extends FeaturePolicyBaseClass implements IFeaturePolicy {}

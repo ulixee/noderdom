@@ -4,11 +4,9 @@ export class NotImplementedError extends Error {}
 
 export default class AwaitedHandler<TClass> {
   public static initializer: <TC>(self: AwaitedHandler<TC>) => void;
-  private readonly className: string;
-  // @ts-ignore
-  private readonly getState: any;
-  // @ts-ignore
-  private readonly setState: any;
+  public readonly getState: any;
+  public readonly setState: any;
+  public readonly className: string;
 
   constructor(className: string, getState: any, setState: any) {
     this.className = className;
@@ -30,6 +28,11 @@ export default class AwaitedHandler<TClass> {
   // @ts-ignore
   public setProperty<T>(instance: TClass, name: string, value: T) {
     throw new NotImplementedError(`AwaitedHandler.setProperty not implemented`);
+  }
+
+  // @ts-ignore
+  public getNodeIds(instance: TClass): Promise<[number, number[]]> {
+    throw new NotImplementedError(`AwaitedHandler.getNodeIds not implemented`);
   }
 
   // @ts-ignore

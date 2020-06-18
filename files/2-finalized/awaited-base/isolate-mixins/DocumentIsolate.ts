@@ -145,20 +145,20 @@ export default class DocumentIsolate implements IDocumentIsolate {
     return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
   }
 
-  public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+  public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+    throw new Error('DocumentIsolate.getElementsByClassName not implemented');
   }
 
-  public getElementsByName(elementName: string): Promise<ISuperNodeList> {
-    return awaitedHandler.runMethod<ISuperNodeList>(this, 'getElementsByName', [elementName]);
+  public getElementsByName(elementName: string): ISuperNodeList {
+    throw new Error('DocumentIsolate.getElementsByName not implemented');
   }
 
-  public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+  public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+    throw new Error('DocumentIsolate.getElementsByTagName not implemented');
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+  public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+    throw new Error('DocumentIsolate.getElementsByTagNameNS not implemented');
   }
 
   public hasFocus(): Promise<boolean> {

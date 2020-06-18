@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, INodeIsolate } from '../interfaces/isolate';
 import { IHTMLOrSVGElement, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
@@ -19,14 +20,18 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperElement>('SuperElement', getState, setState);
+export const nodeAttacher = new NodeAttacher<ISuperElement>(getState, awaitedHandler);
 
 export function SuperElementGenerator(ElementIsolate: Constructable<IElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(ElementIsolate, [HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode]) as unknown) as Constructable<IElementIsolate & IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & IHTMLOrSVGElement & INodeIsolate & IParentNode>;
 
-  return class SuperElement extends Parent implements ISuperElement {
+  return class SuperElement extends Parent implements ISuperElement, PromiseLike<ISuperElement> {
     constructor() {
       super();
       initializeConstantsAndProperties<SuperElement>(this, SuperElementConstantKeys, SuperElementPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createSuperElement',
+      });
     }
 
     // properties
@@ -149,16 +154,16 @@ export function SuperElementGenerator(ElementIsolate: Constructable<IElementIsol
       return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+      throw new Error('SuperElement.getElementsByClassName not implemented');
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+      throw new Error('SuperElement.getElementsByTagName not implemented');
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+      throw new Error('SuperElement.getElementsByTagNameNS not implemented');
     }
 
     public hasAttribute(qualifiedName: string): Promise<boolean> {
@@ -191,6 +196,10 @@ export function SuperElementGenerator(ElementIsolate: Constructable<IElementIsol
 
     public scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void> {
       return awaitedHandler.runMethod<void>(this, 'scrollIntoView', [arg]);
+    }
+
+    public then<TResult1 = ISuperElement, TResult2 = never>(onfulfilled?: ((value: ISuperElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

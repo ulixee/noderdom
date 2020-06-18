@@ -4,6 +4,6 @@ import { DOMRectListGenerator, IDOMRectListProperties } from '../../awaited-base
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDOMRectList, IDOMRectListProperties>();
-const DOMRectListBase = DOMRectListGenerator();
+const DOMRectListBaseClass = DOMRectListGenerator();
 
-export default class DOMRectList extends DOMRectListBase implements IDOMRectList {}
+export default class DOMRectList extends DOMRectListBaseClass implements IDOMRectList {}

@@ -1,16 +1,16 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IDocument, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../awaited-base/interfaces/official';
-import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement } from '../../awaited-base/interfaces/super';
+import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../../awaited-base/interfaces/super';
 import { DocumentGenerator, IDocumentProperties } from '../../awaited-base/official-klasses/Document';
-import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation } from '../create';
+import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation, createSuperNodeList } from '../create';
 import Node from './Node';
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
-const DocumentBase = DocumentGenerator(Node, ParentNode);
+const DocumentBaseClass = DocumentGenerator(Node, ParentNode);
 
-export default class Document extends DocumentBase implements IDocument {
+export default class Document extends DocumentBaseClass implements IDocument {
   constructor() {
     super();
   }
@@ -90,5 +90,27 @@ export default class Document extends DocumentBase implements IDocument {
   public get scrollingElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperElement(awaitedPath.addProperty('scrollingElement'), awaitedOptions);
+  }
+
+  // methods
+
+  public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByClassName', classNames), awaitedOptions);
+  }
+
+  public getElementsByName(elementName: string): ISuperNodeList {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperNodeList(awaitedPath.addMethod('getElementsByName', elementName), awaitedOptions);
+  }
+
+  public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagName', qualifiedName), awaitedOptions);
+  }
+
+  public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagNameNS', namespace, localName), awaitedOptions);
   }
 }

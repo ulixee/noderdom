@@ -83,10 +83,10 @@ export interface IDocument extends INode, INode, IParentNode {
 
   exitFullscreen(): Promise<Promise<void>>;
   exitPointerLock(): Promise<void>;
-  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
-  getElementsByName(elementName: string): Promise<ISuperNodeList>;
-  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
+  getElementsByClassName(classNames: string): ISuperHTMLCollection;
+  getElementsByName(elementName: string): ISuperNodeList;
+  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
   hasFocus(): Promise<boolean>;
 }
 
@@ -131,9 +131,9 @@ export interface IElement extends INode, INode, IParentNode {
   getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null>;
   getBoundingClientRect(): Promise<IDOMRect>;
   getClientRects(): Promise<IDOMRectList>;
-  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
+  getElementsByClassName(classNames: string): ISuperHTMLCollection;
+  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
   hasAttribute(qualifiedName: string): Promise<boolean>;
   hasAttributeNS(namespace: string | null, localName: string): Promise<boolean>;
   hasAttributes(): Promise<boolean>;
@@ -150,8 +150,18 @@ export interface IFeaturePolicy {}
 
 // HTMLCollection //////////
 
-export interface IHTMLCollection {
+export interface IHTMLCollection extends IHTMLCollectionBase {
   namedItem(name: string): Promise<ISuperElement | null>;
+}
+
+// HTMLCollectionBase //////////
+
+export interface IHTMLCollectionBase {
+  readonly length: Promise<number>;
+
+  item(index: number): Promise<ISuperElement | null>;
+
+  [Symbol.iterator](): IterableIterator<ISuperElement>;
 }
 
 // HTMLOrSVGElement //////////
@@ -248,10 +258,10 @@ export interface INodeList {
 
   item(index: number): Promise<ISuperNode | null>;
 
-  forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeList) => void, thisArg?: any): void;
-  entries(): IterableIterator<[number, ISuperNode]>;
-  keys(): IterableIterator<number>;
-  values(): IterableIterator<ISuperNode>;
+  forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeList) => void, thisArg?: any): Promise<void>;
+  entries(): Promise<IterableIterator<[number, ISuperNode]>>;
+  keys(): Promise<IterableIterator<number>>;
+  values(): Promise<IterableIterator<ISuperNode>>;
   [Symbol.iterator](): IterableIterator<ISuperNode>;
 }
 
@@ -259,10 +269,12 @@ export interface INodeList {
 
 export interface IParentNode {
   readonly childElementCount: Promise<number>;
+  readonly children: ISuperHTMLCollection;
   readonly firstElementChild: ISuperElement;
   readonly lastElementChild: ISuperElement;
 
   querySelector(selectors: string): ISuperElement;
+  querySelectorAll(selectors: string): ISuperNodeList;
 }
 
 // ShadowRoot //////////

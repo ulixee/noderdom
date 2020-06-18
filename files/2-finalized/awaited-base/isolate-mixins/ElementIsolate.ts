@@ -129,16 +129,16 @@ export default class ElementIsolate implements IElementIsolate {
     return awaitedHandler.runMethod<IDOMRectList>(this, 'getClientRects', []);
   }
 
-  public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+  public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+    throw new Error('ElementIsolate.getElementsByClassName not implemented');
   }
 
-  public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+  public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+    throw new Error('ElementIsolate.getElementsByTagName not implemented');
   }
 
-  public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-    return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+  public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+    throw new Error('ElementIsolate.getElementsByTagNameNS not implemented');
   }
 
   public hasAttribute(qualifiedName: string): Promise<boolean> {

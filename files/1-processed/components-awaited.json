@@ -92,10 +92,31 @@
             }
           ],
           "isAbstract": 1
+        },
+        "querySelectorAll": {
+          "name": "querySelectorAll",
+          "signatures": [
+            {
+              "type": "NodeList",
+              "params": [
+                {
+                  "name": "selectors",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
       "properties": {
+        "children": {
+          "name": "children",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "isAbstract": 1
+        },
         "firstElementChild": {
           "name": "firstElementChild",
           "type": "Element",
@@ -528,7 +549,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -548,7 +570,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -563,7 +586,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByName": {
           "name": "getElementsByName",
@@ -578,7 +602,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "hasFocus": {
           "name": "hasFocus",
@@ -1092,7 +1117,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -1112,7 +1138,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -1127,7 +1154,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getClientRects": {
           "name": "getClientRects",
@@ -2151,9 +2179,44 @@
       "exposed": "Window",
       "legacyWindowAlias": []
     },
+    "HTMLCollectionBase": {
+      "name": "HTMLCollectionBase",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
     "HTMLCollection": {
       "name": "HTMLCollection",
-      "extends": "Object",
+      "extends": "HTMLCollectionBase",
       "constants": {},
       "methods": {
         "namedItem": {
@@ -2200,7 +2263,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -2220,7 +2284,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -2235,7 +2300,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByName": {
           "name": "getElementsByName",
@@ -2250,7 +2316,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "hasFocus": {
           "name": "hasFocus",
@@ -2691,7 +2758,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -2711,7 +2779,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -2726,7 +2795,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getClientRects": {
           "name": "getClientRects",
@@ -3400,7 +3470,9 @@
       "properties": {},
       "exposed": "Window",
       "legacyWindowAlias": [],
-      "implements": []
+      "implements": [
+        "HTMLCollectionBaseIsolate"
+      ]
     },
     "SuperText": {
       "name": "SuperText",
@@ -4595,7 +4667,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -4615,7 +4688,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -4630,7 +4704,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getClientRects": {
           "name": "getClientRects",
@@ -5084,7 +5159,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByTagNameNS": {
           "name": "getElementsByTagNameNS",
@@ -5104,7 +5180,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByClassName": {
           "name": "getElementsByClassName",
@@ -5119,7 +5196,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "getElementsByName": {
           "name": "getElementsByName",
@@ -5134,7 +5212,8 @@
               ]
             }
           ],
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         },
         "hasFocus": {
           "name": "hasFocus",
@@ -5426,6 +5505,41 @@
       "implements": [
         "Node"
       ]
+    },
+    "HTMLCollectionBaseIsolate": {
+      "name": "HTMLCollectionBaseIsolate",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
     }
   }
 }

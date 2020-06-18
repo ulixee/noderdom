@@ -7,9 +7,9 @@ import TextIsolate from '../isolate-mixins/TextIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperCharacterData, ISuperCharacterDataProperties>();
-const SuperCharacterDataBase = SuperCharacterDataGenerator(CharacterDataIsolate, NodeIsolate, TextIsolate);
+const SuperCharacterDataBaseClass = SuperCharacterDataGenerator(CharacterDataIsolate, NodeIsolate, TextIsolate);
 
-export default class SuperCharacterData extends SuperCharacterDataBase implements ISuperCharacterData {
+export default class SuperCharacterData extends SuperCharacterDataBaseClass implements ISuperCharacterData {
   constructor() {
     super();
   }

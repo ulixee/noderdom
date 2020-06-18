@@ -1,4 +1,4 @@
-import { compareName, makeNullable, isEventHandler, nameWithForwardedTypes, distinct, map, toIType } from './utils';
+import { compareName, distinct, isEventHandler, makeNullable, map, nameWithForwardedTypes, toIType } from './utils';
 import * as Types from './Types';
 import Printer from './Printer';
 import Components from './Components';
@@ -64,10 +64,16 @@ export default class TsBodyPrinter {
 
     if (this.buildType === BuildType.base) {
       if (this.properties.find((p: any) => p.stringifier)) {
-        this.methods.push({ name: 'toString', signatures: [{ type: 'DOMString' }] });
+        this.methods.push({
+          name: 'toString',
+          signatures: [{ type: 'DOMString' }],
+        });
       }
       if (i.anonymousMethods && i.anonymousMethods.find(m => m.stringifier)) {
-        this.methods.push({ name: 'toString', signatures: [{ type: 'DOMString' }] });
+        this.methods.push({
+          name: 'toString',
+          signatures: [{ type: 'DOMString' }],
+        });
       }
     }
 
@@ -99,6 +105,9 @@ export default class TsBodyPrinter {
     this.printConstructor();
     this.printProperties();
     this.printMethods();
+    if (this.buildType === BuildType.base) {
+      this.printPromiseLike();
+    }
     if (!this.skipEventHandlers) this.printEventHandlerMethods();
 
     const iterators = this.iteratorExtractor.run(m => this.printMethod(m));
@@ -160,6 +169,19 @@ export default class TsBodyPrinter {
         this.printer.printLine(
           `initializeConstantsAndProperties<${i.name}>(this, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
         );
+        if (this.i.isNodeAttached || this.iteratorExtractor.hasIterable()) {
+          this.printer.printLine(`setState(this, {`);
+          this.printer.increaseIndent();
+          this.printer.printLine(`createInstanceName: 'create${i.name}',`);
+          // if iterable
+          if (this.iteratorExtractor.hasIterable()) {
+            this.printer.printLine(
+              `createIterableName: 'create${this.iteratorExtractor.getIteratableInterface().substr(1)}',`,
+            );
+          }
+          this.printer.decreaseIndent();
+          this.printer.printLine(`});`);
+        }
       }
       this.printer.decreaseIndent();
       this.printer.printLine('}');
@@ -293,6 +315,18 @@ export default class TsBodyPrinter {
     });
   }
 
+  public printPromiseLike() {
+    if (this.buildType !== BuildType.base || this.skipImplementation || !this.i.isNodeAttached) return;
+    this.printer.printSeparatorLine();
+
+    this.printer.printLine(
+      `public then<TResult1 = I${this.i.name}, TResult2 = never>(onfulfilled?: ((value: I${this.i.name}) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {`,
+    );
+    this.printer.increaseIndent();
+    this.printer.printLine(`return nodeAttacher.attach(this).then(onfulfilled, onrejected);`);
+    this.printer.decreaseIndent();
+    this.printer.printLine('}');
+  }
   //////////////////////////////////////////////////////////////////////////////
 
   private extractMethodReturnType(method: Types.Method, signature: Types.Signature) {

@@ -7,8 +7,10 @@
     "declarationDir": "./dist/types" /* Output directory for generated declaration files. */,
     "sourceMap": true /* Generates corresponding '.map' file. */,
     "experimentalDecorators": true,
+    "skipDefaultLibCheck": true,
     "outDir": "./dist/lib" /* Redirect output structure to the directory. */,
     "rootDirs": [
+      "./scripts",
       "./src",
       "./test"
     ] /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
@@ -24,9 +26,6 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": [
-    "./src/**/*",
-    "node_modules"
-  ],
-  "exclude": []
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
 }

@@ -5,9 +5,9 @@ import Node from './Node';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ICharacterData, ICharacterDataProperties>();
-const CharacterDataBase = CharacterDataGenerator(Node);
+const CharacterDataBaseClass = CharacterDataGenerator(Node);
 
-export default class CharacterData extends CharacterDataBase implements ICharacterData {
+export default class CharacterData extends CharacterDataBaseClass implements ICharacterData {
   constructor() {
     super();
   }

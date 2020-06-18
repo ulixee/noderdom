@@ -5,9 +5,9 @@ import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLInputElement, IHTMLInputElementProperties>();
-const HTMLInputElementBase = HTMLInputElementGenerator(HTMLElement);
+const HTMLInputElementBaseClass = HTMLInputElementGenerator(HTMLElement);
 
-export default class HTMLInputElement extends HTMLInputElementBase implements IHTMLInputElement {
+export default class HTMLInputElement extends HTMLInputElementBaseClass implements IHTMLInputElement {
   constructor() {
     super();
   }

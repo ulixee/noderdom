@@ -88,9 +88,9 @@ export interface IElementIsolate {
   getAttributeNodeNS(namespace: string | null, localName: string): Promise<IAttr | null>;
   getBoundingClientRect(): Promise<IDOMRect>;
   getClientRects(): Promise<IDOMRectList>;
-  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
+  getElementsByClassName(classNames: string): ISuperHTMLCollection;
+  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
   hasAttribute(qualifiedName: string): Promise<boolean>;
   hasAttributeNS(namespace: string | null, localName: string): Promise<boolean>;
   hasAttributes(): Promise<boolean>;
@@ -169,10 +169,10 @@ export interface IDocumentIsolate {
 
   exitFullscreen(): Promise<Promise<void>>;
   exitPointerLock(): Promise<void>;
-  getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection>;
-  getElementsByName(elementName: string): Promise<ISuperNodeList>;
-  getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection>;
-  getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection>;
+  getElementsByClassName(classNames: string): ISuperHTMLCollection;
+  getElementsByName(elementName: string): ISuperNodeList;
+  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
   hasFocus(): Promise<boolean>;
 }
 
@@ -182,6 +182,16 @@ export interface IDocumentTypeIsolate {
   readonly name: Promise<string>;
   readonly publicId: Promise<string>;
   readonly systemId: Promise<string>;
+}
+
+// HTMLCollectionBaseIsolate //////////
+
+export interface IHTMLCollectionBaseIsolate {
+  readonly length: Promise<number>;
+
+  item(index: number): Promise<ISuperElement | null>;
+
+  [Symbol.iterator](): IterableIterator<ISuperElement>;
 }
 
 // HTML ELEMENTS

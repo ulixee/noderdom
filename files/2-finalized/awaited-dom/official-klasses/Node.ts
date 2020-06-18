@@ -6,9 +6,9 @@ import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperE
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INode, INodeProperties>();
-const NodeBase = NodeGenerator();
+const NodeBaseClass = NodeGenerator();
 
-export default class Node extends NodeBase implements INode {
+export default class Node extends NodeBaseClass implements INode {
   public get childNodes(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);

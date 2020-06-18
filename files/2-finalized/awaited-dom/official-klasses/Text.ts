@@ -5,9 +5,9 @@ import CharacterData from './CharacterData';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IText, ITextProperties>();
-const TextBase = TextGenerator(CharacterData);
+const TextBaseClass = TextGenerator(CharacterData);
 
-export default class Text extends TextBase implements IText {
+export default class Text extends TextBaseClass implements IText {
   constructor(_data?: string) {
     super();
   }

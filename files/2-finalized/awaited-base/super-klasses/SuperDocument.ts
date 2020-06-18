@@ -4,6 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
+import NodeAttacher from '../NodeAttacher';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
 import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
@@ -14,14 +15,18 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
+export const nodeAttacher = new NodeAttacher<ISuperDocument>(getState, awaitedHandler);
 
 export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(NodeIsolate, [ParentNode]) as unknown) as Constructable<INodeIsolate & IParentNode>;
 
-  return class SuperDocument extends Parent implements ISuperDocument {
+  return class SuperDocument extends Parent implements ISuperDocument, PromiseLike<ISuperDocument> {
     constructor() {
       super();
       initializeConstantsAndProperties<SuperDocument>(this, SuperDocumentConstantKeys, SuperDocumentPropertyKeys);
+      setState(this, {
+        createInstanceName: 'createSuperDocument',
+      });
     }
 
     // properties
@@ -160,24 +165,28 @@ export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>,
       return awaitedHandler.runMethod<void>(this, 'exitPointerLock', []);
     }
 
-    public getElementsByClassName(classNames: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByClassName', [classNames]);
+    public getElementsByClassName(classNames: string): ISuperHTMLCollection {
+      throw new Error('SuperDocument.getElementsByClassName not implemented');
     }
 
-    public getElementsByName(elementName: string): Promise<ISuperNodeList> {
-      return awaitedHandler.runMethod<ISuperNodeList>(this, 'getElementsByName', [elementName]);
+    public getElementsByName(elementName: string): ISuperNodeList {
+      throw new Error('SuperDocument.getElementsByName not implemented');
     }
 
-    public getElementsByTagName(qualifiedName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagName', [qualifiedName]);
+    public getElementsByTagName(qualifiedName: string): ISuperHTMLCollection {
+      throw new Error('SuperDocument.getElementsByTagName not implemented');
     }
 
-    public getElementsByTagNameNS(namespace: string | null, localName: string): Promise<ISuperHTMLCollection> {
-      return awaitedHandler.runMethod<ISuperHTMLCollection>(this, 'getElementsByTagNameNS', [namespace, localName]);
+    public getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection {
+      throw new Error('SuperDocument.getElementsByTagNameNS not implemented');
     }
 
     public hasFocus(): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'hasFocus', []);
+    }
+
+    public then<TResult1 = ISuperDocument, TResult2 = never>(onfulfilled?: ((value: ISuperDocument) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
+      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
     }
   };
 }

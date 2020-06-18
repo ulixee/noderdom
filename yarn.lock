@@ -1322,16 +1322,6 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/underscore@^1.9.4":
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/@types/underscore/-/underscore-1.9.4.tgz#22d1a3e6b494608e430221ec085fa0b7ccee7f33"
-  integrity sha512-CjHWEMECc2/UxOZh0kpiz3lEyX2Px3rQS9HzD20lxMvx571ivOBQKeLnqEjxUY0BMgp6WJWo/pQLRBwMW5v4WQ==
-
-"@types/w3c-xmlserializer@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/w3c-xmlserializer/-/w3c-xmlserializer-2.0.0.tgz#7fb5432cde47181eb939648d2c6493cc53ab536b"
-  integrity sha512-MVvvYKp9DJ2TgILWRzQrl95q4lBlNJS9VlehmBk1Gho6YgTqbNlTZI2hzHkx7uF7FjNHtJgSPC78D02TPICcjA==
-
 "@types/webidl2@^23.8.0":
   version "23.8.0"
   resolved "https://registry.yarnpkg.com/@types/webidl2/-/webidl2-23.8.0.tgz#a1114e561e2b4bef7c60054b32001dd69a4075cf"
@@ -6931,19 +6921,6 @@ node-sass@^4.13.1:
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
 
-"noderdom@https://gitlab.com/DataLiberationFoundation/noderdom.git#dist":
-  version "0.3.2"
-  resolved "https://gitlab.com/DataLiberationFoundation/noderdom.git#c05cc71551ac31ce1bbc9fdb8b99baa9f56e90a5"
-  dependencies:
-    "@types/parse5" "^5.0.2"
-    "@types/underscore" "^1.9.4"
-    "@types/w3c-xmlserializer" "^2.0.0"
-    nwsapi "^2.2.0"
-    parse5 "^5.1.1"
-    saxes "^4.0.2"
-    underscore "^1.9.2"
-    w3c-xmlserializer "https://github.com/ulixee/w3c-xmlserializer.git"
-
 "nopt@2 || 3":
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-3.0.6.tgz#c6465dbf08abcd4db359317f79ac68a646b28ff9"
@@ -7039,7 +7016,7 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nwsapi@^2.0.7, nwsapi@^2.2.0:
+nwsapi@^2.0.7:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
   integrity sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==
@@ -8706,13 +8683,6 @@ sax@^1.2.4, sax@~1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-saxes@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/saxes/-/saxes-4.0.2.tgz#76f8e762efc96ec4af5f885d8151c50426103165"
-  integrity sha512-EZOTeQ4bgkOaGCDaTKux+LaRNcLNbdbvMH7R3/yjEEULPEmqvkFbFub6DJhJTub2iGMT93CfpZ5LTdKZmAbVeQ==
-  dependencies:
-    xmlchars "^2.2.0"
-
 schema-utils@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-1.0.0.tgz#0b79a93204d7b600d4b2850d1f66c2a34951c770"
@@ -9879,11 +9849,6 @@ uglify-to-browserify@~1.0.0:
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
-underscore@^1.9.1, underscore@^1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.2.tgz#0c8d6f536d6f378a5af264a72f7bec50feb7cf2f"
-  integrity sha512-D39qtimx0c1fI3ya1Lnhk3E9nONswSKhnffBI0gME9C99fYOkNi04xs8K6pePLhvl1frbDemkaBQ5ikWllR2HQ==
-
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
@@ -10218,12 +10183,6 @@ w3c-hr-time@^1.0.1:
   integrity sha1-gqwr/2PZUOqeMYmlimViX+3xkEU=
   dependencies:
     browser-process-hrtime "^0.1.2"
-
-"w3c-xmlserializer@https://github.com/ulixee/w3c-xmlserializer.git":
-  version "2.0.0"
-  resolved "https://github.com/ulixee/w3c-xmlserializer.git#74efc6b7211319a6a14a2c12d86028ca60f4f559"
-  dependencies:
-    xml-name-validator "^3.0.0"
 
 walker@^1.0.7, walker@~1.0.5:
   version "1.0.7"
@@ -10584,11 +10543,6 @@ xml@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
   integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
-
-xmlchars@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
-  integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
