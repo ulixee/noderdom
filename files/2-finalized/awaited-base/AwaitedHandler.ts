@@ -1,4 +1,5 @@
 import Constructable from './Constructable';
+import IAttachedState from './IAttachedState';
 
 export class NotImplementedError extends Error {}
 
@@ -31,8 +32,8 @@ export default class AwaitedHandler<TClass> {
   }
 
   // @ts-ignore
-  public getNodeIds(instance: TClass): Promise<[number, number[]]> {
-    throw new NotImplementedError(`AwaitedHandler.getNodeIds not implemented`);
+  public loadState(instance: TClass, properties?: string[]): Promise<IAttachedState> {
+    throw new NotImplementedError(`AwaitedHandler.loadState not implemented`);
   }
 
   // @ts-ignore

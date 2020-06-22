@@ -7,8 +7,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, INodeIsolate } from '../interfaces/isolate';
-import { IHTMLOrSVGElement, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
-import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
+import { IHTMLOrSVGElement, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { IElementIsolateProperties, ElementIsolatePropertyKeys, ElementIsolateConstantKeys } from '../isolate-mixins/ElementIsolate';
 import { IHTMLElementIsolateProperties, HTMLElementIsolatePropertyKeys, HTMLElementIsolateConstantKeys } from '../isolate-mixins/HTMLElementIsolate';
 import { IHTMLHeadElementIsolateProperties, HTMLHeadElementIsolatePropertyKeys, HTMLHeadElementIsolateConstantKeys } from '../isolate-mixins/HTMLHeadElementIsolate';
@@ -20,7 +19,7 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperElement>('SuperElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperElement>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<ISuperElement>(getState, setState, awaitedHandler);
 
 export function SuperElementGenerator(ElementIsolate: Constructable<IElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(ElementIsolate, [HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode]) as unknown) as Constructable<IElementIsolate & IHTMLElementIsolate & IHTMLHeadElementIsolate & IHTMLInputElementIsolate & IHTMLOrSVGElement & INodeIsolate & IParentNode>;
@@ -122,8 +121,8 @@ export function SuperElementGenerator(ElementIsolate: Constructable<IElementIsol
 
     // methods
 
-    public closest(selectors: string): Promise<ISuperElement | null> {
-      return awaitedHandler.runMethod<ISuperElement | null>(this, 'closest', [selectors]);
+    public closest(selectors: string): ISuperElement {
+      throw new Error('SuperElement.closest not implemented');
     }
 
     public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -186,8 +185,8 @@ export function SuperElementGenerator(ElementIsolate: Constructable<IElementIsol
       return awaitedHandler.runMethod<boolean>(this, 'matches', [selectors]);
     }
 
-    public requestFullscreen(options?: IFullscreenOptions): Promise<Promise<void>> {
-      return awaitedHandler.runMethod<Promise<void>>(this, 'requestFullscreen', [options]);
+    public requestFullscreen(options?: IFullscreenOptions): Promise<void> {
+      return awaitedHandler.runMethod<void>(this, 'requestFullscreen', [options]);
     }
 
     public requestPointerLock(): Promise<void> {

@@ -1,11 +1,10 @@
 export default class AwaitedPath {
-  public iterableIds?: number[];
-  public readonly hasNodeId: boolean;
+  public readonly hasAttachedId: boolean;
   private readonly jsPath: IJsPath;
 
   constructor(...jsPath: IJsPath) {
     this.jsPath = jsPath;
-    this.hasNodeId = jsPath && jsPath.length > 0 && typeof jsPath[0] === 'number';
+    this.hasAttachedId = jsPath && jsPath.length > 0 && typeof jsPath[0] === 'number';
   }
 
   public addProperty(name: IPropertyName) {
@@ -16,12 +15,8 @@ export default class AwaitedPath {
     return new AwaitedPath(...this.jsPath, [name, ...args]);
   }
 
-  public withNodeId(id: INodeId) {
+  public withAttachedId(id: IAttachedId) {
     return new AwaitedPath(id);
-  }
-
-  public setIterableIds(ids: INodeId[]) {
-    this.iterableIds = ids;
   }
 
   public toJSON() {
@@ -35,9 +30,9 @@ export default class AwaitedPath {
 }
 
 export type IJsPath = IPathStep[];
-export type IPathStep = IPropertyName | IMethod | INodeId;
+export type IPathStep = IPropertyName | IMethod | IAttachedId;
 type IPropertyName = string;
 type IMethod = [IMethodName, ...IMethodArgs];
 type IMethodName = string;
 type IMethodArgs = any[];
-type INodeId = number;
+type IAttachedId = number;

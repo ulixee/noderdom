@@ -33,6 +33,13 @@ const cherryPickedInterfaceNames = [
   'LinkStyle',
   'Slotable',
   'WindowEventHandlers',
+  'WindowOrWorkerGlobalScope',
+  'FormData',
+  'ReferrerPolicy',
+  'Request',
+  'Response',
+  'Body',
+  'Headers',
 ];
 
 interface IRecord {

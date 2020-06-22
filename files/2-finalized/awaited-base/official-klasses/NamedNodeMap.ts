@@ -10,8 +10,8 @@ import { INamedNodeMap, IAttr } from '../interfaces/official';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
 export const awaitedHandler = new AwaitedHandler<INamedNodeMap>('NamedNodeMap', getState, setState);
-export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>(getState, awaitedHandler);
-export const nodeAttacher = new NodeAttacher<INamedNodeMap>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<INamedNodeMap>(getState, setState, awaitedHandler);
+export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>(getState, setState, awaitedHandler);
 
 export function NamedNodeMapGenerator() {
   return class NamedNodeMap implements INamedNodeMap, PromiseLike<INamedNodeMap> {
@@ -48,7 +48,7 @@ export function NamedNodeMapGenerator() {
     }
 
     public [Symbol.iterator](): IterableIterator<IAttr> {
-      return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();
+      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
   };
 }

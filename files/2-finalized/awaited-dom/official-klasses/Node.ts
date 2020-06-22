@@ -1,5 +1,5 @@
 import StateMachine from '../../awaited-base/StateMachine';
-import { INode } from '../../awaited-base/interfaces/official';
+import { INode, IGetRootNodeOptions } from '../../awaited-base/interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../../awaited-base/interfaces/super';
 import { NodeGenerator, INodeProperties } from '../../awaited-base/official-klasses/Node';
 import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';
@@ -47,5 +47,12 @@ export default class Node extends NodeBaseClass implements INode {
   public get previousSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
+  }
+
+  // methods
+
+  public getRootNode(options?: IGetRootNodeOptions): ISuperNode {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperNode(awaitedPath.addMethod('getRootNode', options), awaitedOptions);
   }
 }

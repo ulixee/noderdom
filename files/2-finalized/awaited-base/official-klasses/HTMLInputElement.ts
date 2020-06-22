@@ -10,7 +10,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLInputElement, IHTMLInputElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLInputElement>('HTMLInputElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLInputElement>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IHTMLInputElement>(getState, setState, awaitedHandler);
 
 export function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLInputElement extends HTMLElement implements IHTMLInputElement, PromiseLike<IHTMLInputElement> {

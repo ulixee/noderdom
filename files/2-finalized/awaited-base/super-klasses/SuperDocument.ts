@@ -7,15 +7,14 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
-import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
-import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
+import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKeys } from '../isolate-mixins/NodeIsolate';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperDocument>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<ISuperDocument>(getState, setState, awaitedHandler);
 
 export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(NodeIsolate, [ParentNode]) as unknown) as Constructable<INodeIsolate & IParentNode>;
@@ -157,8 +156,8 @@ export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>,
 
     // methods
 
-    public exitFullscreen(): Promise<Promise<void>> {
-      return awaitedHandler.runMethod<Promise<void>>(this, 'exitFullscreen', []);
+    public exitFullscreen(): Promise<void> {
+      return awaitedHandler.runMethod<void>(this, 'exitFullscreen', []);
     }
 
     public exitPointerLock(): Promise<void> {

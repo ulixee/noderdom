@@ -14,6 +14,24 @@ export function DOMRectGenerator() {
     constructor(_x?: number, _y?: number, _width?: number, _height?: number) {
       initializeConstantsAndProperties<DOMRect>(this, DOMRectConstantKeys, DOMRectPropertyKeys);
     }
+
+    // properties
+
+    public get height(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'height', false);
+    }
+
+    public get width(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'width', false);
+    }
+
+    public get x(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'x', false);
+    }
+
+    public get y(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'y', false);
+    }
   };
 }
 
@@ -21,8 +39,13 @@ export function DOMRectGenerator() {
 
 export interface IDOMRectProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  readonly height?: Promise<number>;
+  readonly width?: Promise<number>;
+  readonly x?: Promise<number>;
+  readonly y?: Promise<number>;
+}
 
-export const DOMRectPropertyKeys = [];
+export const DOMRectPropertyKeys = ['height', 'width', 'x', 'y'];
 
 export const DOMRectConstantKeys = [];

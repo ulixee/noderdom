@@ -291,7 +291,7 @@ export function getNameWithTypeParameter(
 ///////
 
 export function isCustomType(type: string): boolean {
-  if (['Iterable', 'Promise', 'ArrayBufferView', 'ArrayBuffer', 'T'].includes(type)) return false;
+  if (['Iterable', 'Promise', 'ArrayBufferView', 'ArrayBuffer', 'T', 'Record'].includes(type)) return false;
   return type[0] === type[0].toUpperCase();
 }
 

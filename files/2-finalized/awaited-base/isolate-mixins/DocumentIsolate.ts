@@ -3,8 +3,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IDocumentIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
-import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
-import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
+import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
@@ -137,8 +136,8 @@ export default class DocumentIsolate implements IDocumentIsolate {
 
   // methods
 
-  public exitFullscreen(): Promise<Promise<void>> {
-    return awaitedHandler.runMethod<Promise<void>>(this, 'exitFullscreen', []);
+  public exitFullscreen(): Promise<void> {
+    return awaitedHandler.runMethod<void>(this, 'exitFullscreen', []);
   }
 
   public exitPointerLock(): Promise<void> {

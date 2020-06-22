@@ -4,14 +4,13 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { INode } from '../interfaces/official';
+import { INode, IGetRootNodeOptions } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
-import { IGetRootNodeOptions } from '../interfaces/basic';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INode, INodeProperties>();
 export const awaitedHandler = new AwaitedHandler<INode>('Node', getState, setState);
-export const nodeAttacher = new NodeAttacher<INode>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<INode>(getState, setState, awaitedHandler);
 
 export function NodeGenerator() {
   return class Node implements INode, PromiseLike<INode> {
@@ -127,8 +126,8 @@ export function NodeGenerator() {
       return awaitedHandler.runMethod<boolean>(this, 'contains', [other]);
     }
 
-    public getRootNode(options?: IGetRootNodeOptions): Promise<ISuperNode> {
-      return awaitedHandler.runMethod<ISuperNode>(this, 'getRootNode', [options]);
+    public getRootNode(options?: IGetRootNodeOptions): ISuperNode {
+      throw new Error('Node.getRootNode not implemented');
     }
 
     public hasChildNodes(): Promise<boolean> {

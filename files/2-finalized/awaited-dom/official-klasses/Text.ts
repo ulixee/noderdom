@@ -9,6 +9,6 @@ const TextBaseClass = TextGenerator(CharacterData);
 
 export default class Text extends TextBaseClass implements IText {
   constructor(_data?: string) {
-    super();
+    super(_data);
   }
 }

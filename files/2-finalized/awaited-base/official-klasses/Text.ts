@@ -14,7 +14,7 @@ export const awaitedHandler = new AwaitedHandler<IText>('Text', getState, setSta
 export function TextGenerator(CharacterData: Constructable<ICharacterData>) {
   return class Text extends CharacterData implements IText {
     constructor(_data?: string) {
-      super();
+      super(_data);
       initializeConstantsAndProperties<Text>(this, TextConstantKeys, TextPropertyKeys);
     }
 

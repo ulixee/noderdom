@@ -5,16 +5,15 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IDocument, INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../interfaces/official';
+import { IDocument, INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
-import { IDocumentReadyState, IVisibilityState } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocument>('Document', getState, setState);
-export const nodeAttacher = new NodeAttacher<IDocument>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IDocument>(getState, setState, awaitedHandler);
 
 export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
@@ -156,8 +155,8 @@ export function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constr
 
     // methods
 
-    public exitFullscreen(): Promise<Promise<void>> {
-      return awaitedHandler.runMethod<Promise<void>>(this, 'exitFullscreen', []);
+    public exitFullscreen(): Promise<void> {
+      return awaitedHandler.runMethod<void>(this, 'exitFullscreen', []);
     }
 
     public exitPointerLock(): Promise<void> {

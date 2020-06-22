@@ -30,11 +30,12 @@ interfaces.forEach(i => {
   const name = i.name;
   const fromMDN = fetchFromMDN(name);
   if (!fromMDN) {
-    // console.log('\n');
-    // console.log(''.padEnd(150, '='));
-    // console.log(`${name} `.padEnd(150, '='));
-    // console.log('');
-    // console.log(`MISSING DOCUMENTATION :(`);
+    console.log('\n');
+    console.log(''.padEnd(150, '='));
+    console.log(`${name} `.padEnd(150, '='));
+    console.log('');
+    console.log(`MISSING DOCUMENTATION :(`);
+    console.log(''.padEnd(150, '='));
     return;
   }
 
@@ -42,10 +43,8 @@ interfaces.forEach(i => {
   const dbMethods = db.prepare('SELECT * FROM methods WHERE interfaceName=?').all([name]);
 
   interfaceCount += 1;
-  // console.log(fromMDN);
+  console.log('MDN -> %s', name);
   injectMissingMDNData(name, fromMDN, dbProperties, dbMethods);
-  // console.log('---------------')
-  // console.log(fromMDN)
   const mdnChromePropertyNames = extractValidPropertyNames(fromMDN, dbProperties);
   const mdnChromeMethodNames = extractValidMethodNames(fromMDN, dbMethods);
 

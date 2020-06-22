@@ -10,6 +10,6 @@ const SuperTextBaseClass = SuperTextGenerator(CharacterDataIsolate, NodeIsolate)
 
 export default class SuperText extends SuperTextBaseClass implements ISuperText {
   constructor(_data?: string) {
-    super();
+    super(_data);
   }
 }

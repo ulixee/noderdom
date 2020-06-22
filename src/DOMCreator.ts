@@ -61,18 +61,12 @@ export default class DOMCreator {
     const isolateInterfaces = domType === DomType.awaited ? tsBuilder.extractIsolateInterfaces() : [];
     const superInterfaces = domType === DomType.awaited ? tsBuilder.extractSuperInterfaces() : [];
 
-    // basic interfaces
-    const basicTypesCode = basicTypes.map(t => t.code).filter(x => x);
-    const basicTypesOutput = [DOMCreator.outputIntro, basicTypesCode.join('\n\n')].join('');
-    Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.basic}.ts`, basicTypesOutput);
-
     // official interfaces
-    const officialInterfaceImports = tsBuilder.extractOfficialInterfaceImports();
-    const officialInterfaceCode = this.stringifyInterfaceCodeModules(
-      DOMCreator.outputIntro,
-      officialInterfaceImports,
-      officialInterfaces,
-    );
+    const officialInterfaceImports = tsBuilder.extractOfficialInterfaceImports(basicTypes);
+    const officialInterfaceCode = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, officialInterfaceImports, [
+      ...basicTypes,
+      ...officialInterfaces,
+    ]);
     Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.official}.ts`, officialInterfaceCode);
 
     // element interfaces

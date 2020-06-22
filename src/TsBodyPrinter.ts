@@ -163,7 +163,7 @@ export default class TsBodyPrinter {
       this.printer.printLine(`constructor(${args}) {`);
       this.printer.increaseIndent();
       if (isChildClass) {
-        this.printer.printLine(`super();`);
+        this.printer.printLine(`super(${signature ? ParamUtils.paramNames(signature.params!, true).join(', ') : ''});`);
       }
       if (this.buildType === BuildType.base) {
         this.printer.printLine(
@@ -174,7 +174,7 @@ export default class TsBodyPrinter {
           this.printer.increaseIndent();
           this.printer.printLine(`createInstanceName: 'create${i.name}',`);
           // if iterable
-          if (this.iteratorExtractor.hasIterable()) {
+          if (this.iteratorExtractor.hasIterable() && !this.iteratorExtractor.hasMaplikeSequence) {
             this.printer.printLine(
               `createIterableName: 'create${this.iteratorExtractor.getIteratableInterface().substr(1)}',`,
             );
@@ -336,7 +336,7 @@ export default class TsBodyPrinter {
     if (this.domType === DomType.awaited) {
       if (isAbstract) {
         mType = mType.replace(' | null', '');
-      } else {
+      } else if (!mType.startsWith('Promise<')) {
         mType = `Promise<${mType}>`;
       }
     }
@@ -350,6 +350,8 @@ export default class TsBodyPrinter {
     if (this.domType === DomType.awaited) {
       if (isAbstract) {
         mType = mType.replace(' | null', '');
+      } else if (mType.startsWith('Promise<')) {
+        mType = mType.replace(/Promise<(\w+)>/, '$1');
       }
     }
     return mType;
@@ -378,7 +380,7 @@ export default class TsBodyPrinter {
       if (isAbstract) {
         pType = pType.replace(' | null', '');
       } else {
-        pType = `Promise<${pType}>`;
+        pType = pType.startsWith('Promise<') ? pType : `Promise<${pType}>`;
         const isReadonly = p.readOnly === 1;
         if (!isReadonly) {
           pType += ' | any';

@@ -20,8 +20,8 @@ export function HTMLCollectionGenerator(HTMLCollectionBase: Constructable<IHTMLC
 
     // methods
 
-    public namedItem(name: string): Promise<ISuperElement | null> {
-      return awaitedHandler.runMethod<ISuperElement | null>(this, 'namedItem', [name]);
+    public namedItem(name: string): ISuperElement {
+      throw new Error('HTMLCollection.namedItem not implemented');
     }
   };
 }

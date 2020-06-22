@@ -3,7 +3,85 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperNode, ISuperDocument, ISuperText } from './super';
-import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './basic';
+
+export type IDocumentReadyState = 'complete' | 'interactive' | 'loading';
+
+export type IEndingType = 'native' | 'transparent';
+
+export type IFullscreenNavigationUI = 'auto' | 'hide' | 'show';
+
+export type IReferrerPolicy = '' | 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'same-origin' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'unsafe-url';
+
+export type IRequestCache = 'default' | 'force-cache' | 'no-cache' | 'no-store' | 'only-if-cached' | 'reload';
+
+export type IRequestCredentials = 'include' | 'omit' | 'same-origin';
+
+export type IRequestDestination = '' | 'audio' | 'audioworklet' | 'document' | 'embed' | 'font' | 'frame' | 'iframe' | 'image' | 'manifest' | 'object' | 'paintworklet' | 'report' | 'script' | 'sharedworker' | 'style' | 'track' | 'video' | 'worker' | 'xslt';
+
+export type IRequestMode = 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+
+export type IRequestRedirect = 'error' | 'follow' | 'manual';
+
+export type IResponseType = 'basic' | 'cors' | 'default' | 'error' | 'opaque' | 'opaqueredirect';
+
+export type IScrollBehavior = 'auto' | 'smooth';
+
+export type IScrollLogicalPosition = 'center' | 'end' | 'nearest' | 'start';
+
+export type IVisibilityState = 'hidden' | 'prerender' | 'visible';
+
+export type IBufferSource = ArrayBufferView | ArrayBuffer;
+
+export type IBlobPart = IBufferSource | IBlob | string;
+
+export type IHeadersInit = Iterable<Iterable<string>> | Record<string, string>;
+
+export type IBodyInit = IBufferSource | string;
+
+export type IRequestInfo = IRequest | string;
+
+export interface IBlobPropertyBag {
+  endings?: IEndingType;
+  type?: string;
+}
+
+export interface IFullscreenOptions {
+  navigationUI?: IFullscreenNavigationUI;
+}
+
+export interface IGetRootNodeOptions {
+  composed?: boolean;
+}
+
+export interface IRequestInit {
+  body?: IBodyInit | null;
+  cache?: IRequestCache;
+  credentials?: IRequestCredentials;
+  headers?: IHeadersInit;
+  integrity?: string;
+  keepalive?: boolean;
+  method?: string;
+  mode?: IRequestMode;
+  redirect?: IRequestRedirect;
+  referrer?: string;
+  referrerPolicy?: IReferrerPolicy;
+  window?: any;
+}
+
+export interface IResponseInit {
+  headers?: IHeadersInit;
+  status?: number;
+  statusText?: string;
+}
+
+export interface IScrollIntoViewOptions extends IScrollOptions {
+  block?: IScrollLogicalPosition;
+  inline?: IScrollLogicalPosition;
+}
+
+export interface IScrollOptions {
+  behavior?: IScrollBehavior;
+}
 
 // Attr //////////
 
@@ -15,6 +93,29 @@ export interface IAttr extends INode {
   readonly prefix: Promise<string | null>;
   readonly specified: Promise<boolean>;
   readonly value: Promise<string>;
+}
+
+// Blob //////////
+
+export interface IBlob {
+  // constructor(blobParts?: Iterable<IBlobPart>, options?: IBlobPropertyBag)
+
+  readonly size: Promise<number>;
+  readonly type: Promise<string>;
+
+  arrayBuffer(): Promise<ArrayBuffer>;
+  slice(start?: number, end?: number, contentType?: string): Promise<IBlob>;
+  text(): Promise<string>;
+}
+
+// Body //////////
+
+export interface IBody {
+  readonly bodyUsed: Promise<boolean>;
+
+  arrayBuffer(): Promise<ArrayBuffer>;
+  json(): Promise<any>;
+  text(): Promise<string>;
 }
 
 // CharacterData //////////
@@ -36,11 +137,22 @@ export interface IDOMImplementation {
 
 export interface IDOMRect {
   // constructor(x?: number, y?: number, width?: number, height?: number)
+
+  readonly height: Promise<number>;
+  readonly width: Promise<number>;
+  readonly x: Promise<number>;
+  readonly y: Promise<number>;
 }
 
 // DOMRectList //////////
 
-export interface IDOMRectList {}
+export interface IDOMRectList {
+  readonly length: Promise<number>;
+
+  item(index: number): IDOMRect;
+
+  [Symbol.iterator](): IterableIterator<IDOMRect>;
+}
 
 // DOMTokenList //////////
 
@@ -81,7 +193,7 @@ export interface IDocument extends INode, INode, IParentNode {
   readonly title: Promise<string>;
   readonly visibilityState: Promise<IVisibilityState>;
 
-  exitFullscreen(): Promise<Promise<void>>;
+  exitFullscreen(): Promise<void>;
   exitPointerLock(): Promise<void>;
   getElementsByClassName(classNames: string): ISuperHTMLCollection;
   getElementsByName(elementName: string): ISuperNodeList;
@@ -123,7 +235,7 @@ export interface IElement extends INode, INode, IParentNode {
   readonly slot: Promise<string>;
   readonly tagName: Promise<string>;
 
-  closest(selectors: string): Promise<ISuperElement | null>;
+  closest(selectors: string): ISuperElement;
   getAttribute(qualifiedName: string): Promise<string | null>;
   getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
   getAttributeNames(): Promise<Iterable<string>>;
@@ -139,7 +251,7 @@ export interface IElement extends INode, INode, IParentNode {
   hasAttributes(): Promise<boolean>;
   hasPointerCapture(pointerId: number): Promise<boolean>;
   matches(selectors: string): Promise<boolean>;
-  requestFullscreen(options?: IFullscreenOptions): Promise<Promise<void>>;
+  requestFullscreen(options?: IFullscreenOptions): Promise<void>;
   requestPointerLock(): Promise<void>;
   scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void>;
 }
@@ -151,7 +263,7 @@ export interface IFeaturePolicy {}
 // HTMLCollection //////////
 
 export interface IHTMLCollection extends IHTMLCollectionBase {
-  namedItem(name: string): Promise<ISuperElement | null>;
+  namedItem(name: string): ISuperElement;
 }
 
 // HTMLCollectionBase //////////
@@ -169,6 +281,24 @@ export interface IHTMLCollectionBase {
 export interface IHTMLOrSVGElement {
   blur(): Promise<void>;
   focus(): Promise<void>;
+}
+
+// Headers //////////
+
+export interface IHeaders {
+  // constructor(init?: IHeadersInit)
+
+  append(name: string, value: string): Promise<void>;
+  delete(name: string): Promise<void>;
+  get(name: string): Promise<string | null>;
+  has(name: string): Promise<boolean>;
+  set(name: string, value: string): Promise<void>;
+
+  forEach(callbackfn: (value: string, key: string, parent: IHeaders) => void, thisArg?: any): Promise<void>;
+  entries(): Promise<IterableIterator<[string, string]>>;
+  keys(): Promise<IterableIterator<string>>;
+  values(): Promise<IterableIterator<string>>;
+  [Symbol.iterator](): IterableIterator<[string, string]>;
 }
 
 // Location //////////
@@ -241,7 +371,7 @@ export interface INode {
 
   compareDocumentPosition(other: ISuperNode): Promise<number>;
   contains(other: ISuperNode | null): Promise<boolean>;
-  getRootNode(options?: IGetRootNodeOptions): Promise<ISuperNode>;
+  getRootNode(options?: IGetRootNodeOptions): ISuperNode;
   hasChildNodes(): Promise<boolean>;
   isDefaultNamespace(namespace: string | null): Promise<boolean>;
   isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
@@ -256,7 +386,7 @@ export interface INode {
 export interface INodeList {
   readonly length: Promise<number>;
 
-  item(index: number): Promise<ISuperNode | null>;
+  item(index: number): ISuperNode;
 
   forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeList) => void, thisArg?: any): Promise<void>;
   entries(): Promise<IterableIterator<[number, ISuperNode]>>;
@@ -275,6 +405,41 @@ export interface IParentNode {
 
   querySelector(selectors: string): ISuperElement;
   querySelectorAll(selectors: string): ISuperNodeList;
+}
+
+// Request //////////
+
+export interface IRequest extends IBody {
+  // constructor(input: IRequestInfo, init?: IRequestInit)
+
+  readonly cache: Promise<IRequestCache>;
+  readonly credentials: Promise<IRequestCredentials>;
+  readonly destination: Promise<IRequestDestination>;
+  readonly headers: IHeaders;
+  readonly integrity: Promise<string>;
+  readonly isHistoryNavigation: Promise<boolean>;
+  readonly isReloadNavigation: Promise<boolean>;
+  readonly keepalive: Promise<boolean>;
+  readonly method: Promise<string>;
+  readonly mode: Promise<IRequestMode>;
+  readonly redirect: Promise<IRequestRedirect>;
+  readonly referrer: Promise<string>;
+  readonly referrerPolicy: Promise<IReferrerPolicy>;
+  readonly url: Promise<string>;
+}
+
+// Response //////////
+
+export interface IResponse extends IBody {
+  // constructor(body?: IBodyInit | null, init?: IResponseInit)
+
+  readonly headers: IHeaders;
+  readonly ok: Promise<boolean>;
+  readonly redirected: Promise<boolean>;
+  readonly status: Promise<number>;
+  readonly statusText: Promise<string>;
+  readonly type: Promise<IResponseType>;
+  readonly url: Promise<string>;
 }
 
 // ShadowRoot //////////

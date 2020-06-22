@@ -483,7 +483,8 @@
         "isEnabled": false
       },
       "closest": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "computedStyleMap": {
         "isEnabled": false
@@ -614,10 +615,12 @@
     },
     "methodsByName": {
       "namedItem": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "item": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -720,7 +723,8 @@
         "isEnabled": true
       },
       "getRootNode": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "hasChildNodes": {
         "isEnabled": true
@@ -773,7 +777,8 @@
     },
     "methodsByName": {
       "item": {
-        "isEnabled": true
+        "isEnabled": true,
+        "isAbstract": true
       },
       "entries": {
         "isEnabled": true
@@ -1686,20 +1691,16 @@
     "isEnabled": true,
     "propertiesByName": {
       "height": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": true
       },
       "width": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": true
       },
       "x": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": true
       },
       "y": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": true
       }
     },
     "methodsByName": {
@@ -1778,9 +1779,29 @@
     "methodsByName": {}
   },
   "Blob": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "size": {
+        "isEnabled": true
+      },
+      "type": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "arrayBuffer": {
+        "isEnabled": true
+      },
+      "slice": {
+        "isEnabled": true
+      },
+      "stream": {
+        "isEnabled": false
+      },
+      "text": {
+        "isEnabled": true
+      }
+    }
   },
   "File": {
     "isEnabled": false,
@@ -1863,13 +1884,13 @@
     "isEnabled": true,
     "propertiesByName": {
       "length": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": true
       }
     },
     "methodsByName": {
       "item": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -2025,6 +2046,171 @@
     "methodsByName": {}
   },
   "XPathEvaluatorBase": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "Request": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "cache": {
+        "isEnabled": true
+      },
+      "credentials": {
+        "isEnabled": true
+      },
+      "destination": {
+        "isEnabled": true
+      },
+      "headers": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "integrity": {
+        "isEnabled": true
+      },
+      "isHistoryNavigation": {
+        "isEnabled": true
+      },
+      "isReloadNavigation": {
+        "isEnabled": true
+      },
+      "keepalive": {
+        "isEnabled": true
+      },
+      "method": {
+        "isEnabled": true
+      },
+      "mode": {
+        "isEnabled": true
+      },
+      "redirect": {
+        "isEnabled": true
+      },
+      "referrer": {
+        "isEnabled": true
+      },
+      "referrerPolicy": {
+        "isEnabled": true
+      },
+      "signal": {
+        "isEnabled": false
+      },
+      "url": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "clone": {
+        "isEnabled": false
+      }
+    }
+  },
+  "Response": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "headers": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "ok": {
+        "isEnabled": true
+      },
+      "redirected": {
+        "isEnabled": true
+      },
+      "status": {
+        "isEnabled": true
+      },
+      "statusText": {
+        "isEnabled": true
+      },
+      "type": {
+        "isEnabled": true
+      },
+      "url": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "clone": {
+        "isEnabled": false
+      },
+      "error": {
+        "isEnabled": false
+      },
+      "redirect": {
+        "isEnabled": false
+      }
+    }
+  },
+  "Body": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "body": {
+        "isEnabled": false
+      },
+      "bodyUsed": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "arrayBuffer": {
+        "isEnabled": true
+      },
+      "blob": {
+        "isEnabled": false
+      },
+      "formData": {
+        "isEnabled": false
+      },
+      "json": {
+        "isEnabled": true
+      },
+      "text": {
+        "isEnabled": true
+      }
+    }
+  },
+  "Headers": {
+    "isEnabled": true,
+    "propertiesByName": {},
+    "methodsByName": {
+      "append": {
+        "isEnabled": true
+      },
+      "delete": {
+        "isEnabled": true
+      },
+      "get": {
+        "isEnabled": true
+      },
+      "has": {
+        "isEnabled": true
+      },
+      "set": {
+        "isEnabled": true
+      },
+      "entries": {
+        "isEnabled": true
+      },
+      "keys": {
+        "isEnabled": true
+      },
+      "values": {
+        "isEnabled": true
+      },
+      "forEach": {
+        "isEnabled": true
+      }
+    }
+  },
+  "CSSStyleValue": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "FormData": {
     "isEnabled": false,
     "propertiesByName": {},
     "methodsByName": {}

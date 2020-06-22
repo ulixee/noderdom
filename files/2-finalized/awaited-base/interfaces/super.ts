@@ -3,8 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { INodeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, ITextIsolate, IHTMLCollectionBaseIsolate } from './isolate';
-import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IHTMLOrSVGElement, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from './official';
-import { IDocumentReadyState, IVisibilityState, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './basic';
+import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, IHTMLOrSVGElement, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './official';
 
 // SuperDocument //////////
 
@@ -41,7 +40,7 @@ export interface ISuperDocument extends INodeIsolate, IParentNode {
   readonly title: Promise<string>;
   readonly visibilityState: Promise<IVisibilityState>;
 
-  exitFullscreen(): Promise<Promise<void>>;
+  exitFullscreen(): Promise<void>;
   exitPointerLock(): Promise<void>;
   getElementsByClassName(classNames: string): ISuperHTMLCollection;
   getElementsByName(elementName: string): ISuperNodeList;
@@ -75,7 +74,7 @@ export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHT
   readonly slot: Promise<string>;
   readonly tagName: Promise<string>;
 
-  closest(selectors: string): Promise<ISuperElement | null>;
+  closest(selectors: string): ISuperElement;
   getAttribute(qualifiedName: string): Promise<string | null>;
   getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
   getAttributeNames(): Promise<Iterable<string>>;
@@ -91,7 +90,7 @@ export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHT
   hasAttributes(): Promise<boolean>;
   hasPointerCapture(pointerId: number): Promise<boolean>;
   matches(selectors: string): Promise<boolean>;
-  requestFullscreen(options?: IFullscreenOptions): Promise<Promise<void>>;
+  requestFullscreen(options?: IFullscreenOptions): Promise<void>;
   requestPointerLock(): Promise<void>;
   scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void>;
 }
@@ -135,7 +134,7 @@ export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocume
 
   compareDocumentPosition(other: ISuperNode): Promise<number>;
   contains(other: ISuperNode | null): Promise<boolean>;
-  getRootNode(options?: IGetRootNodeOptions): Promise<ISuperNode>;
+  getRootNode(options?: IGetRootNodeOptions): ISuperNode;
   hasChildNodes(): Promise<boolean>;
   isDefaultNamespace(namespace: string | null): Promise<boolean>;
   isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
@@ -150,7 +149,7 @@ export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocume
 export interface ISuperNodeList {
   readonly length: Promise<number>;
 
-  item(index: number): Promise<ISuperNode | null>;
+  item(index: number): ISuperNode;
 
   forEach(callbackfn: (value: ISuperNode, key: number, parent: ISuperNodeList) => void, thisArg?: any): Promise<void>;
   entries(): Promise<IterableIterator<[number, ISuperNode]>>;
@@ -162,7 +161,7 @@ export interface ISuperNodeList {
 // SuperHTMLCollection //////////
 
 export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate {
-  namedItem(name: string): Promise<ISuperElement | null>;
+  namedItem(name: string): ISuperElement;
 
   [Symbol.iterator](): IterableIterator<ISuperElement>;
 }

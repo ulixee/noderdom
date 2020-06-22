@@ -4774,5 +4774,77 @@
     "isDocumented": true,
     "isOnMDN": true,
     "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "WindowOrWorkerGlobalScope",
+    "filename": "en-US:docs:Web:API:WindowOrWorkerGlobalScope.html",
+    "urlPath": "/en-US/docs/Web/API/WindowOrWorkerGlobalScope",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": false,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "FormData",
+    "filename": "en-US:docs:Web:API:FormData.html",
+    "urlPath": "/en-US/docs/Web/API/FormData",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": false,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "Request",
+    "filename": "en-US:docs:Web:API:Request.html",
+    "urlPath": "/en-US/docs/Web/API/Request",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": false,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "Response",
+    "filename": "en-US:docs:Web:API:Response.html",
+    "urlPath": "/en-US/docs/Web/API/Response",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": true,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "Body",
+    "filename": "en-US:docs:Web:API:Body.html",
+    "urlPath": "/en-US/docs/Web/API/Body",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": true,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "Headers",
+    "filename": "en-US:docs:Web:API:Headers.html",
+    "urlPath": "/en-US/docs/Web/API/Headers",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": true,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
   }
 ]

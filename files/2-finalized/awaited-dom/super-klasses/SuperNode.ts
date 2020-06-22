@@ -1,5 +1,6 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../../awaited-base/interfaces/super';
+import { IGetRootNodeOptions } from '../../awaited-base/interfaces/official';
 import { SuperNodeGenerator, ISuperNodeProperties } from '../../awaited-base/super-klasses/SuperNode';
 import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';
 import AttrIsolate from '../isolate-mixins/AttrIsolate';
@@ -64,5 +65,12 @@ export default class SuperNode extends SuperNodeBaseClass implements ISuperNode 
   public get previousSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
+  }
+
+  // methods
+
+  public getRootNode(options?: IGetRootNodeOptions): ISuperNode {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperNode(awaitedPath.addMethod('getRootNode', options), awaitedOptions);
   }
 }

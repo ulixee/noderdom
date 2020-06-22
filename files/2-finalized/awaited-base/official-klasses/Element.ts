@@ -5,16 +5,15 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
+import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
-import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
-export const nodeAttacher = new NodeAttacher<IElement>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IElement>(getState, setState, awaitedHandler);
 
 export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
   const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
@@ -116,8 +115,8 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
 
     // methods
 
-    public closest(selectors: string): Promise<ISuperElement | null> {
-      return awaitedHandler.runMethod<ISuperElement | null>(this, 'closest', [selectors]);
+    public closest(selectors: string): ISuperElement {
+      throw new Error('Element.closest not implemented');
     }
 
     public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -180,8 +179,8 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
       return awaitedHandler.runMethod<boolean>(this, 'matches', [selectors]);
     }
 
-    public requestFullscreen(options?: IFullscreenOptions): Promise<Promise<void>> {
-      return awaitedHandler.runMethod<Promise<void>>(this, 'requestFullscreen', [options]);
+    public requestFullscreen(options?: IFullscreenOptions): Promise<void> {
+      return awaitedHandler.runMethod<void>(this, 'requestFullscreen', [options]);
     }
 
     public requestPointerLock(): Promise<void> {

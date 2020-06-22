@@ -18,6 +18,7 @@ interface IDeclarationMethod {
 }
 
 export default class TsIteratorExtractor {
+  public hasMaplikeSequence: boolean = false;
   public readonly methodNames: string[] = [];
   private readonly i: Types.Interface;
   private readonly hasForEach: boolean;
@@ -65,6 +66,8 @@ export default class TsIteratorExtractor {
         keyType = 'number';
       }
 
+      this.hasMaplikeSequence = subtypes.length === 2 && keyType === 'string';
+
       this.declarationMethods = [
         {
           name: 'entries',
@@ -109,7 +112,7 @@ export default class TsIteratorExtractor {
     const i: Types.Interface = this.i;
     const iType = toIType(i.name);
     const name = i.typeParameters ? `${iType}<${i.typeParameters!.map(p => p.name).join(', ')}>` : iType;
-    return `export const awaitedIterator = new AwaitedIterator<${name}, ${iteratorType}>(getState, ${handlerName});`;
+    return `export const awaitedIterator = new AwaitedIterator<${name}, ${iteratorType}>(getState, setState, ${handlerName});`;
   }
 
   public run(printMethod: (m: Types.Method) => void) {
@@ -160,7 +163,7 @@ export default class TsIteratorExtractor {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public [Symbol.iterator](): ${returnType} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();`);
+        this.printer.printLine(`  return awaitedIterator.iterateAttached(this)[Symbol.iterator]();`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }
@@ -183,9 +186,8 @@ export default class TsIteratorExtractor {
       this.printer.printLine(`public async forEach(callbackfn: (${args}) => void, thisArg?: any): Promise<void> {`);
       if (this.buildType === BuildType.base) {
         this.printer.increaseIndent();
-        this.printer.printLine(`const array = await awaitedIterator.toArray(this);`);
-        this.printer.printLine(`for (let i = 0; i < array.length; i += 1) {`);
-        this.printer.printLine(`  callbackfn.call(thisArg, array[i], i, this);`);
+        this.printer.printLine(`for (const [key, value] of await this.entries()) {`);
+        this.printer.printLine(`  callbackfn.call(thisArg, value, key, this);`);
         this.printer.printLine('}');
         this.printer.decreaseIndent();
       } else {
@@ -256,7 +258,8 @@ export default class TsIteratorExtractor {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public ${m.name}(): ${m.definition} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  return awaitedIterator.toArray(this).then(x => x.${m.name}());`);
+        const loadConvertor = this.hasMaplikeSequence ? 'new Map(x)' : 'x';
+        this.printer.printLine(`  return awaitedIterator.load(this).then(x => ${loadConvertor}.${m.name}());`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }

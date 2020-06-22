@@ -1,8 +1,8 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IElement, INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../awaited-base/interfaces/official';
-import { ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
+import { ISuperElement, ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
 import { ElementGenerator, IElementProperties } from '../../awaited-base/official-klasses/Element';
-import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperHTMLCollection } from '../create';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createSuperHTMLCollection } from '../create';
 import Node from './Node';
 import ParentNode from '../official-mixins/ParentNode';
 
@@ -38,6 +38,11 @@ export default class Element extends ElementBaseClass implements IElement {
   }
 
   // methods
+
+  public closest(selectors: string): ISuperElement {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperElement(awaitedPath.addMethod('closest', selectors), awaitedOptions);
+  }
 
   public getElementsByClassName(classNames: string): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
