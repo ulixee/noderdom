@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { INodeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, ITextIsolate, IHTMLCollectionBaseIsolate } from './isolate';
-import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, IHTMLOrSVGElement, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './official';
+import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, IHTMLOrSVGElement, INonDocumentTypeChildNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './official';
 
 // SuperDocument //////////
 
@@ -51,7 +51,7 @@ export interface ISuperDocument extends INodeIsolate, IParentNode {
 
 // SuperElement //////////
 
-export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, IParentNode {
+export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, INonDocumentTypeChildNode, IParentNode {
   readonly attributes: INamedNodeMap;
   readonly classList: IDOMTokenList;
   readonly className: Promise<string>;
@@ -97,7 +97,7 @@ export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHT
 
 // SuperNode //////////
 
-export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, IParentNode, ITextIsolate {
+export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, INonDocumentTypeChildNode, IParentNode, ITextIsolate {
   readonly ATTRIBUTE_NODE: number;
   readonly CDATA_SECTION_NODE: number;
   readonly COMMENT_NODE: number;
@@ -168,7 +168,7 @@ export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate {
 
 // SuperText //////////
 
-export interface ISuperText extends ICharacterDataIsolate, INodeIsolate {
+export interface ISuperText extends ICharacterDataIsolate, INodeIsolate, INonDocumentTypeChildNode {
   // constructor(data?: string)
 
   readonly wholeText: Promise<string>;
@@ -178,7 +178,7 @@ export interface ISuperText extends ICharacterDataIsolate, INodeIsolate {
 
 // SuperCharacterData //////////
 
-export interface ISuperCharacterData extends ICharacterDataIsolate, INodeIsolate, ITextIsolate {
+export interface ISuperCharacterData extends ICharacterDataIsolate, INodeIsolate, INonDocumentTypeChildNode, ITextIsolate {
   readonly data: Promise<string>;
   readonly length: Promise<number>;
 
@@ -193,7 +193,7 @@ export interface ISuperStyleSheet {}
 
 // SuperHTMLElement //////////
 
-export interface ISuperHTMLElement extends IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, IParentNode {
+export interface ISuperHTMLElement extends IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, INonDocumentTypeChildNode, IParentNode {
   readonly accessKey: Promise<string>;
   readonly autoCapitalize: Promise<string>;
   readonly dir: Promise<string>;

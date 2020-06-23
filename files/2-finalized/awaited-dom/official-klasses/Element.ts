@@ -4,11 +4,12 @@ import { ISuperElement, ISuperHTMLCollection } from '../../awaited-base/interfac
 import { ElementGenerator, IElementProperties } from '../../awaited-base/official-klasses/Element';
 import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createSuperHTMLCollection } from '../create';
 import Node from './Node';
+import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNode';
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElement, IElementProperties>();
-const ElementBaseClass = ElementGenerator(Node, ParentNode);
+const ElementBaseClass = ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode);
 
 export default class Element extends ElementBaseClass implements IElement {
   constructor() {

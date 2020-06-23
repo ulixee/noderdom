@@ -120,7 +120,7 @@ export interface IBody {
 
 // CharacterData //////////
 
-export interface ICharacterData extends INode, INode {
+export interface ICharacterData extends INode, INode, INonDocumentTypeChildNode {
   readonly data: Promise<string>;
   readonly length: Promise<number>;
 
@@ -212,7 +212,7 @@ export interface IDocumentType extends INode, INode {
 
 // Element //////////
 
-export interface IElement extends INode, INode, IParentNode {
+export interface IElement extends INode, INode, INonDocumentTypeChildNode, IParentNode {
   readonly attributes: INamedNodeMap;
   readonly classList: IDOMTokenList;
   readonly className: Promise<string>;
@@ -393,6 +393,13 @@ export interface INodeList {
   keys(): Promise<IterableIterator<number>>;
   values(): Promise<IterableIterator<ISuperNode>>;
   [Symbol.iterator](): IterableIterator<ISuperNode>;
+}
+
+// NonDocumentTypeChildNode //////////
+
+export interface INonDocumentTypeChildNode {
+  readonly nextElementSibling: ISuperElement;
+  readonly previousElementSibling: ISuperElement;
 }
 
 // ParentNode //////////

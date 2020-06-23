@@ -795,8 +795,17 @@
     }
   },
   "NonDocumentTypeChildNode": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "nextElementSibling": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "previousElementSibling": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "ParentNode": {

@@ -7,16 +7,18 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperText } from '../interfaces/super';
 import { ICharacterDataIsolate, INodeIsolate } from '../interfaces/isolate';
+import { INonDocumentTypeChildNode } from '../interfaces/official';
 import { ICharacterDataIsolateProperties, CharacterDataIsolatePropertyKeys, CharacterDataIsolateConstantKeys } from '../isolate-mixins/CharacterDataIsolate';
 import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKeys } from '../isolate-mixins/NodeIsolate';
+import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperText, ISuperTextProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperText>('SuperText', getState, setState);
 export const nodeAttacher = new NodeAttacher<ISuperText>(getState, setState, awaitedHandler);
 
-export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>) {
-  const Parent = (ClassMixer(CharacterDataIsolate, [NodeIsolate]) as unknown) as Constructable<ICharacterDataIsolate & INodeIsolate>;
+export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>) {
+  const Parent = (ClassMixer(CharacterDataIsolate, [NodeIsolate, NonDocumentTypeChildNode]) as unknown) as Constructable<ICharacterDataIsolate & INodeIsolate & INonDocumentTypeChildNode>;
 
   return class SuperText extends Parent implements ISuperText, PromiseLike<ISuperText> {
     constructor(_data?: string) {
@@ -47,12 +49,12 @@ export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacte
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperTextProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties {
+export interface ISuperTextProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   readonly wholeText?: Promise<string>;
 }
 
-export const SuperTextPropertyKeys = [...CharacterDataIsolatePropertyKeys, ...NodeIsolatePropertyKeys, 'wholeText'];
+export const SuperTextPropertyKeys = [...CharacterDataIsolatePropertyKeys, ...NodeIsolatePropertyKeys, ...NonDocumentTypeChildNodePropertyKeys, 'wholeText'];
 
-export const SuperTextConstantKeys = [...CharacterDataIsolateConstantKeys, ...NodeIsolateConstantKeys];
+export const SuperTextConstantKeys = [...CharacterDataIsolateConstantKeys, ...NodeIsolateConstantKeys, ...NonDocumentTypeChildNodeConstantKeys];

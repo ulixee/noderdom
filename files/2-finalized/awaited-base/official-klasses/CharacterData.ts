@@ -2,18 +2,22 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { ICharacterData, INode } from '../interfaces/official';
+import { ICharacterData, INode, INonDocumentTypeChildNode } from '../interfaces/official';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
+import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ICharacterData, ICharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ICharacterData>('CharacterData', getState, setState);
 export const nodeAttacher = new NodeAttacher<ICharacterData>(getState, setState, awaitedHandler);
 
-export function CharacterDataGenerator(Node: Constructable<INode>) {
-  return class CharacterData extends Node implements ICharacterData, PromiseLike<ICharacterData> {
+export function CharacterDataGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>) {
+  const Parent = (ClassMixer(Node, [NonDocumentTypeChildNode]) as unknown) as Constructable<INode & INonDocumentTypeChildNode>;
+
+  return class CharacterData extends Parent implements ICharacterData, PromiseLike<ICharacterData> {
     constructor() {
       super();
       initializeConstantsAndProperties<CharacterData>(this, CharacterDataConstantKeys, CharacterDataPropertyKeys);
@@ -46,13 +50,13 @@ export function CharacterDataGenerator(Node: Constructable<INode>) {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ICharacterDataProperties extends INodeProperties {
+export interface ICharacterDataProperties extends INodeProperties, INonDocumentTypeChildNodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   readonly data?: Promise<string>;
   readonly length?: Promise<number>;
 }
 
-export const CharacterDataPropertyKeys = [...NodePropertyKeys, 'data', 'length'];
+export const CharacterDataPropertyKeys = [...NodePropertyKeys, ...NonDocumentTypeChildNodePropertyKeys, 'data', 'length'];
 
-export const CharacterDataConstantKeys = [...NodeConstantKeys];
+export const CharacterDataConstantKeys = [...NodeConstantKeys, ...NonDocumentTypeChildNodeConstantKeys];

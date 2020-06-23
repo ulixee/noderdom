@@ -9,11 +9,12 @@ import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
 import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
 import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
 import NodeIsolate from '../isolate-mixins/NodeIsolate';
+import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNode';
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
-const SuperElementBaseClass = SuperElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode);
+const SuperElementBaseClass = SuperElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, NonDocumentTypeChildNode, ParentNode);
 
 export default class SuperElement extends SuperElementBaseClass implements ISuperElement {
   constructor() {

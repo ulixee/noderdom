@@ -13,12 +13,13 @@ import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
 import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
 import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
 import NodeIsolate from '../isolate-mixins/NodeIsolate';
+import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNode';
 import ParentNode from '../official-mixins/ParentNode';
 import TextIsolate from '../isolate-mixins/TextIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
-const SuperNodeBaseClass = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode, TextIsolate);
+const SuperNodeBaseClass = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, NonDocumentTypeChildNode, ParentNode, TextIsolate);
 
 export default class SuperNode extends SuperNodeBaseClass implements ISuperNode {
   constructor() {

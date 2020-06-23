@@ -165,6 +165,32 @@
       "legacyWindowAlias": [],
       "mixin": true
     },
+    "NonDocumentTypeChildNode": {
+      "name": "NonDocumentTypeChildNode",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "previousElementSibling": {
+          "name": "previousElementSibling",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "isAbstract": 1
+        },
+        "nextElementSibling": {
+          "name": "nextElementSibling",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "isAbstract": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
     "ParentNode": {
       "name": "ParentNode",
       "extends": "Object",
@@ -988,6 +1014,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "Node"
       ]
     },
@@ -1845,6 +1872,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "ParentNode",
         "Node"
       ]
@@ -3805,6 +3833,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "ParentNode",
         "HTMLOrSVGElement",
         "NodeIsolate",
@@ -4167,6 +4196,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "ParentNode",
         "HTMLOrSVGElement",
         "AttrIsolate",
@@ -4303,6 +4333,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "CharacterDataIsolate",
         "NodeIsolate"
       ]
@@ -4349,6 +4380,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "NodeIsolate",
         "TextIsolate",
         "CharacterDataIsolate"
@@ -4474,6 +4506,7 @@
       "legacyWindowAlias": [],
       "implements": [
         "HTMLOrSVGElement",
+        "NonDocumentTypeChildNode",
         "ParentNode",
         "ElementIsolate",
         "NodeIsolate",
@@ -5719,6 +5752,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "ParentNode",
         "Node"
       ]
@@ -5873,6 +5907,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonDocumentTypeChildNode",
         "Node"
       ]
     },
