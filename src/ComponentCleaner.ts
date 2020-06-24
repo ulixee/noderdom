@@ -48,9 +48,14 @@ export default class ComponentCleaner {
         return { ...c, type };
       }
       if (Array.isArray(c.signatures)) {
-        const signatures = c.signatures.map((s: Types.Signature) =>
+        let signatures = c.signatures.map((s: Types.Signature) =>
           this.filterUnknownTypeFromSignature(s, this.unexposedTypes),
         );
+
+        if (signatures.length > 1) {
+          signatures = this.filterDuplicateSignatures(signatures);
+        }
+
         return { ...c, signatures };
       }
     });
@@ -183,6 +188,40 @@ export default class ComponentCleaner {
       return type[0].type;
     }
     throw new Error('Cannot process empty union type');
+  }
+
+  private filterDuplicateSignatures(signatures: Types.Signature[]) {
+    if (!signatures.length || signatures.length <= 1) return signatures;
+
+    let maxParamsSignature: Types.Signature | undefined = signatures.find(x => x.params && x.params.length);
+    if (!maxParamsSignature) return signatures[0];
+
+    for (const signature of signatures) {
+      if (!signature.params) continue;
+      const params = signature.params;
+      if (params.length > maxParamsSignature.params!.length) {
+        maxParamsSignature = signature;
+      }
+    }
+
+    for (const param of maxParamsSignature.params!) {
+      let isInAllSignatures = true;
+      for (const signature of signatures) {
+        if (!signature.params) {
+          isInAllSignatures = false;
+        } else {
+          const matchingParam = signature.params.find(x => x.name === param.name);
+          if (!matchingParam || matchingParam.optional) {
+            isInAllSignatures = false;
+          }
+        }
+      }
+      if (!isInAllSignatures) {
+        param.optional = 1;
+      }
+    }
+
+    return [maxParamsSignature];
   }
 
   private filterUnknownTypeFromSignature(signature: Types.Signature, unexposedTypes: Set<string>) {

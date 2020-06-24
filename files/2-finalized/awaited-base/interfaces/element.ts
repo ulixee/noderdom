@@ -1,4 +1,4 @@
-import { IHTMLElement, IHTMLHeadElement, IHTMLInputElement } from './official';
+import { IHTMLElement, IHTMLButtonElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLSelectElement, IHTMLTextAreaElement } from './official';
 // tslint:disable: prettier
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -13,6 +13,7 @@ export interface IHTMLElementTagNameMap {
   bdi: IHTMLElement;
   bdo: IHTMLElement;
   big: IHTMLElement;
+  button: IHTMLButtonElement;
   center: IHTMLElement;
   cite: IHTMLElement;
   code: IHTMLElement;
@@ -20,9 +21,11 @@ export interface IHTMLElementTagNameMap {
   dfn: IHTMLElement;
   dt: IHTMLElement;
   em: IHTMLElement;
+  fieldset: IHTMLFieldSetElement;
   figcaption: IHTMLElement;
   figure: IHTMLElement;
   footer: IHTMLElement;
+  form: IHTMLFormElement;
   head: IHTMLHeadElement;
   header: IHTMLElement;
   hgroup: IHTMLElement;
@@ -30,12 +33,15 @@ export interface IHTMLElementTagNameMap {
   input: IHTMLInputElement;
   kbd: IHTMLElement;
   keygen: IHTMLElement;
+  label: IHTMLLabelElement;
   main: IHTMLElement;
   mark: IHTMLElement;
   nav: IHTMLElement;
   nobr: IHTMLElement;
   noframes: IHTMLElement;
   noscript: IHTMLElement;
+  optgroup: IHTMLOptGroupElement;
+  option: IHTMLOptionElement;
   plaintext: IHTMLElement;
   rp: IHTMLElement;
   rt: IHTMLElement;
@@ -43,12 +49,14 @@ export interface IHTMLElementTagNameMap {
   s: IHTMLElement;
   samp: IHTMLElement;
   section: IHTMLElement;
+  select: IHTMLSelectElement;
   small: IHTMLElement;
   strike: IHTMLElement;
   strong: IHTMLElement;
   sub: IHTMLElement;
   summary: IHTMLElement;
   sup: IHTMLElement;
+  textarea: IHTMLTextAreaElement;
   tt: IHTMLElement;
   u: IHTMLElement;
   var: IHTMLElement;

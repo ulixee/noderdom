@@ -2,7 +2,7 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { INodeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, ITextIsolate, IHTMLCollectionBaseIsolate } from './isolate';
+import { INodeIsolate, IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, ITextIsolate, INodeListIsolate, IRadioNodeListIsolate, IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate } from './isolate';
 import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, IHTMLOrSVGElement, INonDocumentTypeChildNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './official';
 
 // SuperDocument //////////
@@ -51,7 +51,7 @@ export interface ISuperDocument extends INodeIsolate, IParentNode {
 
 // SuperElement //////////
 
-export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, INonDocumentTypeChildNode, IParentNode {
+export interface ISuperElement extends IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLOrSVGElement, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, INodeIsolate, INonDocumentTypeChildNode, IParentNode {
   readonly attributes: INamedNodeMap;
   readonly classList: IDOMTokenList;
   readonly className: Promise<string>;
@@ -97,7 +97,7 @@ export interface ISuperElement extends IElementIsolate, IHTMLElementIsolate, IHT
 
 // SuperNode //////////
 
-export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, INonDocumentTypeChildNode, IParentNode, ITextIsolate {
+export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLOrSVGElement, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, INodeIsolate, INonDocumentTypeChildNode, IParentNode, ITextIsolate {
   readonly ATTRIBUTE_NODE: number;
   readonly CDATA_SECTION_NODE: number;
   readonly COMMENT_NODE: number;
@@ -146,7 +146,7 @@ export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocume
 
 // SuperNodeList //////////
 
-export interface ISuperNodeList {
+export interface ISuperNodeList extends INodeListIsolate, IRadioNodeListIsolate {
   readonly length: Promise<number>;
 
   item(index: number): ISuperNode;
@@ -160,7 +160,7 @@ export interface ISuperNodeList {
 
 // SuperHTMLCollection //////////
 
-export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate {
+export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate {
   namedItem(name: string): ISuperElement;
 
   [Symbol.iterator](): IterableIterator<ISuperElement>;
@@ -193,7 +193,7 @@ export interface ISuperStyleSheet {}
 
 // SuperHTMLElement //////////
 
-export interface ISuperHTMLElement extends IElementIsolate, IHTMLElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLOrSVGElement, INodeIsolate, INonDocumentTypeChildNode, IParentNode {
+export interface ISuperHTMLElement extends IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLOrSVGElement, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, INodeIsolate, INonDocumentTypeChildNode, IParentNode {
   readonly accessKey: Promise<string>;
   readonly autoCapitalize: Promise<string>;
   readonly dir: Promise<string>;

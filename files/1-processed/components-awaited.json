@@ -53,6 +53,15 @@
         "nearest"
       ]
     },
+    "SelectionMode": {
+      "name": "SelectionMode",
+      "value": [
+        "select",
+        "start",
+        "end",
+        "preserve"
+      ]
+    },
     "FullscreenNavigationUI": {
       "name": "FullscreenNavigationUI",
       "value": [
@@ -1877,6 +1886,140 @@
         "Node"
       ]
     },
+    "HTMLButtonElement": {
+      "name": "HTMLButtonElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "formAction": {
+          "name": "formAction",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formEnctype": {
+          "name": "formEnctype",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formMethod": {
+          "name": "formMethod",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formNoValidate": {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formTarget": {
+          "name": "formTarget",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLButtonElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "button"
+          }
+        ]
+      }
+    },
     "HTMLElement": {
       "name": "HTMLElement",
       "extends": "Element",
@@ -2150,6 +2293,117 @@
         ]
       }
     },
+    "HTMLFieldSetElement": {
+      "name": "HTMLFieldSetElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "elements": {
+          "name": "elements",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLFieldSetElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "fieldset"
+          }
+        ]
+      }
+    },
+    "HTMLFormElement": {
+      "name": "HTMLFormElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLFormElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "form"
+          }
+        ]
+      }
+    },
     "HTMLHeadElement": {
       "name": "HTMLHeadElement",
       "extends": "HTMLElement",
@@ -2174,6 +2428,58 @@
       "extends": "HTMLElement",
       "constants": {},
       "methods": {
+        "stepUp": {
+          "name": "stepUp",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "n",
+                  "type": "long",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "stepDown": {
+          "name": "stepDown",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "n",
+                  "type": "long",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
         "select": {
           "name": "select",
           "signatures": [
@@ -2183,10 +2489,339 @@
             }
           ],
           "exposed": "Window"
+        },
+        "setRangeText": {
+          "name": "setRangeText",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "replacement",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "start",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "selectionMode",
+                  "type": "SelectionMode",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setSelectionRange": {
+          "name": "setSelectionRange",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "start",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "direction",
+                  "type": "DOMString",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
         }
       },
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "accept": {
+          "name": "accept",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "alt": {
+          "name": "alt",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autocomplete": {
+          "name": "autocomplete",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultChecked": {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "checked": {
+          "name": "checked",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dirName": {
+          "name": "dirName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "formAction": {
+          "name": "formAction",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formEnctype": {
+          "name": "formEnctype",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formMethod": {
+          "name": "formMethod",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formNoValidate": {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formTarget": {
+          "name": "formTarget",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "height": {
+          "name": "height",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "indeterminate": {
+          "name": "indeterminate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "inputMode": {
+          "name": "inputMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "list": {
+          "name": "list",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "max": {
+          "name": "max",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "maxLength": {
+          "name": "maxLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "min": {
+          "name": "min",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "minLength": {
+          "name": "minLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "multiple": {
+          "name": "multiple",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "pattern": {
+          "name": "pattern",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readOnly": {
+          "name": "readOnly",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "required": {
+          "name": "required",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "size": {
+          "name": "size",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "src": {
+          "name": "src",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "step": {
+          "name": "step",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultValue": {
+          "name": "defaultValue",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "valueAsDate": {
+          "name": "valueAsDate",
+          "type": "object",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "valueAsNumber": {
+          "name": "valueAsNumber",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "width": {
+          "name": "width",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "selectionStart": {
+          "name": "selectionStart",
+          "type": "unsigned long",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionEnd": {
+          "name": "selectionEnd",
+          "type": "unsigned long",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionDirection": {
+          "name": "selectionDirection",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": [],
       "element": {
@@ -2196,6 +2831,700 @@
           {
             "name": "input",
             "selfClosing": 1
+          }
+        ]
+      }
+    },
+    "HTMLLabelElement": {
+      "name": "HTMLLabelElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "htmlFor": {
+          "name": "htmlFor",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "control": {
+          "name": "control",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLLabelElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "label"
+          }
+        ]
+      }
+    },
+    "HTMLOptGroupElement": {
+      "name": "HTMLOptGroupElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "label": {
+          "name": "label",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLOptGroupElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "optgroup"
+          }
+        ]
+      }
+    },
+    "HTMLOptionElement": {
+      "name": "HTMLOptionElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "label": {
+          "name": "label",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultSelected": {
+          "name": "defaultSelected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selected": {
+          "name": "selected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "text": {
+          "name": "text",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "index": {
+          "name": "index",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "namedConstructor": {
+        "name": "Option",
+        "signatures": [
+          {
+            "type": "HTMLOptionElement",
+            "params": [
+              {
+                "name": "text",
+                "type": "DOMString",
+                "optional": 1
+              },
+              {
+                "name": "value",
+                "type": "DOMString",
+                "optional": 1
+              },
+              {
+                "name": "defaultSelected",
+                "type": "boolean",
+                "optional": 1
+              },
+              {
+                "name": "selected",
+                "type": "boolean",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLOptionElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "option"
+          }
+        ]
+      }
+    },
+    "HTMLOptionsCollection": {
+      "name": "HTMLOptionsCollection",
+      "extends": "HTMLCollection",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [
+        {
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "option",
+                  "type": "HTMLOptionElement",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      ],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "HTMLSelectElement": {
+      "name": "HTMLSelectElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "namedItem": {
+          "name": "namedItem",
+          "signatures": [
+            {
+              "type": "HTMLOptionElement",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "name",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [
+        {
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "option",
+                  "type": "HTMLOptionElement",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      ],
+      "properties": {
+        "autocomplete": {
+          "name": "autocomplete",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "multiple": {
+          "name": "multiple",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "required": {
+          "name": "required",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "size": {
+          "name": "size",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "options": {
+          "name": "options",
+          "type": "HTMLOptionsCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectedOptions": {
+          "name": "selectedOptions",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "selectedIndex": {
+          "name": "selectedIndex",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "HTMLSelectElement",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLSelectElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "select"
+          }
+        ]
+      }
+    },
+    "HTMLTextAreaElement": {
+      "name": "HTMLTextAreaElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setCustomValidity": {
+          "name": "setCustomValidity",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "error",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "select": {
+          "name": "select",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setRangeText": {
+          "name": "setRangeText",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "replacement",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "start",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "selectionMode",
+                  "type": "SelectionMode",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setSelectionRange": {
+          "name": "setSelectionRange",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "start",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "direction",
+                  "type": "DOMString",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "autocomplete": {
+          "name": "autocomplete",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "cols": {
+          "name": "cols",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "inputMode": {
+          "name": "inputMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "maxLength": {
+          "name": "maxLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "minLength": {
+          "name": "minLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readOnly": {
+          "name": "readOnly",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "required": {
+          "name": "required",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "rows": {
+          "name": "rows",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "wrap": {
+          "name": "wrap",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultValue": {
+          "name": "defaultValue",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "textLength": {
+          "name": "textLength",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "selectionStart": {
+          "name": "selectionStart",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionEnd": {
+          "name": "selectionEnd",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionDirection": {
+          "name": "selectionDirection",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLTextAreaElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "textarea"
           }
         ]
       }
@@ -2660,6 +3989,16 @@
         "CharacterData"
       ]
     },
+    "ValidityState": {
+      "name": "ValidityState",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
     "FeaturePolicy": {
       "name": "FeaturePolicy",
       "extends": "Object",
@@ -3046,6 +4385,23 @@
       },
       "anonymousMethods": [],
       "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "RadioNodeList": {
+      "name": "RadioNodeList",
+      "extends": "NodeList",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     }
@@ -3839,8 +5195,16 @@
         "NodeIsolate",
         "HTMLElementIsolate",
         "ElementIsolate",
+        "HTMLButtonElementIsolate",
+        "HTMLFieldSetElementIsolate",
+        "HTMLFormElementIsolate",
         "HTMLHeadElementIsolate",
-        "HTMLInputElementIsolate"
+        "HTMLInputElementIsolate",
+        "HTMLLabelElementIsolate",
+        "HTMLOptGroupElementIsolate",
+        "HTMLOptionElementIsolate",
+        "HTMLSelectElementIsolate",
+        "HTMLTextAreaElementIsolate"
       ]
     },
     "SuperNode": {
@@ -4207,8 +5571,16 @@
         "DocumentTypeIsolate",
         "ElementIsolate",
         "HTMLElementIsolate",
+        "HTMLButtonElementIsolate",
+        "HTMLFieldSetElementIsolate",
+        "HTMLFormElementIsolate",
         "HTMLHeadElementIsolate",
-        "HTMLInputElementIsolate"
+        "HTMLInputElementIsolate",
+        "HTMLLabelElementIsolate",
+        "HTMLOptGroupElementIsolate",
+        "HTMLOptionElementIsolate",
+        "HTMLSelectElementIsolate",
+        "HTMLTextAreaElementIsolate"
       ]
     },
     "SuperNodeList": {
@@ -4254,7 +5626,10 @@
           }
         ]
       },
-      "implements": []
+      "implements": [
+        "RadioNodeListIsolate",
+        "NodeListIsolate"
+      ]
     },
     "SuperHTMLCollection": {
       "name": "SuperHTMLCollection",
@@ -4284,7 +5659,9 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
-        "HTMLCollectionBaseIsolate"
+        "HTMLCollectionBaseIsolate",
+        "HTMLOptionsCollectionIsolate",
+        "HTMLCollectionIsolate"
       ]
     },
     "SuperText": {
@@ -4510,9 +5887,17 @@
         "ParentNode",
         "ElementIsolate",
         "NodeIsolate",
-        "HTMLHeadElementIsolate",
+        "HTMLButtonElementIsolate",
         "HTMLElementIsolate",
-        "HTMLInputElementIsolate"
+        "HTMLFieldSetElementIsolate",
+        "HTMLFormElementIsolate",
+        "HTMLHeadElementIsolate",
+        "HTMLInputElementIsolate",
+        "HTMLLabelElementIsolate",
+        "HTMLOptGroupElementIsolate",
+        "HTMLOptionElementIsolate",
+        "HTMLSelectElementIsolate",
+        "HTMLTextAreaElementIsolate"
       ],
       "element": {
         "name": "HTMLElement",
@@ -5757,6 +7142,252 @@
         "Node"
       ]
     },
+    "HTMLButtonElementIsolate": {
+      "name": "HTMLButtonElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "formAction": {
+          "name": "formAction",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formEnctype": {
+          "name": "formEnctype",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formMethod": {
+          "name": "formMethod",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formNoValidate": {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formTarget": {
+          "name": "formTarget",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLButtonElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "button"
+          }
+        ]
+      }
+    },
+    "HTMLFieldSetElementIsolate": {
+      "name": "HTMLFieldSetElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "elements": {
+          "name": "elements",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLFieldSetElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "fieldset"
+          }
+        ]
+      }
+    },
+    "HTMLFormElementIsolate": {
+      "name": "HTMLFormElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLFormElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "form"
+          }
+        ]
+      }
+    },
     "HTMLHeadElementIsolate": {
       "name": "HTMLHeadElementIsolate",
       "extends": "HTMLElement",
@@ -5781,6 +7412,58 @@
       "extends": "HTMLElement",
       "constants": {},
       "methods": {
+        "stepUp": {
+          "name": "stepUp",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "n",
+                  "type": "long",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "stepDown": {
+          "name": "stepDown",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "n",
+                  "type": "long",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
         "select": {
           "name": "select",
           "signatures": [
@@ -5790,10 +7473,339 @@
             }
           ],
           "exposed": "Window"
+        },
+        "setRangeText": {
+          "name": "setRangeText",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "replacement",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "start",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "selectionMode",
+                  "type": "SelectionMode",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setSelectionRange": {
+          "name": "setSelectionRange",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "start",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "direction",
+                  "type": "DOMString",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
         }
       },
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "accept": {
+          "name": "accept",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "alt": {
+          "name": "alt",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autocomplete": {
+          "name": "autocomplete",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultChecked": {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "checked": {
+          "name": "checked",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dirName": {
+          "name": "dirName",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "formAction": {
+          "name": "formAction",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formEnctype": {
+          "name": "formEnctype",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formMethod": {
+          "name": "formMethod",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formNoValidate": {
+          "name": "formNoValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "formTarget": {
+          "name": "formTarget",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "height": {
+          "name": "height",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "indeterminate": {
+          "name": "indeterminate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "inputMode": {
+          "name": "inputMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "list": {
+          "name": "list",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "max": {
+          "name": "max",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "maxLength": {
+          "name": "maxLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "min": {
+          "name": "min",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "minLength": {
+          "name": "minLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "multiple": {
+          "name": "multiple",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "pattern": {
+          "name": "pattern",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readOnly": {
+          "name": "readOnly",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "required": {
+          "name": "required",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "size": {
+          "name": "size",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "src": {
+          "name": "src",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "step": {
+          "name": "step",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultValue": {
+          "name": "defaultValue",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "valueAsDate": {
+          "name": "valueAsDate",
+          "type": "object",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "valueAsNumber": {
+          "name": "valueAsNumber",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "width": {
+          "name": "width",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "selectionStart": {
+          "name": "selectionStart",
+          "type": "unsigned long",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionEnd": {
+          "name": "selectionEnd",
+          "type": "unsigned long",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionDirection": {
+          "name": "selectionDirection",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": [],
       "element": {
@@ -5803,6 +7815,675 @@
           {
             "name": "input",
             "selfClosing": 1
+          }
+        ]
+      }
+    },
+    "HTMLLabelElementIsolate": {
+      "name": "HTMLLabelElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "htmlFor": {
+          "name": "htmlFor",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "control": {
+          "name": "control",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLLabelElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "label"
+          }
+        ]
+      }
+    },
+    "HTMLOptGroupElementIsolate": {
+      "name": "HTMLOptGroupElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "label": {
+          "name": "label",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLOptGroupElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "optgroup"
+          }
+        ]
+      }
+    },
+    "HTMLOptionElementIsolate": {
+      "name": "HTMLOptionElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "label": {
+          "name": "label",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultSelected": {
+          "name": "defaultSelected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selected": {
+          "name": "selected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "text": {
+          "name": "text",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "index": {
+          "name": "index",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "namedConstructor": {
+        "name": "Option",
+        "signatures": [
+          {
+            "type": "HTMLOptionElement",
+            "params": [
+              {
+                "name": "text",
+                "type": "DOMString",
+                "optional": 1
+              },
+              {
+                "name": "value",
+                "type": "DOMString",
+                "optional": 1
+              },
+              {
+                "name": "defaultSelected",
+                "type": "boolean",
+                "optional": 1
+              },
+              {
+                "name": "selected",
+                "type": "boolean",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLOptionElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "option"
+          }
+        ]
+      }
+    },
+    "HTMLSelectElementIsolate": {
+      "name": "HTMLSelectElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "namedItem": {
+          "name": "namedItem",
+          "signatures": [
+            {
+              "type": "HTMLOptionElement",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "name",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [
+        {
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "option",
+                  "type": "HTMLOptionElement",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      ],
+      "properties": {
+        "autocomplete": {
+          "name": "autocomplete",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "multiple": {
+          "name": "multiple",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "required": {
+          "name": "required",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "size": {
+          "name": "size",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "options": {
+          "name": "options",
+          "type": "HTMLOptionsCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectedOptions": {
+          "name": "selectedOptions",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "selectedIndex": {
+          "name": "selectedIndex",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "HTMLSelectElement",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLSelectElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "select"
+          }
+        ]
+      }
+    },
+    "HTMLTextAreaElementIsolate": {
+      "name": "HTMLTextAreaElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {
+        "checkValidity": {
+          "name": "checkValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "reportValidity": {
+          "name": "reportValidity",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setCustomValidity": {
+          "name": "setCustomValidity",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "error",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "select": {
+          "name": "select",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setRangeText": {
+          "name": "setRangeText",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "replacement",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "start",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long",
+                  "optional": 1
+                },
+                {
+                  "name": "selectionMode",
+                  "type": "SelectionMode",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setSelectionRange": {
+          "name": "setSelectionRange",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "start",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "end",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "direction",
+                  "type": "DOMString",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "autocomplete": {
+          "name": "autocomplete",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "autofocus": {
+          "name": "autofocus",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "cols": {
+          "name": "cols",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "disabled": {
+          "name": "disabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "inputMode": {
+          "name": "inputMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "maxLength": {
+          "name": "maxLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "minLength": {
+          "name": "minLength",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readOnly": {
+          "name": "readOnly",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "required": {
+          "name": "required",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "rows": {
+          "name": "rows",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "wrap": {
+          "name": "wrap",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "defaultValue": {
+          "name": "defaultValue",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "textLength": {
+          "name": "textLength",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "willValidate": {
+          "name": "willValidate",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validity": {
+          "name": "validity",
+          "type": "ValidityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "validationMessage": {
+          "name": "validationMessage",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "selectionStart": {
+          "name": "selectionStart",
+          "type": "unsigned long",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionEnd": {
+          "name": "selectionEnd",
+          "type": "unsigned long",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectionDirection": {
+          "name": "selectionDirection",
+          "type": "DOMString",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLTextAreaElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "textarea"
           }
         ]
       }
@@ -6326,6 +9007,68 @@
         "Node"
       ]
     },
+    "RadioNodeListIsolate": {
+      "name": "RadioNodeListIsolate",
+      "extends": "NodeList",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "value": {
+          "name": "value",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "NodeListIsolate": {
+      "name": "NodeListIsolate",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "Node",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "iterable",
+        "readonly": false,
+        "type": [
+          {
+            "type": "Node"
+          }
+        ]
+      }
+    },
     "HTMLCollectionBaseIsolate": {
       "name": "HTMLCollectionBaseIsolate",
       "extends": "Object",
@@ -6358,6 +9101,65 @@
           "exposed": "Window"
         }
       },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "HTMLOptionsCollectionIsolate": {
+      "name": "HTMLOptionsCollectionIsolate",
+      "extends": "HTMLCollection",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [
+        {
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "option",
+                  "type": "HTMLOptionElement",
+                  "nullable": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      ],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "HTMLCollectionIsolate": {
+      "name": "HTMLCollectionIsolate",
+      "extends": "HTMLCollectionBase",
+      "constants": {},
+      "methods": {
+        "namedItem": {
+          "name": "namedItem",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "name",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
       "exposed": "Window",
       "legacyWindowAlias": []
     }

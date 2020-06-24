@@ -1,6 +1,6 @@
 import AwaitedPath from '../awaited-base/AwaitedPath';
 import StateMachine from '../awaited-base/StateMachine';
-import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLHeadElement, IHTMLInputElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText } from '../awaited-base/interfaces/official';
+import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLButtonElement, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLSelectElement, IHTMLTextAreaElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRadioNodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText, IValidityState } from '../awaited-base/interfaces/official';
 import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperCharacterData, ISuperHTMLElement, ISuperStyleSheet } from '../awaited-base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
@@ -82,6 +82,13 @@ export function createFeaturePolicy<IAwaitedOptions = {}>(awaitedPath: AwaitedPa
   return instance;
 }
 
+export function createHTMLButtonElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLButtonElement {
+  const HTMLButtonElement = require('./official-klasses/HTMLButtonElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLButtonElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createHTMLCollection<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLCollection {
   const HTMLCollection = require('./official-klasses/HTMLCollection').default; // tslint:disable-line:variable-name
   const instance = new HTMLCollection();
@@ -103,6 +110,20 @@ export function createHTMLElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath
   return instance;
 }
 
+export function createHTMLFieldSetElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLFieldSetElement {
+  const HTMLFieldSetElement = require('./official-klasses/HTMLFieldSetElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLFieldSetElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLFormElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLFormElement {
+  const HTMLFormElement = require('./official-klasses/HTMLFormElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLFormElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createHTMLHeadElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLHeadElement {
   const HTMLHeadElement = require('./official-klasses/HTMLHeadElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLHeadElement();
@@ -113,6 +134,48 @@ export function createHTMLHeadElement<IAwaitedOptions = {}>(awaitedPath: Awaited
 export function createHTMLInputElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLInputElement {
   const HTMLInputElement = require('./official-klasses/HTMLInputElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLInputElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLLabelElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLLabelElement {
+  const HTMLLabelElement = require('./official-klasses/HTMLLabelElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLLabelElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLOptGroupElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLOptGroupElement {
+  const HTMLOptGroupElement = require('./official-klasses/HTMLOptGroupElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLOptGroupElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLOptionElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLOptionElement {
+  const HTMLOptionElement = require('./official-klasses/HTMLOptionElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLOptionElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLOptionsCollection<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLOptionsCollection {
+  const HTMLOptionsCollection = require('./official-klasses/HTMLOptionsCollection').default; // tslint:disable-line:variable-name
+  const instance = new HTMLOptionsCollection();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLSelectElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLSelectElement {
+  const HTMLSelectElement = require('./official-klasses/HTMLSelectElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLSelectElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLTextAreaElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLTextAreaElement {
+  const HTMLTextAreaElement = require('./official-klasses/HTMLTextAreaElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLTextAreaElement();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -152,6 +215,13 @@ export function createNodeList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, a
   return instance;
 }
 
+export function createRadioNodeList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IRadioNodeList {
+  const RadioNodeList = require('./official-klasses/RadioNodeList').default; // tslint:disable-line:variable-name
+  const instance = new RadioNodeList();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createRequest<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IRequest {
   const Request = require('./official-klasses/Request').default; // tslint:disable-line:variable-name
   const instance = new Request();
@@ -183,6 +253,13 @@ export function createStyleSheet<IAwaitedOptions = {}>(awaitedPath: AwaitedPath,
 export function createText<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IText {
   const Text = require('./official-klasses/Text').default; // tslint:disable-line:variable-name
   const instance = new Text();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createValidityState<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IValidityState {
+  const ValidityState = require('./official-klasses/ValidityState').default; // tslint:disable-line:variable-name
+  const instance = new ValidityState();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
