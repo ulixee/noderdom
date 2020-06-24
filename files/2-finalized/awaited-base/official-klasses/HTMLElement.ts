@@ -13,7 +13,7 @@ import { IHTMLOrSVGElementProperties, HTMLOrSVGElementPropertyKeys, HTMLOrSVGEle
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLElement>('HTMLElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLElement>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IHTMLElement>(getState, setState, awaitedHandler);
 
 export function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>) {
   const Parent = (ClassMixer(Element, [HTMLOrSVGElement]) as unknown) as Constructable<IElement & IHTMLOrSVGElement>;

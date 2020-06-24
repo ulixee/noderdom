@@ -1,6 +1,8 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IHTMLCollection } from '../../awaited-base/interfaces/official';
+import { ISuperElement } from '../../awaited-base/interfaces/super';
 import { HTMLCollectionGenerator, IHTMLCollectionProperties } from '../../awaited-base/official-klasses/HTMLCollection';
+import { createSuperElement } from '../create';
 import HTMLCollectionBase from './HTMLCollectionBase';
 
 // tslint:disable:variable-name
@@ -10,5 +12,12 @@ const HTMLCollectionBaseClass = HTMLCollectionGenerator(HTMLCollectionBase);
 export default class HTMLCollection extends HTMLCollectionBaseClass implements IHTMLCollection {
   constructor() {
     super();
+  }
+
+  // methods
+
+  public namedItem(name: string): ISuperElement {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperElement(awaitedPath.addMethod('namedItem', name), awaitedOptions);
   }
 }

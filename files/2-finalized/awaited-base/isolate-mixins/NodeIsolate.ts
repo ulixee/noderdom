@@ -3,7 +3,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { INodeIsolate } from '../interfaces/isolate';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
-import { IGetRootNodeOptions } from '../interfaces/basic';
+import { IGetRootNodeOptions } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<INodeIsolate, INodeIsolateProperties>();
@@ -116,8 +116,8 @@ export default class NodeIsolate implements INodeIsolate {
     return awaitedHandler.runMethod<boolean>(this, 'contains', [other]);
   }
 
-  public getRootNode(options?: IGetRootNodeOptions): Promise<ISuperNode> {
-    return awaitedHandler.runMethod<ISuperNode>(this, 'getRootNode', [options]);
+  public getRootNode(options?: IGetRootNodeOptions): ISuperNode {
+    throw new Error('NodeIsolate.getRootNode not implemented');
   }
 
   public hasChildNodes(): Promise<boolean> {

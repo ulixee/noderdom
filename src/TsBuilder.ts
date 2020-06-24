@@ -77,15 +77,8 @@ export default class TsBuilder {
   public extractBasicInterfaces() {
     const codeModules = new TsBuildInterfacesBasic(this.components).run();
 
-    const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
-      currentDir: this.pathsByBuildType.base.interfaces,
-      references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
-      localReferences: codeModules.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
-    });
-    if (importsCodeModule) codeModules.unshift(importsCodeModule);
-
     this.addToObjectMeta(
-      ObjectType.basic,
+      ObjectType.official,
       ObjectStruct.interface,
       PathType.interfaces,
       ([] as string[]).concat(...codeModules.map(x => x.definedObjects)),
@@ -117,14 +110,14 @@ export default class TsBuilder {
     return codeModules;
   }
 
-  public extractOfficialInterfaceImports() {
+  public extractOfficialInterfaceImports(basicTypes: ICodeModule[]) {
     const options = { domType: this.domType };
     const codeModules = this.interfaces.map(i => new TsInterfaceExtractor(this.components, i, options).run());
 
     const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
       currentDir: this.pathsByBuildType.base.interfaces,
-      references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
-      localReferences: codeModules.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
+      references: [...codeModules, ...basicTypes].map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
+      localReferences: [...codeModules, ...basicTypes].map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
     });
     return importsCodeModule ? importsCodeModule.code : '';
   }

@@ -3,7 +3,10 @@ import IChoiceMeta, { ChoiceItemType, IChoiceItemType } from './IChoiceMeta';
 
 export default class Customizer {
   public readonly klasses: any[];
-  public readonly choicesMetaMap: { [domType: string]: { [name: string]: IChoiceMeta } } = { detached: {}, awaited: {} };
+  public readonly choicesMetaMap: { [domType: string]: { [name: string]: IChoiceMeta } } = {
+    detached: {},
+    awaited: {},
+  };
   private allInterfaces = db.prepare('SELECT * FROM interfaces WHERE hasDefinedIDL=1').all();
   private allComponentFilters = db.prepare('SELECT * FROM component_filters').all();
   private coreInterfaceNames = ['Document'];
@@ -16,7 +19,13 @@ export default class Customizer {
       const name = componentFilter.name;
       const choicesByName = this.choicesMetaMap[componentFilter.domType as string];
       const { isCore, isEnabled, isHidden, isWritable, isAbstract } = componentFilter;
-      const options = { isCore, isEnabled, isHidden, isWritable, isAbstract };
+      const options = {
+        isCore: isCore === 1,
+        isEnabled: isEnabled === 1,
+        isHidden: isHidden === 1,
+        isWritable: isWritable === 1,
+        isAbstract: isAbstract === 1,
+      };
       choicesByName[name] = this.createChoiceMeta(componentFilter.name, componentFilter.itemType, options);
     });
 
@@ -126,8 +135,8 @@ export default class Customizer {
       const methods = db.prepare(`SELECT * FROM methods WHERE interfaceName=?`).all([inter.name]);
       methods.forEach(method => {
         this.ensureChoiceMeta(method.name, 'method');
-        Object.assign(this.choicesMetaMap.awaited[method.name], { itemType: 'method', isAbstract: false });
-        Object.assign(this.choicesMetaMap.detached[method.name], { itemType: 'method', isAbstract: false });
+        Object.assign(this.choicesMetaMap.awaited[method.name], { itemType: 'method' });
+        Object.assign(this.choicesMetaMap.detached[method.name], { itemType: 'method' });
         method.nativeArtTypes = (method.nativeArtTypes || '').split(',').filter((t: string) => t);
         method.customArgTypes = (method.customArgTypes || '').split(',').filter((t: string) => t);
         method.argTypes = method.nativeArtTypes.concat(method.customArgTypes);

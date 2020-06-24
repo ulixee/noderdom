@@ -1,6 +1,6 @@
 import AwaitedPath from '../awaited-base/AwaitedPath';
 import StateMachine from '../awaited-base/StateMachine';
-import { IAttr, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLHeadElement, IHTMLInputElement, ILocation, INamedNodeMap, INode, INodeList, IShadowRoot, IStyleSheet, IText } from '../awaited-base/interfaces/official';
+import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLHeadElement, IHTMLInputElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText } from '../awaited-base/interfaces/official';
 import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperCharacterData, ISuperHTMLElement, ISuperStyleSheet } from '../awaited-base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
@@ -8,6 +8,13 @@ export const { setState } = StateMachine<any, any>();
 export function createAttr<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IAttr {
   const Attr = require('./official-klasses/Attr').default; // tslint:disable-line:variable-name
   const instance = new Attr();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createBlob<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IBlob {
+  const Blob = require('./official-klasses/Blob').default; // tslint:disable-line:variable-name
+  const instance = new Blob();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -110,6 +117,13 @@ export function createHTMLInputElement<IAwaitedOptions = {}>(awaitedPath: Awaite
   return instance;
 }
 
+export function createHeaders<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHeaders {
+  const Headers = require('./official-klasses/Headers').default; // tslint:disable-line:variable-name
+  const instance = new Headers();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createLocation<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ILocation {
   const Location = require('./official-klasses/Location').default; // tslint:disable-line:variable-name
   const instance = new Location();
@@ -134,6 +148,20 @@ export function createNode<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, await
 export function createNodeList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): INodeList {
   const NodeList = require('./official-klasses/NodeList').default; // tslint:disable-line:variable-name
   const instance = new NodeList();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createRequest<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IRequest {
+  const Request = require('./official-klasses/Request').default; // tslint:disable-line:variable-name
+  const instance = new Request();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createResponse<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IResponse {
+  const Response = require('./official-klasses/Response').default; // tslint:disable-line:variable-name
+  const instance = new Response();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }

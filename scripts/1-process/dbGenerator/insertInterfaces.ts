@@ -99,7 +99,6 @@ for (const inter of Object.values(interfacesByName)) {
     mdnDocumentationPath: inter.mdnDocumentationPath,
     mdnFilename: inter.mdnFilename,
   };
-
   const existing = db.prepare(`SELECT * FROM interfaces WHERE name=?`).get([inter.name]);
   if (existing) {
     db.prepare('UPDATE interfaces SET isDocumented=? WHERE name=?').run([Number(inter.isDocumented), inter.name]);

@@ -10,7 +10,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLHeadElement, IHTMLHeadElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLHeadElement>('HTMLHeadElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLHeadElement>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IHTMLHeadElement>(getState, setState, awaitedHandler);
 
 export function HTMLHeadElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLHeadElement extends HTMLElement implements IHTMLHeadElement, PromiseLike<IHTMLHeadElement> {

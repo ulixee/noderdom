@@ -1,9 +1,9 @@
 import StateMachine from '../../awaited-base/StateMachine';
 import { IElementIsolate } from '../../awaited-base/interfaces/isolate';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../awaited-base/interfaces/official';
-import { ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
+import { ISuperElement, ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
 import ElementIsolateBase, { IElementIsolateProperties } from '../../awaited-base/isolate-mixins/ElementIsolate';
-import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperHTMLCollection } from '../create';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createSuperHTMLCollection } from '../create';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();
@@ -30,6 +30,11 @@ export default class ElementIsolate extends ElementIsolateBase implements IEleme
   }
 
   // methods
+
+  public closest(selectors: string): ISuperElement {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperElement(awaitedPath.addMethod('closest', selectors), awaitedOptions);
+  }
 
   public getElementsByClassName(classNames: string): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);

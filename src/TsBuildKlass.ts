@@ -154,12 +154,11 @@ export default class TsBuildKlass {
       const handlerName = `${this.domType}Handler`;
       printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
 
+      if (this.i.isNodeAttached) {
+        printable.push(`export const nodeAttacher = new NodeAttacher<I${name}>(getState, setState, ${handlerName});`);
+      }
       if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
         printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer(handlerName));
-      }
-
-      if (this.i.isNodeAttached) {
-        printable.push(`export const nodeAttacher = new NodeAttacher<I${name}>(getState, ${handlerName});`);
       }
     } else {
       printable.push(`const ${i.name}BaseClass = ${i.name}Generator(${this.inheritsFrom.join(', ')});`);

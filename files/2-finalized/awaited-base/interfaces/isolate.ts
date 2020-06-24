@@ -3,8 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement, ISuperHTMLCollection, ISuperText, ISuperHTMLElement } from './super';
-import { IGetRootNodeOptions, IFullscreenOptions, IScrollIntoViewOptions, IDocumentReadyState, IVisibilityState } from './basic';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from './official';
+import { IGetRootNodeOptions, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from './official';
 
 // NodeIsolate //////////
 
@@ -45,7 +44,7 @@ export interface INodeIsolate {
 
   compareDocumentPosition(other: ISuperNode): Promise<number>;
   contains(other: ISuperNode | null): Promise<boolean>;
-  getRootNode(options?: IGetRootNodeOptions): Promise<ISuperNode>;
+  getRootNode(options?: IGetRootNodeOptions): ISuperNode;
   hasChildNodes(): Promise<boolean>;
   isDefaultNamespace(namespace: string | null): Promise<boolean>;
   isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
@@ -80,7 +79,7 @@ export interface IElementIsolate {
   readonly slot: Promise<string>;
   readonly tagName: Promise<string>;
 
-  closest(selectors: string): Promise<ISuperElement | null>;
+  closest(selectors: string): ISuperElement;
   getAttribute(qualifiedName: string): Promise<string | null>;
   getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
   getAttributeNames(): Promise<Iterable<string>>;
@@ -96,7 +95,7 @@ export interface IElementIsolate {
   hasAttributes(): Promise<boolean>;
   hasPointerCapture(pointerId: number): Promise<boolean>;
   matches(selectors: string): Promise<boolean>;
-  requestFullscreen(options?: IFullscreenOptions): Promise<Promise<void>>;
+  requestFullscreen(options?: IFullscreenOptions): Promise<void>;
   requestPointerLock(): Promise<void>;
   scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void>;
 }
@@ -167,7 +166,7 @@ export interface IDocumentIsolate {
   readonly title: Promise<string>;
   readonly visibilityState: Promise<IVisibilityState>;
 
-  exitFullscreen(): Promise<Promise<void>>;
+  exitFullscreen(): Promise<void>;
   exitPointerLock(): Promise<void>;
   getElementsByClassName(classNames: string): ISuperHTMLCollection;
   getElementsByName(elementName: string): ISuperNodeList;

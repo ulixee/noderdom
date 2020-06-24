@@ -11,8 +11,8 @@ import { ISuperElement } from '../interfaces/super';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLCollectionBase, IHTMLCollectionBaseProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLCollectionBase>('HTMLCollectionBase', getState, setState);
-export const awaitedIterator = new AwaitedIterator<IHTMLCollectionBase, ISuperElement>(getState, awaitedHandler);
-export const nodeAttacher = new NodeAttacher<IHTMLCollectionBase>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IHTMLCollectionBase>(getState, setState, awaitedHandler);
+export const awaitedIterator = new AwaitedIterator<IHTMLCollectionBase, ISuperElement>(getState, setState, awaitedHandler);
 
 export function HTMLCollectionBaseGenerator() {
   return class HTMLCollectionBase implements IHTMLCollectionBase, PromiseLike<IHTMLCollectionBase> {
@@ -41,7 +41,7 @@ export function HTMLCollectionBaseGenerator() {
     }
 
     public [Symbol.iterator](): IterableIterator<ISuperElement> {
-      return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();
+      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
   };
 }

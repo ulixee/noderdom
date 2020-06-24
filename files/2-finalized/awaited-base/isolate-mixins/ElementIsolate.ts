@@ -2,9 +2,8 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IElementIsolate } from '../interfaces/isolate';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
+import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
-import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();
@@ -97,8 +96,8 @@ export default class ElementIsolate implements IElementIsolate {
 
   // methods
 
-  public closest(selectors: string): Promise<ISuperElement | null> {
-    return awaitedHandler.runMethod<ISuperElement | null>(this, 'closest', [selectors]);
+  public closest(selectors: string): ISuperElement {
+    throw new Error('ElementIsolate.closest not implemented');
   }
 
   public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -161,8 +160,8 @@ export default class ElementIsolate implements IElementIsolate {
     return awaitedHandler.runMethod<boolean>(this, 'matches', [selectors]);
   }
 
-  public requestFullscreen(options?: IFullscreenOptions): Promise<Promise<void>> {
-    return awaitedHandler.runMethod<Promise<void>>(this, 'requestFullscreen', [options]);
+  public requestFullscreen(options?: IFullscreenOptions): Promise<void> {
+    return awaitedHandler.runMethod<void>(this, 'requestFullscreen', [options]);
   }
 
   public requestPointerLock(): Promise<void> {

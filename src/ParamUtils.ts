@@ -9,8 +9,8 @@ export default class ParamUtils {
     return params.map(p => this.paramToString(p, convertToIType, isUnused)).join(', ');
   }
 
-  public static paramNames(ps: Types.Param[]) {
-    return ps.map(p => this.adjustParamName(p.name));
+  public static paramNames(ps: Types.Param[], isUnused: boolean = false) {
+    return ps.map(p => this.adjustParamName(p.name, isUnused));
   }
 
   private static paramToString(param: Types.Param, convertToIType: boolean = false, isUnused: boolean = false) {

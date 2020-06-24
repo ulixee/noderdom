@@ -45,6 +45,20 @@
         "native"
       ]
     },
+    "ReferrerPolicy": {
+      "name": "ReferrerPolicy",
+      "value": [
+        "",
+        "no-referrer",
+        "no-referrer-when-downgrade",
+        "same-origin",
+        "origin",
+        "strict-origin",
+        "origin-when-cross-origin",
+        "strict-origin-when-cross-origin",
+        "unsafe-url"
+      ]
+    },
     "DocumentReadyState": {
       "name": "DocumentReadyState",
       "value": [
@@ -65,7 +79,6 @@
       "name": "ScrollBehavior",
       "value": [
         "auto",
-        "instant",
         "smooth"
       ]
     },
@@ -135,12 +148,93 @@
         "loaded"
       ]
     },
+    "FontFaceLoadStatus": {
+      "name": "FontFaceLoadStatus",
+      "value": [
+        "unloaded",
+        "loading",
+        "loaded",
+        "error"
+      ]
+    },
     "FullscreenNavigationUI": {
       "name": "FullscreenNavigationUI",
       "value": [
         "auto",
         "show",
         "hide"
+      ]
+    },
+    "RequestDestination": {
+      "name": "RequestDestination",
+      "value": [
+        "",
+        "audio",
+        "audioworklet",
+        "document",
+        "embed",
+        "font",
+        "frame",
+        "iframe",
+        "image",
+        "manifest",
+        "object",
+        "paintworklet",
+        "report",
+        "script",
+        "sharedworker",
+        "style",
+        "track",
+        "video",
+        "worker",
+        "xslt"
+      ]
+    },
+    "RequestMode": {
+      "name": "RequestMode",
+      "value": [
+        "navigate",
+        "same-origin",
+        "no-cors",
+        "cors"
+      ]
+    },
+    "RequestCredentials": {
+      "name": "RequestCredentials",
+      "value": [
+        "omit",
+        "same-origin",
+        "include"
+      ]
+    },
+    "RequestCache": {
+      "name": "RequestCache",
+      "value": [
+        "default",
+        "no-store",
+        "reload",
+        "no-cache",
+        "force-cache",
+        "only-if-cached"
+      ]
+    },
+    "RequestRedirect": {
+      "name": "RequestRedirect",
+      "value": [
+        "follow",
+        "error",
+        "manual"
+      ]
+    },
+    "ResponseType": {
+      "name": "ResponseType",
+      "value": [
+        "basic",
+        "cors",
+        "default",
+        "error",
+        "opaque",
+        "opaqueredirect"
       ]
     }
   },
@@ -1349,6 +1443,90 @@
       "noInterfaceObject": 1,
       "legacyWindowAlias": [],
       "mixin": true
+    },
+    "Body": {
+      "name": "Body",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "arrayBuffer": {
+          "name": "arrayBuffer",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "ArrayBuffer"
+              },
+              "params": []
+            }
+          ]
+        },
+        "blob": {
+          "name": "blob",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "Blob"
+              },
+              "params": []
+            }
+          ]
+        },
+        "formData": {
+          "name": "formData",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "FormData"
+              },
+              "params": []
+            }
+          ]
+        },
+        "json": {
+          "name": "json",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "any"
+              },
+              "params": []
+            }
+          ]
+        },
+        "text": {
+          "name": "text",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "USVString"
+              },
+              "params": []
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "body": {
+          "name": "body",
+          "type": "ReadableStream",
+          "nullable": 1,
+          "readOnly": 1
+        },
+        "bodyUsed": {
+          "name": "bodyUsed",
+          "type": "boolean",
+          "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
     }
   },
   "typedefs": [
@@ -1402,6 +1580,64 @@
         },
         {
           "type": "WebGLRenderingContext"
+        }
+      ]
+    },
+    {
+      "newType": "BinaryData",
+      "type": [
+        {
+          "type": "ArrayBuffer"
+        },
+        {
+          "type": "ArrayBufferView"
+        }
+      ]
+    },
+    {
+      "newType": "HeadersInit",
+      "type": [
+        {
+          "type": "sequence",
+          "subtype": {
+            "type": "sequence",
+            "subtype": {
+              "type": "ByteString"
+            }
+          }
+        },
+        {
+          "type": "record",
+          "subtype": [
+            {
+              "type": "ByteString"
+            },
+            {
+              "type": "ByteString"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "newType": "BodyInit",
+      "type": [
+        {
+          "type": "BufferSource"
+        },
+        {
+          "type": "USVString"
+        }
+      ]
+    },
+    {
+      "newType": "RequestInfo",
+      "type": [
+        {
+          "type": "Request"
+        },
+        {
+          "type": "USVString"
         }
       ]
     },
@@ -1735,6 +1971,20 @@
         }
       }
     },
+    "ScrollToOptions": {
+      "name": "ScrollToOptions",
+      "extends": "ScrollOptions",
+      "members": {
+        "left": {
+          "name": "left",
+          "type": "unrestricted double"
+        },
+        "top": {
+          "name": "top",
+          "type": "unrestricted double"
+        }
+      }
+    },
     "AssignedNodesOptions": {
       "name": "AssignedNodesOptions",
       "extends": "Object",
@@ -1797,6 +2047,52 @@
         }
       }
     },
+    "FontFaceDescriptors": {
+      "name": "FontFaceDescriptors",
+      "extends": "Object",
+      "members": {
+        "style": {
+          "name": "style",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "weight": {
+          "name": "weight",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "stretch": {
+          "name": "stretch",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "unicodeRange": {
+          "name": "unicodeRange",
+          "default": "\"U+0-10FFFF\"",
+          "type": "CSSOMString"
+        },
+        "variant": {
+          "name": "variant",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "featureSettings": {
+          "name": "featureSettings",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "variationSettings": {
+          "name": "variationSettings",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "display": {
+          "name": "display",
+          "default": "\"auto\"",
+          "type": "CSSOMString"
+        }
+      }
+    },
     "FullscreenOptions": {
       "name": "FullscreenOptions",
       "extends": "Object",
@@ -1805,6 +2101,81 @@
           "name": "navigationUI",
           "default": "\"auto\"",
           "type": "FullscreenNavigationUI"
+        }
+      }
+    },
+    "RequestInit": {
+      "name": "RequestInit",
+      "extends": "Object",
+      "members": {
+        "method": {
+          "name": "method",
+          "type": "ByteString"
+        },
+        "headers": {
+          "name": "headers",
+          "type": "HeadersInit"
+        },
+        "body": {
+          "name": "body",
+          "type": "BodyInit",
+          "nullable": 1
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "USVString"
+        },
+        "referrerPolicy": {
+          "name": "referrerPolicy",
+          "type": "ReferrerPolicy"
+        },
+        "mode": {
+          "name": "mode",
+          "type": "RequestMode"
+        },
+        "credentials": {
+          "name": "credentials",
+          "type": "RequestCredentials"
+        },
+        "cache": {
+          "name": "cache",
+          "type": "RequestCache"
+        },
+        "redirect": {
+          "name": "redirect",
+          "type": "RequestRedirect"
+        },
+        "integrity": {
+          "name": "integrity",
+          "type": "DOMString"
+        },
+        "keepalive": {
+          "name": "keepalive",
+          "type": "boolean"
+        },
+        "window": {
+          "name": "window",
+          "type": "any"
+        }
+      }
+    },
+    "ResponseInit": {
+      "name": "ResponseInit",
+      "extends": "Object",
+      "members": {
+        "status": {
+          "name": "status",
+          "default": "200",
+          "type": "unsigned short"
+        },
+        "statusText": {
+          "name": "statusText",
+          "default": "\"\"",
+          "type": "ByteString"
+        },
+        "headers": {
+          "name": "headers",
+          "type": "HeadersInit"
         }
       }
     }
@@ -3560,6 +3931,71 @@
         }
       },
       "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "CSSStyleValue": {
+      "name": "CSSStyleValue",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "parse": {
+          "name": "parse",
+          "signatures": [
+            {
+              "type": "CSSStyleValue",
+              "params": [
+                {
+                  "name": "property",
+                  "type": "USVString"
+                },
+                {
+                  "name": "cssText",
+                  "type": "USVString"
+                }
+              ]
+            }
+          ],
+          "static": 1,
+          "exposed": "Window"
+        },
+        "parseAll": {
+          "name": "parseAll",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "CSSStyleValue"
+              },
+              "params": [
+                {
+                  "name": "property",
+                  "type": "USVString"
+                },
+                {
+                  "name": "cssText",
+                  "type": "USVString"
+                }
+              ]
+            }
+          ],
+          "static": 1,
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [
+        {
+          "signatures": [
+            {
+              "type": "DOMString",
+              "params": []
+            }
+          ],
+          "stringifier": 1,
+          "exposed": "Window Worker PaintWorklet LayoutWorklet"
+        }
+      ],
+      "properties": {},
+      "exposed": "Window Worker PaintWorklet LayoutWorklet",
       "legacyWindowAlias": []
     },
     "StylePropertyMapReadOnly": {
@@ -14964,6 +15400,120 @@
         ]
       }
     },
+    "FontFace": {
+      "name": "FontFace",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "load": {
+          "name": "load",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "FontFace"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "family": {
+          "name": "family",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "style": {
+          "name": "style",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "weight": {
+          "name": "weight",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "stretch": {
+          "name": "stretch",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "unicodeRange": {
+          "name": "unicodeRange",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "variant": {
+          "name": "variant",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "featureSettings": {
+          "name": "featureSettings",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "variationSettings": {
+          "name": "variationSettings",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "display": {
+          "name": "display",
+          "type": "CSSOMString",
+          "exposed": "Window Worker"
+        },
+        "status": {
+          "name": "status",
+          "type": "FontFaceLoadStatus",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "loaded": {
+          "name": "loaded",
+          "type": "Promise",
+          "subtype": {
+            "type": "FontFace"
+          },
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "FontFace",
+            "params": [
+              {
+                "name": "family",
+                "type": "CSSOMString"
+              },
+              {
+                "name": "source",
+                "type": [
+                  {
+                    "type": "CSSOMString"
+                  },
+                  {
+                    "type": "BinaryData"
+                  }
+                ]
+              },
+              {
+                "name": "descriptors",
+                "type": "FontFaceDescriptors",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
     "FeaturePolicy": {
       "name": "FeaturePolicy",
       "extends": "Object",
@@ -15229,6 +15779,379 @@
       },
       "exposed": "Window",
       "legacyWindowAlias": []
+    },
+    "Headers": {
+      "name": "Headers",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "append": {
+          "name": "append",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "ByteString"
+                },
+                {
+                  "name": "value",
+                  "type": "ByteString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window Worker"
+        },
+        "delete": {
+          "name": "delete",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "ByteString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window Worker"
+        },
+        "get": {
+          "name": "get",
+          "signatures": [
+            {
+              "type": "ByteString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "name",
+                  "type": "ByteString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window Worker"
+        },
+        "has": {
+          "name": "has",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "ByteString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window Worker"
+        },
+        "set": {
+          "name": "set",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "ByteString"
+                },
+                {
+                  "name": "value",
+                  "type": "ByteString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Headers",
+            "params": [
+              {
+                "name": "init",
+                "type": "HeadersInit",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "iterable",
+        "readonly": false,
+        "type": [
+          {
+            "type": "ByteString"
+          },
+          {
+            "type": "ByteString"
+          }
+        ]
+      }
+    },
+    "Request": {
+      "name": "Request",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "clone": {
+          "name": "clone",
+          "signatures": [
+            {
+              "type": "Request",
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "method": {
+          "name": "method",
+          "type": "ByteString",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "url": {
+          "name": "url",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "headers": {
+          "name": "headers",
+          "type": "Headers",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "destination": {
+          "name": "destination",
+          "type": "RequestDestination",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "referrerPolicy": {
+          "name": "referrerPolicy",
+          "type": "ReferrerPolicy",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "mode": {
+          "name": "mode",
+          "type": "RequestMode",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "credentials": {
+          "name": "credentials",
+          "type": "RequestCredentials",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "cache": {
+          "name": "cache",
+          "type": "RequestCache",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "redirect": {
+          "name": "redirect",
+          "type": "RequestRedirect",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "integrity": {
+          "name": "integrity",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "keepalive": {
+          "name": "keepalive",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "isReloadNavigation": {
+          "name": "isReloadNavigation",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "isHistoryNavigation": {
+          "name": "isHistoryNavigation",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "signal": {
+          "name": "signal",
+          "type": "AbortSignal",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Request",
+            "params": [
+              {
+                "name": "input",
+                "type": "RequestInfo"
+              },
+              {
+                "name": "init",
+                "type": "RequestInit",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": [],
+      "implements": [
+        "Body"
+      ]
+    },
+    "Response": {
+      "name": "Response",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "error": {
+          "name": "error",
+          "signatures": [
+            {
+              "type": "Response",
+              "params": []
+            }
+          ],
+          "static": 1,
+          "exposed": "Window Worker"
+        },
+        "redirect": {
+          "name": "redirect",
+          "signatures": [
+            {
+              "type": "Response",
+              "params": [
+                {
+                  "name": "url",
+                  "type": "USVString"
+                },
+                {
+                  "name": "status",
+                  "type": "unsigned short",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "static": 1,
+          "exposed": "Window Worker"
+        },
+        "clone": {
+          "name": "clone",
+          "signatures": [
+            {
+              "type": "Response",
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "type": {
+          "name": "type",
+          "type": "ResponseType",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "url": {
+          "name": "url",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "redirected": {
+          "name": "redirected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "status": {
+          "name": "status",
+          "type": "unsigned short",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "ok": {
+          "name": "ok",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "statusText": {
+          "name": "statusText",
+          "type": "ByteString",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "headers": {
+          "name": "headers",
+          "type": "Headers",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Response",
+            "params": [
+              {
+                "name": "body",
+                "type": "BodyInit",
+                "nullable": 1,
+                "optional": 1
+              },
+              {
+                "name": "init",
+                "type": "ResponseInit",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": [],
+      "implements": [
+        "Body"
+      ]
     },
     "HTMLDocument": {
       "name": "HTMLDocument",

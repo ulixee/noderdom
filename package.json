@@ -25,12 +25,18 @@
     "prepublishOnly": "npm run lint && npm run build && npm test",
     "db:create": "ts-node ./db/scripts/create.ts",
     "db:drop": "ts-node ./db/scripts/drop.ts",
-    "db:reset": "npm run db:drop && npm run db:create"
+    "db:reset": "npm run db:drop && npm run db:create",
+    "step:0-import": "ts-node ./scripts/0-import/importDocsFromMDN.ts",
+    "step:0-compile": "ts-node ./scripts/1-process/compileOtherComponents.ts standard",
+    "step:1-db": "ts-node ./scripts/1-process/dbGenerator/index.ts",
+    "step:1-customize": "ts-node ./scripts/1-process/customizer.ts",
+    "step:2-ts": "ts-node ./scripts/0-import/importComponentFiltersFromDb.ts awaited && ts-node ./scripts/1-process/compileAwaitedComponents.ts && ts-node ./scripts/2-finalize/generateDOM.ts awaited"
   },
   "dependencies": {
     "better-sqlite3": "^5.4.3"
   },
   "devDependencies": {
+    "noderdom": "git://github.com/ulixee/noderdom-detached.git#dist",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.7",
     "@types/webidl2": "^23.8.0",

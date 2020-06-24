@@ -2,18 +2,19 @@ import StateMachine from '../../awaited-base/StateMachine';
 import { ISuperElement, ISuperHTMLCollection } from '../../awaited-base/interfaces/super';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../awaited-base/interfaces/official';
 import { SuperElementGenerator, ISuperElementProperties } from '../../awaited-base/super-klasses/SuperElement';
-import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperHTMLCollection } from '../create';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createSuperHTMLCollection } from '../create';
 import ElementIsolate from '../isolate-mixins/ElementIsolate';
 import HTMLElementIsolate from '../isolate-mixins/HTMLElementIsolate';
 import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
 import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
 import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
 import NodeIsolate from '../isolate-mixins/NodeIsolate';
+import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNode';
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
-const SuperElementBaseClass = SuperElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, ParentNode);
+const SuperElementBaseClass = SuperElementGenerator(ElementIsolate, HTMLElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLOrSVGElement, NodeIsolate, NonDocumentTypeChildNode, ParentNode);
 
 export default class SuperElement extends SuperElementBaseClass implements ISuperElement {
   constructor() {
@@ -43,6 +44,11 @@ export default class SuperElement extends SuperElementBaseClass implements ISupe
   }
 
   // methods
+
+  public closest(selectors: string): ISuperElement {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createSuperElement(awaitedPath.addMethod('closest', selectors), awaitedOptions);
+  }
 
   public getElementsByClassName(classNames: string): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);

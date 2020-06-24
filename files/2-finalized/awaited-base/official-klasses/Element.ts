@@ -5,19 +5,19 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IElement, INode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList } from '../interfaces/official';
+import { IElement, INode, INonDocumentTypeChildNode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
-import { IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/basic';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
+import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
-export const nodeAttacher = new NodeAttacher<IElement>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IElement>(getState, setState, awaitedHandler);
 
-export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>) {
-  const Parent = (ClassMixer(Node, [ParentNode]) as unknown) as Constructable<INode & IParentNode>;
+export function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>) {
+  const Parent = (ClassMixer(Node, [NonDocumentTypeChildNode, ParentNode]) as unknown) as Constructable<INode & INonDocumentTypeChildNode & IParentNode>;
 
   return class Element extends Parent implements IElement, PromiseLike<IElement> {
     constructor() {
@@ -116,8 +116,8 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
 
     // methods
 
-    public closest(selectors: string): Promise<ISuperElement | null> {
-      return awaitedHandler.runMethod<ISuperElement | null>(this, 'closest', [selectors]);
+    public closest(selectors: string): ISuperElement {
+      throw new Error('Element.closest not implemented');
     }
 
     public getAttribute(qualifiedName: string): Promise<string | null> {
@@ -180,8 +180,8 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
       return awaitedHandler.runMethod<boolean>(this, 'matches', [selectors]);
     }
 
-    public requestFullscreen(options?: IFullscreenOptions): Promise<Promise<void>> {
-      return awaitedHandler.runMethod<Promise<void>>(this, 'requestFullscreen', [options]);
+    public requestFullscreen(options?: IFullscreenOptions): Promise<void> {
+      return awaitedHandler.runMethod<void>(this, 'requestFullscreen', [options]);
     }
 
     public requestPointerLock(): Promise<void> {
@@ -200,7 +200,7 @@ export function ElementGenerator(Node: Constructable<INode>, ParentNode: Constru
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IElementProperties extends INodeProperties, IParentNodeProperties {
+export interface IElementProperties extends INodeProperties, INonDocumentTypeChildNodeProperties, IParentNodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   readonly attributes?: INamedNodeMap;
@@ -226,6 +226,6 @@ export interface IElementProperties extends INodeProperties, IParentNodeProperti
   readonly tagName?: Promise<string>;
 }
 
-export const ElementPropertyKeys = [...NodePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
+export const ElementPropertyKeys = [...NodePropertyKeys, ...NonDocumentTypeChildNodePropertyKeys, ...ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
 
-export const ElementConstantKeys = [...NodeConstantKeys, ...ParentNodeConstantKeys];
+export const ElementConstantKeys = [...NodeConstantKeys, ...NonDocumentTypeChildNodeConstantKeys, ...ParentNodeConstantKeys];

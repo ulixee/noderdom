@@ -197,7 +197,7 @@
 
     private toggleItem(event: any, item: any) {
       try {
-        const id = event.originalTarget.id;
+        const id = event.target.id;
         const type = id.replace(`${item.name}:`, '');
         if (type === 'true') {
           item.meta.isEnabled = true;

@@ -12,8 +12,8 @@ import { IHTMLCollectionBaseIsolateProperties, HTMLCollectionBaseIsolateProperty
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperHTMLCollection>('SuperHTMLCollection', getState, setState);
-export const awaitedIterator = new AwaitedIterator<ISuperHTMLCollection, ISuperElement>(getState, awaitedHandler);
-export const nodeAttacher = new NodeAttacher<ISuperHTMLCollection>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<ISuperHTMLCollection>(getState, setState, awaitedHandler);
+export const awaitedIterator = new AwaitedIterator<ISuperHTMLCollection, ISuperElement>(getState, setState, awaitedHandler);
 
 export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Constructable<IHTMLCollectionBaseIsolate>) {
   return class SuperHTMLCollection extends HTMLCollectionBaseIsolate implements ISuperHTMLCollection, PromiseLike<ISuperHTMLCollection> {
@@ -28,8 +28,8 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
 
     // methods
 
-    public namedItem(name: string): Promise<ISuperElement | null> {
-      return awaitedHandler.runMethod<ISuperElement | null>(this, 'namedItem', [name]);
+    public namedItem(name: string): ISuperElement {
+      throw new Error('SuperHTMLCollection.namedItem not implemented');
     }
 
     public then<TResult1 = ISuperHTMLCollection, TResult2 = never>(onfulfilled?: ((value: ISuperHTMLCollection) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
@@ -37,7 +37,7 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
     }
 
     public [Symbol.iterator](): IterableIterator<ISuperElement> {
-      return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();
+      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
   };
 }

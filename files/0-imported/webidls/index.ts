@@ -45,6 +45,11 @@ export default [
   'files/FileList.webidl',
   // 'files/FileReader.webidl',
 
+  // fetch
+  // 'fetch/Fetch.webidl',
+  // 'fetch/FormData.webidl',
+  'fetch/ReferrerPolicy.webidl',
+
   // events
   'events/GlobalEventHandlers.webidl',
   'events/DocumentAndElementEventHandlers.webidl',

@@ -10,8 +10,8 @@ import { ISuperNodeList, ISuperNode } from '../interfaces/super';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNodeList>('SuperNodeList', getState, setState);
-export const awaitedIterator = new AwaitedIterator<ISuperNodeList, ISuperNode>(getState, awaitedHandler);
-export const nodeAttacher = new NodeAttacher<ISuperNodeList>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<ISuperNodeList>(getState, setState, awaitedHandler);
+export const awaitedIterator = new AwaitedIterator<ISuperNodeList, ISuperNode>(getState, setState, awaitedHandler);
 
 export function SuperNodeListGenerator() {
   return class SuperNodeList implements ISuperNodeList, PromiseLike<ISuperNodeList> {
@@ -31,8 +31,8 @@ export function SuperNodeListGenerator() {
 
     // methods
 
-    public item(index: number): Promise<ISuperNode | null> {
-      return awaitedHandler.runMethod<ISuperNode | null>(this, 'item', [index]);
+    public item(index: number): ISuperNode {
+      throw new Error('SuperNodeList.item not implemented');
     }
 
     public then<TResult1 = ISuperNodeList, TResult2 = never>(onfulfilled?: ((value: ISuperNodeList) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
@@ -40,26 +40,25 @@ export function SuperNodeListGenerator() {
     }
 
     public async forEach(callbackfn: (value: ISuperNode, key: number, parent: ISuperNodeList) => void, thisArg?: any): Promise<void> {
-      const array = await awaitedIterator.toArray(this);
-      for (let i = 0; i < array.length; i += 1) {
-        callbackfn.call(thisArg, array[i], i, this);
+      for (const [key, value] of await this.entries()) {
+        callbackfn.call(thisArg, value, key, this);
       }
     }
 
     public entries(): Promise<IterableIterator<[number, ISuperNode]>> {
-      return awaitedIterator.toArray(this).then(x => x.entries());
+      return awaitedIterator.load(this).then(x => x.entries());
     }
 
     public keys(): Promise<IterableIterator<number>> {
-      return awaitedIterator.toArray(this).then(x => x.keys());
+      return awaitedIterator.load(this).then(x => x.keys());
     }
 
     public values(): Promise<IterableIterator<ISuperNode>> {
-      return awaitedIterator.toArray(this).then(x => x.values());
+      return awaitedIterator.load(this).then(x => x.values());
     }
 
     public [Symbol.iterator](): IterableIterator<ISuperNode> {
-      return awaitedIterator.iterateAttachedNodeIds(this)[Symbol.iterator]();
+      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
   };
 }

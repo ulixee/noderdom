@@ -10,7 +10,7 @@ import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IDocumentType, IDocumentTypeProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentType>('DocumentType', getState, setState);
-export const nodeAttacher = new NodeAttacher<IDocumentType>(getState, awaitedHandler);
+export const nodeAttacher = new NodeAttacher<IDocumentType>(getState, setState, awaitedHandler);
 
 export function DocumentTypeGenerator(Node: Constructable<INode>) {
   return class DocumentType extends Node implements IDocumentType, PromiseLike<IDocumentType> {
