@@ -3,10 +3,12 @@ import { ISuperHTMLCollection, ISuperElement } from '../../awaited-base/interfac
 import { SuperHTMLCollectionGenerator, ISuperHTMLCollectionProperties } from '../../awaited-base/super-klasses/SuperHTMLCollection';
 import { createSuperElement } from '../create';
 import HTMLCollectionBaseIsolate from '../isolate-mixins/HTMLCollectionBaseIsolate';
+import HTMLCollectionIsolate from '../isolate-mixins/HTMLCollectionIsolate';
+import HTMLOptionsCollectionIsolate from '../isolate-mixins/HTMLOptionsCollectionIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
-const SuperHTMLCollectionBaseClass = SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate);
+const SuperHTMLCollectionBaseClass = SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate, HTMLCollectionIsolate, HTMLOptionsCollectionIsolate);
 
 export default class SuperHTMLCollection extends SuperHTMLCollectionBaseClass implements ISuperHTMLCollection {
   constructor() {

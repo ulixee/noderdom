@@ -2,8 +2,8 @@
 /// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement, ISuperHTMLCollection, ISuperText, ISuperHTMLElement } from './super';
-import { IGetRootNodeOptions, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from './official';
+import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperText } from './super';
+import { IGetRootNodeOptions, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IHTMLFormElement, IValidityState, ISelectionMode, IHTMLOptionsCollection, IHTMLOptionElement, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from './official';
 
 // NodeIsolate //////////
 
@@ -183,6 +183,26 @@ export interface IDocumentTypeIsolate {
   readonly systemId: Promise<string>;
 }
 
+// RadioNodeListIsolate //////////
+
+export interface IRadioNodeListIsolate {
+  readonly value: Promise<string>;
+}
+
+// NodeListIsolate //////////
+
+export interface INodeListIsolate {
+  readonly length: Promise<number>;
+
+  item(index: number): ISuperNode;
+
+  forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeListIsolate) => void, thisArg?: any): Promise<void>;
+  entries(): Promise<IterableIterator<[number, ISuperNode]>>;
+  keys(): Promise<IterableIterator<number>>;
+  values(): Promise<IterableIterator<ISuperNode>>;
+  [Symbol.iterator](): IterableIterator<ISuperNode>;
+}
+
 // HTMLCollectionBaseIsolate //////////
 
 export interface IHTMLCollectionBaseIsolate {
@@ -191,6 +211,16 @@ export interface IHTMLCollectionBaseIsolate {
   item(index: number): Promise<ISuperElement | null>;
 
   [Symbol.iterator](): IterableIterator<ISuperElement>;
+}
+
+// HTMLOptionsCollectionIsolate //////////
+
+export interface IHTMLOptionsCollectionIsolate {}
+
+// HTMLCollectionIsolate //////////
+
+export interface IHTMLCollectionIsolate {
+  namedItem(name: string): ISuperElement;
 }
 
 // HTML ELEMENTS
@@ -218,6 +248,49 @@ export interface IHTMLElementIsolate {
   click(): Promise<void>;
 }
 
+// HTMLButtonElementIsolate //////////
+
+export interface IHTMLButtonElementIsolate {
+  readonly autofocus: Promise<boolean>;
+  readonly disabled: Promise<boolean>;
+  readonly form: IHTMLFormElement;
+  readonly formAction: Promise<string>;
+  readonly formEnctype: Promise<string>;
+  readonly formMethod: Promise<string>;
+  readonly formNoValidate: Promise<boolean>;
+  readonly formTarget: Promise<string>;
+  readonly labels: ISuperNodeList;
+  readonly name: Promise<string>;
+  readonly type: Promise<string>;
+  readonly validationMessage: Promise<string>;
+  readonly validity: Promise<IValidityState>;
+  readonly value: Promise<string>;
+  readonly willValidate: Promise<boolean>;
+
+  checkValidity(): Promise<boolean>;
+  reportValidity(): Promise<boolean>;
+}
+
+// HTMLFieldSetElementIsolate //////////
+
+export interface IHTMLFieldSetElementIsolate {
+  readonly disabled: Promise<boolean>;
+  readonly elements: ISuperHTMLCollection;
+  readonly form: IHTMLFormElement;
+  readonly name: Promise<string>;
+  readonly type: Promise<string>;
+  readonly validationMessage: Promise<string>;
+  readonly validity: Promise<IValidityState>;
+  readonly willValidate: Promise<boolean>;
+
+  checkValidity(): Promise<boolean>;
+  reportValidity(): Promise<boolean>;
+}
+
+// HTMLFormElementIsolate //////////
+
+export interface IHTMLFormElementIsolate {}
+
 // HTMLHeadElementIsolate //////////
 
 export interface IHTMLHeadElementIsolate {}
@@ -225,7 +298,153 @@ export interface IHTMLHeadElementIsolate {}
 // HTMLInputElementIsolate //////////
 
 export interface IHTMLInputElementIsolate {
+  readonly accept: Promise<string>;
+  readonly alt: Promise<string>;
+  readonly autocomplete: Promise<string>;
+  readonly autofocus: Promise<boolean>;
+  readonly checked: Promise<boolean>;
+  readonly defaultChecked: Promise<boolean>;
+  readonly defaultValue: Promise<string>;
+  readonly dirName: Promise<string>;
+  readonly disabled: Promise<boolean>;
+  readonly form: IHTMLFormElement;
+  readonly formAction: Promise<string>;
+  readonly formEnctype: Promise<string>;
+  readonly formMethod: Promise<string>;
+  readonly formNoValidate: Promise<boolean>;
+  readonly formTarget: Promise<string>;
+  readonly height: Promise<number>;
+  readonly indeterminate: Promise<boolean>;
+  readonly inputMode: Promise<string>;
+  readonly labels: ISuperNodeList;
+  readonly list: ISuperHTMLElement;
+  readonly max: Promise<string>;
+  readonly maxLength: Promise<number>;
+  readonly min: Promise<string>;
+  readonly minLength: Promise<number>;
+  readonly multiple: Promise<boolean>;
+  readonly name: Promise<string>;
+  readonly pattern: Promise<string>;
+  readonly placeholder: Promise<string>;
+  readonly readOnly: Promise<boolean>;
+  readonly required: Promise<boolean>;
+  readonly selectionDirection: Promise<string | null>;
+  readonly selectionEnd: Promise<number | null>;
+  readonly selectionStart: Promise<number | null>;
+  readonly size: Promise<number>;
+  readonly src: Promise<string>;
+  readonly step: Promise<string>;
+  readonly type: Promise<string>;
+  readonly validationMessage: Promise<string>;
+  readonly validity: Promise<IValidityState>;
+  readonly value: Promise<string>;
+  readonly valueAsDate: Promise<any>;
+  readonly valueAsNumber: Promise<number>;
+  readonly width: Promise<number>;
+  readonly willValidate: Promise<boolean>;
+
+  checkValidity(): Promise<boolean>;
+  reportValidity(): Promise<boolean>;
   select(): Promise<void>;
+  setRangeText(replacement: string, start?: number, end?: number, selectionMode?: ISelectionMode): Promise<void>;
+  setSelectionRange(start: number, end: number, direction?: string): Promise<void>;
+  stepDown(n?: number): Promise<void>;
+  stepUp(n?: number): Promise<void>;
+}
+
+// HTMLLabelElementIsolate //////////
+
+export interface IHTMLLabelElementIsolate {
+  readonly control: ISuperHTMLElement;
+  readonly form: IHTMLFormElement;
+  readonly htmlFor: Promise<string>;
+}
+
+// HTMLOptGroupElementIsolate //////////
+
+export interface IHTMLOptGroupElementIsolate {
+  readonly disabled: Promise<boolean>;
+  readonly label: Promise<string>;
+}
+
+// HTMLOptionElementIsolate //////////
+
+export interface IHTMLOptionElementIsolate {
+  readonly defaultSelected: Promise<boolean>;
+  readonly disabled: Promise<boolean>;
+  readonly form: IHTMLFormElement;
+  readonly index: Promise<number>;
+  readonly label: Promise<string>;
+  readonly selected: Promise<boolean>;
+  readonly text: Promise<string>;
+  readonly value: Promise<string>;
+}
+
+// HTMLSelectElementIsolate //////////
+
+export interface IHTMLSelectElementIsolate {
+  readonly autocomplete: Promise<string>;
+  readonly autofocus: Promise<boolean>;
+  readonly disabled: Promise<boolean>;
+  readonly form: IHTMLFormElement;
+  readonly labels: ISuperNodeList;
+  readonly length: Promise<number>;
+  readonly multiple: Promise<boolean>;
+  readonly name: Promise<string>;
+  readonly options: IHTMLOptionsCollection;
+  readonly required: Promise<boolean>;
+  readonly selectedIndex: Promise<number>;
+  readonly selectedOptions: ISuperHTMLCollection;
+  readonly size: Promise<number>;
+  readonly type: Promise<string>;
+  readonly validationMessage: Promise<string>;
+  readonly validity: Promise<IValidityState>;
+  readonly value: Promise<string>;
+  readonly willValidate: Promise<boolean>;
+
+  checkValidity(): Promise<boolean>;
+  item(index: number): ISuperElement;
+  namedItem(name: string): IHTMLOptionElement;
+  reportValidity(): Promise<boolean>;
+
+  [Symbol.iterator](): IterableIterator<ISuperElement>;
+}
+
+// HTMLTextAreaElementIsolate //////////
+
+export interface IHTMLTextAreaElementIsolate {
+  readonly autocomplete: Promise<string>;
+  readonly autofocus: Promise<boolean>;
+  readonly cols: Promise<number>;
+  readonly defaultValue: Promise<string>;
+  readonly disabled: Promise<boolean>;
+  readonly form: IHTMLFormElement;
+  readonly inputMode: Promise<string>;
+  readonly labels: ISuperNodeList;
+  readonly maxLength: Promise<number>;
+  readonly minLength: Promise<number>;
+  readonly name: Promise<string>;
+  readonly placeholder: Promise<string>;
+  readonly readOnly: Promise<boolean>;
+  readonly required: Promise<boolean>;
+  readonly rows: Promise<number>;
+  readonly selectionDirection: Promise<string | null>;
+  readonly selectionEnd: Promise<number | null>;
+  readonly selectionStart: Promise<number | null>;
+  readonly textLength: Promise<number>;
+  readonly type: Promise<string>;
+  readonly validationMessage: Promise<string>;
+  readonly validity: Promise<IValidityState>;
+  readonly value: Promise<string>;
+  readonly willValidate: Promise<boolean>;
+  readonly wrap: Promise<string>;
+
+  checkValidity(): Promise<boolean>;
+  reportValidity(): Promise<boolean>;
+  select(): Promise<void>;
+  setCustomValidity(error: string): Promise<void>;
+  setRangeText(replacement: string, start?: number, end?: number, selectionMode?: ISelectionMode): Promise<void>;
+  setSelectionRange(start: number, end: number, direction?: string): Promise<void>;
 }
 
 // SVG ELEMENTS

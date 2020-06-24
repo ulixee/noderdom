@@ -2,10 +2,14 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperNodeList, ISuperNode } from '../interfaces/super';
+import { INodeListIsolate, IRadioNodeListIsolate } from '../interfaces/isolate';
+import { INodeListIsolateProperties, NodeListIsolatePropertyKeys, NodeListIsolateConstantKeys } from '../isolate-mixins/NodeListIsolate';
+import { IRadioNodeListIsolateProperties, RadioNodeListIsolatePropertyKeys, RadioNodeListIsolateConstantKeys } from '../isolate-mixins/RadioNodeListIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
@@ -13,9 +17,12 @@ export const awaitedHandler = new AwaitedHandler<ISuperNodeList>('SuperNodeList'
 export const nodeAttacher = new NodeAttacher<ISuperNodeList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperNodeList, ISuperNode>(getState, setState, awaitedHandler);
 
-export function SuperNodeListGenerator() {
-  return class SuperNodeList implements ISuperNodeList, PromiseLike<ISuperNodeList> {
+export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListIsolate>, RadioNodeListIsolate: Constructable<IRadioNodeListIsolate>) {
+  const Parent = (ClassMixer(NodeListIsolate, [RadioNodeListIsolate]) as unknown) as Constructable<INodeListIsolate & IRadioNodeListIsolate>;
+
+  return class SuperNodeList extends Parent implements ISuperNodeList, PromiseLike<ISuperNodeList> {
     constructor() {
+      super();
       initializeConstantsAndProperties<SuperNodeList>(this, SuperNodeListConstantKeys, SuperNodeListPropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperNodeList',
@@ -65,12 +72,12 @@ export function SuperNodeListGenerator() {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperNodeListProperties {
+export interface ISuperNodeListProperties extends INodeListIsolateProperties, IRadioNodeListIsolateProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   readonly length?: Promise<number>;
 }
 
-export const SuperNodeListPropertyKeys = ['length'];
+export const SuperNodeListPropertyKeys = [...NodeListIsolatePropertyKeys, ...RadioNodeListIsolatePropertyKeys, 'length'];
 
-export const SuperNodeListConstantKeys = [];
+export const SuperNodeListConstantKeys = [...NodeListIsolateConstantKeys, ...RadioNodeListIsolateConstantKeys];

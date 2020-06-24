@@ -2,12 +2,15 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
-import { IHTMLCollectionBaseIsolate } from '../interfaces/isolate';
+import { IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate } from '../interfaces/isolate';
 import { IHTMLCollectionBaseIsolateProperties, HTMLCollectionBaseIsolatePropertyKeys, HTMLCollectionBaseIsolateConstantKeys } from '../isolate-mixins/HTMLCollectionBaseIsolate';
+import { IHTMLCollectionIsolateProperties, HTMLCollectionIsolatePropertyKeys, HTMLCollectionIsolateConstantKeys } from '../isolate-mixins/HTMLCollectionIsolate';
+import { IHTMLOptionsCollectionIsolateProperties, HTMLOptionsCollectionIsolatePropertyKeys, HTMLOptionsCollectionIsolateConstantKeys } from '../isolate-mixins/HTMLOptionsCollectionIsolate';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
@@ -15,8 +18,10 @@ export const awaitedHandler = new AwaitedHandler<ISuperHTMLCollection>('SuperHTM
 export const nodeAttacher = new NodeAttacher<ISuperHTMLCollection>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperHTMLCollection, ISuperElement>(getState, setState, awaitedHandler);
 
-export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Constructable<IHTMLCollectionBaseIsolate>) {
-  return class SuperHTMLCollection extends HTMLCollectionBaseIsolate implements ISuperHTMLCollection, PromiseLike<ISuperHTMLCollection> {
+export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Constructable<IHTMLCollectionBaseIsolate>, HTMLCollectionIsolate: Constructable<IHTMLCollectionIsolate>, HTMLOptionsCollectionIsolate: Constructable<IHTMLOptionsCollectionIsolate>) {
+  const Parent = (ClassMixer(HTMLCollectionBaseIsolate, [HTMLCollectionIsolate, HTMLOptionsCollectionIsolate]) as unknown) as Constructable<IHTMLCollectionBaseIsolate & IHTMLCollectionIsolate & IHTMLOptionsCollectionIsolate>;
+
+  return class SuperHTMLCollection extends Parent implements ISuperHTMLCollection, PromiseLike<ISuperHTMLCollection> {
     constructor() {
       super();
       initializeConstantsAndProperties<SuperHTMLCollection>(this, SuperHTMLCollectionConstantKeys, SuperHTMLCollectionPropertyKeys);
@@ -44,10 +49,10 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperHTMLCollectionProperties extends IHTMLCollectionBaseIsolateProperties {
+export interface ISuperHTMLCollectionProperties extends IHTMLCollectionBaseIsolateProperties, IHTMLCollectionIsolateProperties, IHTMLOptionsCollectionIsolateProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;}
 
-export const SuperHTMLCollectionPropertyKeys = [...HTMLCollectionBaseIsolatePropertyKeys];
+export const SuperHTMLCollectionPropertyKeys = [...HTMLCollectionBaseIsolatePropertyKeys, ...HTMLCollectionIsolatePropertyKeys, ...HTMLOptionsCollectionIsolatePropertyKeys];
 
-export const SuperHTMLCollectionConstantKeys = [...HTMLCollectionBaseIsolateConstantKeys];
+export const SuperHTMLCollectionConstantKeys = [...HTMLCollectionBaseIsolateConstantKeys, ...HTMLCollectionIsolateConstantKeys, ...HTMLOptionsCollectionIsolateConstantKeys];

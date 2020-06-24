@@ -127,10 +127,10 @@ export default class TsBuildInterfacesBasic {
   }
 
   private extractCallbackInterfaces() {
-    return this.callbackInterfaces.map(i => this.emitCallBackInterface(i));
+    return this.callbackInterfaces.map(i => this.emitCallbackInterface(i));
   }
 
-  private emitCallBackInterface(i: Types.Interface): ICodeModule {
+  private emitCallbackInterface(i: Types.Interface): ICodeModule {
     this.printer.reset();
     const name = i.name;
     const methods = Object.values(i.methods);
