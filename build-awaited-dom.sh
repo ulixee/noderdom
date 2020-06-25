@@ -1,6 +1,9 @@
-mkdir ./builds
-mkdir ./builds/awaited-dom
+rm -rf ./builds/awaited-dom
 
-cp -a ./files/2-finalized/awaited-dom ./builds
+./scripts/2-finalize/generateDOM.ts awaited
 
-./build-awaited-dom.ts
+tsc -p ./build-tsconfig-awaited-dom.json
+
+./build-package-json-awaited-dom.ts
+
+cp ./build-README-awaited-dom.md ./builds/awaited-dom/README.md

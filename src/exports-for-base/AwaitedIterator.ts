@@ -2,7 +2,7 @@ import NodeAttacher, { INodeAttacherProperties } from './NodeAttacher';
 import AwaitedHandler from './AwaitedHandler';
 
 export default class AwaitedIterator<TClass, T> {
-  public static creators = require('../awaited-dom/create');
+  public static creators = require('../impl/create');
   private readonly getState: (instance: TClass) => IAwaitedIteratorProperties;
   private readonly nodeAttacher: NodeAttacher<TClass>;
   constructor(

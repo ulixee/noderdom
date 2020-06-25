@@ -1,0 +1,58 @@
+import AwaitedHandler from '../AwaitedHandler';
+import AwaitedPath from '../AwaitedPath';
+import AwaitedIterator from '../AwaitedIterator';
+import { IHTMLSelectElementIsolate } from '../interfaces/isolate';
+import { IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
+import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
+export declare const getState: <C = IHTMLSelectElementIsolate, P = IHTMLSelectElementIsolateProperties>(instance: C) => P, setState: <P = IHTMLSelectElementIsolateProperties>(instance: IHTMLSelectElementIsolate, properties: P) => void;
+export declare const awaitedHandler: AwaitedHandler<IHTMLSelectElementIsolate>;
+export declare const awaitedIterator: AwaitedIterator<IHTMLSelectElementIsolate, ISuperElement>;
+export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsolate {
+    get autocomplete(): Promise<string>;
+    get autofocus(): Promise<boolean>;
+    get disabled(): Promise<boolean>;
+    get form(): IHTMLFormElement;
+    get labels(): ISuperNodeList;
+    get length(): Promise<number>;
+    get multiple(): Promise<boolean>;
+    get name(): Promise<string>;
+    get options(): IHTMLOptionsCollection;
+    get required(): Promise<boolean>;
+    get selectedIndex(): Promise<number>;
+    get selectedOptions(): ISuperHTMLCollection;
+    get size(): Promise<number>;
+    get type(): Promise<string>;
+    get validationMessage(): Promise<string>;
+    get validity(): Promise<IValidityState>;
+    get value(): Promise<string>;
+    get willValidate(): Promise<boolean>;
+    checkValidity(): Promise<boolean>;
+    item(index: number): ISuperElement;
+    namedItem(name: string): IHTMLOptionElement;
+    reportValidity(): Promise<boolean>;
+    [Symbol.iterator](): IterableIterator<ISuperElement>;
+}
+export interface IHTMLSelectElementIsolateProperties {
+    awaitedPath: AwaitedPath;
+    awaitedOptions: any;
+    readonly autocomplete?: Promise<string>;
+    readonly autofocus?: Promise<boolean>;
+    readonly disabled?: Promise<boolean>;
+    readonly form?: IHTMLFormElement;
+    readonly labels?: ISuperNodeList;
+    readonly length?: Promise<number>;
+    readonly multiple?: Promise<boolean>;
+    readonly name?: Promise<string>;
+    readonly options?: IHTMLOptionsCollection;
+    readonly required?: Promise<boolean>;
+    readonly selectedIndex?: Promise<number>;
+    readonly selectedOptions?: ISuperHTMLCollection;
+    readonly size?: Promise<number>;
+    readonly type?: Promise<string>;
+    readonly validationMessage?: Promise<string>;
+    readonly validity?: Promise<IValidityState>;
+    readonly value?: Promise<string>;
+    readonly willValidate?: Promise<boolean>;
+}
+export declare const HTMLSelectElementIsolatePropertyKeys: string[];
+export declare const HTMLSelectElementIsolateConstantKeys: never[];

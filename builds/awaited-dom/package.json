@@ -1,8 +1,8 @@
 {
   "name": "awaited-dom",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
-  "homepage": "https://github.com/ulixee/awaited-dom",
+  "homepage": "https://github.com/ulixee/noderdom",
   "contributors": [
     {
       "name": "Caleb Clark"
@@ -25,6 +25,6 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git://github.com/ulixee/awaited-dom"
+    "url": "git://github.com/ulixee/noderdom"
   }
 }

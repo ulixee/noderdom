@@ -3,7 +3,7 @@ import AwaitedHandler from './AwaitedHandler';
 import IAttachedState from './IAttachedState';
 
 export default class NodeAttacher<TClass> {
-  public static creators = require('../awaited-dom/create');
+  public static creators = require('../impl/create');
   private readonly getState: (instance: TClass) => INodeAttacherProperties;
   private readonly setState: (instance: TClass, state: Partial<INodeAttacherProperties>) => void;
   private readonly awaitedHandler: AwaitedHandler<TClass>;
