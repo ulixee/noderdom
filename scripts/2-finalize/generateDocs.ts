@@ -4,10 +4,12 @@ import * as Fs from 'fs';
 import * as Path from 'path';
 import db from '../../db';
 import config from '../../config';
+import IDomType, { DomType } from '../../src/interfaces/IDomType';
 
+const domType: IDomType = DomType.awaited;
 const docs: any[] = [];
 const allInterfaces = db.prepare('SELECT * FROM interfaces WHERE hasDefinedIDL=1 ORDER BY name').all();
-const docsPath = Path.join(config.filesFinalizedDir, `dom-docs.json`);
+const docsPath = Path.join(config.filesFinalizedDir, `${domType}-dom`, 'docs.json');
 
 allInterfaces.map(inter => {
   const name = inter.name;

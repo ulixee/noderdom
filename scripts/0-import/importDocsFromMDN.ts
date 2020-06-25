@@ -3,8 +3,8 @@
 import * as Fs from 'fs';
 import * as Path from 'path';
 import Axios from 'axios';
-import { DOMParser } from 'noderdom';
-import { IDocument, IElement } from 'noderdom/base/interfaces';
+import { DOMParser } from 'noderdom-detached';
+import { IDocument, IElement } from 'noderdom-detached/base/interfaces';
 import config from '../../config';
 
 const cherryPickedInterfaceNames = [

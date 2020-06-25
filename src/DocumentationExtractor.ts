@@ -1,5 +1,5 @@
 import * as Fs from 'fs';
-import { DOMParser } from 'noderdom';
+import { DOMParser } from 'noderdom-detached';
 import { IDocument, IElement } from 'noderdom/base/interfaces';
 
 export default class DocumentationExtractor {
