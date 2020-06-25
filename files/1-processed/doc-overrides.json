@@ -1,0 +1,3 @@
+{
+  "Location": "Location represents the location (URL) of the browser window. Changes done on it are reflected on it's window. Both Document and Window share the same linked Location, accessible via document.location and window.location respectively."
+}

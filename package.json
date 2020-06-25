@@ -1,0 +1,61 @@
+{
+  "name": "noderdom",
+  "version": "1.0.6",
+  "description": "Library for converting WebIDLs to Typescript interfaces and classes",
+  "homepage": "https://github.com/ulixee/noderdom",
+  "author": "Data Liberation Foundation",
+  "contributors": [
+    "Caleb Clark",
+    "Blake Byrnes"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "w3c",
+    "dom",
+    "xml",
+    "parser",
+    "javascript",
+    "DOMParser",
+    "XMLSerializer"
+  ],
+  "scripts": {
+    "lint": "tslint --project ./",
+    "build:awaited-dom": "./build-awaited-dom.sh",
+    "db:create": "ts-node ./db/scripts/create.ts",
+    "db:drop": "ts-node ./db/scripts/drop.ts",
+    "db:reset": "npm run db:drop && npm run db:create",
+    "step:0-import": "ts-node ./scripts/0-import/importDocsFromMDN.ts",
+    "step:0-compile": "ts-node ./scripts/1-process/compileOtherComponents.ts standard",
+    "step:1-db": "ts-node ./scripts/1-process/dbGenerator/index.ts",
+    "step:1-customize": "ts-node ./scripts/1-process/customizer.ts",
+    "step:2-ts": "ts-node ./scripts/0-import/importComponentFiltersFromDb.ts awaited && ts-node ./scripts/1-process/compileAwaitedComponents.ts && ts-node ./scripts/2-finalize/generateDOM.ts awaited"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/better-sqlite3": "^5.4.0",
+    "@types/node": "^13.1.7",
+    "@types/parse5": "^5.0.2",
+    "@types/webidl2": "^23.8.0",
+    "axios": "^0.19.1",
+    "better-sqlite3": "^5.4.3",
+    "noderdom-detached": "git://github.com/ulixee/noderdom-detached.git#dist",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^9.0.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "tslint-no-circular-imports": "^0.7.0",
+    "tslint-plugin-prettier": "^2.1.0",
+    "typescript": "^3.7.5",
+    "vue-property-decorator": "^8.4.0",
+    "vue-runner": "^0.1.6",
+    "webidl2": "^23.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ulixee/noderdom"
+  }
+}

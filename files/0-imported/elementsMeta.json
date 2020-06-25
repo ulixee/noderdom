@@ -1,0 +1,1380 @@
+{
+  "HTMLTableElement": {
+    "name": "HTMLTableElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "table"
+      }
+    ]
+  },
+  "SVGFEFuncAElement": {
+    "name": "SVGFEFuncAElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feFuncA"
+      }
+    ]
+  },
+  "SVGFETileElement": {
+    "name": "SVGFETileElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feTile"
+      }
+    ]
+  },
+  "SVGFEBlendElement": {
+    "name": "SVGFEBlendElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feBlend"
+      }
+    ]
+  },
+  "HTMLTimeElement": {
+    "name": "HTMLTimeElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "time"
+      }
+    ]
+  },
+  "SVGGElement": {
+    "name": "SVGGElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "g"
+      }
+    ]
+  },
+  "SVGFEPointLightElement": {
+    "name": "SVGFEPointLightElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "fePointLight"
+      }
+    ]
+  },
+  "HTMLBaseElement": {
+    "name": "HTMLBaseElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "base",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "SVGLineElement": {
+    "name": "SVGLineElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "line"
+      }
+    ]
+  },
+  "HTMLParagraphElement": {
+    "name": "HTMLParagraphElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "p"
+      }
+    ]
+  },
+  "HTMLOListElement": {
+    "name": "HTMLOListElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "ol"
+      }
+    ]
+  },
+  "SVGFEMorphologyElement": {
+    "name": "SVGFEMorphologyElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feMorphology"
+      }
+    ]
+  },
+  "SVGPatternElement": {
+    "name": "SVGPatternElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "pattern"
+      }
+    ]
+  },
+  "SVGViewElement": {
+    "name": "SVGViewElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "view"
+      }
+    ]
+  },
+  "HTMLLinkElement": {
+    "name": "HTMLLinkElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "link",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLFontElement": {
+    "name": "HTMLFontElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "font"
+      }
+    ]
+  },
+  "HTMLOptionElement": {
+    "name": "HTMLOptionElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "option"
+      }
+    ]
+  },
+  "HTMLMapElement": {
+    "name": "HTMLMapElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "map"
+      }
+    ]
+  },
+  "HTMLMenuElement": {
+    "name": "HTMLMenuElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "menu"
+      }
+    ]
+  },
+  "HTMLTemplateElement": {
+    "name": "HTMLTemplateElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "template"
+      }
+    ]
+  },
+  "SVGFETurbulenceElement": {
+    "name": "SVGFETurbulenceElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feTurbulence"
+      }
+    ]
+  },
+  "SVGFESpotLightElement": {
+    "name": "SVGFESpotLightElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feSpotLight"
+      }
+    ]
+  },
+  "HTMLImageElement": {
+    "name": "HTMLImageElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "img",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLScriptElement": {
+    "name": "HTMLScriptElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "script"
+      }
+    ]
+  },
+  "HTMLTableRowElement": {
+    "name": "HTMLTableRowElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "tr"
+      }
+    ]
+  },
+  "HTMLFrameElement": {
+    "name": "HTMLFrameElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "frame",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "SVGEllipseElement": {
+    "name": "SVGEllipseElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "ellipse"
+      }
+    ]
+  },
+  "SVGTextElement": {
+    "name": "SVGTextElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "text"
+      }
+    ]
+  },
+  "HTMLIFrameElement": {
+    "name": "HTMLIFrameElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "iframe"
+      }
+    ]
+  },
+  "HTMLBodyElement": {
+    "name": "HTMLBodyElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "body"
+      }
+    ]
+  },
+  "SVGFilterElement": {
+    "name": "SVGFilterElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "filter"
+      }
+    ]
+  },
+  "SVGImageElement": {
+    "name": "SVGImageElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "image"
+      }
+    ]
+  },
+  "HTMLCanvasElement": {
+    "name": "HTMLCanvasElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "canvas"
+      }
+    ]
+  },
+  "HTMLTitleElement": {
+    "name": "HTMLTitleElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "title"
+      }
+    ]
+  },
+  "HTMLStyleElement": {
+    "name": "HTMLStyleElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "style"
+      }
+    ]
+  },
+  "HTMLUnknownElement": {
+    "name": "HTMLUnknownElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "isindex"
+      },
+      {
+        "name": "nextid"
+      }
+    ]
+  },
+  "HTMLTableCellElement": {
+    "name": "HTMLTableCellElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "td"
+      },
+      {
+        "name": "th"
+      }
+    ]
+  },
+  "HTMLTextAreaElement": {
+    "name": "HTMLTextAreaElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "textarea"
+      }
+    ]
+  },
+  "HTMLModElement": {
+    "name": "HTMLModElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "ins"
+      },
+      {
+        "name": "del"
+      }
+    ]
+  },
+  "SVGUseElement": {
+    "name": "SVGUseElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "use"
+      }
+    ]
+  },
+  "HTMLTableColElement": {
+    "name": "HTMLTableColElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "col",
+        "selfClosing": 1
+      },
+      {
+        "name": "colgroup"
+      }
+    ]
+  },
+  "SVGFEFuncBElement": {
+    "name": "SVGFEFuncBElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feFuncB"
+      }
+    ]
+  },
+  "HTMLUListElement": {
+    "name": "HTMLUListElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "ul"
+      }
+    ]
+  },
+  "HTMLDivElement": {
+    "name": "HTMLDivElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "div"
+      }
+    ]
+  },
+  "SVGFEColorMatrixElement": {
+    "name": "SVGFEColorMatrixElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feColorMatrix"
+      }
+    ]
+  },
+  "SVGForeignObjectElement": {
+    "name": "SVGForeignObjectElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "foreignObject"
+      }
+    ]
+  },
+  "HTMLBRElement": {
+    "name": "HTMLBRElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "br",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLProgressElement": {
+    "name": "HTMLProgressElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "progress"
+      }
+    ]
+  },
+  "HTMLHeadElement": {
+    "name": "HTMLHeadElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "head"
+      }
+    ]
+  },
+  "SVGTextPathElement": {
+    "name": "SVGTextPathElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "textPath"
+      }
+    ]
+  },
+  "HTMLObjectElement": {
+    "name": "HTMLObjectElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "object"
+      }
+    ]
+  },
+  "HTMLEmbedElement": {
+    "name": "HTMLEmbedElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "embed",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "SVGFECompositeElement": {
+    "name": "SVGFECompositeElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feComposite"
+      }
+    ]
+  },
+  "SVGSymbolElement": {
+    "name": "SVGSymbolElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "symbol"
+      }
+    ]
+  },
+  "HTMLVideoElement": {
+    "name": "HTMLVideoElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "video"
+      }
+    ]
+  },
+  "SVGFEDiffuseLightingElement": {
+    "name": "SVGFEDiffuseLightingElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feDiffuseLighting"
+      }
+    ]
+  },
+  "SVGFEComponentTransferElement": {
+    "name": "SVGFEComponentTransferElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feComponentTransfer"
+      }
+    ]
+  },
+  "SVGFEFloodElement": {
+    "name": "SVGFEFloodElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feFlood"
+      }
+    ]
+  },
+  "SVGFEMergeNodeElement": {
+    "name": "SVGFEMergeNodeElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feMergeNode"
+      }
+    ]
+  },
+  "HTMLPictureElement": {
+    "name": "HTMLPictureElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "picture"
+      }
+    ]
+  },
+  "SVGMarkerElement": {
+    "name": "SVGMarkerElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "marker"
+      }
+    ]
+  },
+  "HTMLMeterElement": {
+    "name": "HTMLMeterElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "meter"
+      }
+    ]
+  },
+  "SVGFEMergeElement": {
+    "name": "SVGFEMergeElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feMerge"
+      }
+    ]
+  },
+  "SVGFESpecularLightingElement": {
+    "name": "SVGFESpecularLightingElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feSpecularLighting"
+      }
+    ]
+  },
+  "SVGDescElement": {
+    "name": "SVGDescElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "desc"
+      }
+    ]
+  },
+  "SVGClipPathElement": {
+    "name": "SVGClipPathElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "clipPath"
+      }
+    ]
+  },
+  "HTMLAppletElement": {
+    "name": "HTMLAppletElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "applet"
+      }
+    ]
+  },
+  "HTMLSelectElement": {
+    "name": "HTMLSelectElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "select"
+      }
+    ]
+  },
+  "HTMLMetaElement": {
+    "name": "HTMLMetaElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "meta",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "SVGScriptElement": {
+    "name": "SVGScriptElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "script"
+      }
+    ]
+  },
+  "SVGFEDistantLightElement": {
+    "name": "SVGFEDistantLightElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feDistantLight"
+      }
+    ]
+  },
+  "SVGTitleElement": {
+    "name": "SVGTitleElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "title"
+      }
+    ]
+  },
+  "HTMLTableCaptionElement": {
+    "name": "HTMLTableCaptionElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "caption"
+      }
+    ]
+  },
+  "SVGFEConvolveMatrixElement": {
+    "name": "SVGFEConvolveMatrixElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feConvolveMatrix"
+      }
+    ]
+  },
+  "SVGFEFuncGElement": {
+    "name": "SVGFEFuncGElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feFuncG"
+      }
+    ]
+  },
+  "HTMLAreaElement": {
+    "name": "HTMLAreaElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "area",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLButtonElement": {
+    "name": "HTMLButtonElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "button"
+      }
+    ]
+  },
+  "HTMLSourceElement": {
+    "name": "HTMLSourceElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "source",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLHtmlElement": {
+    "name": "HTMLHtmlElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "html"
+      }
+    ]
+  },
+  "HTMLQuoteElement": {
+    "name": "HTMLQuoteElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "q"
+      },
+      {
+        "name": "blockquote"
+      }
+    ]
+  },
+  "SVGDefsElement": {
+    "name": "SVGDefsElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "defs"
+      }
+    ]
+  },
+  "HTMLDListElement": {
+    "name": "HTMLDListElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "dl"
+      }
+    ]
+  },
+  "SVGAElement": {
+    "name": "SVGAElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "a"
+      }
+    ]
+  },
+  "HTMLFrameSetElement": {
+    "name": "HTMLFrameSetElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "frameset"
+      }
+    ]
+  },
+  "SVGSVGElement": {
+    "name": "SVGSVGElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "svg"
+      }
+    ]
+  },
+  "HTMLLabelElement": {
+    "name": "HTMLLabelElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "label"
+      }
+    ]
+  },
+  "HTMLDirectoryElement": {
+    "name": "HTMLDirectoryElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "dir"
+      }
+    ]
+  },
+  "HTMLLegendElement": {
+    "name": "HTMLLegendElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "legend"
+      }
+    ]
+  },
+  "SVGTSpanElement": {
+    "name": "SVGTSpanElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "tspan"
+      }
+    ]
+  },
+  "HTMLLIElement": {
+    "name": "HTMLLIElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "li"
+      }
+    ]
+  },
+  "SVGFEImageElement": {
+    "name": "SVGFEImageElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feImage"
+      }
+    ]
+  },
+  "SVGStyleElement": {
+    "name": "SVGStyleElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "style"
+      }
+    ]
+  },
+  "SVGRadialGradientElement": {
+    "name": "SVGRadialGradientElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "radialGradient"
+      }
+    ]
+  },
+  "HTMLTableSectionElement": {
+    "name": "HTMLTableSectionElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "thead"
+      },
+      {
+        "name": "tbody"
+      },
+      {
+        "name": "tfoot"
+      }
+    ]
+  },
+  "HTMLInputElement": {
+    "name": "HTMLInputElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "input",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLAnchorElement": {
+    "name": "HTMLAnchorElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "a"
+      }
+    ]
+  },
+  "HTMLParamElement": {
+    "name": "HTMLParamElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "param",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLPreElement": {
+    "name": "HTMLPreElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "pre"
+      },
+      {
+        "name": "listing",
+        "deprecated": true
+      },
+      {
+        "name": "xmp",
+        "deprecated": true
+      }
+    ]
+  },
+  "SVGMetadataElement": {
+    "name": "SVGMetadataElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "metadata"
+      }
+    ]
+  },
+  "SVGPolygonElement": {
+    "name": "SVGPolygonElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "polygon"
+      }
+    ]
+  },
+  "SVGFEGaussianBlurElement": {
+    "name": "SVGFEGaussianBlurElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feGaussianBlur"
+      }
+    ]
+  },
+  "SVGPathElement": {
+    "name": "SVGPathElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "path"
+      }
+    ]
+  },
+  "HTMLAudioElement": {
+    "name": "HTMLAudioElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "audio"
+      }
+    ]
+  },
+  "SVGCircleElement": {
+    "name": "SVGCircleElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "circle"
+      }
+    ]
+  },
+  "HTMLBaseFontElement": {
+    "name": "HTMLBaseFontElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "basefont",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLMarqueeElement": {
+    "name": "HTMLMarqueeElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "marquee"
+      }
+    ]
+  },
+  "SVGFEFuncRElement": {
+    "name": "SVGFEFuncRElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feFuncR"
+      }
+    ]
+  },
+  "SVGFEDisplacementMapElement": {
+    "name": "SVGFEDisplacementMapElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feDisplacementMap"
+      }
+    ]
+  },
+  "SVGLinearGradientElement": {
+    "name": "SVGLinearGradientElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "linearGradient"
+      }
+    ]
+  },
+  "SVGRectElement": {
+    "name": "SVGRectElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "rect"
+      }
+    ]
+  },
+  "SVGPolylineElement": {
+    "name": "SVGPolylineElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "polyline"
+      }
+    ]
+  },
+  "HTMLSpanElement": {
+    "name": "HTMLSpanElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "span"
+      }
+    ]
+  },
+  "HTMLHeadingElement": {
+    "name": "HTMLHeadingElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "h1"
+      },
+      {
+        "name": "h2"
+      },
+      {
+        "name": "h3"
+      },
+      {
+        "name": "h4"
+      },
+      {
+        "name": "h5"
+      },
+      {
+        "name": "h6"
+      }
+    ]
+  },
+  "SVGFEOffsetElement": {
+    "name": "SVGFEOffsetElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "feOffset"
+      }
+    ]
+  },
+  "HTMLFormElement": {
+    "name": "HTMLFormElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "form"
+      }
+    ]
+  },
+  "HTMLFieldSetElement": {
+    "name": "HTMLFieldSetElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "fieldset"
+      }
+    ]
+  },
+  "HTMLElement": {
+    "name": "HTMLElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "noframes"
+      },
+      {
+        "name": "noscript"
+      },
+      {
+        "name": "wbr",
+        "selfClosing": 1
+      },
+      {
+        "name": "section"
+      },
+      {
+        "name": "nav"
+      },
+      {
+        "name": "article"
+      },
+      {
+        "name": "aside"
+      },
+      {
+        "name": "hgroup"
+      },
+      {
+        "name": "header"
+      },
+      {
+        "name": "footer"
+      },
+      {
+        "name": "figure"
+      },
+      {
+        "name": "figcaption"
+      },
+      {
+        "name": "mark"
+      },
+      {
+        "name": "dd"
+      },
+      {
+        "name": "dt"
+      },
+      {
+        "name": "abbr"
+      },
+      {
+        "name": "acronym"
+      },
+      {
+        "name": "b"
+      },
+      {
+        "name": "bdo"
+      },
+      {
+        "name": "big"
+      },
+      {
+        "name": "cite"
+      },
+      {
+        "name": "code"
+      },
+      {
+        "name": "dfn"
+      },
+      {
+        "name": "em"
+      },
+      {
+        "name": "i"
+      },
+      {
+        "name": "kbd"
+      },
+      {
+        "name": "nobr"
+      },
+      {
+        "name": "rt"
+      },
+      {
+        "name": "ruby"
+      },
+      {
+        "name": "s"
+      },
+      {
+        "name": "samp"
+      },
+      {
+        "name": "small"
+      },
+      {
+        "name": "strike"
+      },
+      {
+        "name": "strong"
+      },
+      {
+        "name": "sub"
+      },
+      {
+        "name": "sup"
+      },
+      {
+        "name": "tt"
+      },
+      {
+        "name": "u"
+      },
+      {
+        "name": "var"
+      },
+      {
+        "name": "address"
+      },
+      {
+        "name": "center"
+      },
+      {
+        "name": "keygen",
+        "selfClosing": 1
+      },
+      {
+        "name": "plaintext"
+      },
+      {
+        "name": "bdi"
+      },
+      {
+        "name": "main"
+      },
+      {
+        "name": "rp"
+      },
+      {
+        "name": "summary"
+      }
+    ]
+  },
+  "HTMLHRElement": {
+    "name": "HTMLHRElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "hr",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLOptGroupElement": {
+    "name": "HTMLOptGroupElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "optgroup"
+      }
+    ]
+  },
+  "SVGSwitchElement": {
+    "name": "SVGSwitchElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "switch"
+      }
+    ]
+  },
+  "HTMLDataListElement": {
+    "name": "HTMLDataListElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "datalist"
+      }
+    ]
+  },
+  "SVGStopElement": {
+    "name": "SVGStopElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "stop"
+      }
+    ]
+  },
+  "HTMLTrackElement": {
+    "name": "HTMLTrackElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "track",
+        "selfClosing": 1
+      }
+    ]
+  },
+  "HTMLOutputElement": {
+    "name": "HTMLOutputElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "output"
+      }
+    ]
+  },
+  "HTMLDataElement": {
+    "name": "HTMLDataElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "data"
+      }
+    ]
+  },
+  "SVGMaskElement": {
+    "name": "SVGMaskElement",
+    "namespace": "SVG",
+    "tags": [
+      {
+        "name": "mask"
+      }
+    ]
+  },
+  "HTMLDetailsElement": {
+    "name": "HTMLDetailsElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "details"
+      }
+    ]
+  },
+  "HTMLSlotElement": {
+    "name": "HTMLSlotElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "slot"
+      }
+    ]
+  },
+  "HTMLTableDataCellElement": {
+    "name": "HTMLTableDataCellElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "td"
+      }
+    ]
+  },
+  "HTMLTableHeaderCellElement": {
+    "name": "HTMLTableHeaderCellElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "th"
+      }
+    ]
+  },
+  "HTMLDialogElement": {
+    "name": "HTMLDialogElement",
+    "namespace": "HTML",
+    "tags": [
+      {
+        "name": "dialog"
+      }
+    ]
+  }
+}
