@@ -48,3 +48,7 @@ Create DOM:
 ./scripts/1-process/compileAwaitedComponents.ts
 ./scripts/2-finalize/generateDOM.ts awaited
 ```
+
+## License
+
+[MIT](LICENSE.md)
