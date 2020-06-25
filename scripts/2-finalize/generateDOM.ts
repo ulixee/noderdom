@@ -16,6 +16,9 @@ async function run() {
   const baseDir = Path.join(config.filesFinalizedDir, `${domType}-dom`, 'base');
   const implDir = Path.join(config.filesFinalizedDir, `${domType}-dom`, 'impl');
 
+  Fs.rmdirSync(baseDir, { recursive: true });
+  Fs.rmdirSync(implDir, { recursive: true });
+
   const componentsPath = Path.join(config.filesProcessedDir, `components-${domType}.json`);
   const componentsData = JSON.parse(Fs.readFileSync(componentsPath, 'utf-8'));
   const components = new Components(componentsData);

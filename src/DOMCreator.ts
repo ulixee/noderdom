@@ -131,7 +131,7 @@ export default class DOMCreator {
       });
     }
 
-    Exports.moveToDir(pathsByBuildType.base.root);
+    Exports.moveToDir(pathsByBuildType.base.root, domType);
 
     return tsBuilder.objectMetaByName;
   }
