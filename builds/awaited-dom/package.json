@@ -1,6 +1,6 @@
 {
   "name": "awaited-dom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
   "homepage": "https://github.com/ulixee/awaited-dom",
   "contributors": [
