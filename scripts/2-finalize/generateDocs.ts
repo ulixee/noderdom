@@ -43,24 +43,18 @@ allSupers.map(sup => {
   const interSql = `SELECT * FROM interfaces WHERE name=? AND hasDefinedIDL=1`;
   const inter = db.prepare(interSql).get([sup.interfaceName]);
 
-  const propertiesSql = `SELECT * FROM properties WHERE interfaceName=? AND hasDefinedIDL=1 ORDER BY localName COLLATE NOCASE`;
-  const properties = db.prepare(propertiesSql).all([sup.interfaceName]);
-
-  const methodsSql = `SELECT * FROM methods WHERE interfaceName=? AND hasDefinedIDL=1 ORDER BY localName COLLATE NOCASE`;
-  const methods = db.prepare(methodsSql).all([sup.interfaceName]);
+  const dependenciesSql = `SELECT * FROM super_isolates WHERE superName=? ORDER BY interfaceName COLLATE NOCASE`;
+  const dependencies = db.prepare(dependenciesSql).all([sup.name]);
 
   docs.push({
     name,
     tags: 'Super',
     overview: inter.docOverview,
-    properties: properties.map(p => ({
-      name: p.localName,
-      overview: p.docOverview,
+    dependencies: dependencies.map(d => ({
+      name: d.interfaceName,
     })),
-    methods: methods.map(m => ({
-      name: m.localName,
-      overview: m.docOverview,
-    })),
+    properties: [],
+    methods: [],
   });
 });
 

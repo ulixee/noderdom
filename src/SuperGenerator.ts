@@ -2,16 +2,7 @@ import Components from './Components';
 import DependencyCollector from './DependencyCollector';
 import { DomType } from './interfaces/IDomType';
 
-const BASE_NAMES = [
-  'Document',
-  'Element',
-  'Node',
-  'NodeList',
-  'HTMLCollection',
-  'Text',
-  'HTMLElement',
-  'StyleSheet',
-];
+const BASE_NAMES = ['Document', 'Element', 'Node', 'NodeList', 'HTMLCollection', 'Text', 'HTMLElement', 'StyleSheet'];
 
 export default class SuperGenerator {
   public static baseNames: string[] = BASE_NAMES;
@@ -20,9 +11,9 @@ export default class SuperGenerator {
     const dependencyCollector = new DependencyCollector(components, DomType.awaited);
 
     this.baseNames.forEach(baseName => {
+      if (!components.allInterfacesMap[baseName]) return;
       const superName = `Super${baseName}`;
       const inheritsFrom = dependencyCollector.get(baseName);
-      if (!components.allInterfacesMap[baseName]) return;
       const superInterface = Object.assign({}, components.allInterfacesMap[baseName], { name: superName });
       delete superInterface.extends;
 
