@@ -1,6 +1,6 @@
 {
   "name": "noderdom",
-  "version": "1.0.6",
+  "version": "1.0.10",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
   "homepage": "https://github.com/ulixee/noderdom",
   "author": "Data Liberation Foundation",

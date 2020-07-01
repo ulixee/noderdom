@@ -1,8 +1,8 @@
 CREATE TABLE interfaces (
   name TEXT PRIMARY KEY,
 
-  category TEXT NOT NULL,
   type TEXT NOT NULL,
+  tags TEXT DEFAULT '',
 
   docOverview TEXT,
 
@@ -17,6 +17,7 @@ CREATE TABLE interfaces (
   sourcedAtPath TEXT NOT NULL,
   mdnDocumentationPath TEXT,
   mdnFilename TEXT,
+  mdnCategory TEXT,
 
   CHECK (type = "interface" OR type = "callbackInterface" OR type = "mixin" OR type = "unknown")
 );

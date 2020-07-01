@@ -1,3 +1,5 @@
+#!/usr/bin/env ts-node
+
 console.log('------ INSERTING INTERFACES ------- \n\n\n');
 require('./insertInterfaces');
 console.log('\n\n\n------ INSERTING PROPERTIES AND METHODS ------- \n\n\n');

@@ -1,6 +1,6 @@
 import * as Fs from 'fs';
 import { DOMParser } from 'noderdom-detached';
-import { IDocument, IElement } from 'noderdom/base/interfaces';
+import { IDocument, IElement } from 'noderdom-detached/base/interfaces';
 
 export default class DocumentationExtractor {
   public foundFile: boolean = false;
