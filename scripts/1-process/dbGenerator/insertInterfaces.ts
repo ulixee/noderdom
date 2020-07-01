@@ -37,7 +37,25 @@ for (const mdnInterface of mdnInterfaces) {
     console.log('');
     continue;
   }
-  interfacesByName[mdnInterface.name] = mdnInterface;
+
+  const tags: string[] = [];
+  if (['HTMLDocument', 'XMLDocument', 'DocumentFragment'].includes(mdnInterface.name)) {
+    tags.push('Document');
+  } else if (['Node', 'Element', 'Comment', 'Text', 'HTMLElement'].includes(mdnInterface.name)) {
+    tags.push('Node');
+  }
+  if (mdnInterface.category === 'HTMLElements') {
+    tags.push('HTMLElement');
+  } else if (mdnInterface.category === 'SVGElements') {
+    tags.push('SVGElement');
+  }
+
+  interfacesByName[mdnInterface.name] = {
+    ...mdnInterface,
+    mdnFilename: mdnInterface.filename,
+    mdnCategory: mdnInterface.category,
+    tags: tags.filter(t => t).join(','),
+  };
 }
 
 const interfaceRelationships = [];
@@ -50,9 +68,6 @@ for (const inter of components.allInterfaces) {
     console.log(`- Missing mdn interface: ${inter.name}`);
     interfacesByName[inter.name] = {
       name: inter.name,
-      mdnFilename: '',
-      mdnDocumentationPath: '',
-      category: 'Custom',
       isDeprecated: false,
       isExperimental: false,
       isObsolete: false,
@@ -60,6 +75,8 @@ for (const inter of components.allInterfaces) {
       hasDefinedIDL: true,
       isOnMDN: false,
       sourcedAtPath: '',
+      mdnFilename: '',
+      mdnDocumentationPath: '',
     };
     continue;
   }
@@ -87,8 +104,8 @@ console.log('INSERTING INTO DB...');
 for (const inter of Object.values(interfacesByName)) {
   const data = {
     name: inter.name,
-    category: inter.category,
     type: inter.hasDefinedIDL ? extractComponentType(inter.name) : 'unknown',
+    tags: inter.tags || '',
     isDeprecated: Number(inter.isDeprecated || 0),
     isExperimental: Number(inter.isExperimental || 0),
     isObsolete: Number(inter.isObsolete || 0),
@@ -98,10 +115,11 @@ for (const inter of Object.values(interfacesByName)) {
     sourcedAtPath: inter.sourcedAtPath,
     mdnDocumentationPath: inter.mdnDocumentationPath,
     mdnFilename: inter.mdnFilename,
+    mdnCategory: inter.mdnCategory,
   };
   const existing = db.prepare(`SELECT * FROM interfaces WHERE name=?`).get([inter.name]);
   if (existing) {
-    db.prepare('UPDATE interfaces SET isDocumented=? WHERE name=?').run([Number(inter.isDocumented), inter.name]);
+    db.prepare('UPDATE interfaces SET isDocumented=? WHERE name=?').run([data.isDocumented, inter.name]);
   } else {
     const fields = Object.keys(data).join(', ');
     const values = Object.values(data);
