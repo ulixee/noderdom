@@ -20,7 +20,6 @@ const interfacesByName: { [key: string]: any } = {};
 
 for (const mdnInterface of mdnInterfaces) {
   const name = mdnInterface.name;
-  console.log('NAME: ', name, !!interfacesByName[name]);
 
   if (interfacesByName[name]) {
     const title = `${name} ALREADY EXISTS: `;

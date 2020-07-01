@@ -1,6 +1,6 @@
 import AwaitedPath from '../base/AwaitedPath';
 import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLButtonElement, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLSelectElement, IHTMLTextAreaElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRadioNodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText, IValidityState } from '../base/interfaces/official';
-import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperCharacterData, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
+import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
 export declare const setState: <P = any>(instance: any, properties: P) => void;
 export declare function createAttr<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IAttr;
 export declare function createBlob<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IBlob;
@@ -45,6 +45,5 @@ export declare function createSuperNode<IAwaitedOptions = {}>(awaitedPath: Await
 export declare function createSuperNodeList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperNodeList;
 export declare function createSuperHTMLCollection<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperHTMLCollection;
 export declare function createSuperText<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperText;
-export declare function createSuperCharacterData<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperCharacterData;
 export declare function createSuperHTMLElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperHTMLElement;
 export declare function createSuperStyleSheet<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperStyleSheet;

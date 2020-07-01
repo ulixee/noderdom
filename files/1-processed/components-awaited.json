@@ -5715,54 +5715,6 @@
         "NodeIsolate"
       ]
     },
-    "SuperCharacterData": {
-      "name": "SuperCharacterData",
-      "constants": {},
-      "methods": {
-        "substringData": {
-          "name": "substringData",
-          "signatures": [
-            {
-              "type": "DOMString",
-              "params": [
-                {
-                  "name": "offset",
-                  "type": "unsigned long"
-                },
-                {
-                  "name": "count",
-                  "type": "unsigned long"
-                }
-              ]
-            }
-          ],
-          "exposed": "Window"
-        }
-      },
-      "anonymousMethods": [],
-      "properties": {
-        "data": {
-          "name": "data",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "length": {
-          "name": "length",
-          "type": "unsigned long",
-          "readOnly": 1,
-          "exposed": "Window"
-        }
-      },
-      "exposed": "Window",
-      "legacyWindowAlias": [],
-      "implements": [
-        "NonDocumentTypeChildNode",
-        "NodeIsolate",
-        "TextIsolate",
-        "CharacterDataIsolate"
-      ]
-    },
     "SuperHTMLElement": {
       "name": "SuperHTMLElement",
       "constants": {},

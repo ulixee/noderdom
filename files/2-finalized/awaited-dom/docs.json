@@ -6970,879 +6970,1017 @@
     ]
   },
   {
-    "name": "SuperCharacterData",
-    "tags": "Super",
-    "overview": "[\"The <code><strong>CharacterData</strong></code> abstract interface represents a <a href=\\\"/en-US/docs/Web/API/Node\\\" title=\\\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\\\"><code>Node</code></a> object that contains characters. This is an abstract interface, meaning there aren't any object of type <code>CharacterData</code>: it is implemented by other interfaces, like <a href=\\\"/en-US/docs/Web/API/Text\\\" title=\\\"The Text interface represents the textual content of Element or Attr. If an element has no markup within its content, it has a single child implementing Text that contains the element's text. However, if the element contains markup, it is parsed into information items and Text nodes that form its children.\\\"><code>Text</code></a>, <a href=\\\"/en-US/docs/Web/API/Comment\\\" title=\\\"The Comment interface represents textual notations within markup; although it is generally not visually shown, such comments are available to be read in the source view.\\\"><code>Comment</code></a>, or <a href=\\\"/en-US/docs/Web/API/ProcessingInstruction\\\" title=\\\"The ProcessingInstruction interface represents a processing instruction; that is, a Node which embeds an instruction targeting a specific application but that can be ignored by any other applications which don't recognize the instruction.\\\"><code>ProcessingInstruction</code></a> which aren't abstract.\"]",
-    "properties": [
-      {
-        "name": "data",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the textual data contained in this object."
-      },
-      {
-        "name": "length",
-        "overview": "Returns an <code>unsigned long</code> representing the size of the string contained in <code>CharacterData.data</code>."
-      }
-    ],
-    "methods": [
-      {
-        "name": "appendData",
-        "overview": "Appends the given <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> to the <code>CharacterData.data</code> string; when this method returns, <code>data</code> contains the concatenated <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a>."
-      },
-      {
-        "name": "deleteData",
-        "overview": "Removes the specified amount of characters, starting at the specified offset, from the <code>CharacterData.data</code> string; when this method returns, <code>data</code> contains the shortened <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a>."
-      },
-      {
-        "name": "insertData",
-        "overview": "Inserts the specified characters, at the specified offset, in the <code>CharacterData.data</code> string; when this method returns, <code>data</code> contains the modified <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a>."
-      },
-      {
-        "name": "replaceData",
-        "overview": "Replaces the specified amount of characters, starting at the specified offset, with the specified <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a>; when this method returns, <code>data</code> contains the modified <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a>."
-      },
-      {
-        "name": "substringData",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> containing the part of <code>CharacterData.data</code> of the specified length and starting at the specified offset."
-      }
-    ]
-  },
-  {
     "name": "SuperDocument",
     "tags": "Super",
     "overview": "[\"<span class=\\\"seoSummary\\\">The <strong><code>Document</code></strong> interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the <a href=\\\"/en-US/docs/Using_the_W3C_DOM_Level_1_Core\\\">DOM tree</a>.</span> The DOM tree includes elements such as <a href=\\\"/en-US/docs/Web/HTML/Element/body\\\" title=\\\"The HTML <body> Element represents the content of an HTML&nbsp;document. There can be only one <body> element in a document.\\\"><code>&lt;body&gt;</code></a> and <a href=\\\"/en-US/docs/Web/HTML/Element/table\\\" title=\\\"The HTML <table> element represents tabular data — that is, information presented in a two-dimensional table comprised of rows and columns of cells containing data.\\\"><code>&lt;table&gt;</code></a>, among <a href=\\\"/en-US/docs/Web/HTML/Element\\\">many others</a>. It provides functionality globally to the document, like how to obtain the page's URL and create new elements in the document.\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "anchors",
-        "overview": "Returns a list of all of the anchors in the document."
+        "name": "Document"
       },
       {
-        "name": "body",
-        "overview": "Returns the <a href=\"/en-US/docs/Web/HTML/Element/body\" title=\"The HTML <body> Element represents the content of an HTML&nbsp;document. There can be only one <body> element in a document.\"><code>&lt;body&gt;</code></a> or <a href=\"/en-US/docs/Web/HTML/Element/frameset\" title=\"The HTML <frameset> element is used to contain <frame> elements.\"><code>&lt;frameset&gt;</code></a> node of the current document."
+        "name": "DocumentAndElementEventHandlers"
       },
       {
-        "name": "characterSet",
-        "overview": "Returns the character set being used by the document."
+        "name": "DocumentOrShadowRoot"
       },
       {
-        "name": "compatMode",
-        "overview": "Indicates whether the document is rendered in <em>quirks</em> or <em>strict</em> mode."
+        "name": "EventTarget"
       },
       {
-        "name": "contentType",
-        "overview": "Returns the Content-Type from the MIME Header of the current document."
+        "name": "FontFaceSource"
       },
       {
-        "name": "cookie",
-        "overview": "Returns a semicolon-separated list of the cookies for that document or sets a single cookie."
+        "name": "GlobalEventHandlers"
       },
       {
-        "name": "defaultView",
-        "overview": "Returns a reference to the window object."
+        "name": "HTMLDocument"
       },
       {
-        "name": "designMode",
-        "overview": "Gets/sets the ability to edit the whole document."
+        "name": "Node"
       },
       {
-        "name": "dir",
-        "overview": "Gets/sets directionality (rtl/ltr) of the document."
+        "name": "NonElementParentNode"
       },
       {
-        "name": "doctype",
-        "overview": "Returns the Document Type Definition (DTD) of the current document."
+        "name": "ParentNode"
       },
       {
-        "name": "documentElement",
-        "overview": "Returns the <a href=\"/en-US/docs/Web/API/Element\" title=\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\"><code>Element</code></a> that is a direct child of the document. For HTML documents, this is normally the <a href=\"/en-US/docs/Web/API/HTMLHtmlElement\" title=\"The HTMLHtmlElement interface serves as the root node for a given HTML document. This object inherits the properties and methods described in the HTMLElement interface.\"><code>HTMLHtmlElement</code></a> object representing the document's <a href=\"/en-US/docs/Web/HTML/Element/html\" title=\"The HTML <html> element represents the root (top-level element) of an HTML document, so it is also referred to as the root element. All other elements must be descendants of this element.\"><code>&lt;html&gt;</code></a> element."
+        "name": "XMLDocument"
       },
       {
-        "name": "documentURI",
-        "overview": "Returns the document location as a string."
-      },
-      {
-        "name": "domain",
-        "overview": "Gets/sets the domain of the current document."
-      },
-      {
-        "name": "embeds",
-        "overview": "Returns a list of the embedded <a href=\"/en-US/docs/Web/HTML/Element/embed\" title=\"The HTML <embed> element embeds external content at the specified point in the document. This content is provided by an external application or other source of interactive content such as a browser plug-in.\"><code>&lt;embed&gt;</code></a> elements within the current document."
-      },
-      {
-        "name": "featurePolicy",
-        "overview": "Returns the <a href=\"/en-US/docs/Web/API/FeaturePolicy\" title=\"The FeaturePolicy&nbsp;interface of the Feature Policy API represents the set of policies applied to the current execution context.\"><code>FeaturePolicy</code></a> interface which provides a simple API for introspecting the feature policies applied to a specific document."
-      },
-      {
-        "name": "fonts",
-        "overview": "Returns the <a href=\"/en-US/docs/Web/API/FontFaceSet\" title=\"The FontFaceSet interface of the CSS Font Loading API&nbsp;manages the loading of font-faces&nbsp;and querying of&nbsp;their download&nbsp;status.\"><code>FontFaceSet</code></a> interface of the current document."
-      },
-      {
-        "name": "forms",
-        "overview": "Returns a list of the <a href=\"/en-US/docs/Web/HTML/Element/form\" title=\"The HTML <form> element represents a document section containing interactive controls for submitting information.\"><code>&lt;form&gt;</code></a> elements within the current document."
-      },
-      {
-        "name": "fullscreenEnabled",
-        "overview": "Indicates whether or not full-screen mode is available."
-      },
-      {
-        "name": "head",
-        "overview": "Returns the <a href=\"/en-US/docs/Web/HTML/Element/head\" title=\"The HTML <head> element contains machine-readable information (metadata) about the document, like its title, scripts, and style sheets.\"><code>&lt;head&gt;</code></a> element of the current document."
-      },
-      {
-        "name": "hidden",
-        "overview": "Returns a Boolean value indicating if the page is considered hidden or not."
-      },
-      {
-        "name": "images",
-        "overview": "Returns a list of the images in the current document."
-      },
-      {
-        "name": "implementation",
-        "overview": "Returns the DOM implementation associated with the current document."
-      },
-      {
-        "name": "lastModified",
-        "overview": "Returns the date on which the document was last modified."
-      },
-      {
-        "name": "links",
-        "overview": "Returns a list of all the hyperlinks in the document."
-      },
-      {
-        "name": "location",
-        "overview": "Returns the URI of the current document."
-      },
-      {
-        "name": "onfullscreenchange",
-        "overview": "Is an <a href=\"/en-US/docs/Web/API/EventHandler\" title=\"REDIRECT DOM event handlers\"><code>EventHandler</code></a> representing the code to be called when the <code><a href=\"/en-US/docs/Web/Events/fullscreenchange\" title=\"/en-US/docs/Web/Events/fullscreenchange\">fullscreenchange</a></code> event is raised."
-      },
-      {
-        "name": "onfullscreenerror",
-        "overview": "Is an <a href=\"/en-US/docs/Web/API/EventHandler\" title=\"REDIRECT DOM event handlers\"><code>EventHandler</code></a> representing the code to be called when the <code><a href=\"/en-US/docs/Web/Events/fullscreenerror\" title=\"/en-US/docs/Web/Events/fullscreenerror\">fullscreenerror</a></code> event is raised."
-      },
-      {
-        "name": "onpointerlockchange",
-        "overview": "Is an <a href=\"/en-US/docs/Web/API/EventHandler\" title=\"REDIRECT DOM event handlers\"><code>EventHandler</code></a> representing the code to be called when the <code><a href=\"/en-US/docs/Web/Events/pointerlockchange\" title=\"/en-US/docs/Web/Events/pointerlockchange\">pointerlockchange</a></code> event is raised."
-      },
-      {
-        "name": "onpointerlockerror",
-        "overview": "Is an <a href=\"/en-US/docs/Web/API/EventHandler\" title=\"REDIRECT DOM event handlers\"><code>EventHandler</code></a> representing the code to be called when the <code><a href=\"/en-US/docs/Web/Events/pointerlockerror\" title=\"/en-US/docs/Web/Events/pointerlockerror\">pointerlockerror</a></code> event is raised."
-      },
-      {
-        "name": "onreadystatechange",
-        "overview": "Represents the event handling code for the <code><a href=\"/en-US/docs/Web/Events/readystatechange\" title=\"/en-US/docs/Web/Events/readystatechange\">readystatechange</a></code> event."
-      },
-      {
-        "name": "onvisibilitychange",
-        "overview": "Is an <a href=\"/en-US/docs/Web/API/EventHandler\" title=\"REDIRECT DOM event handlers\"><code>EventHandler</code></a> representing the code to be called when the <code><a href=\"/en-US/docs/Web/Events/visibilitychange\" title=\"/en-US/docs/Web/Events/visibilitychange\">visibilitychange</a></code> event is raised."
-      },
-      {
-        "name": "plugins",
-        "overview": "Returns a list of the available plugins."
-      },
-      {
-        "name": "readyState",
-        "overview": "Returns loading status of the document."
-      },
-      {
-        "name": "referrer",
-        "overview": "Returns the URI of the page that linked to this page."
-      },
-      {
-        "name": "scripts",
-        "overview": "Returns all the <a href=\"/en-US/docs/Web/HTML/Element/script\" title=\"The HTML <script> element is used to embed or reference executable code; this is typically used to embed or refer to JavaScript code.\"><code>&lt;script&gt;</code></a> elements on the document."
-      },
-      {
-        "name": "scrollingElement",
-        "overview": "Returns a reference to the <a href=\"/en-US/docs/Web/API/Element\" title=\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\"><code>Element</code></a> that scrolls the document."
-      },
-      {
-        "name": "title",
-        "overview": "Sets or gets the title of the current document."
-      },
-      {
-        "name": "URL",
-        "overview": "Returns the document location as a string."
-      },
-      {
-        "name": "visibilityState",
-        "overview": "Returns a <code>string</code> denoting the visibility state of the document. Possible values are <code>visible</code>, <code>hidden</code>, <code>prerender</code>, and <code>unloaded</code>."
+        "name": "XPathEvaluatorBase"
       }
     ],
-    "methods": [
-      {
-        "name": "adoptNode",
-        "overview": "Adopt node from an external document."
-      },
-      {
-        "name": "captureEvents",
-        "overview": "See <a href=\"/en-US/docs/Web/API/Window/captureEvents\" title=\"The Window.captureEvents() method registers the window to capture all events of the specified type.\"><code>Window.captureEvents</code></a>."
-      },
-      {
-        "name": "close",
-        "overview": "Closes a document stream for writing."
-      },
-      {
-        "name": "createAttribute",
-        "overview": "Creates a new <a href=\"/en-US/docs/Web/API/Attr\" title=\"The Attr interface represents one of a DOM element's attributes as an object. In most DOM methods, you will directly retrieve the attribute as a string (e.g., Element.getAttribute()), but certain functions (e.g., Element.getAttributeNode()) or means of iterating return Attr types.\"><code>Attr</code></a> object and returns it."
-      },
-      {
-        "name": "createAttributeNS",
-        "overview": "Creates a new attribute node in a given namespace and returns it."
-      },
-      {
-        "name": "createCDATASection",
-        "overview": "Creates a new CDATA node and returns it."
-      },
-      {
-        "name": "createComment",
-        "overview": "Creates a new comment node and returns it."
-      },
-      {
-        "name": "createDocumentFragment",
-        "overview": "Creates a new document fragment."
-      },
-      {
-        "name": "createElement",
-        "overview": "Creates a new element with the given tag name."
-      },
-      {
-        "name": "createElementNS",
-        "overview": "Creates a new element with the given tag name and namespace URI."
-      },
-      {
-        "name": "createEvent",
-        "overview": "Creates an event object."
-      },
-      {
-        "name": "createNodeIterator",
-        "overview": "Creates a <a href=\"/en-US/docs/Web/API/NodeIterator\" title=\"The NodeIterator interface represents an iterator over the members of a list of the nodes in a subtree of the DOM. The nodes will be returned in document order.\"><code>NodeIterator</code></a> object."
-      },
-      {
-        "name": "createProcessingInstruction",
-        "overview": "Creates a new <a href=\"/en-US/docs/Web/API/ProcessingInstruction\" title=\"The ProcessingInstruction interface represents a processing instruction; that is, a Node which embeds an instruction targeting a specific application but that can be ignored by any other applications which don't recognize the instruction.\"><code>ProcessingInstruction</code></a> object."
-      },
-      {
-        "name": "createRange",
-        "overview": "Creates a <a href=\"/en-US/docs/Web/API/Range\" title=\"The Range interface represents a fragment of a document that can contain nodes and parts of text nodes.\"><code>Range</code></a> object."
-      },
-      {
-        "name": "createTextNode",
-        "overview": "Creates a text node."
-      },
-      {
-        "name": "createTreeWalker",
-        "overview": "Creates a <a href=\"/en-US/docs/Web/API/TreeWalker\" title=\"The TreeWalker object represents the nodes of a document subtree and a position within them.\"><code>TreeWalker</code></a> object."
-      },
-      {
-        "name": "exitFullscreen",
-        "overview": "Requests that the element on this document which is currently being presented in full-screen mode be taken out of full-screen mode, restoring the previous state of the screen."
-      },
-      {
-        "name": "exitPointerLock",
-        "overview": "Release the pointer lock."
-      },
-      {
-        "name": "getElementsByClassName",
-        "overview": "Returns a list of elements with the given class name."
-      },
-      {
-        "name": "getElementsByName",
-        "overview": "Returns a list of elements with the given name."
-      },
-      {
-        "name": "getElementsByTagName",
-        "overview": "Returns a list of elements with the given tag name."
-      },
-      {
-        "name": "getElementsByTagNameNS",
-        "overview": "Returns a list of elements with the given tag name and namespace."
-      },
-      {
-        "name": "getSelection",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Selection\" title=\"A Selection object represents the range of text selected by the user or the current position of the caret. To obtain a Selection object for examination or manipulation, call window.getSelection().\"><code>Selection</code></a> object representing the range of text selected by the user, or the current position of the caret."
-      },
-      {
-        "name": "hasFocus",
-        "overview": "Returns <code>true</code> if the focus is currently located anywhere inside the specified document."
-      },
-      {
-        "name": "importNode",
-        "overview": "Returns a clone of a node from an external document."
-      },
-      {
-        "name": "open",
-        "overview": "Opens a document stream for writing."
-      },
-      {
-        "name": "releaseEvents",
-        "overview": "See <a href=\"/en-US/docs/Web/API/Window/releaseEvents\" title=\"Releases the window from trapping events of a specific type.\"><code>Window.releaseEvents()</code></a>."
-      },
-      {
-        "name": "write",
-        "overview": "Writes text in a document."
-      },
-      {
-        "name": "writeln",
-        "overview": "Writes a line of text in a document."
-      }
-    ]
+    "properties": [],
+    "methods": []
   },
   {
     "name": "SuperElement",
     "tags": "Super",
     "overview": "[\"<span class=\\\"seoSummary\\\"><strong><code>Element</code></strong> is the most general base class from which all element objects (i.e. objects that represent elements) in a <a href=\\\"/en-US/docs/Web/API/Document\\\" title=\\\"The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.\\\"><code>Document</code></a> inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from <code>Element</code>.</span> For example, the <a href=\\\"/en-US/docs/Web/API/HTMLElement\\\" title=\\\"The HTMLElement interface represents any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.\\\"><code>HTMLElement</code></a> interface is the base interface for HTML elements, while the <a href=\\\"/en-US/docs/Web/API/SVGElement\\\" title=\\\"All of the SVG DOM interfaces that correspond directly to elements in the SVG language derive from the SVGElement interface.\\\"><code>SVGElement</code></a> interface is the basis for all SVG elements. Most functionality is specified further down the class hierarchy.\",\"Languages outside the realm of the Web platform, like XUL through the <code>XULElement</code> interface, also implement <code>Element</code>.\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "attributes",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/NamedNodeMap\" title=\"The NamedNodeMap interface represents a collection of Attr objects. Objects inside a NamedNodeMap are not in any particular order, unlike NodeList, although they may be accessed by an index as in an array.\"><code>NamedNodeMap</code></a> object containing the assigned attributes of the corresponding HTML element."
+        "name": "Animatable"
       },
       {
-        "name": "classList",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMTokenList\" title=\"The DOMTokenList interface represents a set of space-separated tokens. Such a set is returned by Element.classList, HTMLLinkElement.relList, HTMLAnchorElement.relList, HTMLAreaElement.relList, HTMLIframeElement.sandbox, or HTMLOutputElement.htmlFor. It is indexed beginning with 0 as with JavaScript Array objects. DOMTokenList is always case-sensitive.\"><code>DOMTokenList</code></a> containing the list of class attributes."
+        "name": "ChildNode"
       },
       {
-        "name": "className",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the class of the element."
+        "name": "DocumentAndElementEventHandlers"
       },
       {
-        "name": "clientHeight",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing the inner height of the element."
+        "name": "Element"
       },
       {
-        "name": "clientLeft",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing the width of the left border of the element."
+        "name": "ElementContentEditable"
       },
       {
-        "name": "clientTop",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing the width of the top border of the element."
+        "name": "ElementCSSInlineStyle"
       },
       {
-        "name": "clientWidth",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing the inner width of the element."
+        "name": "EventTarget"
       },
       {
-        "name": "id",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the id of the element."
+        "name": "GlobalEventHandlers"
       },
       {
-        "name": "innerHTML",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the markup of the element's content."
+        "name": "HTMLAnchorElement"
       },
       {
-        "name": "localName",
-        "overview": "A <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the local part of the qualified name of the element."
+        "name": "HTMLAreaElement"
       },
       {
-        "name": "namespaceURI",
-        "overview": "The namespace URI of the element, or <code>null</code> if it is no namespace.\n <div class=\"note\">\n <p><strong>Note:</strong> In Firefox 3.5 and earlier, HTML elements are in no namespace. In later versions, HTML elements are in the <code><a class=\"external linkification-ext\" href=\"http://www.w3.org/1999/xhtml\" rel=\"noopener\" title=\"Linkification: http://www.w3.org/1999/xhtml\">http://www.w3.org/1999/xhtml</a></code> namespace in both HTML and XML trees. </p>\n </div>\n "
+        "name": "HTMLAudioElement"
       },
       {
-        "name": "onfullscreenchange",
-        "overview": "An event handler for the <code><a href=\"/en-US/docs/Web/Events/fullscreenchange\" title=\"/en-US/docs/Web/Events/fullscreenchange\">fullscreenchange</a></code> event, which is sent when the element enters or exits full-screen mode. This can be used to watch both for successful expected transitions, but also to watch for unexpected changes, such as when your app is running in the background."
+        "name": "HTMLBaseElement"
       },
       {
-        "name": "onfullscreenerror",
-        "overview": "An event handler for the <code><a href=\"/en-US/docs/Web/Events/fullscreenerror\" title=\"/en-US/docs/Web/Events/fullscreenerror\">fullscreenerror</a></code> event, which is sent when an error occurs while attempting to change into full-screen mode."
+        "name": "HTMLBodyElement"
       },
       {
-        "name": "outerHTML",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the markup of the element including its content. When used as a setter, replaces the element with nodes parsed from the given string."
+        "name": "HTMLBRElement"
       },
       {
-        "name": "part",
-        "overview": "Represents the part identifier(s) of the element (i.e. set using the <code>part</code> attribute), returned as a <a href=\"/en-US/docs/Web/API/DOMTokenList\" title=\"The DOMTokenList interface represents a set of space-separated tokens. Such a set is returned by Element.classList, HTMLLinkElement.relList, HTMLAnchorElement.relList, HTMLAreaElement.relList, HTMLIframeElement.sandbox, or HTMLOutputElement.htmlFor. It is indexed beginning with 0 as with JavaScript Array objects. DOMTokenList is always case-sensitive.\"><code>DOMTokenList</code></a>."
+        "name": "HTMLButtonElement"
       },
       {
-        "name": "prefix",
-        "overview": "A <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the namespace prefix of the element, or <code>null</code> if no prefix is specified."
+        "name": "HTMLCanvasElement"
       },
       {
-        "name": "scrollHeight",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing the scroll view height of an element."
+        "name": "HTMLDataElement"
       },
       {
-        "name": "scrollLeft",
-        "overview": "Is a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing the left scroll offset of the element."
+        "name": "HTMLDataListElement"
       },
       {
-        "name": "scrollTop",
-        "overview": "A <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing number of pixels the top of the document is scrolled vertically."
+        "name": "HTMLDetailsElement"
       },
       {
-        "name": "scrollWidth",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number\" title=\"The Number JavaScript object is a wrapper object allowing you to work with numerical values. A Number object is created using the Number() constructor. A&nbsp;primitive type object number is&nbsp;created using the Number() function.\"><code>Number</code></a> representing the scroll view width of the element."
+        "name": "HTMLDialogElement"
       },
       {
-        "name": "shadowRoot",
-        "overview": "Returns the open shadow root that is hosted by the element, or null if no open shadow root is present."
+        "name": "HTMLDirectoryElement"
       },
       {
-        "name": "slot",
-        "overview": "Returns the name of the shadow DOM slot the element is inserted in."
+        "name": "HTMLDivElement"
       },
       {
-        "name": "tagName",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/String\" title=\"The String global object is a constructor for strings or a sequence of characters.\"><code>String</code></a> with the name of the tag for the given element."
+        "name": "HTMLDListElement"
+      },
+      {
+        "name": "HTMLElement"
+      },
+      {
+        "name": "HTMLEmbedElement"
+      },
+      {
+        "name": "HTMLFieldSetElement"
+      },
+      {
+        "name": "HTMLFontElement"
+      },
+      {
+        "name": "HTMLFormElement"
+      },
+      {
+        "name": "HTMLFrameElement"
+      },
+      {
+        "name": "HTMLFrameSetElement"
+      },
+      {
+        "name": "HTMLHeadElement"
+      },
+      {
+        "name": "HTMLHeadingElement"
+      },
+      {
+        "name": "HTMLHRElement"
+      },
+      {
+        "name": "HTMLHtmlElement"
+      },
+      {
+        "name": "HTMLHyperlinkElementUtils"
+      },
+      {
+        "name": "HTMLIFrameElement"
+      },
+      {
+        "name": "HTMLImageElement"
+      },
+      {
+        "name": "HTMLInputElement"
+      },
+      {
+        "name": "HTMLLabelElement"
+      },
+      {
+        "name": "HTMLLegendElement"
+      },
+      {
+        "name": "HTMLLIElement"
+      },
+      {
+        "name": "HTMLLinkElement"
+      },
+      {
+        "name": "HTMLMapElement"
+      },
+      {
+        "name": "HTMLMarqueeElement"
+      },
+      {
+        "name": "HTMLMediaElement"
+      },
+      {
+        "name": "HTMLMenuElement"
+      },
+      {
+        "name": "HTMLMetaElement"
+      },
+      {
+        "name": "HTMLMeterElement"
+      },
+      {
+        "name": "HTMLModElement"
+      },
+      {
+        "name": "HTMLObjectElement"
+      },
+      {
+        "name": "HTMLOListElement"
+      },
+      {
+        "name": "HTMLOptGroupElement"
+      },
+      {
+        "name": "HTMLOptionElement"
+      },
+      {
+        "name": "HTMLOrSVGElement"
+      },
+      {
+        "name": "HTMLOutputElement"
+      },
+      {
+        "name": "HTMLParagraphElement"
+      },
+      {
+        "name": "HTMLParamElement"
+      },
+      {
+        "name": "HTMLPictureElement"
+      },
+      {
+        "name": "HTMLPreElement"
+      },
+      {
+        "name": "HTMLProgressElement"
+      },
+      {
+        "name": "HTMLQuoteElement"
+      },
+      {
+        "name": "HTMLScriptElement"
+      },
+      {
+        "name": "HTMLSelectElement"
+      },
+      {
+        "name": "HTMLSlotElement"
+      },
+      {
+        "name": "HTMLSourceElement"
+      },
+      {
+        "name": "HTMLSpanElement"
+      },
+      {
+        "name": "HTMLStyleElement"
+      },
+      {
+        "name": "HTMLTableCaptionElement"
+      },
+      {
+        "name": "HTMLTableCellElement"
+      },
+      {
+        "name": "HTMLTableColElement"
+      },
+      {
+        "name": "HTMLTableElement"
+      },
+      {
+        "name": "HTMLTableRowElement"
+      },
+      {
+        "name": "HTMLTableSectionElement"
+      },
+      {
+        "name": "HTMLTemplateElement"
+      },
+      {
+        "name": "HTMLTextAreaElement"
+      },
+      {
+        "name": "HTMLTimeElement"
+      },
+      {
+        "name": "HTMLTitleElement"
+      },
+      {
+        "name": "HTMLTrackElement"
+      },
+      {
+        "name": "HTMLUListElement"
+      },
+      {
+        "name": "HTMLUnknownElement"
+      },
+      {
+        "name": "HTMLVideoElement"
+      },
+      {
+        "name": "LinkStyle"
+      },
+      {
+        "name": "Node"
+      },
+      {
+        "name": "NonDocumentTypeChildNode"
+      },
+      {
+        "name": "ParentNode"
+      },
+      {
+        "name": "Slotable"
+      },
+      {
+        "name": "SVGElement"
+      },
+      {
+        "name": "SVGGraphicsElement"
+      },
+      {
+        "name": "SVGSVGElement"
+      },
+      {
+        "name": "SVGTests"
+      },
+      {
+        "name": "SVGTitleElement"
+      },
+      {
+        "name": "WindowEventHandlers"
       }
     ],
-    "methods": [
-      {
-        "name": "attachShadow",
-        "overview": "Attaches a shadow DOM tree to the specified element and returns a reference to its <a href=\"/en-US/docs/Web/API/ShadowRoot\" title=\"The ShadowRoot interface of the Shadow DOM API is the root node of a DOM subtree that is rendered separately from a document's main DOM tree.\"><code>ShadowRoot</code></a>."
-      },
-      {
-        "name": "closest",
-        "overview": "Returns the <a href=\"/en-US/docs/Web/API/Element\" title=\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\"><code>Element</code></a> which is the closest ancestor of the current element (or the current element itself) which matches the selectors given in parameter."
-      },
-      {
-        "name": "computedStyleMap",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/StylePropertyMapReadOnly\" title=\"The StylePropertyMapReadOnly interface of the the CSS Typed Object Model API provides a read-only representation of a CSS declaration block that is an alternative to CSSStyleDeclaration. Retrieve an instance of this interface using Element.computedStyleMap().\"><code>StylePropertyMapReadOnly</code></a> interface which provides a read-only representation of a CSS declaration block that is an alternative to <a href=\"/en-US/docs/Web/API/CSSStyleDeclaration\" title=\"The CSSStyleDeclaration interface represents an object that is a CSS declaration block, and exposes style information and various style-related methods and properties.\"><code>CSSStyleDeclaration</code></a>."
-      },
-      {
-        "name": "getAttribute",
-        "overview": "Retrieves the value of the named attribute from the current node and returns it as an <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object\" title=\"The Object class represents one of JavaScript's data types. It is used to store&nbsp;various keyed collections and more complex entities. Objects can be created using the Object() constructor or the object initializer / literal syntax.\"><code>Object</code></a>."
-      },
-      {
-        "name": "getAttributeNames",
-        "overview": "Returns an array of attribute names from the current element."
-      },
-      {
-        "name": "getAttributeNode",
-        "overview": "Retrieves the node representation of the named attribute from the current node and returns it as an <a href=\"/en-US/docs/Web/API/Attr\" title=\"The Attr interface represents one of a DOM element's attributes as an object. In most DOM methods, you will directly retrieve the attribute as a string (e.g., Element.getAttribute()), but certain functions (e.g., Element.getAttributeNode()) or means of iterating return Attr types.\"><code>Attr</code></a>."
-      },
-      {
-        "name": "getAttributeNodeNS",
-        "overview": "Retrieves the node representation of the attribute with the specified name and namespace, from the current node and returns it as an <a href=\"/en-US/docs/Web/API/Attr\" title=\"The Attr interface represents one of a DOM element's attributes as an object. In most DOM methods, you will directly retrieve the attribute as a string (e.g., Element.getAttribute()), but certain functions (e.g., Element.getAttributeNode()) or means of iterating return Attr types.\"><code>Attr</code></a>."
-      },
-      {
-        "name": "getAttributeNS",
-        "overview": "Retrieves the value of the attribute with the specified name and namespace, from the current node and returns it as an <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object\" title=\"The Object class represents one of JavaScript's data types. It is used to store&nbsp;various keyed collections and more complex entities. Objects can be created using the Object() constructor or the object initializer / literal syntax.\"><code>Object</code></a>."
-      },
-      {
-        "name": "getBoundingClientRect",
-        "overview": "Returns the size of an element and its position relative to the viewport."
-      },
-      {
-        "name": "getClientRects",
-        "overview": "Returns a collection of rectangles that indicate the bounding rectangles for each line of text in a client."
-      },
-      {
-        "name": "getElementsByClassName",
-        "overview": "Returns a live <a href=\"/en-US/docs/Web/API/HTMLCollection\" title=\"The HTMLCollection interface represents a generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.\"><code>HTMLCollection</code></a> that contains all descendants of the current element that possess the list of classes given in the parameter."
-      },
-      {
-        "name": "getElementsByTagName",
-        "overview": "Returns a live <a href=\"/en-US/docs/Web/API/HTMLCollection\" title=\"The HTMLCollection interface represents a generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.\"><code>HTMLCollection</code></a> containing all descendant elements, of a particular tag name, from the current element."
-      },
-      {
-        "name": "getElementsByTagNameNS",
-        "overview": "Returns a live <a href=\"/en-US/docs/Web/API/HTMLCollection\" title=\"The HTMLCollection interface represents a generic collection (array-like object similar to arguments) of elements (in document order) and offers methods and properties for selecting from the list.\"><code>HTMLCollection</code></a> containing all descendant elements, of a particular tag name and namespace, from the current element."
-      },
-      {
-        "name": "hasAttribute",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating if the element has the specified attribute or not."
-      },
-      {
-        "name": "hasAttributeNS",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating if the element has the specified attribute, in the specified namespace, or not."
-      },
-      {
-        "name": "hasAttributes",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating if the element has one or more HTML attributes present."
-      },
-      {
-        "name": "hasPointerCapture",
-        "overview": "Indicates whether the element on which it is invoked has pointer capture for the pointer identified by the given pointer ID."
-      },
-      {
-        "name": "insertAdjacentElement",
-        "overview": "Inserts a given element node at a given position relative to the element it is invoked upon."
-      },
-      {
-        "name": "insertAdjacentHTML",
-        "overview": "Parses the text as HTML or XML and inserts the resulting nodes into the tree in the position given."
-      },
-      {
-        "name": "insertAdjacentText",
-        "overview": "Inserts a given text node at a given position relative to the element it is invoked upon."
-      },
-      {
-        "name": "matches",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating whether or not the element would be selected by the specified selector string."
-      },
-      {
-        "name": "releasePointerCapture",
-        "overview": "Releases (stops) pointer capture that was previously set for a specific <a href=\"/en-US/docs/Web/API/PointerEvent\" title=\"The PointerEvent interface represents the state of a DOM event produced by a pointer such as the geometry of the contact point, the device type that generated the event, the amount of pressure that was applied on the contact surface, etc.\"><code>pointer event</code></a>."
-      },
-      {
-        "name": "removeAttribute",
-        "overview": "Removes the named attribute from the current node."
-      },
-      {
-        "name": "removeAttributeNode",
-        "overview": "Removes the node representation of the named attribute from the current node."
-      },
-      {
-        "name": "removeAttributeNS",
-        "overview": "Removes the attribute with the specified name and namespace, from the current node."
-      },
-      {
-        "name": "requestFullscreen",
-        "overview": "Asynchronously asks the browser to make the element full-screen."
-      },
-      {
-        "name": "requestPointerLock",
-        "overview": "Allows to asynchronously ask for the pointer to be locked on the given element."
-      },
-      {
-        "name": "scroll",
-        "overview": "Scrolls to a particular set of coordinates inside a given element."
-      },
-      {
-        "name": "scrollBy",
-        "overview": "Scrolls an element by the given amount."
-      },
-      {
-        "name": "scrollIntoView",
-        "overview": "Scrolls the page until the element gets into the view."
-      },
-      {
-        "name": "scrollTo",
-        "overview": "Scrolls to a particular set of coordinates inside a given element."
-      },
-      {
-        "name": "setAttribute",
-        "overview": "Sets the value of a named attribute of the current node."
-      },
-      {
-        "name": "setAttributeNode",
-        "overview": "Sets the node representation of the named attribute from the current node."
-      },
-      {
-        "name": "setAttributeNodeNS",
-        "overview": "Sets the node representation of the attribute with the specified name and namespace, from the current node."
-      },
-      {
-        "name": "setAttributeNS",
-        "overview": "Sets the value of the attribute with the specified name and namespace, from the current node."
-      },
-      {
-        "name": "setPointerCapture",
-        "overview": "Designates a specific element as the capture target of future <a href=\"/en-US/docs/Web/API/Pointer_events\">pointer events</a>."
-      },
-      {
-        "name": "toggleAttribute",
-        "overview": "Toggles a boolean attribute, removing it if it is present and adding it if it is not present, on the specified element."
-      }
-    ]
+    "properties": [],
+    "methods": []
   },
   {
     "name": "SuperHTMLCollection",
     "tags": "Super",
     "overview": "[\"The <strong><code>HTMLCollection</code></strong> interface represents a generic collection (array-like object similar to <a href=\\\"/en-US/docs/Web/JavaScript/Reference/Functions/arguments\\\" title=\\\"arguments is an Array-like object accessible inside functions that contains the values of the arguments passed to that function.\\\"><code>arguments</code></a>) of elements (in document order) and offers methods and properties for selecting from the list.\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "length",
-        "overview": "Returns the number of items in the collection."
-      }
-    ],
-    "methods": [
-      {
-        "name": "item",
-        "overview": "Returns the specific node at the given zero-based <code>index</code> into the list. Returns <code>null</code> if the <code>index</code> is out of range."
+        "name": "HTMLCollection"
       },
       {
-        "name": "namedItem",
-        "overview": "Returns the specific node whose ID or, as a fallback, name matches the string specified by <code>name</code>. Matching by name is only done as a last resort, only in HTML, and only if the referenced element supports the <code>name</code> attribute. Returns <code>null</code> if no node exists by the given name."
+        "name": "HTMLCollectionBase"
+      },
+      {
+        "name": "HTMLOptionsCollection"
       }
-    ]
+    ],
+    "properties": [],
+    "methods": []
   },
   {
     "name": "SuperHTMLElement",
     "tags": "Super",
     "overview": "[\"The <strong><code>HTMLElement</code></strong> interface represents any <a href=\\\"/en-US/docs/Web/HTML\\\" title=\\\"/en-US/docs/Web/HTML\\\">HTML</a> element. Some elements directly implement this interface, while others implement it via an interface that inherits it.\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "accessKey",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the access key assigned to the element."
+        "name": "Animatable"
       },
       {
-        "name": "autoCapitalize",
-        "overview": null
+        "name": "ChildNode"
       },
       {
-        "name": "dir",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a>, reflecting the <code>dir</code> global attribute, representing the directionality of the element. Possible values are <code>\"ltr\"</code>, <code>\"rtl\"</code>, and <code>\"auto\"</code>."
+        "name": "DocumentAndElementEventHandlers"
       },
       {
-        "name": "draggable",
-        "overview": "Is a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating if the element can be dragged."
+        "name": "Element"
       },
       {
-        "name": "hidden",
-        "overview": "Is a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating if the element is hidden or not."
+        "name": "ElementContentEditable"
       },
       {
-        "name": "inert",
-        "overview": "Is a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating whether the user agent must act as though the given node is absent for the purposes of user interaction events, in-page text searches (\"find in page\"), and text selection."
+        "name": "ElementCSSInlineStyle"
       },
       {
-        "name": "innerText",
-        "overview": "Represents the \"rendered\" text content of a node and its descendants. As a getter, it approximates the text the user would get if they highlighted the contents of the element with the cursor and then copied it to the clipboard."
+        "name": "EventTarget"
       },
       {
-        "name": "lang",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the language of an element's attributes, text, and element contents."
+        "name": "GlobalEventHandlers"
       },
       {
-        "name": "offsetHeight",
-        "overview": "Returns a <code>double</code> containing the height of an element, relative to the layout."
+        "name": "HTMLAnchorElement"
       },
       {
-        "name": "offsetLeft",
-        "overview": "Returns a <code>double</code>, the distance from this element's left border to its <code>offsetParent</code>'s left border."
+        "name": "HTMLAreaElement"
       },
       {
-        "name": "offsetParent",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Element\" title=\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\"><code>Element</code></a> that is the element from which all offset calculations are currently computed."
+        "name": "HTMLAudioElement"
       },
       {
-        "name": "offsetTop",
-        "overview": "Returns a <code>double</code>, the distance from this element's top border to its <code>offsetParent</code>'s top border."
+        "name": "HTMLBaseElement"
       },
       {
-        "name": "offsetWidth",
-        "overview": "Returns a <code>double</code> containing the width of an element, relative to the layout."
+        "name": "HTMLBodyElement"
       },
       {
-        "name": "spellcheck",
-        "overview": "Is a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> that controls <a href=\"/en-US/docs/HTML/Controlling_spell_checking_in_HTML_forms\" title=\"en/Controlling_spell_checking_in_HTML_forms\">spell-checking</a>. It is present on all HTML elements, though it doesn't have an effect on all of them."
+        "name": "HTMLBRElement"
       },
       {
-        "name": "title",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> containing the text that appears in a popup box when mouse is over the element."
+        "name": "HTMLButtonElement"
       },
       {
-        "name": "translate",
-        "overview": "Is a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> representing the translation."
+        "name": "HTMLCanvasElement"
+      },
+      {
+        "name": "HTMLDataElement"
+      },
+      {
+        "name": "HTMLDataListElement"
+      },
+      {
+        "name": "HTMLDetailsElement"
+      },
+      {
+        "name": "HTMLDialogElement"
+      },
+      {
+        "name": "HTMLDirectoryElement"
+      },
+      {
+        "name": "HTMLDivElement"
+      },
+      {
+        "name": "HTMLDListElement"
+      },
+      {
+        "name": "HTMLElement"
+      },
+      {
+        "name": "HTMLEmbedElement"
+      },
+      {
+        "name": "HTMLFieldSetElement"
+      },
+      {
+        "name": "HTMLFontElement"
+      },
+      {
+        "name": "HTMLFormElement"
+      },
+      {
+        "name": "HTMLFrameElement"
+      },
+      {
+        "name": "HTMLFrameSetElement"
+      },
+      {
+        "name": "HTMLHeadElement"
+      },
+      {
+        "name": "HTMLHeadingElement"
+      },
+      {
+        "name": "HTMLHRElement"
+      },
+      {
+        "name": "HTMLHtmlElement"
+      },
+      {
+        "name": "HTMLHyperlinkElementUtils"
+      },
+      {
+        "name": "HTMLIFrameElement"
+      },
+      {
+        "name": "HTMLImageElement"
+      },
+      {
+        "name": "HTMLInputElement"
+      },
+      {
+        "name": "HTMLLabelElement"
+      },
+      {
+        "name": "HTMLLegendElement"
+      },
+      {
+        "name": "HTMLLIElement"
+      },
+      {
+        "name": "HTMLLinkElement"
+      },
+      {
+        "name": "HTMLMapElement"
+      },
+      {
+        "name": "HTMLMarqueeElement"
+      },
+      {
+        "name": "HTMLMediaElement"
+      },
+      {
+        "name": "HTMLMenuElement"
+      },
+      {
+        "name": "HTMLMetaElement"
+      },
+      {
+        "name": "HTMLMeterElement"
+      },
+      {
+        "name": "HTMLModElement"
+      },
+      {
+        "name": "HTMLObjectElement"
+      },
+      {
+        "name": "HTMLOListElement"
+      },
+      {
+        "name": "HTMLOptGroupElement"
+      },
+      {
+        "name": "HTMLOptionElement"
+      },
+      {
+        "name": "HTMLOrSVGElement"
+      },
+      {
+        "name": "HTMLOutputElement"
+      },
+      {
+        "name": "HTMLParagraphElement"
+      },
+      {
+        "name": "HTMLParamElement"
+      },
+      {
+        "name": "HTMLPictureElement"
+      },
+      {
+        "name": "HTMLPreElement"
+      },
+      {
+        "name": "HTMLProgressElement"
+      },
+      {
+        "name": "HTMLQuoteElement"
+      },
+      {
+        "name": "HTMLScriptElement"
+      },
+      {
+        "name": "HTMLSelectElement"
+      },
+      {
+        "name": "HTMLSlotElement"
+      },
+      {
+        "name": "HTMLSourceElement"
+      },
+      {
+        "name": "HTMLSpanElement"
+      },
+      {
+        "name": "HTMLStyleElement"
+      },
+      {
+        "name": "HTMLTableCaptionElement"
+      },
+      {
+        "name": "HTMLTableCellElement"
+      },
+      {
+        "name": "HTMLTableColElement"
+      },
+      {
+        "name": "HTMLTableElement"
+      },
+      {
+        "name": "HTMLTableRowElement"
+      },
+      {
+        "name": "HTMLTableSectionElement"
+      },
+      {
+        "name": "HTMLTemplateElement"
+      },
+      {
+        "name": "HTMLTextAreaElement"
+      },
+      {
+        "name": "HTMLTimeElement"
+      },
+      {
+        "name": "HTMLTitleElement"
+      },
+      {
+        "name": "HTMLTrackElement"
+      },
+      {
+        "name": "HTMLUListElement"
+      },
+      {
+        "name": "HTMLUnknownElement"
+      },
+      {
+        "name": "HTMLVideoElement"
+      },
+      {
+        "name": "LinkStyle"
+      },
+      {
+        "name": "Node"
+      },
+      {
+        "name": "NonDocumentTypeChildNode"
+      },
+      {
+        "name": "ParentNode"
+      },
+      {
+        "name": "Slotable"
+      },
+      {
+        "name": "WindowEventHandlers"
       }
     ],
-    "methods": [
-      {
-        "name": "click",
-        "overview": "Sends a mouse click event to the element."
-      }
-    ]
+    "properties": [],
+    "methods": []
   },
   {
     "name": "SuperNode",
     "tags": "Super",
     "overview": "[\"<span class=\\\"seoSummary\\\"><strong><code>Node</code></strong> is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.</span>\",\"All of the following interfaces inherit the <code>Node</code> interface's methods and properties: <a href=\\\"/en-US/docs/Web/API/Document\\\" title=\\\"The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.\\\"><code>Document</code></a>, <a href=\\\"/en-US/docs/Web/API/Element\\\" title=\\\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\\\"><code>Element</code></a>, <a href=\\\"/en-US/docs/Web/API/Attr\\\" title=\\\"The Attr interface represents one of a DOM element's attributes as an object. In most DOM methods, you will directly retrieve the attribute as a string (e.g., Element.getAttribute()), but certain functions (e.g., Element.getAttributeNode()) or means of iterating return Attr types.\\\"><code>Attr</code></a>, <a href=\\\"/en-US/docs/Web/API/CharacterData\\\" title=\\\"The CharacterData abstract interface represents a Node object that contains characters. This is an abstract interface, meaning there aren't any object of type CharacterData: it is implemented by other interfaces, like Text, Comment, or ProcessingInstruction which aren't abstract.\\\"><code>CharacterData</code></a> (which <a href=\\\"/en-US/docs/Web/API/Text\\\" title=\\\"The Text interface represents the textual content of Element or Attr. If an element has no markup within its content, it has a single child implementing Text that contains the element's text. However, if the element contains markup, it is parsed into information items and Text nodes that form its children.\\\"><code>Text</code></a>, <a href=\\\"/en-US/docs/Web/API/Comment\\\" title=\\\"The Comment interface represents textual notations within markup; although it is generally not visually shown, such comments are available to be read in the source view.\\\"><code>Comment</code></a>, and <a href=\\\"/en-US/docs/Web/API/CDATASection\\\" title=\\\"The CDATASection interface represents a CDATA section that can be used within XML to include extended portions of unescaped text. The symbols < and &amp; don’t need escaping as they normally do when inside a CDATA section.\\\"><code>CDATASection</code></a> inherit), <a href=\\\"/en-US/docs/Web/API/ProcessingInstruction\\\" title=\\\"The ProcessingInstruction interface represents a processing instruction; that is, a Node which embeds an instruction targeting a specific application but that can be ignored by any other applications which don't recognize the instruction.\\\"><code>ProcessingInstruction</code></a>, <a href=\\\"/en-US/docs/Web/API/DocumentFragment\\\" title=\\\"The DocumentFragment interface represents a minimal document object that has no parent. It is used as a lightweight version of Document that stores a segment of a document structure comprised of nodes just like a standard document.\\\"><code>DocumentFragment</code></a>, <a href=\\\"/en-US/docs/Web/API/DocumentType\\\" title=\\\"The DocumentType interface represents a Node containing a doctype.\\\"><code>DocumentType</code></a>, <a href=\\\"/en-US/docs/Web/API/Notation\\\" title=\\\"Represents a DTD notation (read-only). May declare format of an unparsed entity or formally declare the document's processing instruction targets. Inherits methods and properties from Node. Its nodeName is the notation name. Has no parent.\\\"><code>Notation</code></a>, <a class=\\\"new\\\" href=\\\"/en-US/docs/Web/API/Entity\\\" rel=\\\"nofollow\\\" title=\\\"The documentation about this has not yet been written; please consider contributing!\\\"><code>Entity</code></a>, <a class=\\\"new\\\" href=\\\"/en-US/docs/Web/API/EntityReference\\\" rel=\\\"nofollow\\\" title=\\\"The documentation about this has not yet been written; please consider contributing!\\\"><code>EntityReference</code></a>\",\"Those interfaces may return <code>null</code> in certain cases where the methods and properties are not relevant. They may throw an exception — for example when adding children to a node type for which no children can exist.\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "baseURI",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the base URL of the document containing the <code>Node</code>."
+        "name": "Animatable"
       },
       {
-        "name": "childNodes",
-        "overview": "Returns a live <a href=\"/en-US/docs/Web/API/NodeList\" title=\"NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().\"><code>NodeList</code></a> containing all the children of this node. <a href=\"/en-US/docs/Web/API/NodeList\" title=\"NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().\"><code>NodeList</code></a> being live means that if the children of the <code>Node</code> change, the <a href=\"/en-US/docs/Web/API/NodeList\" title=\"NodeList objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().\"><code>NodeList</code></a> object is automatically updated."
+        "name": "Attr"
       },
       {
-        "name": "firstChild",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a> representing the first direct child node of the node, or <code>null</code> if the node has no child."
+        "name": "CDATASection"
       },
       {
-        "name": "isConnected",
-        "overview": "A boolean indicating whether or not the Node is connected (directly or indirectly) to the context object, e.g. the <a href=\"/en-US/docs/Web/API/Document\" title=\"The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.\"><code>Document</code></a> object in the case of the normal DOM, or the <a href=\"/en-US/docs/Web/API/ShadowRoot\" title=\"The ShadowRoot interface of the Shadow DOM API is the root node of a DOM subtree that is rendered separately from a document's main DOM tree.\"><code>ShadowRoot</code></a> in the case of a shadow DOM."
+        "name": "CharacterData"
       },
       {
-        "name": "lastChild",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a> representing the last direct child node of the node, or <code>null</code> if the node has no child."
+        "name": "ChildNode"
       },
       {
-        "name": "nextSibling",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a> representing the next node in the tree, or <code>null</code> if there isn't such node."
+        "name": "Comment"
       },
       {
-        "name": "nodeName",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> containing the name of the <code>Node</code>. The structure of the name will differ with the node type. E.g. An <a href=\"/en-US/docs/Web/API/HTMLElement\" title=\"The HTMLElement interface represents any HTML element. Some elements directly implement this interface, while others implement it via an interface that inherits it.\"><code>HTMLElement</code></a> will contain the name of the corresponding tag, like <code>'audio'</code> for an <a href=\"/en-US/docs/Web/API/HTMLAudioElement\" title=\"The HTMLAudioElement interface provides access to the properties of <audio> elements, as well as methods to manipulate them.\"><code>HTMLAudioElement</code></a>, a <a href=\"/en-US/docs/Web/API/Text\" title=\"The Text interface represents the textual content of Element or Attr. If an element has no markup within its content, it has a single child implementing Text that contains the element's text. However, if the element contains markup, it is parsed into information items and Text nodes that form its children.\"><code>Text</code></a> node will have the <code>'#text'</code> string, or a <a href=\"/en-US/docs/Web/API/Document\" title=\"The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.\"><code>Document</code></a> node will have the <code>'#document'</code> string."
+        "name": "Document"
       },
       {
-        "name": "nodeType",
-        "overview": "Returns an <code>unsigned short</code> representing the type of the node. Possible values are:\n\t<table class=\"standard-table\">\n\t\t<thead>\n\t\t\t<tr>\n\t\t\t\t<th scope=\"col\">Name</th>\n\t\t\t\t<th scope=\"col\">Value</th>\n\t\t\t</tr>\n\t\t</thead>\n\t\t<tbody>\n\t\t\t<tr>\n\t\t\t\t<td><code>ELEMENT_NODE</code></td>\n\t\t\t\t<td><code>1</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>ATTRIBUTE_NODE</code>&nbsp;<span class=\"icon-only-inline\" title=\"This deprecated API should no longer be used, but will probably still work.\"><i class=\"icon-thumbs-down-alt\"> </i></span></td>\n\t\t\t\t<td><code>2</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>TEXT_NODE</code></td>\n\t\t\t\t<td><code>3</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>CDATA_SECTION_NODE</code></td>\n\t\t\t\t<td><code>4</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>ENTITY_REFERENCE_NODE</code>&nbsp;<span class=\"icon-only-inline\" title=\"This deprecated API should no longer be used, but will probably still work.\"><i class=\"icon-thumbs-down-alt\"> </i></span></td>\n\t\t\t\t<td><code>5</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>ENTITY_NODE</code>&nbsp;<span class=\"icon-only-inline\" title=\"This deprecated API should no longer be used, but will probably still work.\"><i class=\"icon-thumbs-down-alt\"> </i></span></td>\n\t\t\t\t<td><code>6</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>PROCESSING_INSTRUCTION_NODE</code></td>\n\t\t\t\t<td><code>7</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>COMMENT_NODE</code></td>\n\t\t\t\t<td><code>8</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>DOCUMENT_NODE</code></td>\n\t\t\t\t<td><code>9</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>DOCUMENT_TYPE_NODE</code></td>\n\t\t\t\t<td><code>10</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>DOCUMENT_FRAGMENT_NODE</code></td>\n\t\t\t\t<td><code>11</code></td>\n\t\t\t</tr>\n\t\t\t<tr>\n\t\t\t\t<td><code>NOTATION_NODE</code>&nbsp;<span class=\"icon-only-inline\" title=\"This deprecated API should no longer be used, but will probably still work.\"><i class=\"icon-thumbs-down-alt\"> </i></span></td>\n\t\t\t\t<td><code>12</code></td>\n\t\t\t</tr>\n\t\t</tbody>\n\t</table>\n\t"
+        "name": "DocumentAndElementEventHandlers"
       },
       {
-        "name": "nodeValue",
-        "overview": "Returns / Sets the value of the current node."
+        "name": "DocumentFragment"
       },
       {
-        "name": "ownerDocument",
-        "overview": "Returns the <a href=\"/en-US/docs/Web/API/Document\" title=\"The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.\"><code>Document</code></a> that this node belongs to. If the node is itself a document, returns <code>null</code>."
+        "name": "DocumentOrShadowRoot"
       },
       {
-        "name": "parentElement",
-        "overview": "Returns an <a href=\"/en-US/docs/Web/API/Element\" title=\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\"><code>Element</code></a> that is the parent of this node. If the node has no parent, or if that parent is not an <a href=\"/en-US/docs/Web/API/Element\" title=\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\"><code>Element</code></a>, this property returns <code>null</code>."
+        "name": "DocumentType"
       },
       {
-        "name": "parentNode",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a> that is the parent of this node. If there is no such node, like if this node is the top of the tree or if doesn't participate in a tree, this property returns <code>null</code>."
+        "name": "Element"
       },
       {
-        "name": "previousSibling",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a> representing the previous node in the tree, or <code>null</code> if there isn't such node."
+        "name": "ElementContentEditable"
       },
       {
-        "name": "textContent",
-        "overview": "Returns / Sets the textual content of an element and all its descendants."
+        "name": "ElementCSSInlineStyle"
+      },
+      {
+        "name": "EventTarget"
+      },
+      {
+        "name": "FontFaceSource"
+      },
+      {
+        "name": "GlobalEventHandlers"
+      },
+      {
+        "name": "HTMLAnchorElement"
+      },
+      {
+        "name": "HTMLAreaElement"
+      },
+      {
+        "name": "HTMLAudioElement"
+      },
+      {
+        "name": "HTMLBaseElement"
+      },
+      {
+        "name": "HTMLBodyElement"
+      },
+      {
+        "name": "HTMLBRElement"
+      },
+      {
+        "name": "HTMLButtonElement"
+      },
+      {
+        "name": "HTMLCanvasElement"
+      },
+      {
+        "name": "HTMLDataElement"
+      },
+      {
+        "name": "HTMLDataListElement"
+      },
+      {
+        "name": "HTMLDetailsElement"
+      },
+      {
+        "name": "HTMLDialogElement"
+      },
+      {
+        "name": "HTMLDirectoryElement"
+      },
+      {
+        "name": "HTMLDivElement"
+      },
+      {
+        "name": "HTMLDListElement"
+      },
+      {
+        "name": "HTMLDocument"
+      },
+      {
+        "name": "HTMLElement"
+      },
+      {
+        "name": "HTMLEmbedElement"
+      },
+      {
+        "name": "HTMLFieldSetElement"
+      },
+      {
+        "name": "HTMLFontElement"
+      },
+      {
+        "name": "HTMLFormElement"
+      },
+      {
+        "name": "HTMLFrameElement"
+      },
+      {
+        "name": "HTMLFrameSetElement"
+      },
+      {
+        "name": "HTMLHeadElement"
+      },
+      {
+        "name": "HTMLHeadingElement"
+      },
+      {
+        "name": "HTMLHRElement"
+      },
+      {
+        "name": "HTMLHtmlElement"
+      },
+      {
+        "name": "HTMLHyperlinkElementUtils"
+      },
+      {
+        "name": "HTMLIFrameElement"
+      },
+      {
+        "name": "HTMLImageElement"
+      },
+      {
+        "name": "HTMLInputElement"
+      },
+      {
+        "name": "HTMLLabelElement"
+      },
+      {
+        "name": "HTMLLegendElement"
+      },
+      {
+        "name": "HTMLLIElement"
+      },
+      {
+        "name": "HTMLLinkElement"
+      },
+      {
+        "name": "HTMLMapElement"
+      },
+      {
+        "name": "HTMLMarqueeElement"
+      },
+      {
+        "name": "HTMLMediaElement"
+      },
+      {
+        "name": "HTMLMenuElement"
+      },
+      {
+        "name": "HTMLMetaElement"
+      },
+      {
+        "name": "HTMLMeterElement"
+      },
+      {
+        "name": "HTMLModElement"
+      },
+      {
+        "name": "HTMLObjectElement"
+      },
+      {
+        "name": "HTMLOListElement"
+      },
+      {
+        "name": "HTMLOptGroupElement"
+      },
+      {
+        "name": "HTMLOptionElement"
+      },
+      {
+        "name": "HTMLOrSVGElement"
+      },
+      {
+        "name": "HTMLOutputElement"
+      },
+      {
+        "name": "HTMLParagraphElement"
+      },
+      {
+        "name": "HTMLParamElement"
+      },
+      {
+        "name": "HTMLPictureElement"
+      },
+      {
+        "name": "HTMLPreElement"
+      },
+      {
+        "name": "HTMLProgressElement"
+      },
+      {
+        "name": "HTMLQuoteElement"
+      },
+      {
+        "name": "HTMLScriptElement"
+      },
+      {
+        "name": "HTMLSelectElement"
+      },
+      {
+        "name": "HTMLSlotElement"
+      },
+      {
+        "name": "HTMLSourceElement"
+      },
+      {
+        "name": "HTMLSpanElement"
+      },
+      {
+        "name": "HTMLStyleElement"
+      },
+      {
+        "name": "HTMLTableCaptionElement"
+      },
+      {
+        "name": "HTMLTableCellElement"
+      },
+      {
+        "name": "HTMLTableColElement"
+      },
+      {
+        "name": "HTMLTableElement"
+      },
+      {
+        "name": "HTMLTableRowElement"
+      },
+      {
+        "name": "HTMLTableSectionElement"
+      },
+      {
+        "name": "HTMLTemplateElement"
+      },
+      {
+        "name": "HTMLTextAreaElement"
+      },
+      {
+        "name": "HTMLTimeElement"
+      },
+      {
+        "name": "HTMLTitleElement"
+      },
+      {
+        "name": "HTMLTrackElement"
+      },
+      {
+        "name": "HTMLUListElement"
+      },
+      {
+        "name": "HTMLUnknownElement"
+      },
+      {
+        "name": "HTMLVideoElement"
+      },
+      {
+        "name": "LinkStyle"
+      },
+      {
+        "name": "Node"
+      },
+      {
+        "name": "NonDocumentTypeChildNode"
+      },
+      {
+        "name": "NonElementParentNode"
+      },
+      {
+        "name": "ParentNode"
+      },
+      {
+        "name": "ProcessingInstruction"
+      },
+      {
+        "name": "ShadowRoot"
+      },
+      {
+        "name": "Slotable"
+      },
+      {
+        "name": "SVGElement"
+      },
+      {
+        "name": "SVGGraphicsElement"
+      },
+      {
+        "name": "SVGSVGElement"
+      },
+      {
+        "name": "SVGTests"
+      },
+      {
+        "name": "SVGTitleElement"
+      },
+      {
+        "name": "Text"
+      },
+      {
+        "name": "WindowEventHandlers"
+      },
+      {
+        "name": "XMLDocument"
+      },
+      {
+        "name": "XPathEvaluatorBase"
       }
     ],
-    "methods": [
-      {
-        "name": "appendChild",
-        "overview": "Adds the specified <code><var>childNode</var></code> argument as the last child to the current node.<br>\n\tIf the argument referenced an existing node on the DOM tree, the node will be detached from its current position and attached at the new position."
-      },
-      {
-        "name": "cloneNode",
-        "overview": "Clone a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a>, and optionally, all of its contents. By default, it clones the content of the node."
-      },
-      {
-        "name": "compareDocumentPosition",
-        "overview": "Compares the position of the current node against another node in any other document."
-      },
-      {
-        "name": "contains",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> value indicating whether or not a node is a descendant of the calling node."
-      },
-      {
-        "name": "getRootNode",
-        "overview": "Returns the context object's root which optionally includes the shadow root if it is available.&nbsp;"
-      },
-      {
-        "name": "hasChildNodes",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> indicating whether or not the element has any child nodes."
-      },
-      {
-        "name": "insertBefore",
-        "overview": "Inserts a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a>&nbsp;before the reference node as a child of a specified parent node."
-      },
-      {
-        "name": "isDefaultNamespace",
-        "overview": "Accepts a namespace URI as an argument and returns a&nbsp;<a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a>&nbsp;with a value of&nbsp;<code>true</code>&nbsp;if the namespace is the default namespace on the given node or&nbsp;<code>false</code>&nbsp;if not."
-      },
-      {
-        "name": "isEqualNode",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> which indicates whether or not two nodes are of the same type and all their defining data points match."
-      },
-      {
-        "name": "isSameNode",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean\" title=\"The Boolean object is an object wrapper for a boolean value.\"><code>Boolean</code></a> value indicating whether or not the two nodes are the same (that is, they reference the same object)."
-      },
-      {
-        "name": "lookupNamespaceURI",
-        "overview": "Accepts a prefix and returns the namespace URI associated with it on the given node if found (and&nbsp;<code>null</code>&nbsp;if not). Supplying&nbsp;<code>null</code>&nbsp;for the prefix will return the default namespace."
-      },
-      {
-        "name": "lookupPrefix",
-        "overview": "Returns a&nbsp;<a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> containing the prefix for a given namespace URI, if present, and&nbsp;<code>null</code>&nbsp;if not. When multiple prefixes are possible, the result is implementation-dependent."
-      },
-      {
-        "name": "normalize",
-        "overview": "Clean up all the text nodes under this element (merge adjacent, remove empty)."
-      },
-      {
-        "name": "removeChild",
-        "overview": "Removes a child node from the current element, which must be a child of the current node."
-      },
-      {
-        "name": "replaceChild",
-        "overview": "Replaces one child <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a> of the current one with the second one given in parameter."
-      }
-    ]
+    "properties": [],
+    "methods": []
   },
   {
     "name": "SuperNodeList",
     "tags": "Super",
     "overview": "[\"<span class=\\\"seoSummary\\\"><strong><code>NodeList</code></strong> objects are collections of <a href=\\\"/en-US/docs/Glossary/Node/DOM\\\">nodes</a>, usually returned by properties such as <a href=\\\"/en-US/docs/Web/API/Node/childNodes\\\" title=\\\"The Node.childNodes read-only property returns a live NodeList of child nodes of the given element where the first child node is assigned index 0.\\\"><code>Node.childNodes</code></a> and methods such as <a href=\\\"/en-US/docs/Web/API/Document/querySelectorAll\\\" title=\\\"The Document method querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors.\\\"><code>document.querySelectorAll()</code></a>.</span>\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "length",
-        "overview": "The number of nodes in the <code>NodeList</code>."
+        "name": "NodeList"
+      },
+      {
+        "name": "RadioNodeList"
       }
     ],
-    "methods": [
-      {
-        "name": "entries",
-        "overview": "Returns an <a href=\"/en-US/docs/Web/JavaScript/Reference/Iteration_protocols\" title=\"A couple of additions to ECMAScript 2015 aren't new built-ins or syntax, but protocols. These protocols can be implemented by any object respecting some conventions.\"><code>iterator</code></a>, allowing code to go through all key/value pairs contained in the collection. (In this case, the keys are numbers starting from <code>0</code> and the values are nodes.)"
-      },
-      {
-        "name": "forEach",
-        "overview": "Executes a provided function once per <code>NodeList</code> element, passing the element as an argument to the function."
-      },
-      {
-        "name": "item",
-        "overview": "Returns an item in the list by its index, or <code>null</code> if the index is out-of-bounds."
-      },
-      {
-        "name": "keys",
-        "overview": "Returns an <a href=\"/en-US/docs/Web/JavaScript/Reference/Iteration_protocols\" title=\"A couple of additions to ECMAScript 2015 aren't new built-ins or syntax, but protocols. These protocols can be implemented by any object respecting some conventions.\"><code>iterator</code></a>, allowing code to go through all the keys of the key/value pairs contained in the collection. (In this case, the keys are numbers starting from <code>0</code>.)"
-      },
-      {
-        "name": "values",
-        "overview": "Returns an <a href=\"/en-US/docs/Web/JavaScript/Reference/Iteration_protocols\" title=\"A couple of additions to ECMAScript 2015 aren't new built-ins or syntax, but protocols. These protocols can be implemented by any object respecting some conventions.\"><code>iterator</code></a> allowing code to go through all values (nodes) of the key/value pairs contained in the collection."
-      }
-    ]
+    "properties": [],
+    "methods": []
   },
   {
     "name": "SuperStyleSheet",
     "tags": "Super",
     "overview": "[\"An object implementing the <code>StyleSheet</code> interface represents a single style sheet. CSS style sheets will further implement the more specialized <a href=\\\"/en-US/docs/Web/API/CSSStyleSheet\\\" title=\\\"The CSSStyleSheet interface represents a single CSS stylesheet, and lets you inspect and modify the list of rules contained in the stylesheet.\\\"><code>CSSStyleSheet</code></a> interface.\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "disabled",
-        "overview": "Is a <a href=\"/en-US/docs/Web/API/Boolean\" title=\"REDIRECT Boolean [en-US]\"><code>Boolean</code></a> representing whether the current stylesheet has been applied or not."
+        "name": "CSSStyleSheet"
       },
       {
-        "name": "href",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the location of the stylesheet."
-      },
-      {
-        "name": "media",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/MediaList\" title=\"The MediaList interface represents the media queries of a stylesheet, e.g. those set using a <link> element's media attribute.\"><code>MediaList</code></a> representing the intended destination medium for style information."
-      },
-      {
-        "name": "ownerNode",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a> associating this style sheet with the current document."
-      },
-      {
-        "name": "parentStyleSheet",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/StyleSheet\" title=\"An object implementing the StyleSheet interface represents a single style sheet. CSS style sheets will further implement the more specialized CSSStyleSheet interface.\"><code>StyleSheet</code></a> including this one, if any; returns <code>null</code> if there aren't any."
-      },
-      {
-        "name": "title",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the advisory title of the current style sheet."
-      },
-      {
-        "name": "type",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> representing the style sheet language for this style sheet."
+        "name": "StyleSheet"
       }
     ],
+    "properties": [],
     "methods": []
   },
   {
     "name": "SuperText",
     "tags": "Super",
     "overview": "[\"<span class=\\\"seoSummary\\\">The <strong><code>Text</code></strong> interface represents the textual content of <a href=\\\"/en-US/docs/Web/API/Element\\\" title=\\\"Element is the most general base class from which all element objects (i.e. objects that represent elements) in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.\\\"><code>Element</code></a> or <a href=\\\"/en-US/docs/Web/API/Attr\\\" title=\\\"The Attr interface represents one of a DOM element's attributes as an object. In most DOM methods, you will directly retrieve the attribute as a string (e.g., Element.getAttribute()), but certain functions (e.g., Element.getAttributeNode()) or means of iterating return Attr types.\\\"><code>Attr</code></a>. </span>\",\"If an element has no markup within its content, it has a single child implementing <code>Text</code> that contains the element's text. However, if the element contains markup, it is parsed into information items and <code>Text</code> nodes that form its children.\",\"New documents have a single <code>Text</code> node for each block of text. Over time, more <code>Text</code> nodes may be created as the document's content changes. The <a href=\\\"/en-US/docs/Web/API/Node/normalize\\\" title=\\\"The Node.normalize() method puts the specified node and all of its sub-tree into a &quot;normalized&quot; form. In a normalized sub-tree, no text nodes in the sub-tree are empty and there are no adjacent text nodes.\\\"><code>Node.normalize()</code></a> method merges adjacent <code>Text</code> objects back into a single node for each block of text.\"]",
-    "properties": [
+    "dependencies": [
       {
-        "name": "wholeText",
-        "overview": "Returns a <a href=\"/en-US/docs/Web/API/DOMString\" title=\"DOMString is a UTF-16 String. As JavaScript already uses such strings, DOMString is mapped directly to a String.\"><code>DOMString</code></a> containing the text of all <code>Text</code> nodes logically adjacent to this <a href=\"/en-US/docs/Web/API/Node\" title=\"Node is an interface from which various types of DOM API objects inherit, allowing those types to be treated similarly; for example, inheriting the same set of methods, or being testable in the same way.\"><code>Node</code></a>, concatenated in document order."
+        "name": "CDATASection"
+      },
+      {
+        "name": "CharacterData"
+      },
+      {
+        "name": "ChildNode"
+      },
+      {
+        "name": "EventTarget"
+      },
+      {
+        "name": "Node"
+      },
+      {
+        "name": "NonDocumentTypeChildNode"
+      },
+      {
+        "name": "Slotable"
+      },
+      {
+        "name": "Text"
       }
     ],
-    "methods": [
-      {
-        "name": "splitText",
-        "overview": "Breaks the node into two nodes at a specified offset."
-      }
-    ]
+    "properties": [],
+    "methods": []
   }
 ]
