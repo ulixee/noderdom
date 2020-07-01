@@ -47,6 +47,7 @@ Create DOM:
 ./scripts/0-import/importComponentFiltersFromDb.ts awaited
 ./scripts/1-process/compileAwaitedComponents.ts
 ./scripts/2-finalize/generateDOM.ts awaited
+./scripts/2-finalize/generateDocs.ts
 ```
 
 ## License

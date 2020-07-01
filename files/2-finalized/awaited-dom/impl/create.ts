@@ -1,7 +1,7 @@
 import AwaitedPath from '../base/AwaitedPath';
 import StateMachine from '../base/StateMachine';
 import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLButtonElement, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLSelectElement, IHTMLTextAreaElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRadioNodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText, IValidityState } from '../base/interfaces/official';
-import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperCharacterData, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
+import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
 
@@ -302,13 +302,6 @@ export function createSuperHTMLCollection<IAwaitedOptions = {}>(awaitedPath: Awa
 export function createSuperText<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperText {
   const SuperText = require('./super-klasses/SuperText').default; // tslint:disable-line:variable-name
   const instance = new SuperText();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
-}
-
-export function createSuperCharacterData<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ISuperCharacterData {
-  const SuperCharacterData = require('./super-klasses/SuperCharacterData').default; // tslint:disable-line:variable-name
-  const instance = new SuperCharacterData();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }

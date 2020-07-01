@@ -176,15 +176,6 @@ export interface ISuperText extends ICharacterDataIsolate, INodeIsolate, INonDoc
   splitText(offset: number): Promise<ISuperText>;
 }
 
-// SuperCharacterData //////////
-
-export interface ISuperCharacterData extends ICharacterDataIsolate, INodeIsolate, INonDocumentTypeChildNode, ITextIsolate {
-  readonly data: Promise<string>;
-  readonly length: Promise<number>;
-
-  substringData(offset: number, count: number): Promise<string>;
-}
-
 // SuperStyleSheet //////////
 
 export interface ISuperStyleSheet {}

@@ -9,7 +9,6 @@ const BASE_NAMES = [
   'NodeList',
   'HTMLCollection',
   'Text',
-  'CharacterData',
   'HTMLElement',
   'StyleSheet',
 ];

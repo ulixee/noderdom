@@ -306,13 +306,6 @@ function createSuperText(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createSuperText = createSuperText;
-function createSuperCharacterData(awaitedPath, awaitedOptions) {
-    const SuperCharacterData = require('./super-klasses/SuperCharacterData').default; // tslint:disable-line:variable-name
-    const instance = new SuperCharacterData();
-    exports.setState(instance, { awaitedPath, awaitedOptions });
-    return instance;
-}
-exports.createSuperCharacterData = createSuperCharacterData;
 function createSuperHTMLElement(awaitedPath, awaitedOptions) {
     const SuperHTMLElement = require('./super-klasses/SuperHTMLElement').default; // tslint:disable-line:variable-name
     const instance = new SuperHTMLElement();

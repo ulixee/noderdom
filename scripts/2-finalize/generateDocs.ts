@@ -21,9 +21,6 @@ allInterfaces.map(inter => {
   const methodsSql = `SELECT * FROM methods WHERE interfaceName=? AND hasDefinedIDL=1 ORDER BY localName COLLATE NOCASE`;
   const methods = db.prepare(methodsSql).all([inter.name]);
 
-  const { docOverview } = db.prepare('SELECT docOverview FROM interfaces WHERE name=?').get(inter.name);
-  console.log(inter.name, docOverview);
-
   docs.push({
     name,
     mdnCategory: inter.mdnCategory,
