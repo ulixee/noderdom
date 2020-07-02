@@ -19,13 +19,13 @@ export default class SuperGenerator {
 
       superInterface.implements = [];
 
-      inheritsFrom.officialMixins.forEach(name => {
-        superInterface.implements!.push(name);
+      inheritsFrom.mixinNames.forEach(mixinName => {
+        superInterface.implements!.push(mixinName);
       });
 
-      inheritsFrom.isolateMixins.forEach(name => {
-        const isolateName = `${name}Isolate`;
-        const isolateInterface = Object.assign({}, components.allInterfacesMap[name], { name: isolateName });
+      inheritsFrom.klassNames.forEach(klassName => {
+        const isolateName = `${klassName}Isolate`;
+        const isolateInterface = Object.assign({}, components.allInterfacesMap[klassName], { name: isolateName });
 
         isolateInterface.properties = Object.assign({}, isolateInterface.properties);
         isolateInterface.methods = Object.assign({}, isolateInterface.methods);

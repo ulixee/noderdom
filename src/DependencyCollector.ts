@@ -15,8 +15,8 @@ interface ICodeDependenciesByName {
 }
 
 interface IClassCollection {
-  officialMixins: Set<string>;
-  isolateMixins: Set<string>;
+  mixinNames: Set<string>;
+  klassNames: Set<string>;
 }
 
 interface IVisits {
@@ -47,19 +47,19 @@ export default class DependencyCollector {
     }
   }
 
-  public get(name: string) {
+  public get(name: string, collectUpstream: boolean = true, collectDownstream: boolean = true) {
     const visits: IVisits = { upstream: new Set(), downstream: new Set() };
     const classCollection: IClassCollection = {
-      isolateMixins: new Set(),
-      officialMixins: new Set(),
+      klassNames: new Set(),
+      mixinNames: new Set(),
     };
 
-    this.collectUpstreamClasses(name, classCollection, visits);
-    this.collectDownstreamClasses(name, classCollection, visits);
+    if (collectUpstream) this.collectUpstreamClasses(name, classCollection, visits);
+    if (collectDownstream) this.collectDownstreamClasses(name, classCollection, visits);
 
     return {
-      isolateMixins: Array.from(classCollection.isolateMixins),
-      officialMixins: Array.from(classCollection.officialMixins),
+      klassNames: Array.from(classCollection.klassNames),
+      mixinNames: Array.from(classCollection.mixinNames),
     };
   }
 
@@ -68,9 +68,9 @@ export default class DependencyCollector {
     visits.upstream.add(name);
     for (const n of this.upstreamByName[name]) {
       if (this.components.mixins[n]) {
-        classCollection.officialMixins.add(n);
+        classCollection.mixinNames.add(n);
       } else {
-        classCollection.isolateMixins.add(n);
+        classCollection.klassNames.add(n);
       }
       this.collectUpstreamClasses(n, classCollection, visits);
     }
@@ -81,9 +81,9 @@ export default class DependencyCollector {
     visits.downstream.add(name);
     for (const n of this.downstreamByName[name]) {
       if (this.components.mixins[n]) {
-        classCollection.officialMixins.add(n);
+        classCollection.mixinNames.add(n);
       } else {
-        classCollection.isolateMixins.add(n);
+        classCollection.klassNames.add(n);
       }
       this.collectUpstreamClasses(n, classCollection, visits);
       this.collectDownstreamClasses(n, classCollection, visits);

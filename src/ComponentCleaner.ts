@@ -8,11 +8,11 @@ export default class ComponentCleaner {
   private referencedIDLTypes: Set<string>;
   private unexposedTypes = new Set<string>();
   private readonly components: Components;
-  private readonly componentFiltersPath: string;
+  private readonly componentFilteringPath: string;
 
   constructor(components: Components, componentFilteringPath?: string) {
     this.components = components;
-    this.componentFiltersPath = componentFilteringPath || '';
+    this.componentFilteringPath = componentFilteringPath || '';
   }
 
   public run() {
@@ -69,8 +69,8 @@ export default class ComponentCleaner {
   }
 
   private runComponentFiltering() {
-    if (!this.componentFiltersPath) return;
-    const componentFilters: IComponentFilters = JSON.parse(Fs.readFileSync(this.componentFiltersPath, 'utf-8'));
+    if (!this.componentFilteringPath) return;
+    const componentFilters: IComponentFilters = JSON.parse(Fs.readFileSync(this.componentFilteringPath, 'utf-8'));
 
     const callbackInterfaceNames = Object.keys(this.components.callbackInterfaces);
     const interfacesNames = Object.keys(this.components.interfaces);
