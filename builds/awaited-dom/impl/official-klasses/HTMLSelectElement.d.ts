@@ -1,9 +1,10 @@
 import { IHTMLSelectElement, IHTMLFormElement, IHTMLOptionsCollection, IHTMLOptionElement } from '../../base/interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../../base/interfaces/super';
 import { IHTMLSelectElementProperties } from '../../base/official-klasses/HTMLSelectElement';
-export declare const getState: <C = IHTMLSelectElement, P = IHTMLSelectElementProperties>(instance: C) => P, setState: <P = IHTMLSelectElementProperties>(instance: IHTMLSelectElement, properties: P) => void;
+export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void, recordProxy: (proxy: IHTMLSelectElement, instance: IHTMLSelectElement) => void;
 declare const HTMLSelectElementBaseClass: {
     new (): {
+        [index: number]: ISuperElement;
         readonly autocomplete: Promise<string>;
         readonly autofocus: Promise<boolean>;
         readonly disabled: Promise<boolean>;

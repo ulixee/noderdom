@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { IDOMImplementation } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IDOMImplementation, IDOMImplementationProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IDOMImplementation, IDOMImplementationProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMImplementation>('DOMImplementation', getState, setState);
 
 export function DOMImplementationGenerator() {

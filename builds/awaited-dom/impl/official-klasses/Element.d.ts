@@ -1,7 +1,7 @@
 import { IElement, INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../base/interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IElementProperties } from '../../base/official-klasses/Element';
-export declare const getState: <C = IElement, P = IElementProperties>(instance: C) => P, setState: <P = IElementProperties>(instance: IElement, properties: P) => void;
+export declare const getState: (instance: IElement) => IElementProperties, setState: (instance: IElement, properties: Partial<IElementProperties>) => void, recordProxy: (proxy: IElement, instance: IElement) => void;
 declare const ElementBaseClass: {
     new (): {
         readonly attributes: INamedNodeMap;

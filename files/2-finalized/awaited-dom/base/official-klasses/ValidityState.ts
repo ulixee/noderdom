@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { IValidityState } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IValidityState, IValidityStateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IValidityState, IValidityStateProperties>();
 export const awaitedHandler = new AwaitedHandler<IValidityState>('ValidityState', getState, setState);
 
 export function ValidityStateGenerator() {

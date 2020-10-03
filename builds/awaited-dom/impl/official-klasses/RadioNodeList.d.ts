@@ -1,8 +1,9 @@
 import { IRadioNodeList } from '../../base/interfaces/official';
 import { IRadioNodeListProperties } from '../../base/official-klasses/RadioNodeList';
-export declare const getState: <C = IRadioNodeList, P = IRadioNodeListProperties>(instance: C) => P, setState: <P = IRadioNodeListProperties>(instance: IRadioNodeList, properties: P) => void;
+export declare const getState: (instance: IRadioNodeList) => IRadioNodeListProperties, setState: (instance: IRadioNodeList, properties: Partial<IRadioNodeListProperties>) => void, recordProxy: (proxy: IRadioNodeList, instance: IRadioNodeList) => void;
 declare const RadioNodeListBaseClass: {
     new (): {
+        [index: number]: import("../../base/interfaces/super").ISuperNode;
         readonly value: Promise<string>;
         readonly length: Promise<number>;
         item(index: number): import("../../base/interfaces/super").ISuperNode;

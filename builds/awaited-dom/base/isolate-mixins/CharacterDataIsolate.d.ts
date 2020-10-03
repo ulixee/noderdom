@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ICharacterDataIsolate } from '../interfaces/isolate';
-export declare const getState: <C = ICharacterDataIsolate, P = ICharacterDataIsolateProperties>(instance: C) => P, setState: <P = ICharacterDataIsolateProperties>(instance: ICharacterDataIsolate, properties: P) => void;
+export declare const getState: (instance: ICharacterDataIsolate) => ICharacterDataIsolateProperties, setState: (instance: ICharacterDataIsolate, properties: Partial<ICharacterDataIsolateProperties>) => void, recordProxy: (proxy: ICharacterDataIsolate, instance: ICharacterDataIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<ICharacterDataIsolate>;
 export default class CharacterDataIsolate implements ICharacterDataIsolate {
     get data(): Promise<string>;

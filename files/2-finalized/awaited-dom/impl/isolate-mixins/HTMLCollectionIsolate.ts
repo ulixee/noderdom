@@ -5,7 +5,7 @@ import HTMLCollectionIsolateBase, { IHTMLCollectionIsolateProperties } from '../
 import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLCollectionIsolate, IHTMLCollectionIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLCollectionIsolate, IHTMLCollectionIsolateProperties>();
 
 export default class HTMLCollectionIsolate extends HTMLCollectionIsolateBase implements IHTMLCollectionIsolate {
   public namedItem(name: string): ISuperElement {

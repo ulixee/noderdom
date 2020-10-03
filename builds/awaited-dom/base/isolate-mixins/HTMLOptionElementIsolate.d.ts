@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLOptionElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement } from '../interfaces/official';
-export declare const getState: <C = IHTMLOptionElementIsolate, P = IHTMLOptionElementIsolateProperties>(instance: C) => P, setState: <P = IHTMLOptionElementIsolateProperties>(instance: IHTMLOptionElementIsolate, properties: P) => void;
+export declare const getState: (instance: IHTMLOptionElementIsolate) => IHTMLOptionElementIsolateProperties, setState: (instance: IHTMLOptionElementIsolate, properties: Partial<IHTMLOptionElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLOptionElementIsolate, instance: IHTMLOptionElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLOptionElementIsolate>;
 export default class HTMLOptionElementIsolate implements IHTMLOptionElementIsolate {
     get defaultSelected(): Promise<boolean>;

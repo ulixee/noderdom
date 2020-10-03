@@ -1,9 +1,10 @@
 import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../../base/interfaces/super';
 import { IGetRootNodeOptions } from '../../base/interfaces/official';
 import { ISuperNodeProperties } from '../../base/super-klasses/SuperNode';
-export declare const getState: <C = ISuperNode, P = ISuperNodeProperties>(instance: C) => P, setState: <P = ISuperNodeProperties>(instance: ISuperNode, properties: P) => void;
+export declare const getState: (instance: ISuperNode) => ISuperNodeProperties, setState: (instance: ISuperNode, properties: Partial<ISuperNodeProperties>) => void, recordProxy: (proxy: ISuperNode, instance: ISuperNode) => void;
 declare const SuperNodeBaseClass: {
     new (): {
+        [index: number]: ISuperElement;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;
         readonly COMMENT_NODE: number;
@@ -217,6 +218,7 @@ declare const SuperNodeBaseClass: {
         setCustomValidity(error: string): Promise<void>;
         readonly nextElementSibling: ISuperElement;
         readonly previousElementSibling: ISuperElement;
+        getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: import("../../base/interfaces/super").ISuperHTMLCollection;
         readonly firstElementChild: ISuperElement;
@@ -225,6 +227,12 @@ declare const SuperNodeBaseClass: {
         querySelectorAll(selectors: string): ISuperNodeList;
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<import("../../base/interfaces/super").ISuperText>;
+        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined): import("../../base/interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: ISuperNode, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined, type?: number | undefined, result?: import("../../base/interfaces/official").IXPathResult | null | undefined): import("../../base/interfaces/official").IXPathResult;
     };
     readonly ATTRIBUTE_NODE: number;
     readonly CDATA_SECTION_NODE: number;

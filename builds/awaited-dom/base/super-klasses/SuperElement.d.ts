@@ -21,11 +21,12 @@ import { IHTMLTextAreaElementIsolateProperties } from '../isolate-mixins/HTMLTex
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
-export declare const getState: <C = ISuperElement, P = ISuperElementProperties>(instance: C) => P, setState: <P = ISuperElementProperties>(instance: ISuperElement, properties: P) => void;
+export declare const getState: (instance: ISuperElement) => ISuperElementProperties, setState: (instance: ISuperElement, properties: Partial<ISuperElementProperties>) => void, recordProxy: (proxy: ISuperElement, instance: ISuperElement) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperElement>;
 export declare const nodeAttacher: NodeAttacher<ISuperElement>;
 export declare function SuperElementGenerator(ElementIsolate: Constructable<IElementIsolate>, HTMLButtonElementIsolate: Constructable<IHTMLButtonElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLFieldSetElementIsolate: Constructable<IHTMLFieldSetElementIsolate>, HTMLFormElementIsolate: Constructable<IHTMLFormElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLLabelElementIsolate: Constructable<IHTMLLabelElementIsolate>, HTMLOptGroupElementIsolate: Constructable<IHTMLOptGroupElementIsolate>, HTMLOptionElementIsolate: Constructable<IHTMLOptionElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, HTMLSelectElementIsolate: Constructable<IHTMLSelectElementIsolate>, HTMLTextAreaElementIsolate: Constructable<IHTMLTextAreaElementIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>): {
     new (): {
+        [index: number]: ISuperElement;
         readonly attributes: INamedNodeMap;
         readonly classList: IDOMTokenList;
         readonly className: Promise<string>;
@@ -212,6 +213,7 @@ export declare function SuperElementGenerator(ElementIsolate: Constructable<IEle
 export interface ISuperElementProperties extends IElementIsolateProperties, IHTMLButtonElementIsolateProperties, IHTMLElementIsolateProperties, IHTMLFieldSetElementIsolateProperties, IHTMLFormElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, IHTMLLabelElementIsolateProperties, IHTMLOptGroupElementIsolateProperties, IHTMLOptionElementIsolateProperties, IHTMLOrSVGElementProperties, IHTMLSelectElementIsolateProperties, IHTMLTextAreaElementIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties, IParentNodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly attributes?: INamedNodeMap;
     readonly classList?: IDOMTokenList;
     readonly className?: Promise<string>;

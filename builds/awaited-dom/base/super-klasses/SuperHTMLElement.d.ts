@@ -21,11 +21,12 @@ import { IHTMLTextAreaElementIsolateProperties } from '../isolate-mixins/HTMLTex
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
-export declare const getState: <C = ISuperHTMLElement, P = ISuperHTMLElementProperties>(instance: C) => P, setState: <P = ISuperHTMLElementProperties>(instance: ISuperHTMLElement, properties: P) => void;
+export declare const getState: (instance: ISuperHTMLElement) => ISuperHTMLElementProperties, setState: (instance: ISuperHTMLElement, properties: Partial<ISuperHTMLElementProperties>) => void, recordProxy: (proxy: ISuperHTMLElement, instance: ISuperHTMLElement) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperHTMLElement>;
 export declare const nodeAttacher: NodeAttacher<ISuperHTMLElement>;
 export declare function SuperHTMLElementGenerator(ElementIsolate: Constructable<IElementIsolate>, HTMLButtonElementIsolate: Constructable<IHTMLButtonElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLFieldSetElementIsolate: Constructable<IHTMLFieldSetElementIsolate>, HTMLFormElementIsolate: Constructable<IHTMLFormElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLLabelElementIsolate: Constructable<IHTMLLabelElementIsolate>, HTMLOptGroupElementIsolate: Constructable<IHTMLOptGroupElementIsolate>, HTMLOptionElementIsolate: Constructable<IHTMLOptionElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, HTMLSelectElementIsolate: Constructable<IHTMLSelectElementIsolate>, HTMLTextAreaElementIsolate: Constructable<IHTMLTextAreaElementIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>): {
     new (): {
+        [index: number]: ISuperElement;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
         readonly dir: Promise<string>;
@@ -212,6 +213,7 @@ export declare function SuperHTMLElementGenerator(ElementIsolate: Constructable<
 export interface ISuperHTMLElementProperties extends IElementIsolateProperties, IHTMLButtonElementIsolateProperties, IHTMLElementIsolateProperties, IHTMLFieldSetElementIsolateProperties, IHTMLFormElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, IHTMLLabelElementIsolateProperties, IHTMLOptGroupElementIsolateProperties, IHTMLOptionElementIsolateProperties, IHTMLOrSVGElementProperties, IHTMLSelectElementIsolateProperties, IHTMLTextAreaElementIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties, IParentNodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly accessKey?: Promise<string>;
     readonly autoCapitalize?: Promise<string>;
     readonly dir?: Promise<string>;

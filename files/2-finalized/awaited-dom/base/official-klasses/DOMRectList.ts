@@ -8,7 +8,7 @@ import NodeAttacher from '../NodeAttacher';
 import { IDOMRectList, IDOMRect } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IDOMRectList, IDOMRectListProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IDOMRectList, IDOMRectListProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMRectList>('DOMRectList', getState, setState);
 export const nodeAttacher = new NodeAttacher<IDOMRectList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IDOMRectList, IDOMRect>(getState, setState, awaitedHandler);
@@ -21,6 +21,26 @@ export function DOMRectListGenerator() {
         createInstanceName: 'createDOMRectList',
         createIterableName: 'createDOMRect',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to indexer property
+          if (!isNaN(prop as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+        },
+      });
+
+      recordProxy(proxy, this);
+      return proxy;
     }
 
     // properties
@@ -42,6 +62,8 @@ export function DOMRectListGenerator() {
     public [Symbol.iterator](): IterableIterator<IDOMRect> {
       return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
+
+    [index: number]: IDOMRect;
   };
 }
 
@@ -50,6 +72,9 @@ export function DOMRectListGenerator() {
 export interface IDOMRectListProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+  createIterableName: string;
+
   readonly length?: Promise<number>;
 }
 

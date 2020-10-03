@@ -22,12 +22,14 @@ import HTMLSelectElementIsolate from '../isolate-mixins/HTMLSelectElementIsolate
 import HTMLTextAreaElementIsolate from '../isolate-mixins/HTMLTextAreaElementIsolate';
 import NodeIsolate from '../isolate-mixins/NodeIsolate';
 import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNode';
+import NonElementParentNode from '../official-mixins/NonElementParentNode';
 import ParentNode from '../official-mixins/ParentNode';
 import TextIsolate from '../isolate-mixins/TextIsolate';
+import XPathEvaluatorBase from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
-const SuperNodeBaseClass = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLButtonElementIsolate, HTMLElementIsolate, HTMLFieldSetElementIsolate, HTMLFormElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLLabelElementIsolate, HTMLOptGroupElementIsolate, HTMLOptionElementIsolate, HTMLOrSVGElement, HTMLSelectElementIsolate, HTMLTextAreaElementIsolate, NodeIsolate, NonDocumentTypeChildNode, ParentNode, TextIsolate);
+export const { getState, setState, recordProxy } = StateMachine<ISuperNode, ISuperNodeProperties>();
+const SuperNodeBaseClass = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentIsolate, DocumentTypeIsolate, ElementIsolate, HTMLButtonElementIsolate, HTMLElementIsolate, HTMLFieldSetElementIsolate, HTMLFormElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLLabelElementIsolate, HTMLOptGroupElementIsolate, HTMLOptionElementIsolate, HTMLOrSVGElement, HTMLSelectElementIsolate, HTMLTextAreaElementIsolate, NodeIsolate, NonDocumentTypeChildNode, NonElementParentNode, ParentNode, TextIsolate, XPathEvaluatorBase);
 
 export default class SuperNode extends SuperNodeBaseClass implements ISuperNode {
   constructor() {

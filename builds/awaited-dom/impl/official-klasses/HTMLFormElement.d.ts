@@ -1,6 +1,6 @@
 import { IHTMLFormElement } from '../../base/interfaces/official';
 import { IHTMLFormElementProperties } from '../../base/official-klasses/HTMLFormElement';
-export declare const getState: <C = IHTMLFormElement, P = IHTMLFormElementProperties>(instance: C) => P, setState: <P = IHTMLFormElementProperties>(instance: IHTMLFormElement, properties: P) => void;
+export declare const getState: (instance: IHTMLFormElement) => IHTMLFormElementProperties, setState: (instance: IHTMLFormElement, properties: Partial<IHTMLFormElementProperties>) => void, recordProxy: (proxy: IHTMLFormElement, instance: IHTMLFormElement) => void;
 declare const HTMLFormElementBaseClass: {
     new (): {
         then<TResult1 = IHTMLFormElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFormElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

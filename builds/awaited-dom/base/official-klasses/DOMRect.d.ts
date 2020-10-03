@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IDOMRect } from '../interfaces/official';
-export declare const getState: <C = IDOMRect, P = IDOMRectProperties>(instance: C) => P, setState: <P = IDOMRectProperties>(instance: IDOMRect, properties: P) => void;
+export declare const getState: (instance: IDOMRect) => IDOMRectProperties, setState: (instance: IDOMRect, properties: Partial<IDOMRectProperties>) => void, recordProxy: (proxy: IDOMRect, instance: IDOMRect) => void;
 export declare const awaitedHandler: AwaitedHandler<IDOMRect>;
 export declare function DOMRectGenerator(): {
     new (_x?: number | undefined, _y?: number | undefined, _width?: number | undefined, _height?: number | undefined): {

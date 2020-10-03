@@ -70,6 +70,7 @@ export default class ComponentFilters {
         domType,
         itemType: 'interface',
         isEnabled: interObj.isEnabled ? 1 : 0,
+        isAbstract: interObj.isAbstract ? 1 : 0,
       });
       Object.entries(interObj.propertiesByName).forEach(([propName, propObj]) => {
         records.push({
@@ -78,14 +79,16 @@ export default class ComponentFilters {
           itemType: 'property',
           isEnabled: propObj.isEnabled ? 1 : 0,
           isWritable: propObj.isWritable ? 1 : 0,
+          isAbstract: propObj.isAbstract ? 1 : 0,
         });
       });
       Object.entries(interObj.methodsByName).forEach(([methodName, methodObj]) => {
         records.push({
           name: `${interName}.${methodName}`,
           domType,
-          itemType: 'property',
+          itemType: 'method',
           isEnabled: methodObj.isEnabled ? 1 : 0,
+          isAbstract: methodObj.isAbstract ? 1 : 0,
         });
       });
     });

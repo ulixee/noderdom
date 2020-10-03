@@ -9,7 +9,7 @@ import { ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLLabelElement, IHTMLLabelElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLLabelElement, IHTMLLabelElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLLabelElement>('HTMLLabelElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLLabelElement>(getState, setState, awaitedHandler);
 
@@ -48,6 +48,8 @@ export function HTMLLabelElementGenerator(HTMLElement: Constructable<IHTMLElemen
 export interface IHTMLLabelElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly control?: ISuperHTMLElement;
   readonly form?: IHTMLFormElement;
   readonly htmlFor?: Promise<string>;

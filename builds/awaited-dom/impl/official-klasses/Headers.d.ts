@@ -1,6 +1,6 @@
 import { IHeaders } from '../../base/interfaces/official';
 import { IHeadersProperties } from '../../base/official-klasses/Headers';
-export declare const getState: <C = IHeaders, P = IHeadersProperties>(instance: C) => P, setState: <P = IHeadersProperties>(instance: IHeaders, properties: P) => void;
+export declare const getState: (instance: IHeaders) => IHeadersProperties, setState: (instance: IHeaders, properties: Partial<IHeadersProperties>) => void, recordProxy: (proxy: IHeaders, instance: IHeaders) => void;
 declare const HeadersBaseClass: {
     new (_init?: Iterable<Iterable<string>> | Record<string, string> | undefined): {
         append(name: string, value: string): Promise<void>;

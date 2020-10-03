@@ -1,9 +1,10 @@
 import { INodeList } from '../../base/interfaces/official';
 import { ISuperNode } from '../../base/interfaces/super';
 import { INodeListProperties } from '../../base/official-klasses/NodeList';
-export declare const getState: <C = INodeList, P = INodeListProperties>(instance: C) => P, setState: <P = INodeListProperties>(instance: INodeList, properties: P) => void;
+export declare const getState: (instance: INodeList) => INodeListProperties, setState: (instance: INodeList, properties: Partial<INodeListProperties>) => void, recordProxy: (proxy: INodeList, instance: INodeList) => void;
 declare const NodeListBaseClass: {
     new (): {
+        [index: number]: ISuperNode;
         readonly length: Promise<number>;
         item(index: number): ISuperNode;
         then<TResult1 = INodeList, TResult2 = never>(onfulfilled?: ((value: INodeList) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

@@ -9,7 +9,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLFieldSetElement, IHTMLFieldSetElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLFieldSetElement, IHTMLFieldSetElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFieldSetElement>('HTMLFieldSetElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLFieldSetElement>(getState, setState, awaitedHandler);
 
@@ -78,6 +78,8 @@ export function HTMLFieldSetElementGenerator(HTMLElement: Constructable<IHTMLEle
 export interface IHTMLFieldSetElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly disabled?: Promise<boolean>;
   readonly elements?: ISuperHTMLCollection;
   readonly form?: IHTMLFormElement;

@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createSuperStyleSheet = exports.createSuperHTMLElement = exports.createSuperText = exports.createSuperHTMLCollection = exports.createSuperNodeList = exports.createSuperNode = exports.createSuperElement = exports.createSuperDocument = exports.createXPathResult = exports.createXPathExpression = exports.createValidityState = exports.createText = exports.createStyleSheet = exports.createShadowRoot = exports.createResponse = exports.createRequest = exports.createRadioNodeList = exports.createNodeList = exports.createNode = exports.createNamedNodeMap = exports.createLocation = exports.createHeaders = exports.createHTMLTextAreaElement = exports.createHTMLSelectElement = exports.createHTMLOptionsCollection = exports.createHTMLOptionElement = exports.createHTMLOptGroupElement = exports.createHTMLLabelElement = exports.createHTMLInputElement = exports.createHTMLHeadElement = exports.createHTMLFormElement = exports.createHTMLFieldSetElement = exports.createHTMLElement = exports.createHTMLCollectionBase = exports.createHTMLCollection = exports.createHTMLButtonElement = exports.createFeaturePolicy = exports.createElement = exports.createDocumentType = exports.createDocument = exports.createDOMTokenList = exports.createDOMRectList = exports.createDOMRect = exports.createDOMImplementation = exports.createCharacterData = exports.createBlob = exports.createAttr = exports.setState = void 0;
 const StateMachine_1 = __importDefault(require("../base/StateMachine"));
 exports.setState = StateMachine_1.default().setState;
 function createAttr(awaitedPath, awaitedOptions) {
@@ -264,6 +265,20 @@ function createValidityState(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createValidityState = createValidityState;
+function createXPathExpression(awaitedPath, awaitedOptions) {
+    const XPathExpression = require('./official-klasses/XPathExpression').default; // tslint:disable-line:variable-name
+    const instance = new XPathExpression();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createXPathExpression = createXPathExpression;
+function createXPathResult(awaitedPath, awaitedOptions) {
+    const XPathResult = require('./official-klasses/XPathResult').default; // tslint:disable-line:variable-name
+    const instance = new XPathResult();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createXPathResult = createXPathResult;
 function createSuperDocument(awaitedPath, awaitedOptions) {
     const SuperDocument = require('./super-klasses/SuperDocument').default; // tslint:disable-line:variable-name
     const instance = new SuperDocument();

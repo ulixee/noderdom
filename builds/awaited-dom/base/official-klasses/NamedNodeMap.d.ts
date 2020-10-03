@@ -3,12 +3,13 @@ import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
 import NodeAttacher from '../NodeAttacher';
 import { INamedNodeMap, IAttr } from '../interfaces/official';
-export declare const getState: <C = INamedNodeMap, P = INamedNodeMapProperties>(instance: C) => P, setState: <P = INamedNodeMapProperties>(instance: INamedNodeMap, properties: P) => void;
+export declare const getState: (instance: INamedNodeMap) => INamedNodeMapProperties, setState: (instance: INamedNodeMap, properties: Partial<INamedNodeMapProperties>) => void, recordProxy: (proxy: INamedNodeMap, instance: INamedNodeMap) => void;
 export declare const awaitedHandler: AwaitedHandler<INamedNodeMap>;
 export declare const nodeAttacher: NodeAttacher<INamedNodeMap>;
 export declare const awaitedIterator: AwaitedIterator<INamedNodeMap, IAttr>;
 export declare function NamedNodeMapGenerator(): {
     new (): {
+        [index: number]: IAttr;
         readonly length: Promise<number>;
         getNamedItem(qualifiedName: string): Promise<IAttr | null>;
         getNamedItemNS(namespace: string | null, localName: string): Promise<IAttr | null>;
@@ -20,6 +21,8 @@ export declare function NamedNodeMapGenerator(): {
 export interface INamedNodeMapProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
+    createIterableName: string;
     readonly length?: Promise<number>;
 }
 export declare const NamedNodeMapPropertyKeys: string[];

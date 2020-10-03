@@ -1,7 +1,7 @@
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../../base/interfaces/super';
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../base/interfaces/official';
 import { ISuperDocumentProperties } from '../../base/super-klasses/SuperDocument';
-export declare const getState: <C = ISuperDocument, P = ISuperDocumentProperties>(instance: C) => P, setState: <P = ISuperDocumentProperties>(instance: ISuperDocument, properties: P) => void;
+export declare const getState: (instance: ISuperDocument) => ISuperDocumentProperties, setState: (instance: ISuperDocument, properties: Partial<ISuperDocumentProperties>) => void, recordProxy: (proxy: ISuperDocument, instance: ISuperDocument) => void;
 declare const SuperDocumentBaseClass: {
     new (): {
         readonly URL: Promise<string>;
@@ -85,12 +85,19 @@ declare const SuperDocumentBaseClass: {
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
+        getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: ISuperHTMLCollection;
         readonly firstElementChild: ISuperElement;
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
+        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined): import("../../base/interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: import("../../base/interfaces/super").ISuperNode, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined, type?: number | undefined, result?: import("../../base/interfaces/official").IXPathResult | null | undefined): import("../../base/interfaces/official").IXPathResult;
     };
 };
 export default class SuperDocument extends SuperDocumentBaseClass implements ISuperDocument {

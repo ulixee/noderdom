@@ -20,7 +20,7 @@ import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNod
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
 const SuperHTMLElementBaseClass = SuperHTMLElementGenerator(ElementIsolate, HTMLButtonElementIsolate, HTMLElementIsolate, HTMLFieldSetElementIsolate, HTMLFormElementIsolate, HTMLHeadElementIsolate, HTMLInputElementIsolate, HTMLLabelElementIsolate, HTMLOptGroupElementIsolate, HTMLOptionElementIsolate, HTMLOrSVGElement, HTMLSelectElementIsolate, HTMLTextAreaElementIsolate, NodeIsolate, NonDocumentTypeChildNode, ParentNode);
 
 export default class SuperHTMLElement extends SuperHTMLElementBaseClass implements ISuperHTMLElement {

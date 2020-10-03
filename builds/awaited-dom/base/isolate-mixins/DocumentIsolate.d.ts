@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IDocumentIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
-export declare const getState: <C = IDocumentIsolate, P = IDocumentIsolateProperties>(instance: C) => P, setState: <P = IDocumentIsolateProperties>(instance: IDocumentIsolate, properties: P) => void;
+export declare const getState: (instance: IDocumentIsolate) => IDocumentIsolateProperties, setState: (instance: IDocumentIsolate, properties: Partial<IDocumentIsolateProperties>) => void, recordProxy: (proxy: IDocumentIsolate, instance: IDocumentIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocumentIsolate>;
 export default class DocumentIsolate implements IDocumentIsolate {
     get URL(): Promise<string>;

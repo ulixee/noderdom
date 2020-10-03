@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { IFeaturePolicy } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IFeaturePolicy, IFeaturePolicyProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IFeaturePolicy, IFeaturePolicyProperties>();
 export const awaitedHandler = new AwaitedHandler<IFeaturePolicy>('FeaturePolicy', getState, setState);
 
 export function FeaturePolicyGenerator() {

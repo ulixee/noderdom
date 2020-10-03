@@ -8,7 +8,7 @@ import NodeAttacher from '../NodeAttacher';
 import { INamedNodeMap, IAttr } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
+export const { getState, setState, recordProxy } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
 export const awaitedHandler = new AwaitedHandler<INamedNodeMap>('NamedNodeMap', getState, setState);
 export const nodeAttacher = new NodeAttacher<INamedNodeMap>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>(getState, setState, awaitedHandler);
@@ -21,6 +21,29 @@ export function NamedNodeMapGenerator() {
         createInstanceName: 'createNamedNodeMap',
         createIterableName: 'createAttr',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to indexer property
+          if (!isNaN(prop as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+
+          // delegate to string indexer
+          return target.getNamedItem(prop as string);
+        },
+      });
+
+      recordProxy(proxy, this);
+      return proxy;
     }
 
     // properties
@@ -50,6 +73,8 @@ export function NamedNodeMapGenerator() {
     public [Symbol.iterator](): IterableIterator<IAttr> {
       return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
+
+    [index: number]: IAttr;
   };
 }
 
@@ -58,6 +83,9 @@ export function NamedNodeMapGenerator() {
 export interface INamedNodeMapProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+  createIterableName: string;
+
   readonly length?: Promise<number>;
 }
 

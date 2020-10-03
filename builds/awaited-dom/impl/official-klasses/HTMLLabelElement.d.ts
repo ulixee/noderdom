@@ -1,7 +1,7 @@
 import { IHTMLLabelElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperHTMLElement } from '../../base/interfaces/super';
 import { IHTMLLabelElementProperties } from '../../base/official-klasses/HTMLLabelElement';
-export declare const getState: <C = IHTMLLabelElement, P = IHTMLLabelElementProperties>(instance: C) => P, setState: <P = IHTMLLabelElementProperties>(instance: IHTMLLabelElement, properties: P) => void;
+export declare const getState: (instance: IHTMLLabelElement) => IHTMLLabelElementProperties, setState: (instance: IHTMLLabelElement, properties: Partial<IHTMLLabelElementProperties>) => void, recordProxy: (proxy: IHTMLLabelElement, instance: IHTMLLabelElement) => void;
 declare const HTMLLabelElementBaseClass: {
     new (): {
         readonly control: ISuperHTMLElement;

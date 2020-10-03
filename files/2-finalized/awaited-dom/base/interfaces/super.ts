@@ -3,11 +3,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { INodeIsolate, IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, ITextIsolate, INodeListIsolate, IRadioNodeListIsolate, IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate } from './isolate';
-import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, IHTMLOrSVGElement, INonDocumentTypeChildNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './official';
+import { INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, IHTMLOrSVGElement, INonDocumentTypeChildNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IGetRootNodeOptions } from './official';
 
 // SuperDocument //////////
 
-export interface ISuperDocument extends INodeIsolate, IParentNode {
+export interface ISuperDocument extends INodeIsolate, INonElementParentNode, IParentNode, IXPathEvaluatorBase {
   readonly URL: Promise<string>;
   readonly anchors: ISuperHTMLCollection;
   readonly body: ISuperHTMLElement;
@@ -97,7 +97,7 @@ export interface ISuperElement extends IElementIsolate, IHTMLButtonElementIsolat
 
 // SuperNode //////////
 
-export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLOrSVGElement, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, INodeIsolate, INonDocumentTypeChildNode, IParentNode, ITextIsolate {
+export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLOrSVGElement, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, INodeIsolate, INonDocumentTypeChildNode, INonElementParentNode, IParentNode, ITextIsolate, IXPathEvaluatorBase {
   readonly ATTRIBUTE_NODE: number;
   readonly CDATA_SECTION_NODE: number;
   readonly COMMENT_NODE: number;
@@ -156,6 +156,8 @@ export interface ISuperNodeList extends INodeListIsolate, IRadioNodeListIsolate 
   keys(): Promise<IterableIterator<number>>;
   values(): Promise<IterableIterator<ISuperNode>>;
   [Symbol.iterator](): IterableIterator<ISuperNode>;
+
+  [index: number]: ISuperNode;
 }
 
 // SuperHTMLCollection //////////

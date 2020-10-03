@@ -8,7 +8,7 @@ import { INode, IGetRootNodeOptions } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<INode, INodeProperties>();
+export const { getState, setState, recordProxy } = StateMachine<INode, INodeProperties>();
 export const awaitedHandler = new AwaitedHandler<INode>('Node', getState, setState);
 export const nodeAttacher = new NodeAttacher<INode>(getState, setState, awaitedHandler);
 
@@ -169,6 +169,8 @@ export function NodeGenerator() {
 export interface INodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly baseURI?: Promise<string>;
   readonly childNodes?: ISuperNodeList;
   readonly firstChild?: ISuperNode;

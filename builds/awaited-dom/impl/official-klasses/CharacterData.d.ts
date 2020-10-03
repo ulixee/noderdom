@@ -1,6 +1,6 @@
 import { ICharacterData } from '../../base/interfaces/official';
 import { ICharacterDataProperties } from '../../base/official-klasses/CharacterData';
-export declare const getState: <C = ICharacterData, P = ICharacterDataProperties>(instance: C) => P, setState: <P = ICharacterDataProperties>(instance: ICharacterData, properties: P) => void;
+export declare const getState: (instance: ICharacterData) => ICharacterDataProperties, setState: (instance: ICharacterData, properties: Partial<ICharacterDataProperties>) => void, recordProxy: (proxy: ICharacterData, instance: ICharacterData) => void;
 declare const CharacterDataBaseClass: {
     new (): {
         readonly data: Promise<string>;

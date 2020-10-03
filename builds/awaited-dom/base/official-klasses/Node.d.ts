@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import NodeAttacher from '../NodeAttacher';
 import { INode, IGetRootNodeOptions } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
-export declare const getState: <C = INode, P = INodeProperties>(instance: C) => P, setState: <P = INodeProperties>(instance: INode, properties: P) => void;
+export declare const getState: (instance: INode) => INodeProperties, setState: (instance: INode, properties: Partial<INodeProperties>) => void, recordProxy: (proxy: INode, instance: INode) => void;
 export declare const awaitedHandler: AwaitedHandler<INode>;
 export declare const nodeAttacher: NodeAttacher<INode>;
 export declare function NodeGenerator(): {
@@ -74,6 +74,7 @@ export declare function NodeGenerator(): {
 export interface INodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly baseURI?: Promise<string>;
     readonly childNodes?: ISuperNodeList;
     readonly firstChild?: ISuperNode;

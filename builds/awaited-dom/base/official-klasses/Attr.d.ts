@@ -5,7 +5,7 @@ import NodeAttacher from '../NodeAttacher';
 import { IAttr, INode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { INodeProperties } from './Node';
-export declare const getState: <C = IAttr, P = IAttrProperties>(instance: C) => P, setState: <P = IAttrProperties>(instance: IAttr, properties: P) => void;
+export declare const getState: (instance: IAttr) => IAttrProperties, setState: (instance: IAttr, properties: Partial<IAttrProperties>) => void, recordProxy: (proxy: IAttr, instance: IAttr) => void;
 export declare const awaitedHandler: AwaitedHandler<IAttr>;
 export declare const nodeAttacher: NodeAttacher<IAttr>;
 export declare function AttrGenerator(Node: Constructable<INode>): {
@@ -65,6 +65,7 @@ export declare function AttrGenerator(Node: Constructable<INode>): {
 export interface IAttrProperties extends INodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly localName?: Promise<string>;
     readonly name?: Promise<string>;
     readonly namespaceURI?: Promise<string | null>;

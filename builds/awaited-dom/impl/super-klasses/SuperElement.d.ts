@@ -1,9 +1,10 @@
 import { ISuperElement, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../base/interfaces/official';
 import { ISuperElementProperties } from '../../base/super-klasses/SuperElement';
-export declare const getState: <C = ISuperElement, P = ISuperElementProperties>(instance: C) => P, setState: <P = ISuperElementProperties>(instance: ISuperElement, properties: P) => void;
+export declare const getState: (instance: ISuperElement) => ISuperElementProperties, setState: (instance: ISuperElement, properties: Partial<ISuperElementProperties>) => void, recordProxy: (proxy: ISuperElement, instance: ISuperElement) => void;
 declare const SuperElementBaseClass: {
     new (): {
+        [index: number]: ISuperElement;
         readonly attributes: INamedNodeMap;
         readonly classList: IDOMTokenList;
         readonly className: Promise<string>;

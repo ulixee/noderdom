@@ -1,7 +1,7 @@
 import { IHTMLTextAreaElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperNodeList } from '../../base/interfaces/super';
 import { IHTMLTextAreaElementProperties } from '../../base/official-klasses/HTMLTextAreaElement';
-export declare const getState: <C = IHTMLTextAreaElement, P = IHTMLTextAreaElementProperties>(instance: C) => P, setState: <P = IHTMLTextAreaElementProperties>(instance: IHTMLTextAreaElement, properties: P) => void;
+export declare const getState: (instance: IHTMLTextAreaElement) => IHTMLTextAreaElementProperties, setState: (instance: IHTMLTextAreaElement, properties: Partial<IHTMLTextAreaElementProperties>) => void, recordProxy: (proxy: IHTMLTextAreaElement, instance: IHTMLTextAreaElement) => void;
 declare const HTMLTextAreaElementBaseClass: {
     new (): {
         readonly autocomplete: Promise<string>;

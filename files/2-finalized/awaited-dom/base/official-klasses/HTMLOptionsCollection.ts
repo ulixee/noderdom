@@ -7,7 +7,7 @@ import { IHTMLOptionsCollection, IHTMLCollection } from '../interfaces/official'
 import { IHTMLCollectionProperties, HTMLCollectionPropertyKeys, HTMLCollectionConstantKeys } from './HTMLCollection';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLOptionsCollection, IHTMLOptionsCollectionProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionsCollection, IHTMLOptionsCollectionProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptionsCollection>('HTMLOptionsCollection', getState, setState);
 
 export function HTMLOptionsCollectionGenerator(HTMLCollection: Constructable<IHTMLCollection>) {

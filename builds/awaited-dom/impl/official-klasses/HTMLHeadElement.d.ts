@@ -1,6 +1,6 @@
 import { IHTMLHeadElement } from '../../base/interfaces/official';
 import { IHTMLHeadElementProperties } from '../../base/official-klasses/HTMLHeadElement';
-export declare const getState: <C = IHTMLHeadElement, P = IHTMLHeadElementProperties>(instance: C) => P, setState: <P = IHTMLHeadElementProperties>(instance: IHTMLHeadElement, properties: P) => void;
+export declare const getState: (instance: IHTMLHeadElement) => IHTMLHeadElementProperties, setState: (instance: IHTMLHeadElement, properties: Partial<IHTMLHeadElementProperties>) => void, recordProxy: (proxy: IHTMLHeadElement, instance: IHTMLHeadElement) => void;
 declare const HTMLHeadElementBaseClass: {
     new (): {
         then<TResult1 = IHTMLHeadElement, TResult2 = never>(onfulfilled?: ((value: IHTMLHeadElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

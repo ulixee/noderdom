@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { IDOMRect } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IDOMRect, IDOMRectProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IDOMRect, IDOMRectProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMRect>('DOMRect', getState, setState);
 
 export function DOMRectGenerator() {

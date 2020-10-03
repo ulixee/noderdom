@@ -1,7 +1,7 @@
 import { IHTMLFieldSetElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IHTMLFieldSetElementProperties } from '../../base/official-klasses/HTMLFieldSetElement';
-export declare const getState: <C = IHTMLFieldSetElement, P = IHTMLFieldSetElementProperties>(instance: C) => P, setState: <P = IHTMLFieldSetElementProperties>(instance: IHTMLFieldSetElement, properties: P) => void;
+export declare const getState: (instance: IHTMLFieldSetElement) => IHTMLFieldSetElementProperties, setState: (instance: IHTMLFieldSetElement, properties: Partial<IHTMLFieldSetElementProperties>) => void, recordProxy: (proxy: IHTMLFieldSetElement, instance: IHTMLFieldSetElement) => void;
 declare const HTMLFieldSetElementBaseClass: {
     new (): {
         readonly disabled: Promise<boolean>;

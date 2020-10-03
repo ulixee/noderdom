@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLElementIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
-export declare const getState: <C = IHTMLElementIsolate, P = IHTMLElementIsolateProperties>(instance: C) => P, setState: <P = IHTMLElementIsolateProperties>(instance: IHTMLElementIsolate, properties: P) => void;
+export declare const getState: (instance: IHTMLElementIsolate) => IHTMLElementIsolateProperties, setState: (instance: IHTMLElementIsolate, properties: Partial<IHTMLElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLElementIsolate, instance: IHTMLElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLElementIsolate>;
 export default class HTMLElementIsolate implements IHTMLElementIsolate {
     get accessKey(): Promise<string>;

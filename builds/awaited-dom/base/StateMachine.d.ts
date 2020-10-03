@@ -1,4 +1,5 @@
-export default function StateMachine<IClass, IProperties>(): {
-    getState: <C = IClass, P = IProperties>(instance: C) => P;
-    setState: <P_1 = IProperties>(instance: IClass, properties: P_1) => void;
+export default function StateMachine<IClass extends object, IProperties>(): {
+    recordProxy: (proxy: IClass, instance: IClass) => void;
+    getState: (instance: IClass) => IProperties;
+    setState: (instance: IClass, properties: Partial<IProperties>) => void;
 };

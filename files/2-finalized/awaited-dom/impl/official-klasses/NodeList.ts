@@ -5,7 +5,7 @@ import { NodeListGenerator, INodeListProperties } from '../../base/official-klas
 import { createSuperNode } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<INodeList, INodeListProperties>();
+export const { getState, setState, recordProxy } = StateMachine<INodeList, INodeListProperties>();
 const NodeListBaseClass = NodeListGenerator();
 
 export default class NodeList extends NodeListBaseClass implements INodeList {

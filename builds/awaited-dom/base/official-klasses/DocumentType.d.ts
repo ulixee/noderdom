@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { IDocumentType, INode } from '../interfaces/official';
 import { INodeProperties } from './Node';
-export declare const getState: <C = IDocumentType, P = IDocumentTypeProperties>(instance: C) => P, setState: <P = IDocumentTypeProperties>(instance: IDocumentType, properties: P) => void;
+export declare const getState: (instance: IDocumentType) => IDocumentTypeProperties, setState: (instance: IDocumentType, properties: Partial<IDocumentTypeProperties>) => void, recordProxy: (proxy: IDocumentType, instance: IDocumentType) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocumentType>;
 export declare const nodeAttacher: NodeAttacher<IDocumentType>;
 export declare function DocumentTypeGenerator(Node: Constructable<INode>): {
@@ -60,6 +60,7 @@ export declare function DocumentTypeGenerator(Node: Constructable<INode>): {
 export interface IDocumentTypeProperties extends INodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly name?: Promise<string>;
     readonly publicId?: Promise<string>;
     readonly systemId?: Promise<string>;

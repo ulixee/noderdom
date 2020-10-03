@@ -8,7 +8,7 @@ import { IHTMLOptGroupElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLOptGroupElement, IHTMLOptGroupElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLOptGroupElement, IHTMLOptGroupElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptGroupElement>('HTMLOptGroupElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLOptGroupElement>(getState, setState, awaitedHandler);
 
@@ -43,6 +43,8 @@ export function HTMLOptGroupElementGenerator(HTMLElement: Constructable<IHTMLEle
 export interface IHTMLOptGroupElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly disabled?: Promise<boolean>;
   readonly label?: Promise<string>;
 }

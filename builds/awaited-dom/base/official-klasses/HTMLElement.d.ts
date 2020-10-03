@@ -6,7 +6,7 @@ import { IHTMLElement, IElement, IHTMLOrSVGElement } from '../interfaces/officia
 import { ISuperElement } from '../interfaces/super';
 import { IElementProperties } from './Element';
 import { IHTMLOrSVGElementProperties } from '../official-mixins/HTMLOrSVGElement';
-export declare const getState: <C = IHTMLElement, P = IHTMLElementProperties>(instance: C) => P, setState: <P = IHTMLElementProperties>(instance: IHTMLElement, properties: P) => void;
+export declare const getState: (instance: IHTMLElement) => IHTMLElementProperties, setState: (instance: IHTMLElement, properties: Partial<IHTMLElementProperties>) => void, recordProxy: (proxy: IHTMLElement, instance: IHTMLElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLElement>;
 export declare function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>): {
@@ -126,6 +126,7 @@ export declare function HTMLElementGenerator(Element: Constructable<IElement>, H
 export interface IHTMLElementProperties extends IElementProperties, IHTMLOrSVGElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly accessKey?: Promise<string>;
     readonly autoCapitalize?: Promise<string>;
     readonly dir?: Promise<string>;

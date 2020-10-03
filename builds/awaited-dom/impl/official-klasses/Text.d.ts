@@ -1,6 +1,6 @@
 import { IText } from '../../base/interfaces/official';
 import { ITextProperties } from '../../base/official-klasses/Text';
-export declare const getState: <C = IText, P = ITextProperties>(instance: C) => P, setState: <P = ITextProperties>(instance: IText, properties: P) => void;
+export declare const getState: (instance: IText) => ITextProperties, setState: (instance: IText, properties: Partial<ITextProperties>) => void, recordProxy: (proxy: IText, instance: IText) => void;
 declare const TextBaseClass: {
     new (_data?: string | undefined): {
         readonly wholeText: Promise<string>;

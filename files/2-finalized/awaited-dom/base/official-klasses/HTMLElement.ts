@@ -11,7 +11,7 @@ import { IElementProperties, ElementPropertyKeys, ElementConstantKeys } from './
 import { IHTMLOrSVGElementProperties, HTMLOrSVGElementPropertyKeys, HTMLOrSVGElementConstantKeys } from '../official-mixins/HTMLOrSVGElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLElement, IHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLElement>('HTMLElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLElement>(getState, setState, awaitedHandler);
 
@@ -110,6 +110,8 @@ export function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVG
 export interface IHTMLElementProperties extends IElementProperties, IHTMLOrSVGElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly accessKey?: Promise<string>;
   readonly autoCapitalize?: Promise<string>;
   readonly dir?: Promise<string>;

@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import { IText, ICharacterData } from '../interfaces/official';
 import { ISuperText } from '../interfaces/super';
 import { ICharacterDataProperties } from './CharacterData';
-export declare const getState: <C = IText, P = ITextProperties>(instance: C) => P, setState: <P = ITextProperties>(instance: IText, properties: P) => void;
+export declare const getState: (instance: IText) => ITextProperties, setState: (instance: IText, properties: Partial<ITextProperties>) => void, recordProxy: (proxy: IText, instance: IText) => void;
 export declare const awaitedHandler: AwaitedHandler<IText>;
 export declare function TextGenerator(CharacterData: Constructable<ICharacterData>): {
     new (_data?: string | undefined): {

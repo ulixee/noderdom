@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLOptionsCollectionIsolate } from '../interfaces/isolate';
-export declare const getState: <C = IHTMLOptionsCollectionIsolate, P = IHTMLOptionsCollectionIsolateProperties>(instance: C) => P, setState: <P = IHTMLOptionsCollectionIsolateProperties>(instance: IHTMLOptionsCollectionIsolate, properties: P) => void;
+export declare const getState: (instance: IHTMLOptionsCollectionIsolate) => IHTMLOptionsCollectionIsolateProperties, setState: (instance: IHTMLOptionsCollectionIsolate, properties: Partial<IHTMLOptionsCollectionIsolateProperties>) => void, recordProxy: (proxy: IHTMLOptionsCollectionIsolate, instance: IHTMLOptionsCollectionIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLOptionsCollectionIsolate>;
 export default class HTMLOptionsCollectionIsolate implements IHTMLOptionsCollectionIsolate {
 }

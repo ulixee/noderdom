@@ -5,7 +5,7 @@ import NodeAttacher from '../NodeAttacher';
 import { IHTMLButtonElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLButtonElement, P = IHTMLButtonElementProperties>(instance: C) => P, setState: <P = IHTMLButtonElementProperties>(instance: IHTMLButtonElement, properties: P) => void;
+export declare const getState: (instance: IHTMLButtonElement) => IHTMLButtonElementProperties, setState: (instance: IHTMLButtonElement, properties: Partial<IHTMLButtonElementProperties>) => void, recordProxy: (proxy: IHTMLButtonElement, instance: IHTMLButtonElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLButtonElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLButtonElement>;
 export declare function HTMLButtonElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
@@ -142,6 +142,7 @@ export declare function HTMLButtonElementGenerator(HTMLElement: Constructable<IH
 export interface IHTMLButtonElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly autofocus?: Promise<boolean>;
     readonly disabled?: Promise<boolean>;
     readonly form?: IHTMLFormElement;

@@ -8,7 +8,7 @@ import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNod
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IElement, IElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IElement, IElementProperties>();
 const ElementBaseClass = ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode);
 
 export default class Element extends ElementBaseClass implements IElement {

@@ -9,7 +9,7 @@ import { ISuperElement } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IAttr, IAttrProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IAttr, IAttrProperties>();
 export const awaitedHandler = new AwaitedHandler<IAttr>('Attr', getState, setState);
 export const nodeAttacher = new NodeAttacher<IAttr>(getState, setState, awaitedHandler);
 
@@ -64,6 +64,8 @@ export function AttrGenerator(Node: Constructable<INode>) {
 export interface IAttrProperties extends INodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly localName?: Promise<string>;
   readonly name?: Promise<string>;
   readonly namespaceURI?: Promise<string | null>;

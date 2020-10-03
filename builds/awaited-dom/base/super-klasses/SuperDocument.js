@@ -4,19 +4,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SuperDocumentConstantKeys = exports.SuperDocumentPropertyKeys = exports.SuperDocumentGenerator = exports.nodeAttacher = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
 const NodeIsolate_1 = require("../isolate-mixins/NodeIsolate");
+const NonElementParentNode_1 = require("../official-mixins/NonElementParentNode");
 const ParentNode_1 = require("../official-mixins/ParentNode");
+const XPathEvaluatorBase_1 = require("../official-mixins/XPathEvaluatorBase");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('SuperDocument', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
-function SuperDocumentGenerator(NodeIsolate, ParentNode) {
-    const Parent = ClassMixer_1.default(NodeIsolate, [ParentNode]);
+function SuperDocumentGenerator(NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase) {
+    const Parent = ClassMixer_1.default(NodeIsolate, [NonElementParentNode, ParentNode, XPathEvaluatorBase]);
     return class SuperDocument extends Parent {
         constructor() {
             super();
@@ -147,6 +150,6 @@ function SuperDocumentGenerator(NodeIsolate, ParentNode) {
     };
 }
 exports.SuperDocumentGenerator = SuperDocumentGenerator;
-exports.SuperDocumentPropertyKeys = [...NodeIsolate_1.NodeIsolatePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
-exports.SuperDocumentConstantKeys = [...NodeIsolate_1.NodeIsolateConstantKeys, ...ParentNode_1.ParentNodeConstantKeys];
+exports.SuperDocumentPropertyKeys = [...NodeIsolate_1.NodeIsolatePropertyKeys, ...NonElementParentNode_1.NonElementParentNodePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+exports.SuperDocumentConstantKeys = [...NodeIsolate_1.NodeIsolateConstantKeys, ...NonElementParentNode_1.NonElementParentNodeConstantKeys, ...ParentNode_1.ParentNodeConstantKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBaseConstantKeys];
 //# sourceMappingURL=SuperDocument.js.map

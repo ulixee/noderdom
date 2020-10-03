@@ -10,7 +10,7 @@ import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ICharacterData, ICharacterDataProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ICharacterData, ICharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ICharacterData>('CharacterData', getState, setState);
 export const nodeAttacher = new NodeAttacher<ICharacterData>(getState, setState, awaitedHandler);
 
@@ -53,6 +53,8 @@ export function CharacterDataGenerator(Node: Constructable<INode>, NonDocumentTy
 export interface ICharacterDataProperties extends INodeProperties, INonDocumentTypeChildNodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly data?: Promise<string>;
   readonly length?: Promise<number>;
 }

@@ -8,7 +8,7 @@ import { IHTMLHeadElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLHeadElement, IHTMLHeadElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLHeadElement, IHTMLHeadElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLHeadElement>('HTMLHeadElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLHeadElement>(getState, setState, awaitedHandler);
 
@@ -32,7 +32,9 @@ export function HTMLHeadElementGenerator(HTMLElement: Constructable<IHTMLElement
 
 export interface IHTMLHeadElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  createInstanceName: string;
+}
 
 export const HTMLHeadElementPropertyKeys = [...HTMLElementPropertyKeys];
 

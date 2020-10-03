@@ -12,7 +12,7 @@ import { INodeListIsolateProperties, NodeListIsolatePropertyKeys, NodeListIsolat
 import { IRadioNodeListIsolateProperties, RadioNodeListIsolatePropertyKeys, RadioNodeListIsolateConstantKeys } from '../isolate-mixins/RadioNodeListIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNodeList>('SuperNodeList', getState, setState);
 export const nodeAttacher = new NodeAttacher<ISuperNodeList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperNodeList, ISuperNode>(getState, setState, awaitedHandler);
@@ -28,6 +28,26 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
         createInstanceName: 'createSuperNodeList',
         createIterableName: 'createSuperNode',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to indexer property
+          if (!isNaN(prop as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+        },
+      });
+
+      recordProxy(proxy, this);
+      return proxy;
     }
 
     // properties
@@ -67,6 +87,8 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
     public [Symbol.iterator](): IterableIterator<ISuperNode> {
       return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
+
+    [index: number]: ISuperNode;
   };
 }
 
@@ -75,6 +97,9 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
 export interface ISuperNodeListProperties extends INodeListIsolateProperties, IRadioNodeListIsolateProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+  createIterableName: string;
+
   readonly length?: Promise<number>;
 }
 

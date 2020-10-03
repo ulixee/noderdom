@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IBody } from '../interfaces/official';
-export declare const getState: <C = IBody, P = IBodyProperties>(instance: C) => P, setState: <P = IBodyProperties>(instance: IBody, properties: P) => void;
+export declare const getState: (instance: IBody) => IBodyProperties, setState: (instance: IBody, properties: Partial<IBodyProperties>) => void, recordProxy: (proxy: IBody, instance: IBody) => void;
 export declare const awaitedHandler: AwaitedHandler<IBody>;
 export default class Body implements IBody {
     get bodyUsed(): Promise<boolean>;

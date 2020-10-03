@@ -12,7 +12,7 @@ import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKe
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IElement, IElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
 export const nodeAttacher = new NodeAttacher<IElement>(getState, setState, awaitedHandler);
 
@@ -203,6 +203,8 @@ export function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChil
 export interface IElementProperties extends INodeProperties, INonDocumentTypeChildNodeProperties, IParentNodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly attributes?: INamedNodeMap;
   readonly classList?: IDOMTokenList;
   readonly className?: Promise<string>;

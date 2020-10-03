@@ -6,7 +6,7 @@ import HTMLInputElementIsolateBase, { IHTMLInputElementIsolateProperties } from 
 import { createHTMLFormElement, createSuperNodeList, createSuperHTMLElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLInputElementIsolate, IHTMLInputElementIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLInputElementIsolate, IHTMLInputElementIsolateProperties>();
 
 export default class HTMLInputElementIsolate extends HTMLInputElementIsolateBase implements IHTMLInputElementIsolate {
   public get form(): IHTMLFormElement {

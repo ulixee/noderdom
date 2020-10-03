@@ -21,7 +21,7 @@ export default class TsBodyPrinter {
   public readonly properties: Types.Property[];
   public readonly methods: Types.Method[];
   public readonly staticMethods: Types.Method[];
-  public readonly indexers: Types.AnonymousMethod[];
+  public readonly indexers: Types.Method[];
   public readonly referencedObjects: Set<string> = new Set();
   public readonly referencedCreateMethods: Set<string> = new Set();
   public readonly iteratorExtractor: TsIteratorExtractor;
@@ -84,8 +84,7 @@ export default class TsBodyPrinter {
       .filter(p => this.buildType !== BuildType.impl || this.isAbstract(p))
       .sort(compareName);
 
-    this.indexers = Object.values<Types.AnonymousMethod>(i.methods)
-      .concat(i.anonymousMethods || [])
+    this.indexers = Object.values(i.methods)
       .filter(m => this.hasIndexerSignature(m))
       .filter(m => this.hasSignatureParams(m));
 
@@ -182,7 +181,55 @@ export default class TsBodyPrinter {
           this.printer.decreaseIndent();
           this.printer.printLine(`});`);
         }
+
+        if (this.indexers?.length) {
+          const indexers = this.indexers.map(x => ({
+            m: x,
+            indexType: TypeUtils.convertDomTypeToTsType(x.signatures[0].params![0]),
+          }));
+
+          const integerIndexer = indexers.find(x => x.indexType === 'number');
+          const stringIndexer = indexers.find(x => x.indexType === 'string');
+          this.printer.printSeparatorLine('// proxy supports indexed property access');
+          this.printer.printLine(`const proxy = new Proxy(this, {`);
+          this.printer.increaseIndent();
+          this.printer.printLine(`get(target, prop) {`);
+          this.printer.increaseIndent();
+          this.printer.printLine(`if (prop in target) {`);
+          this.printer.increaseIndent();
+          this.printer.printLine(`// @ts-ignore`);
+          this.printer.printLine(`const value: any = target[prop];`);
+          this.printer.printLine(`if (typeof value === 'function') return value.bind(target);`);
+          this.printer.printLine(`return value;`);
+          this.printer.decreaseIndent();
+          this.printer.printLine(`}`);
+
+          if (integerIndexer) {
+            this.printer.printLine();
+            this.printer.printLine(`// delegate to indexer property`);
+            this.printer.printLine(`if (!isNaN(prop as number)) {`);
+            this.printer.increaseIndent();
+            this.printer.printLine(`const param = parseInt(prop as string, 10);`);
+            this.printer.printLine(`return target.${integerIndexer.m.name}(param);`);
+            this.printer.decreaseIndent();
+            this.printer.printLine(`}`);
+          }
+          if (stringIndexer) {
+            this.printer.printLine();
+            this.printer.printLine(`// delegate to string indexer`);
+            this.printer.printLine(`return target.${stringIndexer.m.name}(prop as string);`);
+          }
+
+          this.printer.decreaseIndent();
+          this.printer.printLine('},');
+          this.printer.decreaseIndent();
+          this.printer.printLine('});');
+          this.printer.printLine();
+          this.printer.printLine('recordProxy(proxy, this);');
+          this.printer.printLine('return proxy;');
+        }
       }
+
       this.printer.decreaseIndent();
       this.printer.printLine('}');
       if (signature) {
@@ -492,6 +539,9 @@ export default class TsBodyPrinter {
   private printIndexers() {
     const i: Types.Interface = this.i;
     this.indexers.forEach(m => {
+      if (!this.isTypescriptCompatibleIndexer(m)) {
+        return;
+      }
       const indexer = m.signatures[0].params![0];
       const firstTypeParam = i.typeParameters && i.typeParameters[0];
       const extendedType = firstTypeParam && firstTypeParam.extends ? firstTypeParam.name : null;
@@ -507,44 +557,56 @@ export default class TsBodyPrinter {
     });
   }
 
-  // To decide if a given method is an indexer and should be emited
-  private hasIndexerSignature(meth: Types.AnonymousMethod) {
-    const i: Types.Interface = this.i;
+  // To decide if a given method is an indexer and should be emitted
+  private hasIndexerSignature(meth: Types.Method) {
     if (meth.getter && meth.signatures && meth.signatures[0].params && meth.signatures[0].params!.length === 1) {
       // TypeScript array indexer can only be number or string
-      // for string, it must return a more generic type then all
-      // the other properties, following the Dictionary pattern
       switch (TypeUtils.convertDomTypeToTsType(meth.signatures[0].params![0])) {
         case 'number':
           return true;
         case 'string':
-          if (TypeUtils.convertDomTypeToTsType(meth.signatures[0]) === 'any') {
-            return true;
-          }
-          const sig = meth.signatures[0];
-          const mTypes = distinct(
-            (i.methods &&
-              map(i.methods, m => (m.signatures && m.signatures.length && m.signatures[0].type) || 'void').filter(
-                t => t !== 'void',
-              )) ||
-              [],
-          );
-          const amTypes = distinct(
-            (i.anonymousMethods && i.anonymousMethods!.map(m => m.signatures[0].type).filter(t => t !== 'void')) || [],
-          ); // |>  Array.distinct
-          const pTypes = distinct((i.properties && map(i.properties, m => m.type).filter(t => t !== 'void')) || []); // |>  Array.distinct
-
-          if (mTypes.length === 0 && amTypes.length === 1 && pTypes.length === 0) return amTypes[0] === sig.type;
-          if (mTypes.length === 1 && amTypes.length === 1 && pTypes.length === 0) {
-            return mTypes[0] === amTypes[0] && amTypes[0] === sig.type;
-          }
-          if (mTypes.length === 0 && amTypes.length === 1 && pTypes.length === 1) {
-            return amTypes[0] === pTypes[0] && amTypes[0] === sig.type;
-          }
-          if (mTypes.length === 1 && amTypes.length === 1 && pTypes.length === 1) {
-            return mTypes[0] === amTypes[0] && amTypes[0] === pTypes[0] && amTypes[0] === sig.type;
-          }
+          return true;
       }
+    }
+    return false;
+  }
+
+  private isTypescriptCompatibleIndexer(meth: Types.Method) {
+    // Typescript string indexers must return a more generic type then all
+    // the other properties, following the Dictionary pattern
+    const i: Types.Interface = this.i;
+    if (TypeUtils.convertDomTypeToTsType(meth.signatures[0]) === 'any') {
+      return true;
+    }
+    const tsType = TypeUtils.convertDomTypeToTsType(meth.signatures[0].params![0]);
+    if (tsType === 'number') {
+      return true;
+    }
+    // if string, need to ensure Typescript will accept it
+    if (tsType !== 'string') return false;
+    const sig = meth.signatures[0];
+    const mTypes = distinct(
+      (i.methods &&
+        map(i.methods, m => (m.signatures && m.signatures.length && m.signatures[0].type) || 'void').filter(
+          t => t !== 'void',
+        )) ||
+        [],
+    );
+    const amTypes = distinct(
+      (i.anonymousMethods && i.anonymousMethods.map(m => m.signatures[0].type).filter(t => t !== 'void')) || [],
+    ); // |>  Array.distinct
+    const pTypes = distinct((i.properties && map(i.properties, m => m.type).filter(t => t !== 'void')) || []); // |>  Array.distinct
+    if (mTypes.length === 0 && amTypes.length === 1 && pTypes.length === 0) {
+      return amTypes[0] === sig.type;
+    }
+    if (mTypes.length === 1 && amTypes.length === 1 && pTypes.length === 0) {
+      return mTypes[0] === amTypes[0] && amTypes[0] === sig.type;
+    }
+    if (mTypes.length === 0 && amTypes.length === 1 && pTypes.length === 1) {
+      return amTypes[0] === pTypes[0] && amTypes[0] === sig.type;
+    }
+    if (mTypes.length === 1 && amTypes.length === 1 && pTypes.length === 1) {
+      return mTypes[0] === amTypes[0] && amTypes[0] === pTypes[0] && amTypes[0] === sig.type;
     }
     return false;
   }
@@ -556,9 +618,9 @@ export default class TsBodyPrinter {
 
   private hasSignatureParams(m: Types.AnonymousMethod) {
     const signatures = m.signatures;
-    if (!signatures || !signatures.length) return false;
-    if (!signatures[0].params || signatures[0].params!.length) return false;
-    return !!signatures[0].params![0];
+    if (!signatures?.length) return false;
+    if (!signatures[0].params?.length) return false;
+    return !!signatures[0].params[0];
   }
 
   private printStaticMethods() {

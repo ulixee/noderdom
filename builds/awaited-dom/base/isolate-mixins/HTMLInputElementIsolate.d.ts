@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLInputElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
-export declare const getState: <C = IHTMLInputElementIsolate, P = IHTMLInputElementIsolateProperties>(instance: C) => P, setState: <P = IHTMLInputElementIsolateProperties>(instance: IHTMLInputElementIsolate, properties: P) => void;
+export declare const getState: (instance: IHTMLInputElementIsolate) => IHTMLInputElementIsolateProperties, setState: (instance: IHTMLInputElementIsolate, properties: Partial<IHTMLInputElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLInputElementIsolate, instance: IHTMLInputElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLInputElementIsolate>;
 export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate {
     get accept(): Promise<string>;

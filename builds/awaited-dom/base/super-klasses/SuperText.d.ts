@@ -8,7 +8,7 @@ import { INonDocumentTypeChildNode } from '../interfaces/official';
 import { ICharacterDataIsolateProperties } from '../isolate-mixins/CharacterDataIsolate';
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
-export declare const getState: <C = ISuperText, P = ISuperTextProperties>(instance: C) => P, setState: <P = ISuperTextProperties>(instance: ISuperText, properties: P) => void;
+export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void, recordProxy: (proxy: ISuperText, instance: ISuperText) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperText>;
 export declare const nodeAttacher: NodeAttacher<ISuperText>;
 export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>): {
@@ -68,6 +68,7 @@ export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<I
 export interface ISuperTextProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly wholeText?: Promise<string>;
 }
 export declare const SuperTextPropertyKeys: string[];

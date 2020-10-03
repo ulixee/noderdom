@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { IShadowRoot } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IShadowRoot, IShadowRootProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IShadowRoot, IShadowRootProperties>();
 export const awaitedHandler = new AwaitedHandler<IShadowRoot>('ShadowRoot', getState, setState);
 
 export function ShadowRootGenerator() {

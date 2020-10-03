@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../interfaces/super';
 import { IAttrIsolate, ICharacterDataIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLButtonElementIsolate, IHTMLElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFormElementIsolate, IHTMLHeadElementIsolate, IHTMLInputElementIsolate, IHTMLLabelElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLSelectElementIsolate, IHTMLTextAreaElementIsolate, INodeIsolate, ITextIsolate } from '../interfaces/isolate';
-import { IHTMLOrSVGElement, INonDocumentTypeChildNode, IParentNode, IGetRootNodeOptions } from '../interfaces/official';
+import { IHTMLOrSVGElement, INonDocumentTypeChildNode, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IGetRootNodeOptions } from '../interfaces/official';
 import { IAttrIsolateProperties } from '../isolate-mixins/AttrIsolate';
 import { ICharacterDataIsolateProperties } from '../isolate-mixins/CharacterDataIsolate';
 import { IDocumentIsolateProperties } from '../isolate-mixins/DocumentIsolate';
@@ -24,13 +24,16 @@ import { IHTMLSelectElementIsolateProperties } from '../isolate-mixins/HTMLSelec
 import { IHTMLTextAreaElementIsolateProperties } from '../isolate-mixins/HTMLTextAreaElementIsolate';
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
+import { INonElementParentNodeProperties } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
 import { ITextIsolateProperties } from '../isolate-mixins/TextIsolate';
-export declare const getState: <C = ISuperNode, P = ISuperNodeProperties>(instance: C) => P, setState: <P = ISuperNodeProperties>(instance: ISuperNode, properties: P) => void;
+import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluatorBase';
+export declare const getState: (instance: ISuperNode) => ISuperNodeProperties, setState: (instance: ISuperNode, properties: Partial<ISuperNodeProperties>) => void, recordProxy: (proxy: ISuperNode, instance: ISuperNode) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperNode>;
 export declare const nodeAttacher: NodeAttacher<ISuperNode>;
-export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, CharacterDataIsolate: Constructable<ICharacterDataIsolate>, DocumentIsolate: Constructable<IDocumentIsolate>, DocumentTypeIsolate: Constructable<IDocumentTypeIsolate>, ElementIsolate: Constructable<IElementIsolate>, HTMLButtonElementIsolate: Constructable<IHTMLButtonElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLFieldSetElementIsolate: Constructable<IHTMLFieldSetElementIsolate>, HTMLFormElementIsolate: Constructable<IHTMLFormElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLLabelElementIsolate: Constructable<IHTMLLabelElementIsolate>, HTMLOptGroupElementIsolate: Constructable<IHTMLOptGroupElementIsolate>, HTMLOptionElementIsolate: Constructable<IHTMLOptionElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, HTMLSelectElementIsolate: Constructable<IHTMLSelectElementIsolate>, HTMLTextAreaElementIsolate: Constructable<IHTMLTextAreaElementIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>, TextIsolate: Constructable<ITextIsolate>): {
+export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, CharacterDataIsolate: Constructable<ICharacterDataIsolate>, DocumentIsolate: Constructable<IDocumentIsolate>, DocumentTypeIsolate: Constructable<IDocumentTypeIsolate>, ElementIsolate: Constructable<IElementIsolate>, HTMLButtonElementIsolate: Constructable<IHTMLButtonElementIsolate>, HTMLElementIsolate: Constructable<IHTMLElementIsolate>, HTMLFieldSetElementIsolate: Constructable<IHTMLFieldSetElementIsolate>, HTMLFormElementIsolate: Constructable<IHTMLFormElementIsolate>, HTMLHeadElementIsolate: Constructable<IHTMLHeadElementIsolate>, HTMLInputElementIsolate: Constructable<IHTMLInputElementIsolate>, HTMLLabelElementIsolate: Constructable<IHTMLLabelElementIsolate>, HTMLOptGroupElementIsolate: Constructable<IHTMLOptGroupElementIsolate>, HTMLOptionElementIsolate: Constructable<IHTMLOptionElementIsolate>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>, HTMLSelectElementIsolate: Constructable<IHTMLSelectElementIsolate>, HTMLTextAreaElementIsolate: Constructable<IHTMLTextAreaElementIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, TextIsolate: Constructable<ITextIsolate>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {
+        [index: number]: ISuperElement;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;
         readonly COMMENT_NODE: number;
@@ -244,6 +247,7 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
         setCustomValidity(error: string): Promise<void>;
         readonly nextElementSibling: ISuperElement;
         readonly previousElementSibling: ISuperElement;
+        getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: import("../interfaces/super").ISuperHTMLCollection;
         readonly firstElementChild: ISuperElement;
@@ -252,6 +256,12 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
         querySelectorAll(selectors: string): ISuperNodeList;
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<import("../interfaces/super").ISuperText>;
+        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined): import("../interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: ISuperNode, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
     readonly ATTRIBUTE_NODE: number;
     readonly CDATA_SECTION_NODE: number;
@@ -272,9 +282,10 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
     readonly PROCESSING_INSTRUCTION_NODE: number;
     readonly TEXT_NODE: number;
 };
-export interface ISuperNodeProperties extends IAttrIsolateProperties, ICharacterDataIsolateProperties, IDocumentIsolateProperties, IDocumentTypeIsolateProperties, IElementIsolateProperties, IHTMLButtonElementIsolateProperties, IHTMLElementIsolateProperties, IHTMLFieldSetElementIsolateProperties, IHTMLFormElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, IHTMLLabelElementIsolateProperties, IHTMLOptGroupElementIsolateProperties, IHTMLOptionElementIsolateProperties, IHTMLOrSVGElementProperties, IHTMLSelectElementIsolateProperties, IHTMLTextAreaElementIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties, IParentNodeProperties, ITextIsolateProperties {
+export interface ISuperNodeProperties extends IAttrIsolateProperties, ICharacterDataIsolateProperties, IDocumentIsolateProperties, IDocumentTypeIsolateProperties, IElementIsolateProperties, IHTMLButtonElementIsolateProperties, IHTMLElementIsolateProperties, IHTMLFieldSetElementIsolateProperties, IHTMLFormElementIsolateProperties, IHTMLHeadElementIsolateProperties, IHTMLInputElementIsolateProperties, IHTMLLabelElementIsolateProperties, IHTMLOptGroupElementIsolateProperties, IHTMLOptionElementIsolateProperties, IHTMLOrSVGElementProperties, IHTMLSelectElementIsolateProperties, IHTMLTextAreaElementIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties, INonElementParentNodeProperties, IParentNodeProperties, ITextIsolateProperties, IXPathEvaluatorBaseProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly baseURI?: Promise<string>;
     readonly childNodes?: ISuperNodeList;
     readonly firstChild?: ISuperNode;

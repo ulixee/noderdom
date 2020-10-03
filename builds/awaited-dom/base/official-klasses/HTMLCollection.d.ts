@@ -4,13 +4,14 @@ import Constructable from '../Constructable';
 import { IHTMLCollection, IHTMLCollectionBase } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { IHTMLCollectionBaseProperties } from './HTMLCollectionBase';
-export declare const getState: <C = IHTMLCollection, P = IHTMLCollectionProperties>(instance: C) => P, setState: <P = IHTMLCollectionProperties>(instance: IHTMLCollection, properties: P) => void;
+export declare const getState: (instance: IHTMLCollection) => IHTMLCollectionProperties, setState: (instance: IHTMLCollection, properties: Partial<IHTMLCollectionProperties>) => void, recordProxy: (proxy: IHTMLCollection, instance: IHTMLCollection) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLCollection>;
 export declare function HTMLCollectionGenerator(HTMLCollectionBase: Constructable<IHTMLCollectionBase>): {
     new (): {
+        [index: number]: ISuperElement;
         namedItem(name: string): ISuperElement;
         readonly length: Promise<number>;
-        item(index: number): Promise<ISuperElement | null>;
+        item(index: number): ISuperElement;
         [Symbol.iterator](): IterableIterator<ISuperElement>;
     };
 };

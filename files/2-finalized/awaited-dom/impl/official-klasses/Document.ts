@@ -4,11 +4,13 @@ import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList 
 import { DocumentGenerator, IDocumentProperties } from '../../base/official-klasses/Document';
 import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation, createSuperNodeList } from '../create';
 import Node from './Node';
+import NonElementParentNode from '../official-mixins/NonElementParentNode';
 import ParentNode from '../official-mixins/ParentNode';
+import XPathEvaluatorBase from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
-const DocumentBaseClass = DocumentGenerator(Node, ParentNode);
+export const { getState, setState, recordProxy } = StateMachine<IDocument, IDocumentProperties>();
+const DocumentBaseClass = DocumentGenerator(Node, NonElementParentNode, ParentNode, XPathEvaluatorBase);
 
 export default class Document extends DocumentBaseClass implements IDocument {
   constructor() {

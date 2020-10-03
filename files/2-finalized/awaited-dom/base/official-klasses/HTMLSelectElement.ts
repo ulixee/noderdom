@@ -10,7 +10,7 @@ import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfac
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLSelectElement, IHTMLSelectElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLSelectElement, IHTMLSelectElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLSelectElement>('HTMLSelectElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLSelectElement>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IHTMLSelectElement, ISuperElement>(getState, setState, awaitedHandler);
@@ -24,6 +24,26 @@ export function HTMLSelectElementGenerator(HTMLElement: Constructable<IHTMLEleme
         createInstanceName: 'createHTMLSelectElement',
         createIterableName: 'createSuperElement',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to indexer property
+          if (!isNaN(prop as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+        },
+      });
+
+      recordProxy(proxy, this);
+      return proxy;
     }
 
     // properties
@@ -125,6 +145,8 @@ export function HTMLSelectElementGenerator(HTMLElement: Constructable<IHTMLEleme
     public [Symbol.iterator](): IterableIterator<ISuperElement> {
       return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
+
+    [index: number]: ISuperElement;
   };
 }
 
@@ -133,6 +155,9 @@ export function HTMLSelectElementGenerator(HTMLElement: Constructable<IHTMLEleme
 export interface IHTMLSelectElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+  createIterableName: string;
+
   readonly autocomplete?: Promise<string>;
   readonly autofocus?: Promise<boolean>;
   readonly disabled?: Promise<boolean>;

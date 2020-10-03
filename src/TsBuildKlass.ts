@@ -134,7 +134,13 @@ export default class TsBuildKlass {
 
   private printStateMachineInterfaces() {
     const stateOptions = { domType: this.domType, buildType: BuildType.base };
-    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components, stateOptions);
+    const stateMachinePrinter = new TsStateMachinePrinter(
+      this.i,
+      this.printer,
+      this.components,
+      stateOptions,
+      this.bodyPrinter.iteratorExtractor,
+    );
     stateMachinePrinter.printInterfaces(this.inheritsFrom, this.bodyPrinter.constants, this.bodyPrinter.properties);
   }
 
@@ -146,7 +152,13 @@ export default class TsBuildKlass {
     const handlerClassName = `${isAwaited ? 'Awaited' : 'Detached'}Handler`;
     const printer = new Printer();
     const stateOptions = { domType: this.domType, buildType: BuildType.base };
-    new TsStateMachinePrinter(this.i, printer, this.components, stateOptions).printInitializer();
+    new TsStateMachinePrinter(
+      this.i,
+      printer,
+      this.components,
+      stateOptions,
+      this.bodyPrinter.iteratorExtractor,
+    ).printInitializer();
 
     printable.push(printer.getResult());
 

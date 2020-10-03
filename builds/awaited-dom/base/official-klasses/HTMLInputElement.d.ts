@@ -5,7 +5,7 @@ import NodeAttacher from '../NodeAttacher';
 import { IHTMLInputElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLInputElement, P = IHTMLInputElementProperties>(instance: C) => P, setState: <P = IHTMLInputElementProperties>(instance: IHTMLInputElement, properties: P) => void;
+export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void, recordProxy: (proxy: IHTMLInputElement, instance: IHTMLInputElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLInputElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLInputElement>;
 export declare function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
@@ -176,6 +176,7 @@ export declare function HTMLInputElementGenerator(HTMLElement: Constructable<IHT
 export interface IHTMLInputElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly accept?: Promise<string>;
     readonly alt?: Promise<string>;
     readonly autocomplete?: Promise<string>;

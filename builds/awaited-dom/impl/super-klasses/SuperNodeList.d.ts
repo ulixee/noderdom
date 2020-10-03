@@ -1,8 +1,9 @@
 import { ISuperNodeList, ISuperNode } from '../../base/interfaces/super';
 import { ISuperNodeListProperties } from '../../base/super-klasses/SuperNodeList';
-export declare const getState: <C = ISuperNodeList, P = ISuperNodeListProperties>(instance: C) => P, setState: <P = ISuperNodeListProperties>(instance: ISuperNodeList, properties: P) => void;
+export declare const getState: (instance: ISuperNodeList) => ISuperNodeListProperties, setState: (instance: ISuperNodeList, properties: Partial<ISuperNodeListProperties>) => void, recordProxy: (proxy: ISuperNodeList, instance: ISuperNodeList) => void;
 declare const SuperNodeListBaseClass: {
     new (): {
+        [index: number]: ISuperNode;
         readonly length: Promise<number>;
         item(index: number): ISuperNode;
         then<TResult1 = ISuperNodeList, TResult2 = never>(onfulfilled?: ((value: ISuperNodeList) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

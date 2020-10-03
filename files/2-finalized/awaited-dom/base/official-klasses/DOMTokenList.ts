@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { IDOMTokenList } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IDOMTokenList, IDOMTokenListProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IDOMTokenList, IDOMTokenListProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMTokenList>('DOMTokenList', getState, setState);
 
 export function DOMTokenListGenerator() {

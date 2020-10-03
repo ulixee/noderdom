@@ -1,7 +1,7 @@
 import { IHTMLButtonElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperNodeList } from '../../base/interfaces/super';
 import { IHTMLButtonElementProperties } from '../../base/official-klasses/HTMLButtonElement';
-export declare const getState: <C = IHTMLButtonElement, P = IHTMLButtonElementProperties>(instance: C) => P, setState: <P = IHTMLButtonElementProperties>(instance: IHTMLButtonElement, properties: P) => void;
+export declare const getState: (instance: IHTMLButtonElement) => IHTMLButtonElementProperties, setState: (instance: IHTMLButtonElement, properties: Partial<IHTMLButtonElementProperties>) => void, recordProxy: (proxy: IHTMLButtonElement, instance: IHTMLButtonElement) => void;
 declare const HTMLButtonElementBaseClass: {
     new (): {
         readonly autofocus: Promise<boolean>;

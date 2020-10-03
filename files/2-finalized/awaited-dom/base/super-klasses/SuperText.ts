@@ -13,7 +13,7 @@ import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKey
 import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperText, ISuperTextProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperText, ISuperTextProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperText>('SuperText', getState, setState);
 export const nodeAttacher = new NodeAttacher<ISuperText>(getState, setState, awaitedHandler);
 
@@ -52,6 +52,8 @@ export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacte
 export interface ISuperTextProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly wholeText?: Promise<string>;
 }
 

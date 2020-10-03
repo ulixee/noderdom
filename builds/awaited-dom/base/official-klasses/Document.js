@@ -4,19 +4,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DocumentConstantKeys = exports.DocumentPropertyKeys = exports.DocumentGenerator = exports.nodeAttacher = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
 const Node_1 = require("./Node");
+const NonElementParentNode_1 = require("../official-mixins/NonElementParentNode");
 const ParentNode_1 = require("../official-mixins/ParentNode");
+const XPathEvaluatorBase_1 = require("../official-mixins/XPathEvaluatorBase");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('Document', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
-function DocumentGenerator(Node, ParentNode) {
-    const Parent = ClassMixer_1.default(Node, [ParentNode]);
+function DocumentGenerator(Node, NonElementParentNode, ParentNode, XPathEvaluatorBase) {
+    const Parent = ClassMixer_1.default(Node, [NonElementParentNode, ParentNode, XPathEvaluatorBase]);
     return class Document extends Parent {
         constructor() {
             super();
@@ -147,6 +150,6 @@ function DocumentGenerator(Node, ParentNode) {
     };
 }
 exports.DocumentGenerator = DocumentGenerator;
-exports.DocumentPropertyKeys = [...Node_1.NodePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
-exports.DocumentConstantKeys = [...Node_1.NodeConstantKeys, ...ParentNode_1.ParentNodeConstantKeys];
+exports.DocumentPropertyKeys = [...Node_1.NodePropertyKeys, ...NonElementParentNode_1.NonElementParentNodePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+exports.DocumentConstantKeys = [...Node_1.NodeConstantKeys, ...NonElementParentNode_1.NonElementParentNodeConstantKeys, ...ParentNode_1.ParentNodeConstantKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBaseConstantKeys];
 //# sourceMappingURL=Document.js.map

@@ -5,7 +5,7 @@ import NodeAttacher from '../NodeAttacher';
 import { IHTMLFieldSetElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLFieldSetElement, P = IHTMLFieldSetElementProperties>(instance: C) => P, setState: <P = IHTMLFieldSetElementProperties>(instance: IHTMLFieldSetElement, properties: P) => void;
+export declare const getState: (instance: IHTMLFieldSetElement) => IHTMLFieldSetElementProperties, setState: (instance: IHTMLFieldSetElement, properties: Partial<IHTMLFieldSetElementProperties>) => void, recordProxy: (proxy: IHTMLFieldSetElement, instance: IHTMLFieldSetElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFieldSetElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLFieldSetElement>;
 export declare function HTMLFieldSetElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
@@ -135,6 +135,7 @@ export declare function HTMLFieldSetElementGenerator(HTMLElement: Constructable<
 export interface IHTMLFieldSetElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly disabled?: Promise<boolean>;
     readonly elements?: ISuperHTMLCollection;
     readonly form?: IHTMLFormElement;

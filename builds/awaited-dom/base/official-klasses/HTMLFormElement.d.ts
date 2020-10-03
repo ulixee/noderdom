@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { IHTMLFormElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLFormElement, P = IHTMLFormElementProperties>(instance: C) => P, setState: <P = IHTMLFormElementProperties>(instance: IHTMLFormElement, properties: P) => void;
+export declare const getState: (instance: IHTMLFormElement) => IHTMLFormElementProperties, setState: (instance: IHTMLFormElement, properties: Partial<IHTMLFormElementProperties>) => void, recordProxy: (proxy: IHTMLFormElement, instance: IHTMLFormElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFormElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLFormElement>;
 export declare function HTMLFormElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
@@ -124,6 +124,7 @@ export declare function HTMLFormElementGenerator(HTMLElement: Constructable<IHTM
 export interface IHTMLFormElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
 }
 export declare const HTMLFormElementPropertyKeys: string[];
 export declare const HTMLFormElementConstantKeys: string[];

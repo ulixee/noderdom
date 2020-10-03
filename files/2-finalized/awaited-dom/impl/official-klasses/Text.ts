@@ -4,7 +4,7 @@ import { TextGenerator, ITextProperties } from '../../base/official-klasses/Text
 import CharacterData from './CharacterData';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IText, ITextProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IText, ITextProperties>();
 const TextBaseClass = TextGenerator(CharacterData);
 
 export default class Text extends TextBaseClass implements IText {

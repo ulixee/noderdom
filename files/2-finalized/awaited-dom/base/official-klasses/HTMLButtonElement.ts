@@ -9,7 +9,7 @@ import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLButtonElement, IHTMLButtonElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLButtonElement, IHTMLButtonElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLButtonElement>('HTMLButtonElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLButtonElement>(getState, setState, awaitedHandler);
 
@@ -106,6 +106,8 @@ export function HTMLButtonElementGenerator(HTMLElement: Constructable<IHTMLEleme
 export interface IHTMLButtonElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly autofocus?: Promise<boolean>;
   readonly disabled?: Promise<boolean>;
   readonly form?: IHTMLFormElement;

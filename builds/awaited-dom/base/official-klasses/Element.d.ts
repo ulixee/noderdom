@@ -7,7 +7,7 @@ import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { INodeProperties } from './Node';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
-export declare const getState: <C = IElement, P = IElementProperties>(instance: C) => P, setState: <P = IElementProperties>(instance: IElement, properties: P) => void;
+export declare const getState: (instance: IElement) => IElementProperties, setState: (instance: IElement, properties: Partial<IElementProperties>) => void, recordProxy: (proxy: IElement, instance: IElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IElement>;
 export declare const nodeAttacher: NodeAttacher<IElement>;
 export declare function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>): {
@@ -108,6 +108,7 @@ export declare function ElementGenerator(Node: Constructable<INode>, NonDocument
 export interface IElementProperties extends INodeProperties, INonDocumentTypeChildNodeProperties, IParentNodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly attributes?: INamedNodeMap;
     readonly classList?: IDOMTokenList;
     readonly className?: Promise<string>;

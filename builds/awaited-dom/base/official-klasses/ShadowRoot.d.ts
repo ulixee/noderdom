@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IShadowRoot } from '../interfaces/official';
-export declare const getState: <C = IShadowRoot, P = IShadowRootProperties>(instance: C) => P, setState: <P = IShadowRootProperties>(instance: IShadowRoot, properties: P) => void;
+export declare const getState: (instance: IShadowRoot) => IShadowRootProperties, setState: (instance: IShadowRoot, properties: Partial<IShadowRootProperties>) => void, recordProxy: (proxy: IShadowRoot, instance: IShadowRoot) => void;
 export declare const awaitedHandler: AwaitedHandler<IShadowRoot>;
 export declare function ShadowRootGenerator(): {
     new (): {};

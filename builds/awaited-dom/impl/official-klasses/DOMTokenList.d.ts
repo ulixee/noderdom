@@ -1,6 +1,6 @@
 import { IDOMTokenList } from '../../base/interfaces/official';
 import { IDOMTokenListProperties } from '../../base/official-klasses/DOMTokenList';
-export declare const getState: <C = IDOMTokenList, P = IDOMTokenListProperties>(instance: C) => P, setState: <P = IDOMTokenListProperties>(instance: IDOMTokenList, properties: P) => void;
+export declare const getState: (instance: IDOMTokenList) => IDOMTokenListProperties, setState: (instance: IDOMTokenList, properties: Partial<IDOMTokenListProperties>) => void, recordProxy: (proxy: IDOMTokenList, instance: IDOMTokenList) => void;
 declare const DOMTokenListBaseClass: {
     new (): {};
 };

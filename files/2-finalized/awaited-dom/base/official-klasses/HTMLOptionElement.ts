@@ -8,7 +8,7 @@ import { IHTMLOptionElement, IHTMLElement, IHTMLFormElement } from '../interface
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLOptionElement, IHTMLOptionElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionElement, IHTMLOptionElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptionElement>('HTMLOptionElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLOptionElement>(getState, setState, awaitedHandler);
 
@@ -67,6 +67,8 @@ export function HTMLOptionElementGenerator(HTMLElement: Constructable<IHTMLEleme
 export interface IHTMLOptionElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly defaultSelected?: Promise<boolean>;
   readonly disabled?: Promise<boolean>;
   readonly form?: IHTMLFormElement;

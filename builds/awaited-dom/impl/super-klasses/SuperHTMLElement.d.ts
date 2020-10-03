@@ -1,8 +1,9 @@
 import { ISuperHTMLElement, ISuperElement } from '../../base/interfaces/super';
 import { ISuperHTMLElementProperties } from '../../base/super-klasses/SuperHTMLElement';
-export declare const getState: <C = ISuperHTMLElement, P = ISuperHTMLElementProperties>(instance: C) => P, setState: <P = ISuperHTMLElementProperties>(instance: ISuperHTMLElement, properties: P) => void;
+export declare const getState: (instance: ISuperHTMLElement) => ISuperHTMLElementProperties, setState: (instance: ISuperHTMLElement, properties: Partial<ISuperHTMLElementProperties>) => void, recordProxy: (proxy: ISuperHTMLElement, instance: ISuperHTMLElement) => void;
 declare const SuperHTMLElementBaseClass: {
     new (): {
+        [index: number]: ISuperElement;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
         readonly dir: Promise<string>;

@@ -5,7 +5,7 @@ import { IAttrIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IAttrIsolate>('AttrIsolate', getState, setState);
 
 export default class AttrIsolate implements IAttrIsolate {
