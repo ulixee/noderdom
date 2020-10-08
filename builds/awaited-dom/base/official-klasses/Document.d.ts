@@ -84,13 +84,13 @@ export declare function DocumentGenerator(Node: Constructable<INode>, NonElement
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -104,7 +104,7 @@ export declare function DocumentGenerator(Node: Constructable<INode>, NonElement
         createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
             lookupNamespaceURI(prefix: string | null): string | null;
         } | null | undefined): import("../interfaces/official").IXPathExpression;
-        evaluate(expression: string, contextNode: import("../interfaces/super").ISuperNode, resolver?: ((prefix: string | null) => string | null) | {
+        evaluate(expression: string, contextNode: import("../interfaces/isolate").INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
             lookupNamespaceURI(prefix: string | null): string | null;
         } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };

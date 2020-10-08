@@ -36,13 +36,13 @@ declare const NodeBaseClass: {
         readonly parentNode: ISuperNode;
         readonly previousSibling: ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: ISuperNode): Promise<number>;
-        contains(other: ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../../base/interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: IGetRootNodeOptions | undefined): ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;

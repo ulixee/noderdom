@@ -1,5 +1,6 @@
 /// <reference no-default-lib="true"/>
 import { ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperNode, ISuperDocument, ISuperText } from './super';
+import { INodeIsolate } from './isolate';
 export declare type IDocumentReadyState = 'complete' | 'interactive' | 'loading';
 export declare type IEndingType = 'native' | 'transparent';
 export declare type IFullscreenNavigationUI = 'auto' | 'hide' | 'show';
@@ -274,13 +275,13 @@ export interface INode {
     readonly parentNode: ISuperNode;
     readonly previousSibling: ISuperNode;
     readonly textContent: Promise<string | null>;
-    compareDocumentPosition(other: ISuperNode): Promise<number>;
-    contains(other: ISuperNode | null): Promise<boolean>;
+    compareDocumentPosition(other: INodeIsolate): Promise<number>;
+    contains(other: INodeIsolate | null): Promise<boolean>;
     getRootNode(options?: IGetRootNodeOptions): ISuperNode;
     hasChildNodes(): Promise<boolean>;
     isDefaultNamespace(namespace: string | null): Promise<boolean>;
-    isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
-    isSameNode(otherNode: ISuperNode | null): Promise<boolean>;
+    isEqualNode(otherNode: INodeIsolate | null): Promise<boolean>;
+    isSameNode(otherNode: INodeIsolate | null): Promise<boolean>;
     lookupNamespaceURI(prefix: string | null): Promise<string | null>;
     lookupPrefix(namespace: string | null): Promise<string | null>;
     normalize(): Promise<void>;
@@ -350,10 +351,10 @@ export interface IValidityState {
 }
 export interface IXPathEvaluatorBase {
     createExpression(expression: string, resolver?: IXPathNSResolver | null): IXPathExpression;
-    evaluate(expression: string, contextNode: ISuperNode, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult;
+    evaluate(expression: string, contextNode: INodeIsolate, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult;
 }
 export interface IXPathExpression {
-    evaluate(contextNode: ISuperNode, type?: number, result?: IXPathResult | null): IXPathResult;
+    evaluate(contextNode: INodeIsolate, type?: number, result?: IXPathResult | null): IXPathResult;
 }
 export interface IXPathResult {
     readonly ANY_TYPE: number;

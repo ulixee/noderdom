@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IXPathEvaluatorBase, IXPathNSResolver, IXPathExpression, IXPathResult } from '../interfaces/official';
-import { ISuperNode } from '../interfaces/super';
+import { INodeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IXPathEvaluatorBase, IXPathEvaluatorBaseProperties>();
@@ -13,7 +13,7 @@ export default class XPathEvaluatorBase implements IXPathEvaluatorBase {
     throw new Error('XPathEvaluatorBase.createExpression not implemented');
   }
 
-  public evaluate(expression: string, contextNode: ISuperNode, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult {
+  public evaluate(expression: string, contextNode: INodeIsolate, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult {
     throw new Error('XPathEvaluatorBase.evaluate not implemented');
   }
 }

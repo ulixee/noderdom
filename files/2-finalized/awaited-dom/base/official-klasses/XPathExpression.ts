@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IXPathExpression, IXPathResult } from '../interfaces/official';
-import { ISuperNode } from '../interfaces/super';
+import { INodeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IXPathExpression, IXPathExpressionProperties>();
@@ -18,7 +18,7 @@ export function XPathExpressionGenerator() {
 
     // methods
 
-    public evaluate(contextNode: ISuperNode, type?: number, result?: IXPathResult | null): IXPathResult {
+    public evaluate(contextNode: INodeIsolate, type?: number, result?: IXPathResult | null): IXPathResult {
       throw new Error('XPathExpression.evaluate not implemented');
     }
   };

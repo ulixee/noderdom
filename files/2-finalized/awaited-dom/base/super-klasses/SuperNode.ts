@@ -146,11 +146,11 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
 
     // methods
 
-    public compareDocumentPosition(other: ISuperNode): Promise<number> {
+    public compareDocumentPosition(other: INodeIsolate): Promise<number> {
       return awaitedHandler.runMethod<number>(this, 'compareDocumentPosition', [other]);
     }
 
-    public contains(other: ISuperNode | null): Promise<boolean> {
+    public contains(other: INodeIsolate | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'contains', [other]);
     }
 
@@ -166,11 +166,11 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
       return awaitedHandler.runMethod<boolean>(this, 'isDefaultNamespace', [namespace]);
     }
 
-    public isEqualNode(otherNode: ISuperNode | null): Promise<boolean> {
+    public isEqualNode(otherNode: INodeIsolate | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'isEqualNode', [otherNode]);
     }
 
-    public isSameNode(otherNode: ISuperNode | null): Promise<boolean> {
+    public isSameNode(otherNode: INodeIsolate | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'isSameNode', [otherNode]);
     }
 

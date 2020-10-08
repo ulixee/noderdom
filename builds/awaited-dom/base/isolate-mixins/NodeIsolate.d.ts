@@ -56,13 +56,13 @@ export default class NodeIsolate implements INodeIsolate {
     get parentNode(): ISuperNode;
     get previousSibling(): ISuperNode;
     get textContent(): Promise<string | null>;
-    compareDocumentPosition(other: ISuperNode): Promise<number>;
-    contains(other: ISuperNode | null): Promise<boolean>;
+    compareDocumentPosition(other: INodeIsolate): Promise<number>;
+    contains(other: INodeIsolate | null): Promise<boolean>;
     getRootNode(options?: IGetRootNodeOptions): ISuperNode;
     hasChildNodes(): Promise<boolean>;
     isDefaultNamespace(namespace: string | null): Promise<boolean>;
-    isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
-    isSameNode(otherNode: ISuperNode | null): Promise<boolean>;
+    isEqualNode(otherNode: INodeIsolate | null): Promise<boolean>;
+    isSameNode(otherNode: INodeIsolate | null): Promise<boolean>;
     lookupNamespaceURI(prefix: string | null): Promise<string | null>;
     lookupPrefix(namespace: string | null): Promise<string | null>;
     normalize(): Promise<void>;

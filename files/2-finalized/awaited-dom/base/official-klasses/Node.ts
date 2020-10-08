@@ -6,6 +6,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { INode, IGetRootNodeOptions } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
+import { INodeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<INode, INodeProperties>();
@@ -118,11 +119,11 @@ export function NodeGenerator() {
 
     // methods
 
-    public compareDocumentPosition(other: ISuperNode): Promise<number> {
+    public compareDocumentPosition(other: INodeIsolate): Promise<number> {
       return awaitedHandler.runMethod<number>(this, 'compareDocumentPosition', [other]);
     }
 
-    public contains(other: ISuperNode | null): Promise<boolean> {
+    public contains(other: INodeIsolate | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'contains', [other]);
     }
 
@@ -138,11 +139,11 @@ export function NodeGenerator() {
       return awaitedHandler.runMethod<boolean>(this, 'isDefaultNamespace', [namespace]);
     }
 
-    public isEqualNode(otherNode: ISuperNode | null): Promise<boolean> {
+    public isEqualNode(otherNode: INodeIsolate | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'isEqualNode', [otherNode]);
     }
 
-    public isSameNode(otherNode: ISuperNode | null): Promise<boolean> {
+    public isSameNode(otherNode: INodeIsolate | null): Promise<boolean> {
       return awaitedHandler.runMethod<boolean>(this, 'isSameNode', [otherNode]);
     }
 

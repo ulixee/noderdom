@@ -117,13 +117,13 @@ export declare function HTMLButtonElementGenerator(HTMLElement: Constructable<IH
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;

@@ -1,6 +1,6 @@
 import StateMachine from '../../base/StateMachine';
 import { IXPathEvaluatorBase, IXPathNSResolver, IXPathExpression, IXPathResult } from '../../base/interfaces/official';
-import { ISuperNode } from '../../base/interfaces/super';
+import { INodeIsolate } from '../../base/interfaces/isolate';
 import XPathEvaluatorBaseBase, { IXPathEvaluatorBaseProperties } from '../../base/official-mixins/XPathEvaluatorBase';
 import { createXPathExpression, createXPathResult } from '../create';
 
@@ -13,7 +13,7 @@ export default class XPathEvaluatorBase extends XPathEvaluatorBaseBase implement
     return createXPathExpression(awaitedPath.addMethod('createExpression', expression, resolver), awaitedOptions);
   }
 
-  public evaluate(expression: string, contextNode: ISuperNode, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult {
+  public evaluate(expression: string, contextNode: INodeIsolate, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createXPathResult(awaitedPath.addMethod('evaluate', expression, contextNode, resolver, type, result), awaitedOptions);
   }
