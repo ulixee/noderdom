@@ -5,7 +5,7 @@ import ParentNodeBase, { IParentNodeProperties } from '../../base/official-mixin
 import { createSuperHTMLCollection, createSuperElement, createSuperNodeList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IParentNode, IParentNodeProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IParentNode, IParentNodeProperties>();
 
 export default class ParentNode extends ParentNodeBase implements IParentNode {
   public get children(): ISuperHTMLCollection {

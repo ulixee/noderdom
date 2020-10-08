@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { IHTMLOptGroupElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLOptGroupElement, P = IHTMLOptGroupElementProperties>(instance: C) => P, setState: <P = IHTMLOptGroupElementProperties>(instance: IHTMLOptGroupElement, properties: P) => void;
+export declare const getState: (instance: IHTMLOptGroupElement) => IHTMLOptGroupElementProperties, setState: (instance: IHTMLOptGroupElement, properties: Partial<IHTMLOptGroupElementProperties>) => void, recordProxy: (proxy: IHTMLOptGroupElement, instance: IHTMLOptGroupElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLOptGroupElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLOptGroupElement>;
 export declare function HTMLOptGroupElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
@@ -101,13 +101,13 @@ export declare function HTMLOptGroupElementGenerator(HTMLElement: Constructable<
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -126,6 +126,7 @@ export declare function HTMLOptGroupElementGenerator(HTMLElement: Constructable<
 export interface IHTMLOptGroupElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly disabled?: Promise<boolean>;
     readonly label?: Promise<string>;
 }

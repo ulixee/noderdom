@@ -24,7 +24,7 @@ const NodeIsolate_1 = __importDefault(require("../isolate-mixins/NodeIsolate"));
 const NonDocumentTypeChildNode_1 = __importDefault(require("../official-mixins/NonDocumentTypeChildNode"));
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 const SuperElementBaseClass = SuperElement_1.SuperElementGenerator(ElementIsolate_1.default, HTMLButtonElementIsolate_1.default, HTMLElementIsolate_1.default, HTMLFieldSetElementIsolate_1.default, HTMLFormElementIsolate_1.default, HTMLHeadElementIsolate_1.default, HTMLInputElementIsolate_1.default, HTMLLabelElementIsolate_1.default, HTMLOptGroupElementIsolate_1.default, HTMLOptionElementIsolate_1.default, HTMLOrSVGElement_1.default, HTMLSelectElementIsolate_1.default, HTMLTextAreaElementIsolate_1.default, NodeIsolate_1.default, NonDocumentTypeChildNode_1.default, ParentNode_1.default);
 class SuperElement extends SuperElementBaseClass {
     constructor() {

@@ -9,13 +9,29 @@ const initializeConstantsAndProperties_1 = __importDefault(require("../initializ
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const HTMLCollectionBase_1 = require("./HTMLCollectionBase");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLCollection', exports.getState, exports.setState);
 function HTMLCollectionGenerator(HTMLCollectionBase) {
     return class HTMLCollection extends HTMLCollectionBase {
         constructor() {
             super();
             initializeConstantsAndProperties_1.default(this, exports.HTMLCollectionConstantKeys, exports.HTMLCollectionPropertyKeys);
+            // proxy supports indexed property access
+            const proxy = new Proxy(this, {
+                get(target, prop) {
+                    if (prop in target) {
+                        // @ts-ignore
+                        const value = target[prop];
+                        if (typeof value === 'function')
+                            return value.bind(target);
+                        return value;
+                    }
+                    // delegate to string indexer
+                    return target.namedItem(prop);
+                },
+            });
+            exports.recordProxy(proxy, this);
+            return proxy;
         }
         // methods
         namedItem(name) {

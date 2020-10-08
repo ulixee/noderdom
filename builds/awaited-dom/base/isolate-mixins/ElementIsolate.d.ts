@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IElementIsolate } from '../interfaces/isolate';
 import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
-export declare const getState: <C = IElementIsolate, P = IElementIsolateProperties>(instance: C) => P, setState: <P = IElementIsolateProperties>(instance: IElementIsolate, properties: P) => void;
+export declare const getState: (instance: IElementIsolate) => IElementIsolateProperties, setState: (instance: IElementIsolate, properties: Partial<IElementIsolateProperties>) => void, recordProxy: (proxy: IElementIsolate, instance: IElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IElementIsolate>;
 export default class ElementIsolate implements IElementIsolate {
     get attributes(): INamedNodeMap;

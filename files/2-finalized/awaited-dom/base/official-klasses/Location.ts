@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { ILocation } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ILocation, ILocationProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ILocation, ILocationProperties>();
 export const awaitedHandler = new AwaitedHandler<ILocation>('Location', getState, setState);
 
 export function LocationGenerator() {

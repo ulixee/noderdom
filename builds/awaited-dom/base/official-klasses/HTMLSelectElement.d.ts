@@ -6,12 +6,13 @@ import NodeAttacher from '../NodeAttacher';
 import { IHTMLSelectElement, IHTMLElement, IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLSelectElement, P = IHTMLSelectElementProperties>(instance: C) => P, setState: <P = IHTMLSelectElementProperties>(instance: IHTMLSelectElement, properties: P) => void;
+export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void, recordProxy: (proxy: IHTMLSelectElement, instance: IHTMLSelectElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSelectElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLSelectElement>;
 export declare const awaitedIterator: AwaitedIterator<IHTMLSelectElement, ISuperElement>;
 export declare function HTMLSelectElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
     new (): {
+        [index: number]: ISuperElement;
         readonly autocomplete: Promise<string>;
         readonly autofocus: Promise<boolean>;
         readonly disabled: Promise<boolean>;
@@ -125,13 +126,13 @@ export declare function HTMLSelectElementGenerator(HTMLElement: Constructable<IH
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -150,6 +151,8 @@ export declare function HTMLSelectElementGenerator(HTMLElement: Constructable<IH
 export interface IHTMLSelectElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
+    createIterableName: string;
     readonly autocomplete?: Promise<string>;
     readonly autofocus?: Promise<boolean>;
     readonly disabled?: Promise<boolean>;

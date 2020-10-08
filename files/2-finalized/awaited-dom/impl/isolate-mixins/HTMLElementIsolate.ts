@@ -5,7 +5,7 @@ import HTMLElementIsolateBase, { IHTMLElementIsolateProperties } from '../../bas
 import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLElementIsolate, IHTMLElementIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLElementIsolate, IHTMLElementIsolateProperties>();
 
 export default class HTMLElementIsolate extends HTMLElementIsolateBase implements IHTMLElementIsolate {
   public get offsetParent(): ISuperElement {

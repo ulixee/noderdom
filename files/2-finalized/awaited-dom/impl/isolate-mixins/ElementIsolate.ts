@@ -6,7 +6,7 @@ import ElementIsolateBase, { IElementIsolateProperties } from '../../base/isolat
 import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createSuperHTMLCollection } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IElementIsolate, IElementIsolateProperties>();
 
 export default class ElementIsolate extends ElementIsolateBase implements IElementIsolate {
   public get attributes(): INamedNodeMap {

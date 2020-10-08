@@ -6,7 +6,7 @@ import NodeIsolateBase, { INodeIsolateProperties } from '../../base/isolate-mixi
 import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<INodeIsolate, INodeIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<INodeIsolate, INodeIsolateProperties>();
 
 export default class NodeIsolate extends NodeIsolateBase implements INodeIsolate {
   public get childNodes(): ISuperNodeList {

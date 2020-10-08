@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IRequest, IBody, IRequestInfo, IRequestInit, IRequestCache, IRequestCredentials, IRequestDestination, IHeaders, IRequestMode, IRequestRedirect, IReferrerPolicy } from '../interfaces/official';
 import { IBodyProperties } from '../official-mixins/Body';
-export declare const getState: <C = IRequest, P = IRequestProperties>(instance: C) => P, setState: <P = IRequestProperties>(instance: IRequest, properties: P) => void;
+export declare const getState: (instance: IRequest) => IRequestProperties, setState: (instance: IRequest, properties: Partial<IRequestProperties>) => void, recordProxy: (proxy: IRequest, instance: IRequest) => void;
 export declare const awaitedHandler: AwaitedHandler<IRequest>;
 export declare function RequestGenerator(Body: Constructable<IBody>): {
     new (_input: IRequestInfo, _init?: IRequestInit | undefined): {

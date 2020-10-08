@@ -1,5 +1,6 @@
 /// <reference no-default-lib="true"/>
 import { ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperNode, ISuperDocument, ISuperText } from './super';
+import { INodeIsolate } from './isolate';
 export declare type IDocumentReadyState = 'complete' | 'interactive' | 'loading';
 export declare type IEndingType = 'native' | 'transparent';
 export declare type IFullscreenNavigationUI = 'auto' | 'hide' | 'show';
@@ -55,6 +56,9 @@ export interface IScrollIntoViewOptions extends IScrollOptions {
 export interface IScrollOptions {
     behavior?: IScrollBehavior;
 }
+export declare type IXPathNSResolver = ((prefix: string | null) => string | null) | {
+    lookupNamespaceURI(prefix: string | null): string | null;
+};
 export interface IAttr extends INode {
     readonly localName: Promise<string>;
     readonly name: Promise<string>;
@@ -95,10 +99,11 @@ export interface IDOMRectList {
     readonly length: Promise<number>;
     item(index: number): IDOMRect;
     [Symbol.iterator](): IterableIterator<IDOMRect>;
+    [index: number]: IDOMRect;
 }
 export interface IDOMTokenList {
 }
-export interface IDocument extends INode, INode, IParentNode {
+export interface IDocument extends INode, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase {
     readonly URL: Promise<string>;
     readonly anchors: ISuperHTMLCollection;
     readonly body: ISuperHTMLElement;
@@ -192,8 +197,9 @@ export interface IHTMLCollection extends IHTMLCollectionBase {
 }
 export interface IHTMLCollectionBase {
     readonly length: Promise<number>;
-    item(index: number): Promise<ISuperElement | null>;
+    item(index: number): ISuperElement;
     [Symbol.iterator](): IterableIterator<ISuperElement>;
+    [index: number]: ISuperElement;
 }
 export interface IHTMLOptionsCollection extends IHTMLCollection {
 }
@@ -234,6 +240,7 @@ export interface INamedNodeMap {
     getNamedItemNS(namespace: string | null, localName: string): Promise<IAttr | null>;
     item(index: number): Promise<IAttr | null>;
     [Symbol.iterator](): IterableIterator<IAttr>;
+    [index: number]: IAttr;
 }
 export interface INode {
     readonly ATTRIBUTE_NODE: number;
@@ -268,13 +275,13 @@ export interface INode {
     readonly parentNode: ISuperNode;
     readonly previousSibling: ISuperNode;
     readonly textContent: Promise<string | null>;
-    compareDocumentPosition(other: ISuperNode): Promise<number>;
-    contains(other: ISuperNode | null): Promise<boolean>;
+    compareDocumentPosition(other: INodeIsolate): Promise<number>;
+    contains(other: INodeIsolate | null): Promise<boolean>;
     getRootNode(options?: IGetRootNodeOptions): ISuperNode;
     hasChildNodes(): Promise<boolean>;
     isDefaultNamespace(namespace: string | null): Promise<boolean>;
-    isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
-    isSameNode(otherNode: ISuperNode | null): Promise<boolean>;
+    isEqualNode(otherNode: INodeIsolate | null): Promise<boolean>;
+    isSameNode(otherNode: INodeIsolate | null): Promise<boolean>;
     lookupNamespaceURI(prefix: string | null): Promise<string | null>;
     lookupPrefix(namespace: string | null): Promise<string | null>;
     normalize(): Promise<void>;
@@ -287,10 +294,14 @@ export interface INodeList {
     keys(): Promise<IterableIterator<number>>;
     values(): Promise<IterableIterator<ISuperNode>>;
     [Symbol.iterator](): IterableIterator<ISuperNode>;
+    [index: number]: ISuperNode;
 }
 export interface INonDocumentTypeChildNode {
     readonly nextElementSibling: ISuperElement;
     readonly previousElementSibling: ISuperElement;
+}
+export interface INonElementParentNode {
+    getElementById(elementId: string): ISuperElement;
 }
 export interface IParentNode {
     readonly childElementCount: Promise<number>;
@@ -337,6 +348,34 @@ export interface IText extends ICharacterData, ICharacterData {
     splitText(offset: number): Promise<ISuperText>;
 }
 export interface IValidityState {
+}
+export interface IXPathEvaluatorBase {
+    createExpression(expression: string, resolver?: IXPathNSResolver | null): IXPathExpression;
+    evaluate(expression: string, contextNode: INodeIsolate, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult;
+}
+export interface IXPathExpression {
+    evaluate(contextNode: INodeIsolate, type?: number, result?: IXPathResult | null): IXPathResult;
+}
+export interface IXPathResult {
+    readonly ANY_TYPE: number;
+    readonly ANY_UNORDERED_NODE_TYPE: number;
+    readonly BOOLEAN_TYPE: number;
+    readonly FIRST_ORDERED_NODE_TYPE: number;
+    readonly NUMBER_TYPE: number;
+    readonly ORDERED_NODE_ITERATOR_TYPE: number;
+    readonly ORDERED_NODE_SNAPSHOT_TYPE: number;
+    readonly STRING_TYPE: number;
+    readonly UNORDERED_NODE_ITERATOR_TYPE: number;
+    readonly UNORDERED_NODE_SNAPSHOT_TYPE: number;
+    readonly booleanValue: Promise<boolean>;
+    readonly invalidIteratorState: Promise<boolean>;
+    readonly numberValue: Promise<number>;
+    readonly resultType: Promise<number>;
+    readonly singleNodeValue: ISuperNode;
+    readonly snapshotLength: Promise<number>;
+    readonly stringValue: Promise<string>;
+    iterateNext(): ISuperNode;
+    snapshotItem(index: number): ISuperNode;
 }
 export interface IHTMLButtonElement extends IHTMLElement {
     readonly autofocus: Promise<boolean>;
@@ -488,6 +527,7 @@ export interface IHTMLSelectElement extends IHTMLElement {
     namedItem(name: string): IHTMLOptionElement;
     reportValidity(): Promise<boolean>;
     [Symbol.iterator](): IterableIterator<ISuperElement>;
+    [index: number]: ISuperElement;
 }
 export interface IHTMLTextAreaElement extends IHTMLElement {
     readonly autocomplete: Promise<string>;

@@ -7,7 +7,7 @@ import { IRadioNodeList, INodeList } from '../interfaces/official';
 import { INodeListProperties, NodeListPropertyKeys, NodeListConstantKeys } from './NodeList';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IRadioNodeList, IRadioNodeListProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IRadioNodeList, IRadioNodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<IRadioNodeList>('RadioNodeList', getState, setState);
 
 export function RadioNodeListGenerator(NodeList: Constructable<INodeList>) {

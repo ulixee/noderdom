@@ -1,7 +1,7 @@
 import { IAttr } from '../../base/interfaces/official';
 import { ISuperElement } from '../../base/interfaces/super';
 import { IAttrProperties } from '../../base/official-klasses/Attr';
-export declare const getState: <C = IAttr, P = IAttrProperties>(instance: C) => P, setState: <P = IAttrProperties>(instance: IAttr, properties: P) => void;
+export declare const getState: (instance: IAttr) => IAttrProperties, setState: (instance: IAttr, properties: Partial<IAttrProperties>) => void, recordProxy: (proxy: IAttr, instance: IAttr) => void;
 declare const AttrBaseClass: {
     new (): {
         readonly localName: Promise<string>;
@@ -44,13 +44,13 @@ declare const AttrBaseClass: {
         readonly parentNode: import("../../base/interfaces/super").ISuperNode;
         readonly previousSibling: import("../../base/interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../../base/interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../../base/interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../../base/interfaces/official").IGetRootNodeOptions | undefined): import("../../base/interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;

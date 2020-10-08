@@ -1,6 +1,6 @@
 import { IDOMImplementation } from '../../base/interfaces/official';
 import { IDOMImplementationProperties } from '../../base/official-klasses/DOMImplementation';
-export declare const getState: <C = IDOMImplementation, P = IDOMImplementationProperties>(instance: C) => P, setState: <P = IDOMImplementationProperties>(instance: IDOMImplementation, properties: P) => void;
+export declare const getState: (instance: IDOMImplementation) => IDOMImplementationProperties, setState: (instance: IDOMImplementation, properties: Partial<IDOMImplementationProperties>) => void, recordProxy: (proxy: IDOMImplementation, instance: IDOMImplementation) => void;
 declare const DOMImplementationBaseClass: {
     new (): {
         hasFeature(): Promise<boolean>;

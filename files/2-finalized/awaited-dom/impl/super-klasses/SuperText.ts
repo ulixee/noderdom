@@ -6,7 +6,7 @@ import NodeIsolate from '../isolate-mixins/NodeIsolate';
 import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNode';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperText, ISuperTextProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperText, ISuperTextProperties>();
 const SuperTextBaseClass = SuperTextGenerator(CharacterDataIsolate, NodeIsolate, NonDocumentTypeChildNode);
 
 export default class SuperText extends SuperTextBaseClass implements ISuperText {

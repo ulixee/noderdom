@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ITextIsolate } from '../interfaces/isolate';
 import { ISuperText } from '../interfaces/super';
-export declare const getState: <C = ITextIsolate, P = ITextIsolateProperties>(instance: C) => P, setState: <P = ITextIsolateProperties>(instance: ITextIsolate, properties: P) => void;
+export declare const getState: (instance: ITextIsolate) => ITextIsolateProperties, setState: (instance: ITextIsolate, properties: Partial<ITextIsolateProperties>) => void, recordProxy: (proxy: ITextIsolate, instance: ITextIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<ITextIsolate>;
 export default class TextIsolate implements ITextIsolate {
     get wholeText(): Promise<string>;

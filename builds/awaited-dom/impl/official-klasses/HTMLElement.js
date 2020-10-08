@@ -10,7 +10,7 @@ const create_1 = require("../create");
 const Element_1 = __importDefault(require("./Element"));
 const HTMLOrSVGElement_1 = __importDefault(require("../official-mixins/HTMLOrSVGElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 const HTMLElementBaseClass = HTMLElement_1.HTMLElementGenerator(Element_1.default, HTMLOrSVGElement_1.default);
 class HTMLElement extends HTMLElementBaseClass {
     constructor() {

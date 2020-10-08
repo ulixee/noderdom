@@ -1,7 +1,7 @@
 import { IHTMLLabelElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperHTMLElement } from '../../base/interfaces/super';
 import { IHTMLLabelElementProperties } from '../../base/official-klasses/HTMLLabelElement';
-export declare const getState: <C = IHTMLLabelElement, P = IHTMLLabelElementProperties>(instance: C) => P, setState: <P = IHTMLLabelElementProperties>(instance: IHTMLLabelElement, properties: P) => void;
+export declare const getState: (instance: IHTMLLabelElement) => IHTMLLabelElementProperties, setState: (instance: IHTMLLabelElement, properties: Partial<IHTMLLabelElementProperties>) => void, recordProxy: (proxy: IHTMLLabelElement, instance: IHTMLLabelElement) => void;
 declare const HTMLLabelElementBaseClass: {
     new (): {
         readonly control: ISuperHTMLElement;
@@ -97,13 +97,13 @@ declare const HTMLLabelElementBaseClass: {
         readonly parentNode: import("../../base/interfaces/super").ISuperNode;
         readonly previousSibling: import("../../base/interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../../base/interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../../base/interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../../base/interfaces/official").IGetRootNodeOptions | undefined): import("../../base/interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;

@@ -26,11 +26,13 @@ const HTMLSelectElementIsolate_1 = __importDefault(require("../isolate-mixins/HT
 const HTMLTextAreaElementIsolate_1 = __importDefault(require("../isolate-mixins/HTMLTextAreaElementIsolate"));
 const NodeIsolate_1 = __importDefault(require("../isolate-mixins/NodeIsolate"));
 const NonDocumentTypeChildNode_1 = __importDefault(require("../official-mixins/NonDocumentTypeChildNode"));
+const NonElementParentNode_1 = __importDefault(require("../official-mixins/NonElementParentNode"));
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 const TextIsolate_1 = __importDefault(require("../isolate-mixins/TextIsolate"));
+const XPathEvaluatorBase_1 = __importDefault(require("../official-mixins/XPathEvaluatorBase"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const SuperNodeBaseClass = SuperNode_1.SuperNodeGenerator(AttrIsolate_1.default, CharacterDataIsolate_1.default, DocumentIsolate_1.default, DocumentTypeIsolate_1.default, ElementIsolate_1.default, HTMLButtonElementIsolate_1.default, HTMLElementIsolate_1.default, HTMLFieldSetElementIsolate_1.default, HTMLFormElementIsolate_1.default, HTMLHeadElementIsolate_1.default, HTMLInputElementIsolate_1.default, HTMLLabelElementIsolate_1.default, HTMLOptGroupElementIsolate_1.default, HTMLOptionElementIsolate_1.default, HTMLOrSVGElement_1.default, HTMLSelectElementIsolate_1.default, HTMLTextAreaElementIsolate_1.default, NodeIsolate_1.default, NonDocumentTypeChildNode_1.default, ParentNode_1.default, TextIsolate_1.default);
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+const SuperNodeBaseClass = SuperNode_1.SuperNodeGenerator(AttrIsolate_1.default, CharacterDataIsolate_1.default, DocumentIsolate_1.default, DocumentTypeIsolate_1.default, ElementIsolate_1.default, HTMLButtonElementIsolate_1.default, HTMLElementIsolate_1.default, HTMLFieldSetElementIsolate_1.default, HTMLFormElementIsolate_1.default, HTMLHeadElementIsolate_1.default, HTMLInputElementIsolate_1.default, HTMLLabelElementIsolate_1.default, HTMLOptGroupElementIsolate_1.default, HTMLOptionElementIsolate_1.default, HTMLOrSVGElement_1.default, HTMLSelectElementIsolate_1.default, HTMLTextAreaElementIsolate_1.default, NodeIsolate_1.default, NonDocumentTypeChildNode_1.default, NonElementParentNode_1.default, ParentNode_1.default, TextIsolate_1.default, XPathEvaluatorBase_1.default);
 class SuperNode extends SuperNodeBaseClass {
     constructor() {
         super();

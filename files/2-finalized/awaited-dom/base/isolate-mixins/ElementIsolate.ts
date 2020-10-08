@@ -6,7 +6,7 @@ import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectLis
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IElementIsolate, IElementIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IElementIsolate, IElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IElementIsolate>('ElementIsolate', getState, setState);
 
 export default class ElementIsolate implements IElementIsolate {

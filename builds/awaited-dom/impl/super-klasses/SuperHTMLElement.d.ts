@@ -1,8 +1,9 @@
 import { ISuperHTMLElement, ISuperElement } from '../../base/interfaces/super';
 import { ISuperHTMLElementProperties } from '../../base/super-klasses/SuperHTMLElement';
-export declare const getState: <C = ISuperHTMLElement, P = ISuperHTMLElementProperties>(instance: C) => P, setState: <P = ISuperHTMLElementProperties>(instance: ISuperHTMLElement, properties: P) => void;
+export declare const getState: (instance: ISuperHTMLElement) => ISuperHTMLElementProperties, setState: (instance: ISuperHTMLElement, properties: Partial<ISuperHTMLElementProperties>) => void, recordProxy: (proxy: ISuperHTMLElement, instance: ISuperHTMLElement) => void;
 declare const SuperHTMLElementBaseClass: {
     new (): {
+        [index: number]: ISuperElement;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
         readonly dir: Promise<string>;
@@ -166,13 +167,13 @@ declare const SuperHTMLElementBaseClass: {
         readonly parentNode: import("../../base/interfaces/super").ISuperNode;
         readonly previousSibling: import("../../base/interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../../base/interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../../base/interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../../base/interfaces/official").IGetRootNodeOptions | undefined): import("../../base/interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;

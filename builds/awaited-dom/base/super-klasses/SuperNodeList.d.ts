@@ -7,12 +7,13 @@ import { ISuperNodeList, ISuperNode } from '../interfaces/super';
 import { INodeListIsolate, IRadioNodeListIsolate } from '../interfaces/isolate';
 import { INodeListIsolateProperties } from '../isolate-mixins/NodeListIsolate';
 import { IRadioNodeListIsolateProperties } from '../isolate-mixins/RadioNodeListIsolate';
-export declare const getState: <C = ISuperNodeList, P = ISuperNodeListProperties>(instance: C) => P, setState: <P = ISuperNodeListProperties>(instance: ISuperNodeList, properties: P) => void;
+export declare const getState: (instance: ISuperNodeList) => ISuperNodeListProperties, setState: (instance: ISuperNodeList, properties: Partial<ISuperNodeListProperties>) => void, recordProxy: (proxy: ISuperNodeList, instance: ISuperNodeList) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperNodeList>;
 export declare const nodeAttacher: NodeAttacher<ISuperNodeList>;
 export declare const awaitedIterator: AwaitedIterator<ISuperNodeList, ISuperNode>;
 export declare function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListIsolate>, RadioNodeListIsolate: Constructable<IRadioNodeListIsolate>): {
     new (): {
+        [index: number]: ISuperNode;
         readonly length: Promise<number>;
         item(index: number): ISuperNode;
         then<TResult1 = ISuperNodeList, TResult2 = never>(onfulfilled?: ((value: ISuperNodeList) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
@@ -27,6 +28,8 @@ export declare function SuperNodeListGenerator(NodeListIsolate: Constructable<IN
 export interface ISuperNodeListProperties extends INodeListIsolateProperties, IRadioNodeListIsolateProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
+    createIterableName: string;
     readonly length?: Promise<number>;
 }
 export declare const SuperNodeListPropertyKeys: string[];

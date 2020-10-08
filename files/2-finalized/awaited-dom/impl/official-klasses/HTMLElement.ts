@@ -7,7 +7,7 @@ import Element from './Element';
 import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLElement, IHTMLElementProperties>();
 const HTMLElementBaseClass = HTMLElementGenerator(Element, HTMLOrSVGElement);
 
 export default class HTMLElement extends HTMLElementBaseClass implements IHTMLElement {

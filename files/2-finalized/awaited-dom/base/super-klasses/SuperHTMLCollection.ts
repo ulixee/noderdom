@@ -13,7 +13,7 @@ import { IHTMLCollectionIsolateProperties, HTMLCollectionIsolatePropertyKeys, HT
 import { IHTMLOptionsCollectionIsolateProperties, HTMLOptionsCollectionIsolatePropertyKeys, HTMLOptionsCollectionIsolateConstantKeys } from '../isolate-mixins/HTMLOptionsCollectionIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperHTMLCollection>('SuperHTMLCollection', getState, setState);
 export const nodeAttacher = new NodeAttacher<ISuperHTMLCollection>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperHTMLCollection, ISuperElement>(getState, setState, awaitedHandler);
@@ -29,6 +29,23 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
         createInstanceName: 'createSuperHTMLCollection',
         createIterableName: 'createSuperElement',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to string indexer
+          return target.namedItem(prop as string);
+        },
+      });
+
+      recordProxy(proxy, this);
+      return proxy;
     }
 
     // methods
@@ -51,7 +68,10 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
 
 export interface ISuperHTMLCollectionProperties extends IHTMLCollectionBaseIsolateProperties, IHTMLCollectionIsolateProperties, IHTMLOptionsCollectionIsolateProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  createInstanceName: string;
+  createIterableName: string;
+}
 
 export const SuperHTMLCollectionPropertyKeys = [...HTMLCollectionBaseIsolatePropertyKeys, ...HTMLCollectionIsolatePropertyKeys, ...HTMLOptionsCollectionIsolatePropertyKeys];
 

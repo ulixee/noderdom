@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLButtonElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
-export declare const getState: <C = IHTMLButtonElementIsolate, P = IHTMLButtonElementIsolateProperties>(instance: C) => P, setState: <P = IHTMLButtonElementIsolateProperties>(instance: IHTMLButtonElementIsolate, properties: P) => void;
+export declare const getState: (instance: IHTMLButtonElementIsolate) => IHTMLButtonElementIsolateProperties, setState: (instance: IHTMLButtonElementIsolate, properties: Partial<IHTMLButtonElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLButtonElementIsolate, instance: IHTMLButtonElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLButtonElementIsolate>;
 export default class HTMLButtonElementIsolate implements IHTMLButtonElementIsolate {
     get autofocus(): Promise<boolean>;

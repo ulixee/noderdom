@@ -3,6 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperText } from './super';
+import { INodeIsolate } from './isolate';
 import { IGetRootNodeOptions, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IHTMLFormElement, IValidityState, ISelectionMode, IHTMLOptionsCollection, IHTMLOptionElement, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from './official';
 
 // NodeIsolate //////////
@@ -42,13 +43,13 @@ export interface INodeIsolate {
   readonly previousSibling: ISuperNode;
   readonly textContent: Promise<string | null>;
 
-  compareDocumentPosition(other: ISuperNode): Promise<number>;
-  contains(other: ISuperNode | null): Promise<boolean>;
+  compareDocumentPosition(other: INodeIsolate): Promise<number>;
+  contains(other: INodeIsolate | null): Promise<boolean>;
   getRootNode(options?: IGetRootNodeOptions): ISuperNode;
   hasChildNodes(): Promise<boolean>;
   isDefaultNamespace(namespace: string | null): Promise<boolean>;
-  isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
-  isSameNode(otherNode: ISuperNode | null): Promise<boolean>;
+  isEqualNode(otherNode: INodeIsolate | null): Promise<boolean>;
+  isSameNode(otherNode: INodeIsolate | null): Promise<boolean>;
   lookupNamespaceURI(prefix: string | null): Promise<string | null>;
   lookupPrefix(namespace: string | null): Promise<string | null>;
   normalize(): Promise<void>;
@@ -201,6 +202,8 @@ export interface INodeListIsolate {
   keys(): Promise<IterableIterator<number>>;
   values(): Promise<IterableIterator<ISuperNode>>;
   [Symbol.iterator](): IterableIterator<ISuperNode>;
+
+  [index: number]: ISuperNode;
 }
 
 // HTMLCollectionBaseIsolate //////////
@@ -208,9 +211,11 @@ export interface INodeListIsolate {
 export interface IHTMLCollectionBaseIsolate {
   readonly length: Promise<number>;
 
-  item(index: number): Promise<ISuperElement | null>;
+  item(index: number): ISuperElement;
 
   [Symbol.iterator](): IterableIterator<ISuperElement>;
+
+  [index: number]: ISuperElement;
 }
 
 // HTMLOptionsCollectionIsolate //////////
@@ -221,6 +226,8 @@ export interface IHTMLOptionsCollectionIsolate {}
 
 export interface IHTMLCollectionIsolate {
   namedItem(name: string): ISuperElement;
+
+
 }
 
 // HTML ELEMENTS
@@ -408,6 +415,8 @@ export interface IHTMLSelectElementIsolate {
   reportValidity(): Promise<boolean>;
 
   [Symbol.iterator](): IterableIterator<ISuperElement>;
+
+  [index: number]: ISuperElement;
 }
 
 // HTMLTextAreaElementIsolate //////////

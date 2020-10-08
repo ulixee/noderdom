@@ -4,11 +4,13 @@ import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, IL
 import { SuperDocumentGenerator, ISuperDocumentProperties } from '../../base/super-klasses/SuperDocument';
 import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation, createSuperNodeList } from '../create';
 import NodeIsolate from '../isolate-mixins/NodeIsolate';
+import NonElementParentNode from '../official-mixins/NonElementParentNode';
 import ParentNode from '../official-mixins/ParentNode';
+import XPathEvaluatorBase from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
-const SuperDocumentBaseClass = SuperDocumentGenerator(NodeIsolate, ParentNode);
+export const { getState, setState, recordProxy } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
+const SuperDocumentBaseClass = SuperDocumentGenerator(NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase);
 
 export default class SuperDocument extends SuperDocumentBaseClass implements ISuperDocument {
   constructor() {

@@ -1,7 +1,7 @@
 import { IParentNode } from '../../base/interfaces/official';
 import { ISuperHTMLCollection, ISuperElement, ISuperNodeList } from '../../base/interfaces/super';
 import ParentNodeBase, { IParentNodeProperties } from '../../base/official-mixins/ParentNode';
-export declare const getState: <C = IParentNode, P = IParentNodeProperties>(instance: C) => P, setState: <P = IParentNodeProperties>(instance: IParentNode, properties: P) => void;
+export declare const getState: (instance: IParentNode) => IParentNodeProperties, setState: (instance: IParentNode, properties: Partial<IParentNodeProperties>) => void, recordProxy: (proxy: IParentNode, instance: IParentNode) => void;
 export default class ParentNode extends ParentNodeBase implements IParentNode {
     get children(): ISuperHTMLCollection;
     get firstElementChild(): ISuperElement;

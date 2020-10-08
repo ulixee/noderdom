@@ -8,7 +8,7 @@ import { ISuperText } from '../interfaces/super';
 import { ICharacterDataProperties, CharacterDataPropertyKeys, CharacterDataConstantKeys } from './CharacterData';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IText, ITextProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IText, ITextProperties>();
 export const awaitedHandler = new AwaitedHandler<IText>('Text', getState, setState);
 
 export function TextGenerator(CharacterData: Constructable<ICharacterData>) {

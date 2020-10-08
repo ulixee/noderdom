@@ -6,7 +6,7 @@ import NodeListIsolate from '../isolate-mixins/NodeListIsolate';
 import RadioNodeListIsolate from '../isolate-mixins/RadioNodeListIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
 const SuperNodeListBaseClass = SuperNodeListGenerator(NodeListIsolate, RadioNodeListIsolate);
 
 export default class SuperNodeList extends SuperNodeListBaseClass implements ISuperNodeList {

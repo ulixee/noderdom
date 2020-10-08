@@ -7,17 +7,19 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
-import { IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
+import { INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKeys } from '../isolate-mixins/NodeIsolate';
+import { INonElementParentNodeProperties, NonElementParentNodePropertyKeys, NonElementParentNodeConstantKeys } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
+import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEvaluatorBaseConstantKeys } from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
 export const nodeAttacher = new NodeAttacher<ISuperDocument>(getState, setState, awaitedHandler);
 
-export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>, ParentNode: Constructable<IParentNode>) {
-  const Parent = (ClassMixer(NodeIsolate, [ParentNode]) as unknown) as Constructable<INodeIsolate & IParentNode>;
+export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
+  const Parent = (ClassMixer(NodeIsolate, [NonElementParentNode, ParentNode, XPathEvaluatorBase]) as unknown) as Constructable<INodeIsolate & INonElementParentNode & IParentNode & IXPathEvaluatorBase>;
 
   return class SuperDocument extends Parent implements ISuperDocument, PromiseLike<ISuperDocument> {
     constructor() {
@@ -192,9 +194,11 @@ export function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>,
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperDocumentProperties extends INodeIsolateProperties, IParentNodeProperties {
+export interface ISuperDocumentProperties extends INodeIsolateProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly URL?: Promise<string>;
   readonly anchors?: ISuperHTMLCollection;
   readonly body?: ISuperHTMLElement;
@@ -228,6 +232,6 @@ export interface ISuperDocumentProperties extends INodeIsolateProperties, IParen
   readonly visibilityState?: Promise<IVisibilityState>;
 }
 
-export const SuperDocumentPropertyKeys = [...NodeIsolatePropertyKeys, ...ParentNodePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+export const SuperDocumentPropertyKeys = [...NodeIsolatePropertyKeys, ...NonElementParentNodePropertyKeys, ...ParentNodePropertyKeys, ...XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
 
-export const SuperDocumentConstantKeys = [...NodeIsolateConstantKeys, ...ParentNodeConstantKeys];
+export const SuperDocumentConstantKeys = [...NodeIsolateConstantKeys, ...NonElementParentNodeConstantKeys, ...ParentNodeConstantKeys, ...XPathEvaluatorBaseConstantKeys];

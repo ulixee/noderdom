@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { IHTMLOptionElement, IHTMLElement, IHTMLFormElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLOptionElement, P = IHTMLOptionElementProperties>(instance: C) => P, setState: <P = IHTMLOptionElementProperties>(instance: IHTMLOptionElement, properties: P) => void;
+export declare const getState: (instance: IHTMLOptionElement) => IHTMLOptionElementProperties, setState: (instance: IHTMLOptionElement, properties: Partial<IHTMLOptionElementProperties>) => void, recordProxy: (proxy: IHTMLOptionElement, instance: IHTMLOptionElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLOptionElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLOptionElement>;
 export declare function HTMLOptionElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
@@ -107,13 +107,13 @@ export declare function HTMLOptionElementGenerator(HTMLElement: Constructable<IH
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -132,6 +132,7 @@ export declare function HTMLOptionElementGenerator(HTMLElement: Constructable<IH
 export interface IHTMLOptionElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly defaultSelected?: Promise<boolean>;
     readonly disabled?: Promise<boolean>;
     readonly form?: IHTMLFormElement;

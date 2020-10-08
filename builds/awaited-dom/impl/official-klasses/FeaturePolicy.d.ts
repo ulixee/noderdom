@@ -1,6 +1,6 @@
 import { IFeaturePolicy } from '../../base/interfaces/official';
 import { IFeaturePolicyProperties } from '../../base/official-klasses/FeaturePolicy';
-export declare const getState: <C = IFeaturePolicy, P = IFeaturePolicyProperties>(instance: C) => P, setState: <P = IFeaturePolicyProperties>(instance: IFeaturePolicy, properties: P) => void;
+export declare const getState: (instance: IFeaturePolicy) => IFeaturePolicyProperties, setState: (instance: IFeaturePolicy, properties: Partial<IFeaturePolicyProperties>) => void, recordProxy: (proxy: IFeaturePolicy, instance: IFeaturePolicy) => void;
 declare const FeaturePolicyBaseClass: {
     new (): {};
 };

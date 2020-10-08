@@ -11,7 +11,7 @@ const Node_1 = __importDefault(require("./Node"));
 const NonDocumentTypeChildNode_1 = __importDefault(require("../official-mixins/NonDocumentTypeChildNode"));
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 const ElementBaseClass = Element_1.ElementGenerator(Node_1.default, NonDocumentTypeChildNode_1.default, ParentNode_1.default);
 class Element extends ElementBaseClass {
     constructor() {

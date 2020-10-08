@@ -13,7 +13,7 @@ const CharacterDataIsolate_1 = require("../isolate-mixins/CharacterDataIsolate")
 const NodeIsolate_1 = require("../isolate-mixins/NodeIsolate");
 const NonDocumentTypeChildNode_1 = require("../official-mixins/NonDocumentTypeChildNode");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('SuperText', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function SuperTextGenerator(CharacterDataIsolate, NodeIsolate, NonDocumentTypeChildNode) {

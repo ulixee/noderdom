@@ -1,7 +1,7 @@
 import { IDocument, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../base/interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../../base/interfaces/super';
 import { IDocumentProperties } from '../../base/official-klasses/Document';
-export declare const getState: <C = IDocument, P = IDocumentProperties>(instance: C) => P, setState: <P = IDocumentProperties>(instance: IDocument, properties: P) => void;
+export declare const getState: (instance: IDocument) => IDocumentProperties, setState: (instance: IDocument, properties: Partial<IDocumentProperties>) => void, recordProxy: (proxy: IDocument, instance: IDocument) => void;
 declare const DocumentBaseClass: {
     new (): {
         readonly URL: Promise<string>;
@@ -75,22 +75,29 @@ declare const DocumentBaseClass: {
         readonly parentNode: import("../../base/interfaces/super").ISuperNode;
         readonly previousSibling: import("../../base/interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../../base/interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../../base/interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../../base/interfaces/official").IGetRootNodeOptions | undefined): import("../../base/interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
+        getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: ISuperHTMLCollection;
         readonly firstElementChild: ISuperElement;
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
+        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined): import("../../base/interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: import("../../base/interfaces/isolate").INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined, type?: number | undefined, result?: import("../../base/interfaces/official").IXPathResult | null | undefined): import("../../base/interfaces/official").IXPathResult;
     };
 };
 export default class Document extends DocumentBaseClass implements IDocument {

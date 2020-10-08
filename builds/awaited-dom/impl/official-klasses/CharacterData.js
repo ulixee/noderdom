@@ -9,7 +9,7 @@ const CharacterData_1 = require("../../base/official-klasses/CharacterData");
 const Node_1 = __importDefault(require("./Node"));
 const NonDocumentTypeChildNode_1 = __importDefault(require("../official-mixins/NonDocumentTypeChildNode"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 const CharacterDataBaseClass = CharacterData_1.CharacterDataGenerator(Node_1.default, NonDocumentTypeChildNode_1.default);
 class CharacterData extends CharacterDataBaseClass {
     constructor() {

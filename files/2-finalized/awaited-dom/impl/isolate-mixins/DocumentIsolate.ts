@@ -6,7 +6,7 @@ import DocumentIsolateBase, { IDocumentIsolateProperties } from '../../base/isol
 import { createSuperHTMLCollection, createSuperHTMLElement, createDocumentType, createSuperElement, createFeaturePolicy, createHTMLHeadElement, createDOMImplementation, createLocation, createSuperNodeList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
 
 export default class DocumentIsolate extends DocumentIsolateBase implements IDocumentIsolate {
   public get anchors(): ISuperHTMLCollection {

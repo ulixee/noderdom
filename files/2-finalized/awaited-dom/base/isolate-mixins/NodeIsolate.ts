@@ -6,7 +6,7 @@ import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../in
 import { IGetRootNodeOptions } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<INodeIsolate, INodeIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<INodeIsolate, INodeIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<INodeIsolate>('NodeIsolate', getState, setState);
 
 export default class NodeIsolate implements INodeIsolate {
@@ -108,11 +108,11 @@ export default class NodeIsolate implements INodeIsolate {
 
   // methods
 
-  public compareDocumentPosition(other: ISuperNode): Promise<number> {
+  public compareDocumentPosition(other: INodeIsolate): Promise<number> {
     return awaitedHandler.runMethod<number>(this, 'compareDocumentPosition', [other]);
   }
 
-  public contains(other: ISuperNode | null): Promise<boolean> {
+  public contains(other: INodeIsolate | null): Promise<boolean> {
     return awaitedHandler.runMethod<boolean>(this, 'contains', [other]);
   }
 
@@ -128,11 +128,11 @@ export default class NodeIsolate implements INodeIsolate {
     return awaitedHandler.runMethod<boolean>(this, 'isDefaultNamespace', [namespace]);
   }
 
-  public isEqualNode(otherNode: ISuperNode | null): Promise<boolean> {
+  public isEqualNode(otherNode: INodeIsolate | null): Promise<boolean> {
     return awaitedHandler.runMethod<boolean>(this, 'isEqualNode', [otherNode]);
   }
 
-  public isSameNode(otherNode: ISuperNode | null): Promise<boolean> {
+  public isSameNode(otherNode: INodeIsolate | null): Promise<boolean> {
     return awaitedHandler.runMethod<boolean>(this, 'isSameNode', [otherNode]);
   }
 

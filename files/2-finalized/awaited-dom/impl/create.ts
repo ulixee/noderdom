@@ -1,6 +1,6 @@
 import AwaitedPath from '../base/AwaitedPath';
 import StateMachine from '../base/StateMachine';
-import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLButtonElement, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLSelectElement, IHTMLTextAreaElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRadioNodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText, IValidityState } from '../base/interfaces/official';
+import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLButtonElement, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLSelectElement, IHTMLTextAreaElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRadioNodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText, IValidityState, IXPathExpression, IXPathResult } from '../base/interfaces/official';
 import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
@@ -260,6 +260,20 @@ export function createText<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, await
 export function createValidityState<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IValidityState {
   const ValidityState = require('./official-klasses/ValidityState').default; // tslint:disable-line:variable-name
   const instance = new ValidityState();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createXPathExpression<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IXPathExpression {
+  const XPathExpression = require('./official-klasses/XPathExpression').default; // tslint:disable-line:variable-name
+  const instance = new XPathExpression();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createXPathResult<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IXPathResult {
+  const XPathResult = require('./official-klasses/XPathResult').default; // tslint:disable-line:variable-name
+  const instance = new XPathResult();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }

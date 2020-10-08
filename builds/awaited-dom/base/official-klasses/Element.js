@@ -13,7 +13,7 @@ const Node_1 = require("./Node");
 const NonDocumentTypeChildNode_1 = require("../official-mixins/NonDocumentTypeChildNode");
 const ParentNode_1 = require("../official-mixins/ParentNode");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('Element', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode) {

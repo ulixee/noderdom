@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('Body', exports.getState, exports.setState);
 class Body {
     get bodyUsed() {

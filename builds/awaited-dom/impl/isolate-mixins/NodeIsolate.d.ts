@@ -2,7 +2,7 @@ import { INodeIsolate } from '../../base/interfaces/isolate';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../../base/interfaces/super';
 import { IGetRootNodeOptions } from '../../base/interfaces/official';
 import NodeIsolateBase, { INodeIsolateProperties } from '../../base/isolate-mixins/NodeIsolate';
-export declare const getState: <C = INodeIsolate, P = INodeIsolateProperties>(instance: C) => P, setState: <P = INodeIsolateProperties>(instance: INodeIsolate, properties: P) => void;
+export declare const getState: (instance: INodeIsolate) => INodeIsolateProperties, setState: (instance: INodeIsolate, properties: Partial<INodeIsolateProperties>) => void, recordProxy: (proxy: INodeIsolate, instance: INodeIsolate) => void;
 export default class NodeIsolate extends NodeIsolateBase implements INodeIsolate {
     get childNodes(): ISuperNodeList;
     get firstChild(): ISuperNode;

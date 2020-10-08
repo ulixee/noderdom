@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IValidityState } from '../interfaces/official';
-export declare const getState: <C = IValidityState, P = IValidityStateProperties>(instance: C) => P, setState: <P = IValidityStateProperties>(instance: IValidityState, properties: P) => void;
+export declare const getState: (instance: IValidityState) => IValidityStateProperties, setState: (instance: IValidityState, properties: Partial<IValidityStateProperties>) => void, recordProxy: (proxy: IValidityState, instance: IValidityState) => void;
 export declare const awaitedHandler: AwaitedHandler<IValidityState>;
 export declare function ValidityStateGenerator(): {
     new (): {};

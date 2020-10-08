@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IDocumentTypeIsolate } from '../interfaces/isolate';
-export declare const getState: <C = IDocumentTypeIsolate, P = IDocumentTypeIsolateProperties>(instance: C) => P, setState: <P = IDocumentTypeIsolateProperties>(instance: IDocumentTypeIsolate, properties: P) => void;
+export declare const getState: (instance: IDocumentTypeIsolate) => IDocumentTypeIsolateProperties, setState: (instance: IDocumentTypeIsolate, properties: Partial<IDocumentTypeIsolateProperties>) => void, recordProxy: (proxy: IDocumentTypeIsolate, instance: IDocumentTypeIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocumentTypeIsolate>;
 export default class DocumentTypeIsolate implements IDocumentTypeIsolate {
     get name(): Promise<string>;

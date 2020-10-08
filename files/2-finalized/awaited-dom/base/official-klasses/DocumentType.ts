@@ -8,7 +8,7 @@ import { IDocumentType, INode } from '../interfaces/official';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IDocumentType, IDocumentTypeProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IDocumentType, IDocumentTypeProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentType>('DocumentType', getState, setState);
 export const nodeAttacher = new NodeAttacher<IDocumentType>(getState, setState, awaitedHandler);
 
@@ -47,6 +47,8 @@ export function DocumentTypeGenerator(Node: Constructable<INode>) {
 export interface IDocumentTypeProperties extends INodeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly name?: Promise<string>;
   readonly publicId?: Promise<string>;
   readonly systemId?: Promise<string>;

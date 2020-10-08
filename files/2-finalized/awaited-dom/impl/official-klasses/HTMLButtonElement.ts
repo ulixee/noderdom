@@ -6,7 +6,7 @@ import { createHTMLFormElement, createSuperNodeList } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLButtonElement, IHTMLButtonElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLButtonElement, IHTMLButtonElementProperties>();
 const HTMLButtonElementBaseClass = HTMLButtonElementGenerator(HTMLElement);
 
 export default class HTMLButtonElement extends HTMLButtonElementBaseClass implements IHTMLButtonElement {

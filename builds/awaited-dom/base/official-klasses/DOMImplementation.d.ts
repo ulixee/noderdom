@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IDOMImplementation } from '../interfaces/official';
-export declare const getState: <C = IDOMImplementation, P = IDOMImplementationProperties>(instance: C) => P, setState: <P = IDOMImplementationProperties>(instance: IDOMImplementation, properties: P) => void;
+export declare const getState: (instance: IDOMImplementation) => IDOMImplementationProperties, setState: (instance: IDOMImplementation, properties: Partial<IDOMImplementationProperties>) => void, recordProxy: (proxy: IDOMImplementation, instance: IDOMImplementation) => void;
 export declare const awaitedHandler: AwaitedHandler<IDOMImplementation>;
 export declare function DOMImplementationGenerator(): {
     new (): {

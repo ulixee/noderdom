@@ -4,7 +4,7 @@ import AwaitedIterator from '../AwaitedIterator';
 import { IHTMLSelectElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
-export declare const getState: <C = IHTMLSelectElementIsolate, P = IHTMLSelectElementIsolateProperties>(instance: C) => P, setState: <P = IHTMLSelectElementIsolateProperties>(instance: IHTMLSelectElementIsolate, properties: P) => void;
+export declare const getState: (instance: IHTMLSelectElementIsolate) => IHTMLSelectElementIsolateProperties, setState: (instance: IHTMLSelectElementIsolate, properties: Partial<IHTMLSelectElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLSelectElementIsolate, instance: IHTMLSelectElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSelectElementIsolate>;
 export declare const awaitedIterator: AwaitedIterator<IHTMLSelectElementIsolate, ISuperElement>;
 export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsolate {
@@ -31,10 +31,13 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
     namedItem(name: string): IHTMLOptionElement;
     reportValidity(): Promise<boolean>;
     [Symbol.iterator](): IterableIterator<ISuperElement>;
+    [index: number]: ISuperElement;
 }
 export interface IHTMLSelectElementIsolateProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
+    createIterableName: string;
     readonly autocomplete?: Promise<string>;
     readonly autofocus?: Promise<boolean>;
     readonly disabled?: Promise<boolean>;

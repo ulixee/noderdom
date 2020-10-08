@@ -10,5 +10,5 @@ export default class AwaitedIterator<TClass, T> {
     private iterateAttachedItems;
 }
 export interface IAwaitedIteratorProperties extends INodeAttacherProperties {
-    createIterableName: string;
+    createIterableName?: string;
 }

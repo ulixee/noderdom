@@ -1,5 +1,5 @@
 import { ITextIsolate } from '../../base/interfaces/isolate';
 import TextIsolateBase, { ITextIsolateProperties } from '../../base/isolate-mixins/TextIsolate';
-export declare const getState: <C = ITextIsolate, P = ITextIsolateProperties>(instance: C) => P, setState: <P = ITextIsolateProperties>(instance: ITextIsolate, properties: P) => void;
+export declare const getState: (instance: ITextIsolate) => ITextIsolateProperties, setState: (instance: ITextIsolate, properties: Partial<ITextIsolateProperties>) => void, recordProxy: (proxy: ITextIsolate, instance: ITextIsolate) => void;
 export default class TextIsolate extends TextIsolateBase implements ITextIsolate {
 }

@@ -5,7 +5,7 @@ import { createHeaders } from '../create';
 import Body from '../official-mixins/Body';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IResponse, IResponseProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IResponse, IResponseProperties>();
 const ResponseBaseClass = ResponseGenerator(Body);
 
 export default class Response extends ResponseBaseClass implements IResponse {

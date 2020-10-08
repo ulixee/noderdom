@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const DOMRect_1 = require("../../base/official-klasses/DOMRect");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 const DOMRectBaseClass = DOMRect_1.DOMRectGenerator();
 class DOMRect extends DOMRectBaseClass {
 }

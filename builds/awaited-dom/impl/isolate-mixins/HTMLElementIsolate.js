@@ -8,7 +8,7 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 class HTMLElementIsolate extends HTMLElementIsolate_1.default {
     get offsetParent() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);

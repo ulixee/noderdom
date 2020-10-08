@@ -7,7 +7,7 @@ import HTMLCollectionIsolate from '../isolate-mixins/HTMLCollectionIsolate';
 import HTMLOptionsCollectionIsolate from '../isolate-mixins/HTMLOptionsCollectionIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
 const SuperHTMLCollectionBaseClass = SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate, HTMLCollectionIsolate, HTMLOptionsCollectionIsolate);
 
 export default class SuperHTMLCollection extends SuperHTMLCollectionBaseClass implements ISuperHTMLCollection {

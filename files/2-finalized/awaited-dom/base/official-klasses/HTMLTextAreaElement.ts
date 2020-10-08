@@ -9,7 +9,7 @@ import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLTextAreaElement, IHTMLTextAreaElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLTextAreaElement, IHTMLTextAreaElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTextAreaElement>('HTMLTextAreaElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLTextAreaElement>(getState, setState, awaitedHandler);
 
@@ -162,6 +162,8 @@ export function HTMLTextAreaElementGenerator(HTMLElement: Constructable<IHTMLEle
 export interface IHTMLTextAreaElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+
   readonly autocomplete?: Promise<string>;
   readonly autofocus?: Promise<boolean>;
   readonly cols?: Promise<number>;

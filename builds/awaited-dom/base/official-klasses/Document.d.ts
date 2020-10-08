@@ -2,14 +2,16 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IDocument, INode, IParentNode, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
+import { IDocument, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeProperties } from './Node';
+import { INonElementParentNodeProperties } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
-export declare const getState: <C = IDocument, P = IDocumentProperties>(instance: C) => P, setState: <P = IDocumentProperties>(instance: IDocument, properties: P) => void;
+import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluatorBase';
+export declare const getState: (instance: IDocument) => IDocumentProperties, setState: (instance: IDocument, properties: Partial<IDocumentProperties>) => void, recordProxy: (proxy: IDocument, instance: IDocument) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocument>;
 export declare const nodeAttacher: NodeAttacher<IDocument>;
-export declare function DocumentGenerator(Node: Constructable<INode>, ParentNode: Constructable<IParentNode>): {
+export declare function DocumentGenerator(Node: Constructable<INode>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {
         readonly URL: Promise<string>;
         readonly anchors: ISuperHTMLCollection;
@@ -82,27 +84,35 @@ export declare function DocumentGenerator(Node: Constructable<INode>, ParentNode
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
+        getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: ISuperHTMLCollection;
         readonly firstElementChild: ISuperElement;
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
+        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined): import("../interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: import("../interfaces/isolate").INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
+            lookupNamespaceURI(prefix: string | null): string | null;
+        } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
 };
-export interface IDocumentProperties extends INodeProperties, IParentNodeProperties {
+export interface IDocumentProperties extends INodeProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly URL?: Promise<string>;
     readonly anchors?: ISuperHTMLCollection;
     readonly body?: ISuperHTMLElement;

@@ -3,10 +3,11 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IRadioNodeList, INodeList } from '../interfaces/official';
 import { INodeListProperties } from './NodeList';
-export declare const getState: <C = IRadioNodeList, P = IRadioNodeListProperties>(instance: C) => P, setState: <P = IRadioNodeListProperties>(instance: IRadioNodeList, properties: P) => void;
+export declare const getState: (instance: IRadioNodeList) => IRadioNodeListProperties, setState: (instance: IRadioNodeList, properties: Partial<IRadioNodeListProperties>) => void, recordProxy: (proxy: IRadioNodeList, instance: IRadioNodeList) => void;
 export declare const awaitedHandler: AwaitedHandler<IRadioNodeList>;
 export declare function RadioNodeListGenerator(NodeList: Constructable<INodeList>): {
     new (): {
+        [index: number]: import("../interfaces/super").ISuperNode;
         readonly value: Promise<string>;
         readonly length: Promise<number>;
         item(index: number): import("../interfaces/super").ISuperNode;

@@ -5,7 +5,7 @@ import NodeAttacher from '../NodeAttacher';
 import { IAttr, INode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { INodeProperties } from './Node';
-export declare const getState: <C = IAttr, P = IAttrProperties>(instance: C) => P, setState: <P = IAttrProperties>(instance: IAttr, properties: P) => void;
+export declare const getState: (instance: IAttr) => IAttrProperties, setState: (instance: IAttr, properties: Partial<IAttrProperties>) => void, recordProxy: (proxy: IAttr, instance: IAttr) => void;
 export declare const awaitedHandler: AwaitedHandler<IAttr>;
 export declare const nodeAttacher: NodeAttacher<IAttr>;
 export declare function AttrGenerator(Node: Constructable<INode>): {
@@ -50,13 +50,13 @@ export declare function AttrGenerator(Node: Constructable<INode>): {
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -65,6 +65,7 @@ export declare function AttrGenerator(Node: Constructable<INode>): {
 export interface IAttrProperties extends INodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly localName?: Promise<string>;
     readonly name?: Promise<string>;
     readonly namespaceURI?: Promise<string | null>;

@@ -9,7 +9,7 @@ const initializeConstantsAndProperties_1 = __importDefault(require("../initializ
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const CharacterData_1 = require("./CharacterData");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('Text', exports.getState, exports.setState);
 function TextGenerator(CharacterData) {
     return class Text extends CharacterData {

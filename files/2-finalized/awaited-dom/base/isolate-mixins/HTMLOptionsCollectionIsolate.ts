@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLOptionsCollectionIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLOptionsCollectionIsolate, IHTMLOptionsCollectionIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionsCollectionIsolate, IHTMLOptionsCollectionIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptionsCollectionIsolate>('HTMLOptionsCollectionIsolate', getState, setState);
 
 export default class HTMLOptionsCollectionIsolate implements IHTMLOptionsCollectionIsolate {}

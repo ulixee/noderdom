@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IAttrIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
-export declare const getState: <C = IAttrIsolate, P = IAttrIsolateProperties>(instance: C) => P, setState: <P = IAttrIsolateProperties>(instance: IAttrIsolate, properties: P) => void;
+export declare const getState: (instance: IAttrIsolate) => IAttrIsolateProperties, setState: (instance: IAttrIsolate, properties: Partial<IAttrIsolateProperties>) => void, recordProxy: (proxy: IAttrIsolate, instance: IAttrIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IAttrIsolate>;
 export default class AttrIsolate implements IAttrIsolate {
     get localName(): Promise<string>;

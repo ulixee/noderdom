@@ -264,6 +264,20 @@ function createValidityState(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createValidityState = createValidityState;
+function createXPathExpression(awaitedPath, awaitedOptions) {
+    const XPathExpression = require('./official-klasses/XPathExpression').default; // tslint:disable-line:variable-name
+    const instance = new XPathExpression();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createXPathExpression = createXPathExpression;
+function createXPathResult(awaitedPath, awaitedOptions) {
+    const XPathResult = require('./official-klasses/XPathResult').default; // tslint:disable-line:variable-name
+    const instance = new XPathResult();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createXPathResult = createXPathResult;
 function createSuperDocument(awaitedPath, awaitedOptions) {
     const SuperDocument = require('./super-klasses/SuperDocument').default; // tslint:disable-line:variable-name
     const instance = new SuperDocument();

@@ -3,7 +3,8 @@ import AwaitedPath from '../AwaitedPath';
 import NodeAttacher from '../NodeAttacher';
 import { INode, IGetRootNodeOptions } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
-export declare const getState: <C = INode, P = INodeProperties>(instance: C) => P, setState: <P = INodeProperties>(instance: INode, properties: P) => void;
+import { INodeIsolate } from '../interfaces/isolate';
+export declare const getState: (instance: INode) => INodeProperties, setState: (instance: INode, properties: Partial<INodeProperties>) => void, recordProxy: (proxy: INode, instance: INode) => void;
 export declare const awaitedHandler: AwaitedHandler<INode>;
 export declare const nodeAttacher: NodeAttacher<INode>;
 export declare function NodeGenerator(): {
@@ -40,13 +41,13 @@ export declare function NodeGenerator(): {
         readonly parentNode: ISuperNode;
         readonly previousSibling: ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: ISuperNode): Promise<number>;
-        contains(other: ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: INodeIsolate): Promise<number>;
+        contains(other: INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: IGetRootNodeOptions | undefined): ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -74,6 +75,7 @@ export declare function NodeGenerator(): {
 export interface INodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly baseURI?: Promise<string>;
     readonly childNodes?: ISuperNodeList;
     readonly firstChild?: ISuperNode;

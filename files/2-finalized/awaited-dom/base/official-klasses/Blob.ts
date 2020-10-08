@@ -6,7 +6,7 @@ import Constructable from '../Constructable';
 import { IBlob, IBlobPart, IBlobPropertyBag } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IBlob, IBlobProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IBlob, IBlobProperties>();
 export const awaitedHandler = new AwaitedHandler<IBlob>('Blob', getState, setState);
 
 export function BlobGenerator() {

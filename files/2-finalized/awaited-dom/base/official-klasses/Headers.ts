@@ -8,7 +8,7 @@ import NodeAttacher from '../NodeAttacher';
 import { IHeaders, IHeadersInit } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHeaders, IHeadersProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHeaders, IHeadersProperties>();
 export const awaitedHandler = new AwaitedHandler<IHeaders>('Headers', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHeaders>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IHeaders, [string, string]>(getState, setState, awaitedHandler);
@@ -76,7 +76,9 @@ export function HeadersGenerator() {
 
 export interface IHeadersProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  createInstanceName: string;
+}
 
 export const HeadersPropertyKeys = [];
 

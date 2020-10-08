@@ -5,7 +5,7 @@ import { createHeaders } from '../create';
 import Body from '../official-mixins/Body';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IRequest, IRequestProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IRequest, IRequestProperties>();
 const RequestBaseClass = RequestGenerator(Body);
 
 export default class Request extends RequestBaseClass implements IRequest {

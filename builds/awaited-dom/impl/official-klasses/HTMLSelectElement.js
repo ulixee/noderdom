@@ -9,7 +9,7 @@ const HTMLSelectElement_1 = require("../../base/official-klasses/HTMLSelectEleme
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 const HTMLSelectElementBaseClass = HTMLSelectElement_1.HTMLSelectElementGenerator(HTMLElement_1.default);
 class HTMLSelectElement extends HTMLSelectElementBaseClass {
     constructor() {

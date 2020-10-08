@@ -9,7 +9,7 @@ import { INodeList } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<INodeList, INodeListProperties>();
+export const { getState, setState, recordProxy } = StateMachine<INodeList, INodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<INodeList>('NodeList', getState, setState);
 export const nodeAttacher = new NodeAttacher<INodeList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<INodeList, ISuperNode>(getState, setState, awaitedHandler);
@@ -22,6 +22,26 @@ export function NodeListGenerator() {
         createInstanceName: 'createNodeList',
         createIterableName: 'createSuperNode',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to indexer property
+          if (!isNaN(prop as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+        },
+      });
+
+      recordProxy(proxy, this);
+      return proxy;
     }
 
     // properties
@@ -61,6 +81,8 @@ export function NodeListGenerator() {
     public [Symbol.iterator](): IterableIterator<ISuperNode> {
       return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
     }
+
+    [index: number]: ISuperNode;
   };
 }
 
@@ -69,6 +91,9 @@ export function NodeListGenerator() {
 export interface INodeListProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
+  createInstanceName: string;
+  createIterableName: string;
+
   readonly length?: Promise<number>;
 }
 

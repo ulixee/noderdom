@@ -9,7 +9,7 @@ const initializeConstantsAndProperties_1 = __importDefault(require("../initializ
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const Body_1 = require("../official-mixins/Body");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('Request', exports.getState, exports.setState);
 function RequestGenerator(Body) {
     return class Request extends Body {

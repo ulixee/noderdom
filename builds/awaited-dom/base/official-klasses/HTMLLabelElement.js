@@ -10,7 +10,7 @@ const StateMachine_1 = __importDefault(require("../StateMachine"));
 const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
 const HTMLElement_1 = require("./HTMLElement");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLLabelElement', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLLabelElementGenerator(HTMLElement) {

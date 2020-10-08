@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { ICharacterDataIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<ICharacterDataIsolate, ICharacterDataIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<ICharacterDataIsolate, ICharacterDataIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<ICharacterDataIsolate>('CharacterDataIsolate', getState, setState);
 
 export default class CharacterDataIsolate implements ICharacterDataIsolate {

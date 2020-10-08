@@ -6,7 +6,7 @@ import HTMLTextAreaElementIsolateBase, { IHTMLTextAreaElementIsolateProperties }
 import { createHTMLFormElement, createSuperNodeList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLTextAreaElementIsolate, IHTMLTextAreaElementIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLTextAreaElementIsolate, IHTMLTextAreaElementIsolateProperties>();
 
 export default class HTMLTextAreaElementIsolate extends HTMLTextAreaElementIsolateBase implements IHTMLTextAreaElementIsolate {
   public get form(): IHTMLFormElement {

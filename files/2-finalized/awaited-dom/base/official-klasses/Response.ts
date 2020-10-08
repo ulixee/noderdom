@@ -7,7 +7,7 @@ import { IResponse, IBody, IBodyInit, IResponseInit, IHeaders, IResponseType } f
 import { IBodyProperties, BodyPropertyKeys, BodyConstantKeys } from '../official-mixins/Body';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IResponse, IResponseProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IResponse, IResponseProperties>();
 export const awaitedHandler = new AwaitedHandler<IResponse>('Response', getState, setState);
 
 export function ResponseGenerator(Body: Constructable<IBody>) {

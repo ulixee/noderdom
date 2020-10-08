@@ -5,7 +5,7 @@ import { INonDocumentTypeChildNode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<INonDocumentTypeChildNode, INonDocumentTypeChildNodeProperties>();
+export const { getState, setState, recordProxy } = StateMachine<INonDocumentTypeChildNode, INonDocumentTypeChildNodeProperties>();
 export const awaitedHandler = new AwaitedHandler<INonDocumentTypeChildNode>('NonDocumentTypeChildNode', getState, setState);
 
 export default class NonDocumentTypeChildNode implements INonDocumentTypeChildNode {

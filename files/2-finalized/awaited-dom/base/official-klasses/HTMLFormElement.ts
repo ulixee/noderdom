@@ -8,7 +8,7 @@ import { IHTMLFormElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLFormElement, IHTMLFormElementProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLFormElement, IHTMLFormElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFormElement>('HTMLFormElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLFormElement>(getState, setState, awaitedHandler);
 
@@ -32,7 +32,9 @@ export function HTMLFormElementGenerator(HTMLElement: Constructable<IHTMLElement
 
 export interface IHTMLFormElementProperties extends IHTMLElementProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  createInstanceName: string;
+}
 
 export const HTMLFormElementPropertyKeys = [...HTMLElementPropertyKeys];
 

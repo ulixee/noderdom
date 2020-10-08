@@ -1,7 +1,7 @@
 import { IHTMLInputElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../../base/interfaces/super';
 import { IHTMLInputElementProperties } from '../../base/official-klasses/HTMLInputElement';
-export declare const getState: <C = IHTMLInputElement, P = IHTMLInputElementProperties>(instance: C) => P, setState: <P = IHTMLInputElementProperties>(instance: IHTMLInputElement, properties: P) => void;
+export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void, recordProxy: (proxy: IHTMLInputElement, instance: IHTMLInputElement) => void;
 declare const HTMLInputElementBaseClass: {
     new (): {
         readonly accept: Promise<string>;
@@ -145,13 +145,13 @@ declare const HTMLInputElementBaseClass: {
         readonly parentNode: import("../../base/interfaces/super").ISuperNode;
         readonly previousSibling: import("../../base/interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../../base/interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../../base/interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../../base/interfaces/official").IGetRootNodeOptions | undefined): import("../../base/interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../../base/interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../../base/interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;

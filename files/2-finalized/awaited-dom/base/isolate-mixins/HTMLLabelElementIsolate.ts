@@ -6,7 +6,7 @@ import { ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLFormElement } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLLabelElementIsolate, IHTMLLabelElementIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLLabelElementIsolate, IHTMLLabelElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLLabelElementIsolate>('HTMLLabelElementIsolate', getState, setState);
 
 export default class HTMLLabelElementIsolate implements IHTMLLabelElementIsolate {

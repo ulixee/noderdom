@@ -5,7 +5,7 @@ import { IHTMLOptionElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState } = StateMachine<IHTMLOptionElementIsolate, IHTMLOptionElementIsolateProperties>();
+export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionElementIsolate, IHTMLOptionElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptionElementIsolate>('HTMLOptionElementIsolate', getState, setState);
 
 export default class HTMLOptionElementIsolate implements IHTMLOptionElementIsolate {

@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { IHTMLHeadElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: <C = IHTMLHeadElement, P = IHTMLHeadElementProperties>(instance: C) => P, setState: <P = IHTMLHeadElementProperties>(instance: IHTMLHeadElement, properties: P) => void;
+export declare const getState: (instance: IHTMLHeadElement) => IHTMLHeadElementProperties, setState: (instance: IHTMLHeadElement, properties: Partial<IHTMLHeadElementProperties>) => void, recordProxy: (proxy: IHTMLHeadElement, instance: IHTMLHeadElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLHeadElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLHeadElement>;
 export declare function HTMLHeadElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
@@ -99,13 +99,13 @@ export declare function HTMLHeadElementGenerator(HTMLElement: Constructable<IHTM
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -124,6 +124,7 @@ export declare function HTMLHeadElementGenerator(HTMLElement: Constructable<IHTM
 export interface IHTMLHeadElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
 }
 export declare const HTMLHeadElementPropertyKeys: string[];
 export declare const HTMLHeadElementConstantKeys: string[];

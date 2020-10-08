@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { IDocumentType, INode } from '../interfaces/official';
 import { INodeProperties } from './Node';
-export declare const getState: <C = IDocumentType, P = IDocumentTypeProperties>(instance: C) => P, setState: <P = IDocumentTypeProperties>(instance: IDocumentType, properties: P) => void;
+export declare const getState: (instance: IDocumentType) => IDocumentTypeProperties, setState: (instance: IDocumentType, properties: Partial<IDocumentTypeProperties>) => void, recordProxy: (proxy: IDocumentType, instance: IDocumentType) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocumentType>;
 export declare const nodeAttacher: NodeAttacher<IDocumentType>;
 export declare function DocumentTypeGenerator(Node: Constructable<INode>): {
@@ -45,13 +45,13 @@ export declare function DocumentTypeGenerator(Node: Constructable<INode>): {
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -60,6 +60,7 @@ export declare function DocumentTypeGenerator(Node: Constructable<INode>): {
 export interface IDocumentTypeProperties extends INodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly name?: Promise<string>;
     readonly publicId?: Promise<string>;
     readonly systemId?: Promise<string>;

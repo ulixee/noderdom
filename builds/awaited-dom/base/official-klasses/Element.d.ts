@@ -7,7 +7,7 @@ import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { INodeProperties } from './Node';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
-export declare const getState: <C = IElement, P = IElementProperties>(instance: C) => P, setState: <P = IElementProperties>(instance: IElement, properties: P) => void;
+export declare const getState: (instance: IElement) => IElementProperties, setState: (instance: IElement, properties: Partial<IElementProperties>) => void, recordProxy: (proxy: IElement, instance: IElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IElement>;
 export declare const nodeAttacher: NodeAttacher<IElement>;
 export declare function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>): {
@@ -85,13 +85,13 @@ export declare function ElementGenerator(Node: Constructable<INode>, NonDocument
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: import("../interfaces/isolate").INodeIsolate): Promise<number>;
+        contains(other: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: import("../interfaces/isolate").INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -108,6 +108,7 @@ export declare function ElementGenerator(Node: Constructable<INode>, NonDocument
 export interface IElementProperties extends INodeProperties, INonDocumentTypeChildNodeProperties, IParentNodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly attributes?: INamedNodeMap;
     readonly classList?: IDOMTokenList;
     readonly className?: Promise<string>;

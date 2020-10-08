@@ -8,7 +8,7 @@ const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const AwaitedIterator_1 = __importDefault(require("../AwaitedIterator"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLCollectionBaseIsolate', exports.getState, exports.setState);
 exports.awaitedIterator = new AwaitedIterator_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 class HTMLCollectionBaseIsolate {
@@ -17,7 +17,7 @@ class HTMLCollectionBaseIsolate {
     }
     // methods
     item(index) {
-        return exports.awaitedHandler.runMethod(this, 'item', [index]);
+        throw new Error('HTMLCollectionBaseIsolate.item not implemented');
     }
     [Symbol.iterator]() {
         return exports.awaitedIterator.iterateAttached(this)[Symbol.iterator]();

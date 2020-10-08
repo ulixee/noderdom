@@ -8,7 +8,7 @@ import { INonDocumentTypeChildNode } from '../interfaces/official';
 import { ICharacterDataIsolateProperties } from '../isolate-mixins/CharacterDataIsolate';
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
-export declare const getState: <C = ISuperText, P = ISuperTextProperties>(instance: C) => P, setState: <P = ISuperTextProperties>(instance: ISuperText, properties: P) => void;
+export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void, recordProxy: (proxy: ISuperText, instance: ISuperText) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperText>;
 export declare const nodeAttacher: NodeAttacher<ISuperText>;
 export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>): {
@@ -51,13 +51,13 @@ export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<I
         readonly parentNode: import("../interfaces/super").ISuperNode;
         readonly previousSibling: import("../interfaces/super").ISuperNode;
         readonly textContent: Promise<string | null>;
-        compareDocumentPosition(other: import("../interfaces/super").ISuperNode): Promise<number>;
-        contains(other: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        compareDocumentPosition(other: INodeIsolate): Promise<number>;
+        contains(other: INodeIsolate | null): Promise<boolean>;
         getRootNode(options?: import("../interfaces/official").IGetRootNodeOptions | undefined): import("../interfaces/super").ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
-        isEqualNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
-        isSameNode(otherNode: import("../interfaces/super").ISuperNode | null): Promise<boolean>;
+        isEqualNode(otherNode: INodeIsolate | null): Promise<boolean>;
+        isSameNode(otherNode: INodeIsolate | null): Promise<boolean>;
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
@@ -68,6 +68,7 @@ export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<I
 export interface ISuperTextProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
+    createInstanceName: string;
     readonly wholeText?: Promise<string>;
 }
 export declare const SuperTextPropertyKeys: string[];

@@ -1,5 +1,5 @@
 import { IRadioNodeListIsolate } from '../../base/interfaces/isolate';
 import RadioNodeListIsolateBase, { IRadioNodeListIsolateProperties } from '../../base/isolate-mixins/RadioNodeListIsolate';
-export declare const getState: <C = IRadioNodeListIsolate, P = IRadioNodeListIsolateProperties>(instance: C) => P, setState: <P = IRadioNodeListIsolateProperties>(instance: IRadioNodeListIsolate, properties: P) => void;
+export declare const getState: (instance: IRadioNodeListIsolate) => IRadioNodeListIsolateProperties, setState: (instance: IRadioNodeListIsolate, properties: Partial<IRadioNodeListIsolateProperties>) => void, recordProxy: (proxy: IRadioNodeListIsolate, instance: IRadioNodeListIsolate) => void;
 export default class RadioNodeListIsolate extends RadioNodeListIsolateBase implements IRadioNodeListIsolate {
 }

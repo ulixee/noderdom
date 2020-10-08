@@ -1,6 +1,6 @@
 import { IResponse, IBodyInit, IResponseInit, IHeaders } from '../../base/interfaces/official';
 import { IResponseProperties } from '../../base/official-klasses/Response';
-export declare const getState: <C = IResponse, P = IResponseProperties>(instance: C) => P, setState: <P = IResponseProperties>(instance: IResponse, properties: P) => void;
+export declare const getState: (instance: IResponse) => IResponseProperties, setState: (instance: IResponse, properties: Partial<IResponseProperties>) => void, recordProxy: (proxy: IResponse, instance: IResponse) => void;
 declare const ResponseBaseClass: {
     new (_body?: string | ArrayBuffer | ArrayBufferView | null | undefined, _init?: IResponseInit | undefined): {
         readonly headers: IHeaders;

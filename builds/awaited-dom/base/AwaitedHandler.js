@@ -8,31 +8,30 @@ class AwaitedHandler {
         this.className = className;
         this.getState = getState;
         this.setState = setState;
-        AwaitedHandler.initializer(this);
     }
-    // @ts-ignore
     construct(instance, args) {
-        throw new NotImplementedError(`${this.className} constructor not implemented`);
+        var _a;
+        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.construct(this, instance, args);
     }
-    // @ts-ignore
     getProperty(instance, name, hasNullDefault = false) {
-        throw new NotImplementedError(`AwaitedHandler.getProperty not implemented`);
+        var _a;
+        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.getProperty(this, instance, name, hasNullDefault);
     }
-    // @ts-ignore
     setProperty(instance, name, value) {
-        throw new NotImplementedError(`AwaitedHandler.setProperty not implemented`);
+        var _a;
+        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.setProperty(this, instance, name, value);
     }
-    // @ts-ignore
     loadState(instance, properties) {
-        throw new NotImplementedError(`AwaitedHandler.loadState not implemented`);
+        var _a;
+        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.loadState(this, instance, properties);
     }
-    // @ts-ignore
     runMethod(instance, name, args) {
-        throw new NotImplementedError(`AwaitedHandler.runMethod not implemented`);
+        var _a;
+        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runMethod(this, instance, name, args);
     }
-    // @ts-ignore
     runStatic(klass, name, args) {
-        throw new NotImplementedError(`AwaitedHandler.runStatic not implemented`);
+        var _a;
+        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runStatic(this, klass, name, args);
     }
 }
 exports.default = AwaitedHandler;

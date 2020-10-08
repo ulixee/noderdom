@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLFieldSetElementIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLFormElement, IValidityState } from '../interfaces/official';
-export declare const getState: <C = IHTMLFieldSetElementIsolate, P = IHTMLFieldSetElementIsolateProperties>(instance: C) => P, setState: <P = IHTMLFieldSetElementIsolateProperties>(instance: IHTMLFieldSetElementIsolate, properties: P) => void;
+export declare const getState: (instance: IHTMLFieldSetElementIsolate) => IHTMLFieldSetElementIsolateProperties, setState: (instance: IHTMLFieldSetElementIsolate, properties: Partial<IHTMLFieldSetElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLFieldSetElementIsolate, instance: IHTMLFieldSetElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFieldSetElementIsolate>;
 export default class HTMLFieldSetElementIsolate implements IHTMLFieldSetElementIsolate {
     get disabled(): Promise<boolean>;
