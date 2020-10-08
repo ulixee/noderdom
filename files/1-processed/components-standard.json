@@ -6145,22 +6145,14 @@
               "type": "void",
               "params": [
                 {
-                  "name": "options",
-                  "type": "ScrollToOptions",
-                  "optional": 1
-                }
-              ]
-            },
-            {
-              "type": "void",
-              "params": [
-                {
                   "name": "x",
-                  "type": "unrestricted double"
+                  "type": "unrestricted double",
+                  "optional": 1
                 },
                 {
                   "name": "y",
-                  "type": "unrestricted double"
+                  "type": "unrestricted double",
+                  "optional": 1
                 }
               ]
             }
@@ -6174,22 +6166,14 @@
               "type": "void",
               "params": [
                 {
-                  "name": "options",
-                  "type": "ScrollToOptions",
-                  "optional": 1
-                }
-              ]
-            },
-            {
-              "type": "void",
-              "params": [
-                {
                   "name": "x",
-                  "type": "unrestricted double"
+                  "type": "unrestricted double",
+                  "optional": 1
                 },
                 {
                   "name": "y",
-                  "type": "unrestricted double"
+                  "type": "unrestricted double",
+                  "optional": 1
                 }
               ]
             }
@@ -6203,22 +6187,14 @@
               "type": "void",
               "params": [
                 {
-                  "name": "options",
-                  "type": "ScrollToOptions",
-                  "optional": 1
-                }
-              ]
-            },
-            {
-              "type": "void",
-              "params": [
-                {
                   "name": "x",
-                  "type": "unrestricted double"
+                  "type": "unrestricted double",
+                  "optional": 1
                 },
                 {
                   "name": "y",
-                  "type": "unrestricted double"
+                  "type": "unrestricted double",
+                  "optional": 1
                 }
               ]
             }
@@ -8389,23 +8365,16 @@
                 {
                   "name": "replacement",
                   "type": "DOMString"
-                }
-              ]
-            },
-            {
-              "type": "void",
-              "params": [
-                {
-                  "name": "replacement",
-                  "type": "DOMString"
                 },
                 {
                   "name": "start",
-                  "type": "unsigned long"
+                  "type": "unsigned long",
+                  "optional": 1
                 },
                 {
                   "name": "end",
-                  "type": "unsigned long"
+                  "type": "unsigned long",
+                  "optional": 1
                 },
                 {
                   "name": "selectionMode",
@@ -12070,23 +12039,16 @@
                 {
                   "name": "replacement",
                   "type": "DOMString"
-                }
-              ]
-            },
-            {
-              "type": "void",
-              "params": [
-                {
-                  "name": "replacement",
-                  "type": "DOMString"
                 },
                 {
                   "name": "start",
-                  "type": "unsigned long"
+                  "type": "unsigned long",
+                  "optional": 1
                 },
                 {
                   "name": "end",
-                  "type": "unsigned long"
+                  "type": "unsigned long",
+                  "optional": 1
                 },
                 {
                   "name": "selectionMode",

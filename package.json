@@ -1,6 +1,6 @@
 {
   "name": "noderdom",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
   "homepage": "https://github.com/ulixee/noderdom",
   "author": "Data Liberation Foundation",
@@ -27,6 +27,7 @@
     "db:reset": "npm run db:drop && npm run db:create",
     "step:0-import": "ts-node ./scripts/0-import/importDocsFromMDN.ts",
     "step:0-compile": "ts-node ./scripts/1-process/compileOtherComponents.ts standard",
+    "step:1-db-alt": "ts-node ./scripts/1-process/dbGenerator/insertComponentFilters.ts",
     "step:1-db": "ts-node ./scripts/1-process/dbGenerator/index.ts",
     "step:1-customize": "ts-node ./scripts/1-process/customizer.ts",
     "step:2-ts": "ts-node ./scripts/0-import/importComponentFiltersFromDb.ts awaited && ts-node ./scripts/1-process/compileAwaitedComponents.ts && ts-node ./scripts/2-finalize/generateDOM.ts awaited"

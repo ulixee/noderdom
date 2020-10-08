@@ -40,7 +40,7 @@ export default class AwaitedIterator<TClass, T> {
     }
 
     for (const id of ids) {
-      const createChild = AwaitedIterator.creators[state.createIterableName];
+      const createChild = AwaitedIterator.creators[state.createIterableName!];
       const awaitedOptions = state.awaitedOptions;
       const childPath = awaitedPath.withAttachedId(id);
       yield createChild(childPath, awaitedOptions) as T;
@@ -70,5 +70,5 @@ export default class AwaitedIterator<TClass, T> {
 }
 
 export interface IAwaitedIteratorProperties extends INodeAttacherProperties {
-  createIterableName: string;
+  createIterableName?: string;
 }

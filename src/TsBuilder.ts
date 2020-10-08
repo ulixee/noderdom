@@ -191,7 +191,7 @@ export default class TsBuilder {
     const codeModules = this.klasses.map(i => {
       const name = i.name;
 
-      const nodeAttachedClasses = ['Node', 'HTMLElement'];
+      const nodeAttachedClasses = ['Node', 'HTMLElement', 'XPathResult'];
 
       if (nodeAttachedClasses.includes(name) || nodeAttachedClasses.includes(i.extends)) {
         i.isNodeAttached = true;

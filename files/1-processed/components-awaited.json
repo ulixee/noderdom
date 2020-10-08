@@ -200,6 +200,34 @@
       "legacyWindowAlias": [],
       "mixin": true
     },
+    "NonElementParentNode": {
+      "name": "NonElementParentNode",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "getElementById": {
+          "name": "getElementById",
+          "signatures": [
+            {
+              "type": "Element",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "elementId",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
     "ParentNode": {
       "name": "ParentNode",
       "extends": "Object",
@@ -265,6 +293,75 @@
           "readOnly": 1
         }
       },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "XPathEvaluatorBase": {
+      "name": "XPathEvaluatorBase",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "createExpression": {
+          "name": "createExpression",
+          "signatures": [
+            {
+              "type": "XPathExpression",
+              "params": [
+                {
+                  "name": "expression",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "resolver",
+                  "type": "XPathNSResolver",
+                  "nullable": 1,
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "isAbstract": 1
+        },
+        "evaluate": {
+          "name": "evaluate",
+          "signatures": [
+            {
+              "type": "XPathResult",
+              "params": [
+                {
+                  "name": "expression",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "contextNode",
+                  "type": "Node"
+                },
+                {
+                  "name": "resolver",
+                  "type": "XPathNSResolver",
+                  "nullable": 1,
+                  "optional": 1
+                },
+                {
+                  "name": "type",
+                  "type": "unsigned short",
+                  "optional": 1
+                },
+                {
+                  "name": "result",
+                  "type": "XPathResult",
+                  "nullable": 1,
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
       "noInterfaceObject": 1,
       "legacyWindowAlias": [],
       "mixin": true
@@ -1356,7 +1453,9 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonElementParentNode",
         "ParentNode",
+        "XPathEvaluatorBase",
         "Node"
       ]
     },
@@ -4009,6 +4108,180 @@
       "exposed": "Window",
       "legacyWindowAlias": []
     },
+    "XPathExpression": {
+      "name": "XPathExpression",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "evaluate": {
+          "name": "evaluate",
+          "signatures": [
+            {
+              "type": "XPathResult",
+              "params": [
+                {
+                  "name": "contextNode",
+                  "type": "Node"
+                },
+                {
+                  "name": "type",
+                  "type": "unsigned short",
+                  "optional": 1
+                },
+                {
+                  "name": "result",
+                  "type": "XPathResult",
+                  "nullable": 1,
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "XPathResult": {
+      "name": "XPathResult",
+      "extends": "Object",
+      "constants": {
+        "ANY_TYPE": {
+          "name": "ANY_TYPE",
+          "type": "unsigned short",
+          "value": "0"
+        },
+        "NUMBER_TYPE": {
+          "name": "NUMBER_TYPE",
+          "type": "unsigned short",
+          "value": "1"
+        },
+        "STRING_TYPE": {
+          "name": "STRING_TYPE",
+          "type": "unsigned short",
+          "value": "2"
+        },
+        "BOOLEAN_TYPE": {
+          "name": "BOOLEAN_TYPE",
+          "type": "unsigned short",
+          "value": "3"
+        },
+        "UNORDERED_NODE_ITERATOR_TYPE": {
+          "name": "UNORDERED_NODE_ITERATOR_TYPE",
+          "type": "unsigned short",
+          "value": "4"
+        },
+        "ORDERED_NODE_ITERATOR_TYPE": {
+          "name": "ORDERED_NODE_ITERATOR_TYPE",
+          "type": "unsigned short",
+          "value": "5"
+        },
+        "UNORDERED_NODE_SNAPSHOT_TYPE": {
+          "name": "UNORDERED_NODE_SNAPSHOT_TYPE",
+          "type": "unsigned short",
+          "value": "6"
+        },
+        "ORDERED_NODE_SNAPSHOT_TYPE": {
+          "name": "ORDERED_NODE_SNAPSHOT_TYPE",
+          "type": "unsigned short",
+          "value": "7"
+        },
+        "ANY_UNORDERED_NODE_TYPE": {
+          "name": "ANY_UNORDERED_NODE_TYPE",
+          "type": "unsigned short",
+          "value": "8"
+        },
+        "FIRST_ORDERED_NODE_TYPE": {
+          "name": "FIRST_ORDERED_NODE_TYPE",
+          "type": "unsigned short",
+          "value": "9"
+        }
+      },
+      "methods": {
+        "iterateNext": {
+          "name": "iterateNext",
+          "signatures": [
+            {
+              "type": "Node",
+              "nullable": 1,
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "snapshotItem": {
+          "name": "snapshotItem",
+          "signatures": [
+            {
+              "type": "Node",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "resultType": {
+          "name": "resultType",
+          "type": "unsigned short",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "numberValue": {
+          "name": "numberValue",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "stringValue": {
+          "name": "stringValue",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "booleanValue": {
+          "name": "booleanValue",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "singleNodeValue": {
+          "name": "singleNodeValue",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "invalidIteratorState": {
+          "name": "invalidIteratorState",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "snapshotLength": {
+          "name": "snapshotLength",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
     "Headers": {
       "name": "Headers",
       "extends": "Object",
@@ -4344,7 +4617,8 @@
             }
           ],
           "getter": 1,
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
@@ -4407,7 +4681,34 @@
     }
   },
   "callbackFunctions": {},
-  "callbackInterfaces": {},
+  "callbackInterfaces": {
+    "XPathNSResolver": {
+      "name": "XPathNSResolver",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "lookupNamespaceURI": {
+          "name": "lookupNamespaceURI",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "prefix",
+                  "type": "DOMString",
+                  "nullable": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "legacyWindowAlias": []
+    }
+  },
   "awaitedSupers": {
     "SuperDocument": {
       "name": "SuperDocument",
@@ -4737,7 +5038,9 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonElementParentNode",
         "ParentNode",
+        "XPathEvaluatorBase",
         "NodeIsolate"
       ]
     },
@@ -5561,7 +5864,9 @@
       "legacyWindowAlias": [],
       "implements": [
         "NonDocumentTypeChildNode",
+        "NonElementParentNode",
         "ParentNode",
+        "XPathEvaluatorBase",
         "HTMLOrSVGElement",
         "AttrIsolate",
         "NodeIsolate",
@@ -8923,7 +9228,9 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "NonElementParentNode",
         "ParentNode",
+        "XPathEvaluatorBase",
         "Node"
       ]
     },
@@ -9041,7 +9348,8 @@
             }
           ],
           "getter": 1,
-          "exposed": "Window"
+          "exposed": "Window",
+          "isAbstract": 1
         }
       },
       "anonymousMethods": [],

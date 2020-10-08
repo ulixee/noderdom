@@ -75,7 +75,13 @@ export default class TsBuildMixin {
 
   private printStateMachineInterfaces() {
     const stateOptions = { domType: this.domType, buildType: BuildType.base };
-    const stateMachinePrinter = new TsStateMachinePrinter(this.i, this.printer, this.components, stateOptions);
+    const stateMachinePrinter = new TsStateMachinePrinter(
+      this.i,
+      this.printer,
+      this.components,
+      stateOptions,
+      this.bodyPrinter.iteratorExtractor,
+    );
     stateMachinePrinter.printInterfaces([], this.bodyPrinter.constants, this.bodyPrinter.properties);
   }
 
@@ -87,7 +93,13 @@ export default class TsBuildMixin {
     const handlerClassName = `${isAwaited ? 'Awaited' : 'Detached'}Handler`;
     const printer = new Printer();
     const stateOptions = { domType: this.domType, buildType: BuildType.base };
-    new TsStateMachinePrinter(this.i, printer, this.components, stateOptions).printInitializer();
+    new TsStateMachinePrinter(
+      this.i,
+      printer,
+      this.components,
+      stateOptions,
+      this.bodyPrinter.iteratorExtractor,
+    ).printInitializer();
 
     printable.push(printer.getResult());
 
