@@ -18,7 +18,7 @@ export default class ParamUtils {
       param = { name: param.name, type: [param.subtype!, param] };
     }
     const isOptional = !param.variadic && param.optional;
-    const pType = TypeUtils.convertDomTypeToTsType(param, convertToIType);
+    const pType = TypeUtils.convertDomTypeToTsType(param, convertToIType, false);
     const variadicParams = param.variadic && pType.indexOf('|') !== -1;
     return (
       (param.variadic ? '...' : '') +

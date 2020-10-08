@@ -2227,6 +2227,11 @@
     "propertiesByName": {},
     "methodsByName": {}
   },
+  "FontFace": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
   "ShadowRoot": {
     "isEnabled": true,
     "propertiesByName": {
@@ -2290,176 +2295,6 @@
     "methodsByName": {}
   },
   "WindowEventHandlers": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "DOMRectList": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "length": {
-        "isEnabled": true
-      }
-    },
-    "methodsByName": {
-      "item": {
-        "isEnabled": true,
-        "isAbstract": true
-      }
-    }
-  },
-  "Animation": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "AnimationEffect": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "StylePropertyMapReadOnly": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "StylePropertyMap": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "MediaKeys": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "MediaKeySession": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "VideoPlaybackQuality": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "FontFaceSetLoadEvent": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "FontFaceSet": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "FeaturePolicy": {
-    "isEnabled": true,
-    "propertiesByName": {},
-    "methodsByName": {
-      "allowedFeatures": {
-        "isEnabled": false
-      },
-      "allowsFeature": {
-        "isEnabled": false
-      },
-      "features": {
-        "isEnabled": false
-      },
-      "getAllowlistForFeature": {
-        "isEnabled": false
-      }
-    }
-  },
-  "XPathEvaluator": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "XPathExpression": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "XPathResult": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "HTMLCollectionBase": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "length": {
-        "isEnabled": true
-      }
-    },
-    "methodsByName": {
-      "item": {
-        "isEnabled": true
-      }
-    }
-  },
-  "XPathNSResolver": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "Animatable": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "DocumentAndElementEventHandlers": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "FontFaceSource": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "ElementContentEditable": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "ElementCSSInlineStyle": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "HTMLOrSVGElement": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "dataset": {
-        "isEnabled": false,
-        "isAbstract": true
-      },
-      "nonce": {
-        "isEnabled": false,
-        "isAbstract": true
-      },
-      "tabIndex": {
-        "isEnabled": false,
-        "isAbstract": true
-      }
-    },
-    "methodsByName": {
-      "blur": {
-        "isEnabled": true
-      },
-      "focus": {
-        "isEnabled": true
-      }
-    }
-  },
-  "NonElementParentNode": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "XPathEvaluatorBase": {
     "isEnabled": false,
     "propertiesByName": {},
     "methodsByName": {}
@@ -2619,14 +2454,238 @@
       }
     }
   },
+  "DOMRectList": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "length": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "item": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
+  },
+  "Animation": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "AnimationEffect": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
   "CSSStyleValue": {
     "isEnabled": false,
     "propertiesByName": {},
     "methodsByName": {}
   },
-  "FormData": {
+  "StylePropertyMapReadOnly": {
     "isEnabled": false,
     "propertiesByName": {},
     "methodsByName": {}
+  },
+  "StylePropertyMap": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "MediaKeys": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "MediaKeySession": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "VideoPlaybackQuality": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "FontFaceSetLoadEvent": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "FontFaceSet": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "FeaturePolicy": {
+    "isEnabled": true,
+    "propertiesByName": {},
+    "methodsByName": {
+      "allowedFeatures": {
+        "isEnabled": false
+      },
+      "allowsFeature": {
+        "isEnabled": false
+      },
+      "features": {
+        "isEnabled": false
+      },
+      "getAllowlistForFeature": {
+        "isEnabled": false
+      }
+    }
+  },
+  "XPathEvaluator": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "XPathExpression": {
+    "isEnabled": true,
+    "propertiesByName": {},
+    "methodsByName": {
+      "evaluate": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
+  },
+  "XPathResult": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "booleanValue": {
+        "isEnabled": true
+      },
+      "invalidIteratorState": {
+        "isEnabled": true
+      },
+      "numberValue": {
+        "isEnabled": true
+      },
+      "resultType": {
+        "isEnabled": true
+      },
+      "singleNodeValue": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "snapshotLength": {
+        "isEnabled": true
+      },
+      "stringValue": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "iterateNext": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "snapshotItem": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
+  },
+  "HTMLCollectionBase": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "length": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "item": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
+  },
+  "XPathNSResolver": {
+    "isEnabled": true,
+    "propertiesByName": {},
+    "methodsByName": {
+      "lookupNamespaceURI": {
+        "isEnabled": true
+      }
+    }
+  },
+  "Animatable": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "DocumentAndElementEventHandlers": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "FontFaceSource": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "ElementContentEditable": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "ElementCSSInlineStyle": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
+  },
+  "HTMLOrSVGElement": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "dataset": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "nonce": {
+        "isEnabled": false,
+        "isAbstract": true
+      },
+      "tabIndex": {
+        "isEnabled": false,
+        "isAbstract": true
+      }
+    },
+    "methodsByName": {
+      "blur": {
+        "isEnabled": true
+      },
+      "focus": {
+        "isEnabled": true
+      }
+    }
+  },
+  "NonElementParentNode": {
+    "isEnabled": true,
+    "propertiesByName": {},
+    "methodsByName": {
+      "getElementById": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
+  },
+  "XPathEvaluatorBase": {
+    "isEnabled": true,
+    "propertiesByName": {},
+    "methodsByName": {
+      "createExpression": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "createNSResolver": {
+        "isEnabled": false
+      },
+      "evaluate": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
   }
 }

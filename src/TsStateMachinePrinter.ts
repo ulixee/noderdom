@@ -4,6 +4,7 @@ import Components from './Components';
 import TsBodyPrinter from './TsBodyPrinter';
 import IDomType, { DomType } from './interfaces/IDomType';
 import IBuildType from './interfaces/IBuildType';
+import TsIteratorExtractor from './TsIteratorExtractor';
 
 interface IOptions {
   domType: IDomType;
@@ -16,18 +17,26 @@ export default class TsStateMachinePrinter {
   private readonly components: Components;
   private readonly domType: IDomType;
   private readonly buildType: IBuildType;
+  private readonly iteratorExtractor?: TsIteratorExtractor;
 
-  constructor(i: Types.Interface, printer: Printer, components: Components, options: IOptions) {
+  constructor(
+    i: Types.Interface,
+    printer: Printer,
+    components: Components,
+    options: IOptions,
+    iteratorExtractor?: TsIteratorExtractor,
+  ) {
     this.i = i;
     this.printer = printer;
     this.components = components;
     this.domType = options.domType;
     this.buildType = options.buildType;
+    this.iteratorExtractor = iteratorExtractor;
   }
 
   public printInitializer() {
     const i: Types.Interface = this.i;
-    const vars = ['getState', 'setState'];
+    const vars = ['getState', 'setState', 'recordProxy'];
     this.printer.print(`export const { ${vars.join(', ')} } = StateMachine<I${i.name}, I${i.name}Properties>();`);
   }
 
@@ -69,6 +78,13 @@ export default class TsStateMachinePrinter {
     if (this.domType === DomType.awaited) {
       this.printer.printLine(`awaitedPath: AwaitedPath;`);
       this.printer.printLine(`awaitedOptions: any;`);
+    }
+    if (this.i.isNodeAttached || this.iteratorExtractor?.hasIterable()) {
+      this.printer.printLine(`createInstanceName: string;`);
+      if (this.iteratorExtractor?.hasIterable() && !this.iteratorExtractor?.hasMaplikeSequence) {
+        this.printer.printLine(`createIterableName: string;`);
+      }
+      this.printer.printLine();
     }
     const bodyPrinterOptions = { domType: this.domType, buildType: this.buildType, skipImplementation: true };
     const bodyPrinter = new TsBodyPrinter(i, this.printer, this.components, bodyPrinterOptions);
