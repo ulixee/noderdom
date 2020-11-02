@@ -2096,6 +2096,31 @@
       }
     }
   },
+  "Storage": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "length": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "clear": {
+        "isEnabled": true
+      },
+      "getItem": {
+        "isEnabled": true
+      },
+      "key": {
+        "isEnabled": true
+      },
+      "removeItem": {
+        "isEnabled": true
+      },
+      "setItem": {
+        "isEnabled": true
+      }
+    }
+  },
   "DOMRectReadOnly": {
     "isEnabled": false,
     "propertiesByName": {},

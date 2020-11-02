@@ -30,7 +30,8 @@
     "step:1-db-alt": "ts-node ./scripts/1-process/dbGenerator/insertComponentFilters.ts",
     "step:1-db": "ts-node ./scripts/1-process/dbGenerator/index.ts",
     "step:1-customize": "ts-node ./scripts/1-process/customizer.ts",
-    "step:2-ts": "ts-node ./scripts/0-import/importComponentFiltersFromDb.ts awaited && ts-node ./scripts/1-process/compileAwaitedComponents.ts && ts-node ./scripts/2-finalize/generateDOM.ts awaited"
+    "step:2-ts": "ts-node ./scripts/0-import/importComponentFiltersFromDb.ts awaited && ts-node ./scripts/1-process/compileAwaitedComponents.ts && ts-node ./scripts/2-finalize/generateDOM.ts awaited",
+    "step:2-docs": "ts-node ./scripts/2-finalize/generateDocs.ts awaited"
   },
   "dependencies": {},
   "devDependencies": {

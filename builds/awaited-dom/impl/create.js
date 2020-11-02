@@ -243,6 +243,13 @@ function createShadowRoot(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createShadowRoot = createShadowRoot;
+function createStorage(awaitedPath, awaitedOptions) {
+    const Storage = require('./official-klasses/Storage').default; // tslint:disable-line:variable-name
+    const instance = new Storage();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createStorage = createStorage;
 function createStyleSheet(awaitedPath, awaitedOptions) {
     const StyleSheet = require('./official-klasses/StyleSheet').default; // tslint:disable-line:variable-name
     const instance = new StyleSheet();

@@ -1,6 +1,6 @@
 import AwaitedPath from '../base/AwaitedPath';
 import StateMachine from '../base/StateMachine';
-import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLButtonElement, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLSelectElement, IHTMLTextAreaElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRadioNodeList, IRequest, IResponse, IShadowRoot, IStyleSheet, IText, IValidityState, IXPathExpression, IXPathResult } from '../base/interfaces/official';
+import { IAttr, IBlob, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMTokenList, IDocument, IDocumentType, IElement, IFeaturePolicy, IHTMLButtonElement, IHTMLCollection, IHTMLCollectionBase, IHTMLElement, IHTMLFieldSetElement, IHTMLFormElement, IHTMLHeadElement, IHTMLInputElement, IHTMLLabelElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLSelectElement, IHTMLTextAreaElement, IHeaders, ILocation, INamedNodeMap, INode, INodeList, IRadioNodeList, IRequest, IResponse, IShadowRoot, IStorage, IStyleSheet, IText, IValidityState, IXPathExpression, IXPathResult } from '../base/interfaces/official';
 import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
@@ -239,6 +239,13 @@ export function createResponse<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, a
 export function createShadowRoot<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IShadowRoot {
   const ShadowRoot = require('./official-klasses/ShadowRoot').default; // tslint:disable-line:variable-name
   const instance = new ShadowRoot();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createStorage<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IStorage {
+  const Storage = require('./official-klasses/Storage').default; // tslint:disable-line:variable-name
+  const instance = new Storage();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }

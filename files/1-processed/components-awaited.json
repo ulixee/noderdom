@@ -4108,6 +4108,101 @@
       "exposed": "Window",
       "legacyWindowAlias": []
     },
+    "Storage": {
+      "name": "Storage",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "key": {
+          "name": "key",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getItem": {
+          "name": "getItem",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "key",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window"
+        },
+        "setItem": {
+          "name": "setItem",
+          "signatures": [
+            {
+              "type": "undefined",
+              "params": [
+                {
+                  "name": "key",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "value",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "removeItem": {
+          "name": "removeItem",
+          "signatures": [
+            {
+              "type": "undefined",
+              "params": [
+                {
+                  "name": "key",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "clear": {
+          "name": "clear",
+          "signatures": [
+            {
+              "type": "undefined",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
     "XPathExpression": {
       "name": "XPathExpression",
       "extends": "Object",

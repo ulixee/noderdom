@@ -44,7 +44,7 @@ for (const mdnInterface of mdnInterfaces) {
     tags.push('Node');
   } else if (['NodeList', 'RadioNodeList', 'HTMLCollection', 'HTMLOptionsCollection'].includes(mdnInterface.name)) {
     tags.push('ArrayLike');
-  } else if (['EventTarget', 'Attr'].includes(mdnInterface.name)) {
+  } else if (['EventTarget', 'Attr', 'Storage'].includes(mdnInterface.name)) {
     tags.push('Miscellaneous');
   }
   if (mdnInterface.category === 'HTMLElements') {

@@ -484,6 +484,20 @@ export interface IResponse extends IBody {
 
 export interface IShadowRoot {}
 
+// Storage //////////
+
+export interface IStorage {
+  readonly length: Promise<number>;
+
+  clear(): Promise<undefined>;
+  getItem(key: string): Promise<string | null>;
+  key(index: number): Promise<string | null>;
+  removeItem(key: string): Promise<undefined>;
+  setItem(key: string, value: string): Promise<undefined>;
+
+
+}
+
 // StyleSheet //////////
 
 export interface IStyleSheet {}

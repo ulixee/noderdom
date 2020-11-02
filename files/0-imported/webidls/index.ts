@@ -189,6 +189,7 @@ export default [
   // misc
   'Fullscreen.webidl',
   'FeaturePolicy.webidl',
+  'Storage.webidl',
 
   // xpath
   'xpath/XPathEvaluator.webidl',
