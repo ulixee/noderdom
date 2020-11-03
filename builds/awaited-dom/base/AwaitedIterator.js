@@ -38,11 +38,10 @@ class AwaitedIterator {
         attachedState.iterableIds = undefined;
     }
     *iterateAttachedItems(instance) {
-        var _a;
         const state = this.getState(instance);
         const awaitedPath = state.awaitedPath;
         const attachedState = this.nodeAttacher.getAttachedState(instance);
-        const items = (_a = attachedState) === null || _a === void 0 ? void 0 : _a.iterableItems;
+        const items = attachedState === null || attachedState === void 0 ? void 0 : attachedState.iterableItems;
         if (!items) {
             throw new Error(`Please add an await to ${awaitedPath.hasAttachedId ? 're-' : ''}run this iterator`);
         }

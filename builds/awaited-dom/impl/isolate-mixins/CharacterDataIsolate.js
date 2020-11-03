@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.recordProxy = exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const CharacterDataIsolate_1 = __importDefault(require("../../base/isolate-mixins/CharacterDataIsolate"));
 // tslint:disable:variable-name
