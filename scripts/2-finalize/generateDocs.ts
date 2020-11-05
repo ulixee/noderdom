@@ -53,7 +53,6 @@ filteredInterfaces.map(inter => {
   const directMethods = db.prepare(directMethodsSql).all([inter.name]);
   const methods = directMethods.map(m => convertToMethod(name, m));
 
-
   for (const klassName of inheritedKlassNames) {
     const inheritedPropsSql = `SELECT * FROM properties WHERE interfaceName=? AND hasDefinedIDL=1 ORDER BY localName COLLATE NOCASE`;
     const inheritedProps = db.prepare(inheritedPropsSql).all([klassName]);
@@ -128,23 +127,47 @@ function convertToProperty(componentName: string, property: any) {
   const componentFilter = componentFilters[componentName];
   if (!componentFilter) throw new Error(`MISSING COMPONENT FILTER: ${componentName}`);
 
+  const isAbstract = !!componentFilter.propertiesByName[property.localName]?.isAbstract;
+  const returnType = convertReturnType(property.customReturnTypes || property.nativeReturnTypes, isAbstract);
+
   return {
     name: property.localName,
     overview: property.docOverview,
     componentName: componentName,
-    returnType: property.customReturnTypes || property.nativeReturnTypes,
+    returnType,
     isImplemented: !!componentFilter.propertiesByName[property.localName]?.isEnabled,
   };
+}
+
+function convertReturnType(returnType: string, isAbstract: boolean) {
+  if (returnType.startsWith('Promise,')) returnType = `Promise<${returnType.split(',').pop()}>`;
+  if (!isAbstract && domType === DomType.awaited) {
+    if (!returnType.startsWith('Promise')) returnType = `Promise<${returnType}>`;
+  }
+  return returnType;
 }
 
 function convertToMethod(componentName: string, method: any) {
   const componentFilter = componentFilters[componentName];
   if (!componentFilter) throw new Error(`MISSING COMPONENT FILTER: ${componentName}`);
 
+  const paramsSql = `SELECT * FROM method_signatures WHERE methodName=? ORDER BY paramIndex`;
+  const parameters = db.prepare(paramsSql).all([method.name]);
+
+  const isAbstract = !!componentFilter.methodsByName[method.localName]?.isAbstract;
+
   return {
     name: method.localName,
     overview: method.docOverview,
     componentName: componentName,
+    returnType: convertReturnType(method.customReturnTypes || method.nativeReturnTypes, isAbstract),
+    parameters: parameters.map(x => ({
+      name: x.paramName,
+      type: x.paramType,
+      isOptional: Boolean(x.isOptional),
+      isVariadic: Boolean(x.isVariadic),
+      overview: x.docOverview,
+    })),
     isImplemented: !!componentFilter.methodsByName[method.localName]?.isEnabled,
   };
 }

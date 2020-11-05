@@ -24,6 +24,7 @@ yarn db:reset
 
 ```bash
 ./scripts/0-import/importDocsFromMDN.ts
+./scripts/0-import/importDetailDocsFromMDN.ts
 ```
 
 ## Step 1 - Process

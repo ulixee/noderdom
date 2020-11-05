@@ -4,7 +4,7 @@ import * as Path from 'path';
 import * as Fs from 'fs';
 import db from '../../../db';
 import config from '../../../config';
-import DocumentationExtractor, { IMDNPropertyItem, IMDNMethodItem } from '../../../src/DocumentationExtractor';
+import DocumentationExtractor, { IMDNMethodItem, IMDNPropertyItem } from '../../../src/DocumentationExtractor';
 import Components from '../../../src/Components';
 import { compareName } from '../../../src/utils';
 import Printer from '../../../src/Printer';
@@ -13,6 +13,7 @@ import TsBodyPrinter from '../../../src/TsBodyPrinter';
 const componentsPath = Path.join(config.filesProcessedDir, 'components-standard.json');
 const componentsData = JSON.parse(Fs.readFileSync(componentsPath, 'utf-8'));
 const components = new Components(componentsData).cleanup();
+const mdnSpecsDir = Path.join(config.filesImportedDir, 'mdn-specs');
 const interfaces = db.prepare(`SELECT * FROM interfaces`).all();
 
 if (process.argv[2]) {
@@ -129,16 +130,23 @@ function insertPropertyIntoDb(interfaceName: string, property: IMDNPropertyItem)
   }
 }
 
+function extractFilename(urlPath: string | undefined): string {
+  return urlPath ? `${urlPath.replace(/\//g, ':').replace(/^:/, '')}.html` : '';
+}
+
 function insertMethodIntoDb(interfaceName: string, method: IMDNMethodItem) {
   const name = `${interfaceName}.${method.name}`;
   const existing = db.prepare(`SELECT * FROM methods WHERE name=?`).get([name]);
   if (existing) {
+    const pathToUrl = extractFilename(method.mdnDocumentationPath);
+    const mdnExists = Fs.existsSync(`${mdnSpecsDir}/${pathToUrl}`);
     const data = {
       docOverview: method.description,
       isExperimental: Number(method.isExperimental || 0),
       isDocumented: Number(true || 0),
       isOnMDN: Number(true || 0),
       mdnDocumentationPath: method.mdnDocumentationPath,
+      mdnFilename: mdnExists ? pathToUrl : null,
     };
     const values = [...Object.values(data), name];
     db.prepare(`UPDATE methods SET ${Object.keys(data).map(k => `${k}=?`)} WHERE name=?`).run(values);
@@ -280,8 +288,13 @@ function injectMissingMDNData(className: string, fromMDN: any, dbProperties: any
     });
   }
 
-  if (className === 'DOMRect') {
-    const mdnReadonly = fetchFromMDN('DOMRectReadOnly');
+  const aliases = new Map<string, string>([
+    ['DOMRect', 'DOMRectReadOnly'],
+    ['XPathEvaluatorBase', 'XPathEvaluator'],
+  ]);
+
+  if (aliases.has(className)) {
+    const mdnReadonly = fetchFromMDN(aliases.get(className) as string);
     if (mdnReadonly) {
       const propertiesByName: { [name: string]: IMDNPropertyItem } = {};
       mdnReadonly.properties.items.forEach(item => (propertiesByName[item.name] = item));

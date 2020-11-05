@@ -11,6 +11,7 @@ import Printer from '../../../src/Printer';
 import TsBodyPrinter from '../../../src/TsBodyPrinter';
 import db from '../../../db';
 import TypeUtils from '../../../src/TypeUtils';
+import { Param } from '../../../src/Types';
 
 const componentsPath = Path.join(config.filesProcessedDir, 'components-standard.json');
 const componentsData = JSON.parse(Fs.readFileSync(componentsPath, 'utf-8'));
@@ -31,6 +32,11 @@ interface IIDLMethodItem {
   customArgTypes: string[];
   nativeReturnTypes: string[];
   customReturnTypes: string[];
+  signatures: IIDLSignature[];
+}
+
+interface IIDLSignature {
+  params: { extractedType: string; param: Param }[];
 }
 
 interface IFromIDL {
@@ -84,6 +90,11 @@ function insertProperties(interfaceName: string, properties: IIDLPropertyItem[])
       const values = Object.values(data);
       const placeholders = [...values].fill('?').join(', ');
       db.prepare(`INSERT INTO properties (${fields}) VALUES(${placeholders})`).run(values);
+    } else {
+      const fields = Object.keys(data);
+      const values = Object.values(data);
+      const placeholders = fields.map(x => `${x}=?`).join(', ');
+      db.prepare(`UPDATE properties SET ${placeholders} WHERE name=?`).run(values.concat([name]));
     }
   });
 }
@@ -110,7 +121,45 @@ function insertMethods(interfaceName: string, methods: IIDLMethodItem[]) {
       const values = Object.values(data);
       const placeholders = [...values].fill('?').join(', ');
       db.prepare(`INSERT INTO methods (${fields}) VALUES(${placeholders})`).run(values);
+    } else {
+      const fields = Object.keys(data);
+      const values = Object.values(data);
+      const placeholders = fields.map(x => `${x}=?`).join(', ');
+      db.prepare(`UPDATE methods SET ${placeholders} WHERE name=?`).run(values.concat([name]));
     }
+    insertSignatures(name, method.signatures);
+  });
+}
+
+function insertSignatures(methodName: string, signatures: IIDLSignature[]) {
+  signatures.forEach((signature, signatureIndex) => {
+    signature.params.forEach(({ extractedType, param }, paramIndex) => {
+      const data = {
+        methodName,
+        signatureIndex,
+        paramIndex,
+        paramName: param.name,
+        paramType: extractedType,
+        isVariadic: Number(param.variadic || 0),
+        isOptional: Number(param.optional || 0),
+      };
+      const existing = db
+        .prepare(`SELECT * FROM method_signatures WHERE methodName=? and signatureIndex=? and paramIndex=?`)
+        .get([methodName, signatureIndex, paramIndex]);
+      if (!existing) {
+        const fields = Object.keys(data).join(', ');
+        const values = Object.values(data);
+        const placeholders = [...values].fill('?').join(', ');
+        db.prepare(`INSERT INTO method_signatures (${fields}) VALUES(${placeholders})`).run(values);
+      } else {
+        const fields = Object.keys(data);
+        const values = Object.values(data);
+        const placeholders = fields.map(x => `${x}=?`).join(', ');
+        db.prepare(
+          `UPDATE method_signatures SET ${placeholders} WHERE  methodName=? and signatureIndex=? and paramIndex=?`,
+        ).run(values.concat([methodName, signatureIndex, paramIndex]));
+      }
+    });
   });
 }
 
@@ -144,18 +193,34 @@ function createMethodItem(name: string, isStatic: boolean, method?: Types.Method
   const nativeArgTypes: Set<string> = new Set();
   const customArgTypes: Set<string> = new Set();
 
+  const signatures: IIDLSignature[] = [];
+
   if (method) {
     method.signatures.forEach(s => {
-      TypeUtils.extractCustomTypesFromParams(s.params).forEach(t => nativeArgTypes.add(t));
-      TypeUtils.extractCustomTypesFromParams(s.params).forEach(t => customArgTypes.add(t));
       TypeUtils.extractNativeTypes(s).forEach(t => nativeReturnTypes.add(t));
       TypeUtils.extractCustomTypes(s).forEach(t => customReturnTypes.add(t));
+
+      const params: { extractedType: string; param: Param }[] = [];
+      signatures.push({ params });
+      if (!s.params) {
+        return;
+      }
+      for (const param of s.params) {
+        const customType = TypeUtils.extractCustomTypesFromParams([param]);
+        const nativeType = TypeUtils.extractNativeTypesFromParams([param]);
+        if (nativeType) nativeType.forEach(x => nativeArgTypes.add(x));
+        if (customType) customType.forEach(x => customArgTypes.add(x));
+
+        const extractedType = nativeType.concat(customType).join(' | ');
+        params.push({ extractedType, param });
+      }
     });
   }
 
   return {
     name,
     isStatic,
+    signatures,
     nativeArgTypes: Array.from(nativeArgTypes),
     customArgTypes: Array.from(customArgTypes),
     nativeReturnTypes: Array.from(nativeReturnTypes),
