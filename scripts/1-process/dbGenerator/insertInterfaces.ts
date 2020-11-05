@@ -38,13 +38,13 @@ for (const mdnInterface of mdnInterfaces) {
   }
 
   const tags: string[] = [];
-  if (['Document', 'HTMLDocument', 'XMLDocument', 'DocumentFragment'].includes(mdnInterface.name)) {
+  if (['Document', 'HTMLDocument', 'XMLDocument', 'DocumentFragment', 'XPathEvaluator'].includes(mdnInterface.name)) {
     tags.push('Document');
   } else if (['Node', 'Element', 'Comment', 'Text'].includes(mdnInterface.name)) {
     tags.push('Node');
   } else if (['NodeList', 'RadioNodeList', 'HTMLCollection', 'HTMLOptionsCollection'].includes(mdnInterface.name)) {
     tags.push('ArrayLike');
-  } else if (['EventTarget', 'Attr', 'Storage'].includes(mdnInterface.name)) {
+  } else if (['EventTarget', 'Attr', 'CharacterData', 'Storage'].includes(mdnInterface.name)) {
     tags.push('Miscellaneous');
   }
   if (mdnInterface.category === 'HTMLElements') {
@@ -122,8 +122,19 @@ for (const inter of Object.values(interfacesByName)) {
   };
   const existing = db.prepare(`SELECT * FROM interfaces WHERE name=?`).get([inter.name]);
   if (existing) {
-    const values = [data.isDocumented, data.tags, inter.name];
-    db.prepare('UPDATE interfaces SET isDocumented=?, tags=? WHERE name=?').run(values);
+    const values = [
+      data.isDocumented,
+      data.tags,
+      data.isOnMDN,
+      inter.sourcedAtPath,
+      inter.mdnDocumentationPath,
+      inter.mdnFilename,
+      inter.mdnCategory,
+      inter.name,
+    ];
+    db.prepare(
+      'UPDATE interfaces SET isDocumented=?, tags=?, isOnMDN=?, sourcedAtPath=?, mdnDocumentationPath=?, mdnFilename=?, mdnCategory=? WHERE name=?',
+    ).run(values);
   } else {
     const fields = Object.keys(data).join(', ');
     const values = Object.values(data);

@@ -17,13 +17,13 @@ export default class TypeUtils {
       names.push(this.convertDomTypeToTsTypeSimple(type.type, superize));
     } else {
       for (const t of type.type) {
-        names.push(...this.extractCustomTypes(typeof t === 'string' ? { type: t } : t));
+        names.push(...this.extractCustomTypes(typeof t === 'string' ? { type: t } : t, superize));
       }
       if (names.find(t => t === 'any')) {
         names.splice(0, names.length);
       }
     }
-    arrayify(type.subtype).forEach(t => names.push(...this.extractCustomTypes(t)));
+    arrayify(type.subtype).forEach(t => names.push(...this.extractCustomTypes(t, superize)));
 
     names = names.filter(isCustomType).map(n => (superize ? this.trySuperize(n) : this.tryIsolate(n)));
 
@@ -59,6 +59,19 @@ export default class TypeUtils {
     customTypes = customTypes.map(t => this.tryIsolate(t));
 
     return Array.from(new Set(customTypes));
+  }
+
+  public static extractNativeTypesFromParams(params: Types.Param[] | undefined): string[] {
+    if (!params) return [];
+    const nativeTypes: string[] = [];
+    params.forEach(p => {
+      if (p.type === 'Promise' && !Array.isArray(p.subtype)) {
+        p = { name: p.name, type: [p.subtype!, p] };
+      }
+      nativeTypes.push(...this.extractNativeTypes(p));
+    });
+
+    return Array.from(new Set(nativeTypes));
   }
 
   /// Get typescript type using object dom type, object name, and it's associated interface name

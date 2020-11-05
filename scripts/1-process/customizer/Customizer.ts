@@ -137,15 +137,15 @@ export default class Customizer {
         this.ensureChoiceMeta(method.name, 'method');
         Object.assign(this.choicesMetaMap.awaited[method.name], { itemType: 'method' });
         Object.assign(this.choicesMetaMap.detached[method.name], { itemType: 'method' });
-        method.nativeArtTypes = (method.nativeArtTypes || '').split(',').filter((t: string) => t);
+        method.nativeArgTypes = (method.nativeArgTypes || '').split(',').filter((t: string) => t);
         method.customArgTypes = (method.customArgTypes || '').split(',').filter((t: string) => t);
-        method.argTypes = method.nativeArtTypes.concat(method.customArgTypes);
+        method.argTypes = method.nativeArgTypes.concat(method.customArgTypes);
 
         method.nativeReturnTypes = (method.nativeReturnTypes || '').split(',').filter((t: string) => t);
         method.customReturnTypes = (method.customReturnTypes || '').split(',').filter((t: string) => t);
         method.returnTypes = method.nativeReturnTypes.concat(method.customReturnTypes);
 
-        method.nativeTypes = method.nativeArtTypes.concat(method.nativeReturnTypes);
+        method.nativeTypes = method.nativeArgTypes.concat(method.nativeReturnTypes);
         method.customTypes = method.customArgTypes.concat(method.customReturnTypes);
         method.customTypes.forEach((t: string) => {
           this.referencesByName[t] = this.referencesByName[t] || new Set();

@@ -8,6 +8,7 @@ const sqlFilenames = [
   'interfaces',
   'interface_relationships',
   'methods',
+  'method_signatures',
   'properties',
   'component_filters',
   'supers',

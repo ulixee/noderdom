@@ -40,7 +40,15 @@ const cherryPickedInterfaceNames = [
   'Response',
   'Body',
   'Headers',
+  'XPathEvaluatorBase',
+  'XPathEvaluator',
+  'XPathException',
+  'XPathNSResolver',
+  'XPathExpression',
+  'XPathResult',
 ];
+
+const cherryPickAliases = new Map<string, string>([['XPathEvaluatorBase', 'XPathEvaluator']]);
 
 interface IRecord {
   name: string;
@@ -233,7 +241,11 @@ async function extractCherryPickedInterfaces(interfaceNames: string[]) {
   }
 
   for (const name of interfaceNames) {
-    const elem = elemsByName[name];
+    let elem = elemsByName[name];
+    if (cherryPickAliases.has(name)) {
+      elem = elemsByName[cherryPickAliases.get(name) as string];
+    }
+
     if (!elem) {
       console.log(`MISSING ${name} from ${sourcedAtPath}`);
       continue;
@@ -245,6 +257,7 @@ async function extractCherryPickedInterfaces(interfaceNames: string[]) {
     const isObsolete = extractBoolean(elem.querySelector('i.icon-trash'));
     const isDocumented = extractBoolean(urlPath ? await loadAndSaveHTML(urlPath) : false);
     const filename = extractFilename(urlPath);
+
     records.push({
       name,
       filename,

@@ -1,6 +1,7 @@
 import * as Fs from 'fs';
 import { DOMParser } from 'noderdom-detached';
 import { IDocument, IElement } from 'noderdom-detached/base/interfaces';
+import NodeType from 'noderdom-detached/src/constants/NodeType';
 
 export default class DocumentationExtractor {
   public foundFile: boolean = false;
@@ -92,6 +93,90 @@ export default class DocumentationExtractor {
     return methods;
   }
 
+  public extractMethodSignatures(methodName: string) {
+    const signatures: IMDNMethodSignature[] = [];
+    let elem: IElement | null =
+      this.document.querySelector(`[id*="Param"] + *`) ??
+      this.document.querySelector(`[id*="Values"] + *`) ??
+      this.document.querySelector(`[id*="Syntax"] + *`);
+
+    if (!elem) return signatures;
+
+    let syntax = this.document.querySelector('.syntaxbox')?.textContent;
+    if (!syntax) {
+      syntax = this.document.querySelector('h2 + pre')?.textContent;
+    }
+
+    let parameters: IMDNMethodParameter[] = [];
+    let isAdded = false;
+    let didAddFromList = false;
+    while (elem && !['h2', 'h3'].includes(elem.localName)) {
+      if (elem.localName === 'h4') {
+        parameters = [];
+        // some cases where we see multiple dl lists. those are different than a new set of params
+        isAdded = false;
+      }
+      if (elem.localName === 'dl') {
+        if (!isAdded) signatures.push({ parameters });
+        isAdded = true;
+        didAddFromList = true;
+        for (const dt of elem.children) {
+          if (dt.tagName !== 'DT') continue;
+          const dtElem = dt as IElement;
+          const paramName =
+            dtElem.childNodes[0].nodeType === NodeType.TEXT_NODE
+              ? dtElem.childNodes[0].textContent
+              : dtElem.children[0]!.textContent;
+
+          if (!paramName) {
+            console.log('No parameter name!', dtElem.innerHTML);
+            continue;
+          }
+          const descElem = dtElem.nextElementSibling!;
+          const description = descElem.nodeName === 'DD' ? descElem.innerHTML : '';
+
+          if (!isParameterInSyntax(syntax, methodName, paramName, descElem.textContent)) continue;
+
+          const optional = !!dtElem.querySelector('.optional');
+
+          parameters.push({
+            description,
+            name: (paramName || '').trim(),
+            optional,
+          });
+        }
+      } else if (elem.localName === 'ul') {
+        if (!isAdded) signatures.push({ parameters });
+        isAdded = true;
+        didAddFromList = true;
+        for (const li of elem.children) {
+          if (li.tagName !== 'LI') continue;
+          const liElem = li as IElement;
+          const param = extractParameter(liElem, syntax, methodName);
+          if (param) {
+            parameters.push(param);
+          }
+        }
+      } else if (
+        // don't look in paragraphs if we already read from a list
+        !didAddFromList &&
+        elem.localName === 'p' &&
+        elem.children.length &&
+        (elem.children[0].localName === 'code' || elem.children[0].localName === 'var')
+      ) {
+        if (!isAdded) signatures.push({ parameters });
+        isAdded = true;
+        const param = extractParameter(elem, syntax, methodName);
+        if (param) {
+          parameters.push(param);
+        }
+      }
+      elem = elem.nextElementSibling;
+    }
+
+    return signatures;
+  }
+
   public extractBrowserSupport() {
     const { document } = this;
     const browserSupport: { [name: string]: { chrome: boolean; isDeprecated: boolean } } = {};
@@ -115,6 +200,48 @@ export default class DocumentationExtractor {
 }
 
 ////////////////////
+
+function isParameterInSyntax(
+  syntax: string | null | undefined,
+  methodName: string,
+  paramName: string | null,
+  elementText: string | null,
+) {
+  if (paramName && syntax) {
+    if (
+      syntax.match(`^(let|var|const)\\s+${paramName}\\s+=`) ||
+      syntax.startsWith(`${paramName} `) ||
+      // this is the object being manipulated
+      syntax.includes(`= ${paramName}.`)
+    ) {
+      return false;
+    }
+  }
+  // see if this is actually a return value
+  if (
+    elementText?.startsWith(`${paramName} is the resulting`) ||
+    elementText?.startsWith(`${paramName} is the created`) ||
+    elementText?.startsWith(methodName)
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function extractParameter(elem: IElement, syntax: string | null | undefined, methodName: string) {
+  const paramName = elem.children.length ? elem.children[0].textContent : elem.childNodes[0].textContent;
+
+  const optional = !!elem.querySelector('.optional');
+  const description = elem.innerHTML; // this is a return value
+
+  if (!isParameterInSyntax(syntax, methodName, paramName, elem.textContent)) return null;
+
+  return {
+    description,
+    name: (paramName || '').trim(),
+    optional,
+  };
+}
 
 function extractItemsFrom(document: IDocument, selector: string, className: string, isMethod: boolean = false) {
   const details: IExtractedDetails = { intro: [], items: [] };
@@ -245,6 +372,16 @@ export interface IMDNMethodItem {
   mdnDocumentationPath?: string;
   isExperimental?: boolean;
   isStatic?: boolean;
+}
+
+export interface IMDNMethodSignature {
+  parameters: IMDNMethodParameter[];
+}
+
+export interface IMDNMethodParameter {
+  name: string;
+  description: string;
+  optional: boolean;
 }
 
 interface IExtractedDetails {
