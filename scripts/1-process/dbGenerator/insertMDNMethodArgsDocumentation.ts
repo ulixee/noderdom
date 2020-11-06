@@ -79,11 +79,13 @@ dbMethods.forEach(dbMethod => {
       if (multiType?.length > 1) {
         const next = mdnSignature.parameters[paramIndex + 1];
         if (next) {
-          data.docOverview = `${mdnParameter.description.trim()}
-
--------- OR --------
-
-${next.description.trim()}`;
+          data.docOverview = `<ul>
+<li>
+    ${mdnParameter.description.trim()}
+</li>
+<li>
+    ${next.description.trim()}
+</li>`;
           paramIndex += 1;
           accurateParametersCount += 1;
         }

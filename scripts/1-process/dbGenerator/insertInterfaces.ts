@@ -44,13 +44,16 @@ for (const mdnInterface of mdnInterfaces) {
     tags.push('Node');
   } else if (['NodeList', 'RadioNodeList', 'HTMLCollection', 'HTMLOptionsCollection'].includes(mdnInterface.name)) {
     tags.push('ArrayLike');
-  } else if (['EventTarget', 'Attr', 'CharacterData', 'Storage'].includes(mdnInterface.name)) {
+  } else if (['EventTarget', 'Attr', 'CharacterData', 'Storage', 'Request', 'Response'].includes(mdnInterface.name)) {
     tags.push('Miscellaneous');
   }
   if (mdnInterface.category === 'HTMLElements') {
     tags.push('HTMLElement');
   } else if (mdnInterface.category === 'SVGElements') {
     tags.push('SVGElement');
+  }
+  if (mdnInterface.name.includes('XPath')) {
+    tags.push('XPath');
   }
 
   interfacesByName[mdnInterface.name] = {
