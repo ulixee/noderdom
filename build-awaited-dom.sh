@@ -2,6 +2,8 @@ rm -rf ./builds/awaited-dom
 
 ./scripts/2-finalize/generateDOM.ts awaited
 
+./scripts/2-finalize/generateDocs.ts awaited
+
 tsc -p ./build-tsconfig-awaited-dom.json
 
 ./build-package-json-awaited-dom.ts

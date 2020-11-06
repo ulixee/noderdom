@@ -132,10 +132,19 @@ export default class DocumentationExtractor {
             console.log('No parameter name!', dtElem.innerHTML);
             continue;
           }
-          const descElem = dtElem.nextElementSibling!;
-          const description = descElem.nodeName === 'DD' ? descElem.innerHTML : '';
 
-          if (!isParameterInSyntax(syntax, methodName, paramName, descElem.textContent)) continue;
+          let description = '';
+          const textContent: string[] = [];
+          let descElem = dtElem.nextElementSibling!;
+          while (descElem?.nodeName === 'DD') {
+            textContent.push(descElem.textContent || '');
+            description += descElem.innerHTML;
+            descElem = descElem.nextElementSibling as any;
+          }
+
+          if (!isParameterInSyntax(syntax, methodName, paramName, textContent.join('\n'))) {
+            continue;
+          }
 
           const optional = !!dtElem.querySelector('.optional');
 
@@ -221,7 +230,8 @@ function isParameterInSyntax(
   if (
     elementText?.startsWith(`${paramName} is the resulting`) ||
     elementText?.startsWith(`${paramName} is the created`) ||
-    elementText?.startsWith(methodName)
+    elementText?.startsWith(`${methodName} `) ||
+    elementText?.startsWith(`${methodName}.`)
   ) {
     return false;
   }
