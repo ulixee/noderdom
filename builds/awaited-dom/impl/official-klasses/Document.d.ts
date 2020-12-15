@@ -85,6 +85,12 @@ declare const DocumentBaseClass: {
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
+        readonly activeElement: ISuperElement;
+        readonly fullscreenElement: ISuperElement;
+        readonly pointerLockElement: ISuperElement;
+        caretPositionFromPoint(x: number, y: number): import("../../base/interfaces/official").ICaretPosition;
+        elementFromPoint(x: number, y: number): ISuperElement;
+        getSelection(): import("../../base/interfaces/official").ISelection;
         getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: ISuperHTMLCollection;

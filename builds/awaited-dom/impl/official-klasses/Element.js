@@ -40,6 +40,10 @@ class Element extends ElementBaseClass {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
         return create_1.createSuperElement(awaitedPath.addMethod('closest', selectors), awaitedOptions);
     }
+    computedStyleMap() {
+        const { awaitedPath, awaitedOptions } = exports.getState(this);
+        return create_1.createStylePropertyMapReadOnly(awaitedPath.addMethod('computedStyleMap'), awaitedOptions);
+    }
     getElementsByClassName(classNames) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
         return create_1.createSuperHTMLCollection(awaitedPath.addMethod('getElementsByClassName', classNames), awaitedOptions);

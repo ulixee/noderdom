@@ -19,7 +19,7 @@ export default class HTMLButtonElementIsolate implements IHTMLButtonElementIsola
     get type(): Promise<string>;
     get validationMessage(): Promise<string>;
     get validity(): Promise<IValidityState>;
-    get value(): Promise<string>;
+    get value(): Promise<string> | Promise<number>;
     get willValidate(): Promise<boolean>;
     checkValidity(): Promise<boolean>;
     reportValidity(): Promise<boolean>;
@@ -40,7 +40,7 @@ export interface IHTMLButtonElementIsolateProperties {
     readonly type?: Promise<string>;
     readonly validationMessage?: Promise<string>;
     readonly validity?: Promise<IValidityState>;
-    readonly value?: Promise<string>;
+    readonly value?: Promise<string> | Promise<number>;
     readonly willValidate?: Promise<boolean>;
 }
 export declare const HTMLButtonElementIsolatePropertyKeys: string[];

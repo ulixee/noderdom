@@ -70,7 +70,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     return awaitedHandler.getProperty<string>(this, 'formTarget', false);
   }
 
-  public get height(): Promise<number> {
+  public get height(): Promise<number> | Promise<string> {
     return awaitedHandler.getProperty<number>(this, 'height', false);
   }
 
@@ -90,7 +90,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     throw new Error('HTMLInputElementIsolate.list getter not implemented');
   }
 
-  public get max(): Promise<string> {
+  public get max(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'max', false);
   }
 
@@ -142,7 +142,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     return awaitedHandler.getProperty<number | null>(this, 'selectionStart', true);
   }
 
-  public get size(): Promise<number> {
+  public get size(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<number>(this, 'size', false);
   }
 
@@ -166,7 +166,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     return awaitedHandler.getProperty<IValidityState>(this, 'validity', false);
   }
 
-  public get value(): Promise<string> {
+  public get value(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
   }
 
@@ -178,7 +178,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     return awaitedHandler.getProperty<number>(this, 'valueAsNumber', false);
   }
 
-  public get width(): Promise<number> {
+  public get width(): Promise<number> | Promise<string> {
     return awaitedHandler.getProperty<number>(this, 'width', false);
   }
 
@@ -237,12 +237,12 @@ export interface IHTMLInputElementIsolateProperties {
   readonly formMethod?: Promise<string>;
   readonly formNoValidate?: Promise<boolean>;
   readonly formTarget?: Promise<string>;
-  readonly height?: Promise<number>;
+  readonly height?: Promise<number> | Promise<string>;
   readonly indeterminate?: Promise<boolean>;
   readonly inputMode?: Promise<string>;
   readonly labels?: ISuperNodeList;
   readonly list?: ISuperHTMLElement;
-  readonly max?: Promise<string>;
+  readonly max?: Promise<string> | Promise<number>;
   readonly maxLength?: Promise<number>;
   readonly min?: Promise<string>;
   readonly minLength?: Promise<number>;
@@ -255,16 +255,16 @@ export interface IHTMLInputElementIsolateProperties {
   readonly selectionDirection?: Promise<string | null>;
   readonly selectionEnd?: Promise<number | null>;
   readonly selectionStart?: Promise<number | null>;
-  readonly size?: Promise<number>;
+  readonly size?: Promise<string> | Promise<number>;
   readonly src?: Promise<string>;
   readonly step?: Promise<string>;
   readonly type?: Promise<string>;
   readonly validationMessage?: Promise<string>;
   readonly validity?: Promise<IValidityState>;
-  readonly value?: Promise<string>;
+  readonly value?: Promise<string> | Promise<number>;
   readonly valueAsDate?: Promise<any>;
   readonly valueAsNumber?: Promise<number>;
-  readonly width?: Promise<number>;
+  readonly width?: Promise<number> | Promise<string>;
   readonly willValidate?: Promise<boolean>;
 }
 

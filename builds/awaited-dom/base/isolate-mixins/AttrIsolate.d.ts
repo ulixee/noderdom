@@ -11,7 +11,7 @@ export default class AttrIsolate implements IAttrIsolate {
     get ownerElement(): ISuperElement;
     get prefix(): Promise<string | null>;
     get specified(): Promise<boolean>;
-    get value(): Promise<string>;
+    get value(): Promise<string> | Promise<number>;
 }
 export interface IAttrIsolateProperties {
     awaitedPath: AwaitedPath;
@@ -22,7 +22,7 @@ export interface IAttrIsolateProperties {
     readonly ownerElement?: ISuperElement;
     readonly prefix?: Promise<string | null>;
     readonly specified?: Promise<boolean>;
-    readonly value?: Promise<string>;
+    readonly value?: Promise<string> | Promise<number>;
 }
 export declare const AttrIsolatePropertyKeys: string[];
 export declare const AttrIsolateConstantKeys: never[];

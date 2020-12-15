@@ -9,6 +9,19 @@ export declare const awaitedHandler: AwaitedHandler<IHTMLFormElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLFormElement>;
 export declare function HTMLFormElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
     new (): {
+        readonly acceptCharset: Promise<string>;
+        readonly action: Promise<string>;
+        readonly autocomplete: Promise<string>;
+        readonly encoding: Promise<string>;
+        readonly enctype: Promise<string>;
+        readonly length: Promise<number>;
+        readonly name: Promise<string>;
+        readonly noValidate: Promise<boolean>;
+        readonly target: Promise<string>;
+        checkValidity(): Promise<boolean>;
+        reportValidity(): Promise<boolean>;
+        reset(): Promise<void>;
+        submit(): Promise<void>;
         then<TResult1 = IHTMLFormElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFormElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
@@ -49,6 +62,7 @@ export declare function HTMLFormElementGenerator(HTMLElement: Constructable<IHTM
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): import("../interfaces/super").ISuperElement;
+        computedStyleMap(): import("../interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -125,6 +139,15 @@ export interface IHTMLFormElementProperties extends IHTMLElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
     createInstanceName: string;
+    readonly acceptCharset?: Promise<string>;
+    readonly action?: Promise<string>;
+    readonly autocomplete?: Promise<string>;
+    readonly encoding?: Promise<string>;
+    readonly enctype?: Promise<string>;
+    readonly length?: Promise<number>;
+    readonly name?: Promise<string>;
+    readonly noValidate?: Promise<boolean>;
+    readonly target?: Promise<string>;
 }
 export declare const HTMLFormElementPropertyKeys: string[];
 export declare const HTMLFormElementConstantKeys: string[];

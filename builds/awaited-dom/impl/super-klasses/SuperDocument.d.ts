@@ -43,6 +43,12 @@ declare const SuperDocumentBaseClass: {
         getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
         hasFocus(): Promise<boolean>;
         then<TResult1 = ISuperDocument, TResult2 = never>(onfulfilled?: ((value: ISuperDocument) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
+        readonly activeElement: ISuperElement;
+        readonly fullscreenElement: ISuperElement;
+        readonly pointerLockElement: ISuperElement;
+        caretPositionFromPoint(x: number, y: number): import("../../base/interfaces/official").ICaretPosition;
+        elementFromPoint(x: number, y: number): ISuperElement;
+        getSelection(): import("../../base/interfaces/official").ISelection;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;
         readonly COMMENT_NODE: number;

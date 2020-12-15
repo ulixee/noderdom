@@ -3,7 +3,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLTextAreaElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
-import { ISuperNodeList } from '../interfaces/super';
+import { ISuperNodeList, ISuperHTMLCollection } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLTextAreaElementIsolate, IHTMLTextAreaElementIsolateProperties>();
@@ -18,7 +18,7 @@ export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementI
     return awaitedHandler.getProperty<boolean>(this, 'autofocus', false);
   }
 
-  public get cols(): Promise<number> {
+  public get cols(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<number>(this, 'cols', false);
   }
 
@@ -66,7 +66,7 @@ export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementI
     return awaitedHandler.getProperty<boolean>(this, 'required', false);
   }
 
-  public get rows(): Promise<number> {
+  public get rows(): Promise<string> | ISuperHTMLCollection | Promise<number> {
     return awaitedHandler.getProperty<number>(this, 'rows', false);
   }
 
@@ -98,7 +98,7 @@ export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementI
     return awaitedHandler.getProperty<IValidityState>(this, 'validity', false);
   }
 
-  public get value(): Promise<string> {
+  public get value(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
   }
 
@@ -144,7 +144,7 @@ export interface IHTMLTextAreaElementIsolateProperties {
   awaitedOptions: any;
   readonly autocomplete?: Promise<string>;
   readonly autofocus?: Promise<boolean>;
-  readonly cols?: Promise<number>;
+  readonly cols?: Promise<string> | Promise<number>;
   readonly defaultValue?: Promise<string>;
   readonly disabled?: Promise<boolean>;
   readonly form?: IHTMLFormElement;
@@ -156,7 +156,7 @@ export interface IHTMLTextAreaElementIsolateProperties {
   readonly placeholder?: Promise<string>;
   readonly readOnly?: Promise<boolean>;
   readonly required?: Promise<boolean>;
-  readonly rows?: Promise<number>;
+  readonly rows?: Promise<string> | ISuperHTMLCollection | Promise<number>;
   readonly selectionDirection?: Promise<string | null>;
   readonly selectionEnd?: Promise<number | null>;
   readonly selectionStart?: Promise<number | null>;
@@ -164,7 +164,7 @@ export interface IHTMLTextAreaElementIsolateProperties {
   readonly type?: Promise<string>;
   readonly validationMessage?: Promise<string>;
   readonly validity?: Promise<IValidityState>;
-  readonly value?: Promise<string>;
+  readonly value?: Promise<string> | Promise<number>;
   readonly willValidate?: Promise<boolean>;
   readonly wrap?: Promise<string>;
 }

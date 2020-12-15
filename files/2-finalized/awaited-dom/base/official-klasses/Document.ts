@@ -5,9 +5,10 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IDocument, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
+import { IDocument, INode, IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
+import { IDocumentOrShadowRootProperties, DocumentOrShadowRootPropertyKeys, DocumentOrShadowRootConstantKeys } from '../official-mixins/DocumentOrShadowRoot';
 import { INonElementParentNodeProperties, NonElementParentNodePropertyKeys, NonElementParentNodeConstantKeys } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEvaluatorBaseConstantKeys } from '../official-mixins/XPathEvaluatorBase';
@@ -17,8 +18,8 @@ export const { getState, setState, recordProxy } = StateMachine<IDocument, IDocu
 export const awaitedHandler = new AwaitedHandler<IDocument>('Document', getState, setState);
 export const nodeAttacher = new NodeAttacher<IDocument>(getState, setState, awaitedHandler);
 
-export function DocumentGenerator(Node: Constructable<INode>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
-  const Parent = (ClassMixer(Node, [NonElementParentNode, ParentNode, XPathEvaluatorBase]) as unknown) as Constructable<INode & INonElementParentNode & IParentNode & IXPathEvaluatorBase>;
+export function DocumentGenerator(Node: Constructable<INode>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
+  const Parent = (ClassMixer(Node, [DocumentOrShadowRoot, NonElementParentNode, ParentNode, XPathEvaluatorBase]) as unknown) as Constructable<INode & IDocumentOrShadowRoot & INonElementParentNode & IParentNode & IXPathEvaluatorBase>;
 
   return class Document extends Parent implements IDocument, PromiseLike<IDocument> {
     constructor() {
@@ -193,7 +194,7 @@ export function DocumentGenerator(Node: Constructable<INode>, NonElementParentNo
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IDocumentProperties extends INodeProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
+export interface IDocumentProperties extends INodeProperties, IDocumentOrShadowRootProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   createInstanceName: string;
@@ -231,6 +232,6 @@ export interface IDocumentProperties extends INodeProperties, INonElementParentN
   readonly visibilityState?: Promise<IVisibilityState>;
 }
 
-export const DocumentPropertyKeys = [...NodePropertyKeys, ...NonElementParentNodePropertyKeys, ...ParentNodePropertyKeys, ...XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+export const DocumentPropertyKeys = [...NodePropertyKeys, ...DocumentOrShadowRootPropertyKeys, ...NonElementParentNodePropertyKeys, ...ParentNodePropertyKeys, ...XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
 
-export const DocumentConstantKeys = [...NodeConstantKeys, ...NonElementParentNodeConstantKeys, ...ParentNodeConstantKeys, ...XPathEvaluatorBaseConstantKeys];
+export const DocumentConstantKeys = [...NodeConstantKeys, ...DocumentOrShadowRootConstantKeys, ...NonElementParentNodeConstantKeys, ...ParentNodeConstantKeys, ...XPathEvaluatorBaseConstantKeys];

@@ -3,8 +3,9 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
+import { IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { INodeIsolate } from '../interfaces/isolate';
-import { INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
+import { IDocumentOrShadowRootProperties } from '../official-mixins/DocumentOrShadowRoot';
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonElementParentNodeProperties } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
@@ -12,7 +13,7 @@ import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluator
 export declare const getState: (instance: ISuperDocument) => ISuperDocumentProperties, setState: (instance: ISuperDocument, properties: Partial<ISuperDocumentProperties>) => void, recordProxy: (proxy: ISuperDocument, instance: ISuperDocument) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperDocument>;
 export declare const nodeAttacher: NodeAttacher<ISuperDocument>;
-export declare function SuperDocumentGenerator(NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
+export declare function SuperDocumentGenerator(DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {
         readonly URL: Promise<string>;
         readonly anchors: ISuperHTMLCollection;
@@ -53,6 +54,12 @@ export declare function SuperDocumentGenerator(NodeIsolate: Constructable<INodeI
         getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
         hasFocus(): Promise<boolean>;
         then<TResult1 = ISuperDocument, TResult2 = never>(onfulfilled?: ((value: ISuperDocument) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
+        readonly activeElement: ISuperElement;
+        readonly fullscreenElement: ISuperElement;
+        readonly pointerLockElement: ISuperElement;
+        caretPositionFromPoint(x: number, y: number): import("../interfaces/official").ICaretPosition;
+        elementFromPoint(x: number, y: number): ISuperElement;
+        getSelection(): import("../interfaces/official").ISelection;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;
         readonly COMMENT_NODE: number;
@@ -110,7 +117,7 @@ export declare function SuperDocumentGenerator(NodeIsolate: Constructable<INodeI
         } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
 };
-export interface ISuperDocumentProperties extends INodeIsolateProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
+export interface ISuperDocumentProperties extends IDocumentOrShadowRootProperties, INodeIsolateProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
     createInstanceName: string;

@@ -2,13 +2,13 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLTextAreaElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
-import { ISuperNodeList } from '../interfaces/super';
+import { ISuperNodeList, ISuperHTMLCollection } from '../interfaces/super';
 export declare const getState: (instance: IHTMLTextAreaElementIsolate) => IHTMLTextAreaElementIsolateProperties, setState: (instance: IHTMLTextAreaElementIsolate, properties: Partial<IHTMLTextAreaElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLTextAreaElementIsolate, instance: IHTMLTextAreaElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTextAreaElementIsolate>;
 export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementIsolate {
     get autocomplete(): Promise<string>;
     get autofocus(): Promise<boolean>;
-    get cols(): Promise<number>;
+    get cols(): Promise<string> | Promise<number>;
     get defaultValue(): Promise<string>;
     get disabled(): Promise<boolean>;
     get form(): IHTMLFormElement;
@@ -20,7 +20,7 @@ export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementI
     get placeholder(): Promise<string>;
     get readOnly(): Promise<boolean>;
     get required(): Promise<boolean>;
-    get rows(): Promise<number>;
+    get rows(): Promise<string> | ISuperHTMLCollection | Promise<number>;
     get selectionDirection(): Promise<string | null>;
     get selectionEnd(): Promise<number | null>;
     get selectionStart(): Promise<number | null>;
@@ -28,7 +28,7 @@ export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementI
     get type(): Promise<string>;
     get validationMessage(): Promise<string>;
     get validity(): Promise<IValidityState>;
-    get value(): Promise<string>;
+    get value(): Promise<string> | Promise<number>;
     get willValidate(): Promise<boolean>;
     get wrap(): Promise<string>;
     checkValidity(): Promise<boolean>;
@@ -43,7 +43,7 @@ export interface IHTMLTextAreaElementIsolateProperties {
     awaitedOptions: any;
     readonly autocomplete?: Promise<string>;
     readonly autofocus?: Promise<boolean>;
-    readonly cols?: Promise<number>;
+    readonly cols?: Promise<string> | Promise<number>;
     readonly defaultValue?: Promise<string>;
     readonly disabled?: Promise<boolean>;
     readonly form?: IHTMLFormElement;
@@ -55,7 +55,7 @@ export interface IHTMLTextAreaElementIsolateProperties {
     readonly placeholder?: Promise<string>;
     readonly readOnly?: Promise<boolean>;
     readonly required?: Promise<boolean>;
-    readonly rows?: Promise<number>;
+    readonly rows?: Promise<string> | ISuperHTMLCollection | Promise<number>;
     readonly selectionDirection?: Promise<string | null>;
     readonly selectionEnd?: Promise<number | null>;
     readonly selectionStart?: Promise<number | null>;
@@ -63,7 +63,7 @@ export interface IHTMLTextAreaElementIsolateProperties {
     readonly type?: Promise<string>;
     readonly validationMessage?: Promise<string>;
     readonly validity?: Promise<IValidityState>;
-    readonly value?: Promise<string>;
+    readonly value?: Promise<string> | Promise<number>;
     readonly willValidate?: Promise<boolean>;
     readonly wrap?: Promise<string>;
 }

@@ -16,15 +16,15 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
     get length(): Promise<number>;
     get multiple(): Promise<boolean>;
     get name(): Promise<string>;
-    get options(): IHTMLOptionsCollection;
+    get options(): Promise<ISuperHTMLCollection> | IHTMLOptionsCollection;
     get required(): Promise<boolean>;
     get selectedIndex(): Promise<number>;
     get selectedOptions(): ISuperHTMLCollection;
-    get size(): Promise<number>;
+    get size(): Promise<string> | Promise<number>;
     get type(): Promise<string>;
     get validationMessage(): Promise<string>;
     get validity(): Promise<IValidityState>;
-    get value(): Promise<string>;
+    get value(): Promise<string> | Promise<number>;
     get willValidate(): Promise<boolean>;
     checkValidity(): Promise<boolean>;
     item(index: number): ISuperElement;
@@ -46,15 +46,15 @@ export interface IHTMLSelectElementIsolateProperties {
     readonly length?: Promise<number>;
     readonly multiple?: Promise<boolean>;
     readonly name?: Promise<string>;
-    readonly options?: IHTMLOptionsCollection;
+    readonly options?: Promise<ISuperHTMLCollection> | IHTMLOptionsCollection;
     readonly required?: Promise<boolean>;
     readonly selectedIndex?: Promise<number>;
     readonly selectedOptions?: ISuperHTMLCollection;
-    readonly size?: Promise<number>;
+    readonly size?: Promise<string> | Promise<number>;
     readonly type?: Promise<string>;
     readonly validationMessage?: Promise<string>;
     readonly validity?: Promise<IValidityState>;
-    readonly value?: Promise<string>;
+    readonly value?: Promise<string> | Promise<number>;
     readonly willValidate?: Promise<boolean>;
 }
 export declare const HTMLSelectElementIsolatePropertyKeys: string[];

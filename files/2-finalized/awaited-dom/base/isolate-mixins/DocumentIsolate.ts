@@ -110,7 +110,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     throw new Error('DocumentIsolate.plugins getter not implemented');
   }
 
-  public get readyState(): Promise<IDocumentReadyState> {
+  public get readyState(): Promise<IDocumentReadyState> | Promise<number> {
     return awaitedHandler.getProperty<IDocumentReadyState>(this, 'readyState', false);
   }
 
@@ -195,7 +195,7 @@ export interface IDocumentIsolateProperties {
   readonly links?: ISuperHTMLCollection;
   readonly location?: ILocation;
   readonly plugins?: ISuperHTMLCollection;
-  readonly readyState?: Promise<IDocumentReadyState>;
+  readonly readyState?: Promise<IDocumentReadyState> | Promise<number>;
   readonly referrer?: Promise<string>;
   readonly scripts?: ISuperHTMLCollection;
   readonly scrollingElement?: ISuperElement;

@@ -5,7 +5,7 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IElement, INode, INonDocumentTypeChildNode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
+import { IElement, INode, INonDocumentTypeChildNode, IParentNode, INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
@@ -118,6 +118,10 @@ export function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChil
 
     public closest(selectors: string): ISuperElement {
       throw new Error('Element.closest not implemented');
+    }
+
+    public computedStyleMap(): IStylePropertyMapReadOnly {
+      throw new Error('Element.computedStyleMap not implemented');
     }
 
     public getAttribute(qualifiedName: string): Promise<string | null> {

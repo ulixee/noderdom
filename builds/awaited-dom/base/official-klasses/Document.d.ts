@@ -2,16 +2,17 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IDocument, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
+import { IDocument, INode, IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeProperties } from './Node';
+import { IDocumentOrShadowRootProperties } from '../official-mixins/DocumentOrShadowRoot';
 import { INonElementParentNodeProperties } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
 import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluatorBase';
 export declare const getState: (instance: IDocument) => IDocumentProperties, setState: (instance: IDocument, properties: Partial<IDocumentProperties>) => void, recordProxy: (proxy: IDocument, instance: IDocument) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocument>;
 export declare const nodeAttacher: NodeAttacher<IDocument>;
-export declare function DocumentGenerator(Node: Constructable<INode>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
+export declare function DocumentGenerator(Node: Constructable<INode>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {
         readonly URL: Promise<string>;
         readonly anchors: ISuperHTMLCollection;
@@ -94,6 +95,12 @@ export declare function DocumentGenerator(Node: Constructable<INode>, NonElement
         lookupNamespaceURI(prefix: string | null): Promise<string | null>;
         lookupPrefix(namespace: string | null): Promise<string | null>;
         normalize(): Promise<void>;
+        readonly activeElement: ISuperElement;
+        readonly fullscreenElement: ISuperElement;
+        readonly pointerLockElement: ISuperElement;
+        caretPositionFromPoint(x: number, y: number): import("../interfaces/official").ICaretPosition;
+        elementFromPoint(x: number, y: number): ISuperElement;
+        getSelection(): import("../interfaces/official").ISelection;
         getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: ISuperHTMLCollection;
@@ -109,7 +116,7 @@ export declare function DocumentGenerator(Node: Constructable<INode>, NonElement
         } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
 };
-export interface IDocumentProperties extends INodeProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
+export interface IDocumentProperties extends INodeProperties, IDocumentOrShadowRootProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
     createInstanceName: string;

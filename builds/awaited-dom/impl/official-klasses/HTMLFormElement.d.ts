@@ -3,6 +3,19 @@ import { IHTMLFormElementProperties } from '../../base/official-klasses/HTMLForm
 export declare const getState: (instance: IHTMLFormElement) => IHTMLFormElementProperties, setState: (instance: IHTMLFormElement, properties: Partial<IHTMLFormElementProperties>) => void, recordProxy: (proxy: IHTMLFormElement, instance: IHTMLFormElement) => void;
 declare const HTMLFormElementBaseClass: {
     new (): {
+        readonly acceptCharset: Promise<string>;
+        readonly action: Promise<string>;
+        readonly autocomplete: Promise<string>;
+        readonly encoding: Promise<string>;
+        readonly enctype: Promise<string>;
+        readonly length: Promise<number>;
+        readonly name: Promise<string>;
+        readonly noValidate: Promise<boolean>;
+        readonly target: Promise<string>;
+        checkValidity(): Promise<boolean>;
+        reportValidity(): Promise<boolean>;
+        reset(): Promise<void>;
+        submit(): Promise<void>;
         then<TResult1 = IHTMLFormElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFormElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
@@ -43,6 +56,7 @@ declare const HTMLFormElementBaseClass: {
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): import("../../base/interfaces/super").ISuperElement;
+        computedStyleMap(): import("../../base/interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;

@@ -1,8 +1,8 @@
 import StateMachine from '../../base/StateMachine';
-import { IElement, INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../base/interfaces/official';
+import { IElement, INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly } from '../../base/interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { ElementGenerator, IElementProperties } from '../../base/official-klasses/Element';
-import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createSuperHTMLCollection } from '../create';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createStylePropertyMapReadOnly, createSuperHTMLCollection } from '../create';
 import Node from './Node';
 import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNode';
 import ParentNode from '../official-mixins/ParentNode';
@@ -43,6 +43,11 @@ export default class Element extends ElementBaseClass implements IElement {
   public closest(selectors: string): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperElement(awaitedPath.addMethod('closest', selectors), awaitedOptions);
+  }
+
+  public computedStyleMap(): IStylePropertyMapReadOnly {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createStylePropertyMapReadOnly(awaitedPath.addMethod('computedStyleMap', ), awaitedOptions);
   }
 
   public getElementsByClassName(classNames: string): ISuperHTMLCollection {

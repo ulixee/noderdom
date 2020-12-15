@@ -62,7 +62,7 @@ export default class HTMLButtonElementIsolate implements IHTMLButtonElementIsola
     return awaitedHandler.getProperty<IValidityState>(this, 'validity', false);
   }
 
-  public get value(): Promise<string> {
+  public get value(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
   }
 
@@ -99,7 +99,7 @@ export interface IHTMLButtonElementIsolateProperties {
   readonly type?: Promise<string>;
   readonly validationMessage?: Promise<string>;
   readonly validity?: Promise<IValidityState>;
-  readonly value?: Promise<string>;
+  readonly value?: Promise<string> | Promise<number>;
   readonly willValidate?: Promise<boolean>;
 }
 

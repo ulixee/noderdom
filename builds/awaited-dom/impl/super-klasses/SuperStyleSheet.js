@@ -7,10 +7,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.recordProxy = exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const SuperStyleSheet_1 = require("../../base/super-klasses/SuperStyleSheet");
+const CSSStyleSheetIsolate_1 = __importDefault(require("../isolate-mixins/CSSStyleSheetIsolate"));
+const StyleSheetIsolate_1 = __importDefault(require("../isolate-mixins/StyleSheetIsolate"));
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
-const SuperStyleSheetBaseClass = SuperStyleSheet_1.SuperStyleSheetGenerator();
+const SuperStyleSheetBaseClass = SuperStyleSheet_1.SuperStyleSheetGenerator(CSSStyleSheetIsolate_1.default, StyleSheetIsolate_1.default);
 class SuperStyleSheet extends SuperStyleSheetBaseClass {
+    constructor() {
+        super();
+    }
 }
 exports.default = SuperStyleSheet;
 //# sourceMappingURL=SuperStyleSheet.js.map

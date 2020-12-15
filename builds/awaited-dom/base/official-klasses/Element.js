@@ -95,6 +95,9 @@ function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode) {
         closest(selectors) {
             throw new Error('Element.closest not implemented');
         }
+        computedStyleMap() {
+            throw new Error('Element.computedStyleMap not implemented');
+        }
         getAttribute(qualifiedName) {
             return exports.awaitedHandler.runMethod(this, 'getAttribute', [qualifiedName]);
         }

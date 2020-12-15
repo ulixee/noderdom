@@ -12,7 +12,7 @@ export default class HTMLOptionElementIsolate implements IHTMLOptionElementIsola
     get label(): Promise<string>;
     get selected(): Promise<boolean>;
     get text(): Promise<string>;
-    get value(): Promise<string>;
+    get value(): Promise<string> | Promise<number>;
 }
 export interface IHTMLOptionElementIsolateProperties {
     awaitedPath: AwaitedPath;
@@ -24,7 +24,7 @@ export interface IHTMLOptionElementIsolateProperties {
     readonly label?: Promise<string>;
     readonly selected?: Promise<boolean>;
     readonly text?: Promise<string>;
-    readonly value?: Promise<string>;
+    readonly value?: Promise<string> | Promise<number>;
 }
 export declare const HTMLOptionElementIsolatePropertyKeys: string[];
 export declare const HTMLOptionElementIsolateConstantKeys: never[];

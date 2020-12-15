@@ -37,7 +37,7 @@ export default class HTMLOptionElementIsolate implements IHTMLOptionElementIsola
     return awaitedHandler.getProperty<string>(this, 'text', false);
   }
 
-  public get value(): Promise<string> {
+  public get value(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
   }
 }
@@ -54,7 +54,7 @@ export interface IHTMLOptionElementIsolateProperties {
   readonly label?: Promise<string>;
   readonly selected?: Promise<boolean>;
   readonly text?: Promise<string>;
-  readonly value?: Promise<string>;
+  readonly value?: Promise<string> | Promise<number>;
 }
 
 export const HTMLOptionElementIsolatePropertyKeys = ['defaultSelected', 'disabled', 'form', 'index', 'label', 'selected', 'text', 'value'];

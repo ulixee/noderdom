@@ -6,7 +6,7 @@ export declare const getState: (instance: IHTMLSelectElementIsolate) => IHTMLSel
 export default class HTMLSelectElementIsolate extends HTMLSelectElementIsolateBase implements IHTMLSelectElementIsolate {
     get form(): IHTMLFormElement;
     get labels(): ISuperNodeList;
-    get options(): IHTMLOptionsCollection;
+    get options(): Promise<ISuperHTMLCollection> | IHTMLOptionsCollection;
     get selectedOptions(): ISuperHTMLCollection;
     item(index: number): ISuperElement;
     namedItem(name: string): IHTMLOptionElement;

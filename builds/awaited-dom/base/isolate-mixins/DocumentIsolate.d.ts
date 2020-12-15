@@ -31,7 +31,7 @@ export default class DocumentIsolate implements IDocumentIsolate {
     get links(): ISuperHTMLCollection;
     get location(): ILocation;
     get plugins(): ISuperHTMLCollection;
-    get readyState(): Promise<IDocumentReadyState>;
+    get readyState(): Promise<IDocumentReadyState> | Promise<number>;
     get referrer(): Promise<string>;
     get scripts(): ISuperHTMLCollection;
     get scrollingElement(): ISuperElement;
@@ -73,7 +73,7 @@ export interface IDocumentIsolateProperties {
     readonly links?: ISuperHTMLCollection;
     readonly location?: ILocation;
     readonly plugins?: ISuperHTMLCollection;
-    readonly readyState?: Promise<IDocumentReadyState>;
+    readonly readyState?: Promise<IDocumentReadyState> | Promise<number>;
     readonly referrer?: Promise<string>;
     readonly scripts?: ISuperHTMLCollection;
     readonly scrollingElement?: ISuperElement;

@@ -19,7 +19,7 @@ export default class HTMLSelectElementIsolate extends HTMLSelectElementIsolateBa
     return createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
   }
 
-  public get options(): IHTMLOptionsCollection {
+  public get options(): Promise<ISuperHTMLCollection> | IHTMLOptionsCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createHTMLOptionsCollection(awaitedPath.addProperty('options'), awaitedOptions);
   }

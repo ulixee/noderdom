@@ -23,12 +23,53 @@ function HTMLFormElementGenerator(HTMLElement) {
                 createInstanceName: 'createHTMLFormElement',
             });
         }
+        // properties
+        get acceptCharset() {
+            return exports.awaitedHandler.getProperty(this, 'acceptCharset', false);
+        }
+        get action() {
+            return exports.awaitedHandler.getProperty(this, 'action', false);
+        }
+        get autocomplete() {
+            return exports.awaitedHandler.getProperty(this, 'autocomplete', false);
+        }
+        get encoding() {
+            return exports.awaitedHandler.getProperty(this, 'encoding', false);
+        }
+        get enctype() {
+            return exports.awaitedHandler.getProperty(this, 'enctype', false);
+        }
+        get length() {
+            return exports.awaitedHandler.getProperty(this, 'length', false);
+        }
+        get name() {
+            return exports.awaitedHandler.getProperty(this, 'name', false);
+        }
+        get noValidate() {
+            return exports.awaitedHandler.getProperty(this, 'noValidate', false);
+        }
+        get target() {
+            return exports.awaitedHandler.getProperty(this, 'target', false);
+        }
+        // methods
+        checkValidity() {
+            return exports.awaitedHandler.runMethod(this, 'checkValidity', []);
+        }
+        reportValidity() {
+            return exports.awaitedHandler.runMethod(this, 'reportValidity', []);
+        }
+        reset() {
+            return exports.awaitedHandler.runMethod(this, 'reset', []);
+        }
+        submit() {
+            return exports.awaitedHandler.runMethod(this, 'submit', []);
+        }
         then(onfulfilled, onrejected) {
             return exports.nodeAttacher.attach(this).then(onfulfilled, onrejected);
         }
     };
 }
 exports.HTMLFormElementGenerator = HTMLFormElementGenerator;
-exports.HTMLFormElementPropertyKeys = [...HTMLElement_1.HTMLElementPropertyKeys];
+exports.HTMLFormElementPropertyKeys = [...HTMLElement_1.HTMLElementPropertyKeys, 'acceptCharset', 'action', 'autocomplete', 'encoding', 'enctype', 'length', 'name', 'noValidate', 'target'];
 exports.HTMLFormElementConstantKeys = [...HTMLElement_1.HTMLElementConstantKeys];
 //# sourceMappingURL=HTMLFormElement.js.map

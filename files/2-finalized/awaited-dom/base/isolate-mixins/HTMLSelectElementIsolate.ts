@@ -44,7 +44,7 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
     return awaitedHandler.getProperty<string>(this, 'name', false);
   }
 
-  public get options(): IHTMLOptionsCollection {
+  public get options(): Promise<ISuperHTMLCollection> | IHTMLOptionsCollection {
     throw new Error('HTMLSelectElementIsolate.options getter not implemented');
   }
 
@@ -60,7 +60,7 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
     throw new Error('HTMLSelectElementIsolate.selectedOptions getter not implemented');
   }
 
-  public get size(): Promise<number> {
+  public get size(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<number>(this, 'size', false);
   }
 
@@ -76,7 +76,7 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
     return awaitedHandler.getProperty<IValidityState>(this, 'validity', false);
   }
 
-  public get value(): Promise<string> {
+  public get value(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
   }
 
@@ -125,15 +125,15 @@ export interface IHTMLSelectElementIsolateProperties {
   readonly length?: Promise<number>;
   readonly multiple?: Promise<boolean>;
   readonly name?: Promise<string>;
-  readonly options?: IHTMLOptionsCollection;
+  readonly options?: Promise<ISuperHTMLCollection> | IHTMLOptionsCollection;
   readonly required?: Promise<boolean>;
   readonly selectedIndex?: Promise<number>;
   readonly selectedOptions?: ISuperHTMLCollection;
-  readonly size?: Promise<number>;
+  readonly size?: Promise<string> | Promise<number>;
   readonly type?: Promise<string>;
   readonly validationMessage?: Promise<string>;
   readonly validity?: Promise<IValidityState>;
-  readonly value?: Promise<string>;
+  readonly value?: Promise<string> | Promise<number>;
   readonly willValidate?: Promise<boolean>;
 }
 

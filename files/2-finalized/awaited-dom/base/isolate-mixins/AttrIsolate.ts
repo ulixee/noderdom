@@ -33,7 +33,7 @@ export default class AttrIsolate implements IAttrIsolate {
     return awaitedHandler.getProperty<boolean>(this, 'specified', false);
   }
 
-  public get value(): Promise<string> {
+  public get value(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
   }
 }
@@ -49,7 +49,7 @@ export interface IAttrIsolateProperties {
   readonly ownerElement?: ISuperElement;
   readonly prefix?: Promise<string | null>;
   readonly specified?: Promise<boolean>;
-  readonly value?: Promise<string>;
+  readonly value?: Promise<string> | Promise<number>;
 }
 
 export const AttrIsolatePropertyKeys = ['localName', 'name', 'namespaceURI', 'ownerElement', 'prefix', 'specified', 'value'];

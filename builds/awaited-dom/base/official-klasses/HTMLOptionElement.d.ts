@@ -57,6 +57,7 @@ export declare function HTMLOptionElementGenerator(HTMLElement: Constructable<IH
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): import("../interfaces/super").ISuperElement;
+        computedStyleMap(): import("../interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;

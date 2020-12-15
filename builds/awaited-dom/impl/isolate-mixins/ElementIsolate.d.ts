@@ -1,5 +1,5 @@
 import { IElementIsolate } from '../../base/interfaces/isolate';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../base/interfaces/official';
+import { INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly } from '../../base/interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../../base/interfaces/super';
 import ElementIsolateBase, { IElementIsolateProperties } from '../../base/isolate-mixins/ElementIsolate';
 export declare const getState: (instance: IElementIsolate) => IElementIsolateProperties, setState: (instance: IElementIsolate, properties: Partial<IElementIsolateProperties>) => void, recordProxy: (proxy: IElementIsolate, instance: IElementIsolate) => void;
@@ -9,6 +9,7 @@ export default class ElementIsolate extends ElementIsolateBase implements IEleme
     get part(): IDOMTokenList;
     get shadowRoot(): IShadowRoot;
     closest(selectors: string): ISuperElement;
+    computedStyleMap(): IStylePropertyMapReadOnly;
     getElementsByClassName(classNames: string): ISuperHTMLCollection;
     getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
     getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
