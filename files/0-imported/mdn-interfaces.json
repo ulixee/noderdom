@@ -4906,5 +4906,29 @@
     "isDocumented": true,
     "isOnMDN": true,
     "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "MediaStream",
+    "filename": "en-US:docs:Web:API:MediaStream.html",
+    "urlPath": "/en-US/docs/Web/API/MediaStream",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": false,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
+  },
+  {
+    "name": "CaretPosition",
+    "filename": "en-US:docs:Web:API:CaretPosition.html",
+    "urlPath": "/en-US/docs/Web/API/CaretPosition",
+    "category": "CherryPicked",
+    "isDeprecated": false,
+    "isExperimental": true,
+    "isObsolete": false,
+    "isDocumented": true,
+    "isOnMDN": true,
+    "sourcedAtPath": "/en-US/docs/Web/API"
   }
 ]

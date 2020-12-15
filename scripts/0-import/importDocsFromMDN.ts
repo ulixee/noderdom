@@ -46,6 +46,8 @@ const cherryPickedInterfaceNames = [
   'XPathNSResolver',
   'XPathExpression',
   'XPathResult',
+  'MediaStream',
+  'CaretPosition',
 ];
 
 const cherryPickAliases = new Map<string, string>([['XPathEvaluatorBase', 'XPathEvaluator']]);

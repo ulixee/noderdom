@@ -267,10 +267,16 @@ export default class TsBodyPrinter {
     const i: Types.Interface = this.i;
     const isReadonly = property.readOnly === 1;
     const isAbstract = this.isAbstract(property);
-    const valueType: string = this.extractPropertyValueType(property);
-    const valueTypeCleaned: string = valueType.replace(' | any', '');
+    const genericsType: string = this.extractPropertyGenericsType(property);
+    const genericsTypeCleaned: string = genericsType.replace(' | any', '');
     const returnType: string = this.extractPropertyReturnType(property);
-    const returnTypeCleaned: string = returnType.replace(' | any', '');
+
+    let abstractClass = returnType.replace(' | any', '');
+    if (isAbstract && property.compromiseType && abstractClass.includes('|')) {
+      const officialType = property.compromiseType!.find(x => x.isOfficial === 1)!;
+      abstractClass = TypeUtils.convertDomTypeToTsType(officialType, true);
+    }
+    const abstractClassCleaned = abstractClass.replace(/^I([A-Z])/, '$1');
 
     if (this.skipImplementation) {
       const isRequired = forceOptional ? false : property.required === undefined || property.required === 1;
@@ -287,15 +293,14 @@ export default class TsBodyPrinter {
     if (isAbstract && this.buildType === BuildType.base) {
       this.printer.printLine(`throw new Error('${i.name}.${property.name} getter not implemented');`);
     } else if (isAbstract) {
-      const returnClass = returnTypeCleaned.replace(/^I([A-Z])/, '$1');
       this.printer.printLine(`const { awaitedPath, awaitedOptions } = getState(this);`);
       this.printer.printLine(
-        `return create${returnClass}(awaitedPath.addProperty('${property.name}'), awaitedOptions);`,
+        `return create${abstractClassCleaned}(awaitedPath.addProperty('${property.name}'), awaitedOptions);`,
       );
-      this.referencedCreateMethods.add(returnClass);
+      this.referencedCreateMethods.add(abstractClassCleaned);
     } else {
       this.printer.printLine(
-        `return ${this.handler}.getProperty<${valueTypeCleaned}>(this, '${property.name}', ${hasNullDefault});`,
+        `return ${this.handler}.getProperty<${genericsTypeCleaned}>(this, '${property.name}', ${hasNullDefault});`,
       );
     }
     this.printer.decreaseIndent();
@@ -303,12 +308,12 @@ export default class TsBodyPrinter {
 
     if (!isReadonly) {
       this.printer.printSeparatorLine();
-      this.printer.printLine(`public set ${property.name}(value: ${valueType}) {`);
+      this.printer.printLine(`public set ${property.name}(value: ${genericsType}) {`);
       this.printer.increaseIndent();
       if (isAbstract) {
         this.printer.printLine(`throw new Error('${i.name}.${property.name} setter not implemented');`);
       } else {
-        this.printer.printLine(`${this.handler}.setProperty<${valueTypeCleaned}>(this, '${property.name}', value);`);
+        this.printer.printLine(`${this.handler}.setProperty<${genericsTypeCleaned}>(this, '${property.name}', value);`);
       }
       this.printer.decreaseIndent();
       this.printer.printLine('}');
@@ -404,8 +409,35 @@ export default class TsBodyPrinter {
     return mType;
   }
 
-  private extractPropertyReturnType(p: Types.Property) {
+  private extractPropertyReturnType(p: Types.Property): string {
     const i: Types.Interface = this.i;
+    const isReadonly = p.readOnly === 1;
+    const isRequired = p.required === undefined || p.required === 1;
+
+    // if compromise type, work around case where one part is abstract, and rest is not
+    if (p.compromiseType) {
+      const parts: string[] = [];
+      for (const cType of p.compromiseType) {
+        let typePart = TypeUtils.convertDomTypeToTsType(cType, true);
+        if (this.domType === DomType.awaited) {
+          if (cType.isAbstract === 1) {
+            typePart.replace(' | null', '');
+          } else {
+            if (!typePart.startsWith('Promise<')) typePart = `Promise<${typePart}>`;
+          }
+        } else if (!isRequired) {
+          typePart += ' | undefined';
+        }
+        parts.push(typePart);
+      }
+      TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
+      let pType = parts.join(' | ');
+      if (!isReadonly) {
+        pType += ' | any';
+      }
+      return pType;
+    }
+
     const isAbstract = this.isAbstract(p);
     let pType: string;
     if (isEventHandler(p)) {
@@ -428,13 +460,11 @@ export default class TsBodyPrinter {
         pType = pType.replace(' | null', '');
       } else {
         pType = pType.startsWith('Promise<') ? pType : `Promise<${pType}>`;
-        const isReadonly = p.readOnly === 1;
         if (!isReadonly) {
           pType += ' | any';
         }
       }
     } else {
-      const isRequired = p.required === undefined || p.required === 1;
       if (!isRequired) {
         pType += ' | undefined';
       }
@@ -442,7 +472,7 @@ export default class TsBodyPrinter {
     return pType;
   }
 
-  private extractPropertyValueType(p: Types.Property) {
+  private extractPropertyGenericsType(p: Types.Property) {
     const i: Types.Interface = this.i;
     const isAbstract = this.isAbstract(p);
     let pType: string;
@@ -457,7 +487,9 @@ export default class TsBodyPrinter {
         pType = `(${pType}) | null`;
       }
     } else {
-      pType = TypeUtils.convertDomTypeToTsType(p, true);
+      const officialType = p.compromiseType?.find(x => x.isOfficial === 1);
+      pType = TypeUtils.convertDomTypeToTsType(officialType || p, true);
+
       TypeUtils.extractCustomTypes(p).forEach(this.referencedObjects.add, this.referencedObjects);
       const isReadonly = p.readOnly === 1;
       if (!isAbstract && !isReadonly) {

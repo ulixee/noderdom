@@ -4432,6 +4432,41 @@
       "exposed": "Window Worker",
       "legacyWindowAlias": []
     },
+    "CaretPosition": {
+      "name": "CaretPosition",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "getClientRect": {
+          "name": "getClientRect",
+          "signatures": [
+            {
+              "type": "DOMRect",
+              "nullable": 1,
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "offsetNode": {
+          "name": "offsetNode",
+          "type": "Node",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "offset": {
+          "name": "offset",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
     "CDATASection": {
       "name": "CDATASection",
       "extends": "Text",
@@ -12497,6 +12532,151 @@
           "readOnly": 1,
           "exposed": "Window"
         }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "MediaStream": {
+      "name": "MediaStream",
+      "extends": "EventTarget",
+      "constants": {},
+      "methods": {
+        "getAudioTracks": {
+          "name": "getAudioTracks",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "MediaStreamTrack"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getVideoTracks": {
+          "name": "getVideoTracks",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "MediaStreamTrack"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getTracks": {
+          "name": "getTracks",
+          "signatures": [
+            {
+              "type": "sequence",
+              "subtype": {
+                "type": "MediaStreamTrack"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getTrackById": {
+          "name": "getTrackById",
+          "signatures": [
+            {
+              "type": "MediaStreamTrack",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "trackId",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "addTrack": {
+          "name": "addTrack",
+          "signatures": [
+            {
+              "type": "undefined",
+              "params": [
+                {
+                  "name": "track",
+                  "type": "MediaStreamTrack"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "removeTrack": {
+          "name": "removeTrack",
+          "signatures": [
+            {
+              "type": "undefined",
+              "params": [
+                {
+                  "name": "track",
+                  "type": "MediaStreamTrack"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "clone": {
+          "name": "clone",
+          "signatures": [
+            {
+              "type": "MediaStream",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "onaddtrack": {
+          "name": "onaddtrack",
+          "type": "EventHandler",
+          "eventHandler": "addtrack",
+          "exposed": "Window"
+        },
+        "onremovetrack": {
+          "name": "onremovetrack",
+          "type": "EventHandler",
+          "eventHandler": "removetrack",
+          "exposed": "Window"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "MediaStream",
+            "params": [
+              {
+                "name": "stream",
+                "type": "MediaStream",
+                "optional": 1
+              }
+            ]
+          }
+        ]
       },
       "exposed": "Window",
       "legacyWindowAlias": []

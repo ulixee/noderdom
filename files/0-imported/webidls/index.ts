@@ -55,6 +55,7 @@ export default [
   'events/DocumentAndElementEventHandlers.webidl',
 
   // nodes
+  'nodes/CaretPosition.webidl',
   'nodes/CDATASection.webidl',
   'nodes/CharacterData.webidl',
   'nodes/ChildNode.webidl',
@@ -145,6 +146,7 @@ export default [
   'nodes/HTMLUnknownElement.webidl',
   'nodes/HTMLVideoElement.webidl',
   'nodes/LinkStyle.webidl',
+  'nodes/MediaStream.webidl',
   'nodes/Node.webidl',
   'nodes/NodeList.webidl',
   'nodes/NonDocumentTypeChildNode.webidl',
