@@ -83,7 +83,33 @@ function resolveConflicts(superInterfaces: Types.Interface[], components: Compon
         const isolateInterface = components.awaitedIsolates[definition.klass];
         if (type === 'property') {
           const properties = isolateInterface.properties!;
+          // already processed
+          if (properties[definitionName].compromiseType) return;
+
+          const cleanType = TypeUtils.convertDomTypeToTsType(properties[definitionName]);
           properties[definitionName] = Object.assign({}, properties[definitionName], overrides);
+
+          const property = properties[definitionName];
+          if (property.compromiseType) {
+            property.compromiseType = property.compromiseType.map(entry => {
+              const cleanCompromiseType = TypeUtils.convertDomTypeToTsType(entry);
+              const isOfficial = cleanCompromiseType === cleanType ? 1 : undefined;
+              return {
+                ...entry,
+                isOfficial,
+              };
+            });
+            if (!property.compromiseType.some(x => x.isOfficial)) {
+              console.log(
+                'WARN: No official type created when compromising. This usually means something went wrong...',
+                property,
+              );
+            }
+            property.type = property.compromiseType.map(x => ({
+              type: x.type,
+              nullable: x.nullable,
+            }));
+          }
           isolateInterface.properties = properties as Record<string, Types.Property>;
         } else {
           const methods = isolateInterface.methods!;
@@ -131,8 +157,12 @@ function createOverrides(type: 'property' | 'method', components: Components, de
 }
 
 function createPropertyOverrides(components: Components, propDefinitions: IDefinition[]): any {
-  const overrides: { readOnly?: 1; nullable?: 1; type?: string | Types.Typed[] } = { readOnly: 1 };
-  const typeByCleanType: { [key: string]: string } = {};
+  const overrides: {
+    readOnly?: 1;
+    nullable?: 1;
+    compromiseType?: (Types.Typed & { isAbstract?: 1 })[];
+  } = { readOnly: 1 };
+  const typeByCleanType: { [key: string]: { type: string; isAbstract?: 1 } } = {};
   for (const prop of propDefinitions) {
     const i = components.allInterfacesMap[prop.klass.replace('Isolate', '')];
     const property = i.properties![prop.name];
@@ -140,14 +170,15 @@ function createPropertyOverrides(components: Components, propDefinitions: IDefin
     if (property.nullable === 1) overrides.nullable = 1;
     if (typeof property.type === 'string') {
       const cleanType = TypeUtils.convertDomTypeToTsType({ type: property.type });
-      typeByCleanType[cleanType] = property.type;
+      typeByCleanType[cleanType] = { type: property.type, isAbstract: property.isAbstract };
     } else {
+      console.log(property);
       throw new Error('property type must be a string');
     }
   }
 
   const types = Object.values(typeByCleanType);
-  if (types.length > 1) overrides.type = types.map(t => ({ type: t }));
+  if (types.length > 1) overrides.compromiseType = types;
 
   return overrides;
 }

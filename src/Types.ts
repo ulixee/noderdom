@@ -41,6 +41,7 @@ export interface Property extends Typed {
   exposed?: string;
   constant?: 1;
   isAbstract?: 1;
+  compromiseType?: (Typed & { isAbstract?: 1; isOfficial?: 1 })[];
 }
 
 export interface Event {
