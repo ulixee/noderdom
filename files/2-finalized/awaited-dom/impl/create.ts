@@ -1,6 +1,6 @@
 import AwaitedPath from '../base/AwaitedPath';
 import StateMachine from '../base/StateMachine';
-import { IAttr, IAudioTrackList, IBlob, ICSSRule, ICSSRuleList, ICSSStyleSheet, ICaretPosition, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMStringMap, IDOMTokenList, IDocument, IDocumentFragment, IDocumentType, IElement, IFeaturePolicy, IHTMLAnchorElement, IHTMLAreaElement, IHTMLBaseElement, IHTMLBodyElement, IHTMLButtonElement, IHTMLCanvasElement, IHTMLCollection, IHTMLCollectionBase, IHTMLDListElement, IHTMLDataElement, IHTMLDataListElement, IHTMLDetailsElement, IHTMLDialogElement, IHTMLDirectoryElement, IHTMLDivElement, IHTMLElement, IHTMLEmbedElement, IHTMLFieldSetElement, IHTMLFontElement, IHTMLFormControlsCollection, IHTMLFormElement, IHTMLFrameElement, IHTMLFrameSetElement, IHTMLHRElement, IHTMLHeadElement, IHTMLHeadingElement, IHTMLHtmlElement, IHTMLIFrameElement, IHTMLImageElement, IHTMLInputElement, IHTMLLIElement, IHTMLLabelElement, IHTMLLinkElement, IHTMLMapElement, IHTMLMediaElement, IHTMLMetaElement, IHTMLModElement, IHTMLOListElement, IHTMLObjectElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLParagraphElement, IHTMLParamElement, IHTMLPreElement, IHTMLProgressElement, IHTMLQuoteElement, IHTMLScriptElement, IHTMLSelectElement, IHTMLSlotElement, IHTMLSourceElement, IHTMLStyleElement, IHTMLTableCaptionElement, IHTMLTableCellElement, IHTMLTableColElement, IHTMLTableElement, IHTMLTableRowElement, IHTMLTableSectionElement, IHTMLTextAreaElement, IHTMLTimeElement, IHTMLTitleElement, IHTMLTrackElement, IHTMLUListElement, IHTMLVideoElement, IHeaders, ILocation, IMediaError, IMediaKeys, IMediaStream, INamedNodeMap, INode, INodeList, IOffscreenCanvas, IRadioNodeList, IRange, IRequest, IResponse, ISelection, IShadowRoot, IStorage, IStylePropertyMapReadOnly, IStyleSheet, IText, ITextTrack, ITextTrackList, ITimeRanges, IValidityState, IVideoPlaybackQuality, IVideoTrackList, IXPathExpression, IXPathResult } from '../base/interfaces/official';
+import { IAttr, IAudioTrackList, IBlob, ICSSRule, ICSSRuleList, ICSSStyleDeclaration, ICSSStyleSheet, ICaretPosition, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMStringMap, IDOMTokenList, IDocument, IDocumentFragment, IDocumentType, IElement, IFeaturePolicy, IFontFace, IFontFaceSet, IHTMLAnchorElement, IHTMLAreaElement, IHTMLBaseElement, IHTMLBodyElement, IHTMLButtonElement, IHTMLCanvasElement, IHTMLCollection, IHTMLCollectionBase, IHTMLDListElement, IHTMLDataElement, IHTMLDataListElement, IHTMLDetailsElement, IHTMLDialogElement, IHTMLDirectoryElement, IHTMLDivElement, IHTMLElement, IHTMLEmbedElement, IHTMLFieldSetElement, IHTMLFontElement, IHTMLFormControlsCollection, IHTMLFormElement, IHTMLFrameElement, IHTMLFrameSetElement, IHTMLHRElement, IHTMLHeadElement, IHTMLHeadingElement, IHTMLHtmlElement, IHTMLIFrameElement, IHTMLImageElement, IHTMLInputElement, IHTMLLIElement, IHTMLLabelElement, IHTMLLinkElement, IHTMLMapElement, IHTMLMediaElement, IHTMLMetaElement, IHTMLModElement, IHTMLOListElement, IHTMLObjectElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLParagraphElement, IHTMLParamElement, IHTMLPreElement, IHTMLProgressElement, IHTMLQuoteElement, IHTMLScriptElement, IHTMLSelectElement, IHTMLSlotElement, IHTMLSourceElement, IHTMLStyleElement, IHTMLTableCaptionElement, IHTMLTableCellElement, IHTMLTableColElement, IHTMLTableElement, IHTMLTableRowElement, IHTMLTableSectionElement, IHTMLTextAreaElement, IHTMLTimeElement, IHTMLTitleElement, IHTMLTrackElement, IHTMLUListElement, IHTMLVideoElement, IHeaders, ILocation, IMediaError, IMediaKeys, IMediaStream, INamedNodeMap, INode, INodeList, IOffscreenCanvas, IRadioNodeList, IRange, IRequest, IResponse, ISelection, IShadowRoot, IStorage, IStylePropertyMapReadOnly, IStyleSheet, IText, ITextTrack, ITextTrackList, ITimeRanges, IValidityState, IVideoPlaybackQuality, IVideoTrackList, IXPathExpression, IXPathResult } from '../base/interfaces/official';
 import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
@@ -36,6 +36,13 @@ export function createCSSRule<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, aw
 export function createCSSRuleList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ICSSRuleList {
   const CSSRuleList = require('./official-klasses/CSSRuleList').default; // tslint:disable-line:variable-name
   const instance = new CSSRuleList();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createCSSStyleDeclaration<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ICSSStyleDeclaration {
+  const CSSStyleDeclaration = require('./official-klasses/CSSStyleDeclaration').default; // tslint:disable-line:variable-name
+  const instance = new CSSStyleDeclaration();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -127,6 +134,20 @@ export function createElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, aw
 export function createFeaturePolicy<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFeaturePolicy {
   const FeaturePolicy = require('./official-klasses/FeaturePolicy').default; // tslint:disable-line:variable-name
   const instance = new FeaturePolicy();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createFontFace<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFontFace {
+  const FontFace = require('./official-klasses/FontFace').default; // tslint:disable-line:variable-name
+  const instance = new FontFace();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createFontFaceSet<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFontFaceSet {
+  const FontFaceSet = require('./official-klasses/FontFaceSet').default; // tslint:disable-line:variable-name
+  const instance = new FontFaceSet();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }

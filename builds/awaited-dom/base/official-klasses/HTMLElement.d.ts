@@ -2,14 +2,16 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IHTMLElement, IElement, IHTMLOrSVGElement } from '../interfaces/official';
+import { IHTMLElement, IElement, IElementCSSInlineStyle, IElementContentEditable, IHTMLOrSVGElement } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { IElementProperties } from './Element';
+import { IElementCSSInlineStyleProperties } from '../official-mixins/ElementCSSInlineStyle';
+import { IElementContentEditableProperties } from '../official-mixins/ElementContentEditable';
 import { IHTMLOrSVGElementProperties } from '../official-mixins/HTMLOrSVGElement';
 export declare const getState: (instance: IHTMLElement) => IHTMLElementProperties, setState: (instance: IHTMLElement, properties: Partial<IHTMLElementProperties>) => void, recordProxy: (proxy: IHTMLElement, instance: IHTMLElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLElement>;
 export declare const nodeAttacher: NodeAttacher<IHTMLElement>;
-export declare function HTMLElementGenerator(Element: Constructable<IElement>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>): {
+export declare function HTMLElementGenerator(Element: Constructable<IElement>, ElementCSSInlineStyle: Constructable<IElementCSSInlineStyle>, ElementContentEditable: Constructable<IElementContentEditable>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>): {
     new (): {
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
@@ -120,11 +122,14 @@ export declare function HTMLElementGenerator(Element: Constructable<IElement>, H
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): import("../interfaces/super").ISuperNodeList;
+        readonly style: import("../interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };
 };
-export interface IHTMLElementProperties extends IElementProperties, IHTMLOrSVGElementProperties {
+export interface IHTMLElementProperties extends IElementProperties, IElementCSSInlineStyleProperties, IElementContentEditableProperties, IHTMLOrSVGElementProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
     createInstanceName: string;

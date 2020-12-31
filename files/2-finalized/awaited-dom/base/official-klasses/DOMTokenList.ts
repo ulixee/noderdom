@@ -19,7 +19,7 @@ export function DOMTokenListGenerator() {
       initializeConstantsAndProperties<DOMTokenList>(this, DOMTokenListConstantKeys, DOMTokenListPropertyKeys);
       setState(this, {
         createInstanceName: 'createDOMTokenList',
-        createIterableName: 'createtring',
+        createIterableName: 'string',
       });
       // proxy supports indexed property access
       const proxy = new Proxy(this, {

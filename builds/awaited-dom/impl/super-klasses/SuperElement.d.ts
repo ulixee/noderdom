@@ -47,6 +47,9 @@ declare const SuperElementBaseClass: {
         requestPointerLock(): Promise<void>;
         scrollIntoView(arg?: boolean | import("../../base/interfaces/official").IScrollIntoViewOptions | undefined): Promise<void>;
         then<TResult1 = ISuperElement, TResult2 = never>(onfulfilled?: ((value: ISuperElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
+        readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         readonly download: Promise<string>;
         readonly hreflang: Promise<string>;
         readonly referrerPolicy: Promise<string>;

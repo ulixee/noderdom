@@ -21,7 +21,7 @@ function DOMTokenListGenerator() {
             initializeConstantsAndProperties_1.default(this, exports.DOMTokenListConstantKeys, exports.DOMTokenListPropertyKeys);
             exports.setState(this, {
                 createInstanceName: 'createDOMTokenList',
-                createIterableName: 'createtring',
+                createIterableName: 'string',
             });
             // proxy supports indexed property access
             const proxy = new Proxy(this, {

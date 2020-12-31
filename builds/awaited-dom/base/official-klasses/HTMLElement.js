@@ -11,13 +11,15 @@ const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
 const Element_1 = require("./Element");
+const ElementCSSInlineStyle_1 = require("../official-mixins/ElementCSSInlineStyle");
+const ElementContentEditable_1 = require("../official-mixins/ElementContentEditable");
 const HTMLOrSVGElement_1 = require("../official-mixins/HTMLOrSVGElement");
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLElement', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
-function HTMLElementGenerator(Element, HTMLOrSVGElement) {
-    const Parent = ClassMixer_1.default(Element, [HTMLOrSVGElement]);
+function HTMLElementGenerator(Element, ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement) {
+    const Parent = ClassMixer_1.default(Element, [ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement]);
     return class HTMLElement extends Parent {
         constructor() {
             super();
@@ -85,6 +87,6 @@ function HTMLElementGenerator(Element, HTMLOrSVGElement) {
     };
 }
 exports.HTMLElementGenerator = HTMLElementGenerator;
-exports.HTMLElementPropertyKeys = [...Element_1.ElementPropertyKeys, ...HTMLOrSVGElement_1.HTMLOrSVGElementPropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
-exports.HTMLElementConstantKeys = [...Element_1.ElementConstantKeys, ...HTMLOrSVGElement_1.HTMLOrSVGElementConstantKeys];
+exports.HTMLElementPropertyKeys = [...Element_1.ElementPropertyKeys, ...ElementCSSInlineStyle_1.ElementCSSInlineStylePropertyKeys, ...ElementContentEditable_1.ElementContentEditablePropertyKeys, ...HTMLOrSVGElement_1.HTMLOrSVGElementPropertyKeys, 'accessKey', 'autoCapitalize', 'dir', 'draggable', 'hidden', 'inert', 'innerText', 'lang', 'offsetHeight', 'offsetLeft', 'offsetParent', 'offsetTop', 'offsetWidth', 'spellcheck', 'title', 'translate'];
+exports.HTMLElementConstantKeys = [...Element_1.ElementConstantKeys, ...ElementCSSInlineStyle_1.ElementCSSInlineStyleConstantKeys, ...ElementContentEditable_1.ElementContentEditableConstantKeys, ...HTMLOrSVGElement_1.HTMLOrSVGElementConstantKeys];
 //# sourceMappingURL=HTMLElement.js.map

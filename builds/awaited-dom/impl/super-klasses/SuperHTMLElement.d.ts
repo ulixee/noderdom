@@ -22,6 +22,9 @@ declare const SuperHTMLElementBaseClass: {
         readonly translate: Promise<boolean>;
         click(): Promise<void>;
         then<TResult1 = ISuperHTMLElement, TResult2 = never>(onfulfilled?: ((value: ISuperHTMLElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
+        readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         readonly attributes: import("../../base/interfaces/official").INamedNodeMap;
         readonly classList: import("../../base/interfaces/official").IDOMTokenList;
         readonly className: Promise<string>;

@@ -19,6 +19,7 @@ export declare type IShadowRootMode = 'closed' | 'open';
 export declare type IVisibilityState = 'hidden' | 'prerender' | 'visible';
 export declare type IBufferSource = ArrayBufferView | ArrayBuffer;
 export declare type IBlobPart = IBufferSource | IBlob | string;
+export declare type IBinaryData = ArrayBuffer | ArrayBufferView;
 export declare type IHeadersInit = Iterable<Iterable<string>> | Record<string, string>;
 export declare type IBodyInit = IBufferSource | string;
 export declare type IRequestInfo = IRequest | string;
@@ -28,6 +29,16 @@ export interface IAssignedNodesOptions {
 export interface IBlobPropertyBag {
     endings?: IEndingType;
     type?: string;
+}
+export interface IFontFaceDescriptors {
+    display?: string;
+    featureSettings?: string;
+    stretch?: string;
+    style?: string;
+    unicodeRange?: string;
+    variant?: string;
+    variationSettings?: string;
+    weight?: string;
 }
 export interface IFullscreenOptions {
     navigationUI?: IFullscreenNavigationUI;
@@ -100,6 +111,19 @@ export interface ICSSRule {
 }
 export interface ICSSRuleList {
 }
+export interface ICSSStyleDeclaration {
+    readonly cssFloat: Promise<string>;
+    readonly cssText: Promise<string>;
+    readonly length: Promise<number>;
+    readonly parentRule: ICSSRule;
+    getPropertyPriority(property: string): Promise<string>;
+    getPropertyValue(property: string): Promise<string>;
+    item(index: number): Promise<string>;
+    removeProperty(property: string): Promise<string>;
+    setProperty(property: string, value: string, priority?: string): Promise<void>;
+    [Symbol.iterator](): IterableIterator<string>;
+    [index: number]: string;
+}
 export interface ICSSStyleSheet extends IStyleSheet {
     readonly cssRules: ICSSRuleList;
     readonly ownerRule: ICSSRule;
@@ -148,7 +172,7 @@ export interface IDOMTokenList {
     [Symbol.iterator](): IterableIterator<string>;
     [index: number]: string;
 }
-export interface IDocument extends INode, IDocumentOrShadowRoot, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase {
+export interface IDocument extends INode, IDocumentOrShadowRoot, IFontFaceSource, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase {
     readonly URL: Promise<string>;
     readonly anchors: ISuperHTMLCollection;
     readonly body: ISuperHTMLElement;
@@ -246,7 +270,21 @@ export interface IElement extends INode, INode, INonDocumentTypeChildNode, IPare
     requestPointerLock(): Promise<void>;
     scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void>;
 }
+export interface IElementCSSInlineStyle {
+    readonly style: ICSSStyleDeclaration;
+}
+export interface IElementContentEditable {
+    readonly contentEditable: Promise<string>;
+    readonly isContentEditable: Promise<boolean>;
+}
 export interface IFeaturePolicy {
+}
+export interface IFontFace {
+}
+export interface IFontFaceSet {
+}
+export interface IFontFaceSource {
+    readonly fonts: IFontFaceSet;
 }
 export interface IHTMLCollection extends IHTMLCollectionBase {
     namedItem(name: string): ISuperElement;
@@ -638,7 +676,7 @@ export interface IHTMLDirectoryElement extends IHTMLElement {
 export interface IHTMLDivElement extends IHTMLElement {
     readonly align: Promise<string>;
 }
-export interface IHTMLElement extends IElement, IElement, IHTMLOrSVGElement {
+export interface IHTMLElement extends IElement, IElement, IElementCSSInlineStyle, IElementContentEditable, IHTMLOrSVGElement {
     readonly accessKey: Promise<string>;
     readonly autoCapitalize: Promise<string>;
     readonly dir: Promise<string>;

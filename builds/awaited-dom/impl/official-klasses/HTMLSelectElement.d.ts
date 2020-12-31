@@ -137,6 +137,9 @@ declare const HTMLSelectElementBaseClass: {
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
+        readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };

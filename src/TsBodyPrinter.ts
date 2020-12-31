@@ -174,9 +174,12 @@ export default class TsBodyPrinter {
           this.printer.printLine(`createInstanceName: 'create${i.name}',`);
           // if iterable
           if (this.iteratorExtractor.hasIterable() && !this.iteratorExtractor.hasMaplikeSequence) {
-            this.printer.printLine(
-              `createIterableName: 'create${this.iteratorExtractor.getIteratableInterface().substr(1)}',`,
-            );
+            const interableInterface = this.iteratorExtractor.getIteratableInterface();
+            if (interableInterface.startsWith('I')) {
+              this.printer.printLine(`createIterableName: 'create${interableInterface.substr(1)}',`);
+            } else {
+              this.printer.printLine(`createIterableName: '${interableInterface}',`);
+            }
           }
           this.printer.decreaseIndent();
           this.printer.printLine(`});`);

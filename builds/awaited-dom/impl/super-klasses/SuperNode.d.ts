@@ -104,6 +104,9 @@ declare const SuperNodeBaseClass: {
         getSelection(): import("../../base/interfaces/official").ISelection;
         readonly publicId: Promise<string>;
         readonly systemId: Promise<string>;
+        readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         readonly attributes: import("../../base/interfaces/official").INamedNodeMap;
         readonly classList: import("../../base/interfaces/official").IDOMTokenList;
         readonly className: Promise<string>;
@@ -139,6 +142,7 @@ declare const SuperNodeBaseClass: {
         requestFullscreen(options?: import("../../base/interfaces/official").IFullscreenOptions | undefined): Promise<void>;
         requestPointerLock(): Promise<void>;
         scrollIntoView(arg?: boolean | import("../../base/interfaces/official").IScrollIntoViewOptions | undefined): Promise<void>;
+        readonly fonts: import("../../base/interfaces/official").IFontFaceSet;
         readonly download: Promise<string>;
         readonly hreflang: Promise<string>;
         readonly referrerPolicy: Promise<string>;

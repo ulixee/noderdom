@@ -9,10 +9,12 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLElement_1 = require("../../base/official-klasses/HTMLElement");
 const create_1 = require("../create");
 const Element_1 = __importDefault(require("./Element"));
+const ElementCSSInlineStyle_1 = __importDefault(require("../official-mixins/ElementCSSInlineStyle"));
+const ElementContentEditable_1 = __importDefault(require("../official-mixins/ElementContentEditable"));
 const HTMLOrSVGElement_1 = __importDefault(require("../official-mixins/HTMLOrSVGElement"));
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
-const HTMLElementBaseClass = HTMLElement_1.HTMLElementGenerator(Element_1.default, HTMLOrSVGElement_1.default);
+const HTMLElementBaseClass = HTMLElement_1.HTMLElementGenerator(Element_1.default, ElementCSSInlineStyle_1.default, ElementContentEditable_1.default, HTMLOrSVGElement_1.default);
 class HTMLElement extends HTMLElementBaseClass {
     constructor() {
         super();

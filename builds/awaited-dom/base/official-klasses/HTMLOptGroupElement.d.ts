@@ -120,6 +120,9 @@ export declare function HTMLOptGroupElementGenerator(HTMLElement: Constructable<
         readonly lastElementChild: import("../interfaces/super").ISuperElement;
         querySelector(selectors: string): import("../interfaces/super").ISuperElement;
         querySelectorAll(selectors: string): import("../interfaces/super").ISuperNodeList;
+        readonly style: import("../interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };

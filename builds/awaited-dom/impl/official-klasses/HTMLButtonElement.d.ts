@@ -130,6 +130,9 @@ declare const HTMLButtonElementBaseClass: {
         readonly lastElementChild: import("../../base/interfaces/super").ISuperElement;
         querySelector(selectors: string): import("../../base/interfaces/super").ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
+        readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };

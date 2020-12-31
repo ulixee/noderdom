@@ -113,6 +113,9 @@ declare const HTMLElementBaseClass: {
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): import("../../base/interfaces/super").ISuperNodeList;
+        readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
+        readonly contentEditable: Promise<string>;
+        readonly isContentEditable: Promise<boolean>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };

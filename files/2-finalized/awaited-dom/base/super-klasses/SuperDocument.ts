@@ -6,9 +6,10 @@ import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
-import { IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
+import { IDocumentOrShadowRoot, IFontFaceSource, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { INodeIsolate } from '../interfaces/isolate';
 import { IDocumentOrShadowRootProperties, DocumentOrShadowRootPropertyKeys, DocumentOrShadowRootConstantKeys } from '../official-mixins/DocumentOrShadowRoot';
+import { IFontFaceSourceProperties, FontFaceSourcePropertyKeys, FontFaceSourceConstantKeys } from '../official-mixins/FontFaceSource';
 import { INodeIsolateProperties, NodeIsolatePropertyKeys, NodeIsolateConstantKeys } from '../isolate-mixins/NodeIsolate';
 import { INonElementParentNodeProperties, NonElementParentNodePropertyKeys, NonElementParentNodeConstantKeys } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
@@ -19,8 +20,8 @@ export const { getState, setState, recordProxy } = StateMachine<ISuperDocument, 
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
 export const nodeAttacher = new NodeAttacher<ISuperDocument>(getState, setState, awaitedHandler);
 
-export function SuperDocumentGenerator(DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
-  const Parent = (ClassMixer(DocumentOrShadowRoot, [NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase]) as unknown) as Constructable<IDocumentOrShadowRoot & INodeIsolate & INonElementParentNode & IParentNode & IXPathEvaluatorBase>;
+export function SuperDocumentGenerator(DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, FontFaceSource: Constructable<IFontFaceSource>, NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
+  const Parent = (ClassMixer(DocumentOrShadowRoot, [FontFaceSource, NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase]) as unknown) as Constructable<IDocumentOrShadowRoot & IFontFaceSource & INodeIsolate & INonElementParentNode & IParentNode & IXPathEvaluatorBase>;
 
   return class SuperDocument extends Parent implements ISuperDocument, PromiseLike<ISuperDocument> {
     constructor() {
@@ -195,7 +196,7 @@ export function SuperDocumentGenerator(DocumentOrShadowRoot: Constructable<IDocu
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface ISuperDocumentProperties extends IDocumentOrShadowRootProperties, INodeIsolateProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
+export interface ISuperDocumentProperties extends IDocumentOrShadowRootProperties, IFontFaceSourceProperties, INodeIsolateProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   createInstanceName: string;
@@ -233,6 +234,6 @@ export interface ISuperDocumentProperties extends IDocumentOrShadowRootPropertie
   readonly visibilityState?: Promise<IVisibilityState>;
 }
 
-export const SuperDocumentPropertyKeys = [...DocumentOrShadowRootPropertyKeys, ...NodeIsolatePropertyKeys, ...NonElementParentNodePropertyKeys, ...ParentNodePropertyKeys, ...XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+export const SuperDocumentPropertyKeys = [...DocumentOrShadowRootPropertyKeys, ...FontFaceSourcePropertyKeys, ...NodeIsolatePropertyKeys, ...NonElementParentNodePropertyKeys, ...ParentNodePropertyKeys, ...XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
 
-export const SuperDocumentConstantKeys = [...DocumentOrShadowRootConstantKeys, ...NodeIsolateConstantKeys, ...NonElementParentNodeConstantKeys, ...ParentNodeConstantKeys, ...XPathEvaluatorBaseConstantKeys];
+export const SuperDocumentConstantKeys = [...DocumentOrShadowRootConstantKeys, ...FontFaceSourceConstantKeys, ...NodeIsolateConstantKeys, ...NonElementParentNodeConstantKeys, ...ParentNodeConstantKeys, ...XPathEvaluatorBaseConstantKeys];

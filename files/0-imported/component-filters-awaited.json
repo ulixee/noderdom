@@ -3400,9 +3400,39 @@
     }
   },
   "CSSStyleDeclaration": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "cssFloat": {
+        "isEnabled": true
+      },
+      "cssText": {
+        "isEnabled": true
+      },
+      "length": {
+        "isEnabled": true
+      },
+      "parentRule": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
+    "methodsByName": {
+      "getPropertyPriority": {
+        "isEnabled": true
+      },
+      "getPropertyValue": {
+        "isEnabled": true
+      },
+      "item": {
+        "isEnabled": true
+      },
+      "removeProperty": {
+        "isEnabled": true
+      },
+      "setProperty": {
+        "isEnabled": true
+      }
+    }
   },
   "CSSRule": {
     "isEnabled": true,
@@ -3541,9 +3571,47 @@
     "methodsByName": {}
   },
   "FontFace": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "display": {
+        "isEnabled": false
+      },
+      "family": {
+        "isEnabled": false
+      },
+      "featureSettings": {
+        "isEnabled": false
+      },
+      "loaded": {
+        "isEnabled": false
+      },
+      "status": {
+        "isEnabled": false
+      },
+      "stretch": {
+        "isEnabled": false
+      },
+      "style": {
+        "isEnabled": false
+      },
+      "unicodeRange": {
+        "isEnabled": false
+      },
+      "variant": {
+        "isEnabled": false
+      },
+      "variationSettings": {
+        "isEnabled": false
+      },
+      "weight": {
+        "isEnabled": false
+      }
+    },
+    "methodsByName": {
+      "load": {
+        "isEnabled": false
+      }
+    }
   },
   "ShadowRoot": {
     "isEnabled": true,
@@ -3896,9 +3964,44 @@
     "methodsByName": {}
   },
   "FontFaceSet": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "onloading": {
+        "isEnabled": false
+      },
+      "onloadingdone": {
+        "isEnabled": false
+      },
+      "onloadingerror": {
+        "isEnabled": false
+      },
+      "ready": {
+        "isEnabled": false
+      },
+      "status": {
+        "isEnabled": false
+      }
+    },
+    "methodsByName": {
+      "add": {
+        "isEnabled": false
+      },
+      "check": {
+        "isEnabled": false
+      },
+      "clear": {
+        "isEnabled": false
+      },
+      "delete": {
+        "isEnabled": false
+      },
+      "load": {
+        "isEnabled": false
+      },
+      "forEach": {
+        "isEnabled": false
+      }
+    }
   },
   "FeaturePolicy": {
     "isEnabled": true,
@@ -4004,18 +4107,35 @@
     "methodsByName": {}
   },
   "FontFaceSource": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "fonts": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "ElementContentEditable": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "contentEditable": {
+        "isEnabled": true
+      },
+      "isContentEditable": {
+        "isEnabled": true
+      }
+    },
     "methodsByName": {}
   },
   "ElementCSSInlineStyle": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "style": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "HTMLOrSVGElement": {

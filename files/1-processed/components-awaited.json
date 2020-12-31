@@ -159,6 +159,24 @@
     }
   },
   "mixins": {
+    "FontFaceSource": {
+      "name": "FontFaceSource",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "fonts": {
+          "name": "fonts",
+          "type": "FontFaceSet",
+          "readOnly": 1,
+          "isAbstract": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
     "DocumentOrShadowRoot": {
       "name": "DocumentOrShadowRoot",
       "extends": "Object",
@@ -236,6 +254,46 @@
           "name": "fullscreenElement",
           "type": "Element",
           "nullable": 1,
+          "readOnly": 1,
+          "isAbstract": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "ElementContentEditable": {
+      "name": "ElementContentEditable",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "contentEditable": {
+          "name": "contentEditable",
+          "type": "DOMString",
+          "readOnly": 1
+        },
+        "isContentEditable": {
+          "name": "isContentEditable",
+          "type": "boolean",
+          "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "ElementCSSInlineStyle": {
+      "name": "ElementCSSInlineStyle",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "style": {
+          "name": "style",
+          "type": "CSSStyleDeclaration",
           "readOnly": 1,
           "isAbstract": 1
         }
@@ -548,6 +606,17 @@
       ]
     },
     {
+      "newType": "BinaryData",
+      "type": [
+        {
+          "type": "ArrayBuffer"
+        },
+        {
+          "type": "ArrayBufferView"
+        }
+      ]
+    },
+    {
       "newType": "HeadersInit",
       "type": [
         {
@@ -658,6 +727,52 @@
           "name": "composed",
           "default": "false",
           "type": "boolean"
+        }
+      }
+    },
+    "FontFaceDescriptors": {
+      "name": "FontFaceDescriptors",
+      "extends": "Object",
+      "members": {
+        "style": {
+          "name": "style",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "weight": {
+          "name": "weight",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "stretch": {
+          "name": "stretch",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "unicodeRange": {
+          "name": "unicodeRange",
+          "default": "\"U+0-10FFFF\"",
+          "type": "CSSOMString"
+        },
+        "variant": {
+          "name": "variant",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "featureSettings": {
+          "name": "featureSettings",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "variationSettings": {
+          "name": "variationSettings",
+          "default": "\"normal\"",
+          "type": "CSSOMString"
+        },
+        "display": {
+          "name": "display",
+          "default": "\"auto\"",
+          "type": "CSSOMString"
         }
       }
     },
@@ -1100,6 +1215,129 @@
         "length": {
           "name": "length",
           "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "CSSStyleDeclaration": {
+      "name": "CSSStyleDeclaration",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "CSSOMString",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window"
+        },
+        "getPropertyValue": {
+          "name": "getPropertyValue",
+          "signatures": [
+            {
+              "type": "CSSOMString",
+              "params": [
+                {
+                  "name": "property",
+                  "type": "CSSOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "getPropertyPriority": {
+          "name": "getPropertyPriority",
+          "signatures": [
+            {
+              "type": "CSSOMString",
+              "params": [
+                {
+                  "name": "property",
+                  "type": "CSSOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setProperty": {
+          "name": "setProperty",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "property",
+                  "type": "CSSOMString"
+                },
+                {
+                  "name": "value",
+                  "type": "CSSOMString"
+                },
+                {
+                  "name": "priority",
+                  "type": "CSSOMString",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "removeProperty": {
+          "name": "removeProperty",
+          "signatures": [
+            {
+              "type": "CSSOMString",
+              "params": [
+                {
+                  "name": "property",
+                  "type": "CSSOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "cssText": {
+          "name": "cssText",
+          "type": "CSSOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "parentRule": {
+          "name": "parentRule",
+          "type": "CSSRule",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "cssFloat": {
+          "name": "cssFloat",
+          "type": "CSSOMString",
           "readOnly": 1,
           "exposed": "Window"
         }
@@ -1750,6 +1988,7 @@
       "legacyWindowAlias": [],
       "implements": [
         "DocumentOrShadowRoot",
+        "FontFaceSource",
         "NonElementParentNode",
         "ParentNode",
         "XPathEvaluatorBase",
@@ -3323,6 +3562,8 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "ElementCSSInlineStyle",
+        "ElementContentEditable",
         "HTMLOrSVGElement",
         "Element"
       ],
@@ -8268,6 +8509,80 @@
       "exposed": "Window",
       "legacyWindowAlias": []
     },
+    "FontFaceSet": {
+      "name": "FontFaceSet",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "FontFaceSet",
+            "params": [
+              {
+                "name": "initialFaces",
+                "type": "sequence",
+                "subtype": {
+                  "type": "FontFace"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": [],
+      "iterator": {
+        "kind": "setlike",
+        "readonly": false,
+        "type": [
+          {
+            "type": "FontFace"
+          }
+        ]
+      }
+    },
+    "FontFace": {
+      "name": "FontFace",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "FontFace",
+            "params": [
+              {
+                "name": "family",
+                "type": "CSSOMString"
+              },
+              {
+                "name": "source",
+                "type": [
+                  {
+                    "type": "CSSOMString"
+                  },
+                  {
+                    "type": "BinaryData"
+                  }
+                ]
+              },
+              {
+                "name": "descriptors",
+                "type": "FontFaceDescriptors",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
     "FeaturePolicy": {
       "name": "FeaturePolicy",
       "extends": "Object",
@@ -9339,6 +9654,7 @@
       "legacyWindowAlias": [],
       "implements": [
         "DocumentOrShadowRoot",
+        "FontFaceSource",
         "NonElementParentNode",
         "ParentNode",
         "XPathEvaluatorBase",
@@ -9806,6 +10122,8 @@
       "implements": [
         "NonDocumentTypeChildNode",
         "ParentNode",
+        "ElementCSSInlineStyle",
+        "ElementContentEditable",
         "HTMLOrSVGElement",
         "NodeIsolate",
         "HTMLElementIsolate",
@@ -10226,9 +10544,12 @@
       "implements": [
         "NonDocumentTypeChildNode",
         "DocumentOrShadowRoot",
+        "FontFaceSource",
         "NonElementParentNode",
         "ParentNode",
         "XPathEvaluatorBase",
+        "ElementCSSInlineStyle",
+        "ElementContentEditable",
         "HTMLOrSVGElement",
         "AttrIsolate",
         "NodeIsolate",
@@ -10552,6 +10873,8 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "ElementCSSInlineStyle",
+        "ElementContentEditable",
         "HTMLOrSVGElement",
         "NonDocumentTypeChildNode",
         "ParentNode",
@@ -11257,6 +11580,8 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "ElementCSSInlineStyle",
+        "ElementContentEditable",
         "HTMLOrSVGElement",
         "Element"
       ],
@@ -17504,6 +17829,7 @@
       "legacyWindowAlias": [],
       "implements": [
         "DocumentOrShadowRoot",
+        "FontFaceSource",
         "NonElementParentNode",
         "ParentNode",
         "XPathEvaluatorBase",
