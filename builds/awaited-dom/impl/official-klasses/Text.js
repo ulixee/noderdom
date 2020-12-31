@@ -8,9 +8,10 @@ exports.recordProxy = exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const Text_1 = require("../../base/official-klasses/Text");
 const CharacterData_1 = __importDefault(require("./CharacterData"));
+const Slotable_1 = __importDefault(require("../official-mixins/Slotable"));
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
-const TextBaseClass = Text_1.TextGenerator(CharacterData_1.default);
+const TextBaseClass = Text_1.TextGenerator(CharacterData_1.default, Slotable_1.default);
 class Text extends TextBaseClass {
     constructor(_data) {
         super(_data);

@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { ICSSRule } from '../interfaces/official';
+import { ICSSRule, ICSSStyleSheet } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ICSSRule, ICSSRuleProperties>();
@@ -31,6 +31,24 @@ export function CSSRuleGenerator() {
     constructor() {
       initializeConstantsAndProperties<CSSRule>(this, CSSRuleConstantKeys, CSSRulePropertyKeys);
     }
+
+    // properties
+
+    public get cssText(): Promise<string> {
+      return awaitedHandler.getProperty<string>(this, 'cssText', false);
+    }
+
+    public get parentRule(): ICSSRule {
+      throw new Error('CSSRule.parentRule getter not implemented');
+    }
+
+    public get parentStyleSheet(): ICSSStyleSheet {
+      throw new Error('CSSRule.parentStyleSheet getter not implemented');
+    }
+
+    public get type(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'type', false);
+    }
   };
 }
 
@@ -38,8 +56,13 @@ export function CSSRuleGenerator() {
 
 export interface ICSSRuleProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  readonly cssText?: Promise<string>;
+  readonly parentRule?: ICSSRule;
+  readonly parentStyleSheet?: ICSSStyleSheet;
+  readonly type?: Promise<number>;
+}
 
-export const CSSRulePropertyKeys = [];
+export const CSSRulePropertyKeys = ['cssText', 'parentRule', 'parentStyleSheet', 'type'];
 
 export const CSSRuleConstantKeys = ['CHARSET_RULE', 'FONT_FACE_RULE', 'IMPORT_RULE', 'MARGIN_RULE', 'MEDIA_RULE', 'NAMESPACE_RULE', 'PAGE_RULE', 'STYLE_RULE'];

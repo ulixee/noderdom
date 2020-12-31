@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IHTMLInputElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
+import { IHTMLInputElement, IHTMLElement, IFileList, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void, recordProxy: (proxy: IHTMLInputElement, instance: IHTMLInputElement) => void;
@@ -19,6 +19,7 @@ export declare function HTMLInputElementGenerator(HTMLElement: Constructable<IHT
         readonly defaultValue: Promise<string>;
         readonly dirName: Promise<string>;
         readonly disabled: Promise<boolean>;
+        readonly files: IFileList;
         readonly form: IHTMLFormElement;
         readonly formAction: Promise<string>;
         readonly formEnctype: Promise<string>;
@@ -101,7 +102,6 @@ export declare function HTMLInputElementGenerator(HTMLElement: Constructable<IHT
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): import("../interfaces/super").ISuperElement;
-        computedStyleMap(): import("../interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -170,9 +170,13 @@ export declare function HTMLInputElementGenerator(HTMLElement: Constructable<IHT
         readonly lastElementChild: import("../interfaces/super").ISuperElement;
         querySelector(selectors: string): import("../interfaces/super").ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
+        readonly assignedSlot: import("../interfaces/official").IHTMLSlotElement;
         readonly style: import("../interfaces/official").ICSSStyleDeclaration;
         readonly contentEditable: Promise<string>;
         readonly isContentEditable: Promise<boolean>;
+        readonly dataset: import("../interfaces/official").IDOMStringMap;
+        readonly nonce: Promise<string>;
+        readonly tabIndex: Promise<number>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };
@@ -190,6 +194,7 @@ export interface IHTMLInputElementProperties extends IHTMLElementProperties {
     readonly defaultValue?: Promise<string>;
     readonly dirName?: Promise<string>;
     readonly disabled?: Promise<boolean>;
+    readonly files?: IFileList;
     readonly form?: IHTMLFormElement;
     readonly formAction?: Promise<string>;
     readonly formEnctype?: Promise<string>;

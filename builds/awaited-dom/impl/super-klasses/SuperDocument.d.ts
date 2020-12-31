@@ -49,7 +49,6 @@ declare const SuperDocumentBaseClass: {
         caretPositionFromPoint(x: number, y: number): import("../../base/interfaces/official").ICaretPosition;
         elementFromPoint(x: number, y: number): ISuperElement;
         getSelection(): import("../../base/interfaces/official").ISelection;
-        readonly fonts: import("../../base/interfaces/official").IFontFaceSet;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;
         readonly COMMENT_NODE: number;

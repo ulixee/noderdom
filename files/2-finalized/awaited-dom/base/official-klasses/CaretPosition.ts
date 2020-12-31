@@ -3,7 +3,8 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { ICaretPosition } from '../interfaces/official';
+import { ICaretPosition, IDOMRect } from '../interfaces/official';
+import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ICaretPosition, ICaretPositionProperties>();
@@ -14,6 +15,22 @@ export function CaretPositionGenerator() {
     constructor() {
       initializeConstantsAndProperties<CaretPosition>(this, CaretPositionConstantKeys, CaretPositionPropertyKeys);
     }
+
+    // properties
+
+    public get offset(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'offset', false);
+    }
+
+    public get offsetNode(): ISuperNode {
+      throw new Error('CaretPosition.offsetNode getter not implemented');
+    }
+
+    // methods
+
+    public getClientRect(): IDOMRect {
+      throw new Error('CaretPosition.getClientRect not implemented');
+    }
   };
 }
 
@@ -21,8 +38,11 @@ export function CaretPositionGenerator() {
 
 export interface ICaretPositionProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  readonly offset?: Promise<number>;
+  readonly offsetNode?: ISuperNode;
+}
 
-export const CaretPositionPropertyKeys = [];
+export const CaretPositionPropertyKeys = ['offset', 'offsetNode'];
 
 export const CaretPositionConstantKeys = [];

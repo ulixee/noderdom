@@ -38,6 +38,9 @@ class HTMLInputElementIsolate {
     get disabled() {
         return exports.awaitedHandler.getProperty(this, 'disabled', false);
     }
+    get files() {
+        throw new Error('HTMLInputElementIsolate.files getter not implemented');
+    }
     get form() {
         throw new Error('HTMLInputElementIsolate.form getter not implemented');
     }
@@ -167,6 +170,6 @@ class HTMLInputElementIsolate {
     }
 }
 exports.default = HTMLInputElementIsolate;
-exports.HTMLInputElementIsolatePropertyKeys = ['accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
+exports.HTMLInputElementIsolatePropertyKeys = ['accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'files', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
 exports.HTMLInputElementIsolateConstantKeys = [];
 //# sourceMappingURL=HTMLInputElementIsolate.js.map

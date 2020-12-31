@@ -7,8 +7,14 @@ declare const DOMRectBaseClass: {
         readonly width: Promise<number>;
         readonly x: Promise<number>;
         readonly y: Promise<number>;
+        readonly bottom: Promise<number>;
+        readonly left: Promise<number>;
+        readonly right: Promise<number>;
+        readonly top: Promise<number>;
+        toJSON(): Promise<any>;
     };
 };
 export default class DOMRect extends DOMRectBaseClass implements IDOMRect {
+    constructor(_x?: number, _y?: number, _width?: number, _height?: number);
 }
 export {};

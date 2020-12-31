@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IElementIsolate } from '../interfaces/isolate';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
+import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 
 // tslint:disable:variable-name
@@ -98,10 +98,6 @@ export default class ElementIsolate implements IElementIsolate {
 
   public closest(selectors: string): ISuperElement {
     throw new Error('ElementIsolate.closest not implemented');
-  }
-
-  public computedStyleMap(): IStylePropertyMapReadOnly {
-    throw new Error('ElementIsolate.computedStyleMap not implemented');
   }
 
   public getAttribute(qualifiedName: string): Promise<string | null> {

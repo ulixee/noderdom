@@ -2,13 +2,14 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLMetaElementIsolate } from '../interfaces/isolate';
+import { IDocumentFragment } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLMetaElementIsolate, IHTMLMetaElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMetaElementIsolate>('HTMLMetaElementIsolate', getState, setState);
 
 export default class HTMLMetaElementIsolate implements IHTMLMetaElementIsolate {
-  public get content(): Promise<string> {
+  public get content(): Promise<string> | IDocumentFragment {
     return awaitedHandler.getProperty<string>(this, 'content', false);
   }
 
@@ -30,7 +31,7 @@ export default class HTMLMetaElementIsolate implements IHTMLMetaElementIsolate {
 export interface IHTMLMetaElementIsolateProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
-  readonly content?: Promise<string>;
+  readonly content?: Promise<string> | IDocumentFragment;
   readonly httpEquiv?: Promise<string>;
   readonly name?: Promise<string>;
   readonly scheme?: Promise<string>;

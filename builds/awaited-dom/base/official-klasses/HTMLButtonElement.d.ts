@@ -67,7 +67,6 @@ export declare function HTMLButtonElementGenerator(HTMLElement: Constructable<IH
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): import("../interfaces/super").ISuperElement;
-        computedStyleMap(): import("../interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -136,9 +135,13 @@ export declare function HTMLButtonElementGenerator(HTMLElement: Constructable<IH
         readonly lastElementChild: import("../interfaces/super").ISuperElement;
         querySelector(selectors: string): import("../interfaces/super").ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
+        readonly assignedSlot: import("../interfaces/official").IHTMLSlotElement;
         readonly style: import("../interfaces/official").ICSSStyleDeclaration;
         readonly contentEditable: Promise<string>;
         readonly isContentEditable: Promise<boolean>;
+        readonly dataset: import("../interfaces/official").IDOMStringMap;
+        readonly nonce: Promise<string>;
+        readonly tabIndex: Promise<number>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };

@@ -4,14 +4,15 @@ import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
 import { ISuperText } from '../interfaces/super';
 import { ICharacterDataIsolate, INodeIsolate } from '../interfaces/isolate';
-import { INonDocumentTypeChildNode } from '../interfaces/official';
+import { INonDocumentTypeChildNode, ISlotable } from '../interfaces/official';
 import { ICharacterDataIsolateProperties } from '../isolate-mixins/CharacterDataIsolate';
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
+import { ISlotableProperties } from '../official-mixins/Slotable';
 export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void, recordProxy: (proxy: ISuperText, instance: ISuperText) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperText>;
 export declare const nodeAttacher: NodeAttacher<ISuperText>;
-export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>): {
+export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, Slotable: Constructable<ISlotable>): {
     new (_data?: string | undefined): {
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<ISuperText>;
@@ -63,9 +64,10 @@ export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<I
         normalize(): Promise<void>;
         readonly nextElementSibling: import("../interfaces/super").ISuperElement;
         readonly previousElementSibling: import("../interfaces/super").ISuperElement;
+        readonly assignedSlot: import("../interfaces/official").IHTMLSlotElement;
     };
 };
-export interface ISuperTextProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties {
+export interface ISuperTextProperties extends ICharacterDataIsolateProperties, INodeIsolateProperties, INonDocumentTypeChildNodeProperties, ISlotableProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
     createInstanceName: string;

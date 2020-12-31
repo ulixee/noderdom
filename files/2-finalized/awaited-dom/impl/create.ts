@@ -1,13 +1,27 @@
 import AwaitedPath from '../base/AwaitedPath';
 import StateMachine from '../base/StateMachine';
-import { IAttr, IAudioTrackList, IBlob, ICSSRule, ICSSRuleList, ICSSStyleDeclaration, ICSSStyleSheet, ICaretPosition, ICharacterData, IDOMImplementation, IDOMRect, IDOMRectList, IDOMStringMap, IDOMTokenList, IDocument, IDocumentFragment, IDocumentType, IElement, IFeaturePolicy, IFontFace, IFontFaceSet, IHTMLAnchorElement, IHTMLAreaElement, IHTMLBaseElement, IHTMLBodyElement, IHTMLButtonElement, IHTMLCanvasElement, IHTMLCollection, IHTMLCollectionBase, IHTMLDListElement, IHTMLDataElement, IHTMLDataListElement, IHTMLDetailsElement, IHTMLDialogElement, IHTMLDirectoryElement, IHTMLDivElement, IHTMLElement, IHTMLEmbedElement, IHTMLFieldSetElement, IHTMLFontElement, IHTMLFormControlsCollection, IHTMLFormElement, IHTMLFrameElement, IHTMLFrameSetElement, IHTMLHRElement, IHTMLHeadElement, IHTMLHeadingElement, IHTMLHtmlElement, IHTMLIFrameElement, IHTMLImageElement, IHTMLInputElement, IHTMLLIElement, IHTMLLabelElement, IHTMLLinkElement, IHTMLMapElement, IHTMLMediaElement, IHTMLMetaElement, IHTMLModElement, IHTMLOListElement, IHTMLObjectElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLParagraphElement, IHTMLParamElement, IHTMLPreElement, IHTMLProgressElement, IHTMLQuoteElement, IHTMLScriptElement, IHTMLSelectElement, IHTMLSlotElement, IHTMLSourceElement, IHTMLStyleElement, IHTMLTableCaptionElement, IHTMLTableCellElement, IHTMLTableColElement, IHTMLTableElement, IHTMLTableRowElement, IHTMLTableSectionElement, IHTMLTextAreaElement, IHTMLTimeElement, IHTMLTitleElement, IHTMLTrackElement, IHTMLUListElement, IHTMLVideoElement, IHeaders, ILocation, IMediaError, IMediaKeys, IMediaStream, INamedNodeMap, INode, INodeList, IOffscreenCanvas, IRadioNodeList, IRange, IRequest, IResponse, ISelection, IShadowRoot, IStorage, IStylePropertyMapReadOnly, IStyleSheet, IText, ITextTrack, ITextTrackList, ITimeRanges, IValidityState, IVideoPlaybackQuality, IVideoTrackList, IXPathExpression, IXPathResult } from '../base/interfaces/official';
+import { IAbstractRange, IAttr, IAudioTrack, IAudioTrackList, IBlob, ICSSRule, ICSSRuleList, ICSSStyleDeclaration, ICSSStyleSheet, ICaretPosition, ICharacterData, IDOMImplementation, IDOMParser, IDOMRect, IDOMRectList, IDOMRectReadOnly, IDOMStringMap, IDOMTokenList, IDocument, IDocumentFragment, IDocumentType, IElement, IFeaturePolicy, IFile, IFileList, IHTMLAnchorElement, IHTMLAreaElement, IHTMLAudioElement, IHTMLBRElement, IHTMLBaseElement, IHTMLBodyElement, IHTMLButtonElement, IHTMLCanvasElement, IHTMLCollection, IHTMLCollectionBase, IHTMLDListElement, IHTMLDataElement, IHTMLDataListElement, IHTMLDetailsElement, IHTMLDialogElement, IHTMLDirectoryElement, IHTMLDivElement, IHTMLDocument, IHTMLElement, IHTMLEmbedElement, IHTMLFieldSetElement, IHTMLFontElement, IHTMLFormControlsCollection, IHTMLFormElement, IHTMLFrameElement, IHTMLFrameSetElement, IHTMLHRElement, IHTMLHeadElement, IHTMLHeadingElement, IHTMLHtmlElement, IHTMLIFrameElement, IHTMLImageElement, IHTMLInputElement, IHTMLLIElement, IHTMLLabelElement, IHTMLLegendElement, IHTMLLinkElement, IHTMLMapElement, IHTMLMediaElement, IHTMLMetaElement, IHTMLMeterElement, IHTMLModElement, IHTMLOListElement, IHTMLObjectElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLOptionsCollection, IHTMLParagraphElement, IHTMLParamElement, IHTMLPreElement, IHTMLProgressElement, IHTMLQuoteElement, IHTMLScriptElement, IHTMLSelectElement, IHTMLSlotElement, IHTMLSourceElement, IHTMLSpanElement, IHTMLStyleElement, IHTMLTableCaptionElement, IHTMLTableCellElement, IHTMLTableColElement, IHTMLTableElement, IHTMLTableRowElement, IHTMLTableSectionElement, IHTMLTemplateElement, IHTMLTextAreaElement, IHTMLTimeElement, IHTMLTitleElement, IHTMLTrackElement, IHTMLUListElement, IHTMLVideoElement, IHeaders, IImageBitmap, ILocation, IMediaError, IMediaKeys, IMediaList, IMediaStream, INamedNodeMap, INode, INodeList, IOffscreenCanvas, IRadioNodeList, IRange, IRequest, IResponse, ISelection, IShadowRoot, IStorage, IStyleSheet, IText, ITextTrack, ITextTrackCue, ITextTrackCueList, ITextTrackList, ITimeRanges, IValidityState, IVideoPlaybackQuality, IVideoTrack, IVideoTrackList, IXMLSerializer, IXPathEvaluator, IXPathExpression, IXPathResult } from '../base/interfaces/official';
 import { ISuperDocument, ISuperElement, ISuperNode, ISuperNodeList, ISuperHTMLCollection, ISuperText, ISuperHTMLElement, ISuperStyleSheet } from '../base/interfaces/super';
 
 export const { setState } = StateMachine<any, any>();
 
+export function createAbstractRange<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IAbstractRange {
+  const AbstractRange = require('./official-klasses/AbstractRange').default; // tslint:disable-line:variable-name
+  const instance = new AbstractRange();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createAttr<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IAttr {
   const Attr = require('./official-klasses/Attr').default; // tslint:disable-line:variable-name
   const instance = new Attr();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createAudioTrack<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IAudioTrack {
+  const AudioTrack = require('./official-klasses/AudioTrack').default; // tslint:disable-line:variable-name
+  const instance = new AudioTrack();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -75,6 +89,13 @@ export function createDOMImplementation<IAwaitedOptions = {}>(awaitedPath: Await
   return instance;
 }
 
+export function createDOMParser<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMParser {
+  const DOMParser = require('./official-klasses/DOMParser').default; // tslint:disable-line:variable-name
+  const instance = new DOMParser();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createDOMRect<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMRect {
   const DOMRect = require('./official-klasses/DOMRect').default; // tslint:disable-line:variable-name
   const instance = new DOMRect();
@@ -85,6 +106,13 @@ export function createDOMRect<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, aw
 export function createDOMRectList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMRectList {
   const DOMRectList = require('./official-klasses/DOMRectList').default; // tslint:disable-line:variable-name
   const instance = new DOMRectList();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createDOMRectReadOnly<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IDOMRectReadOnly {
+  const DOMRectReadOnly = require('./official-klasses/DOMRectReadOnly').default; // tslint:disable-line:variable-name
+  const instance = new DOMRectReadOnly();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -138,16 +166,16 @@ export function createFeaturePolicy<IAwaitedOptions = {}>(awaitedPath: AwaitedPa
   return instance;
 }
 
-export function createFontFace<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFontFace {
-  const FontFace = require('./official-klasses/FontFace').default; // tslint:disable-line:variable-name
-  const instance = new FontFace();
+export function createFile<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFile {
+  const File = require('./official-klasses/File').default; // tslint:disable-line:variable-name
+  const instance = new File();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
 
-export function createFontFaceSet<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFontFaceSet {
-  const FontFaceSet = require('./official-klasses/FontFaceSet').default; // tslint:disable-line:variable-name
-  const instance = new FontFaceSet();
+export function createFileList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IFileList {
+  const FileList = require('./official-klasses/FileList').default; // tslint:disable-line:variable-name
+  const instance = new FileList();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -162,6 +190,20 @@ export function createHTMLAnchorElement<IAwaitedOptions = {}>(awaitedPath: Await
 export function createHTMLAreaElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLAreaElement {
   const HTMLAreaElement = require('./official-klasses/HTMLAreaElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLAreaElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLAudioElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLAudioElement {
+  const HTMLAudioElement = require('./official-klasses/HTMLAudioElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLAudioElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLBRElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLBRElement {
+  const HTMLBRElement = require('./official-klasses/HTMLBRElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLBRElement();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -253,6 +295,13 @@ export function createHTMLDirectoryElement<IAwaitedOptions = {}>(awaitedPath: Aw
 export function createHTMLDivElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLDivElement {
   const HTMLDivElement = require('./official-klasses/HTMLDivElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLDivElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLDocument<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLDocument {
+  const HTMLDocument = require('./official-klasses/HTMLDocument').default; // tslint:disable-line:variable-name
+  const instance = new HTMLDocument();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -376,6 +425,13 @@ export function createHTMLLabelElement<IAwaitedOptions = {}>(awaitedPath: Awaite
   return instance;
 }
 
+export function createHTMLLegendElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLLegendElement {
+  const HTMLLegendElement = require('./official-klasses/HTMLLegendElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLLegendElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createHTMLLinkElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLLinkElement {
   const HTMLLinkElement = require('./official-klasses/HTMLLinkElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLLinkElement();
@@ -400,6 +456,13 @@ export function createHTMLMediaElement<IAwaitedOptions = {}>(awaitedPath: Awaite
 export function createHTMLMetaElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLMetaElement {
   const HTMLMetaElement = require('./official-klasses/HTMLMetaElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLMetaElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLMeterElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLMeterElement {
+  const HTMLMeterElement = require('./official-klasses/HTMLMeterElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLMeterElement();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -509,6 +572,13 @@ export function createHTMLSourceElement<IAwaitedOptions = {}>(awaitedPath: Await
   return instance;
 }
 
+export function createHTMLSpanElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLSpanElement {
+  const HTMLSpanElement = require('./official-klasses/HTMLSpanElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLSpanElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createHTMLStyleElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLStyleElement {
   const HTMLStyleElement = require('./official-klasses/HTMLStyleElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLStyleElement();
@@ -554,6 +624,13 @@ export function createHTMLTableRowElement<IAwaitedOptions = {}>(awaitedPath: Awa
 export function createHTMLTableSectionElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLTableSectionElement {
   const HTMLTableSectionElement = require('./official-klasses/HTMLTableSectionElement').default; // tslint:disable-line:variable-name
   const instance = new HTMLTableSectionElement();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createHTMLTemplateElement<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IHTMLTemplateElement {
+  const HTMLTemplateElement = require('./official-klasses/HTMLTemplateElement').default; // tslint:disable-line:variable-name
+  const instance = new HTMLTemplateElement();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -607,6 +684,13 @@ export function createHeaders<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, aw
   return instance;
 }
 
+export function createImageBitmap<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IImageBitmap {
+  const ImageBitmap = require('./official-klasses/ImageBitmap').default; // tslint:disable-line:variable-name
+  const instance = new ImageBitmap();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createLocation<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ILocation {
   const Location = require('./official-klasses/Location').default; // tslint:disable-line:variable-name
   const instance = new Location();
@@ -624,6 +708,13 @@ export function createMediaError<IAwaitedOptions = {}>(awaitedPath: AwaitedPath,
 export function createMediaKeys<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IMediaKeys {
   const MediaKeys = require('./official-klasses/MediaKeys').default; // tslint:disable-line:variable-name
   const instance = new MediaKeys();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createMediaList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IMediaList {
+  const MediaList = require('./official-klasses/MediaList').default; // tslint:disable-line:variable-name
+  const instance = new MediaList();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -712,13 +803,6 @@ export function createStorage<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, aw
   return instance;
 }
 
-export function createStylePropertyMapReadOnly<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IStylePropertyMapReadOnly {
-  const StylePropertyMapReadOnly = require('./official-klasses/StylePropertyMapReadOnly').default; // tslint:disable-line:variable-name
-  const instance = new StylePropertyMapReadOnly();
-  setState(instance, { awaitedPath, awaitedOptions });
-  return instance;
-}
-
 export function createStyleSheet<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IStyleSheet {
   const StyleSheet = require('./official-klasses/StyleSheet').default; // tslint:disable-line:variable-name
   const instance = new StyleSheet();
@@ -736,6 +820,20 @@ export function createText<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, await
 export function createTextTrack<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ITextTrack {
   const TextTrack = require('./official-klasses/TextTrack').default; // tslint:disable-line:variable-name
   const instance = new TextTrack();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createTextTrackCue<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ITextTrackCue {
+  const TextTrackCue = require('./official-klasses/TextTrackCue').default; // tslint:disable-line:variable-name
+  const instance = new TextTrackCue();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createTextTrackCueList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): ITextTrackCueList {
+  const TextTrackCueList = require('./official-klasses/TextTrackCueList').default; // tslint:disable-line:variable-name
+  const instance = new TextTrackCueList();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }
@@ -768,9 +866,30 @@ export function createVideoPlaybackQuality<IAwaitedOptions = {}>(awaitedPath: Aw
   return instance;
 }
 
+export function createVideoTrack<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IVideoTrack {
+  const VideoTrack = require('./official-klasses/VideoTrack').default; // tslint:disable-line:variable-name
+  const instance = new VideoTrack();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
 export function createVideoTrackList<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IVideoTrackList {
   const VideoTrackList = require('./official-klasses/VideoTrackList').default; // tslint:disable-line:variable-name
   const instance = new VideoTrackList();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createXMLSerializer<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IXMLSerializer {
+  const XMLSerializer = require('./official-klasses/XMLSerializer').default; // tslint:disable-line:variable-name
+  const instance = new XMLSerializer();
+  setState(instance, { awaitedPath, awaitedOptions });
+  return instance;
+}
+
+export function createXPathEvaluator<IAwaitedOptions = {}>(awaitedPath: AwaitedPath, awaitedOptions: IAwaitedOptions): IXPathEvaluator {
+  const XPathEvaluator = require('./official-klasses/XPathEvaluator').default; // tslint:disable-line:variable-name
+  const instance = new XPathEvaluator();
   setState(instance, { awaitedPath, awaitedOptions });
   return instance;
 }

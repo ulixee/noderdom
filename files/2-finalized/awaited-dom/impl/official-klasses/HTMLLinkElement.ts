@@ -3,10 +3,11 @@ import { IHTMLLinkElement, IDOMTokenList } from '../../base/interfaces/official'
 import { HTMLLinkElementGenerator, IHTMLLinkElementProperties } from '../../base/official-klasses/HTMLLinkElement';
 import { createDOMTokenList } from '../create';
 import HTMLElement from './HTMLElement';
+import LinkStyle from '../official-mixins/LinkStyle';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLLinkElement, IHTMLLinkElementProperties>();
-const HTMLLinkElementBaseClass = HTMLLinkElementGenerator(HTMLElement);
+const HTMLLinkElementBaseClass = HTMLLinkElementGenerator(HTMLElement, LinkStyle);
 
 export default class HTMLLinkElement extends HTMLLinkElementBaseClass implements IHTMLLinkElement {
   constructor() {

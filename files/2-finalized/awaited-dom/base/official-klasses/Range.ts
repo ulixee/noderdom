@@ -3,16 +3,17 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { IRange, IDocumentFragment, IDOMRect, IDOMRectList } from '../interfaces/official';
+import { IRange, IAbstractRange, IDocumentFragment, IDOMRect, IDOMRectList } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
+import { IAbstractRangeProperties, AbstractRangePropertyKeys, AbstractRangeConstantKeys } from './AbstractRange';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IRange, IRangeProperties>();
 export const awaitedHandler = new AwaitedHandler<IRange>('Range', getState, setState);
 
-export function RangeGenerator() {
-  return class Range implements IRange {
+export function RangeGenerator(AbstractRange: Constructable<IAbstractRange>) {
+  return class Range extends AbstractRange implements IRange {
     public static readonly END_TO_END: number = 2;
     public static readonly END_TO_START: number = 3;
     public static readonly START_TO_END: number = 1;
@@ -23,6 +24,7 @@ export function RangeGenerator() {
     public readonly START_TO_END: number = 1;
     public readonly START_TO_START: number = 0;
     constructor() {
+      super();
       initializeConstantsAndProperties<Range>(this, RangeConstantKeys, RangePropertyKeys);
     }
 
@@ -134,12 +136,12 @@ export function RangeGenerator() {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IRangeProperties {
+export interface IRangeProperties extends IAbstractRangeProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   readonly commonAncestorContainer?: ISuperNode;
 }
 
-export const RangePropertyKeys = ['commonAncestorContainer'];
+export const RangePropertyKeys = [...AbstractRangePropertyKeys, 'commonAncestorContainer'];
 
-export const RangeConstantKeys = ['END_TO_END', 'END_TO_START', 'START_TO_END', 'START_TO_START'];
+export const RangeConstantKeys = [...AbstractRangeConstantKeys, 'END_TO_END', 'END_TO_START', 'START_TO_END', 'START_TO_START'];

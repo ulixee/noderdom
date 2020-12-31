@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IElementIsolate } from '../interfaces/isolate';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
+import { INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 export declare const getState: (instance: IElementIsolate) => IElementIsolateProperties, setState: (instance: IElementIsolate, properties: Partial<IElementIsolateProperties>) => void, recordProxy: (proxy: IElementIsolate, instance: IElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IElementIsolate>;
@@ -28,7 +28,6 @@ export default class ElementIsolate implements IElementIsolate {
     get slot(): Promise<string>;
     get tagName(): Promise<string>;
     closest(selectors: string): ISuperElement;
-    computedStyleMap(): IStylePropertyMapReadOnly;
     getAttribute(qualifiedName: string): Promise<string | null>;
     getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
     getAttributeNames(): Promise<Iterable<string>>;

@@ -1,12 +1,13 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { IText, ICharacterData } from '../interfaces/official';
+import { IText, ICharacterData, ISlotable } from '../interfaces/official';
 import { ISuperText } from '../interfaces/super';
 import { ICharacterDataProperties } from './CharacterData';
+import { ISlotableProperties } from '../official-mixins/Slotable';
 export declare const getState: (instance: IText) => ITextProperties, setState: (instance: IText, properties: Partial<ITextProperties>) => void, recordProxy: (proxy: IText, instance: IText) => void;
 export declare const awaitedHandler: AwaitedHandler<IText>;
-export declare function TextGenerator(CharacterData: Constructable<ICharacterData>): {
+export declare function TextGenerator(CharacterData: Constructable<ICharacterData>, Slotable: Constructable<ISlotable>): {
     new (_data?: string | undefined): {
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<ISuperText>;
@@ -57,9 +58,10 @@ export declare function TextGenerator(CharacterData: Constructable<ICharacterDat
         normalize(): Promise<void>;
         readonly nextElementSibling: import("../interfaces/super").ISuperElement;
         readonly previousElementSibling: import("../interfaces/super").ISuperElement;
+        readonly assignedSlot: import("../interfaces/official").IHTMLSlotElement;
     };
 };
-export interface ITextProperties extends ICharacterDataProperties {
+export interface ITextProperties extends ICharacterDataProperties, ISlotableProperties {
     awaitedPath: AwaitedPath;
     awaitedOptions: any;
     readonly wholeText?: Promise<string>;

@@ -91,7 +91,6 @@ declare const DocumentBaseClass: {
         caretPositionFromPoint(x: number, y: number): import("../../base/interfaces/official").ICaretPosition;
         elementFromPoint(x: number, y: number): ISuperElement;
         getSelection(): import("../../base/interfaces/official").ISelection;
-        readonly fonts: import("../../base/interfaces/official").IFontFaceSet;
         getElementById(elementId: string): ISuperElement;
         readonly childElementCount: Promise<number>;
         readonly children: ISuperHTMLCollection;

@@ -278,6 +278,8 @@ export default class TsBodyPrinter {
     if (isAbstract && property.compromiseType && abstractClass.includes('|')) {
       const officialType = property.compromiseType!.find(x => x.isOfficial === 1)!;
       abstractClass = TypeUtils.convertDomTypeToTsType(officialType, true);
+    } else if (isAbstract && abstractClass.includes('Promise')) {
+      abstractClass = abstractClass.replace('Promise<', '').replace('>', '');
     }
     const abstractClassCleaned = abstractClass.replace(/^I([A-Z])/, '$1');
 
@@ -390,7 +392,7 @@ export default class TsBodyPrinter {
     mType = signature.nullable ? makeNullable(mType) : mType;
     if (this.domType === DomType.awaited) {
       if (isAbstract) {
-        mType = mType.replace(' | null', '');
+        mType = mType.replace(/^Promise<(.+)>/, '$1').replace(' | null', '');
       } else if (!mType.startsWith('Promise<')) {
         mType = `Promise<${mType}>`;
       }

@@ -1,5 +1,15 @@
 {
   "enums": {
+    "SupportedType": {
+      "name": "SupportedType",
+      "value": [
+        "text/html",
+        "text/xml",
+        "application/xml",
+        "application/xhtml+xml",
+        "image/svg+xml"
+      ]
+    },
     "EndingType": {
       "name": "EndingType",
       "value": [
@@ -159,24 +169,6 @@
     }
   },
   "mixins": {
-    "FontFaceSource": {
-      "name": "FontFaceSource",
-      "extends": "Object",
-      "constants": {},
-      "methods": {},
-      "anonymousMethods": [],
-      "properties": {
-        "fonts": {
-          "name": "fonts",
-          "type": "FontFaceSet",
-          "readOnly": 1,
-          "isAbstract": 1
-        }
-      },
-      "noInterfaceObject": 1,
-      "legacyWindowAlias": [],
-      "mixin": true
-    },
     "DocumentOrShadowRoot": {
       "name": "DocumentOrShadowRoot",
       "extends": "Object",
@@ -327,7 +319,43 @@
         }
       },
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "dataset": {
+          "name": "dataset",
+          "type": "DOMStringMap",
+          "readOnly": 1,
+          "isAbstract": 1
+        },
+        "nonce": {
+          "name": "nonce",
+          "type": "DOMString",
+          "readOnly": 1
+        },
+        "tabIndex": {
+          "name": "tabIndex",
+          "type": "long",
+          "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "LinkStyle": {
+      "name": "LinkStyle",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "sheet": {
+          "name": "sheet",
+          "type": "StyleSheet",
+          "nullable": 1,
+          "readOnly": 1,
+          "isAbstract": 1
+        }
+      },
       "noInterfaceObject": 1,
       "legacyWindowAlias": [],
       "mixin": true
@@ -449,6 +477,25 @@
           "name": "childElementCount",
           "type": "unsigned long",
           "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
+    "Slotable": {
+      "name": "Slotable",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "assignedSlot": {
+          "name": "assignedSlot",
+          "type": "HTMLSlotElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "isAbstract": 1
         }
       },
       "noInterfaceObject": 1,
@@ -606,17 +653,6 @@
       ]
     },
     {
-      "newType": "BinaryData",
-      "type": [
-        {
-          "type": "ArrayBuffer"
-        },
-        {
-          "type": "ArrayBufferView"
-        }
-      ]
-    },
-    {
       "newType": "HeadersInit",
       "type": [
         {
@@ -665,6 +701,21 @@
     }
   ],
   "dictionaries": {
+    "ImageEncodeOptions": {
+      "name": "ImageEncodeOptions",
+      "extends": "Object",
+      "members": {
+        "type": {
+          "name": "type",
+          "default": "\"image/png\"",
+          "type": "DOMString"
+        },
+        "quality": {
+          "name": "quality",
+          "type": "unrestricted double"
+        }
+      }
+    },
     "BlobPropertyBag": {
       "name": "BlobPropertyBag",
       "extends": "Object",
@@ -678,6 +729,16 @@
           "name": "endings",
           "default": "\"transparent\"",
           "type": "EndingType"
+        }
+      }
+    },
+    "FilePropertyBag": {
+      "name": "FilePropertyBag",
+      "extends": "BlobPropertyBag",
+      "members": {
+        "lastModified": {
+          "name": "lastModified",
+          "type": "long long"
         }
       }
     },
@@ -727,52 +788,6 @@
           "name": "composed",
           "default": "false",
           "type": "boolean"
-        }
-      }
-    },
-    "FontFaceDescriptors": {
-      "name": "FontFaceDescriptors",
-      "extends": "Object",
-      "members": {
-        "style": {
-          "name": "style",
-          "default": "\"normal\"",
-          "type": "CSSOMString"
-        },
-        "weight": {
-          "name": "weight",
-          "default": "\"normal\"",
-          "type": "CSSOMString"
-        },
-        "stretch": {
-          "name": "stretch",
-          "default": "\"normal\"",
-          "type": "CSSOMString"
-        },
-        "unicodeRange": {
-          "name": "unicodeRange",
-          "default": "\"U+0-10FFFF\"",
-          "type": "CSSOMString"
-        },
-        "variant": {
-          "name": "variant",
-          "default": "\"normal\"",
-          "type": "CSSOMString"
-        },
-        "featureSettings": {
-          "name": "featureSettings",
-          "default": "\"normal\"",
-          "type": "CSSOMString"
-        },
-        "variationSettings": {
-          "name": "variationSettings",
-          "default": "\"normal\"",
-          "type": "CSSOMString"
-        },
-        "display": {
-          "name": "display",
-          "default": "\"auto\"",
-          "type": "CSSOMString"
         }
       }
     },
@@ -963,9 +978,108 @@
       "exposed": "Window",
       "legacyWindowAlias": []
     },
+    "DOMRectReadOnly": {
+      "name": "DOMRectReadOnly",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "toJSON": {
+          "name": "toJSON",
+          "signatures": [
+            {
+              "type": "object",
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "x": {
+          "name": "x",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "y": {
+          "name": "y",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "width": {
+          "name": "width",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "height": {
+          "name": "height",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "top": {
+          "name": "top",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "right": {
+          "name": "right",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "bottom": {
+          "name": "bottom",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "left": {
+          "name": "left",
+          "type": "unrestricted double",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "DOMRectReadOnly",
+            "params": [
+              {
+                "name": "x",
+                "type": "unrestricted double",
+                "optional": 1
+              },
+              {
+                "name": "y",
+                "type": "unrestricted double",
+                "optional": 1
+              },
+              {
+                "name": "width",
+                "type": "unrestricted double",
+                "optional": 1
+              },
+              {
+                "name": "height",
+                "type": "unrestricted double",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
     "DOMRect": {
       "name": "DOMRect",
-      "extends": "Object",
+      "extends": "DOMRectReadOnly",
       "constants": {},
       "methods": {},
       "anonymousMethods": [],
@@ -1069,9 +1183,53 @@
       "name": "OffscreenCanvas",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "transferToImageBitmap": {
+          "name": "transferToImageBitmap",
+          "signatures": [
+            {
+              "type": "ImageBitmap",
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker",
+          "isAbstract": 1
+        },
+        "convertToBlob": {
+          "name": "convertToBlob",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "Blob"
+              },
+              "params": [
+                {
+                  "name": "options",
+                  "type": "ImageEncodeOptions",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "width": {
+          "name": "width",
+          "type": "unsigned long long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "height": {
+          "name": "height",
+          "type": "unsigned long long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
       "constructor": {
         "signatures": [
           {
@@ -1088,6 +1246,40 @@
             ]
           }
         ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
+    "ImageBitmap": {
+      "name": "ImageBitmap",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "close": {
+          "name": "close",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "width": {
+          "name": "width",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "height": {
+          "name": "height",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
       },
       "exposed": "Window Worker",
       "legacyWindowAlias": []
@@ -1392,7 +1584,36 @@
       },
       "methods": {},
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "cssText": {
+          "name": "cssText",
+          "type": "CSSOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "parentRule": {
+          "name": "parentRule",
+          "type": "CSSRule",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "parentStyleSheet": {
+          "name": "parentStyleSheet",
+          "type": "CSSStyleSheet",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "type": {
+          "name": "type",
+          "type": "unsigned short",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     },
@@ -1462,9 +1683,35 @@
       "name": "CSSRuleList",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "CSSRule",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     },
@@ -1478,30 +1725,143 @@
       "exposed": "Window",
       "legacyWindowAlias": []
     },
-    "StylePropertyMapReadOnly": {
-      "name": "StylePropertyMapReadOnly",
+    "MediaList": {
+      "name": "MediaList",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "CSSOMString",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window"
+        },
+        "appendMedium": {
+          "name": "appendMedium",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "medium",
+                  "type": "CSSOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "deleteMedium": {
+          "name": "deleteMedium",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "medium",
+                  "type": "CSSOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "DOMParser": {
+      "name": "DOMParser",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "parseFromString": {
+          "name": "parseFromString",
+          "signatures": [
+            {
+              "type": "Document",
+              "params": [
+                {
+                  "name": "str",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "type",
+                  "type": "SupportedType"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
       "anonymousMethods": [],
       "properties": {},
-      "exposed": "Window Worker PaintWorklet LayoutWorklet",
-      "legacyWindowAlias": [],
-      "iterator": {
-        "kind": "iterable",
-        "readonly": false,
-        "type": [
+      "constructor": {
+        "signatures": [
           {
-            "type": "USVString"
-          },
-          {
-            "type": "sequence",
-            "subtype": {
-              "type": "CSSStyleValue"
-            }
+            "type": "DOMParser",
+            "params": []
           }
         ]
-      }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "XMLSerializer": {
+      "name": "XMLSerializer",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "serializeToString": {
+          "name": "serializeToString",
+          "signatures": [
+            {
+              "type": "DOMString",
+              "params": [
+                {
+                  "name": "root",
+                  "type": "Node"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "XMLSerializer",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
     },
     "Blob": {
       "name": "Blob",
@@ -1601,13 +1961,124 @@
       "exposed": "Window Worker",
       "legacyWindowAlias": []
     },
+    "File": {
+      "name": "File",
+      "extends": "Blob",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "name": {
+          "name": "name",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "lastModified": {
+          "name": "lastModified",
+          "type": "long long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "File",
+            "params": [
+              {
+                "name": "fileBits",
+                "type": "sequence",
+                "subtype": {
+                  "type": "BlobPart"
+                }
+              },
+              {
+                "name": "fileName",
+                "type": "USVString"
+              },
+              {
+                "name": "options",
+                "type": "FilePropertyBag",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
+    "FileList": {
+      "name": "FileList",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "item": {
+          "name": "item",
+          "signatures": [
+            {
+              "type": "File",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window Worker",
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
     "CaretPosition": {
       "name": "CaretPosition",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "getClientRect": {
+          "name": "getClientRect",
+          "signatures": [
+            {
+              "type": "DOMRect",
+              "nullable": 1,
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "offsetNode": {
+          "name": "offsetNode",
+          "type": "Node",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "offset": {
+          "name": "offset",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     },
@@ -1988,7 +2459,6 @@
       "legacyWindowAlias": [],
       "implements": [
         "DocumentOrShadowRoot",
-        "FontFaceSource",
         "NonElementParentNode",
         "ParentNode",
         "XPathEvaluatorBase",
@@ -2571,17 +3041,6 @@
           ],
           "exposed": "Window"
         },
-        "computedStyleMap": {
-          "name": "computedStyleMap",
-          "signatures": [
-            {
-              "type": "StylePropertyMapReadOnly",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
-        },
         "requestFullscreen": {
           "name": "requestFullscreen",
           "signatures": [
@@ -2743,6 +3202,7 @@
       "implements": [
         "NonDocumentTypeChildNode",
         "ParentNode",
+        "Slotable",
         "Node"
       ]
     },
@@ -2909,6 +3369,40 @@
         ]
       }
     },
+    "HTMLAudioElement": {
+      "name": "HTMLAudioElement",
+      "extends": "HTMLMediaElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "namedConstructor": {
+        "name": "Audio",
+        "signatures": [
+          {
+            "type": "HTMLAudioElement",
+            "params": [
+              {
+                "name": "src",
+                "type": "DOMString",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLAudioElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "audio"
+          }
+        ]
+      }
+    },
     "HTMLBaseElement": {
       "name": "HTMLBaseElement",
       "extends": "HTMLElement",
@@ -2997,6 +3491,34 @@
         "tags": [
           {
             "name": "body"
+          }
+        ]
+      }
+    },
+    "HTMLBRElement": {
+      "name": "HTMLBRElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "HTMLBRElement",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLBRElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "br",
+            "selfClosing": 1
           }
         ]
       }
@@ -4713,6 +5235,14 @@
           "exposed": "Window",
           "isAbstract": 1
         },
+        "files": {
+          "name": "files",
+          "type": "FileList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
         "formAction": {
           "name": "formAction",
           "type": "USVString",
@@ -4987,6 +5517,40 @@
         ]
       }
     },
+    "HTMLLegendElement": {
+      "name": "HTMLLegendElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "align": {
+          "name": "align",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLLegendElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "legend"
+          }
+        ]
+      }
+    },
     "HTMLLIElement": {
       "name": "HTMLLIElement",
       "extends": "HTMLElement",
@@ -5093,6 +5657,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "LinkStyle",
         "HTMLElement"
       ],
       "element": {
@@ -5464,7 +6029,25 @@
       "name": "AudioTrackList",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "getTrackById": {
+          "name": "getTrackById",
+          "signatures": [
+            {
+              "type": "AudioTrack",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "id",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
       "anonymousMethods": [
         {
           "signatures": [
@@ -5482,7 +6065,55 @@
           "exposed": "Window"
         }
       ],
-      "properties": {},
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "AudioTrack": {
+      "name": "AudioTrack",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "kind": {
+          "name": "kind",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "label": {
+          "name": "label",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "language": {
+          "name": "language",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     },
@@ -5490,7 +6121,25 @@
       "name": "VideoTrackList",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "getTrackById": {
+          "name": "getTrackById",
+          "signatures": [
+            {
+              "type": "VideoTrack",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "id",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
       "anonymousMethods": [
         {
           "signatures": [
@@ -5508,7 +6157,61 @@
           "exposed": "Window"
         }
       ],
-      "properties": {},
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selectedIndex": {
+          "name": "selectedIndex",
+          "type": "long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "VideoTrack": {
+      "name": "VideoTrack",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "kind": {
+          "name": "kind",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "label": {
+          "name": "label",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "language": {
+          "name": "language",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "selected": {
+          "name": "selected",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     },
@@ -5583,9 +6286,141 @@
       "name": "TimeRanges",
       "extends": "Object",
       "constants": {},
+      "methods": {
+        "start": {
+          "name": "start",
+          "signatures": [
+            {
+              "type": "double",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "end": {
+          "name": "end",
+          "signatures": [
+            {
+              "type": "double",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "TextTrackCueList": {
+      "name": "TextTrackCueList",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "getCueById": {
+          "name": "getCueById",
+          "signatures": [
+            {
+              "type": "TextTrackCue",
+              "nullable": 1,
+              "params": [
+                {
+                  "name": "id",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "anonymousMethods": [
+        {
+          "signatures": [
+            {
+              "type": "TextTrackCue",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "getter": 1,
+          "exposed": "Window"
+        }
+      ],
+      "properties": {
+        "length": {
+          "name": "length",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "TextTrackCue": {
+      "name": "TextTrackCue",
+      "extends": "Object",
+      "constants": {},
       "methods": {},
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "track": {
+          "name": "track",
+          "type": "TextTrack",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "startTime": {
+          "name": "startTime",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "endTime": {
+          "name": "endTime",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "pauseOnExit": {
+          "name": "pauseOnExit",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     },
@@ -5640,6 +6475,69 @@
           {
             "name": "meta",
             "selfClosing": 1
+          }
+        ]
+      }
+    },
+    "HTMLMeterElement": {
+      "name": "HTMLMeterElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "value": {
+          "name": "value",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "min": {
+          "name": "min",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "max": {
+          "name": "max",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "low": {
+          "name": "low",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "high": {
+          "name": "high",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "optimum": {
+          "name": "optimum",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLMeterElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "meter"
           }
         ]
       }
@@ -6649,6 +7547,25 @@
         ]
       }
     },
+    "HTMLSpanElement": {
+      "name": "HTMLSpanElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLSpanElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "span"
+          }
+        ]
+      }
+    },
     "HTMLStyleElement": {
       "name": "HTMLStyleElement",
       "extends": "HTMLElement",
@@ -6672,6 +7589,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "LinkStyle",
         "HTMLElement"
       ],
       "element": {
@@ -7052,6 +7970,33 @@
           },
           {
             "name": "tfoot"
+          }
+        ]
+      }
+    },
+    "HTMLTemplateElement": {
+      "name": "HTMLTemplateElement",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "content": {
+          "name": "content",
+          "type": "DocumentFragment",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLTemplateElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "template"
           }
         ]
       }
@@ -7573,9 +8518,34 @@
       "name": "MediaStream",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "clone": {
+          "name": "clone",
+          "signatures": [
+            {
+              "type": "MediaStream",
+              "params": []
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
       "anonymousMethods": [],
-      "properties": {},
+      "properties": {
+        "id": {
+          "name": "id",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "constructor": {
         "signatures": [
           {
@@ -8079,12 +9049,56 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "Slotable",
         "CharacterData"
       ]
     },
+    "AbstractRange": {
+      "name": "AbstractRange",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "startContainer": {
+          "name": "startContainer",
+          "type": "Node",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "startOffset": {
+          "name": "startOffset",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "endContainer": {
+          "name": "endContainer",
+          "type": "Node",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "endOffset": {
+          "name": "endOffset",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "collapsed": {
+          "name": "collapsed",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
     "Range": {
       "name": "Range",
-      "extends": "Object",
+      "extends": "AbstractRange",
       "constants": {
         "START_TO_START": {
           "name": "START_TO_START",
@@ -8482,7 +9496,251 @@
       "name": "Selection",
       "extends": "Object",
       "constants": {},
-      "methods": {},
+      "methods": {
+        "getRangeAt": {
+          "name": "getRangeAt",
+          "signatures": [
+            {
+              "type": "Range",
+              "params": [
+                {
+                  "name": "index",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "addRange": {
+          "name": "addRange",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "range",
+                  "type": "Range"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "removeRange": {
+          "name": "removeRange",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "range",
+                  "type": "Range"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "removeAllRanges": {
+          "name": "removeAllRanges",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "empty": {
+          "name": "empty",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "collapse": {
+          "name": "collapse",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "node",
+                  "type": "Node",
+                  "nullable": 1
+                },
+                {
+                  "name": "offset",
+                  "type": "unsigned long",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setPosition": {
+          "name": "setPosition",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "node",
+                  "type": "Node",
+                  "nullable": 1
+                },
+                {
+                  "name": "offset",
+                  "type": "unsigned long",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "collapseToStart": {
+          "name": "collapseToStart",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "collapseToEnd": {
+          "name": "collapseToEnd",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "extend": {
+          "name": "extend",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "node",
+                  "type": "Node"
+                },
+                {
+                  "name": "offset",
+                  "type": "unsigned long",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "setBaseAndExtent": {
+          "name": "setBaseAndExtent",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "anchorNode",
+                  "type": "Node"
+                },
+                {
+                  "name": "anchorOffset",
+                  "type": "unsigned long"
+                },
+                {
+                  "name": "focusNode",
+                  "type": "Node"
+                },
+                {
+                  "name": "focusOffset",
+                  "type": "unsigned long"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "selectAllChildren": {
+          "name": "selectAllChildren",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "node",
+                  "type": "Node"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "deleteFromDocument": {
+          "name": "deleteFromDocument",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "containsNode": {
+          "name": "containsNode",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": [
+                {
+                  "name": "node",
+                  "type": "Node"
+                },
+                {
+                  "name": "allowPartialContainment",
+                  "type": "boolean",
+                  "optional": 1
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        },
+        "modify": {
+          "name": "modify",
+          "signatures": [
+            {
+              "type": "void",
+              "params": [
+                {
+                  "name": "alter",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "direction",
+                  "type": "DOMString"
+                },
+                {
+                  "name": "granularity",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
       "anonymousMethods": [
         {
           "signatures": [
@@ -8495,7 +9753,54 @@
           "exposed": "Window"
         }
       ],
-      "properties": {},
+      "properties": {
+        "anchorNode": {
+          "name": "anchorNode",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "anchorOffset": {
+          "name": "anchorOffset",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "focusNode": {
+          "name": "focusNode",
+          "type": "Node",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "focusOffset": {
+          "name": "focusOffset",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "isCollapsed": {
+          "name": "isCollapsed",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "rangeCount": {
+          "name": "rangeCount",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "type": {
+          "name": "type",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
       "exposed": "Window",
       "legacyWindowAlias": []
     },
@@ -8507,80 +9812,6 @@
       "anonymousMethods": [],
       "properties": {},
       "exposed": "Window",
-      "legacyWindowAlias": []
-    },
-    "FontFaceSet": {
-      "name": "FontFaceSet",
-      "extends": "Object",
-      "constants": {},
-      "methods": {},
-      "anonymousMethods": [],
-      "properties": {},
-      "constructor": {
-        "signatures": [
-          {
-            "type": "FontFaceSet",
-            "params": [
-              {
-                "name": "initialFaces",
-                "type": "sequence",
-                "subtype": {
-                  "type": "FontFace"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "exposed": "Window Worker",
-      "legacyWindowAlias": [],
-      "iterator": {
-        "kind": "setlike",
-        "readonly": false,
-        "type": [
-          {
-            "type": "FontFace"
-          }
-        ]
-      }
-    },
-    "FontFace": {
-      "name": "FontFace",
-      "extends": "Object",
-      "constants": {},
-      "methods": {},
-      "anonymousMethods": [],
-      "properties": {},
-      "constructor": {
-        "signatures": [
-          {
-            "type": "FontFace",
-            "params": [
-              {
-                "name": "family",
-                "type": "CSSOMString"
-              },
-              {
-                "name": "source",
-                "type": [
-                  {
-                    "type": "CSSOMString"
-                  },
-                  {
-                    "type": "BinaryData"
-                  }
-                ]
-              },
-              {
-                "name": "descriptors",
-                "type": "FontFaceDescriptors",
-                "optional": 1
-              }
-            ]
-          }
-        ]
-      },
-      "exposed": "Window Worker",
       "legacyWindowAlias": []
     },
     "FeaturePolicy": {
@@ -8687,6 +9918,27 @@
       },
       "exposed": "Window",
       "legacyWindowAlias": []
+    },
+    "XPathEvaluator": {
+      "name": "XPathEvaluator",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "XPathEvaluator",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [
+        "XPathEvaluatorBase"
+      ]
     },
     "XPathExpression": {
       "name": "XPathExpression",
@@ -9177,6 +10429,16 @@
         "Body"
       ]
     },
+    "HTMLDocument": {
+      "name": "HTMLDocument",
+      "extends": "Document",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
     "HTMLCollectionBase": {
       "name": "HTMLCollectionBase",
       "extends": "Object",
@@ -9654,11 +10916,12 @@
       "legacyWindowAlias": [],
       "implements": [
         "DocumentOrShadowRoot",
-        "FontFaceSource",
         "NonElementParentNode",
         "ParentNode",
         "XPathEvaluatorBase",
-        "NodeIsolate"
+        "NodeIsolate",
+        "HTMLDocumentIsolate",
+        "DocumentIsolate"
       ]
     },
     "SuperElement": {
@@ -9950,17 +11213,6 @@
           ],
           "exposed": "Window"
         },
-        "computedStyleMap": {
-          "name": "computedStyleMap",
-          "signatures": [
-            {
-              "type": "StylePropertyMapReadOnly",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
-        },
         "requestFullscreen": {
           "name": "requestFullscreen",
           "signatures": [
@@ -10122,14 +11374,17 @@
       "implements": [
         "NonDocumentTypeChildNode",
         "ParentNode",
+        "Slotable",
         "ElementCSSInlineStyle",
         "ElementContentEditable",
         "HTMLOrSVGElement",
+        "LinkStyle",
         "NodeIsolate",
         "HTMLElementIsolate",
         "ElementIsolate",
         "HTMLAnchorElementIsolate",
         "HTMLAreaElementIsolate",
+        "HTMLBRElementIsolate",
         "HTMLBaseElementIsolate",
         "HTMLBodyElementIsolate",
         "HTMLButtonElementIsolate",
@@ -10156,11 +11411,14 @@
         "HTMLInputElementIsolate",
         "HTMLLIElementIsolate",
         "HTMLLabelElementIsolate",
+        "HTMLLegendElementIsolate",
         "HTMLLinkElementIsolate",
         "HTMLMapElementIsolate",
         "HTMLMediaElementIsolate",
+        "HTMLAudioElementIsolate",
         "HTMLVideoElementIsolate",
         "HTMLMetaElementIsolate",
+        "HTMLMeterElementIsolate",
         "HTMLModElementIsolate",
         "HTMLOListElementIsolate",
         "HTMLObjectElementIsolate",
@@ -10175,6 +11433,7 @@
         "HTMLSelectElementIsolate",
         "HTMLSlotElementIsolate",
         "HTMLSourceElementIsolate",
+        "HTMLSpanElementIsolate",
         "HTMLStyleElementIsolate",
         "HTMLTableCaptionElementIsolate",
         "HTMLTableCellElementIsolate",
@@ -10182,6 +11441,7 @@
         "HTMLTableElementIsolate",
         "HTMLTableRowElementIsolate",
         "HTMLTableSectionElementIsolate",
+        "HTMLTemplateElementIsolate",
         "HTMLTextAreaElementIsolate",
         "HTMLTimeElementIsolate",
         "HTMLTitleElementIsolate",
@@ -10543,19 +11803,21 @@
       "legacyWindowAlias": [],
       "implements": [
         "NonDocumentTypeChildNode",
+        "Slotable",
         "DocumentOrShadowRoot",
-        "FontFaceSource",
         "NonElementParentNode",
         "ParentNode",
         "XPathEvaluatorBase",
         "ElementCSSInlineStyle",
         "ElementContentEditable",
         "HTMLOrSVGElement",
+        "LinkStyle",
         "AttrIsolate",
         "NodeIsolate",
         "CharacterDataIsolate",
         "TextIsolate",
         "DocumentIsolate",
+        "HTMLDocumentIsolate",
         "DocumentFragmentIsolate",
         "ShadowRootIsolate",
         "DocumentTypeIsolate",
@@ -10563,6 +11825,7 @@
         "HTMLElementIsolate",
         "HTMLAnchorElementIsolate",
         "HTMLAreaElementIsolate",
+        "HTMLBRElementIsolate",
         "HTMLBaseElementIsolate",
         "HTMLBodyElementIsolate",
         "HTMLButtonElementIsolate",
@@ -10589,11 +11852,14 @@
         "HTMLInputElementIsolate",
         "HTMLLIElementIsolate",
         "HTMLLabelElementIsolate",
+        "HTMLLegendElementIsolate",
         "HTMLLinkElementIsolate",
         "HTMLMapElementIsolate",
         "HTMLMediaElementIsolate",
+        "HTMLAudioElementIsolate",
         "HTMLVideoElementIsolate",
         "HTMLMetaElementIsolate",
+        "HTMLMeterElementIsolate",
         "HTMLModElementIsolate",
         "HTMLOListElementIsolate",
         "HTMLObjectElementIsolate",
@@ -10608,6 +11874,7 @@
         "HTMLSelectElementIsolate",
         "HTMLSlotElementIsolate",
         "HTMLSourceElementIsolate",
+        "HTMLSpanElementIsolate",
         "HTMLStyleElementIsolate",
         "HTMLTableCaptionElementIsolate",
         "HTMLTableCellElementIsolate",
@@ -10615,6 +11882,7 @@
         "HTMLTableElementIsolate",
         "HTMLTableRowElementIsolate",
         "HTMLTableSectionElementIsolate",
+        "HTMLTemplateElementIsolate",
         "HTMLTextAreaElementIsolate",
         "HTMLTimeElementIsolate",
         "HTMLTitleElementIsolate",
@@ -10749,6 +12017,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "Slotable",
         "NonDocumentTypeChildNode",
         "CharacterDataIsolate",
         "NodeIsolate"
@@ -10878,11 +12147,14 @@
         "HTMLOrSVGElement",
         "NonDocumentTypeChildNode",
         "ParentNode",
+        "Slotable",
+        "LinkStyle",
         "ElementIsolate",
         "NodeIsolate",
         "HTMLAnchorElementIsolate",
         "HTMLElementIsolate",
         "HTMLAreaElementIsolate",
+        "HTMLBRElementIsolate",
         "HTMLBaseElementIsolate",
         "HTMLBodyElementIsolate",
         "HTMLButtonElementIsolate",
@@ -10909,11 +12181,14 @@
         "HTMLInputElementIsolate",
         "HTMLLIElementIsolate",
         "HTMLLabelElementIsolate",
+        "HTMLLegendElementIsolate",
         "HTMLLinkElementIsolate",
         "HTMLMapElementIsolate",
         "HTMLMediaElementIsolate",
+        "HTMLAudioElementIsolate",
         "HTMLVideoElementIsolate",
         "HTMLMetaElementIsolate",
+        "HTMLMeterElementIsolate",
         "HTMLModElementIsolate",
         "HTMLOListElementIsolate",
         "HTMLObjectElementIsolate",
@@ -10928,6 +12203,7 @@
         "HTMLSelectElementIsolate",
         "HTMLSlotElementIsolate",
         "HTMLSourceElementIsolate",
+        "HTMLSpanElementIsolate",
         "HTMLStyleElementIsolate",
         "HTMLTableCaptionElementIsolate",
         "HTMLTableCellElementIsolate",
@@ -10935,6 +12211,7 @@
         "HTMLTableElementIsolate",
         "HTMLTableRowElementIsolate",
         "HTMLTableSectionElementIsolate",
+        "HTMLTemplateElementIsolate",
         "HTMLTextAreaElementIsolate",
         "HTMLTimeElementIsolate",
         "HTMLTitleElementIsolate",
@@ -11459,6 +12736,368 @@
       },
       "exposed": "Window",
       "legacyWindowAlias": []
+    },
+    "HTMLDocumentIsolate": {
+      "name": "HTMLDocumentIsolate",
+      "extends": "Document",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": []
+    },
+    "DocumentIsolate": {
+      "name": "DocumentIsolate",
+      "extends": "Node",
+      "constants": {},
+      "methods": {
+        "getElementsByTagName": {
+          "name": "getElementsByTagName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "qualifiedName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "getElementsByTagNameNS": {
+          "name": "getElementsByTagNameNS",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "namespace",
+                  "type": "DOMString",
+                  "nullable": 1
+                },
+                {
+                  "name": "localName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "getElementsByClassName": {
+          "name": "getElementsByClassName",
+          "signatures": [
+            {
+              "type": "HTMLCollection",
+              "params": [
+                {
+                  "name": "classNames",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "getElementsByName": {
+          "name": "getElementsByName",
+          "signatures": [
+            {
+              "type": "NodeList",
+              "params": [
+                {
+                  "name": "elementName",
+                  "type": "DOMString"
+                }
+              ]
+            }
+          ],
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "hasFocus": {
+          "name": "hasFocus",
+          "signatures": [
+            {
+              "type": "boolean",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitPointerLock": {
+          "name": "exitPointerLock",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        },
+        "exitFullscreen": {
+          "name": "exitFullscreen",
+          "signatures": [
+            {
+              "type": "Promise",
+              "subtype": {
+                "type": "void"
+              },
+              "params": []
+            }
+          ],
+          "exposed": "Window"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "implementation": {
+          "name": "implementation",
+          "type": "DOMImplementation",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "URL": {
+          "name": "URL",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "documentURI": {
+          "name": "documentURI",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "compatMode": {
+          "name": "compatMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "characterSet": {
+          "name": "characterSet",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "contentType": {
+          "name": "contentType",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "doctype": {
+          "name": "doctype",
+          "type": "DocumentType",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "documentElement": {
+          "name": "documentElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "location": {
+          "name": "location",
+          "type": "Location",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "domain": {
+          "name": "domain",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "cookie": {
+          "name": "cookie",
+          "type": "USVString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "lastModified": {
+          "name": "lastModified",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "readyState": {
+          "name": "readyState",
+          "type": [
+            {
+              "type": "DocumentReadyState"
+            },
+            {
+              "type": "unsigned short"
+            }
+          ],
+          "readOnly": 1,
+          "exposed": "Window",
+          "compromiseType": [
+            {
+              "type": "DocumentReadyState",
+              "isOfficial": 1
+            },
+            {
+              "type": "unsigned short"
+            }
+          ]
+        },
+        "title": {
+          "name": "title",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "dir": {
+          "name": "dir",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "body": {
+          "name": "body",
+          "type": "HTMLElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "head": {
+          "name": "head",
+          "type": "HTMLHeadElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "images": {
+          "name": "images",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "embeds": {
+          "name": "embeds",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "plugins": {
+          "name": "plugins",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "links": {
+          "name": "links",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "forms": {
+          "name": "forms",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "scripts": {
+          "name": "scripts",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "designMode": {
+          "name": "designMode",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "anchors": {
+          "name": "anchors",
+          "type": "HTMLCollection",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "hidden": {
+          "name": "hidden",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "visibilityState": {
+          "name": "visibilityState",
+          "type": "VisibilityState",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "featurePolicy": {
+          "name": "featurePolicy",
+          "type": "FeaturePolicy",
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "scrollingElement": {
+          "name": "scrollingElement",
+          "type": "Element",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "fullscreenEnabled": {
+          "name": "fullscreenEnabled",
+          "type": "boolean",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "constructor": {
+        "signatures": [
+          {
+            "type": "Document",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "implements": [
+        "DocumentOrShadowRoot",
+        "NonElementParentNode",
+        "ParentNode",
+        "XPathEvaluatorBase",
+        "Node"
+      ]
     },
     "HTMLElementIsolate": {
       "name": "HTMLElementIsolate",
@@ -12025,17 +13664,6 @@
           ],
           "exposed": "Window"
         },
-        "computedStyleMap": {
-          "name": "computedStyleMap",
-          "signatures": [
-            {
-              "type": "StylePropertyMapReadOnly",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
-        },
         "requestFullscreen": {
           "name": "requestFullscreen",
           "signatures": [
@@ -12197,6 +13825,7 @@
       "implements": [
         "NonDocumentTypeChildNode",
         "ParentNode",
+        "Slotable",
         "Node"
       ]
     },
@@ -12358,6 +13987,34 @@
         "tags": [
           {
             "name": "area",
+            "selfClosing": 1
+          }
+        ]
+      }
+    },
+    "HTMLBRElementIsolate": {
+      "name": "HTMLBRElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "constructor": {
+        "signatures": [
+          {
+            "type": "HTMLBRElement",
+            "params": []
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLBRElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "br",
             "selfClosing": 1
           }
         ]
@@ -14142,6 +15799,14 @@
           "exposed": "Window",
           "isAbstract": 1
         },
+        "files": {
+          "name": "files",
+          "type": "FileList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
         "formAction": {
           "name": "formAction",
           "type": "USVString",
@@ -14244,9 +15909,25 @@
         },
         "min": {
           "name": "min",
-          "type": "DOMString",
+          "type": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "double"
+            }
+          ],
           "readOnly": 1,
-          "exposed": "Window"
+          "exposed": "Window",
+          "compromiseType": [
+            {
+              "type": "DOMString",
+              "isOfficial": 1
+            },
+            {
+              "type": "double"
+            }
+          ]
         },
         "minLength": {
           "name": "minLength",
@@ -14544,6 +16225,40 @@
         ]
       }
     },
+    "HTMLLegendElementIsolate": {
+      "name": "HTMLLegendElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "form": {
+          "name": "form",
+          "type": "HTMLFormElement",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        },
+        "align": {
+          "name": "align",
+          "type": "DOMString",
+          "readOnly": 1,
+          "exposed": "Window"
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLLegendElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "legend"
+          }
+        ]
+      }
+    },
     "HTMLLinkElementIsolate": {
       "name": "HTMLLinkElementIsolate",
       "extends": "HTMLElement",
@@ -14635,6 +16350,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "LinkStyle",
         "HTMLElement"
       ],
       "element": {
@@ -15018,6 +16734,40 @@
       "exposed": "Window",
       "legacyWindowAlias": []
     },
+    "HTMLAudioElementIsolate": {
+      "name": "HTMLAudioElementIsolate",
+      "extends": "HTMLMediaElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "namedConstructor": {
+        "name": "Audio",
+        "signatures": [
+          {
+            "type": "HTMLAudioElement",
+            "params": [
+              {
+                "name": "src",
+                "type": "DOMString",
+                "optional": 1
+              }
+            ]
+          }
+        ]
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLAudioElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "audio"
+          }
+        ]
+      }
+    },
     "HTMLVideoElementIsolate": {
       "name": "HTMLVideoElementIsolate",
       "extends": "HTMLMediaElement",
@@ -15133,9 +16883,26 @@
         },
         "content": {
           "name": "content",
-          "type": "DOMString",
+          "type": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "DocumentFragment"
+            }
+          ],
           "readOnly": 1,
-          "exposed": "Window"
+          "exposed": "Window",
+          "compromiseType": [
+            {
+              "type": "DOMString",
+              "isOfficial": 1
+            },
+            {
+              "type": "DocumentFragment",
+              "isAbstract": 1
+            }
+          ]
         },
         "scheme": {
           "name": "scheme",
@@ -15153,6 +16920,118 @@
           {
             "name": "meta",
             "selfClosing": 1
+          }
+        ]
+      }
+    },
+    "HTMLMeterElementIsolate": {
+      "name": "HTMLMeterElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "value": {
+          "name": "value",
+          "type": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "double"
+            }
+          ],
+          "readOnly": 1,
+          "exposed": "Window",
+          "compromiseType": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "double",
+              "isOfficial": 1
+            }
+          ]
+        },
+        "min": {
+          "name": "min",
+          "type": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "double"
+            }
+          ],
+          "readOnly": 1,
+          "exposed": "Window",
+          "compromiseType": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "double",
+              "isOfficial": 1
+            }
+          ]
+        },
+        "max": {
+          "name": "max",
+          "type": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "double"
+            }
+          ],
+          "readOnly": 1,
+          "exposed": "Window",
+          "compromiseType": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "double",
+              "isOfficial": 1
+            }
+          ]
+        },
+        "low": {
+          "name": "low",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "high": {
+          "name": "high",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "optimum": {
+          "name": "optimum",
+          "type": "double",
+          "readOnly": 1,
+          "exposed": "Window"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "NodeList",
+          "nullable": 1,
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLMeterElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "meter"
           }
         ]
       }
@@ -16312,6 +18191,25 @@
         ]
       }
     },
+    "HTMLSpanElementIsolate": {
+      "name": "HTMLSpanElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {},
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLSpanElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "span"
+          }
+        ]
+      }
+    },
     "HTMLStyleElementIsolate": {
       "name": "HTMLStyleElementIsolate",
       "extends": "HTMLElement",
@@ -16335,6 +18233,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "LinkStyle",
         "HTMLElement"
       ],
       "element": {
@@ -16793,6 +18692,50 @@
           },
           {
             "name": "tfoot"
+          }
+        ]
+      }
+    },
+    "HTMLTemplateElementIsolate": {
+      "name": "HTMLTemplateElementIsolate",
+      "extends": "HTMLElement",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "content": {
+          "name": "content",
+          "type": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "DocumentFragment"
+            }
+          ],
+          "readOnly": 1,
+          "exposed": "Window",
+          "isAbstract": 1,
+          "compromiseType": [
+            {
+              "type": "DOMString"
+            },
+            {
+              "type": "DocumentFragment",
+              "isAbstract": 1,
+              "isOfficial": 1
+            }
+          ]
+        }
+      },
+      "exposed": "Window",
+      "legacyWindowAlias": [],
+      "element": {
+        "name": "HTMLTemplateElement",
+        "namespace": "HTML",
+        "tags": [
+          {
+            "name": "template"
           }
         ]
       }
@@ -17480,360 +19423,8 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "Slotable",
         "CharacterData"
-      ]
-    },
-    "DocumentIsolate": {
-      "name": "DocumentIsolate",
-      "extends": "Node",
-      "constants": {},
-      "methods": {
-        "getElementsByTagName": {
-          "name": "getElementsByTagName",
-          "signatures": [
-            {
-              "type": "HTMLCollection",
-              "params": [
-                {
-                  "name": "qualifiedName",
-                  "type": "DOMString"
-                }
-              ]
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "getElementsByTagNameNS": {
-          "name": "getElementsByTagNameNS",
-          "signatures": [
-            {
-              "type": "HTMLCollection",
-              "params": [
-                {
-                  "name": "namespace",
-                  "type": "DOMString",
-                  "nullable": 1
-                },
-                {
-                  "name": "localName",
-                  "type": "DOMString"
-                }
-              ]
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "getElementsByClassName": {
-          "name": "getElementsByClassName",
-          "signatures": [
-            {
-              "type": "HTMLCollection",
-              "params": [
-                {
-                  "name": "classNames",
-                  "type": "DOMString"
-                }
-              ]
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "getElementsByName": {
-          "name": "getElementsByName",
-          "signatures": [
-            {
-              "type": "NodeList",
-              "params": [
-                {
-                  "name": "elementName",
-                  "type": "DOMString"
-                }
-              ]
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "hasFocus": {
-          "name": "hasFocus",
-          "signatures": [
-            {
-              "type": "boolean",
-              "params": []
-            }
-          ],
-          "exposed": "Window"
-        },
-        "exitPointerLock": {
-          "name": "exitPointerLock",
-          "signatures": [
-            {
-              "type": "void",
-              "params": []
-            }
-          ],
-          "exposed": "Window"
-        },
-        "exitFullscreen": {
-          "name": "exitFullscreen",
-          "signatures": [
-            {
-              "type": "Promise",
-              "subtype": {
-                "type": "void"
-              },
-              "params": []
-            }
-          ],
-          "exposed": "Window"
-        }
-      },
-      "anonymousMethods": [],
-      "properties": {
-        "implementation": {
-          "name": "implementation",
-          "type": "DOMImplementation",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "URL": {
-          "name": "URL",
-          "type": "USVString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "documentURI": {
-          "name": "documentURI",
-          "type": "USVString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "compatMode": {
-          "name": "compatMode",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "characterSet": {
-          "name": "characterSet",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "contentType": {
-          "name": "contentType",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "doctype": {
-          "name": "doctype",
-          "type": "DocumentType",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "documentElement": {
-          "name": "documentElement",
-          "type": "Element",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "location": {
-          "name": "location",
-          "type": "Location",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "domain": {
-          "name": "domain",
-          "type": "USVString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "referrer": {
-          "name": "referrer",
-          "type": "USVString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "cookie": {
-          "name": "cookie",
-          "type": "USVString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "lastModified": {
-          "name": "lastModified",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "readyState": {
-          "name": "readyState",
-          "type": [
-            {
-              "type": "DocumentReadyState"
-            },
-            {
-              "type": "unsigned short"
-            }
-          ],
-          "readOnly": 1,
-          "exposed": "Window",
-          "compromiseType": [
-            {
-              "type": "DocumentReadyState",
-              "isOfficial": 1
-            },
-            {
-              "type": "unsigned short"
-            }
-          ]
-        },
-        "title": {
-          "name": "title",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "dir": {
-          "name": "dir",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "body": {
-          "name": "body",
-          "type": "HTMLElement",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "head": {
-          "name": "head",
-          "type": "HTMLHeadElement",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "images": {
-          "name": "images",
-          "type": "HTMLCollection",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "embeds": {
-          "name": "embeds",
-          "type": "HTMLCollection",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "plugins": {
-          "name": "plugins",
-          "type": "HTMLCollection",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "links": {
-          "name": "links",
-          "type": "HTMLCollection",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "forms": {
-          "name": "forms",
-          "type": "HTMLCollection",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "scripts": {
-          "name": "scripts",
-          "type": "HTMLCollection",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "designMode": {
-          "name": "designMode",
-          "type": "DOMString",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "anchors": {
-          "name": "anchors",
-          "type": "HTMLCollection",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "hidden": {
-          "name": "hidden",
-          "type": "boolean",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "visibilityState": {
-          "name": "visibilityState",
-          "type": "VisibilityState",
-          "readOnly": 1,
-          "exposed": "Window"
-        },
-        "featurePolicy": {
-          "name": "featurePolicy",
-          "type": "FeaturePolicy",
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "scrollingElement": {
-          "name": "scrollingElement",
-          "type": "Element",
-          "nullable": 1,
-          "readOnly": 1,
-          "exposed": "Window",
-          "isAbstract": 1
-        },
-        "fullscreenEnabled": {
-          "name": "fullscreenEnabled",
-          "type": "boolean",
-          "readOnly": 1,
-          "exposed": "Window"
-        }
-      },
-      "constructor": {
-        "signatures": [
-          {
-            "type": "Document",
-            "params": []
-          }
-        ]
-      },
-      "exposed": "Window",
-      "legacyWindowAlias": [],
-      "implements": [
-        "DocumentOrShadowRoot",
-        "FontFaceSource",
-        "NonElementParentNode",
-        "ParentNode",
-        "XPathEvaluatorBase",
-        "Node"
       ]
     },
     "DocumentFragmentIsolate": {

@@ -485,8 +485,7 @@
         "isAbstract": true
       },
       "computedStyleMap": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": false
       },
       "getAttribute": {
         "isEnabled": true
@@ -852,75 +851,78 @@
     "isEnabled": true,
     "propertiesByName": {
       "anchorNode": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       },
       "anchorOffset": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "focusNode": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       },
       "focusOffset": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "isCollapsed": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "rangeCount": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "type": {
-        "isEnabled": false
+        "isEnabled": true
       }
     },
     "methodsByName": {
       "addRange": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "collapse": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "collapseToEnd": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "collapseToStart": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "containsNode": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "deleteFromDocument": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "empty": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "extend": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "getRangeAt": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       },
       "modify": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "removeAllRanges": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "removeRange": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "selectAllChildren": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "setBaseAndExtent": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "setPosition": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "toString": {
-        "isEnabled": false
+        "isEnabled": true
       }
     }
   },
@@ -1030,15 +1032,15 @@
     "isEnabled": true,
     "propertiesByName": {
       "length": {
-        "isEnabled": false
+        "isEnabled": true
       }
     },
     "methodsByName": {
       "end": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "start": {
-        "isEnabled": false
+        "isEnabled": true
       }
     }
   },
@@ -1112,25 +1114,42 @@
     "propertiesByName": {},
     "methodsByName": {}
   },
+  "ImageBitmap": {
+    "isEnabled": true,
+    "propertiesByName": {
+      "height": {
+        "isEnabled": true
+      },
+      "width": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "close": {
+        "isEnabled": true
+      }
+    }
+  },
   "OffscreenCanvas": {
     "isEnabled": true,
     "propertiesByName": {
       "height": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "width": {
-        "isEnabled": false
+        "isEnabled": true
       }
     },
     "methodsByName": {
       "convertToBlob": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "getContext": {
         "isEnabled": false
       },
       "transferToImageBitmap": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -1206,12 +1225,12 @@
     "methodsByName": {}
   },
   "HTMLAudioElement": {
-    "isEnabled": false,
+    "isEnabled": true,
     "propertiesByName": {},
     "methodsByName": {}
   },
   "HTMLBRElement": {
-    "isEnabled": false,
+    "isEnabled": true,
     "propertiesByName": {},
     "methodsByName": {}
   },
@@ -1854,7 +1873,7 @@
         "isEnabled": true
       },
       "files": {
-        "isEnabled": false,
+        "isEnabled": true,
         "isAbstract": true
       },
       "form": {
@@ -2023,8 +2042,16 @@
     "methodsByName": {}
   },
   "HTMLLegendElement": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "align": {
+        "isEnabled": true
+      },
+      "form": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "HTMLLinkElement": {
@@ -2244,8 +2271,31 @@
     "methodsByName": {}
   },
   "HTMLMeterElement": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "high": {
+        "isEnabled": true
+      },
+      "labels": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "low": {
+        "isEnabled": true
+      },
+      "max": {
+        "isEnabled": true
+      },
+      "min": {
+        "isEnabled": true
+      },
+      "optimum": {
+        "isEnabled": true
+      },
+      "value": {
+        "isEnabled": true
+      }
+    },
     "methodsByName": {}
   },
   "HTMLModElement": {
@@ -2641,7 +2691,7 @@
     "methodsByName": {}
   },
   "HTMLSpanElement": {
-    "isEnabled": false,
+    "isEnabled": true,
     "propertiesByName": {},
     "methodsByName": {}
   },
@@ -2864,8 +2914,13 @@
     }
   },
   "HTMLTemplateElement": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "content": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "HTMLTextAreaElement": {
@@ -3148,15 +3203,31 @@
     "methodsByName": {}
   },
   "AudioTrack": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "enabled": {
+        "isEnabled": true
+      },
+      "id": {
+        "isEnabled": true
+      },
+      "kind": {
+        "isEnabled": true
+      },
+      "label": {
+        "isEnabled": true
+      },
+      "language": {
+        "isEnabled": true
+      }
+    },
     "methodsByName": {}
   },
   "AudioTrackList": {
     "isEnabled": true,
     "propertiesByName": {
       "length": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "onaddtrack": {
         "isEnabled": false
@@ -3170,7 +3241,8 @@
     },
     "methodsByName": {
       "getTrackById": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -3227,14 +3299,46 @@
     }
   },
   "TextTrackCue": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "endTime": {
+        "isEnabled": true
+      },
+      "id": {
+        "isEnabled": true
+      },
+      "onenter": {
+        "isEnabled": false
+      },
+      "onexit": {
+        "isEnabled": false
+      },
+      "pauseOnExit": {
+        "isEnabled": true
+      },
+      "startTime": {
+        "isEnabled": true
+      },
+      "track": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "TextTrackCueList": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "length": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "getCueById": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
   },
   "TextTrackList": {
     "isEnabled": true,
@@ -3259,15 +3363,31 @@
     }
   },
   "VideoTrack": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "id": {
+        "isEnabled": true
+      },
+      "kind": {
+        "isEnabled": true
+      },
+      "label": {
+        "isEnabled": true
+      },
+      "language": {
+        "isEnabled": true
+      },
+      "selected": {
+        "isEnabled": true
+      }
+    },
     "methodsByName": {}
   },
   "VideoTrackList": {
     "isEnabled": true,
     "propertiesByName": {
       "length": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "onaddtrack": {
         "isEnabled": false
@@ -3279,12 +3399,13 @@
         "isEnabled": false
       },
       "selectedIndex": {
-        "isEnabled": false
+        "isEnabled": true
       }
     },
     "methodsByName": {
       "getTrackById": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -3373,9 +3494,38 @@
     }
   },
   "DOMRectReadOnly": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "bottom": {
+        "isEnabled": true
+      },
+      "height": {
+        "isEnabled": true
+      },
+      "left": {
+        "isEnabled": true
+      },
+      "right": {
+        "isEnabled": true
+      },
+      "top": {
+        "isEnabled": true
+      },
+      "width": {
+        "isEnabled": true
+      },
+      "x": {
+        "isEnabled": true
+      },
+      "y": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "fromRect": {
+        "isEnabled": false
+      }
+    }
   },
   "DOMRect": {
     "isEnabled": true,
@@ -3438,16 +3588,18 @@
     "isEnabled": true,
     "propertiesByName": {
       "cssText": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "parentRule": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       },
       "parentStyleSheet": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       },
       "type": {
-        "isEnabled": false
+        "isEnabled": true
       }
     },
     "methodsByName": {}
@@ -3477,12 +3629,13 @@
     "isEnabled": true,
     "propertiesByName": {
       "length": {
-        "isEnabled": false
+        "isEnabled": true
       }
     },
     "methodsByName": {
       "item": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -3521,19 +3674,45 @@
     "methodsByName": {}
   },
   "MediaList": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "length": {
+        "isEnabled": true
+      },
+      "mediaText": {
+        "isEnabled": false
+      }
+    },
+    "methodsByName": {
+      "appendMedium": {
+        "isEnabled": true
+      },
+      "deleteMedium": {
+        "isEnabled": true
+      },
+      "item": {
+        "isEnabled": true
+      }
+    }
   },
   "DOMParser": {
-    "isEnabled": false,
+    "isEnabled": true,
     "propertiesByName": {},
-    "methodsByName": {}
+    "methodsByName": {
+      "parseFromString": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    }
   },
   "XMLSerializer": {
-    "isEnabled": false,
+    "isEnabled": true,
     "propertiesByName": {},
-    "methodsByName": {}
+    "methodsByName": {
+      "serializeToString": {
+        "isEnabled": true
+      }
+    }
   },
   "Blob": {
     "isEnabled": true,
@@ -3561,57 +3740,35 @@
     }
   },
   "File": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "lastModified": {
+        "isEnabled": true
+      },
+      "name": {
+        "isEnabled": true
+      }
+    },
     "methodsByName": {}
   },
   "FileList": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
-  },
-  "FontFace": {
     "isEnabled": true,
     "propertiesByName": {
-      "display": {
-        "isEnabled": false
-      },
-      "family": {
-        "isEnabled": false
-      },
-      "featureSettings": {
-        "isEnabled": false
-      },
-      "loaded": {
-        "isEnabled": false
-      },
-      "status": {
-        "isEnabled": false
-      },
-      "stretch": {
-        "isEnabled": false
-      },
-      "style": {
-        "isEnabled": false
-      },
-      "unicodeRange": {
-        "isEnabled": false
-      },
-      "variant": {
-        "isEnabled": false
-      },
-      "variationSettings": {
-        "isEnabled": false
-      },
-      "weight": {
-        "isEnabled": false
+      "length": {
+        "isEnabled": true
       }
     },
     "methodsByName": {
-      "load": {
-        "isEnabled": false
+      "item": {
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
+  },
+  "FontFace": {
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
   },
   "ShadowRoot": {
     "isEnabled": true,
@@ -3633,12 +3790,30 @@
     "methodsByName": {}
   },
   "AbstractRange": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "collapsed": {
+        "isEnabled": true
+      },
+      "endContainer": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "endOffset": {
+        "isEnabled": true
+      },
+      "startContainer": {
+        "isEnabled": true,
+        "isAbstract": true
+      },
+      "startOffset": {
+        "isEnabled": true
+      }
+    },
     "methodsByName": {}
   },
   "HTMLDocument": {
-    "isEnabled": false,
+    "isEnabled": true,
     "propertiesByName": {},
     "methodsByName": {}
   },
@@ -3692,13 +3867,23 @@
     "methodsByName": {}
   },
   "LinkStyle": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "sheet": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "Slotable": {
-    "isEnabled": false,
-    "propertiesByName": {},
+    "isEnabled": true,
+    "propertiesByName": {
+      "assignedSlot": {
+        "isEnabled": true,
+        "isAbstract": true
+      }
+    },
     "methodsByName": {}
   },
   "WindowEventHandlers": {
@@ -3891,35 +4076,9 @@
     "methodsByName": {}
   },
   "StylePropertyMapReadOnly": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "size": {
-        "isEnabled": false
-      }
-    },
-    "methodsByName": {
-      "get": {
-        "isEnabled": false
-      },
-      "getAll": {
-        "isEnabled": false
-      },
-      "has": {
-        "isEnabled": false
-      },
-      "entries": {
-        "isEnabled": false
-      },
-      "keys": {
-        "isEnabled": false
-      },
-      "values": {
-        "isEnabled": false
-      },
-      "forEach": {
-        "isEnabled": false
-      }
-    }
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
   },
   "StylePropertyMap": {
     "isEnabled": false,
@@ -3964,44 +4123,9 @@
     "methodsByName": {}
   },
   "FontFaceSet": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "onloading": {
-        "isEnabled": false
-      },
-      "onloadingdone": {
-        "isEnabled": false
-      },
-      "onloadingerror": {
-        "isEnabled": false
-      },
-      "ready": {
-        "isEnabled": false
-      },
-      "status": {
-        "isEnabled": false
-      }
-    },
-    "methodsByName": {
-      "add": {
-        "isEnabled": false
-      },
-      "check": {
-        "isEnabled": false
-      },
-      "clear": {
-        "isEnabled": false
-      },
-      "delete": {
-        "isEnabled": false
-      },
-      "load": {
-        "isEnabled": false
-      },
-      "forEach": {
-        "isEnabled": false
-      }
-    }
+    "isEnabled": false,
+    "propertiesByName": {},
+    "methodsByName": {}
   },
   "FeaturePolicy": {
     "isEnabled": true,
@@ -4022,7 +4146,7 @@
     }
   },
   "XPathEvaluator": {
-    "isEnabled": false,
+    "isEnabled": true,
     "propertiesByName": {},
     "methodsByName": {}
   },
@@ -4107,13 +4231,8 @@
     "methodsByName": {}
   },
   "FontFaceSource": {
-    "isEnabled": true,
-    "propertiesByName": {
-      "fonts": {
-        "isEnabled": true,
-        "isAbstract": true
-      }
-    },
+    "isEnabled": false,
+    "propertiesByName": {},
     "methodsByName": {}
   },
   "ElementContentEditable": {
@@ -4142,16 +4261,14 @@
     "isEnabled": true,
     "propertiesByName": {
       "dataset": {
-        "isEnabled": false,
+        "isEnabled": true,
         "isAbstract": true
       },
       "nonce": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": true
       },
       "tabIndex": {
-        "isEnabled": false,
-        "isAbstract": true
+        "isEnabled": true
       }
     },
     "methodsByName": {
@@ -4194,15 +4311,17 @@
     "isEnabled": true,
     "propertiesByName": {
       "offset": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "offsetNode": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     },
     "methodsByName": {
       "getClientRect": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       }
     }
   },
@@ -4210,10 +4329,10 @@
     "isEnabled": true,
     "propertiesByName": {
       "active": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "id": {
-        "isEnabled": false
+        "isEnabled": true
       },
       "onaddtrack": {
         "isEnabled": false
@@ -4227,7 +4346,8 @@
         "isEnabled": false
       },
       "clone": {
-        "isEnabled": false
+        "isEnabled": true,
+        "isAbstract": true
       },
       "getAudioTracks": {
         "isEnabled": false

@@ -13,12 +13,13 @@ const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
 const Node_1 = require("./Node");
 const NonDocumentTypeChildNode_1 = require("../official-mixins/NonDocumentTypeChildNode");
 const ParentNode_1 = require("../official-mixins/ParentNode");
+const Slotable_1 = require("../official-mixins/Slotable");
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('Element', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
-function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode) {
-    const Parent = ClassMixer_1.default(Node, [NonDocumentTypeChildNode, ParentNode]);
+function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode, Slotable) {
+    const Parent = ClassMixer_1.default(Node, [NonDocumentTypeChildNode, ParentNode, Slotable]);
     return class Element extends Parent {
         constructor() {
             super();
@@ -95,9 +96,6 @@ function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode) {
         closest(selectors) {
             throw new Error('Element.closest not implemented');
         }
-        computedStyleMap() {
-            throw new Error('Element.computedStyleMap not implemented');
-        }
         getAttribute(qualifiedName) {
             return exports.awaitedHandler.runMethod(this, 'getAttribute', [qualifiedName]);
         }
@@ -158,6 +156,6 @@ function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode) {
     };
 }
 exports.ElementGenerator = ElementGenerator;
-exports.ElementPropertyKeys = [...Node_1.NodePropertyKeys, ...NonDocumentTypeChildNode_1.NonDocumentTypeChildNodePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
-exports.ElementConstantKeys = [...Node_1.NodeConstantKeys, ...NonDocumentTypeChildNode_1.NonDocumentTypeChildNodeConstantKeys, ...ParentNode_1.ParentNodeConstantKeys];
+exports.ElementPropertyKeys = [...Node_1.NodePropertyKeys, ...NonDocumentTypeChildNode_1.NonDocumentTypeChildNodePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, ...Slotable_1.SlotablePropertyKeys, 'attributes', 'classList', 'className', 'clientHeight', 'clientLeft', 'clientTop', 'clientWidth', 'id', 'innerHTML', 'localName', 'namespaceURI', 'outerHTML', 'part', 'prefix', 'scrollHeight', 'scrollLeft', 'scrollTop', 'scrollWidth', 'shadowRoot', 'slot', 'tagName'];
+exports.ElementConstantKeys = [...Node_1.NodeConstantKeys, ...NonDocumentTypeChildNode_1.NonDocumentTypeChildNodeConstantKeys, ...ParentNode_1.ParentNodeConstantKeys, ...Slotable_1.SlotableConstantKeys];
 //# sourceMappingURL=Element.js.map

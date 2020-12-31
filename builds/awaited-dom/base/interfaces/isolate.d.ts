@@ -1,7 +1,7 @@
 /// <reference no-default-lib="true"/>
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperText } from './super';
 import { INodeIsolate } from './isolate';
-import { IGetRootNodeOptions, INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IHTMLFormElement, IValidityState, IMediaStream, IOffscreenCanvas, IHTMLOptionsCollection, IFeaturePolicy, ISelectionMode, IAudioTrackList, ITimeRanges, IMediaError, IMediaKeys, IDocumentReadyState, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IVideoPlaybackQuality, IHTMLOptionElement, IAssignedNodesOptions, IHTMLTableCaptionElement, IHTMLTableSectionElement, IHTMLTableCellElement, ITextTrack, IDocumentType, IHTMLHeadElement, IDOMImplementation, ILocation, IVisibilityState, IShadowRootMode, ICSSRuleList, ICSSRule } from './official';
+import { IGetRootNodeOptions, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IHTMLFormElement, IValidityState, IMediaStream, IOffscreenCanvas, IHTMLOptionsCollection, IFileList, ISelectionMode, IAudioTrackList, ITimeRanges, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IVideoPlaybackQuality, IDocumentFragment, IHTMLOptionElement, IAssignedNodesOptions, IHTMLTableCaptionElement, IHTMLTableSectionElement, IHTMLTableCellElement, ITextTrack, IShadowRootMode, ICSSRuleList, ICSSRule } from './official';
 export interface INodeIsolate {
     readonly ATTRIBUTE_NODE: number;
     readonly CDATA_SECTION_NODE: number;
@@ -46,6 +46,48 @@ export interface INodeIsolate {
     lookupPrefix(namespace: string | null): Promise<string | null>;
     normalize(): Promise<void>;
 }
+export interface IHTMLDocumentIsolate {
+}
+export interface IDocumentIsolate {
+    readonly URL: Promise<string>;
+    readonly anchors: ISuperHTMLCollection;
+    readonly body: ISuperHTMLElement;
+    readonly characterSet: Promise<string>;
+    readonly compatMode: Promise<string>;
+    readonly contentType: Promise<string>;
+    readonly cookie: Promise<string>;
+    readonly designMode: Promise<string>;
+    readonly dir: Promise<string>;
+    readonly doctype: IDocumentType;
+    readonly documentElement: ISuperElement;
+    readonly documentURI: Promise<string>;
+    readonly domain: Promise<string>;
+    readonly embeds: ISuperHTMLCollection;
+    readonly featurePolicy: IFeaturePolicy;
+    readonly forms: ISuperHTMLCollection;
+    readonly fullscreenEnabled: Promise<boolean>;
+    readonly head: IHTMLHeadElement;
+    readonly hidden: Promise<boolean>;
+    readonly images: ISuperHTMLCollection;
+    readonly implementation: IDOMImplementation;
+    readonly lastModified: Promise<string>;
+    readonly links: ISuperHTMLCollection;
+    readonly location: ILocation;
+    readonly plugins: ISuperHTMLCollection;
+    readonly readyState: Promise<IDocumentReadyState> | Promise<number>;
+    readonly referrer: Promise<string>;
+    readonly scripts: ISuperHTMLCollection;
+    readonly scrollingElement: ISuperElement;
+    readonly title: Promise<string>;
+    readonly visibilityState: Promise<IVisibilityState>;
+    exitFullscreen(): Promise<void>;
+    exitPointerLock(): Promise<void>;
+    getElementsByClassName(classNames: string): ISuperHTMLCollection;
+    getElementsByName(elementName: string): ISuperNodeList;
+    getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+    getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
+    hasFocus(): Promise<boolean>;
+}
 export interface IElementIsolate {
     readonly attributes: INamedNodeMap;
     readonly classList: IDOMTokenList;
@@ -69,7 +111,6 @@ export interface IElementIsolate {
     readonly slot: Promise<string>;
     readonly tagName: Promise<string>;
     closest(selectors: string): ISuperElement;
-    computedStyleMap(): IStylePropertyMapReadOnly;
     getAttribute(qualifiedName: string): Promise<string | null>;
     getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
     getAttributeNames(): Promise<Iterable<string>>;
@@ -152,46 +193,6 @@ export interface ICharacterDataIsolate {
 export interface ITextIsolate {
     readonly wholeText: Promise<string>;
     splitText(offset: number): Promise<ISuperText>;
-}
-export interface IDocumentIsolate {
-    readonly URL: Promise<string>;
-    readonly anchors: ISuperHTMLCollection;
-    readonly body: ISuperHTMLElement;
-    readonly characterSet: Promise<string>;
-    readonly compatMode: Promise<string>;
-    readonly contentType: Promise<string>;
-    readonly cookie: Promise<string>;
-    readonly designMode: Promise<string>;
-    readonly dir: Promise<string>;
-    readonly doctype: IDocumentType;
-    readonly documentElement: ISuperElement;
-    readonly documentURI: Promise<string>;
-    readonly domain: Promise<string>;
-    readonly embeds: ISuperHTMLCollection;
-    readonly featurePolicy: IFeaturePolicy;
-    readonly forms: ISuperHTMLCollection;
-    readonly fullscreenEnabled: Promise<boolean>;
-    readonly head: IHTMLHeadElement;
-    readonly hidden: Promise<boolean>;
-    readonly images: ISuperHTMLCollection;
-    readonly implementation: IDOMImplementation;
-    readonly lastModified: Promise<string>;
-    readonly links: ISuperHTMLCollection;
-    readonly location: ILocation;
-    readonly plugins: ISuperHTMLCollection;
-    readonly readyState: Promise<IDocumentReadyState> | Promise<number>;
-    readonly referrer: Promise<string>;
-    readonly scripts: ISuperHTMLCollection;
-    readonly scrollingElement: ISuperElement;
-    readonly title: Promise<string>;
-    readonly visibilityState: Promise<IVisibilityState>;
-    exitFullscreen(): Promise<void>;
-    exitPointerLock(): Promise<void>;
-    getElementsByClassName(classNames: string): ISuperHTMLCollection;
-    getElementsByName(elementName: string): ISuperNodeList;
-    getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
-    getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
-    hasFocus(): Promise<boolean>;
 }
 export interface IDocumentFragmentIsolate {
 }
@@ -279,6 +280,8 @@ export interface IHTMLAreaElementIsolate {
     readonly shape: Promise<string>;
     readonly target: Promise<string>;
     readonly type: Promise<string>;
+}
+export interface IHTMLBRElementIsolate {
 }
 export interface IHTMLBaseElementIsolate {
     readonly href: Promise<string>;
@@ -459,6 +462,7 @@ export interface IHTMLInputElementIsolate {
     readonly defaultValue: Promise<string>;
     readonly dirName: Promise<string>;
     readonly disabled: Promise<boolean>;
+    readonly files: IFileList;
     readonly form: IHTMLFormElement;
     readonly formAction: Promise<string>;
     readonly formEnctype: Promise<string>;
@@ -472,7 +476,7 @@ export interface IHTMLInputElementIsolate {
     readonly list: ISuperHTMLElement;
     readonly max: Promise<string> | Promise<number>;
     readonly maxLength: Promise<number>;
-    readonly min: Promise<string>;
+    readonly min: Promise<string> | Promise<number>;
     readonly minLength: Promise<number>;
     readonly multiple: Promise<boolean>;
     readonly name: Promise<string>;
@@ -511,6 +515,10 @@ export interface IHTMLLabelElementIsolate {
     readonly form: IHTMLFormElement;
     readonly htmlFor: Promise<string>;
 }
+export interface IHTMLLegendElementIsolate {
+    readonly align: Promise<string>;
+    readonly form: IHTMLFormElement;
+}
 export interface IHTMLLinkElementIsolate {
     readonly as: Promise<string>;
     readonly crossOrigin: Promise<string | null>;
@@ -527,6 +535,8 @@ export interface IHTMLMapElementIsolate {
     readonly areas: ISuperHTMLCollection;
     readonly name: Promise<string>;
 }
+export interface IHTMLAudioElementIsolate {
+}
 export interface IHTMLVideoElementIsolate {
     readonly height: Promise<number> | Promise<string>;
     readonly poster: Promise<string>;
@@ -536,10 +546,19 @@ export interface IHTMLVideoElementIsolate {
     getVideoPlaybackQuality(): IVideoPlaybackQuality;
 }
 export interface IHTMLMetaElementIsolate {
-    readonly content: Promise<string>;
+    readonly content: Promise<string> | IDocumentFragment;
     readonly httpEquiv: Promise<string>;
     readonly name: Promise<string>;
     readonly scheme: Promise<string>;
+}
+export interface IHTMLMeterElementIsolate {
+    readonly high: Promise<number>;
+    readonly labels: ISuperNodeList;
+    readonly low: Promise<number>;
+    readonly max: Promise<string> | Promise<number>;
+    readonly min: Promise<string> | Promise<number>;
+    readonly optimum: Promise<number>;
+    readonly value: Promise<string> | Promise<number>;
 }
 export interface IHTMLModElementIsolate {
     readonly cite: Promise<string>;
@@ -661,6 +680,8 @@ export interface IHTMLSourceElementIsolate {
     readonly srcset: Promise<string>;
     readonly type: Promise<string>;
 }
+export interface IHTMLSpanElementIsolate {
+}
 export interface IHTMLStyleElementIsolate {
     readonly media: Promise<string>;
     readonly type: Promise<string>;
@@ -711,6 +732,9 @@ export interface IHTMLTableSectionElementIsolate {
     readonly chOff: Promise<string>;
     readonly rows: Promise<string> | ISuperHTMLCollection | Promise<number>;
     readonly vAlign: Promise<string>;
+}
+export interface IHTMLTemplateElementIsolate {
+    readonly content: Promise<string> | IDocumentFragment;
 }
 export interface IHTMLTextAreaElementIsolate {
     readonly autocomplete: Promise<string>;

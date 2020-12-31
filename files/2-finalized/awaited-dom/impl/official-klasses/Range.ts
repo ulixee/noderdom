@@ -3,12 +3,19 @@ import { IRange, IDocumentFragment, IDOMRect, IDOMRectList } from '../../base/in
 import { ISuperNode } from '../../base/interfaces/super';
 import { RangeGenerator, IRangeProperties } from '../../base/official-klasses/Range';
 import { createSuperNode, createDocumentFragment, createRange, createDOMRect, createDOMRectList } from '../create';
+import AbstractRange from './AbstractRange';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IRange, IRangeProperties>();
-const RangeBaseClass = RangeGenerator();
+const RangeBaseClass = RangeGenerator(AbstractRange);
 
 export default class Range extends RangeBaseClass implements IRange {
+  constructor() {
+    super();
+  }
+
+  // properties
+
   public get commonAncestorContainer(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperNode(awaitedPath.addProperty('commonAncestorContainer'), awaitedOptions);

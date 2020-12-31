@@ -10,8 +10,9 @@ const initializeConstantsAndProperties_1 = __importDefault(require("../initializ
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
+const DocumentIsolate_1 = require("../isolate-mixins/DocumentIsolate");
 const DocumentOrShadowRoot_1 = require("../official-mixins/DocumentOrShadowRoot");
-const FontFaceSource_1 = require("../official-mixins/FontFaceSource");
+const HTMLDocumentIsolate_1 = require("../isolate-mixins/HTMLDocumentIsolate");
 const NodeIsolate_1 = require("../isolate-mixins/NodeIsolate");
 const NonElementParentNode_1 = require("../official-mixins/NonElementParentNode");
 const ParentNode_1 = require("../official-mixins/ParentNode");
@@ -20,8 +21,8 @@ const XPathEvaluatorBase_1 = require("../official-mixins/XPathEvaluatorBase");
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('SuperDocument', exports.getState, exports.setState);
 exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
-function SuperDocumentGenerator(DocumentOrShadowRoot, FontFaceSource, NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase) {
-    const Parent = ClassMixer_1.default(DocumentOrShadowRoot, [FontFaceSource, NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase]);
+function SuperDocumentGenerator(DocumentIsolate, DocumentOrShadowRoot, HTMLDocumentIsolate, NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase) {
+    const Parent = ClassMixer_1.default(DocumentIsolate, [DocumentOrShadowRoot, HTMLDocumentIsolate, NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase]);
     return class SuperDocument extends Parent {
         constructor() {
             super();
@@ -152,6 +153,6 @@ function SuperDocumentGenerator(DocumentOrShadowRoot, FontFaceSource, NodeIsolat
     };
 }
 exports.SuperDocumentGenerator = SuperDocumentGenerator;
-exports.SuperDocumentPropertyKeys = [...DocumentOrShadowRoot_1.DocumentOrShadowRootPropertyKeys, ...FontFaceSource_1.FontFaceSourcePropertyKeys, ...NodeIsolate_1.NodeIsolatePropertyKeys, ...NonElementParentNode_1.NonElementParentNodePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
-exports.SuperDocumentConstantKeys = [...DocumentOrShadowRoot_1.DocumentOrShadowRootConstantKeys, ...FontFaceSource_1.FontFaceSourceConstantKeys, ...NodeIsolate_1.NodeIsolateConstantKeys, ...NonElementParentNode_1.NonElementParentNodeConstantKeys, ...ParentNode_1.ParentNodeConstantKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBaseConstantKeys];
+exports.SuperDocumentPropertyKeys = [...DocumentIsolate_1.DocumentIsolatePropertyKeys, ...DocumentOrShadowRoot_1.DocumentOrShadowRootPropertyKeys, ...HTMLDocumentIsolate_1.HTMLDocumentIsolatePropertyKeys, ...NodeIsolate_1.NodeIsolatePropertyKeys, ...NonElementParentNode_1.NonElementParentNodePropertyKeys, ...ParentNode_1.ParentNodePropertyKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBasePropertyKeys, 'URL', 'anchors', 'body', 'characterSet', 'compatMode', 'contentType', 'cookie', 'designMode', 'dir', 'doctype', 'documentElement', 'documentURI', 'domain', 'embeds', 'featurePolicy', 'forms', 'fullscreenEnabled', 'head', 'hidden', 'images', 'implementation', 'lastModified', 'links', 'location', 'plugins', 'readyState', 'referrer', 'scripts', 'scrollingElement', 'title', 'visibilityState'];
+exports.SuperDocumentConstantKeys = [...DocumentIsolate_1.DocumentIsolateConstantKeys, ...DocumentOrShadowRoot_1.DocumentOrShadowRootConstantKeys, ...HTMLDocumentIsolate_1.HTMLDocumentIsolateConstantKeys, ...NodeIsolate_1.NodeIsolateConstantKeys, ...NonElementParentNode_1.NonElementParentNodeConstantKeys, ...ParentNode_1.ParentNodeConstantKeys, ...XPathEvaluatorBase_1.XPathEvaluatorBaseConstantKeys];
 //# sourceMappingURL=SuperDocument.js.map

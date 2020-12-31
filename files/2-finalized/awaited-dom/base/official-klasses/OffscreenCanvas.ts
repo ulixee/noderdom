@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { IOffscreenCanvas } from '../interfaces/official';
+import { IOffscreenCanvas, IImageEncodeOptions, IBlob, IImageBitmap } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IOffscreenCanvas, IOffscreenCanvasProperties>();
@@ -14,6 +14,26 @@ export function OffscreenCanvasGenerator() {
     constructor(_width: number, _height: number) {
       initializeConstantsAndProperties<OffscreenCanvas>(this, OffscreenCanvasConstantKeys, OffscreenCanvasPropertyKeys);
     }
+
+    // properties
+
+    public get height(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'height', false);
+    }
+
+    public get width(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'width', false);
+    }
+
+    // methods
+
+    public convertToBlob(options?: IImageEncodeOptions): Promise<IBlob> {
+      return awaitedHandler.runMethod<IBlob>(this, 'convertToBlob', [options]);
+    }
+
+    public transferToImageBitmap(): IImageBitmap {
+      throw new Error('OffscreenCanvas.transferToImageBitmap not implemented');
+    }
   };
 }
 
@@ -21,8 +41,11 @@ export function OffscreenCanvasGenerator() {
 
 export interface IOffscreenCanvasProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  readonly height?: Promise<number>;
+  readonly width?: Promise<number>;
+}
 
-export const OffscreenCanvasPropertyKeys = [];
+export const OffscreenCanvasPropertyKeys = ['height', 'width'];
 
 export const OffscreenCanvasConstantKeys = [];

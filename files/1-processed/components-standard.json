@@ -3058,6 +3058,40 @@
       "exposed": "Window Worker",
       "legacyWindowAlias": []
     },
+    "ImageBitmap": {
+      "name": "ImageBitmap",
+      "extends": "Object",
+      "constants": {},
+      "methods": {
+        "close": {
+          "name": "close",
+          "signatures": [
+            {
+              "type": "void",
+              "params": []
+            }
+          ],
+          "exposed": "Window Worker"
+        }
+      },
+      "anonymousMethods": [],
+      "properties": {
+        "width": {
+          "name": "width",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        },
+        "height": {
+          "name": "height",
+          "type": "unsigned long",
+          "readOnly": 1,
+          "exposed": "Window Worker"
+        }
+      },
+      "exposed": "Window Worker",
+      "legacyWindowAlias": []
+    },
     "Attr": {
       "name": "Attr",
       "extends": "Node",

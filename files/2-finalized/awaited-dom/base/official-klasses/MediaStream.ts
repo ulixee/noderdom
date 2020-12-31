@@ -14,6 +14,22 @@ export function MediaStreamGenerator() {
     constructor(_stream?: IMediaStream) {
       initializeConstantsAndProperties<MediaStream>(this, MediaStreamConstantKeys, MediaStreamPropertyKeys);
     }
+
+    // properties
+
+    public get active(): Promise<boolean> {
+      return awaitedHandler.getProperty<boolean>(this, 'active', false);
+    }
+
+    public get id(): Promise<string> {
+      return awaitedHandler.getProperty<string>(this, 'id', false);
+    }
+
+    // methods
+
+    public clone(): IMediaStream {
+      throw new Error('MediaStream.clone not implemented');
+    }
   };
 }
 
@@ -21,8 +37,11 @@ export function MediaStreamGenerator() {
 
 export interface IMediaStreamProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  readonly active?: Promise<boolean>;
+  readonly id?: Promise<string>;
+}
 
-export const MediaStreamPropertyKeys = [];
+export const MediaStreamPropertyKeys = ['active', 'id'];
 
 export const MediaStreamConstantKeys = [];

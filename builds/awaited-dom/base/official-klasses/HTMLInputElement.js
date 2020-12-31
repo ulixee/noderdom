@@ -51,6 +51,9 @@ function HTMLInputElementGenerator(HTMLElement) {
         get disabled() {
             return exports.awaitedHandler.getProperty(this, 'disabled', false);
         }
+        get files() {
+            throw new Error('HTMLInputElement.files getter not implemented');
+        }
         get form() {
             throw new Error('HTMLInputElement.form getter not implemented');
         }
@@ -184,6 +187,6 @@ function HTMLInputElementGenerator(HTMLElement) {
     };
 }
 exports.HTMLInputElementGenerator = HTMLInputElementGenerator;
-exports.HTMLInputElementPropertyKeys = [...HTMLElement_1.HTMLElementPropertyKeys, 'accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
+exports.HTMLInputElementPropertyKeys = [...HTMLElement_1.HTMLElementPropertyKeys, 'accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'files', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
 exports.HTMLInputElementConstantKeys = [...HTMLElement_1.HTMLElementConstantKeys];
 //# sourceMappingURL=HTMLInputElement.js.map

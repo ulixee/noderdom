@@ -14,6 +14,22 @@ export function TimeRangesGenerator() {
     constructor() {
       initializeConstantsAndProperties<TimeRanges>(this, TimeRangesConstantKeys, TimeRangesPropertyKeys);
     }
+
+    // properties
+
+    public get length(): Promise<number> {
+      return awaitedHandler.getProperty<number>(this, 'length', false);
+    }
+
+    // methods
+
+    public end(index: number): Promise<number> {
+      return awaitedHandler.runMethod<number>(this, 'end', [index]);
+    }
+
+    public start(index: number): Promise<number> {
+      return awaitedHandler.runMethod<number>(this, 'start', [index]);
+    }
   };
 }
 
@@ -21,8 +37,10 @@ export function TimeRangesGenerator() {
 
 export interface ITimeRangesProperties {
   awaitedPath: AwaitedPath;
-  awaitedOptions: any;}
+  awaitedOptions: any;
+  readonly length?: Promise<number>;
+}
 
-export const TimeRangesPropertyKeys = [];
+export const TimeRangesPropertyKeys = ['length'];
 
 export const TimeRangesConstantKeys = [];

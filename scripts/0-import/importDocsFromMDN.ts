@@ -8,49 +8,46 @@ import { IDocument, IElement } from 'noderdom-detached/base/interfaces';
 import config from '../../config';
 
 const cherryPickedInterfaceNames = [
-  'DOMRectReadOnly',
-  'DOMRect',
-  'CSSStyleDeclaration',
-  'CSSRule',
-  'CSSStyleSheet',
-  'CSSRuleList',
-  'StyleSheet',
-  'MediaList',
-  'DOMParser',
-  'XMLSerializer',
+  'AbstractRange',
+  'Animation',
+  'AnimationEffect',
   'Blob',
+  'Body',
+  'DOMParser',
+  'DOMRect',
+  'DOMRectList',
+  'DOMRectReadOnly',
+  'DocumentOrShadowRoot',
+  'EventListener',
   'File',
   'FileList',
-  'FontFace',
-  'ShadowRoot',
-  'AbstractRange',
-  'StaticRange',
-  'HTMLDocument',
-  'EventListener',
-  'DocumentOrShadowRoot',
-  'GlobalEventHandlers',
-  'HTMLHyperlinkElementUtils',
-  'LinkStyle',
-  'Slotable',
-  'WindowEventHandlers',
-  'WindowOrWorkerGlobalScope',
   'FormData',
+  'GlobalEventHandlers',
+  'HTMLDocument',
+  'HTMLHyperlinkElementUtils',
+  'Headers',
+  'MediaStream',
   'ReferrerPolicy',
   'Request',
   'Response',
-  'Body',
-  'Headers',
-  'XPathEvaluatorBase',
+  'ShadowRoot',
+  'Slotable',
+  'StaticRange',
+  'WindowEventHandlers',
+  'WindowOrWorkerGlobalScope',
+  'XMLSerializer',
   'XPathEvaluator',
+  'XPathEvaluatorBase',
   'XPathException',
-  'XPathNSResolver',
   'XPathExpression',
+  'XPathNSResolver',
   'XPathResult',
-  'MediaStream',
-  'CaretPosition',
 ];
 
-const cherryPickAliases = new Map<string, string>([['XPathEvaluatorBase', 'XPathEvaluator']]);
+const cherryPickAliases = new Map<string, string>([
+  ['XPathEvaluatorBase', 'XPathEvaluator'],
+  ['Slotable', 'Slottable'],
+]);
 
 interface IRecord {
   name: string;
@@ -108,6 +105,12 @@ async function run() {
     await extract(urlPath, document, 'ExternalWebWorkers', '#Web_Workers_interfaces');
     await extract(urlPath, document, 'ExternalWebSocket', '#WebSocket_interfaces');
     await extract(urlPath, document, 'ExternalServerSentEvents', '#Server-sent_events_interfaces');
+  }
+  {
+    const urlPath = '/en-US/docs/Web/API/CSS_Object_Model';
+    const html = await loadAndSaveHTML(urlPath);
+    const document = domParser.parseFromString(html, 'text/html');
+    await extract(urlPath, document, 'CSS', 'h2#Reference + div > .index');
   }
 
   await extractCherryPickedInterfaces(cherryPickedInterfaceNames);

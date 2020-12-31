@@ -4,7 +4,7 @@
 
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperText } from './super';
 import { INodeIsolate } from './isolate';
-import { IGetRootNodeOptions, INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IHTMLFormElement, IValidityState, IMediaStream, IOffscreenCanvas, IHTMLOptionsCollection, IFeaturePolicy, ISelectionMode, IAudioTrackList, ITimeRanges, IMediaError, IMediaKeys, IDocumentReadyState, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IVideoPlaybackQuality, IHTMLOptionElement, IAssignedNodesOptions, IHTMLTableCaptionElement, IHTMLTableSectionElement, IHTMLTableCellElement, ITextTrack, IDocumentType, IHTMLHeadElement, IDOMImplementation, ILocation, IVisibilityState, IShadowRootMode, ICSSRuleList, ICSSRule } from './official';
+import { IGetRootNodeOptions, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IHTMLFormElement, IValidityState, IMediaStream, IOffscreenCanvas, IHTMLOptionsCollection, IFileList, ISelectionMode, IAudioTrackList, ITimeRanges, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IVideoPlaybackQuality, IDocumentFragment, IHTMLOptionElement, IAssignedNodesOptions, IHTMLTableCaptionElement, IHTMLTableSectionElement, IHTMLTableCellElement, ITextTrack, IShadowRootMode, ICSSRuleList, ICSSRule } from './official';
 
 // NodeIsolate //////////
 
@@ -55,6 +55,54 @@ export interface INodeIsolate {
   normalize(): Promise<void>;
 }
 
+// HTMLDocumentIsolate //////////
+
+export interface IHTMLDocumentIsolate {}
+
+// DocumentIsolate //////////
+
+export interface IDocumentIsolate {
+  readonly URL: Promise<string>;
+  readonly anchors: ISuperHTMLCollection;
+  readonly body: ISuperHTMLElement;
+  readonly characterSet: Promise<string>;
+  readonly compatMode: Promise<string>;
+  readonly contentType: Promise<string>;
+  readonly cookie: Promise<string>;
+  readonly designMode: Promise<string>;
+  readonly dir: Promise<string>;
+  readonly doctype: IDocumentType;
+  readonly documentElement: ISuperElement;
+  readonly documentURI: Promise<string>;
+  readonly domain: Promise<string>;
+  readonly embeds: ISuperHTMLCollection;
+  readonly featurePolicy: IFeaturePolicy;
+  readonly forms: ISuperHTMLCollection;
+  readonly fullscreenEnabled: Promise<boolean>;
+  readonly head: IHTMLHeadElement;
+  readonly hidden: Promise<boolean>;
+  readonly images: ISuperHTMLCollection;
+  readonly implementation: IDOMImplementation;
+  readonly lastModified: Promise<string>;
+  readonly links: ISuperHTMLCollection;
+  readonly location: ILocation;
+  readonly plugins: ISuperHTMLCollection;
+  readonly readyState: Promise<IDocumentReadyState> | Promise<number>;
+  readonly referrer: Promise<string>;
+  readonly scripts: ISuperHTMLCollection;
+  readonly scrollingElement: ISuperElement;
+  readonly title: Promise<string>;
+  readonly visibilityState: Promise<IVisibilityState>;
+
+  exitFullscreen(): Promise<void>;
+  exitPointerLock(): Promise<void>;
+  getElementsByClassName(classNames: string): ISuperHTMLCollection;
+  getElementsByName(elementName: string): ISuperNodeList;
+  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
+  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
+  hasFocus(): Promise<boolean>;
+}
+
 // ElementIsolate //////////
 
 export interface IElementIsolate {
@@ -81,7 +129,6 @@ export interface IElementIsolate {
   readonly tagName: Promise<string>;
 
   closest(selectors: string): ISuperElement;
-  computedStyleMap(): IStylePropertyMapReadOnly;
   getAttribute(qualifiedName: string): Promise<string | null>;
   getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
   getAttributeNames(): Promise<Iterable<string>>;
@@ -182,50 +229,6 @@ export interface ITextIsolate {
   readonly wholeText: Promise<string>;
 
   splitText(offset: number): Promise<ISuperText>;
-}
-
-// DocumentIsolate //////////
-
-export interface IDocumentIsolate {
-  readonly URL: Promise<string>;
-  readonly anchors: ISuperHTMLCollection;
-  readonly body: ISuperHTMLElement;
-  readonly characterSet: Promise<string>;
-  readonly compatMode: Promise<string>;
-  readonly contentType: Promise<string>;
-  readonly cookie: Promise<string>;
-  readonly designMode: Promise<string>;
-  readonly dir: Promise<string>;
-  readonly doctype: IDocumentType;
-  readonly documentElement: ISuperElement;
-  readonly documentURI: Promise<string>;
-  readonly domain: Promise<string>;
-  readonly embeds: ISuperHTMLCollection;
-  readonly featurePolicy: IFeaturePolicy;
-  readonly forms: ISuperHTMLCollection;
-  readonly fullscreenEnabled: Promise<boolean>;
-  readonly head: IHTMLHeadElement;
-  readonly hidden: Promise<boolean>;
-  readonly images: ISuperHTMLCollection;
-  readonly implementation: IDOMImplementation;
-  readonly lastModified: Promise<string>;
-  readonly links: ISuperHTMLCollection;
-  readonly location: ILocation;
-  readonly plugins: ISuperHTMLCollection;
-  readonly readyState: Promise<IDocumentReadyState> | Promise<number>;
-  readonly referrer: Promise<string>;
-  readonly scripts: ISuperHTMLCollection;
-  readonly scrollingElement: ISuperElement;
-  readonly title: Promise<string>;
-  readonly visibilityState: Promise<IVisibilityState>;
-
-  exitFullscreen(): Promise<void>;
-  exitPointerLock(): Promise<void>;
-  getElementsByClassName(classNames: string): ISuperHTMLCollection;
-  getElementsByName(elementName: string): ISuperNodeList;
-  getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
-  getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;
-  hasFocus(): Promise<boolean>;
 }
 
 // DocumentFragmentIsolate //////////
@@ -362,6 +365,10 @@ export interface IHTMLAreaElementIsolate {
   readonly target: Promise<string>;
   readonly type: Promise<string>;
 }
+
+// HTMLBRElementIsolate //////////
+
+export interface IHTMLBRElementIsolate {}
 
 // HTMLBaseElementIsolate //////////
 
@@ -617,6 +624,7 @@ export interface IHTMLInputElementIsolate {
   readonly defaultValue: Promise<string>;
   readonly dirName: Promise<string>;
   readonly disabled: Promise<boolean>;
+  readonly files: IFileList;
   readonly form: IHTMLFormElement;
   readonly formAction: Promise<string>;
   readonly formEnctype: Promise<string>;
@@ -630,7 +638,7 @@ export interface IHTMLInputElementIsolate {
   readonly list: ISuperHTMLElement;
   readonly max: Promise<string> | Promise<number>;
   readonly maxLength: Promise<number>;
-  readonly min: Promise<string>;
+  readonly min: Promise<string> | Promise<number>;
   readonly minLength: Promise<number>;
   readonly multiple: Promise<boolean>;
   readonly name: Promise<string>;
@@ -677,6 +685,13 @@ export interface IHTMLLabelElementIsolate {
   readonly htmlFor: Promise<string>;
 }
 
+// HTMLLegendElementIsolate //////////
+
+export interface IHTMLLegendElementIsolate {
+  readonly align: Promise<string>;
+  readonly form: IHTMLFormElement;
+}
+
 // HTMLLinkElementIsolate //////////
 
 export interface IHTMLLinkElementIsolate {
@@ -699,6 +714,10 @@ export interface IHTMLMapElementIsolate {
   readonly name: Promise<string>;
 }
 
+// HTMLAudioElementIsolate //////////
+
+export interface IHTMLAudioElementIsolate {}
+
 // HTMLVideoElementIsolate //////////
 
 export interface IHTMLVideoElementIsolate {
@@ -714,10 +733,22 @@ export interface IHTMLVideoElementIsolate {
 // HTMLMetaElementIsolate //////////
 
 export interface IHTMLMetaElementIsolate {
-  readonly content: Promise<string>;
+  readonly content: Promise<string> | IDocumentFragment;
   readonly httpEquiv: Promise<string>;
   readonly name: Promise<string>;
   readonly scheme: Promise<string>;
+}
+
+// HTMLMeterElementIsolate //////////
+
+export interface IHTMLMeterElementIsolate {
+  readonly high: Promise<number>;
+  readonly labels: ISuperNodeList;
+  readonly low: Promise<number>;
+  readonly max: Promise<string> | Promise<number>;
+  readonly min: Promise<string> | Promise<number>;
+  readonly optimum: Promise<number>;
+  readonly value: Promise<string> | Promise<number>;
 }
 
 // HTMLModElementIsolate //////////
@@ -887,6 +918,10 @@ export interface IHTMLSourceElementIsolate {
   readonly type: Promise<string>;
 }
 
+// HTMLSpanElementIsolate //////////
+
+export interface IHTMLSpanElementIsolate {}
+
 // HTMLStyleElementIsolate //////////
 
 export interface IHTMLStyleElementIsolate {
@@ -956,6 +991,12 @@ export interface IHTMLTableSectionElementIsolate {
   readonly chOff: Promise<string>;
   readonly rows: Promise<string> | ISuperHTMLCollection | Promise<number>;
   readonly vAlign: Promise<string>;
+}
+
+// HTMLTemplateElementIsolate //////////
+
+export interface IHTMLTemplateElementIsolate {
+  readonly content: Promise<string> | IDocumentFragment;
 }
 
 // HTMLTextAreaElementIsolate //////////

@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLInputElementIsolate } from '../interfaces/isolate';
-import { IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
+import { IFileList, IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 export declare const getState: (instance: IHTMLInputElementIsolate) => IHTMLInputElementIsolateProperties, setState: (instance: IHTMLInputElementIsolate, properties: Partial<IHTMLInputElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLInputElementIsolate, instance: IHTMLInputElementIsolate) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLInputElementIsolate>;
@@ -15,6 +15,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     get defaultValue(): Promise<string>;
     get dirName(): Promise<string>;
     get disabled(): Promise<boolean>;
+    get files(): IFileList;
     get form(): IHTMLFormElement;
     get formAction(): Promise<string>;
     get formEnctype(): Promise<string>;
@@ -28,7 +29,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     get list(): ISuperHTMLElement;
     get max(): Promise<string> | Promise<number>;
     get maxLength(): Promise<number>;
-    get min(): Promise<string>;
+    get min(): Promise<string> | Promise<number>;
     get minLength(): Promise<number>;
     get multiple(): Promise<boolean>;
     get name(): Promise<string>;
@@ -70,6 +71,7 @@ export interface IHTMLInputElementIsolateProperties {
     readonly defaultValue?: Promise<string>;
     readonly dirName?: Promise<string>;
     readonly disabled?: Promise<boolean>;
+    readonly files?: IFileList;
     readonly form?: IHTMLFormElement;
     readonly formAction?: Promise<string>;
     readonly formEnctype?: Promise<string>;
@@ -83,7 +85,7 @@ export interface IHTMLInputElementIsolateProperties {
     readonly list?: ISuperHTMLElement;
     readonly max?: Promise<string> | Promise<number>;
     readonly maxLength?: Promise<number>;
-    readonly min?: Promise<string>;
+    readonly min?: Promise<string> | Promise<number>;
     readonly minLength?: Promise<number>;
     readonly multiple?: Promise<boolean>;
     readonly name?: Promise<string>;

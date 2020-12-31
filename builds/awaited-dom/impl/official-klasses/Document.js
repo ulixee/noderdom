@@ -10,13 +10,12 @@ const Document_1 = require("../../base/official-klasses/Document");
 const create_1 = require("../create");
 const Node_1 = __importDefault(require("./Node"));
 const DocumentOrShadowRoot_1 = __importDefault(require("../official-mixins/DocumentOrShadowRoot"));
-const FontFaceSource_1 = __importDefault(require("../official-mixins/FontFaceSource"));
 const NonElementParentNode_1 = __importDefault(require("../official-mixins/NonElementParentNode"));
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 const XPathEvaluatorBase_1 = __importDefault(require("../official-mixins/XPathEvaluatorBase"));
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
-const DocumentBaseClass = Document_1.DocumentGenerator(Node_1.default, DocumentOrShadowRoot_1.default, FontFaceSource_1.default, NonElementParentNode_1.default, ParentNode_1.default, XPathEvaluatorBase_1.default);
+const DocumentBaseClass = Document_1.DocumentGenerator(Node_1.default, DocumentOrShadowRoot_1.default, NonElementParentNode_1.default, ParentNode_1.default, XPathEvaluatorBase_1.default);
 class Document extends DocumentBaseClass {
     constructor() {
         super();

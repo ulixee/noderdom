@@ -8,12 +8,14 @@ exports.DOMRectConstantKeys = exports.DOMRectPropertyKeys = exports.DOMRectGener
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
+const DOMRectReadOnly_1 = require("./DOMRectReadOnly");
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('DOMRect', exports.getState, exports.setState);
-function DOMRectGenerator() {
-    return class DOMRect {
+function DOMRectGenerator(DOMRectReadOnly) {
+    return class DOMRect extends DOMRectReadOnly {
         constructor(_x, _y, _width, _height) {
+            super(_x, _y, _width, _height);
             initializeConstantsAndProperties_1.default(this, exports.DOMRectConstantKeys, exports.DOMRectPropertyKeys);
         }
         // properties
@@ -32,6 +34,6 @@ function DOMRectGenerator() {
     };
 }
 exports.DOMRectGenerator = DOMRectGenerator;
-exports.DOMRectPropertyKeys = ['height', 'width', 'x', 'y'];
-exports.DOMRectConstantKeys = [];
+exports.DOMRectPropertyKeys = [...DOMRectReadOnly_1.DOMRectReadOnlyPropertyKeys, 'height', 'width', 'x', 'y'];
+exports.DOMRectConstantKeys = [...DOMRectReadOnly_1.DOMRectReadOnlyConstantKeys];
 //# sourceMappingURL=DOMRect.js.map

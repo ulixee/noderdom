@@ -17,6 +17,10 @@ class HTMLInputElement extends HTMLInputElementBaseClass {
         super();
     }
     // properties
+    get files() {
+        const { awaitedPath, awaitedOptions } = exports.getState(this);
+        return create_1.createFileList(awaitedPath.addProperty('files'), awaitedOptions);
+    }
     get form() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
         return create_1.createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);

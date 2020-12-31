@@ -291,6 +291,7 @@ function injectMissingMDNData(className: string, fromMDN: any, dbProperties: any
   const aliases = new Map<string, string>([
     ['DOMRect', 'DOMRectReadOnly'],
     ['XPathEvaluatorBase', 'XPathEvaluator'],
+    ['Slotable', 'Slottable'],
   ]);
 
   if (aliases.has(className)) {

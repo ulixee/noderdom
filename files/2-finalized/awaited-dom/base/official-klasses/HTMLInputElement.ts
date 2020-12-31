@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IHTMLInputElement, IHTMLElement, IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
+import { IHTMLInputElement, IHTMLElement, IFileList, IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
@@ -59,6 +59,10 @@ export function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public get disabled(): Promise<boolean> {
       return awaitedHandler.getProperty<boolean>(this, 'disabled', false);
+    }
+
+    public get files(): IFileList {
+      throw new Error('HTMLInputElement.files getter not implemented');
     }
 
     public get form(): IHTMLFormElement {
@@ -253,6 +257,7 @@ export interface IHTMLInputElementProperties extends IHTMLElementProperties {
   readonly defaultValue?: Promise<string>;
   readonly dirName?: Promise<string>;
   readonly disabled?: Promise<boolean>;
+  readonly files?: IFileList;
   readonly form?: IHTMLFormElement;
   readonly formAction?: Promise<string>;
   readonly formEnctype?: Promise<string>;
@@ -290,6 +295,6 @@ export interface IHTMLInputElementProperties extends IHTMLElementProperties {
   readonly willValidate?: Promise<boolean>;
 }
 
-export const HTMLInputElementPropertyKeys = [...HTMLElementPropertyKeys, 'accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
+export const HTMLInputElementPropertyKeys = [...HTMLElementPropertyKeys, 'accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'files', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
 
 export const HTMLInputElementConstantKeys = [...HTMLElementConstantKeys];

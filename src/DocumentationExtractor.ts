@@ -303,7 +303,7 @@ function extractItemsFromDL(dlElem: IElement, className: string, isMethod: boole
     if (!descElem) {
       console.log(className);
     }
-    const description = descElem.nodeName === 'DD' ? descElem.innerHTML : '';
+    const description = descElem?.nodeName === 'DD' ? descElem.innerHTML : '';
     if (isMethod) name = name.replace(/\(.+/, '');
 
     if (isMethod) {

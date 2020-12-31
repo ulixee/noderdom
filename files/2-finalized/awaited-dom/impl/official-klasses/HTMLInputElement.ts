@@ -1,8 +1,8 @@
 import StateMachine from '../../base/StateMachine';
-import { IHTMLInputElement, IHTMLFormElement } from '../../base/interfaces/official';
+import { IHTMLInputElement, IFileList, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../../base/interfaces/super';
 import { HTMLInputElementGenerator, IHTMLInputElementProperties } from '../../base/official-klasses/HTMLInputElement';
-import { createHTMLFormElement, createSuperNodeList, createSuperHTMLElement } from '../create';
+import { createFileList, createHTMLFormElement, createSuperNodeList, createSuperHTMLElement } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
@@ -15,6 +15,11 @@ export default class HTMLInputElement extends HTMLInputElementBaseClass implemen
   }
 
   // properties
+
+  public get files(): IFileList {
+    const { awaitedPath, awaitedOptions } = getState(this);
+    return createFileList(awaitedPath.addProperty('files'), awaitedOptions);
+  }
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);

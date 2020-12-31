@@ -11,6 +11,16 @@ const StateMachine_1 = __importDefault(require("../StateMachine"));
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLOrSVGElement', exports.getState, exports.setState);
 class HTMLOrSVGElement {
+    get dataset() {
+        throw new Error('HTMLOrSVGElement.dataset getter not implemented');
+    }
+    get nonce() {
+        return exports.awaitedHandler.getProperty(this, 'nonce', false);
+    }
+    get tabIndex() {
+        return exports.awaitedHandler.getProperty(this, 'tabIndex', false);
+    }
+    // methods
     blur() {
         return exports.awaitedHandler.runMethod(this, 'blur', []);
     }
@@ -19,6 +29,6 @@ class HTMLOrSVGElement {
     }
 }
 exports.default = HTMLOrSVGElement;
-exports.HTMLOrSVGElementPropertyKeys = [];
+exports.HTMLOrSVGElementPropertyKeys = ['dataset', 'nonce', 'tabIndex'];
 exports.HTMLOrSVGElementConstantKeys = [];
 //# sourceMappingURL=HTMLOrSVGElement.js.map

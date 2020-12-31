@@ -51,7 +51,6 @@ declare const HTMLOptionElementBaseClass: {
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): import("../../base/interfaces/super").ISuperElement;
-        computedStyleMap(): import("../../base/interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -120,9 +119,13 @@ declare const HTMLOptionElementBaseClass: {
         readonly lastElementChild: import("../../base/interfaces/super").ISuperElement;
         querySelector(selectors: string): import("../../base/interfaces/super").ISuperElement;
         querySelectorAll(selectors: string): import("../../base/interfaces/super").ISuperNodeList;
+        readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
         readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
         readonly contentEditable: Promise<string>;
         readonly isContentEditable: Promise<boolean>;
+        readonly dataset: import("../../base/interfaces/official").IDOMStringMap;
+        readonly nonce: Promise<string>;
+        readonly tabIndex: Promise<number>;
         blur(): Promise<void>;
         focus(): Promise<void>;
     };

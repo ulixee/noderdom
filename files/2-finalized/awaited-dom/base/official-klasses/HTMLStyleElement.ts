@@ -2,18 +2,22 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeAttacher from '../NodeAttacher';
-import { IHTMLStyleElement, IHTMLElement } from '../interfaces/official';
+import { IHTMLStyleElement, IHTMLElement, ILinkStyle } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
+import { ILinkStyleProperties, LinkStylePropertyKeys, LinkStyleConstantKeys } from '../official-mixins/LinkStyle';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLStyleElement, IHTMLStyleElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLStyleElement>('HTMLStyleElement', getState, setState);
 export const nodeAttacher = new NodeAttacher<IHTMLStyleElement>(getState, setState, awaitedHandler);
 
-export function HTMLStyleElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
-  return class HTMLStyleElement extends HTMLElement implements IHTMLStyleElement, PromiseLike<IHTMLStyleElement> {
+export function HTMLStyleElementGenerator(HTMLElement: Constructable<IHTMLElement>, LinkStyle: Constructable<ILinkStyle>) {
+  const Parent = (ClassMixer(HTMLElement, [LinkStyle]) as unknown) as Constructable<IHTMLElement & ILinkStyle>;
+
+  return class HTMLStyleElement extends Parent implements IHTMLStyleElement, PromiseLike<IHTMLStyleElement> {
     constructor() {
       super();
       initializeConstantsAndProperties<HTMLStyleElement>(this, HTMLStyleElementConstantKeys, HTMLStyleElementPropertyKeys);
@@ -40,7 +44,7 @@ export function HTMLStyleElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IHTMLStyleElementProperties extends IHTMLElementProperties {
+export interface IHTMLStyleElementProperties extends IHTMLElementProperties, ILinkStyleProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   createInstanceName: string;
@@ -49,6 +53,6 @@ export interface IHTMLStyleElementProperties extends IHTMLElementProperties {
   readonly type?: Promise<string>;
 }
 
-export const HTMLStyleElementPropertyKeys = [...HTMLElementPropertyKeys, 'media', 'type'];
+export const HTMLStyleElementPropertyKeys = [...HTMLElementPropertyKeys, ...LinkStylePropertyKeys, 'media', 'type'];
 
-export const HTMLStyleElementConstantKeys = [...HTMLElementConstantKeys];
+export const HTMLStyleElementConstantKeys = [...HTMLElementConstantKeys, ...LinkStyleConstantKeys];

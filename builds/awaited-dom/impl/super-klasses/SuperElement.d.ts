@@ -1,5 +1,5 @@
 import { ISuperElement, ISuperHTMLCollection } from '../../base/interfaces/super';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly } from '../../base/interfaces/official';
+import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../base/interfaces/official';
 import { ISuperElementProperties } from '../../base/super-klasses/SuperElement';
 export declare const getState: (instance: ISuperElement) => ISuperElementProperties, setState: (instance: ISuperElement, properties: Partial<ISuperElementProperties>) => void, recordProxy: (proxy: ISuperElement, instance: ISuperElement) => void;
 declare const SuperElementBaseClass: {
@@ -27,7 +27,6 @@ declare const SuperElementBaseClass: {
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): ISuperElement;
-        computedStyleMap(): IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -163,12 +162,13 @@ declare const SuperElementBaseClass: {
         readonly defaultChecked: Promise<boolean>;
         readonly defaultValue: Promise<string>;
         readonly dirName: Promise<string>;
+        readonly files: import("../../base/interfaces/official").IFileList;
         readonly indeterminate: Promise<boolean>;
         readonly inputMode: Promise<string>;
         readonly list: import("../../base/interfaces/super").ISuperHTMLElement;
         readonly max: Promise<string> | Promise<number>;
         readonly maxLength: Promise<number>;
-        readonly min: Promise<string>;
+        readonly min: Promise<string> | Promise<number>;
         readonly minLength: Promise<number>;
         readonly multiple: Promise<boolean>;
         readonly pattern: Promise<string>;
@@ -231,9 +231,12 @@ declare const SuperElementBaseClass: {
         pause(): Promise<void>;
         play(): Promise<void>;
         setSinkId(sinkId: string): Promise<void>;
-        readonly content: Promise<string>;
+        readonly content: Promise<string> | import("../../base/interfaces/official").IDocumentFragment;
         readonly httpEquiv: Promise<string>;
         readonly scheme: Promise<string>;
+        readonly high: Promise<number>;
+        readonly low: Promise<number>;
+        readonly optimum: Promise<number>;
         readonly cite: Promise<string>;
         readonly dateTime: Promise<string>;
         readonly reversed: Promise<boolean>;
@@ -252,6 +255,9 @@ declare const SuperElementBaseClass: {
         readonly defaultSelected: Promise<boolean>;
         readonly index: Promise<number>;
         readonly selected: Promise<boolean>;
+        readonly dataset: import("../../base/interfaces/official").IDOMStringMap;
+        readonly nonce: Promise<string>;
+        readonly tabIndex: Promise<number>;
         blur(): Promise<void>;
         focus(): Promise<void>;
         readonly valueType: Promise<string>;
@@ -301,6 +307,7 @@ declare const SuperElementBaseClass: {
         readonly videoHeight: Promise<number>;
         readonly videoWidth: Promise<number>;
         getVideoPlaybackQuality(): import("../../base/interfaces/official").IVideoPlaybackQuality;
+        readonly sheet: import("../../base/interfaces/super").ISuperStyleSheet;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;
         readonly COMMENT_NODE: number;
@@ -351,6 +358,7 @@ declare const SuperElementBaseClass: {
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): import("../../base/interfaces/super").ISuperNodeList;
+        readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
     };
 };
 export default class SuperElement extends SuperElementBaseClass implements ISuperElement {
@@ -360,7 +368,6 @@ export default class SuperElement extends SuperElementBaseClass implements ISupe
     get part(): IDOMTokenList;
     get shadowRoot(): IShadowRoot;
     closest(selectors: string): ISuperElement;
-    computedStyleMap(): IStylePropertyMapReadOnly;
     getElementsByClassName(classNames: string): ISuperHTMLCollection;
     getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
     getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;

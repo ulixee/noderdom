@@ -14,7 +14,7 @@ export default [
   // 'DOMMatrix.webidl',
   // 'DOMPoint.webidl',
   'OffscreenCanvas.webidl',
-  // 'ImageBitmap.webidl',
+  'ImageBitmap.webidl',
 
   // attributes
   'attributes/Attr.webidl',

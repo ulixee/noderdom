@@ -52,6 +52,7 @@ declare const TextBaseClass: {
         normalize(): Promise<void>;
         readonly nextElementSibling: import("../../base/interfaces/super").ISuperElement;
         readonly previousElementSibling: import("../../base/interfaces/super").ISuperElement;
+        readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
     };
 };
 export default class Text extends TextBaseClass implements IText {

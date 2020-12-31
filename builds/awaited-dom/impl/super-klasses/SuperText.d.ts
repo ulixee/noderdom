@@ -53,6 +53,7 @@ declare const SuperTextBaseClass: {
         normalize(): Promise<void>;
         readonly nextElementSibling: import("../../base/interfaces/super").ISuperElement;
         readonly previousElementSibling: import("../../base/interfaces/super").ISuperElement;
+        readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
     };
 };
 export default class SuperText extends SuperTextBaseClass implements ISuperText {

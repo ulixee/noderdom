@@ -51,6 +51,8 @@ for (const mdnInterface of mdnInterfaces) {
     tags.push('HTMLElement');
   } else if (mdnInterface.category === 'SVGElements') {
     tags.push('SVGElement');
+  } else if (mdnInterface.category === 'CSS') {
+    tags.push('CSS');
   }
   if (mdnInterface.name.includes('XPath')) {
     tags.push('XPath');
@@ -129,14 +131,19 @@ for (const inter of Object.values(interfacesByName)) {
       data.isDocumented,
       data.tags,
       data.isOnMDN,
+      data.isExperimental,
+      data.isDeprecated,
+      data.isObsolete,
       inter.sourcedAtPath,
       inter.mdnDocumentationPath,
       inter.mdnFilename,
       inter.mdnCategory,
+      data.hasDefinedIDL,
       inter.name,
     ];
     db.prepare(
-      'UPDATE interfaces SET isDocumented=?, tags=?, isOnMDN=?, sourcedAtPath=?, mdnDocumentationPath=?, mdnFilename=?, mdnCategory=? WHERE name=?',
+      `UPDATE interfaces SET isDocumented=?, tags=?, isOnMDN=?, isExperimental=?, isDeprecated=?, isObsolete=?,
+         sourcedAtPath=?, mdnDocumentationPath=?, mdnFilename=?, mdnCategory=?, hasDefinedIDL=? WHERE name=?`,
     ).run(values);
   } else {
     const fields = Object.keys(data).join(', ');

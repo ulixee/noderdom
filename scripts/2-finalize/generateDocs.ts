@@ -29,9 +29,7 @@ const docsPath = Path.join(config.filesFinalizedDir, `${domType}-dom`, 'docs.jso
 
 console.log('\n-- SKIPPING ------------------');
 const filteredInterfaces = allInterfaces.filter(i => {
-  if (i.tags) return true;
-  console.log(i.name);
-  return false;
+  return i.isDocumented;
 });
 
 console.log('\n-- DOCUMENTING ---------------');

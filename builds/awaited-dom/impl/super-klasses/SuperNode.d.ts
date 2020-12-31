@@ -126,7 +126,6 @@ declare const SuperNodeBaseClass: {
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): ISuperElement;
-        computedStyleMap(): import("../../base/interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -142,7 +141,6 @@ declare const SuperNodeBaseClass: {
         requestFullscreen(options?: import("../../base/interfaces/official").IFullscreenOptions | undefined): Promise<void>;
         requestPointerLock(): Promise<void>;
         scrollIntoView(arg?: boolean | import("../../base/interfaces/official").IScrollIntoViewOptions | undefined): Promise<void>;
-        readonly fonts: import("../../base/interfaces/official").IFontFaceSet;
         readonly download: Promise<string>;
         readonly hreflang: Promise<string>;
         readonly referrerPolicy: Promise<string>;
@@ -249,12 +247,13 @@ declare const SuperNodeBaseClass: {
         readonly defaultChecked: Promise<boolean>;
         readonly defaultValue: Promise<string>;
         readonly dirName: Promise<string>;
+        readonly files: import("../../base/interfaces/official").IFileList;
         readonly indeterminate: Promise<boolean>;
         readonly inputMode: Promise<string>;
         readonly list: import("../../base/interfaces/super").ISuperHTMLElement;
         readonly max: Promise<string> | Promise<number>;
         readonly maxLength: Promise<number>;
-        readonly min: Promise<string>;
+        readonly min: Promise<string> | Promise<number>;
         readonly minLength: Promise<number>;
         readonly multiple: Promise<boolean>;
         readonly pattern: Promise<string>;
@@ -316,9 +315,12 @@ declare const SuperNodeBaseClass: {
         pause(): Promise<void>;
         play(): Promise<void>;
         setSinkId(sinkId: string): Promise<void>;
-        readonly content: Promise<string>;
+        readonly content: Promise<string> | import("../../base/interfaces/official").IDocumentFragment;
         readonly httpEquiv: Promise<string>;
         readonly scheme: Promise<string>;
+        readonly high: Promise<number>;
+        readonly low: Promise<number>;
+        readonly optimum: Promise<number>;
         readonly cite: Promise<string>;
         readonly dateTime: Promise<string>;
         readonly reversed: Promise<boolean>;
@@ -336,6 +338,9 @@ declare const SuperNodeBaseClass: {
         readonly defaultSelected: Promise<boolean>;
         readonly index: Promise<number>;
         readonly selected: Promise<boolean>;
+        readonly dataset: import("../../base/interfaces/official").IDOMStringMap;
+        readonly nonce: Promise<string>;
+        readonly tabIndex: Promise<number>;
         blur(): Promise<void>;
         focus(): Promise<void>;
         readonly valueType: Promise<string>;
@@ -385,6 +390,7 @@ declare const SuperNodeBaseClass: {
         readonly videoHeight: Promise<number>;
         readonly videoWidth: Promise<number>;
         getVideoPlaybackQuality(): import("../../base/interfaces/official").IVideoPlaybackQuality;
+        readonly sheet: import("../../base/interfaces/super").ISuperStyleSheet;
         readonly nextElementSibling: ISuperElement;
         readonly previousElementSibling: ISuperElement;
         getElementById(elementId: string): ISuperElement;
@@ -397,6 +403,7 @@ declare const SuperNodeBaseClass: {
         readonly delegatesFocus: Promise<boolean>;
         readonly host: ISuperElement;
         readonly mode: Promise<import("../../base/interfaces/official").IShadowRootMode>;
+        readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<import("../../base/interfaces/super").ISuperText>;
         createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {

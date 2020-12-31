@@ -1,5 +1,5 @@
 /// <reference no-default-lib="true"/>
-import { ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperDocument, ISuperNode, ISuperText } from './super';
+import { ISuperNode, ISuperElement, ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperStyleSheet, ISuperText } from './super';
 import { INodeIsolate } from './isolate';
 export declare type ICanPlayTypeResult = '' | 'maybe' | 'probably';
 export declare type IDocumentReadyState = 'complete' | 'interactive' | 'loading';
@@ -16,10 +16,10 @@ export declare type IScrollBehavior = 'auto' | 'smooth';
 export declare type IScrollLogicalPosition = 'center' | 'end' | 'nearest' | 'start';
 export declare type ISelectionMode = 'end' | 'preserve' | 'select' | 'start';
 export declare type IShadowRootMode = 'closed' | 'open';
+export declare type ISupportedType = 'application/xhtml+xml' | 'application/xml' | 'image/svg+xml' | 'text/html' | 'text/xml';
 export declare type IVisibilityState = 'hidden' | 'prerender' | 'visible';
 export declare type IBufferSource = ArrayBufferView | ArrayBuffer;
 export declare type IBlobPart = IBufferSource | IBlob | string;
-export declare type IBinaryData = ArrayBuffer | ArrayBufferView;
 export declare type IHeadersInit = Iterable<Iterable<string>> | Record<string, string>;
 export declare type IBodyInit = IBufferSource | string;
 export declare type IRequestInfo = IRequest | string;
@@ -30,21 +30,18 @@ export interface IBlobPropertyBag {
     endings?: IEndingType;
     type?: string;
 }
-export interface IFontFaceDescriptors {
-    display?: string;
-    featureSettings?: string;
-    stretch?: string;
-    style?: string;
-    unicodeRange?: string;
-    variant?: string;
-    variationSettings?: string;
-    weight?: string;
+export interface IFilePropertyBag extends IBlobPropertyBag {
+    lastModified?: number;
 }
 export interface IFullscreenOptions {
     navigationUI?: IFullscreenNavigationUI;
 }
 export interface IGetRootNodeOptions {
     composed?: boolean;
+}
+export interface IImageEncodeOptions {
+    quality?: number;
+    type?: string;
 }
 export interface IRequestInit {
     body?: IBodyInit | null;
@@ -75,6 +72,13 @@ export interface IScrollOptions {
 export declare type IXPathNSResolver = ((prefix: string | null) => string | null) | {
     lookupNamespaceURI(prefix: string | null): string | null;
 };
+export interface IAbstractRange {
+    readonly collapsed: Promise<boolean>;
+    readonly endContainer: ISuperNode;
+    readonly endOffset: Promise<number>;
+    readonly startContainer: ISuperNode;
+    readonly startOffset: Promise<number>;
+}
 export interface IAttr extends INode {
     readonly localName: Promise<string>;
     readonly name: Promise<string>;
@@ -84,7 +88,17 @@ export interface IAttr extends INode {
     readonly specified: Promise<boolean>;
     readonly value: Promise<string>;
 }
+export interface IAudioTrack {
+    readonly enabled: Promise<boolean>;
+    readonly id: Promise<string>;
+    readonly kind: Promise<string>;
+    readonly label: Promise<string>;
+    readonly language: Promise<string>;
+}
 export interface IAudioTrackList {
+    readonly length: Promise<number>;
+    getTrackById(id: string): IAudioTrack;
+    [Symbol.iterator](): IterableIterator<IAudioTrack>;
 }
 export interface IBlob {
     readonly size: Promise<number>;
@@ -108,8 +122,16 @@ export interface ICSSRule {
     readonly NAMESPACE_RULE: number;
     readonly PAGE_RULE: number;
     readonly STYLE_RULE: number;
+    readonly cssText: Promise<string>;
+    readonly parentRule: ICSSRule;
+    readonly parentStyleSheet: ICSSStyleSheet;
+    readonly type: Promise<number>;
 }
 export interface ICSSRuleList {
+    readonly length: Promise<number>;
+    item(index: number): ICSSRule;
+    [Symbol.iterator](): IterableIterator<ICSSRule>;
+    [index: number]: ICSSRule;
 }
 export interface ICSSStyleDeclaration {
     readonly cssFloat: Promise<string>;
@@ -131,6 +153,9 @@ export interface ICSSStyleSheet extends IStyleSheet {
     insertRule(rule: string, index?: number): Promise<number>;
 }
 export interface ICaretPosition {
+    readonly offset: Promise<number>;
+    readonly offsetNode: ISuperNode;
+    getClientRect(): IDOMRect;
 }
 export interface ICharacterData extends INode, INode, INonDocumentTypeChildNode {
     readonly data: Promise<string>;
@@ -140,7 +165,10 @@ export interface ICharacterData extends INode, INode, INonDocumentTypeChildNode 
 export interface IDOMImplementation {
     hasFeature(): Promise<boolean>;
 }
-export interface IDOMRect {
+export interface IDOMParser {
+    parseFromString(str: string, type: ISupportedType): ISuperDocument;
+}
+export interface IDOMRect extends IDOMRectReadOnly {
     readonly height: Promise<number>;
     readonly width: Promise<number>;
     readonly x: Promise<number>;
@@ -151,6 +179,17 @@ export interface IDOMRectList {
     item(index: number): IDOMRect;
     [Symbol.iterator](): IterableIterator<IDOMRect>;
     [index: number]: IDOMRect;
+}
+export interface IDOMRectReadOnly {
+    readonly bottom: Promise<number>;
+    readonly height: Promise<number>;
+    readonly left: Promise<number>;
+    readonly right: Promise<number>;
+    readonly top: Promise<number>;
+    readonly width: Promise<number>;
+    readonly x: Promise<number>;
+    readonly y: Promise<number>;
+    toJSON(): Promise<any>;
 }
 export interface IDOMStringMap {
 }
@@ -172,7 +211,7 @@ export interface IDOMTokenList {
     [Symbol.iterator](): IterableIterator<string>;
     [index: number]: string;
 }
-export interface IDocument extends INode, IDocumentOrShadowRoot, IFontFaceSource, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase {
+export interface IDocument extends INode, IDocumentOrShadowRoot, INode, INonElementParentNode, IParentNode, IXPathEvaluatorBase {
     readonly URL: Promise<string>;
     readonly anchors: ISuperHTMLCollection;
     readonly body: ISuperHTMLElement;
@@ -227,7 +266,7 @@ export interface IDocumentType extends INode, INode {
     readonly publicId: Promise<string>;
     readonly systemId: Promise<string>;
 }
-export interface IElement extends INode, INode, INonDocumentTypeChildNode, IParentNode {
+export interface IElement extends INode, INode, INonDocumentTypeChildNode, IParentNode, ISlotable {
     readonly attributes: INamedNodeMap;
     readonly classList: IDOMTokenList;
     readonly className: Promise<string>;
@@ -250,7 +289,6 @@ export interface IElement extends INode, INode, INonDocumentTypeChildNode, IPare
     readonly slot: Promise<string>;
     readonly tagName: Promise<string>;
     closest(selectors: string): ISuperElement;
-    computedStyleMap(): IStylePropertyMapReadOnly;
     getAttribute(qualifiedName: string): Promise<string | null>;
     getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
     getAttributeNames(): Promise<Iterable<string>>;
@@ -279,12 +317,15 @@ export interface IElementContentEditable {
 }
 export interface IFeaturePolicy {
 }
-export interface IFontFace {
+export interface IFile extends IBlob {
+    readonly lastModified: Promise<number>;
+    readonly name: Promise<string>;
 }
-export interface IFontFaceSet {
-}
-export interface IFontFaceSource {
-    readonly fonts: IFontFaceSet;
+export interface IFileList {
+    readonly length: Promise<number>;
+    item(index: number): IFile;
+    [Symbol.iterator](): IterableIterator<IFile>;
+    [index: number]: IFile;
 }
 export interface IHTMLCollection extends IHTMLCollectionBase {
     namedItem(name: string): ISuperElement;
@@ -294,6 +335,8 @@ export interface IHTMLCollectionBase {
     item(index: number): ISuperElement;
     [Symbol.iterator](): IterableIterator<ISuperElement>;
     [index: number]: ISuperElement;
+}
+export interface IHTMLDocument extends IDocument {
 }
 export interface IHTMLFormControlsCollection extends IHTMLCollectionBase {
     namedItem(name: string): Promise<IRadioNodeList | ISuperElement | null>;
@@ -347,6 +390,9 @@ export interface IHTMLMediaElement extends IHTMLElement {
 export interface IHTMLOptionsCollection extends IHTMLCollection {
 }
 export interface IHTMLOrSVGElement {
+    readonly dataset: IDOMStringMap;
+    readonly nonce: Promise<string>;
+    readonly tabIndex: Promise<number>;
     blur(): Promise<void>;
     focus(): Promise<void>;
 }
@@ -361,6 +407,14 @@ export interface IHeaders {
     keys(): Promise<IterableIterator<string>>;
     values(): Promise<IterableIterator<string>>;
     [Symbol.iterator](): IterableIterator<[string, string]>;
+}
+export interface IImageBitmap {
+    readonly height: Promise<number>;
+    readonly width: Promise<number>;
+    close(): Promise<void>;
+}
+export interface ILinkStyle {
+    readonly sheet: ISuperStyleSheet;
 }
 export interface ILocation {
     hash: Promise<string> | any;
@@ -385,7 +439,18 @@ export interface IMediaError {
 }
 export interface IMediaKeys {
 }
+export interface IMediaList {
+    readonly length: Promise<number>;
+    appendMedium(medium: string): Promise<void>;
+    deleteMedium(medium: string): Promise<void>;
+    item(index: number): Promise<string | null>;
+    [Symbol.iterator](): IterableIterator<string>;
+    [index: number]: string;
+}
 export interface IMediaStream {
+    readonly active: Promise<boolean>;
+    readonly id: Promise<string>;
+    clone(): IMediaStream;
 }
 export interface INamedNodeMap {
     readonly length: Promise<number>;
@@ -457,6 +522,10 @@ export interface INonElementParentNode {
     getElementById(elementId: string): ISuperElement;
 }
 export interface IOffscreenCanvas {
+    readonly height: Promise<number>;
+    readonly width: Promise<number>;
+    convertToBlob(options?: IImageEncodeOptions): Promise<IBlob>;
+    transferToImageBitmap(): IImageBitmap;
 }
 export interface IParentNode {
     readonly childElementCount: Promise<number>;
@@ -469,7 +538,7 @@ export interface IParentNode {
 export interface IRadioNodeList extends INodeList {
     readonly value: Promise<string>;
 }
-export interface IRange {
+export interface IRange extends IAbstractRange {
     readonly END_TO_END: number;
     readonly END_TO_START: number;
     readonly START_TO_END: number;
@@ -526,6 +595,28 @@ export interface IResponse extends IBody {
     readonly url: Promise<string>;
 }
 export interface ISelection {
+    readonly anchorNode: ISuperNode;
+    readonly anchorOffset: Promise<number>;
+    readonly focusNode: ISuperNode;
+    readonly focusOffset: Promise<number>;
+    readonly isCollapsed: Promise<boolean>;
+    readonly rangeCount: Promise<number>;
+    readonly type: Promise<string>;
+    addRange(range: IRange): Promise<void>;
+    collapse(node: INodeIsolate | null, offset?: number): Promise<void>;
+    collapseToEnd(): Promise<void>;
+    collapseToStart(): Promise<void>;
+    containsNode(node: INodeIsolate, allowPartialContainment?: boolean): Promise<boolean>;
+    deleteFromDocument(): Promise<void>;
+    empty(): Promise<void>;
+    extend(node: INodeIsolate, offset?: number): Promise<void>;
+    getRangeAt(index: number): IRange;
+    modify(alter: string, direction: string, granularity: string): Promise<void>;
+    removeAllRanges(): Promise<void>;
+    removeRange(range: IRange): Promise<void>;
+    selectAllChildren(node: INodeIsolate): Promise<void>;
+    setBaseAndExtent(anchorNode: INodeIsolate, anchorOffset: number, focusNode: INodeIsolate, focusOffset: number): Promise<void>;
+    setPosition(node: INodeIsolate | null, offset?: number): Promise<void>;
     toString(): Promise<string>;
 }
 export interface IShadowRoot extends IDocumentFragment, IDocumentFragment, IDocumentOrShadowRoot {
@@ -533,6 +624,9 @@ export interface IShadowRoot extends IDocumentFragment, IDocumentFragment, IDocu
     readonly host: ISuperElement;
     readonly innerHTML: Promise<string>;
     readonly mode: Promise<IShadowRootMode>;
+}
+export interface ISlotable {
+    readonly assignedSlot: IHTMLSlotElement;
 }
 export interface IStorage {
     readonly length: Promise<number>;
@@ -542,25 +636,54 @@ export interface IStorage {
     removeItem(key: string): Promise<undefined>;
     setItem(key: string, value: string): Promise<undefined>;
 }
-export interface IStylePropertyMapReadOnly {
-}
 export interface IStyleSheet {
 }
-export interface IText extends ICharacterData, ICharacterData {
+export interface IText extends ICharacterData, ICharacterData, ISlotable {
     readonly wholeText: Promise<string>;
     splitText(offset: number): Promise<ISuperText>;
 }
 export interface ITextTrack {
 }
+export interface ITextTrackCue {
+    readonly endTime: Promise<number>;
+    readonly id: Promise<string>;
+    readonly pauseOnExit: Promise<boolean>;
+    readonly startTime: Promise<number>;
+    readonly track: ITextTrack;
+}
+export interface ITextTrackCueList {
+    readonly length: Promise<number>;
+    getCueById(id: string): ITextTrackCue;
+    [Symbol.iterator](): IterableIterator<ITextTrackCue>;
+}
 export interface ITextTrackList {
 }
 export interface ITimeRanges {
+    readonly length: Promise<number>;
+    end(index: number): Promise<number>;
+    start(index: number): Promise<number>;
 }
 export interface IValidityState {
 }
 export interface IVideoPlaybackQuality {
 }
+export interface IVideoTrack {
+    readonly id: Promise<string>;
+    readonly kind: Promise<string>;
+    readonly label: Promise<string>;
+    readonly language: Promise<string>;
+    readonly selected: Promise<boolean>;
+}
 export interface IVideoTrackList {
+    readonly length: Promise<number>;
+    readonly selectedIndex: Promise<number>;
+    getTrackById(id: string): IVideoTrack;
+    [Symbol.iterator](): IterableIterator<IVideoTrack>;
+}
+export interface IXMLSerializer {
+    serializeToString(root: INodeIsolate): Promise<string>;
+}
+export interface IXPathEvaluator extends IXPathEvaluatorBase {
 }
 export interface IXPathEvaluatorBase {
     createExpression(expression: string, resolver?: IXPathNSResolver | null): IXPathExpression;
@@ -612,6 +735,10 @@ export interface IHTMLAreaElement extends IHTMLElement, IHTMLElement {
     readonly shape: Promise<string>;
     readonly target: Promise<string>;
     readonly type: Promise<string>;
+}
+export interface IHTMLAudioElement extends IHTMLMediaElement {
+}
+export interface IHTMLBRElement extends IHTMLElement {
 }
 export interface IHTMLBaseElement extends IHTMLElement {
     readonly href: Promise<string>;
@@ -811,6 +938,7 @@ export interface IHTMLInputElement extends IHTMLElement {
     readonly defaultValue: Promise<string>;
     readonly dirName: Promise<string>;
     readonly disabled: Promise<boolean>;
+    readonly files: IFileList;
     readonly form: IHTMLFormElement;
     readonly formAction: Promise<string>;
     readonly formEnctype: Promise<string>;
@@ -863,7 +991,11 @@ export interface IHTMLLabelElement extends IHTMLElement {
     readonly form: IHTMLFormElement;
     readonly htmlFor: Promise<string>;
 }
-export interface IHTMLLinkElement extends IHTMLElement, IHTMLElement {
+export interface IHTMLLegendElement extends IHTMLElement {
+    readonly align: Promise<string>;
+    readonly form: IHTMLFormElement;
+}
+export interface IHTMLLinkElement extends IHTMLElement, IHTMLElement, ILinkStyle {
     readonly as: Promise<string>;
     readonly crossOrigin: Promise<string | null>;
     readonly href: Promise<string>;
@@ -884,6 +1016,15 @@ export interface IHTMLMetaElement extends IHTMLElement {
     readonly httpEquiv: Promise<string>;
     readonly name: Promise<string>;
     readonly scheme: Promise<string>;
+}
+export interface IHTMLMeterElement extends IHTMLElement {
+    readonly high: Promise<number>;
+    readonly labels: ISuperNodeList;
+    readonly low: Promise<number>;
+    readonly max: Promise<number>;
+    readonly min: Promise<number>;
+    readonly optimum: Promise<number>;
+    readonly value: Promise<number>;
 }
 export interface IHTMLModElement extends IHTMLElement {
     readonly cite: Promise<string>;
@@ -1005,7 +1146,9 @@ export interface IHTMLSourceElement extends IHTMLElement {
     readonly srcset: Promise<string>;
     readonly type: Promise<string>;
 }
-export interface IHTMLStyleElement extends IHTMLElement, IHTMLElement {
+export interface IHTMLSpanElement extends IHTMLElement {
+}
+export interface IHTMLStyleElement extends IHTMLElement, IHTMLElement, ILinkStyle {
     readonly media: Promise<string>;
     readonly type: Promise<string>;
 }
@@ -1055,6 +1198,9 @@ export interface IHTMLTableSectionElement extends IHTMLElement {
     readonly chOff: Promise<string>;
     readonly rows: ISuperHTMLCollection;
     readonly vAlign: Promise<string>;
+}
+export interface IHTMLTemplateElement extends IHTMLElement {
+    readonly content: IDocumentFragment;
 }
 export interface IHTMLTextAreaElement extends IHTMLElement {
     readonly autocomplete: Promise<string>;

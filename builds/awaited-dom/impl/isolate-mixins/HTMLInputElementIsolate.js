@@ -11,6 +11,10 @@ const create_1 = require("../create");
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 class HTMLInputElementIsolate extends HTMLInputElementIsolate_1.default {
+    get files() {
+        const { awaitedPath, awaitedOptions } = exports.getState(this);
+        return create_1.createFileList(awaitedPath.addProperty('files'), awaitedOptions);
+    }
     get form() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
         return create_1.createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);

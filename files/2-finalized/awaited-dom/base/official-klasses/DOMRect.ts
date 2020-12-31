@@ -3,15 +3,17 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import { IDOMRect } from '../interfaces/official';
+import { IDOMRect, IDOMRectReadOnly } from '../interfaces/official';
+import { IDOMRectReadOnlyProperties, DOMRectReadOnlyPropertyKeys, DOMRectReadOnlyConstantKeys } from './DOMRectReadOnly';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IDOMRect, IDOMRectProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMRect>('DOMRect', getState, setState);
 
-export function DOMRectGenerator() {
-  return class DOMRect implements IDOMRect {
+export function DOMRectGenerator(DOMRectReadOnly: Constructable<IDOMRectReadOnly>) {
+  return class DOMRect extends DOMRectReadOnly implements IDOMRect {
     constructor(_x?: number, _y?: number, _width?: number, _height?: number) {
+      super(_x, _y, _width, _height);
       initializeConstantsAndProperties<DOMRect>(this, DOMRectConstantKeys, DOMRectPropertyKeys);
     }
 
@@ -37,7 +39,7 @@ export function DOMRectGenerator() {
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IDOMRectProperties {
+export interface IDOMRectProperties extends IDOMRectReadOnlyProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   readonly height?: Promise<number>;
@@ -46,6 +48,6 @@ export interface IDOMRectProperties {
   readonly y?: Promise<number>;
 }
 
-export const DOMRectPropertyKeys = ['height', 'width', 'x', 'y'];
+export const DOMRectPropertyKeys = [...DOMRectReadOnlyPropertyKeys, 'height', 'width', 'x', 'y'];
 
-export const DOMRectConstantKeys = [];
+export const DOMRectConstantKeys = [...DOMRectReadOnlyConstantKeys];

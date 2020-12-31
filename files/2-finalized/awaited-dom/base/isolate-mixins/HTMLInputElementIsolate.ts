@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLInputElementIsolate } from '../interfaces/isolate';
-import { IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
+import { IFileList, IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
@@ -44,6 +44,10 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
 
   public get disabled(): Promise<boolean> {
     return awaitedHandler.getProperty<boolean>(this, 'disabled', false);
+  }
+
+  public get files(): IFileList {
+    throw new Error('HTMLInputElementIsolate.files getter not implemented');
   }
 
   public get form(): IHTMLFormElement {
@@ -98,7 +102,7 @@ export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate
     return awaitedHandler.getProperty<number>(this, 'maxLength', false);
   }
 
-  public get min(): Promise<string> {
+  public get min(): Promise<string> | Promise<number> {
     return awaitedHandler.getProperty<string>(this, 'min', false);
   }
 
@@ -231,6 +235,7 @@ export interface IHTMLInputElementIsolateProperties {
   readonly defaultValue?: Promise<string>;
   readonly dirName?: Promise<string>;
   readonly disabled?: Promise<boolean>;
+  readonly files?: IFileList;
   readonly form?: IHTMLFormElement;
   readonly formAction?: Promise<string>;
   readonly formEnctype?: Promise<string>;
@@ -244,7 +249,7 @@ export interface IHTMLInputElementIsolateProperties {
   readonly list?: ISuperHTMLElement;
   readonly max?: Promise<string> | Promise<number>;
   readonly maxLength?: Promise<number>;
-  readonly min?: Promise<string>;
+  readonly min?: Promise<string> | Promise<number>;
   readonly minLength?: Promise<number>;
   readonly multiple?: Promise<boolean>;
   readonly name?: Promise<string>;
@@ -268,6 +273,6 @@ export interface IHTMLInputElementIsolateProperties {
   readonly willValidate?: Promise<boolean>;
 }
 
-export const HTMLInputElementIsolatePropertyKeys = ['accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
+export const HTMLInputElementIsolatePropertyKeys = ['accept', 'alt', 'autocomplete', 'autofocus', 'checked', 'defaultChecked', 'defaultValue', 'dirName', 'disabled', 'files', 'form', 'formAction', 'formEnctype', 'formMethod', 'formNoValidate', 'formTarget', 'height', 'indeterminate', 'inputMode', 'labels', 'list', 'max', 'maxLength', 'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'selectionDirection', 'selectionEnd', 'selectionStart', 'size', 'src', 'step', 'type', 'validationMessage', 'validity', 'value', 'valueAsDate', 'valueAsNumber', 'width', 'willValidate'];
 
 export const HTMLInputElementIsolateConstantKeys = [];

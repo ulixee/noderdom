@@ -1,4 +1,4 @@
-import { IHTMLAnchorElement, IHTMLElement, IHTMLAreaElement, IHTMLBaseElement, IHTMLQuoteElement, IHTMLBodyElement, IHTMLButtonElement, IHTMLCanvasElement, IHTMLTableCaptionElement, IHTMLTableColElement, IHTMLDataElement, IHTMLDataListElement, IHTMLModElement, IHTMLDetailsElement, IHTMLDialogElement, IHTMLDirectoryElement, IHTMLDivElement, IHTMLDListElement, IHTMLEmbedElement, IHTMLFieldSetElement, IHTMLFontElement, IHTMLFormElement, IHTMLFrameElement, IHTMLFrameSetElement, IHTMLHeadingElement, IHTMLHeadElement, IHTMLHRElement, IHTMLHtmlElement, IHTMLIFrameElement, IHTMLImageElement, IHTMLInputElement, IHTMLLabelElement, IHTMLLIElement, IHTMLLinkElement, IHTMLMapElement, IHTMLMetaElement, IHTMLObjectElement, IHTMLOListElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLParagraphElement, IHTMLParamElement, IHTMLPreElement, IHTMLProgressElement, IHTMLScriptElement, IHTMLSelectElement, IHTMLSlotElement, IHTMLSourceElement, IHTMLStyleElement, IHTMLTableElement, IHTMLTableSectionElement, IHTMLTableCellElement, IHTMLTextAreaElement, IHTMLTimeElement, IHTMLTitleElement, IHTMLTableRowElement, IHTMLTrackElement, IHTMLUListElement, IHTMLVideoElement } from './official';
+import { IHTMLAnchorElement, IHTMLElement, IHTMLAreaElement, IHTMLAudioElement, IHTMLBaseElement, IHTMLQuoteElement, IHTMLBodyElement, IHTMLBRElement, IHTMLButtonElement, IHTMLCanvasElement, IHTMLTableCaptionElement, IHTMLTableColElement, IHTMLDataElement, IHTMLDataListElement, IHTMLModElement, IHTMLDetailsElement, IHTMLDialogElement, IHTMLDirectoryElement, IHTMLDivElement, IHTMLDListElement, IHTMLEmbedElement, IHTMLFieldSetElement, IHTMLFontElement, IHTMLFormElement, IHTMLFrameElement, IHTMLFrameSetElement, IHTMLHeadingElement, IHTMLHeadElement, IHTMLHRElement, IHTMLHtmlElement, IHTMLIFrameElement, IHTMLImageElement, IHTMLInputElement, IHTMLLabelElement, IHTMLLegendElement, IHTMLLIElement, IHTMLLinkElement, IHTMLMapElement, IHTMLMetaElement, IHTMLMeterElement, IHTMLObjectElement, IHTMLOListElement, IHTMLOptGroupElement, IHTMLOptionElement, IHTMLParagraphElement, IHTMLParamElement, IHTMLPreElement, IHTMLProgressElement, IHTMLScriptElement, IHTMLSelectElement, IHTMLSlotElement, IHTMLSourceElement, IHTMLSpanElement, IHTMLStyleElement, IHTMLTableElement, IHTMLTableSectionElement, IHTMLTableCellElement, IHTMLTemplateElement, IHTMLTextAreaElement, IHTMLTimeElement, IHTMLTitleElement, IHTMLTableRowElement, IHTMLTrackElement, IHTMLUListElement, IHTMLVideoElement } from './official';
 export interface IHTMLElementTagNameMap {
     a: IHTMLAnchorElement;
     abbr: IHTMLElement;
@@ -7,6 +7,7 @@ export interface IHTMLElementTagNameMap {
     area: IHTMLAreaElement;
     article: IHTMLElement;
     aside: IHTMLElement;
+    audio: IHTMLAudioElement;
     b: IHTMLElement;
     base: IHTMLBaseElement;
     bdi: IHTMLElement;
@@ -14,6 +15,7 @@ export interface IHTMLElementTagNameMap {
     big: IHTMLElement;
     blockquote: IHTMLQuoteElement;
     body: IHTMLBodyElement;
+    br: IHTMLBRElement;
     button: IHTMLButtonElement;
     canvas: IHTMLCanvasElement;
     caption: IHTMLTableCaptionElement;
@@ -62,12 +64,14 @@ export interface IHTMLElementTagNameMap {
     kbd: IHTMLElement;
     keygen: IHTMLElement;
     label: IHTMLLabelElement;
+    legend: IHTMLLegendElement;
     li: IHTMLLIElement;
     link: IHTMLLinkElement;
     main: IHTMLElement;
     map: IHTMLMapElement;
     mark: IHTMLElement;
     meta: IHTMLMetaElement;
+    meter: IHTMLMeterElement;
     nav: IHTMLElement;
     nobr: IHTMLElement;
     noframes: IHTMLElement;
@@ -93,6 +97,7 @@ export interface IHTMLElementTagNameMap {
     slot: IHTMLSlotElement;
     small: IHTMLElement;
     source: IHTMLSourceElement;
+    span: IHTMLSpanElement;
     strike: IHTMLElement;
     strong: IHTMLElement;
     style: IHTMLStyleElement;
@@ -102,6 +107,7 @@ export interface IHTMLElementTagNameMap {
     table: IHTMLTableElement;
     tbody: IHTMLTableSectionElement;
     td: IHTMLTableCellElement;
+    template: IHTMLTemplateElement;
     textarea: IHTMLTextAreaElement;
     tfoot: IHTMLTableSectionElement;
     th: IHTMLTableCellElement;

@@ -3,9 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createSuperStyleSheet = exports.createSuperHTMLElement = exports.createSuperText = exports.createSuperHTMLCollection = exports.createSuperNodeList = exports.createSuperNode = exports.createSuperElement = exports.createSuperDocument = exports.createXPathResult = exports.createXPathExpression = exports.createVideoTrackList = exports.createVideoPlaybackQuality = exports.createValidityState = exports.createTimeRanges = exports.createTextTrackList = exports.createTextTrack = exports.createText = exports.createStyleSheet = exports.createStylePropertyMapReadOnly = exports.createStorage = exports.createShadowRoot = exports.createSelection = exports.createResponse = exports.createRequest = exports.createRange = exports.createRadioNodeList = exports.createOffscreenCanvas = exports.createNodeList = exports.createNode = exports.createNamedNodeMap = exports.createMediaStream = exports.createMediaKeys = exports.createMediaError = exports.createLocation = exports.createHeaders = exports.createHTMLVideoElement = exports.createHTMLUListElement = exports.createHTMLTrackElement = exports.createHTMLTitleElement = exports.createHTMLTimeElement = exports.createHTMLTextAreaElement = exports.createHTMLTableSectionElement = exports.createHTMLTableRowElement = exports.createHTMLTableElement = exports.createHTMLTableColElement = exports.createHTMLTableCellElement = exports.createHTMLTableCaptionElement = exports.createHTMLStyleElement = exports.createHTMLSourceElement = exports.createHTMLSlotElement = exports.createHTMLSelectElement = exports.createHTMLScriptElement = exports.createHTMLQuoteElement = exports.createHTMLProgressElement = exports.createHTMLPreElement = exports.createHTMLParamElement = exports.createHTMLParagraphElement = exports.createHTMLOptionsCollection = exports.createHTMLOptionElement = exports.createHTMLOptGroupElement = exports.createHTMLObjectElement = exports.createHTMLOListElement = exports.createHTMLModElement = exports.createHTMLMetaElement = exports.createHTMLMediaElement = exports.createHTMLMapElement = exports.createHTMLLinkElement = exports.createHTMLLabelElement = exports.createHTMLLIElement = exports.createHTMLInputElement = exports.createHTMLImageElement = exports.createHTMLIFrameElement = exports.createHTMLHtmlElement = exports.createHTMLHeadingElement = exports.createHTMLHeadElement = exports.createHTMLHRElement = exports.createHTMLFrameSetElement = exports.createHTMLFrameElement = exports.createHTMLFormElement = exports.createHTMLFormControlsCollection = exports.createHTMLFontElement = exports.createHTMLFieldSetElement = exports.createHTMLEmbedElement = exports.createHTMLElement = exports.createHTMLDivElement = exports.createHTMLDirectoryElement = exports.createHTMLDialogElement = exports.createHTMLDetailsElement = exports.createHTMLDataListElement = exports.createHTMLDataElement = exports.createHTMLDListElement = exports.createHTMLCollectionBase = exports.createHTMLCollection = exports.createHTMLCanvasElement = exports.createHTMLButtonElement = exports.createHTMLBodyElement = exports.createHTMLBaseElement = exports.createHTMLAreaElement = exports.createHTMLAnchorElement = exports.createFontFaceSet = exports.createFontFace = exports.createFeaturePolicy = exports.createElement = exports.createDocumentType = exports.createDocumentFragment = exports.createDocument = exports.createDOMTokenList = exports.createDOMStringMap = exports.createDOMRectList = exports.createDOMRect = exports.createDOMImplementation = exports.createCharacterData = exports.createCaretPosition = exports.createCSSStyleSheet = exports.createCSSStyleDeclaration = exports.createCSSRuleList = exports.createCSSRule = exports.createBlob = exports.createAudioTrackList = exports.createAttr = exports.setState = void 0;
+exports.createSuperStyleSheet = exports.createSuperHTMLElement = exports.createSuperText = exports.createSuperHTMLCollection = exports.createSuperNodeList = exports.createSuperNode = exports.createSuperElement = exports.createSuperDocument = exports.createXPathResult = exports.createXPathExpression = exports.createXPathEvaluator = exports.createXMLSerializer = exports.createVideoTrackList = exports.createVideoTrack = exports.createVideoPlaybackQuality = exports.createValidityState = exports.createTimeRanges = exports.createTextTrackList = exports.createTextTrackCueList = exports.createTextTrackCue = exports.createTextTrack = exports.createText = exports.createStyleSheet = exports.createStorage = exports.createShadowRoot = exports.createSelection = exports.createResponse = exports.createRequest = exports.createRange = exports.createRadioNodeList = exports.createOffscreenCanvas = exports.createNodeList = exports.createNode = exports.createNamedNodeMap = exports.createMediaStream = exports.createMediaList = exports.createMediaKeys = exports.createMediaError = exports.createLocation = exports.createImageBitmap = exports.createHeaders = exports.createHTMLVideoElement = exports.createHTMLUListElement = exports.createHTMLTrackElement = exports.createHTMLTitleElement = exports.createHTMLTimeElement = exports.createHTMLTextAreaElement = exports.createHTMLTemplateElement = exports.createHTMLTableSectionElement = exports.createHTMLTableRowElement = exports.createHTMLTableElement = exports.createHTMLTableColElement = exports.createHTMLTableCellElement = exports.createHTMLTableCaptionElement = exports.createHTMLStyleElement = exports.createHTMLSpanElement = exports.createHTMLSourceElement = exports.createHTMLSlotElement = exports.createHTMLSelectElement = exports.createHTMLScriptElement = exports.createHTMLQuoteElement = exports.createHTMLProgressElement = exports.createHTMLPreElement = exports.createHTMLParamElement = exports.createHTMLParagraphElement = exports.createHTMLOptionsCollection = exports.createHTMLOptionElement = exports.createHTMLOptGroupElement = exports.createHTMLObjectElement = exports.createHTMLOListElement = exports.createHTMLModElement = exports.createHTMLMeterElement = exports.createHTMLMetaElement = exports.createHTMLMediaElement = exports.createHTMLMapElement = exports.createHTMLLinkElement = exports.createHTMLLegendElement = exports.createHTMLLabelElement = exports.createHTMLLIElement = exports.createHTMLInputElement = exports.createHTMLImageElement = exports.createHTMLIFrameElement = exports.createHTMLHtmlElement = exports.createHTMLHeadingElement = exports.createHTMLHeadElement = exports.createHTMLHRElement = exports.createHTMLFrameSetElement = exports.createHTMLFrameElement = exports.createHTMLFormElement = exports.createHTMLFormControlsCollection = exports.createHTMLFontElement = exports.createHTMLFieldSetElement = exports.createHTMLEmbedElement = exports.createHTMLElement = exports.createHTMLDocument = exports.createHTMLDivElement = exports.createHTMLDirectoryElement = exports.createHTMLDialogElement = exports.createHTMLDetailsElement = exports.createHTMLDataListElement = exports.createHTMLDataElement = exports.createHTMLDListElement = exports.createHTMLCollectionBase = exports.createHTMLCollection = exports.createHTMLCanvasElement = exports.createHTMLButtonElement = exports.createHTMLBodyElement = exports.createHTMLBaseElement = exports.createHTMLBRElement = exports.createHTMLAudioElement = exports.createHTMLAreaElement = exports.createHTMLAnchorElement = exports.createFileList = exports.createFile = exports.createFeaturePolicy = exports.createElement = exports.createDocumentType = exports.createDocumentFragment = exports.createDocument = exports.createDOMTokenList = exports.createDOMStringMap = exports.createDOMRectReadOnly = exports.createDOMRectList = exports.createDOMRect = exports.createDOMParser = exports.createDOMImplementation = exports.createCharacterData = exports.createCaretPosition = exports.createCSSStyleSheet = exports.createCSSStyleDeclaration = exports.createCSSRuleList = exports.createCSSRule = exports.createBlob = exports.createAudioTrackList = exports.createAudioTrack = exports.createAttr = exports.createAbstractRange = exports.setState = void 0;
 const StateMachine_1 = __importDefault(require("../base/StateMachine"));
 exports.setState = StateMachine_1.default().setState;
+function createAbstractRange(awaitedPath, awaitedOptions) {
+    const AbstractRange = require('./official-klasses/AbstractRange').default; // tslint:disable-line:variable-name
+    const instance = new AbstractRange();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createAbstractRange = createAbstractRange;
 function createAttr(awaitedPath, awaitedOptions) {
     const Attr = require('./official-klasses/Attr').default; // tslint:disable-line:variable-name
     const instance = new Attr();
@@ -13,6 +20,13 @@ function createAttr(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createAttr = createAttr;
+function createAudioTrack(awaitedPath, awaitedOptions) {
+    const AudioTrack = require('./official-klasses/AudioTrack').default; // tslint:disable-line:variable-name
+    const instance = new AudioTrack();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createAudioTrack = createAudioTrack;
 function createAudioTrackList(awaitedPath, awaitedOptions) {
     const AudioTrackList = require('./official-klasses/AudioTrackList').default; // tslint:disable-line:variable-name
     const instance = new AudioTrackList();
@@ -76,6 +90,13 @@ function createDOMImplementation(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createDOMImplementation = createDOMImplementation;
+function createDOMParser(awaitedPath, awaitedOptions) {
+    const DOMParser = require('./official-klasses/DOMParser').default; // tslint:disable-line:variable-name
+    const instance = new DOMParser();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createDOMParser = createDOMParser;
 function createDOMRect(awaitedPath, awaitedOptions) {
     const DOMRect = require('./official-klasses/DOMRect').default; // tslint:disable-line:variable-name
     const instance = new DOMRect();
@@ -90,6 +111,13 @@ function createDOMRectList(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createDOMRectList = createDOMRectList;
+function createDOMRectReadOnly(awaitedPath, awaitedOptions) {
+    const DOMRectReadOnly = require('./official-klasses/DOMRectReadOnly').default; // tslint:disable-line:variable-name
+    const instance = new DOMRectReadOnly();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createDOMRectReadOnly = createDOMRectReadOnly;
 function createDOMStringMap(awaitedPath, awaitedOptions) {
     const DOMStringMap = require('./official-klasses/DOMStringMap').default; // tslint:disable-line:variable-name
     const instance = new DOMStringMap();
@@ -139,20 +167,20 @@ function createFeaturePolicy(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createFeaturePolicy = createFeaturePolicy;
-function createFontFace(awaitedPath, awaitedOptions) {
-    const FontFace = require('./official-klasses/FontFace').default; // tslint:disable-line:variable-name
-    const instance = new FontFace();
+function createFile(awaitedPath, awaitedOptions) {
+    const File = require('./official-klasses/File').default; // tslint:disable-line:variable-name
+    const instance = new File();
     exports.setState(instance, { awaitedPath, awaitedOptions });
     return instance;
 }
-exports.createFontFace = createFontFace;
-function createFontFaceSet(awaitedPath, awaitedOptions) {
-    const FontFaceSet = require('./official-klasses/FontFaceSet').default; // tslint:disable-line:variable-name
-    const instance = new FontFaceSet();
+exports.createFile = createFile;
+function createFileList(awaitedPath, awaitedOptions) {
+    const FileList = require('./official-klasses/FileList').default; // tslint:disable-line:variable-name
+    const instance = new FileList();
     exports.setState(instance, { awaitedPath, awaitedOptions });
     return instance;
 }
-exports.createFontFaceSet = createFontFaceSet;
+exports.createFileList = createFileList;
 function createHTMLAnchorElement(awaitedPath, awaitedOptions) {
     const HTMLAnchorElement = require('./official-klasses/HTMLAnchorElement').default; // tslint:disable-line:variable-name
     const instance = new HTMLAnchorElement();
@@ -167,6 +195,20 @@ function createHTMLAreaElement(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createHTMLAreaElement = createHTMLAreaElement;
+function createHTMLAudioElement(awaitedPath, awaitedOptions) {
+    const HTMLAudioElement = require('./official-klasses/HTMLAudioElement').default; // tslint:disable-line:variable-name
+    const instance = new HTMLAudioElement();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createHTMLAudioElement = createHTMLAudioElement;
+function createHTMLBRElement(awaitedPath, awaitedOptions) {
+    const HTMLBRElement = require('./official-klasses/HTMLBRElement').default; // tslint:disable-line:variable-name
+    const instance = new HTMLBRElement();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createHTMLBRElement = createHTMLBRElement;
 function createHTMLBaseElement(awaitedPath, awaitedOptions) {
     const HTMLBaseElement = require('./official-klasses/HTMLBaseElement').default; // tslint:disable-line:variable-name
     const instance = new HTMLBaseElement();
@@ -258,6 +300,13 @@ function createHTMLDivElement(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createHTMLDivElement = createHTMLDivElement;
+function createHTMLDocument(awaitedPath, awaitedOptions) {
+    const HTMLDocument = require('./official-klasses/HTMLDocument').default; // tslint:disable-line:variable-name
+    const instance = new HTMLDocument();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createHTMLDocument = createHTMLDocument;
 function createHTMLElement(awaitedPath, awaitedOptions) {
     const HTMLElement = require('./official-klasses/HTMLElement').default; // tslint:disable-line:variable-name
     const instance = new HTMLElement();
@@ -377,6 +426,13 @@ function createHTMLLabelElement(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createHTMLLabelElement = createHTMLLabelElement;
+function createHTMLLegendElement(awaitedPath, awaitedOptions) {
+    const HTMLLegendElement = require('./official-klasses/HTMLLegendElement').default; // tslint:disable-line:variable-name
+    const instance = new HTMLLegendElement();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createHTMLLegendElement = createHTMLLegendElement;
 function createHTMLLinkElement(awaitedPath, awaitedOptions) {
     const HTMLLinkElement = require('./official-klasses/HTMLLinkElement').default; // tslint:disable-line:variable-name
     const instance = new HTMLLinkElement();
@@ -405,6 +461,13 @@ function createHTMLMetaElement(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createHTMLMetaElement = createHTMLMetaElement;
+function createHTMLMeterElement(awaitedPath, awaitedOptions) {
+    const HTMLMeterElement = require('./official-klasses/HTMLMeterElement').default; // tslint:disable-line:variable-name
+    const instance = new HTMLMeterElement();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createHTMLMeterElement = createHTMLMeterElement;
 function createHTMLModElement(awaitedPath, awaitedOptions) {
     const HTMLModElement = require('./official-klasses/HTMLModElement').default; // tslint:disable-line:variable-name
     const instance = new HTMLModElement();
@@ -510,6 +573,13 @@ function createHTMLSourceElement(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createHTMLSourceElement = createHTMLSourceElement;
+function createHTMLSpanElement(awaitedPath, awaitedOptions) {
+    const HTMLSpanElement = require('./official-klasses/HTMLSpanElement').default; // tslint:disable-line:variable-name
+    const instance = new HTMLSpanElement();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createHTMLSpanElement = createHTMLSpanElement;
 function createHTMLStyleElement(awaitedPath, awaitedOptions) {
     const HTMLStyleElement = require('./official-klasses/HTMLStyleElement').default; // tslint:disable-line:variable-name
     const instance = new HTMLStyleElement();
@@ -559,6 +629,13 @@ function createHTMLTableSectionElement(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createHTMLTableSectionElement = createHTMLTableSectionElement;
+function createHTMLTemplateElement(awaitedPath, awaitedOptions) {
+    const HTMLTemplateElement = require('./official-klasses/HTMLTemplateElement').default; // tslint:disable-line:variable-name
+    const instance = new HTMLTemplateElement();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createHTMLTemplateElement = createHTMLTemplateElement;
 function createHTMLTextAreaElement(awaitedPath, awaitedOptions) {
     const HTMLTextAreaElement = require('./official-klasses/HTMLTextAreaElement').default; // tslint:disable-line:variable-name
     const instance = new HTMLTextAreaElement();
@@ -608,6 +685,13 @@ function createHeaders(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createHeaders = createHeaders;
+function createImageBitmap(awaitedPath, awaitedOptions) {
+    const ImageBitmap = require('./official-klasses/ImageBitmap').default; // tslint:disable-line:variable-name
+    const instance = new ImageBitmap();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createImageBitmap = createImageBitmap;
 function createLocation(awaitedPath, awaitedOptions) {
     const Location = require('./official-klasses/Location').default; // tslint:disable-line:variable-name
     const instance = new Location();
@@ -629,6 +713,13 @@ function createMediaKeys(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createMediaKeys = createMediaKeys;
+function createMediaList(awaitedPath, awaitedOptions) {
+    const MediaList = require('./official-klasses/MediaList').default; // tslint:disable-line:variable-name
+    const instance = new MediaList();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createMediaList = createMediaList;
 function createMediaStream(awaitedPath, awaitedOptions) {
     const MediaStream = require('./official-klasses/MediaStream').default; // tslint:disable-line:variable-name
     const instance = new MediaStream();
@@ -713,13 +804,6 @@ function createStorage(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createStorage = createStorage;
-function createStylePropertyMapReadOnly(awaitedPath, awaitedOptions) {
-    const StylePropertyMapReadOnly = require('./official-klasses/StylePropertyMapReadOnly').default; // tslint:disable-line:variable-name
-    const instance = new StylePropertyMapReadOnly();
-    exports.setState(instance, { awaitedPath, awaitedOptions });
-    return instance;
-}
-exports.createStylePropertyMapReadOnly = createStylePropertyMapReadOnly;
 function createStyleSheet(awaitedPath, awaitedOptions) {
     const StyleSheet = require('./official-klasses/StyleSheet').default; // tslint:disable-line:variable-name
     const instance = new StyleSheet();
@@ -741,6 +825,20 @@ function createTextTrack(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createTextTrack = createTextTrack;
+function createTextTrackCue(awaitedPath, awaitedOptions) {
+    const TextTrackCue = require('./official-klasses/TextTrackCue').default; // tslint:disable-line:variable-name
+    const instance = new TextTrackCue();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createTextTrackCue = createTextTrackCue;
+function createTextTrackCueList(awaitedPath, awaitedOptions) {
+    const TextTrackCueList = require('./official-klasses/TextTrackCueList').default; // tslint:disable-line:variable-name
+    const instance = new TextTrackCueList();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createTextTrackCueList = createTextTrackCueList;
 function createTextTrackList(awaitedPath, awaitedOptions) {
     const TextTrackList = require('./official-klasses/TextTrackList').default; // tslint:disable-line:variable-name
     const instance = new TextTrackList();
@@ -769,6 +867,13 @@ function createVideoPlaybackQuality(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createVideoPlaybackQuality = createVideoPlaybackQuality;
+function createVideoTrack(awaitedPath, awaitedOptions) {
+    const VideoTrack = require('./official-klasses/VideoTrack').default; // tslint:disable-line:variable-name
+    const instance = new VideoTrack();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createVideoTrack = createVideoTrack;
 function createVideoTrackList(awaitedPath, awaitedOptions) {
     const VideoTrackList = require('./official-klasses/VideoTrackList').default; // tslint:disable-line:variable-name
     const instance = new VideoTrackList();
@@ -776,6 +881,20 @@ function createVideoTrackList(awaitedPath, awaitedOptions) {
     return instance;
 }
 exports.createVideoTrackList = createVideoTrackList;
+function createXMLSerializer(awaitedPath, awaitedOptions) {
+    const XMLSerializer = require('./official-klasses/XMLSerializer').default; // tslint:disable-line:variable-name
+    const instance = new XMLSerializer();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createXMLSerializer = createXMLSerializer;
+function createXPathEvaluator(awaitedPath, awaitedOptions) {
+    const XPathEvaluator = require('./official-klasses/XPathEvaluator').default; // tslint:disable-line:variable-name
+    const instance = new XPathEvaluator();
+    exports.setState(instance, { awaitedPath, awaitedOptions });
+    return instance;
+}
+exports.createXPathEvaluator = createXPathEvaluator;
 function createXPathExpression(awaitedPath, awaitedOptions) {
     const XPathExpression = require('./official-klasses/XPathExpression').default; // tslint:disable-line:variable-name
     const instance = new XPathExpression();

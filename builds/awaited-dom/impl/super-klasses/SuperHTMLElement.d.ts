@@ -47,7 +47,6 @@ declare const SuperHTMLElementBaseClass: {
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): ISuperElement;
-        computedStyleMap(): import("../../base/interfaces/official").IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -162,12 +161,13 @@ declare const SuperHTMLElementBaseClass: {
         readonly defaultChecked: Promise<boolean>;
         readonly defaultValue: Promise<string>;
         readonly dirName: Promise<string>;
+        readonly files: import("../../base/interfaces/official").IFileList;
         readonly indeterminate: Promise<boolean>;
         readonly inputMode: Promise<string>;
         readonly list: ISuperHTMLElement;
         readonly max: Promise<string> | Promise<number>;
         readonly maxLength: Promise<number>;
-        readonly min: Promise<string>;
+        readonly min: Promise<string> | Promise<number>;
         readonly minLength: Promise<number>;
         readonly multiple: Promise<boolean>;
         readonly pattern: Promise<string>;
@@ -230,9 +230,12 @@ declare const SuperHTMLElementBaseClass: {
         pause(): Promise<void>;
         play(): Promise<void>;
         setSinkId(sinkId: string): Promise<void>;
-        readonly content: Promise<string>;
+        readonly content: Promise<string> | import("../../base/interfaces/official").IDocumentFragment;
         readonly httpEquiv: Promise<string>;
         readonly scheme: Promise<string>;
+        readonly high: Promise<number>;
+        readonly low: Promise<number>;
+        readonly optimum: Promise<number>;
         readonly cite: Promise<string>;
         readonly dateTime: Promise<string>;
         readonly reversed: Promise<boolean>;
@@ -251,6 +254,9 @@ declare const SuperHTMLElementBaseClass: {
         readonly defaultSelected: Promise<boolean>;
         readonly index: Promise<number>;
         readonly selected: Promise<boolean>;
+        readonly dataset: import("../../base/interfaces/official").IDOMStringMap;
+        readonly nonce: Promise<string>;
+        readonly tabIndex: Promise<number>;
         blur(): Promise<void>;
         focus(): Promise<void>;
         readonly valueType: Promise<string>;
@@ -300,6 +306,7 @@ declare const SuperHTMLElementBaseClass: {
         readonly videoHeight: Promise<number>;
         readonly videoWidth: Promise<number>;
         getVideoPlaybackQuality(): import("../../base/interfaces/official").IVideoPlaybackQuality;
+        readonly sheet: import("../../base/interfaces/super").ISuperStyleSheet;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;
         readonly COMMENT_NODE: number;
@@ -350,6 +357,7 @@ declare const SuperHTMLElementBaseClass: {
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): import("../../base/interfaces/super").ISuperNodeList;
+        readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
     };
 };
 export default class SuperHTMLElement extends SuperHTMLElementBaseClass implements ISuperHTMLElement {

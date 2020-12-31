@@ -78,9 +78,6 @@ class ElementIsolate {
     closest(selectors) {
         throw new Error('ElementIsolate.closest not implemented');
     }
-    computedStyleMap() {
-        throw new Error('ElementIsolate.computedStyleMap not implemented');
-    }
     getAttribute(qualifiedName) {
         return exports.awaitedHandler.runMethod(this, 'getAttribute', [qualifiedName]);
     }

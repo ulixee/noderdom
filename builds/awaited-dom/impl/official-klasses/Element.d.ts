@@ -1,4 +1,4 @@
-import { IElement, INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly } from '../../base/interfaces/official';
+import { IElement, INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../base/interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IElementProperties } from '../../base/official-klasses/Element';
 export declare const getState: (instance: IElement) => IElementProperties, setState: (instance: IElement, properties: Partial<IElementProperties>) => void, recordProxy: (proxy: IElement, instance: IElement) => void;
@@ -26,7 +26,6 @@ declare const ElementBaseClass: {
         readonly slot: Promise<string>;
         readonly tagName: Promise<string>;
         closest(selectors: string): ISuperElement;
-        computedStyleMap(): IStylePropertyMapReadOnly;
         getAttribute(qualifiedName: string): Promise<string | null>;
         getAttributeNS(namespace: string | null, localName: string): Promise<string | null>;
         getAttributeNames(): Promise<Iterable<string>>;
@@ -96,6 +95,7 @@ declare const ElementBaseClass: {
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): import("../../base/interfaces/super").ISuperNodeList;
+        readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
     };
 };
 export default class Element extends ElementBaseClass implements IElement {
@@ -105,7 +105,6 @@ export default class Element extends ElementBaseClass implements IElement {
     get part(): IDOMTokenList;
     get shadowRoot(): IShadowRoot;
     closest(selectors: string): ISuperElement;
-    computedStyleMap(): IStylePropertyMapReadOnly;
     getElementsByClassName(classNames: string): ISuperHTMLCollection;
     getElementsByTagName(qualifiedName: string): ISuperHTMLCollection;
     getElementsByTagNameNS(namespace: string | null, localName: string): ISuperHTMLCollection;

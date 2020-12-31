@@ -1,9 +1,9 @@
 import StateMachine from '../../base/StateMachine';
 import { IElementIsolate } from '../../base/interfaces/isolate';
-import { INamedNodeMap, IDOMTokenList, IShadowRoot, IStylePropertyMapReadOnly } from '../../base/interfaces/official';
+import { INamedNodeMap, IDOMTokenList, IShadowRoot } from '../../base/interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../../base/interfaces/super';
 import ElementIsolateBase, { IElementIsolateProperties } from '../../base/isolate-mixins/ElementIsolate';
-import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createStylePropertyMapReadOnly, createSuperHTMLCollection } from '../create';
+import { createNamedNodeMap, createDOMTokenList, createShadowRoot, createSuperElement, createSuperHTMLCollection } from '../create';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IElementIsolate, IElementIsolateProperties>();
@@ -34,11 +34,6 @@ export default class ElementIsolate extends ElementIsolateBase implements IEleme
   public closest(selectors: string): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createSuperElement(awaitedPath.addMethod('closest', selectors), awaitedOptions);
-  }
-
-  public computedStyleMap(): IStylePropertyMapReadOnly {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createStylePropertyMapReadOnly(awaitedPath.addMethod('computedStyleMap', ), awaitedOptions);
   }
 
   public getElementsByClassName(classNames: string): ISuperHTMLCollection {
