@@ -21,6 +21,9 @@ export default class NodeAttacher<TClass> {
   public async attach<K extends keyof TClass & string>(instance: TClass, properties?: K[]): Promise<TClass> {
     const { awaitedOptions, awaitedPath, createInstanceName } = this.getState(instance);
     const state = await this.awaitedHandler.loadState(instance, properties);
+    if (!state?.id) {
+      return null as any;
+    }
     const createNewInstance = NodeAttacher.creators[createInstanceName];
     const attachedAwaitedPath = state?.id ? awaitedPath.withAttachedId(state?.id) : awaitedPath;
     const newInstance = createNewInstance(attachedAwaitedPath, awaitedOptions) as TClass;

@@ -9,6 +9,9 @@ class NodeAttacher {
     async attach(instance, properties) {
         const { awaitedOptions, awaitedPath, createInstanceName } = this.getState(instance);
         const state = await this.awaitedHandler.loadState(instance, properties);
+        if (!(state === null || state === void 0 ? void 0 : state.id)) {
+            return null;
+        }
         const createNewInstance = NodeAttacher.creators[createInstanceName];
         const attachedAwaitedPath = (state === null || state === void 0 ? void 0 : state.id) ? awaitedPath.withAttachedId(state === null || state === void 0 ? void 0 : state.id) : awaitedPath;
         const newInstance = createNewInstance(attachedAwaitedPath, awaitedOptions);
