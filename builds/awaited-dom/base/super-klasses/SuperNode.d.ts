@@ -430,7 +430,7 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
         readonly defaultSelected: Promise<boolean>;
         readonly index: Promise<number>;
         readonly selected: Promise<boolean>;
-        readonly dataset: import("../interfaces/official").IDOMStringMap;
+        readonly dataset: Promise<Record<string, string>>;
         readonly nonce: Promise<string>;
         readonly tabIndex: Promise<number>;
         blur(): Promise<void>;

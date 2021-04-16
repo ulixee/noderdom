@@ -8,7 +8,7 @@ export declare const awaitedHandler: AwaitedHandler<IHeaders>;
 export declare const nodeAttacher: NodeAttacher<IHeaders>;
 export declare const awaitedIterator: AwaitedIterator<IHeaders, [string, string]>;
 export declare function HeadersGenerator(): {
-    new (_init?: Iterable<Iterable<string>> | Record<string, string> | undefined): {
+    new (_init?: Record<string, string> | Iterable<Iterable<string>> | undefined): {
         append(name: string, value: string): Promise<void>;
         delete(name: string): Promise<void>;
         get(name: string): Promise<string | null>;

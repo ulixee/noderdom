@@ -191,8 +191,6 @@ export interface IDOMRectReadOnly {
     readonly y: Promise<number>;
     toJSON(): Promise<any>;
 }
-export interface IDOMStringMap {
-}
 export interface IDOMTokenList {
     readonly length: Promise<number>;
     readonly value: Promise<string>;
@@ -390,7 +388,7 @@ export interface IHTMLMediaElement extends IHTMLElement {
 export interface IHTMLOptionsCollection extends IHTMLCollection {
 }
 export interface IHTMLOrSVGElement {
-    readonly dataset: IDOMStringMap;
+    readonly dataset: Promise<Record<string, string>>;
     readonly nonce: Promise<string>;
     readonly tabIndex: Promise<number>;
     blur(): Promise<void>;

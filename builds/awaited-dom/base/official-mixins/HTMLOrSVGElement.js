@@ -12,7 +12,7 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLOrSVGElement', exports.getState, exports.setState);
 class HTMLOrSVGElement {
     get dataset() {
-        throw new Error('HTMLOrSVGElement.dataset getter not implemented');
+        return exports.awaitedHandler.getProperty(this, 'dataset', false);
     }
     get nonce() {
         return exports.awaitedHandler.getProperty(this, 'nonce', false);

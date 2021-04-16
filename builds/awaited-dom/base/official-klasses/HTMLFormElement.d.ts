@@ -134,7 +134,7 @@ export declare function HTMLFormElementGenerator(HTMLElement: Constructable<IHTM
         readonly style: import("../interfaces/official").ICSSStyleDeclaration;
         readonly contentEditable: Promise<string>;
         readonly isContentEditable: Promise<boolean>;
-        readonly dataset: import("../interfaces/official").IDOMStringMap;
+        readonly dataset: Promise<Record<string, string>>;
         readonly nonce: Promise<string>;
         readonly tabIndex: Promise<number>;
         blur(): Promise<void>;

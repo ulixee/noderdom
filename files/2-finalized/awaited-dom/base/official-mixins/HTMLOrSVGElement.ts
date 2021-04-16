@@ -1,15 +1,15 @@
 import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
-import { IHTMLOrSVGElement, IDOMStringMap } from '../interfaces/official';
+import { IHTMLOrSVGElement } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLOrSVGElement, IHTMLOrSVGElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOrSVGElement>('HTMLOrSVGElement', getState, setState);
 
 export default class HTMLOrSVGElement implements IHTMLOrSVGElement {
-  public get dataset(): IDOMStringMap {
-    throw new Error('HTMLOrSVGElement.dataset getter not implemented');
+  public get dataset(): Promise<Record<string, string>> {
+    return awaitedHandler.getProperty<Record<string, string>>(this, 'dataset', false);
   }
 
   public get nonce(): Promise<string> {
@@ -36,7 +36,7 @@ export default class HTMLOrSVGElement implements IHTMLOrSVGElement {
 export interface IHTMLOrSVGElementProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
-  readonly dataset?: IDOMStringMap;
+  readonly dataset?: Promise<Record<string, string>>;
   readonly nonce?: Promise<string>;
   readonly tabIndex?: Promise<number>;
 }

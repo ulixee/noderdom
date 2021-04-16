@@ -168,7 +168,7 @@ declare const HTMLInputElementBaseClass: {
         readonly style: import("../../base/interfaces/official").ICSSStyleDeclaration;
         readonly contentEditable: Promise<string>;
         readonly isContentEditable: Promise<boolean>;
-        readonly dataset: import("../../base/interfaces/official").IDOMStringMap;
+        readonly dataset: Promise<Record<string, string>>;
         readonly nonce: Promise<string>;
         readonly tabIndex: Promise<number>;
         blur(): Promise<void>;

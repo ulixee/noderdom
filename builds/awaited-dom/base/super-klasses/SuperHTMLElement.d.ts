@@ -336,7 +336,7 @@ export declare function SuperHTMLElementGenerator(ElementCSSInlineStyle: Constru
         readonly defaultSelected: Promise<boolean>;
         readonly index: Promise<number>;
         readonly selected: Promise<boolean>;
-        readonly dataset: import("../interfaces/official").IDOMStringMap;
+        readonly dataset: Promise<Record<string, string>>;
         readonly nonce: Promise<string>;
         readonly tabIndex: Promise<number>;
         blur(): Promise<void>;

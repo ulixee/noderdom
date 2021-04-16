@@ -3410,7 +3410,7 @@
     }
   },
   "DOMStringMap": {
-    "isEnabled": true,
+    "isEnabled": false,
     "propertiesByName": {},
     "methodsByName": {}
   },
@@ -4261,8 +4261,7 @@
     "isEnabled": true,
     "propertiesByName": {
       "dataset": {
-        "isEnabled": true,
-        "isAbstract": true
+        "isEnabled": true
       },
       "nonce": {
         "isEnabled": true

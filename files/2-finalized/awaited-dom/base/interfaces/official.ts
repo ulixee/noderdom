@@ -301,10 +301,6 @@ export interface IDOMRectReadOnly {
   toJSON(): Promise<any>;
 }
 
-// DOMStringMap //////////
-
-export interface IDOMStringMap {}
-
 // DOMTokenList //////////
 
 export interface IDOMTokenList {
@@ -571,7 +567,7 @@ export interface IHTMLOptionsCollection extends IHTMLCollection {}
 // HTMLOrSVGElement //////////
 
 export interface IHTMLOrSVGElement {
-  readonly dataset: IDOMStringMap;
+  readonly dataset: Promise<Record<string, string>>;
   readonly nonce: Promise<string>;
   readonly tabIndex: Promise<number>;
 

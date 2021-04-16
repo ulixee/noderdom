@@ -34,6 +34,7 @@ export const baseTypeConversionMap = new Map<string, string>([
   ...[...floatTypes].map(type => [type, 'number'] as [string, string]),
   ...[...stringTypes].map(type => [type, 'string'] as [string, string]),
   ...[...sameTypes].map(type => [type, type] as [string, string]),
+  ['DOMStringMap', 'Record<string, string>'],
   ['object', 'any'],
   ['sequence', 'Array'],
   ['record', 'Record'],
@@ -291,7 +292,7 @@ export function getNameWithTypeParameter(
 ///////
 
 export function isCustomType(type: string): boolean {
-  if (['Iterable', 'Promise', 'ArrayBufferView', 'ArrayBuffer', 'T', 'Record'].includes(type)) return false;
+  if (['Iterable', 'Promise', 'ArrayBufferView', 'ArrayBuffer', 'T', 'Record'].includes(type) || type.startsWith('Record<')) return false;
   return type[0] === type[0].toUpperCase();
 }
 

@@ -323,8 +323,7 @@
         "dataset": {
           "name": "dataset",
           "type": "DOMStringMap",
-          "readOnly": 1,
-          "isAbstract": 1
+          "readOnly": 1
         },
         "nonce": {
           "name": "nonce",
@@ -2537,64 +2536,6 @@
         }
       },
       "anonymousMethods": [],
-      "properties": {},
-      "exposed": "Window",
-      "legacyWindowAlias": []
-    },
-    "DOMStringMap": {
-      "name": "DOMStringMap",
-      "extends": "Object",
-      "constants": {},
-      "methods": {},
-      "anonymousMethods": [
-        {
-          "signatures": [
-            {
-              "type": "DOMString",
-              "params": [
-                {
-                  "name": "name",
-                  "type": "DOMString"
-                }
-              ]
-            }
-          ],
-          "getter": 1,
-          "exposed": "Window"
-        },
-        {
-          "signatures": [
-            {
-              "type": "void",
-              "params": [
-                {
-                  "name": "name",
-                  "type": "DOMString"
-                },
-                {
-                  "name": "value",
-                  "type": "DOMString"
-                }
-              ]
-            }
-          ],
-          "exposed": "Window"
-        },
-        {
-          "signatures": [
-            {
-              "type": "void",
-              "params": [
-                {
-                  "name": "name",
-                  "type": "DOMString"
-                }
-              ]
-            }
-          ],
-          "exposed": "Window"
-        }
-      ],
       "properties": {},
       "exposed": "Window",
       "legacyWindowAlias": []
