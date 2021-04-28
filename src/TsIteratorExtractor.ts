@@ -163,7 +163,7 @@ export default class TsIteratorExtractor {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public [Symbol.iterator](): ${returnType} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  return awaitedIterator.iterateAttached(this)[Symbol.iterator]();`);
+        this.printer.printLine(`  return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }

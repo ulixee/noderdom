@@ -79,7 +79,7 @@ export default class TsStateMachinePrinter {
       this.printer.printLine(`awaitedPath: AwaitedPath;`);
       this.printer.printLine(`awaitedOptions: any;`);
     }
-    if (this.i.isNodeAttached || this.iteratorExtractor?.hasIterable()) {
+    if (this.i.isAwaitedNodePointer || this.iteratorExtractor?.hasIterable()) {
       this.printer.printLine(`createInstanceName: string;`);
       if (this.iteratorExtractor?.hasIterable() && !this.iteratorExtractor?.hasMaplikeSequence) {
         this.printer.printLine(`createIterableName: string;`);

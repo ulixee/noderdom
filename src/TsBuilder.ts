@@ -187,18 +187,17 @@ export default class TsBuilder {
     const { domType, buildType, pathsByBuildType, objectMetaByName } = this;
     const isBaseBuild = buildType === BuildType.base;
     const currentDir = isBaseBuild ? pathsByBuildType.base.officialKlasses : pathsByBuildType.impl.officialKlasses;
+    const awaitedNodeClasses = new Set(['Node', 'HTMLElement', 'XPathResult']);
 
     const codeModules = this.klasses.map(i => {
       const name = i.name;
 
-      const nodeAttachedClasses = ['Node', 'HTMLElement', 'XPathResult'];
-
-      if (nodeAttachedClasses.includes(name) || nodeAttachedClasses.includes(i.extends)) {
-        i.isNodeAttached = true;
+      if (awaitedNodeClasses.has(name) || awaitedNodeClasses.has(i.extends)) {
+        i.isAwaitedNodePointer = true;
       } else if (i.implements) {
         for (const impl of i.implements) {
-          if (nodeAttachedClasses.includes(impl)) {
-            i.isNodeAttached = true;
+          if (awaitedNodeClasses.has(impl)) {
+            i.isAwaitedNodePointer = true;
             break;
           }
         }
@@ -260,7 +259,7 @@ export default class TsBuilder {
     const options = { pathsByBuildType, currentDir, objectMetaByName, domType, buildType };
     const codeModules = Object.values(this.components.awaitedSupers).map(i => {
       if (i.implements) {
-        i.isNodeAttached = i.implements.includes('NodeIsolate') || i.implements.includes('HTMLCollectionBaseIsolate');
+        i.isAwaitedNodePointer = i.implements.includes('NodeIsolate') || i.implements.includes('HTMLCollectionBaseIsolate');
       }
       const tsBuildKlass = new TsBuildKlass(i, this.components, options);
       const code = tsBuildKlass.run();
