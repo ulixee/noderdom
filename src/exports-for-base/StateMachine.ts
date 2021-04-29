@@ -7,13 +7,13 @@ export default function StateMachine<IClass extends object, IProperties>() {
   }
 
   function setState(instance: IClass, properties: Partial<IProperties>): void {
+    if (proxyMap.has(instance)) {
+      instance = proxyMap.get(instance);
+    }
     const object: Record<string, any> = getState(instance);
     Object.entries(properties).forEach(([key, value]: [string, any]) => {
       object[key] = value;
     });
-    if (proxyMap.has(instance)) {
-      instance = proxyMap.get(instance);
-    }
     globalMap.set(instance, object);
   }
 

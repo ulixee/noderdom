@@ -80,7 +80,7 @@ function resolveConflicts(superInterfaces: Types.Interface[], components: Compon
       const overrides = createOverrides(type, components, definitions);
 
       definitions.forEach((definition, index) => {
-        const isolateInterface = components.awaitedIsolates[definition.klass];
+        const isolateInterface = components.awaitedIsolates[definition.klass] || components.mixins[definition.klass];
         if (type === 'property') {
           const properties = isolateInterface.properties!;
           // already processed
@@ -121,7 +121,8 @@ function resolveConflicts(superInterfaces: Types.Interface[], components: Compon
       });
 
       const printer = new Printer();
-      const relatedIsolate = components.awaitedIsolates[definitions[0].klass];
+      const klass = definitions[0].klass;
+      const relatedIsolate = components.awaitedIsolates[klass] || components.mixins[klass];
       const bodyPrinterOptions = {
         domType: DomType.standard,
         skipImplementation: true,

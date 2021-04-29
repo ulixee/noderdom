@@ -246,7 +246,7 @@
       klass.extra.hasEnabledMethods = hasEnabledMethods;
       klass.extra.hiddenPropertyCount = hiddenPropertyCount;
       klass.extra.hiddenMethodCount = hiddenMethodCount;
-      klass.meta.isEnabled = this.klassHasActiveItems(klass);
+      klass.meta.isEnabled = klass.meta.isEnabled || this.klassHasActiveItems(klass);
       this.updateReferences(klass, new Set(references), new Set(activeReferences));
     }
 

@@ -140,7 +140,7 @@ export interface Interface {
   iterator?: Iterator;
   legacyWindowAlias?: string[];
   legacyNamespace?: string;
-  isNodeAttached?: boolean;
+  isAwaitedNodePointer?: boolean;
   nested?: {
     interfaces: Interface[];
     enums: Enum[];

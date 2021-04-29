@@ -47,7 +47,7 @@ export default class TsBuildKlass {
     const bodyOptions = { domType: this.domType, buildType: this.buildType };
     this.bodyPrinter = new TsBodyPrinter(i, this.printer, components, bodyOptions);
 
-    if (this.bodyPrinter.iteratorExtractor.hasIterable()) this.i.isNodeAttached = true;
+    if (this.bodyPrinter.iteratorExtractor.hasIterable()) this.i.isAwaitedNodePointer = true;
   }
 
   public run() {
@@ -118,7 +118,7 @@ export default class TsBuildKlass {
     const typeParameterName = i.typeParameters && i.typeParameters[0] && i.typeParameters[0].name;
     const iClassName = typeParameterName ? `${toIType(i.name)}<${typeParameterName}>` : toIType(i.name);
     const implementsList = [iClassName];
-    if (this.i.isNodeAttached) {
+    if (this.i.isAwaitedNodePointer) {
       implementsList.push(`PromiseLike<${iClassName}>`);
     }
     this.printer.printLine(`return class ${className} ${extendsStr}implements ${implementsList.join(', ')} {`);
@@ -166,8 +166,8 @@ export default class TsBuildKlass {
       const handlerName = `${this.domType}Handler`;
       printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
 
-      if (this.i.isNodeAttached) {
-        printable.push(`export const nodeAttacher = new NodeAttacher<I${name}>(getState, setState, ${handlerName});`);
+      if (this.i.isAwaitedNodePointer) {
+        printable.push(`export const awaitedNodePointers = new AwaitedNodePointers<I${name}>(getState, setState, ${handlerName});`);
       }
       if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
         printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer(handlerName));
@@ -199,8 +199,8 @@ export default class TsBuildKlass {
     if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
       printable.push(`import AwaitedIterator from '${baseDir}/AwaitedIterator';`);
     }
-    if (this.i.isNodeAttached) {
-      printable.push(`import NodeAttacher from '${baseDir}/NodeAttacher';`);
+    if (this.i.isAwaitedNodePointer) {
+      printable.push(`import AwaitedNodePointers from '${baseDir}/AwaitedNodePointers';`);
     }
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;

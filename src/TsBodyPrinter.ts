@@ -168,7 +168,7 @@ export default class TsBodyPrinter {
         this.printer.printLine(
           `initializeConstantsAndProperties<${i.name}>(this, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
         );
-        if (this.i.isNodeAttached || this.iteratorExtractor.hasIterable()) {
+        if (this.i.isAwaitedNodePointer || this.iteratorExtractor.hasIterable()) {
           this.printer.printLine(`setState(this, {`);
           this.printer.increaseIndent();
           this.printer.printLine(`createInstanceName: 'create${i.name}',`);
@@ -300,7 +300,7 @@ export default class TsBodyPrinter {
     } else if (isAbstract) {
       this.printer.printLine(`const { awaitedPath, awaitedOptions } = getState(this);`);
       this.printer.printLine(
-        `return create${abstractClassCleaned}(awaitedPath.addProperty('${property.name}'), awaitedOptions);`,
+        `return create${abstractClassCleaned}(awaitedPath.addProperty(this, '${property.name}'), awaitedOptions);`,
       );
       this.referencedCreateMethods.add(abstractClassCleaned);
     } else {
@@ -353,7 +353,7 @@ export default class TsBodyPrinter {
           const returnClass = returnType.replace(/^I([A-Z])/, '$1');
           this.printer.printLine(`const { awaitedPath, awaitedOptions } = getState(this);`);
           this.printer.printLine(
-            `return create${returnClass}(awaitedPath.addMethod('${method.name}', ${argNames}), awaitedOptions);`,
+            `return create${returnClass}(awaitedPath.addMethod(this, '${method.name}', ${argNames}), awaitedOptions);`,
           );
           this.referencedCreateMethods.add(returnClass);
         } else {
@@ -373,14 +373,14 @@ export default class TsBodyPrinter {
   }
 
   public printPromiseLike() {
-    if (this.buildType !== BuildType.base || this.skipImplementation || !this.i.isNodeAttached) return;
+    if (this.buildType !== BuildType.base || this.skipImplementation || !this.i.isAwaitedNodePointer) return;
     this.printer.printSeparatorLine();
 
     this.printer.printLine(
       `public then<TResult1 = I${this.i.name}, TResult2 = never>(onfulfilled?: ((value: I${this.i.name}) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {`,
     );
     this.printer.increaseIndent();
-    this.printer.printLine(`return nodeAttacher.attach(this).then(onfulfilled, onrejected);`);
+    this.printer.printLine(`return awaitedNodePointers.create(this).then(onfulfilled, onrejected);`);
     this.printer.decreaseIndent();
     this.printer.printLine('}');
   }
