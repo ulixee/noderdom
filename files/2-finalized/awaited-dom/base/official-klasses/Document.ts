@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IDocument, INode, IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
@@ -16,7 +16,7 @@ import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEva
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IDocument, IDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocument>('Document', getState, setState);
-export const nodeAttacher = new NodeAttacher<IDocument>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IDocument>(getState, setState, awaitedHandler);
 
 export function DocumentGenerator(Node: Constructable<INode>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
   const Parent = (ClassMixer(Node, [DocumentOrShadowRoot, NonElementParentNode, ParentNode, XPathEvaluatorBase]) as unknown) as Constructable<INode & IDocumentOrShadowRoot & INonElementParentNode & IParentNode & IXPathEvaluatorBase>;
@@ -187,7 +187,7 @@ export function DocumentGenerator(Node: Constructable<INode>, DocumentOrShadowRo
     }
 
     public then<TResult1 = IDocument, TResult2 = never>(onfulfilled?: ((value: IDocument) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

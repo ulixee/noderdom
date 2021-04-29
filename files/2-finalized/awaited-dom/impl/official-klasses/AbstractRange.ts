@@ -11,11 +11,11 @@ const AbstractRangeBaseClass = AbstractRangeGenerator();
 export default class AbstractRange extends AbstractRangeBaseClass implements IAbstractRange {
   public get endContainer(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('endContainer'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'endContainer'), awaitedOptions);
   }
 
   public get startContainer(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('startContainer'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'startContainer'), awaitedOptions);
   }
 }

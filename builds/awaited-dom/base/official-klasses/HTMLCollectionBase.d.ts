@@ -1,12 +1,12 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLCollectionBase } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 export declare const getState: (instance: IHTMLCollectionBase) => IHTMLCollectionBaseProperties, setState: (instance: IHTMLCollectionBase, properties: Partial<IHTMLCollectionBaseProperties>) => void, recordProxy: (proxy: IHTMLCollectionBase, instance: IHTMLCollectionBase) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLCollectionBase>;
-export declare const nodeAttacher: NodeAttacher<IHTMLCollectionBase>;
+export declare const nodeFactory: NodeFactory<IHTMLCollectionBase>;
 export declare const awaitedIterator: AwaitedIterator<IHTMLCollectionBase, ISuperElement>;
 export declare function HTMLCollectionBaseGenerator(): {
     new (): {

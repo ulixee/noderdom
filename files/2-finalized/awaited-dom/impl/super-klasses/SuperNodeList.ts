@@ -18,6 +18,6 @@ export default class SuperNodeList extends SuperNodeListBaseClass implements ISu
 
   public item(index: number): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addMethod('item', index), awaitedOptions);
+    return createSuperNode(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
   }
 }

@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 import { IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate } from '../interfaces/isolate';
 import { IHTMLCollectionBaseIsolateProperties } from '../isolate-mixins/HTMLCollectionBaseIsolate';
@@ -10,7 +10,7 @@ import { IHTMLCollectionIsolateProperties } from '../isolate-mixins/HTMLCollecti
 import { IHTMLOptionsCollectionIsolateProperties } from '../isolate-mixins/HTMLOptionsCollectionIsolate';
 export declare const getState: (instance: ISuperHTMLCollection) => ISuperHTMLCollectionProperties, setState: (instance: ISuperHTMLCollection, properties: Partial<ISuperHTMLCollectionProperties>) => void, recordProxy: (proxy: ISuperHTMLCollection, instance: ISuperHTMLCollection) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperHTMLCollection>;
-export declare const nodeAttacher: NodeAttacher<ISuperHTMLCollection>;
+export declare const nodeFactory: NodeFactory<ISuperHTMLCollection>;
 export declare const awaitedIterator: AwaitedIterator<ISuperHTMLCollection, ISuperElement>;
 export declare function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Constructable<IHTMLCollectionBaseIsolate>, HTMLCollectionIsolate: Constructable<IHTMLCollectionIsolate>, HTMLOptionsCollectionIsolate: Constructable<IHTMLOptionsCollectionIsolate>): {
     new (): {

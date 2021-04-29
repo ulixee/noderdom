@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLCollectionI
 export default class HTMLCollectionIsolate extends HTMLCollectionIsolateBase implements IHTMLCollectionIsolate {
   public namedItem(name: string): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addMethod('namedItem', name), awaitedOptions);
+    return createSuperElement(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
   }
 }

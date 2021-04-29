@@ -18,6 +18,6 @@ export default class Attr extends AttrBaseClass implements IAttr {
 
   public get ownerElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'ownerElement'), awaitedOptions);
   }
 }

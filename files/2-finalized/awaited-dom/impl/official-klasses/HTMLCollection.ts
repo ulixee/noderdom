@@ -18,6 +18,6 @@ export default class HTMLCollection extends HTMLCollectionBaseClass implements I
 
   public namedItem(name: string): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addMethod('namedItem', name), awaitedOptions);
+    return createSuperElement(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
   }
 }

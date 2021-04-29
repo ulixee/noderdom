@@ -167,7 +167,7 @@ export default class TsBuildKlass {
       printable.push(`export const ${handlerName} = new ${handlerClassName}<I${name}>('${name}', getState, setState);`);
 
       if (this.i.isAwaitedNodePointer) {
-        printable.push(`export const awaitedNodePointers = new AwaitedNodePointers<I${name}>(getState, setState, ${handlerName});`);
+        printable.push(`export const nodeFactory = new NodeFactory<I${name}>(getState, setState, ${handlerName});`);
       }
       if (this.bodyPrinter.iteratorExtractor.hasIterable()) {
         printable.push(this.bodyPrinter.iteratorExtractor.getIteratorInitializer(handlerName));
@@ -200,7 +200,7 @@ export default class TsBuildKlass {
       printable.push(`import AwaitedIterator from '${baseDir}/AwaitedIterator';`);
     }
     if (this.i.isAwaitedNodePointer) {
-      printable.push(`import AwaitedNodePointers from '${baseDir}/AwaitedNodePointers';`);
+      printable.push(`import NodeFactory from '${baseDir}/NodeFactory';`);
     }
 
     const { currentDir, objectMetaByName, pathsByBuildType } = this;

@@ -20,7 +20,7 @@ class SuperNodeList extends SuperNodeListBaseClass {
     // methods
     item(index) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addMethod('item', index), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
 }
 exports.default = SuperNodeList;

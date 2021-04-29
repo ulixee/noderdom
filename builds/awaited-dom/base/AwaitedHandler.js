@@ -14,25 +14,25 @@ class AwaitedHandler {
         var _a;
         return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.construct(this, instance, args);
     }
-    getProperty(instance, name, hasNullDefault = false) {
+    async getProperty(instance, name, hasNullDefault = false) {
         var _a;
-        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.getProperty(this, instance, name, hasNullDefault);
+        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.getProperty(this, instance, name, hasNullDefault));
     }
     setProperty(instance, name, value) {
         var _a;
         return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.setProperty(this, instance, name, value);
     }
-    loadState(instance, properties) {
+    async createNodePointer(instance) {
         var _a;
-        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.loadState(this, instance, properties);
+        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.createNodePointer(this, instance));
     }
-    runMethod(instance, name, args) {
+    async runMethod(instance, name, args) {
         var _a;
-        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runMethod(this, instance, name, args);
+        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runMethod(this, instance, name, args));
     }
-    runStatic(klass, name, args) {
+    async runStatic(klass, name, args) {
         var _a;
-        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runStatic(this, klass, name, args);
+        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runStatic(this, klass, name, args));
     }
 }
 exports.default = AwaitedHandler;

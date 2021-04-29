@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLLegendEleme
 export default class HTMLLegendElementIsolate extends HTMLLegendElementIsolateBase implements IHTMLLegendElementIsolate {
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 }

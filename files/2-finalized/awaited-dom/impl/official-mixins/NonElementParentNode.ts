@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<INonElementParen
 export default class NonElementParentNode extends NonElementParentNodeBase implements INonElementParentNode {
   public getElementById(elementId: string): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addMethod('getElementById', elementId), awaitedOptions);
+    return createSuperElement(awaitedPath.addMethod(this, 'getElementById', elementId), awaitedOptions);
   }
 }

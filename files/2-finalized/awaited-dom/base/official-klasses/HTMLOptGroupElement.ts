@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLOptGroupElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLOptGroupElement, IHTMLOptGroupElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptGroupElement>('HTMLOptGroupElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLOptGroupElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLOptGroupElement>(getState, setState, awaitedHandler);
 
 export function HTMLOptGroupElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLOptGroupElement extends HTMLElement implements IHTMLOptGroupElement, PromiseLike<IHTMLOptGroupElement> {
@@ -33,7 +33,7 @@ export function HTMLOptGroupElementGenerator(HTMLElement: Constructable<IHTMLEle
     }
 
     public then<TResult1 = IHTMLOptGroupElement, TResult2 = never>(onfulfilled?: ((value: IHTMLOptGroupElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

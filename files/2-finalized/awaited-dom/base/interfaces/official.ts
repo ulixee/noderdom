@@ -509,6 +509,24 @@ export interface IHTMLFormControlsCollection extends IHTMLCollectionBase {
 
 }
 
+// HTMLHyperlinkElementUtils //////////
+
+export interface IHTMLHyperlinkElementUtils {
+  readonly hash: Promise<string>;
+  readonly host: Promise<string> | ISuperElement;
+  readonly hostname: Promise<string>;
+  readonly href: Promise<string>;
+  readonly origin: Promise<string>;
+  readonly password: Promise<string>;
+  readonly pathname: Promise<string>;
+  readonly port: Promise<string>;
+  readonly protocol: Promise<string>;
+  readonly search: Promise<string>;
+  readonly username: Promise<string>;
+
+  toString(): Promise<string>;
+}
+
 // HTMLMediaElement //////////
 
 export interface IHTMLMediaElement extends IHTMLElement {
@@ -1049,7 +1067,7 @@ export interface IXPathResult {
 
 // HTMLAnchorElement //////////
 
-export interface IHTMLAnchorElement extends IHTMLElement, IHTMLElement {
+export interface IHTMLAnchorElement extends IHTMLElement, IHTMLElement, IHTMLHyperlinkElementUtils {
   readonly download: Promise<string>;
   readonly hreflang: Promise<string>;
   readonly referrerPolicy: Promise<string>;
@@ -1062,7 +1080,7 @@ export interface IHTMLAnchorElement extends IHTMLElement, IHTMLElement {
 
 // HTMLAreaElement //////////
 
-export interface IHTMLAreaElement extends IHTMLElement, IHTMLElement {
+export interface IHTMLAreaElement extends IHTMLElement, IHTMLElement, IHTMLHyperlinkElementUtils {
   readonly alt: Promise<string>;
   readonly coords: Promise<string>;
   readonly download: Promise<string>;

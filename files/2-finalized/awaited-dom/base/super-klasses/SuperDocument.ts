@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { IDocumentIsolate, IHTMLDocumentIsolate, INodeIsolate } from '../interfaces/isolate';
 import { IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
@@ -19,7 +19,7 @@ import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEva
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperDocument>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<ISuperDocument>(getState, setState, awaitedHandler);
 
 export function SuperDocumentGenerator(DocumentIsolate: Constructable<IDocumentIsolate>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, HTMLDocumentIsolate: Constructable<IHTMLDocumentIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
   const Parent = (ClassMixer(DocumentIsolate, [DocumentOrShadowRoot, HTMLDocumentIsolate, NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase]) as unknown) as Constructable<IDocumentIsolate & IDocumentOrShadowRoot & IHTMLDocumentIsolate & INodeIsolate & INonElementParentNode & IParentNode & IXPathEvaluatorBase>;
@@ -190,7 +190,7 @@ export function SuperDocumentGenerator(DocumentIsolate: Constructable<IDocumentI
     }
 
     public then<TResult1 = ISuperDocument, TResult2 = never>(onfulfilled?: ((value: ISuperDocument) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

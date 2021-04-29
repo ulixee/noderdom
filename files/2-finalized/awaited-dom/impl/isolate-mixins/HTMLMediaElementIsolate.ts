@@ -10,53 +10,53 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLMediaElemen
 export default class HTMLMediaElementIsolate extends HTMLMediaElementIsolateBase implements IHTMLMediaElementIsolate {
   public get audioTracks(): IAudioTrackList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createAudioTrackList(awaitedPath.addProperty('audioTracks'), awaitedOptions);
+    return createAudioTrackList(awaitedPath.addProperty(this, 'audioTracks'), awaitedOptions);
   }
 
   public get buffered(): ITimeRanges {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createTimeRanges(awaitedPath.addProperty('buffered'), awaitedOptions);
+    return createTimeRanges(awaitedPath.addProperty(this, 'buffered'), awaitedOptions);
   }
 
   public get controlsList(): IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('controlsList'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'controlsList'), awaitedOptions);
   }
 
   public get error(): IMediaError {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createMediaError(awaitedPath.addProperty('error'), awaitedOptions);
+    return createMediaError(awaitedPath.addProperty(this, 'error'), awaitedOptions);
   }
 
   public get mediaKeys(): IMediaKeys {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createMediaKeys(awaitedPath.addProperty('mediaKeys'), awaitedOptions);
+    return createMediaKeys(awaitedPath.addProperty(this, 'mediaKeys'), awaitedOptions);
   }
 
   public get played(): ITimeRanges {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createTimeRanges(awaitedPath.addProperty('played'), awaitedOptions);
+    return createTimeRanges(awaitedPath.addProperty(this, 'played'), awaitedOptions);
   }
 
   public get seekable(): ITimeRanges {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createTimeRanges(awaitedPath.addProperty('seekable'), awaitedOptions);
+    return createTimeRanges(awaitedPath.addProperty(this, 'seekable'), awaitedOptions);
   }
 
   public get textTracks(): ITextTrackList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createTextTrackList(awaitedPath.addProperty('textTracks'), awaitedOptions);
+    return createTextTrackList(awaitedPath.addProperty(this, 'textTracks'), awaitedOptions);
   }
 
   public get videoTracks(): IVideoTrackList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createVideoTrackList(awaitedPath.addProperty('videoTracks'), awaitedOptions);
+    return createVideoTrackList(awaitedPath.addProperty(this, 'videoTracks'), awaitedOptions);
   }
 
   // methods
 
   public captureStream(): IMediaStream {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createMediaStream(awaitedPath.addMethod('captureStream', ), awaitedOptions);
+    return createMediaStream(awaitedPath.addMethod(this, 'captureStream', ), awaitedOptions);
   }
 }

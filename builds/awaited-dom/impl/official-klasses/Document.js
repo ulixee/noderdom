@@ -23,80 +23,80 @@ class Document extends DocumentBaseClass {
     // properties
     get anchors() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('anchors'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'anchors'), awaitedOptions);
     }
     get body() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLElement(awaitedPath.addProperty('body'), awaitedOptions);
+        return create_1.createSuperHTMLElement(awaitedPath.addProperty(this, 'body'), awaitedOptions);
     }
     get doctype() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDocumentType(awaitedPath.addProperty('doctype'), awaitedOptions);
+        return create_1.createDocumentType(awaitedPath.addProperty(this, 'doctype'), awaitedOptions);
     }
     get documentElement() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('documentElement'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'documentElement'), awaitedOptions);
     }
     get embeds() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('embeds'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'embeds'), awaitedOptions);
     }
     get featurePolicy() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createFeaturePolicy(awaitedPath.addProperty('featurePolicy'), awaitedOptions);
+        return create_1.createFeaturePolicy(awaitedPath.addProperty(this, 'featurePolicy'), awaitedOptions);
     }
     get forms() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('forms'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'forms'), awaitedOptions);
     }
     get head() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLHeadElement(awaitedPath.addProperty('head'), awaitedOptions);
+        return create_1.createHTMLHeadElement(awaitedPath.addProperty(this, 'head'), awaitedOptions);
     }
     get images() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('images'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'images'), awaitedOptions);
     }
     get implementation() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMImplementation(awaitedPath.addProperty('implementation'), awaitedOptions);
+        return create_1.createDOMImplementation(awaitedPath.addProperty(this, 'implementation'), awaitedOptions);
     }
     get links() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('links'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'links'), awaitedOptions);
     }
     get location() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createLocation(awaitedPath.addProperty('location'), awaitedOptions);
+        return create_1.createLocation(awaitedPath.addProperty(this, 'location'), awaitedOptions);
     }
     get plugins() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('plugins'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'plugins'), awaitedOptions);
     }
     get scripts() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('scripts'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'scripts'), awaitedOptions);
     }
     get scrollingElement() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('scrollingElement'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'scrollingElement'), awaitedOptions);
     }
     // methods
     getElementsByClassName(classNames) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod('getElementsByClassName', classNames), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByClassName', classNames), awaitedOptions);
     }
     getElementsByName(elementName) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addMethod('getElementsByName', elementName), awaitedOptions);
+        return create_1.createSuperNodeList(awaitedPath.addMethod(this, 'getElementsByName', elementName), awaitedOptions);
     }
     getElementsByTagName(qualifiedName) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagName', qualifiedName), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagName', qualifiedName), awaitedOptions);
     }
     getElementsByTagNameNS(namespace, localName) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagNameNS', namespace, localName), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagNameNS', namespace, localName), awaitedOptions);
     }
 }
 exports.default = Document;

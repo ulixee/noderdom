@@ -19,6 +19,6 @@ export default class ShadowRoot extends ShadowRootBaseClass implements IShadowRo
 
   public get host(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('host'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'host'), awaitedOptions);
   }
 }

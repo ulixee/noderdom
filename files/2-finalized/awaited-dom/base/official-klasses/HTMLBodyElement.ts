@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLBodyElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLBodyElement, IHTMLBodyElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLBodyElement>('HTMLBodyElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLBodyElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLBodyElement>(getState, setState, awaitedHandler);
 
 export function HTMLBodyElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLBodyElement extends HTMLElement implements IHTMLBodyElement, PromiseLike<IHTMLBodyElement> {
@@ -49,7 +49,7 @@ export function HTMLBodyElementGenerator(HTMLElement: Constructable<IHTMLElement
     }
 
     public then<TResult1 = IHTMLBodyElement, TResult2 = never>(onfulfilled?: ((value: IHTMLBodyElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

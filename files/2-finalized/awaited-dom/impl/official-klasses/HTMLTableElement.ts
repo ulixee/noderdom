@@ -18,26 +18,26 @@ export default class HTMLTableElement extends HTMLTableElementBaseClass implemen
 
   public get caption(): IHTMLTableCaptionElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLTableCaptionElement(awaitedPath.addProperty('caption'), awaitedOptions);
+    return createHTMLTableCaptionElement(awaitedPath.addProperty(this, 'caption'), awaitedOptions);
   }
 
   public get rows(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('rows'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'rows'), awaitedOptions);
   }
 
   public get tBodies(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('tBodies'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'tBodies'), awaitedOptions);
   }
 
   public get tFoot(): IHTMLTableSectionElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLTableSectionElement(awaitedPath.addProperty('tFoot'), awaitedOptions);
+    return createHTMLTableSectionElement(awaitedPath.addProperty(this, 'tFoot'), awaitedOptions);
   }
 
   public get tHead(): IHTMLTableSectionElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLTableSectionElement(awaitedPath.addProperty('tHead'), awaitedOptions);
+    return createHTMLTableSectionElement(awaitedPath.addProperty(this, 'tHead'), awaitedOptions);
   }
 }

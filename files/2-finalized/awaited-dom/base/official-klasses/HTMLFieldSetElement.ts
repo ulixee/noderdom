@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLFieldSetElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLFieldSetElement, IHTMLFieldSetElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFieldSetElement>('HTMLFieldSetElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLFieldSetElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLFieldSetElement>(getState, setState, awaitedHandler);
 
 export function HTMLFieldSetElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLFieldSetElement extends HTMLElement implements IHTMLFieldSetElement, PromiseLike<IHTMLFieldSetElement> {
@@ -68,7 +68,7 @@ export function HTMLFieldSetElementGenerator(HTMLElement: Constructable<IHTMLEle
     }
 
     public then<TResult1 = IHTMLFieldSetElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFieldSetElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

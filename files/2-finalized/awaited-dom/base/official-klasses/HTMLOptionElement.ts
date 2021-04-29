@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLOptionElement, IHTMLElement, IHTMLFormElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionElement, IHTMLOptionElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptionElement>('HTMLOptionElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLOptionElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLOptionElement>(getState, setState, awaitedHandler);
 
 export function HTMLOptionElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLOptionElement extends HTMLElement implements IHTMLOptionElement, PromiseLike<IHTMLOptionElement> {
@@ -57,7 +57,7 @@ export function HTMLOptionElementGenerator(HTMLElement: Constructable<IHTMLEleme
     }
 
     public then<TResult1 = IHTMLOptionElement, TResult2 = never>(onfulfilled?: ((value: IHTMLOptionElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

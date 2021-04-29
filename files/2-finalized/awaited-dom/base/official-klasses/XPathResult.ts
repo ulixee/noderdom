@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IXPathResult } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IXPathResult, IXPathResultProperties>();
 export const awaitedHandler = new AwaitedHandler<IXPathResult>('XPathResult', getState, setState);
-export const nodeAttacher = new NodeAttacher<IXPathResult>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IXPathResult>(getState, setState, awaitedHandler);
 
 export function XPathResultGenerator() {
   return class XPathResult implements IXPathResult, PromiseLike<IXPathResult> {
@@ -83,7 +83,7 @@ export function XPathResultGenerator() {
     }
 
     public then<TResult1 = IXPathResult, TResult2 = never>(onfulfilled?: ((value: IXPathResult) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

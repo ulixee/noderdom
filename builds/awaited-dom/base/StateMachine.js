@@ -7,13 +7,13 @@ function StateMachine() {
         proxyMap.set(proxy, instance);
     }
     function setState(instance, properties) {
+        if (proxyMap.has(instance)) {
+            instance = proxyMap.get(instance);
+        }
         const object = getState(instance);
         Object.entries(properties).forEach(([key, value]) => {
             object[key] = value;
         });
-        if (proxyMap.has(instance)) {
-            instance = proxyMap.get(instance);
-        }
         globalMap.set(instance, object);
     }
     function getState(instance) {

@@ -1,11 +1,11 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IDOMRectList, IDOMRect } from '../interfaces/official';
 export declare const getState: (instance: IDOMRectList) => IDOMRectListProperties, setState: (instance: IDOMRectList, properties: Partial<IDOMRectListProperties>) => void, recordProxy: (proxy: IDOMRectList, instance: IDOMRectList) => void;
 export declare const awaitedHandler: AwaitedHandler<IDOMRectList>;
-export declare const nodeAttacher: NodeAttacher<IDOMRectList>;
+export declare const nodeFactory: NodeFactory<IDOMRectList>;
 export declare const awaitedIterator: AwaitedIterator<IDOMRectList, IDOMRect>;
 export declare function DOMRectListGenerator(): {
     new (): {

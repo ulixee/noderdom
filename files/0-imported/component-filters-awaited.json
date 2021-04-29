@@ -3862,9 +3862,47 @@
     "methodsByName": {}
   },
   "HTMLHyperlinkElementUtils": {
-    "isEnabled": false,
-    "propertiesByName": {},
-    "methodsByName": {}
+    "isEnabled": true,
+    "propertiesByName": {
+      "hash": {
+        "isEnabled": true
+      },
+      "host": {
+        "isEnabled": true
+      },
+      "hostname": {
+        "isEnabled": true
+      },
+      "href": {
+        "isEnabled": true
+      },
+      "origin": {
+        "isEnabled": true
+      },
+      "password": {
+        "isEnabled": true
+      },
+      "pathname": {
+        "isEnabled": true
+      },
+      "port": {
+        "isEnabled": true
+      },
+      "protocol": {
+        "isEnabled": true
+      },
+      "search": {
+        "isEnabled": true
+      },
+      "username": {
+        "isEnabled": true
+      }
+    },
+    "methodsByName": {
+      "toString": {
+        "isEnabled": true
+      }
+    }
   },
   "LinkStyle": {
     "isEnabled": true,

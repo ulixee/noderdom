@@ -17,6 +17,6 @@ export default class Request extends RequestBaseClass implements IRequest {
 
   public get headers(): IHeaders {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHeaders(awaitedPath.addProperty('headers'), awaitedOptions);
+    return createHeaders(awaitedPath.addProperty(this, 'headers'), awaitedOptions);
   }
 }

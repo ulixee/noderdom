@@ -1,11 +1,11 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { INamedNodeMap, IAttr } from '../interfaces/official';
 export declare const getState: (instance: INamedNodeMap) => INamedNodeMapProperties, setState: (instance: INamedNodeMap, properties: Partial<INamedNodeMapProperties>) => void, recordProxy: (proxy: INamedNodeMap, instance: INamedNodeMap) => void;
 export declare const awaitedHandler: AwaitedHandler<INamedNodeMap>;
-export declare const nodeAttacher: NodeAttacher<INamedNodeMap>;
+export declare const nodeFactory: NodeFactory<INamedNodeMap>;
 export declare const awaitedIterator: AwaitedIterator<INamedNodeMap, IAttr>;
 export declare function NamedNodeMapGenerator(): {
     new (): {

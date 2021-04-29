@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLAreaElement
 export default class HTMLAreaElementIsolate extends HTMLAreaElementIsolateBase implements IHTMLAreaElementIsolate {
   public get relList(): IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('relList'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
   }
 }

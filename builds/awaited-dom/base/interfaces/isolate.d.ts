@@ -198,7 +198,7 @@ export interface IDocumentFragmentIsolate {
 }
 export interface IShadowRootIsolate {
     readonly delegatesFocus: Promise<boolean>;
-    readonly host: ISuperElement;
+    readonly host: Promise<string> | ISuperElement;
     readonly innerHTML: Promise<string>;
     readonly mode: Promise<IShadowRootMode>;
 }

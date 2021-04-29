@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<INodeListIsolate
 export default class NodeListIsolate extends NodeListIsolateBase implements INodeListIsolate {
   public item(index: number): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addMethod('item', index), awaitedOptions);
+    return createSuperNode(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
   }
 }

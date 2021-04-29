@@ -10,6 +10,6 @@ const VideoTrackListBaseClass = VideoTrackListGenerator();
 export default class VideoTrackList extends VideoTrackListBaseClass implements IVideoTrackList {
   public getTrackById(id: string): IVideoTrack {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createVideoTrack(awaitedPath.addMethod('getTrackById', id), awaitedOptions);
+    return createVideoTrack(awaitedPath.addMethod(this, 'getTrackById', id), awaitedOptions);
   }
 }

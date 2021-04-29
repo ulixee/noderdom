@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLVideoElemen
 export default class HTMLVideoElementIsolate extends HTMLVideoElementIsolateBase implements IHTMLVideoElementIsolate {
   public getVideoPlaybackQuality(): IVideoPlaybackQuality {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createVideoPlaybackQuality(awaitedPath.addMethod('getVideoPlaybackQuality', ), awaitedOptions);
+    return createVideoPlaybackQuality(awaitedPath.addMethod(this, 'getVideoPlaybackQuality', ), awaitedOptions);
   }
 }

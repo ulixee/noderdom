@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLTextAreaElement, IHTMLElement, IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLTextAreaElement, IHTMLTextAreaElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTextAreaElement>('HTMLTextAreaElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLTextAreaElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLTextAreaElement>(getState, setState, awaitedHandler);
 
 export function HTMLTextAreaElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLTextAreaElement extends HTMLElement implements IHTMLTextAreaElement, PromiseLike<IHTMLTextAreaElement> {
@@ -152,7 +152,7 @@ export function HTMLTextAreaElementGenerator(HTMLElement: Constructable<IHTMLEle
     }
 
     public then<TResult1 = IHTMLTextAreaElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTextAreaElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

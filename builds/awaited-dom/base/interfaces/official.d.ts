@@ -339,6 +339,20 @@ export interface IHTMLDocument extends IDocument {
 export interface IHTMLFormControlsCollection extends IHTMLCollectionBase {
     namedItem(name: string): Promise<IRadioNodeList | ISuperElement | null>;
 }
+export interface IHTMLHyperlinkElementUtils {
+    readonly hash: Promise<string>;
+    readonly host: Promise<string> | ISuperElement;
+    readonly hostname: Promise<string>;
+    readonly href: Promise<string>;
+    readonly origin: Promise<string>;
+    readonly password: Promise<string>;
+    readonly pathname: Promise<string>;
+    readonly port: Promise<string>;
+    readonly protocol: Promise<string>;
+    readonly search: Promise<string>;
+    readonly username: Promise<string>;
+    toString(): Promise<string>;
+}
 export interface IHTMLMediaElement extends IHTMLElement {
     readonly HAVE_CURRENT_DATA: number;
     readonly HAVE_ENOUGH_DATA: number;
@@ -711,7 +725,7 @@ export interface IXPathResult {
     iterateNext(): ISuperNode;
     snapshotItem(index: number): ISuperNode;
 }
-export interface IHTMLAnchorElement extends IHTMLElement, IHTMLElement {
+export interface IHTMLAnchorElement extends IHTMLElement, IHTMLElement, IHTMLHyperlinkElementUtils {
     readonly download: Promise<string>;
     readonly hreflang: Promise<string>;
     readonly referrerPolicy: Promise<string>;
@@ -721,7 +735,7 @@ export interface IHTMLAnchorElement extends IHTMLElement, IHTMLElement {
     readonly text: Promise<string>;
     readonly type: Promise<string>;
 }
-export interface IHTMLAreaElement extends IHTMLElement, IHTMLElement {
+export interface IHTMLAreaElement extends IHTMLElement, IHTMLElement, IHTMLHyperlinkElementUtils {
     readonly alt: Promise<string>;
     readonly coords: Promise<string>;
     readonly download: Promise<string>;

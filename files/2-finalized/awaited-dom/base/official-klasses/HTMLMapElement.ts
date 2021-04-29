@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLMapElement, IHTMLElement } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLMapElement, IHTMLMapElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMapElement>('HTMLMapElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLMapElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLMapElement>(getState, setState, awaitedHandler);
 
 export function HTMLMapElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLMapElement extends HTMLElement implements IHTMLMapElement, PromiseLike<IHTMLMapElement> {
@@ -34,7 +34,7 @@ export function HTMLMapElementGenerator(HTMLElement: Constructable<IHTMLElement>
     }
 
     public then<TResult1 = IHTMLMapElement, TResult2 = never>(onfulfilled?: ((value: IHTMLMapElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

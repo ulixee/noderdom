@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IAttr, INode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
@@ -11,7 +11,7 @@ import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IAttr, IAttrProperties>();
 export const awaitedHandler = new AwaitedHandler<IAttr>('Attr', getState, setState);
-export const nodeAttacher = new NodeAttacher<IAttr>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IAttr>(getState, setState, awaitedHandler);
 
 export function AttrGenerator(Node: Constructable<INode>) {
   return class Attr extends Node implements IAttr, PromiseLike<IAttr> {
@@ -54,7 +54,7 @@ export function AttrGenerator(Node: Constructable<INode>) {
     }
 
     public then<TResult1 = IAttr, TResult2 = never>(onfulfilled?: ((value: IAttr) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

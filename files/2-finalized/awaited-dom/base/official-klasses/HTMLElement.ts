@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLElement, IElement, IElementCSSInlineStyle, IElementContentEditable, IHTMLOrSVGElement } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { IElementProperties, ElementPropertyKeys, ElementConstantKeys } from './Element';
@@ -15,7 +15,7 @@ import { IHTMLOrSVGElementProperties, HTMLOrSVGElementPropertyKeys, HTMLOrSVGEle
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLElement, IHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLElement>('HTMLElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLElement>(getState, setState, awaitedHandler);
 
 export function HTMLElementGenerator(Element: Constructable<IElement>, ElementCSSInlineStyle: Constructable<IElementCSSInlineStyle>, ElementContentEditable: Constructable<IElementContentEditable>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>) {
   const Parent = (ClassMixer(Element, [ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement]) as unknown) as Constructable<IElement & IElementCSSInlineStyle & IElementContentEditable & IHTMLOrSVGElement>;
@@ -102,7 +102,7 @@ export function HTMLElementGenerator(Element: Constructable<IElement>, ElementCS
     }
 
     public then<TResult1 = IHTMLElement, TResult2 = never>(onfulfilled?: ((value: IHTMLElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

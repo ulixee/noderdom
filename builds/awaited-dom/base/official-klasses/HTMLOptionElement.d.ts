@@ -1,12 +1,12 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLOptionElement, IHTMLElement, IHTMLFormElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLOptionElement) => IHTMLOptionElementProperties, setState: (instance: IHTMLOptionElement, properties: Partial<IHTMLOptionElementProperties>) => void, recordProxy: (proxy: IHTMLOptionElement, instance: IHTMLOptionElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLOptionElement>;
-export declare const nodeAttacher: NodeAttacher<IHTMLOptionElement>;
+export declare const nodeFactory: NodeFactory<IHTMLOptionElement>;
 export declare function HTMLOptionElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
     new (): {
         readonly defaultSelected: Promise<boolean>;

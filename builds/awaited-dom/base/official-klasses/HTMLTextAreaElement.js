@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HTMLTextAreaElementConstantKeys = exports.HTMLTextAreaElementPropertyKeys = exports.HTMLTextAreaElementGenerator = exports.nodeAttacher = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.HTMLTextAreaElementConstantKeys = exports.HTMLTextAreaElementPropertyKeys = exports.HTMLTextAreaElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
-const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
+const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const HTMLElement_1 = require("./HTMLElement");
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLTextAreaElement', exports.getState, exports.setState);
-exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
+exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLTextAreaElementGenerator(HTMLElement) {
     return class HTMLTextAreaElement extends HTMLElement {
         constructor() {
@@ -119,7 +119,7 @@ function HTMLTextAreaElementGenerator(HTMLElement) {
             return exports.awaitedHandler.runMethod(this, 'setSelectionRange', [start, end, direction]);
         }
         then(onfulfilled, onrejected) {
-            return exports.nodeAttacher.attach(this).then(onfulfilled, onrejected);
+            return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
     };
 }

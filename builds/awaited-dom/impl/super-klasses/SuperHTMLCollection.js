@@ -21,7 +21,7 @@ class SuperHTMLCollection extends SuperHTMLCollectionBaseClass {
     // methods
     namedItem(name) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod('namedItem', name), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
     }
 }
 exports.default = SuperHTMLCollection;

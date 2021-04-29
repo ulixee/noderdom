@@ -39,6 +39,7 @@ import HTMLHRElementIsolate from '../isolate-mixins/HTMLHRElementIsolate';
 import HTMLHeadElementIsolate from '../isolate-mixins/HTMLHeadElementIsolate';
 import HTMLHeadingElementIsolate from '../isolate-mixins/HTMLHeadingElementIsolate';
 import HTMLHtmlElementIsolate from '../isolate-mixins/HTMLHtmlElementIsolate';
+import HTMLHyperlinkElementUtils from '../official-mixins/HTMLHyperlinkElementUtils';
 import HTMLIFrameElementIsolate from '../isolate-mixins/HTMLIFrameElementIsolate';
 import HTMLImageElementIsolate from '../isolate-mixins/HTMLImageElementIsolate';
 import HTMLInputElementIsolate from '../isolate-mixins/HTMLInputElementIsolate';
@@ -92,7 +93,7 @@ import XPathEvaluatorBase from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ISuperNode, ISuperNodeProperties>();
-const SuperNodeBaseClass = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentFragmentIsolate, DocumentIsolate, DocumentOrShadowRoot, DocumentTypeIsolate, ElementCSSInlineStyle, ElementContentEditable, ElementIsolate, HTMLAnchorElementIsolate, HTMLAreaElementIsolate, HTMLAudioElementIsolate, HTMLBRElementIsolate, HTMLBaseElementIsolate, HTMLBodyElementIsolate, HTMLButtonElementIsolate, HTMLCanvasElementIsolate, HTMLDListElementIsolate, HTMLDataElementIsolate, HTMLDataListElementIsolate, HTMLDetailsElementIsolate, HTMLDialogElementIsolate, HTMLDirectoryElementIsolate, HTMLDivElementIsolate, HTMLDocumentIsolate, HTMLElementIsolate, HTMLEmbedElementIsolate, HTMLFieldSetElementIsolate, HTMLFontElementIsolate, HTMLFormElementIsolate, HTMLFrameElementIsolate, HTMLFrameSetElementIsolate, HTMLHRElementIsolate, HTMLHeadElementIsolate, HTMLHeadingElementIsolate, HTMLHtmlElementIsolate, HTMLIFrameElementIsolate, HTMLImageElementIsolate, HTMLInputElementIsolate, HTMLLIElementIsolate, HTMLLabelElementIsolate, HTMLLegendElementIsolate, HTMLLinkElementIsolate, HTMLMapElementIsolate, HTMLMediaElementIsolate, HTMLMetaElementIsolate, HTMLMeterElementIsolate, HTMLModElementIsolate, HTMLOListElementIsolate, HTMLObjectElementIsolate, HTMLOptGroupElementIsolate, HTMLOptionElementIsolate, HTMLOrSVGElement, HTMLParagraphElementIsolate, HTMLParamElementIsolate, HTMLPreElementIsolate, HTMLProgressElementIsolate, HTMLQuoteElementIsolate, HTMLScriptElementIsolate, HTMLSelectElementIsolate, HTMLSlotElementIsolate, HTMLSourceElementIsolate, HTMLSpanElementIsolate, HTMLStyleElementIsolate, HTMLTableCaptionElementIsolate, HTMLTableCellElementIsolate, HTMLTableColElementIsolate, HTMLTableElementIsolate, HTMLTableRowElementIsolate, HTMLTableSectionElementIsolate, HTMLTemplateElementIsolate, HTMLTextAreaElementIsolate, HTMLTimeElementIsolate, HTMLTitleElementIsolate, HTMLTrackElementIsolate, HTMLUListElementIsolate, HTMLVideoElementIsolate, LinkStyle, NodeIsolate, NonDocumentTypeChildNode, NonElementParentNode, ParentNode, ShadowRootIsolate, Slotable, TextIsolate, XPathEvaluatorBase);
+const SuperNodeBaseClass = SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentFragmentIsolate, DocumentIsolate, DocumentOrShadowRoot, DocumentTypeIsolate, ElementCSSInlineStyle, ElementContentEditable, ElementIsolate, HTMLAnchorElementIsolate, HTMLAreaElementIsolate, HTMLAudioElementIsolate, HTMLBRElementIsolate, HTMLBaseElementIsolate, HTMLBodyElementIsolate, HTMLButtonElementIsolate, HTMLCanvasElementIsolate, HTMLDListElementIsolate, HTMLDataElementIsolate, HTMLDataListElementIsolate, HTMLDetailsElementIsolate, HTMLDialogElementIsolate, HTMLDirectoryElementIsolate, HTMLDivElementIsolate, HTMLDocumentIsolate, HTMLElementIsolate, HTMLEmbedElementIsolate, HTMLFieldSetElementIsolate, HTMLFontElementIsolate, HTMLFormElementIsolate, HTMLFrameElementIsolate, HTMLFrameSetElementIsolate, HTMLHRElementIsolate, HTMLHeadElementIsolate, HTMLHeadingElementIsolate, HTMLHtmlElementIsolate, HTMLHyperlinkElementUtils, HTMLIFrameElementIsolate, HTMLImageElementIsolate, HTMLInputElementIsolate, HTMLLIElementIsolate, HTMLLabelElementIsolate, HTMLLegendElementIsolate, HTMLLinkElementIsolate, HTMLMapElementIsolate, HTMLMediaElementIsolate, HTMLMetaElementIsolate, HTMLMeterElementIsolate, HTMLModElementIsolate, HTMLOListElementIsolate, HTMLObjectElementIsolate, HTMLOptGroupElementIsolate, HTMLOptionElementIsolate, HTMLOrSVGElement, HTMLParagraphElementIsolate, HTMLParamElementIsolate, HTMLPreElementIsolate, HTMLProgressElementIsolate, HTMLQuoteElementIsolate, HTMLScriptElementIsolate, HTMLSelectElementIsolate, HTMLSlotElementIsolate, HTMLSourceElementIsolate, HTMLSpanElementIsolate, HTMLStyleElementIsolate, HTMLTableCaptionElementIsolate, HTMLTableCellElementIsolate, HTMLTableColElementIsolate, HTMLTableElementIsolate, HTMLTableRowElementIsolate, HTMLTableSectionElementIsolate, HTMLTemplateElementIsolate, HTMLTextAreaElementIsolate, HTMLTimeElementIsolate, HTMLTitleElementIsolate, HTMLTrackElementIsolate, HTMLUListElementIsolate, HTMLVideoElementIsolate, LinkStyle, NodeIsolate, NonDocumentTypeChildNode, NonElementParentNode, ParentNode, ShadowRootIsolate, Slotable, TextIsolate, XPathEvaluatorBase);
 
 export default class SuperNode extends SuperNodeBaseClass implements ISuperNode {
   constructor() {
@@ -103,48 +104,48 @@ export default class SuperNode extends SuperNodeBaseClass implements ISuperNode 
 
   public get childNodes(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty(this, 'childNodes'), awaitedOptions);
   }
 
   public get firstChild(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('firstChild'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'firstChild'), awaitedOptions);
   }
 
   public get lastChild(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('lastChild'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'lastChild'), awaitedOptions);
   }
 
   public get nextSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('nextSibling'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'nextSibling'), awaitedOptions);
   }
 
   public get ownerDocument(): ISuperDocument {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperDocument(awaitedPath.addProperty('ownerDocument'), awaitedOptions);
+    return createSuperDocument(awaitedPath.addProperty(this, 'ownerDocument'), awaitedOptions);
   }
 
   public get parentElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('parentElement'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'parentElement'), awaitedOptions);
   }
 
   public get parentNode(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('parentNode'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'parentNode'), awaitedOptions);
   }
 
   public get previousSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'previousSibling'), awaitedOptions);
   }
 
   // methods
 
   public getRootNode(options?: IGetRootNodeOptions): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addMethod('getRootNode', options), awaitedOptions);
+    return createSuperNode(awaitedPath.addMethod(this, 'getRootNode', options), awaitedOptions);
   }
 }

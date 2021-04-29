@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ICharacterData, INode, INonDocumentTypeChildNode } from '../interfaces/official';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
@@ -12,7 +12,7 @@ import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKe
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ICharacterData, ICharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ICharacterData>('CharacterData', getState, setState);
-export const nodeAttacher = new NodeAttacher<ICharacterData>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<ICharacterData>(getState, setState, awaitedHandler);
 
 export function CharacterDataGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>) {
   const Parent = (ClassMixer(Node, [NonDocumentTypeChildNode]) as unknown) as Constructable<INode & INonDocumentTypeChildNode>;
@@ -43,7 +43,7 @@ export function CharacterDataGenerator(Node: Constructable<INode>, NonDocumentTy
     }
 
     public then<TResult1 = ICharacterData, TResult2 = never>(onfulfilled?: ((value: ICharacterData) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

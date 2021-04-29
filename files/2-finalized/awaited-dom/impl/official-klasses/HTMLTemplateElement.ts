@@ -17,6 +17,6 @@ export default class HTMLTemplateElement extends HTMLTemplateElementBaseClass im
 
   public get content(): IDocumentFragment {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDocumentFragment(awaitedPath.addProperty('content'), awaitedOptions);
+    return createDocumentFragment(awaitedPath.addProperty(this, 'content'), awaitedOptions);
   }
 }

@@ -21,7 +21,7 @@ class HTMLCollectionBaseIsolate {
         throw new Error('HTMLCollectionBaseIsolate.item not implemented');
     }
     [Symbol.iterator]() {
-        return exports.awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+        return exports.awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 }
 exports.default = HTMLCollectionBaseIsolate;

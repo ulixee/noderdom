@@ -10,6 +10,6 @@ const CSSRuleListBaseClass = CSSRuleListGenerator();
 export default class CSSRuleList extends CSSRuleListBaseClass implements ICSSRuleList {
   public item(index: number): ICSSRule {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createCSSRule(awaitedPath.addMethod('item', index), awaitedOptions);
+    return createCSSRule(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
   }
 }

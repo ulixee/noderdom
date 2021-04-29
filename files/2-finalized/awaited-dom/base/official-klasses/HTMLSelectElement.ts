@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLSelectElement, IHTMLElement, IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -12,7 +12,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLSelectElement, IHTMLSelectElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLSelectElement>('HTMLSelectElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLSelectElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLSelectElement>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IHTMLSelectElement, ISuperElement>(getState, setState, awaitedHandler);
 
 export function HTMLSelectElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
@@ -139,11 +139,11 @@ export function HTMLSelectElementGenerator(HTMLElement: Constructable<IHTMLEleme
     }
 
     public then<TResult1 = IHTMLSelectElement, TResult2 = never>(onfulfilled?: ((value: IHTMLSelectElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public [Symbol.iterator](): IterableIterator<ISuperElement> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: ISuperElement;

@@ -4,13 +4,13 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ICSSStyleDeclaration, ICSSRule } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ICSSStyleDeclaration, ICSSStyleDeclarationProperties>();
 export const awaitedHandler = new AwaitedHandler<ICSSStyleDeclaration>('CSSStyleDeclaration', getState, setState);
-export const nodeAttacher = new NodeAttacher<ICSSStyleDeclaration>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<ICSSStyleDeclaration>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ICSSStyleDeclaration, string>(getState, setState, awaitedHandler);
 
 export function CSSStyleDeclarationGenerator() {
@@ -84,11 +84,11 @@ export function CSSStyleDeclarationGenerator() {
     }
 
     public then<TResult1 = ICSSStyleDeclaration, TResult2 = never>(onfulfilled?: ((value: ICSSStyleDeclaration) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public [Symbol.iterator](): IterableIterator<string> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: string;

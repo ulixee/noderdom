@@ -17,6 +17,6 @@ export default class HTMLLegendElement extends HTMLLegendElementBaseClass implem
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 }

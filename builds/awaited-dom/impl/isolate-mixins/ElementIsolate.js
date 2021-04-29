@@ -13,36 +13,36 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class ElementIsolate extends ElementIsolate_1.default {
     get attributes() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createNamedNodeMap(awaitedPath.addProperty('attributes'), awaitedOptions);
+        return create_1.createNamedNodeMap(awaitedPath.addProperty(this, 'attributes'), awaitedOptions);
     }
     get classList() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty('classList'), awaitedOptions);
+        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'classList'), awaitedOptions);
     }
     get part() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty('part'), awaitedOptions);
+        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'part'), awaitedOptions);
     }
     get shadowRoot() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createShadowRoot(awaitedPath.addProperty('shadowRoot'), awaitedOptions);
+        return create_1.createShadowRoot(awaitedPath.addProperty(this, 'shadowRoot'), awaitedOptions);
     }
     // methods
     closest(selectors) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod('closest', selectors), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addMethod(this, 'closest', selectors), awaitedOptions);
     }
     getElementsByClassName(classNames) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod('getElementsByClassName', classNames), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByClassName', classNames), awaitedOptions);
     }
     getElementsByTagName(qualifiedName) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagName', qualifiedName), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagName', qualifiedName), awaitedOptions);
     }
     getElementsByTagNameNS(namespace, localName) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod('getElementsByTagNameNS', namespace, localName), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagNameNS', namespace, localName), awaitedOptions);
     }
 }
 exports.default = ElementIsolate;

@@ -13,7 +13,7 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class HTMLCollectionBaseIsolate extends HTMLCollectionBaseIsolate_1.default {
     item(index) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod('item', index), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
 }
 exports.default = HTMLCollectionBaseIsolate;

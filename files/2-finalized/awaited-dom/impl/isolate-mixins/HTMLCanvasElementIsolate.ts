@@ -10,11 +10,11 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLCanvasEleme
 export default class HTMLCanvasElementIsolate extends HTMLCanvasElementIsolateBase implements IHTMLCanvasElementIsolate {
   public captureStream(frameRequestRate?: number): IMediaStream {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createMediaStream(awaitedPath.addMethod('captureStream', frameRequestRate), awaitedOptions);
+    return createMediaStream(awaitedPath.addMethod(this, 'captureStream', frameRequestRate), awaitedOptions);
   }
 
   public transferControlToOffscreen(): IOffscreenCanvas {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createOffscreenCanvas(awaitedPath.addMethod('transferControlToOffscreen', ), awaitedOptions);
+    return createOffscreenCanvas(awaitedPath.addMethod(this, 'transferControlToOffscreen', ), awaitedOptions);
   }
 }

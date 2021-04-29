@@ -10,6 +10,6 @@ const MediaStreamBaseClass = MediaStreamGenerator();
 export default class MediaStream extends MediaStreamBaseClass implements IMediaStream {
   public clone(): IMediaStream {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createMediaStream(awaitedPath.addMethod('clone', ), awaitedOptions);
+    return createMediaStream(awaitedPath.addMethod(this, 'clone', ), awaitedOptions);
   }
 }

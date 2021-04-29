@@ -1,13 +1,13 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLLabelElement, IHTMLElement, IHTMLFormElement } from '../interfaces/official';
 import { ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLLabelElement) => IHTMLLabelElementProperties, setState: (instance: IHTMLLabelElement, properties: Partial<IHTMLLabelElementProperties>) => void, recordProxy: (proxy: IHTMLLabelElement, instance: IHTMLLabelElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLLabelElement>;
-export declare const nodeAttacher: NodeAttacher<IHTMLLabelElement>;
+export declare const nodeFactory: NodeFactory<IHTMLLabelElement>;
 export declare function HTMLLabelElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
     new (): {
         readonly control: ISuperHTMLElement;

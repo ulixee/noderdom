@@ -10,6 +10,6 @@ const DOMRectListBaseClass = DOMRectListGenerator();
 export default class DOMRectList extends DOMRectListBaseClass implements IDOMRectList {
   public item(index: number): IDOMRect {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMRect(awaitedPath.addMethod('item', index), awaitedOptions);
+    return createDOMRect(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
   }
 }

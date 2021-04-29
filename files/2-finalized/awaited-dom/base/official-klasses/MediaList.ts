@@ -4,13 +4,13 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IMediaList } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IMediaList, IMediaListProperties>();
 export const awaitedHandler = new AwaitedHandler<IMediaList>('MediaList', getState, setState);
-export const nodeAttacher = new NodeAttacher<IMediaList>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IMediaList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IMediaList, string>(getState, setState, awaitedHandler);
 
 export function MediaListGenerator() {
@@ -64,11 +64,11 @@ export function MediaListGenerator() {
     }
 
     public then<TResult1 = IMediaList, TResult2 = never>(onfulfilled?: ((value: IMediaList) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public [Symbol.iterator](): IterableIterator<string> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: string;

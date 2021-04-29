@@ -14,7 +14,7 @@ export default class ShadowRootIsolate implements IShadowRootIsolate {
     return awaitedHandler.getProperty<boolean>(this, 'delegatesFocus', false);
   }
 
-  public get host(): ISuperElement {
+  public get host(): Promise<string> | ISuperElement {
     throw new Error('ShadowRootIsolate.host getter not implemented');
   }
 
@@ -33,7 +33,7 @@ export interface IShadowRootIsolateProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   readonly delegatesFocus?: Promise<boolean>;
-  readonly host?: ISuperElement;
+  readonly host?: Promise<string> | ISuperElement;
   readonly innerHTML?: Promise<string>;
   readonly mode?: Promise<IShadowRootMode>;
 }

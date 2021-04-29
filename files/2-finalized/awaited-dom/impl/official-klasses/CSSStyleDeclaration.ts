@@ -10,6 +10,6 @@ const CSSStyleDeclarationBaseClass = CSSStyleDeclarationGenerator();
 export default class CSSStyleDeclaration extends CSSStyleDeclarationBaseClass implements ICSSStyleDeclaration {
   public get parentRule(): ICSSRule {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createCSSRule(awaitedPath.addProperty('parentRule'), awaitedOptions);
+    return createCSSRule(awaitedPath.addProperty(this, 'parentRule'), awaitedOptions);
   }
 }

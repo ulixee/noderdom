@@ -1,74 +1,68 @@
-import NodeAttacher, { INodeAttacherProperties } from './NodeAttacher';
+import NodeFactory, { IRemoteNodeProperties } from './NodeFactory';
 import AwaitedHandler from './AwaitedHandler';
+import INodePointer from './INodePointer';
 
 export default class AwaitedIterator<TClass, T> {
   public static creators = require('../impl/create');
   private readonly getState: (instance: TClass) => IAwaitedIteratorProperties;
-  private readonly nodeAttacher: NodeAttacher<TClass>;
+  private readonly setState: (instance: TClass, state: Partial<IAwaitedIteratorProperties>) => void;
+  private readonly nodeFactory: NodeFactory<TClass>;
   constructor(
-    getState: (instance: TClass) => IAwaitedIteratorProperties,
-    setState: (instance: TClass, state: Partial<IAwaitedIteratorProperties>) => void,
+    getState: AwaitedIterator<TClass, T>['getState'],
+    setState: AwaitedIterator<TClass, T>['setState'],
     awaitedHandler: AwaitedHandler<TClass>,
   ) {
     this.getState = getState;
-    this.nodeAttacher = new NodeAttacher<TClass>(getState, setState, awaitedHandler);
+    this.setState = setState;
+    this.nodeFactory = new NodeFactory<TClass>(getState, setState, awaitedHandler);
   }
 
   public async load(instance: TClass): Promise<T[]> {
-    const attachedInstance = await this.nodeAttacher.attach(instance);
-    return [...this.iterateAttached(attachedInstance)];
+    const nodePointerInstance = await this.nodeFactory.createInstanceWithNodePointer(instance);
+    return [...this.iterateNodePointers(nodePointerInstance)];
   }
 
-  public *iterateAttached(instance: TClass): IterableIterator<T> {
+  public *iterateNodePointers(instance: TClass): IterableIterator<T> {
     const state = this.getState(instance);
     const awaitedPath = state.awaitedPath;
-    const attachedState = this.nodeAttacher.getAttachedState(instance);
+    const nodePointer = this.nodeFactory.getNodePointer(instance);
 
-    if (!attachedState) {
+    if (!nodePointer) {
       throw new Error(`Please await this iterator`);
     }
 
-    if (!attachedState.iterableIsCustomType) {
-      yield* this.iterateAttachedItems(instance);
-      return;
+    if (!nodePointer.iterableItems) {
+      throw new Error(`Please add an await to ${awaitedPath.hasNodeId ? 're-' : ''}run this iterator`);
     }
 
-    const ids = attachedState.iterableIds;
+    for (const item of nodePointer.iterableItems) {
+      if (!nodePointer.iterableIsState) {
+        yield item as any;
+        continue;
+      }
 
-    if (!ids) {
-      throw new Error(`Please add an await to ${awaitedPath.hasAttachedId ? 're-' : ''}run this iterator`);
-    }
-
-    for (const id of ids) {
-      const createChild = AwaitedIterator.creators[state.createIterableName!];
+      const itemState = item as INodePointer;
+      const { type, id } = itemState;
+      let createChild = AwaitedIterator.creators[state.createIterableName!];
+      if (type) {
+        const dynamicCreator = AwaitedIterator.creators[`create${type}`];
+        if (dynamicCreator) createChild = dynamicCreator;
+      }
       const awaitedOptions = state.awaitedOptions;
-      const childPath = awaitedPath.withAttachedId(id);
-      yield createChild(childPath, awaitedOptions) as T;
+      const childPath = awaitedPath.withNodeId(instance as any, id);
+      const child = createChild(childPath, awaitedOptions) as T;
+
+      this.setState(child as any, {
+        nodePointer: itemState,
+      });
+      yield child;
     }
 
     // clear out iterable ids
-    attachedState.iterableIds = undefined;
-  }
-
-  private *iterateAttachedItems(instance: TClass): IterableIterator<T> {
-    const state = this.getState(instance);
-    const awaitedPath = state.awaitedPath;
-    const attachedState = this.nodeAttacher.getAttachedState(instance);
-
-    const items = attachedState?.iterableItems;
-
-    if (!items) {
-      throw new Error(`Please add an await to ${awaitedPath.hasAttachedId ? 're-' : ''}run this iterator`);
-    }
-
-    for (const item of items) {
-      yield item;
-    }
-    // clear out iterable ids
-    attachedState!.iterableItems = undefined;
+    nodePointer.iterableItems = undefined;
   }
 }
 
-export interface IAwaitedIteratorProperties extends INodeAttacherProperties {
+export interface IAwaitedIteratorProperties extends IRemoteNodeProperties {
   createIterableName?: string;
 }

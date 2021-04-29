@@ -10,6 +10,6 @@ const AudioTrackListBaseClass = AudioTrackListGenerator();
 export default class AudioTrackList extends AudioTrackListBaseClass implements IAudioTrackList {
   public getTrackById(id: string): IAudioTrack {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createAudioTrack(awaitedPath.addMethod('getTrackById', id), awaitedOptions);
+    return createAudioTrack(awaitedPath.addMethod(this, 'getTrackById', id), awaitedOptions);
   }
 }

@@ -1,13 +1,13 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLTextAreaElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLTextAreaElement) => IHTMLTextAreaElementProperties, setState: (instance: IHTMLTextAreaElement, properties: Partial<IHTMLTextAreaElementProperties>) => void, recordProxy: (proxy: IHTMLTextAreaElement, instance: IHTMLTextAreaElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTextAreaElement>;
-export declare const nodeAttacher: NodeAttacher<IHTMLTextAreaElement>;
+export declare const nodeFactory: NodeFactory<IHTMLTextAreaElement>;
 export declare function HTMLTextAreaElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
     new (): {
         readonly autocomplete: Promise<string>;

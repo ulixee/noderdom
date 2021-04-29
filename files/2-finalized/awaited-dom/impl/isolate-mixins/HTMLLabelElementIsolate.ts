@@ -11,11 +11,11 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLLabelElemen
 export default class HTMLLabelElementIsolate extends HTMLLabelElementIsolateBase implements IHTMLLabelElementIsolate {
   public get control(): ISuperHTMLElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLElement(awaitedPath.addProperty('control'), awaitedOptions);
+    return createSuperHTMLElement(awaitedPath.addProperty(this, 'control'), awaitedOptions);
   }
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 }

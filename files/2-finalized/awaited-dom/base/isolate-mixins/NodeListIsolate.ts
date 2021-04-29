@@ -40,7 +40,7 @@ export default class NodeListIsolate implements INodeListIsolate {
   }
 
   public [Symbol.iterator](): IterableIterator<ISuperNode> {
-    return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+    return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
   }
 
   [index: number]: ISuperNode;

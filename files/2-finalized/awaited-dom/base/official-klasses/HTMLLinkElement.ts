@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLLinkElement, IHTMLElement, ILinkStyle, IDOMTokenList } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 import { ILinkStyleProperties, LinkStylePropertyKeys, LinkStyleConstantKeys } from '../official-mixins/LinkStyle';
@@ -12,7 +12,7 @@ import { ILinkStyleProperties, LinkStylePropertyKeys, LinkStyleConstantKeys } fr
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLLinkElement, IHTMLLinkElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLLinkElement>('HTMLLinkElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLLinkElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLLinkElement>(getState, setState, awaitedHandler);
 
 export function HTMLLinkElementGenerator(HTMLElement: Constructable<IHTMLElement>, LinkStyle: Constructable<ILinkStyle>) {
   const Parent = (ClassMixer(HTMLElement, [LinkStyle]) as unknown) as Constructable<IHTMLElement & ILinkStyle>;
@@ -69,7 +69,7 @@ export function HTMLLinkElementGenerator(HTMLElement: Constructable<IHTMLElement
     }
 
     public then<TResult1 = IHTMLLinkElement, TResult2 = never>(onfulfilled?: ((value: IHTMLLinkElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

@@ -13,11 +13,11 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class NonDocumentTypeChildNode extends NonDocumentTypeChildNode_1.default {
     get nextElementSibling() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('nextElementSibling'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'nextElementSibling'), awaitedOptions);
     }
     get previousElementSibling() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('previousElementSibling'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'previousElementSibling'), awaitedOptions);
     }
 }
 exports.default = NonDocumentTypeChildNode;

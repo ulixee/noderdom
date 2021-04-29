@@ -11,18 +11,18 @@ const SelectionBaseClass = SelectionGenerator();
 export default class Selection extends SelectionBaseClass implements ISelection {
   public get anchorNode(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('anchorNode'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'anchorNode'), awaitedOptions);
   }
 
   public get focusNode(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('focusNode'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'focusNode'), awaitedOptions);
   }
 
   // methods
 
   public getRangeAt(index: number): IRange {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createRange(awaitedPath.addMethod('getRangeAt', index), awaitedOptions);
+    return createRange(awaitedPath.addMethod(this, 'getRangeAt', index), awaitedOptions);
   }
 }

@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLTrackElement, IHTMLElement, ITextTrack } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLTrackElement, IHTMLTrackElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTrackElement>('HTMLTrackElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLTrackElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLTrackElement>(getState, setState, awaitedHandler);
 
 export function HTMLTrackElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLTrackElement extends HTMLElement implements IHTMLTrackElement, PromiseLike<IHTMLTrackElement> {
@@ -62,7 +62,7 @@ export function HTMLTrackElementGenerator(HTMLElement: Constructable<IHTMLElemen
     }
 
     public then<TResult1 = IHTMLTrackElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTrackElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

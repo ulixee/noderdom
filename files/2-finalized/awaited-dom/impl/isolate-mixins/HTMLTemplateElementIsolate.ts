@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLTemplateEle
 export default class HTMLTemplateElementIsolate extends HTMLTemplateElementIsolateBase implements IHTMLTemplateElementIsolate {
   public get content(): Promise<string> | IDocumentFragment {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDocumentFragment(awaitedPath.addProperty('content'), awaitedOptions);
+    return createDocumentFragment(awaitedPath.addProperty(this, 'content'), awaitedOptions);
   }
 }

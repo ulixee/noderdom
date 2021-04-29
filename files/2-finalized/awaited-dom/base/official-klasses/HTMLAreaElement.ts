@@ -2,18 +2,22 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
-import { IHTMLAreaElement, IHTMLElement, IDOMTokenList } from '../interfaces/official';
+import NodeFactory from '../NodeFactory';
+import { IHTMLAreaElement, IHTMLElement, IHTMLHyperlinkElementUtils, IDOMTokenList } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
+import { IHTMLHyperlinkElementUtilsProperties, HTMLHyperlinkElementUtilsPropertyKeys, HTMLHyperlinkElementUtilsConstantKeys } from '../official-mixins/HTMLHyperlinkElementUtils';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLAreaElement, IHTMLAreaElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLAreaElement>('HTMLAreaElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLAreaElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLAreaElement>(getState, setState, awaitedHandler);
 
-export function HTMLAreaElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
-  return class HTMLAreaElement extends HTMLElement implements IHTMLAreaElement, PromiseLike<IHTMLAreaElement> {
+export function HTMLAreaElementGenerator(HTMLElement: Constructable<IHTMLElement>, HTMLHyperlinkElementUtils: Constructable<IHTMLHyperlinkElementUtils>) {
+  const Parent = (ClassMixer(HTMLElement, [HTMLHyperlinkElementUtils]) as unknown) as Constructable<IHTMLElement & IHTMLHyperlinkElementUtils>;
+
+  return class HTMLAreaElement extends Parent implements IHTMLAreaElement, PromiseLike<IHTMLAreaElement> {
     constructor() {
       super();
       initializeConstantsAndProperties<HTMLAreaElement>(this, HTMLAreaElementConstantKeys, HTMLAreaElementPropertyKeys);
@@ -69,14 +73,14 @@ export function HTMLAreaElementGenerator(HTMLElement: Constructable<IHTMLElement
     }
 
     public then<TResult1 = IHTMLAreaElement, TResult2 = never>(onfulfilled?: ((value: IHTMLAreaElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IHTMLAreaElementProperties extends IHTMLElementProperties {
+export interface IHTMLAreaElementProperties extends IHTMLElementProperties, IHTMLHyperlinkElementUtilsProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   createInstanceName: string;
@@ -94,6 +98,6 @@ export interface IHTMLAreaElementProperties extends IHTMLElementProperties {
   readonly type?: Promise<string>;
 }
 
-export const HTMLAreaElementPropertyKeys = [...HTMLElementPropertyKeys, 'alt', 'coords', 'download', 'hreflang', 'noHref', 'referrerPolicy', 'rel', 'relList', 'shape', 'target', 'type'];
+export const HTMLAreaElementPropertyKeys = [...HTMLElementPropertyKeys, ...HTMLHyperlinkElementUtilsPropertyKeys, 'alt', 'coords', 'download', 'hreflang', 'noHref', 'referrerPolicy', 'rel', 'relList', 'shape', 'target', 'type'];
 
-export const HTMLAreaElementConstantKeys = [...HTMLElementConstantKeys];
+export const HTMLAreaElementConstantKeys = [...HTMLElementConstantKeys, ...HTMLHyperlinkElementUtilsConstantKeys];

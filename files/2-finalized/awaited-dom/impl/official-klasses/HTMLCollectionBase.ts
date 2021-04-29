@@ -11,6 +11,6 @@ const HTMLCollectionBaseBaseClass = HTMLCollectionBaseGenerator();
 export default class HTMLCollectionBase extends HTMLCollectionBaseBaseClass implements IHTMLCollectionBase {
   public item(index: number): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addMethod('item', index), awaitedOptions);
+    return createSuperElement(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
   }
 }

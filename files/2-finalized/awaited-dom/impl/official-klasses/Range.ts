@@ -18,38 +18,38 @@ export default class Range extends RangeBaseClass implements IRange {
 
   public get commonAncestorContainer(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('commonAncestorContainer'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'commonAncestorContainer'), awaitedOptions);
   }
 
   // methods
 
   public cloneContents(): IDocumentFragment {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDocumentFragment(awaitedPath.addMethod('cloneContents', ), awaitedOptions);
+    return createDocumentFragment(awaitedPath.addMethod(this, 'cloneContents', ), awaitedOptions);
   }
 
   public cloneRange(): IRange {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createRange(awaitedPath.addMethod('cloneRange', ), awaitedOptions);
+    return createRange(awaitedPath.addMethod(this, 'cloneRange', ), awaitedOptions);
   }
 
   public createContextualFragment(fragment: string): IDocumentFragment {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDocumentFragment(awaitedPath.addMethod('createContextualFragment', fragment), awaitedOptions);
+    return createDocumentFragment(awaitedPath.addMethod(this, 'createContextualFragment', fragment), awaitedOptions);
   }
 
   public extractContents(): IDocumentFragment {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDocumentFragment(awaitedPath.addMethod('extractContents', ), awaitedOptions);
+    return createDocumentFragment(awaitedPath.addMethod(this, 'extractContents', ), awaitedOptions);
   }
 
   public getBoundingClientRect(): IDOMRect {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMRect(awaitedPath.addMethod('getBoundingClientRect', ), awaitedOptions);
+    return createDOMRect(awaitedPath.addMethod(this, 'getBoundingClientRect', ), awaitedOptions);
   }
 
   public getClientRects(): IDOMRectList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMRectList(awaitedPath.addMethod('getClientRects', ), awaitedOptions);
+    return createDOMRectList(awaitedPath.addMethod(this, 'getClientRects', ), awaitedOptions);
   }
 }

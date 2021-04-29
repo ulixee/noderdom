@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLFrameElement, IHTMLElement } from '../interfaces/official';
 import { ISuperDocument } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLFrameElement, IHTMLFrameElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFrameElement>('HTMLFrameElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLFrameElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLFrameElement>(getState, setState, awaitedHandler);
 
 export function HTMLFrameElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLFrameElement extends HTMLElement implements IHTMLFrameElement, PromiseLike<IHTMLFrameElement> {
@@ -62,7 +62,7 @@ export function HTMLFrameElementGenerator(HTMLElement: Constructable<IHTMLElemen
     }
 
     public then<TResult1 = IHTMLFrameElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFrameElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

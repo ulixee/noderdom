@@ -2,14 +2,14 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperNodeList, ISuperNode } from '../interfaces/super';
 import { INodeListIsolate, IRadioNodeListIsolate } from '../interfaces/isolate';
 import { INodeListIsolateProperties } from '../isolate-mixins/NodeListIsolate';
 import { IRadioNodeListIsolateProperties } from '../isolate-mixins/RadioNodeListIsolate';
 export declare const getState: (instance: ISuperNodeList) => ISuperNodeListProperties, setState: (instance: ISuperNodeList, properties: Partial<ISuperNodeListProperties>) => void, recordProxy: (proxy: ISuperNodeList, instance: ISuperNodeList) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperNodeList>;
-export declare const nodeAttacher: NodeAttacher<ISuperNodeList>;
+export declare const nodeFactory: NodeFactory<ISuperNodeList>;
 export declare const awaitedIterator: AwaitedIterator<ISuperNodeList, ISuperNode>;
 export declare function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListIsolate>, RadioNodeListIsolate: Constructable<IRadioNodeListIsolate>): {
     new (): {

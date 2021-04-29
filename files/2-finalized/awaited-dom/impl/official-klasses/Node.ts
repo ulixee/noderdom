@@ -11,48 +11,48 @@ const NodeBaseClass = NodeGenerator();
 export default class Node extends NodeBaseClass implements INode {
   public get childNodes(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty(this, 'childNodes'), awaitedOptions);
   }
 
   public get firstChild(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('firstChild'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'firstChild'), awaitedOptions);
   }
 
   public get lastChild(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('lastChild'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'lastChild'), awaitedOptions);
   }
 
   public get nextSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('nextSibling'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'nextSibling'), awaitedOptions);
   }
 
   public get ownerDocument(): ISuperDocument {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperDocument(awaitedPath.addProperty('ownerDocument'), awaitedOptions);
+    return createSuperDocument(awaitedPath.addProperty(this, 'ownerDocument'), awaitedOptions);
   }
 
   public get parentElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('parentElement'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'parentElement'), awaitedOptions);
   }
 
   public get parentNode(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('parentNode'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'parentNode'), awaitedOptions);
   }
 
   public get previousSibling(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'previousSibling'), awaitedOptions);
   }
 
   // methods
 
   public getRootNode(options?: IGetRootNodeOptions): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addMethod('getRootNode', options), awaitedOptions);
+    return createSuperNode(awaitedPath.addMethod(this, 'getRootNode', options), awaitedOptions);
   }
 }

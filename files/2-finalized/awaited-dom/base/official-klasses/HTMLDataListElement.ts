@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLDataListElement, IHTMLElement } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLDataListElement, IHTMLDataListElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDataListElement>('HTMLDataListElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLDataListElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLDataListElement>(getState, setState, awaitedHandler);
 
 export function HTMLDataListElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLDataListElement extends HTMLElement implements IHTMLDataListElement, PromiseLike<IHTMLDataListElement> {
@@ -30,7 +30,7 @@ export function HTMLDataListElementGenerator(HTMLElement: Constructable<IHTMLEle
     }
 
     public then<TResult1 = IHTMLDataListElement, TResult2 = never>(onfulfilled?: ((value: IHTMLDataListElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

@@ -1,12 +1,12 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { INodeList } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 export declare const getState: (instance: INodeList) => INodeListProperties, setState: (instance: INodeList, properties: Partial<INodeListProperties>) => void, recordProxy: (proxy: INodeList, instance: INodeList) => void;
 export declare const awaitedHandler: AwaitedHandler<INodeList>;
-export declare const nodeAttacher: NodeAttacher<INodeList>;
+export declare const nodeFactory: NodeFactory<INodeList>;
 export declare const awaitedIterator: AwaitedIterator<INodeList, ISuperNode>;
 export declare function NodeListGenerator(): {
     new (): {

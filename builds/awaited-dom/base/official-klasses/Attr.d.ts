@@ -1,13 +1,13 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IAttr, INode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { INodeProperties } from './Node';
 export declare const getState: (instance: IAttr) => IAttrProperties, setState: (instance: IAttr, properties: Partial<IAttrProperties>) => void, recordProxy: (proxy: IAttr, instance: IAttr) => void;
 export declare const awaitedHandler: AwaitedHandler<IAttr>;
-export declare const nodeAttacher: NodeAttacher<IAttr>;
+export declare const nodeFactory: NodeFactory<IAttr>;
 export declare function AttrGenerator(Node: Constructable<INode>): {
     new (): {
         readonly localName: Promise<string>;

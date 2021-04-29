@@ -18,6 +18,6 @@ export default class HTMLMeterElement extends HTMLMeterElementBaseClass implemen
 
   public get labels(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
   }
 }

@@ -5,7 +5,7 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 import { IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate } from '../interfaces/isolate';
 import { IHTMLCollectionBaseIsolateProperties, HTMLCollectionBaseIsolatePropertyKeys, HTMLCollectionBaseIsolateConstantKeys } from '../isolate-mixins/HTMLCollectionBaseIsolate';
@@ -15,7 +15,7 @@ import { IHTMLOptionsCollectionIsolateProperties, HTMLOptionsCollectionIsolatePr
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperHTMLCollection>('SuperHTMLCollection', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperHTMLCollection>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<ISuperHTMLCollection>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperHTMLCollection, ISuperElement>(getState, setState, awaitedHandler);
 
 export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Constructable<IHTMLCollectionBaseIsolate>, HTMLCollectionIsolate: Constructable<IHTMLCollectionIsolate>, HTMLOptionsCollectionIsolate: Constructable<IHTMLOptionsCollectionIsolate>) {
@@ -55,11 +55,11 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
     }
 
     public then<TResult1 = ISuperHTMLCollection, TResult2 = never>(onfulfilled?: ((value: ISuperHTMLCollection) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public [Symbol.iterator](): IterableIterator<ISuperElement> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
   };
 }

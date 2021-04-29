@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLMediaElement, IHTMLElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IMediaStream } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLMediaElement, IHTMLMediaElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMediaElement>('HTMLMediaElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLMediaElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLMediaElement>(getState, setState, awaitedHandler);
 
 export function HTMLMediaElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLMediaElement extends HTMLElement implements IHTMLMediaElement, PromiseLike<IHTMLMediaElement> {
@@ -186,7 +186,7 @@ export function HTMLMediaElementGenerator(HTMLElement: Constructable<IHTMLElemen
     }
 
     public then<TResult1 = IHTMLMediaElement, TResult2 = never>(onfulfilled?: ((value: IHTMLMediaElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

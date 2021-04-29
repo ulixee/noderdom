@@ -294,6 +294,91 @@
       "legacyWindowAlias": [],
       "mixin": true
     },
+    "HTMLHyperlinkElementUtils": {
+      "name": "HTMLHyperlinkElementUtils",
+      "extends": "Object",
+      "constants": {},
+      "methods": {},
+      "anonymousMethods": [],
+      "properties": {
+        "href": {
+          "name": "href",
+          "type": "USVString",
+          "stringifier": 1,
+          "readOnly": 1
+        },
+        "origin": {
+          "name": "origin",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "protocol": {
+          "name": "protocol",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "username": {
+          "name": "username",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "password": {
+          "name": "password",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "host": {
+          "name": "host",
+          "type": [
+            {
+              "type": "USVString"
+            },
+            {
+              "type": "Element"
+            }
+          ],
+          "readOnly": 1,
+          "compromiseType": [
+            {
+              "type": "USVString",
+              "isOfficial": 1
+            },
+            {
+              "type": "Element",
+              "isAbstract": 1
+            }
+          ]
+        },
+        "hostname": {
+          "name": "hostname",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "port": {
+          "name": "port",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "pathname": {
+          "name": "pathname",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "search": {
+          "name": "search",
+          "type": "USVString",
+          "readOnly": 1
+        },
+        "hash": {
+          "name": "hash",
+          "type": "USVString",
+          "readOnly": 1
+        }
+      },
+      "noInterfaceObject": 1,
+      "legacyWindowAlias": [],
+      "mixin": true
+    },
     "HTMLOrSVGElement": {
       "name": "HTMLOrSVGElement",
       "extends": "Object",
@@ -3207,6 +3292,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "HTMLHyperlinkElementUtils",
         "HTMLElement"
       ],
       "element": {
@@ -3297,6 +3383,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "HTMLHyperlinkElementUtils",
         "HTMLElement"
       ],
       "element": {
@@ -11319,6 +11406,7 @@
         "ElementCSSInlineStyle",
         "ElementContentEditable",
         "HTMLOrSVGElement",
+        "HTMLHyperlinkElementUtils",
         "LinkStyle",
         "NodeIsolate",
         "HTMLElementIsolate",
@@ -11752,6 +11840,7 @@
         "ElementCSSInlineStyle",
         "ElementContentEditable",
         "HTMLOrSVGElement",
+        "HTMLHyperlinkElementUtils",
         "LinkStyle",
         "AttrIsolate",
         "NodeIsolate",
@@ -12089,6 +12178,7 @@
         "NonDocumentTypeChildNode",
         "ParentNode",
         "Slotable",
+        "HTMLHyperlinkElementUtils",
         "LinkStyle",
         "ElementIsolate",
         "NodeIsolate",
@@ -13830,6 +13920,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "HTMLHyperlinkElementUtils",
         "HTMLElement"
       ],
       "element": {
@@ -13920,6 +14011,7 @@
       "exposed": "Window",
       "legacyWindowAlias": [],
       "implements": [
+        "HTMLHyperlinkElementUtils",
         "HTMLElement"
       ],
       "element": {
@@ -19406,10 +19498,27 @@
         },
         "host": {
           "name": "host",
-          "type": "Element",
+          "type": [
+            {
+              "type": "USVString"
+            },
+            {
+              "type": "Element"
+            }
+          ],
           "readOnly": 1,
           "exposed": "Window",
-          "isAbstract": 1
+          "isAbstract": 1,
+          "compromiseType": [
+            {
+              "type": "USVString"
+            },
+            {
+              "type": "Element",
+              "isAbstract": 1,
+              "isOfficial": 1
+            }
+          ]
         },
         "innerHTML": {
           "name": "innerHTML",

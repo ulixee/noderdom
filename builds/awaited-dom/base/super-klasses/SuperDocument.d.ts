@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { IDocumentIsolate, IHTMLDocumentIsolate, INodeIsolate } from '../interfaces/isolate';
 import { IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
@@ -14,7 +14,7 @@ import { IParentNodeProperties } from '../official-mixins/ParentNode';
 import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluatorBase';
 export declare const getState: (instance: ISuperDocument) => ISuperDocumentProperties, setState: (instance: ISuperDocument, properties: Partial<ISuperDocumentProperties>) => void, recordProxy: (proxy: ISuperDocument, instance: ISuperDocument) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperDocument>;
-export declare const nodeAttacher: NodeAttacher<ISuperDocument>;
+export declare const nodeFactory: NodeFactory<ISuperDocument>;
 export declare function SuperDocumentGenerator(DocumentIsolate: Constructable<IDocumentIsolate>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, HTMLDocumentIsolate: Constructable<IHTMLDocumentIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {
         readonly URL: Promise<string>;

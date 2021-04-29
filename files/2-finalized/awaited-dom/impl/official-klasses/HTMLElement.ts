@@ -21,6 +21,6 @@ export default class HTMLElement extends HTMLElementBaseClass implements IHTMLEl
 
   public get offsetParent(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'offsetParent'), awaitedOptions);
   }
 }

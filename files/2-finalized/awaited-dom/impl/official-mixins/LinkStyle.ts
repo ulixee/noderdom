@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<ILinkStyle, ILin
 export default class LinkStyle extends LinkStyleBase implements ILinkStyle {
   public get sheet(): ISuperStyleSheet {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperStyleSheet(awaitedPath.addProperty('sheet'), awaitedOptions);
+    return createSuperStyleSheet(awaitedPath.addProperty(this, 'sheet'), awaitedOptions);
   }
 }

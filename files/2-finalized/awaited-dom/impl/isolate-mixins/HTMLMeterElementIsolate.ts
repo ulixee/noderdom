@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLMeterElemen
 export default class HTMLMeterElementIsolate extends HTMLMeterElementIsolateBase implements IHTMLMeterElementIsolate {
   public get labels(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
   }
 }

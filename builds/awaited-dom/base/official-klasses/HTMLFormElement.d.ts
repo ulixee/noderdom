@@ -1,12 +1,12 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLFormElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLFormElement) => IHTMLFormElementProperties, setState: (instance: IHTMLFormElement, properties: Partial<IHTMLFormElementProperties>) => void, recordProxy: (proxy: IHTMLFormElement, instance: IHTMLFormElement) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFormElement>;
-export declare const nodeAttacher: NodeAttacher<IHTMLFormElement>;
+export declare const nodeFactory: NodeFactory<IHTMLFormElement>;
 export declare function HTMLFormElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
     new (): {
         readonly acceptCharset: Promise<string>;

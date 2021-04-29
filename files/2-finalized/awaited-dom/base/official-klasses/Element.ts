@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IElement, INode, INonDocumentTypeChildNode, IParentNode, ISlotable, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions } from '../interfaces/official';
 import { ISuperElement, ISuperHTMLCollection } from '../interfaces/super';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
@@ -15,7 +15,7 @@ import { ISlotableProperties, SlotablePropertyKeys, SlotableConstantKeys } from 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
-export const nodeAttacher = new NodeAttacher<IElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IElement>(getState, setState, awaitedHandler);
 
 export function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>, Slotable: Constructable<ISlotable>) {
   const Parent = (ClassMixer(Node, [NonDocumentTypeChildNode, ParentNode, Slotable]) as unknown) as Constructable<INode & INonDocumentTypeChildNode & IParentNode & ISlotable>;
@@ -194,7 +194,7 @@ export function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChil
     }
 
     public then<TResult1 = IElement, TResult2 = never>(onfulfilled?: ((value: IElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

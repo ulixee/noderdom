@@ -103,7 +103,7 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
   }
 
   public [Symbol.iterator](): IterableIterator<ISuperElement> {
-    return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+    return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
   }
 
   [index: number]: ISuperElement;

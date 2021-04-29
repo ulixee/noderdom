@@ -4,13 +4,13 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IFileList, IFile } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IFileList, IFileListProperties>();
 export const awaitedHandler = new AwaitedHandler<IFileList>('FileList', getState, setState);
-export const nodeAttacher = new NodeAttacher<IFileList>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IFileList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IFileList, IFile>(getState, setState, awaitedHandler);
 
 export function FileListGenerator() {
@@ -56,11 +56,11 @@ export function FileListGenerator() {
     }
 
     public then<TResult1 = IFileList, TResult2 = never>(onfulfilled?: ((value: IFileList) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public [Symbol.iterator](): IterableIterator<IFile> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: IFile;

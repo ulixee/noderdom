@@ -18,6 +18,6 @@ export default class HTMLFrameElement extends HTMLFrameElementBaseClass implemen
 
   public get contentDocument(): ISuperDocument {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperDocument(awaitedPath.addProperty('contentDocument'), awaitedOptions);
+    return createSuperDocument(awaitedPath.addProperty(this, 'contentDocument'), awaitedOptions);
   }
 }

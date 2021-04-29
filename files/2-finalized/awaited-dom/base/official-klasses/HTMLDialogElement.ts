@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLDialogElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLDialogElement, IHTMLDialogElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDialogElement>('HTMLDialogElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLDialogElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLDialogElement>(getState, setState, awaitedHandler);
 
 export function HTMLDialogElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLDialogElement extends HTMLElement implements IHTMLDialogElement, PromiseLike<IHTMLDialogElement> {
@@ -47,7 +47,7 @@ export function HTMLDialogElementGenerator(HTMLElement: Constructable<IHTMLEleme
     }
 
     public then<TResult1 = IHTMLDialogElement, TResult2 = never>(onfulfilled?: ((value: IHTMLDialogElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

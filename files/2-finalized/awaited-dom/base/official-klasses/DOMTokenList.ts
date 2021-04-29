@@ -4,13 +4,13 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IDOMTokenList } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IDOMTokenList, IDOMTokenListProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMTokenList>('DOMTokenList', getState, setState);
-export const nodeAttacher = new NodeAttacher<IDOMTokenList>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IDOMTokenList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IDOMTokenList, string>(getState, setState, awaitedHandler);
 
 export function DOMTokenListGenerator() {
@@ -88,7 +88,7 @@ export function DOMTokenListGenerator() {
     }
 
     public then<TResult1 = IDOMTokenList, TResult2 = never>(onfulfilled?: ((value: IDOMTokenList) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public async forEach(callbackfn: (value: string, key: number, parent: IDOMTokenList) => void, thisArg?: any): Promise<void> {
@@ -110,7 +110,7 @@ export function DOMTokenListGenerator() {
     }
 
     public [Symbol.iterator](): IterableIterator<string> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: string;

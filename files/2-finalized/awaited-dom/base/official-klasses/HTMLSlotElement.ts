@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLSlotElement, IHTMLElement, IAssignedNodesOptions } from '../interfaces/official';
 import { ISuperElement, ISuperNode } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLSlotElement, IHTMLSlotElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLSlotElement>('HTMLSlotElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLSlotElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLSlotElement>(getState, setState, awaitedHandler);
 
 export function HTMLSlotElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLSlotElement extends HTMLElement implements IHTMLSlotElement, PromiseLike<IHTMLSlotElement> {
@@ -40,7 +40,7 @@ export function HTMLSlotElementGenerator(HTMLElement: Constructable<IHTMLElement
     }
 
     public then<TResult1 = IHTMLSlotElement, TResult2 = never>(onfulfilled?: ((value: IHTMLSlotElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

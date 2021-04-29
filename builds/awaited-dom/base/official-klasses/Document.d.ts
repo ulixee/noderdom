@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IDocument, INode, IDocumentOrShadowRoot, INonElementParentNode, IParentNode, IXPathEvaluatorBase, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../interfaces/super';
 import { INodeProperties } from './Node';
@@ -11,7 +11,7 @@ import { IParentNodeProperties } from '../official-mixins/ParentNode';
 import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluatorBase';
 export declare const getState: (instance: IDocument) => IDocumentProperties, setState: (instance: IDocument, properties: Partial<IDocumentProperties>) => void, recordProxy: (proxy: IDocument, instance: IDocument) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocument>;
-export declare const nodeAttacher: NodeAttacher<IDocument>;
+export declare const nodeFactory: NodeFactory<IDocument>;
 export declare function DocumentGenerator(Node: Constructable<INode>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {
         readonly URL: Promise<string>;

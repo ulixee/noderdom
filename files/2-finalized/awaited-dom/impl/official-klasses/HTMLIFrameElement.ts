@@ -18,16 +18,16 @@ export default class HTMLIFrameElement extends HTMLIFrameElementBaseClass implem
 
   public get contentDocument(): ISuperDocument {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperDocument(awaitedPath.addProperty('contentDocument'), awaitedOptions);
+    return createSuperDocument(awaitedPath.addProperty(this, 'contentDocument'), awaitedOptions);
   }
 
   public get featurePolicy(): IFeaturePolicy {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createFeaturePolicy(awaitedPath.addProperty('featurePolicy'), awaitedOptions);
+    return createFeaturePolicy(awaitedPath.addProperty(this, 'featurePolicy'), awaitedOptions);
   }
 
   public get sandbox(): IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('sandbox'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'sandbox'), awaitedOptions);
   }
 }

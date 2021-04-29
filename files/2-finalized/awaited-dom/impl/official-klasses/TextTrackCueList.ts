@@ -10,6 +10,6 @@ const TextTrackCueListBaseClass = TextTrackCueListGenerator();
 export default class TextTrackCueList extends TextTrackCueListBaseClass implements ITextTrackCueList {
   public getCueById(id: string): ITextTrackCue {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createTextTrackCue(awaitedPath.addMethod('getCueById', id), awaitedOptions);
+    return createTextTrackCue(awaitedPath.addMethod(this, 'getCueById', id), awaitedOptions);
   }
 }

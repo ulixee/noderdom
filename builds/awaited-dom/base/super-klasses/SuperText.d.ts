@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperText } from '../interfaces/super';
 import { ICharacterDataIsolate, INodeIsolate } from '../interfaces/isolate';
 import { INonDocumentTypeChildNode, ISlotable } from '../interfaces/official';
@@ -11,7 +11,7 @@ import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocum
 import { ISlotableProperties } from '../official-mixins/Slotable';
 export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void, recordProxy: (proxy: ISuperText, instance: ISuperText) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperText>;
-export declare const nodeAttacher: NodeAttacher<ISuperText>;
+export declare const nodeFactory: NodeFactory<ISuperText>;
 export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, Slotable: Constructable<ISlotable>): {
     new (_data?: string | undefined): {
         readonly wholeText: Promise<string>;

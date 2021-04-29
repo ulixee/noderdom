@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLTableCaptionElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLTableCaptionElement, IHTMLTableCaptionElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTableCaptionElement>('HTMLTableCaptionElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLTableCaptionElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLTableCaptionElement>(getState, setState, awaitedHandler);
 
 export function HTMLTableCaptionElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLTableCaptionElement extends HTMLElement implements IHTMLTableCaptionElement, PromiseLike<IHTMLTableCaptionElement> {
@@ -23,7 +23,7 @@ export function HTMLTableCaptionElementGenerator(HTMLElement: Constructable<IHTM
     }
 
     public then<TResult1 = IHTMLTableCaptionElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableCaptionElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

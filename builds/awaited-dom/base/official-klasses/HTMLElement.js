@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HTMLElementConstantKeys = exports.HTMLElementPropertyKeys = exports.HTMLElementGenerator = exports.nodeAttacher = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.HTMLElementConstantKeys = exports.HTMLElementPropertyKeys = exports.HTMLElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
-const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
+const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const Element_1 = require("./Element");
 const ElementCSSInlineStyle_1 = require("../official-mixins/ElementCSSInlineStyle");
 const ElementContentEditable_1 = require("../official-mixins/ElementContentEditable");
@@ -17,7 +17,7 @@ const HTMLOrSVGElement_1 = require("../official-mixins/HTMLOrSVGElement");
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLElement', exports.getState, exports.setState);
-exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
+exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLElementGenerator(Element, ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement) {
     const Parent = ClassMixer_1.default(Element, [ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement]);
     return class HTMLElement extends Parent {
@@ -82,7 +82,7 @@ function HTMLElementGenerator(Element, ElementCSSInlineStyle, ElementContentEdit
             return exports.awaitedHandler.runMethod(this, 'click', []);
         }
         then(onfulfilled, onrejected) {
-            return exports.nodeAttacher.attach(this).then(onfulfilled, onrejected);
+            return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
     };
 }

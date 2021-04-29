@@ -18,11 +18,11 @@ export default class HTMLTextAreaElement extends HTMLTextAreaElementBaseClass im
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 
   public get labels(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
   }
 }

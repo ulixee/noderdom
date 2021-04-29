@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLElementIsol
 export default class HTMLElementIsolate extends HTMLElementIsolateBase implements IHTMLElementIsolate {
   public get offsetParent(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'offsetParent'), awaitedOptions);
   }
 }

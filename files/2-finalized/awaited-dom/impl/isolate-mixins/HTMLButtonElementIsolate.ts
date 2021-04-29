@@ -11,11 +11,11 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLButtonEleme
 export default class HTMLButtonElementIsolate extends HTMLButtonElementIsolateBase implements IHTMLButtonElementIsolate {
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 
   public get labels(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
   }
 }

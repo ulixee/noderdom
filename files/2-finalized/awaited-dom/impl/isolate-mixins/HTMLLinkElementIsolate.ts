@@ -10,11 +10,11 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLLinkElement
 export default class HTMLLinkElementIsolate extends HTMLLinkElementIsolateBase implements IHTMLLinkElementIsolate {
   public get relList(): IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('relList'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
   }
 
   public get sizes(): Promise<string> | IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('sizes'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'sizes'), awaitedOptions);
   }
 }

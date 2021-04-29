@@ -13,7 +13,7 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class AttrIsolate extends AttrIsolate_1.default {
     get ownerElement() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'ownerElement'), awaitedOptions);
     }
 }
 exports.default = AttrIsolate;

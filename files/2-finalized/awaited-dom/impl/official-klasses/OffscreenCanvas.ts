@@ -10,6 +10,6 @@ const OffscreenCanvasBaseClass = OffscreenCanvasGenerator();
 export default class OffscreenCanvas extends OffscreenCanvasBaseClass implements IOffscreenCanvas {
   public transferToImageBitmap(): IImageBitmap {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createImageBitmap(awaitedPath.addMethod('transferToImageBitmap', ), awaitedOptions);
+    return createImageBitmap(awaitedPath.addMethod(this, 'transferToImageBitmap', ), awaitedOptions);
   }
 }

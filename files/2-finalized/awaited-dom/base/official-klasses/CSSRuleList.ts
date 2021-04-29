@@ -4,13 +4,13 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ICSSRuleList, ICSSRule } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ICSSRuleList, ICSSRuleListProperties>();
 export const awaitedHandler = new AwaitedHandler<ICSSRuleList>('CSSRuleList', getState, setState);
-export const nodeAttacher = new NodeAttacher<ICSSRuleList>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<ICSSRuleList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ICSSRuleList, ICSSRule>(getState, setState, awaitedHandler);
 
 export function CSSRuleListGenerator() {
@@ -56,11 +56,11 @@ export function CSSRuleListGenerator() {
     }
 
     public then<TResult1 = ICSSRuleList, TResult2 = never>(onfulfilled?: ((value: ICSSRuleList) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public [Symbol.iterator](): IterableIterator<ICSSRule> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: ICSSRule;

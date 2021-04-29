@@ -10,11 +10,11 @@ export const { getState, setState, recordProxy } = StateMachine<INonDocumentType
 export default class NonDocumentTypeChildNode extends NonDocumentTypeChildNodeBase implements INonDocumentTypeChildNode {
   public get nextElementSibling(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('nextElementSibling'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'nextElementSibling'), awaitedOptions);
   }
 
   public get previousElementSibling(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('previousElementSibling'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'previousElementSibling'), awaitedOptions);
   }
 }

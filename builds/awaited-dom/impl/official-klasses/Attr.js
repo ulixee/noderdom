@@ -19,7 +19,7 @@ class Attr extends AttrBaseClass {
     // properties
     get ownerElement() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'ownerElement'), awaitedOptions);
     }
 }
 exports.default = Attr;

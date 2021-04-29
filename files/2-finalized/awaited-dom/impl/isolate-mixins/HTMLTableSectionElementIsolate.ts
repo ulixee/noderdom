@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLTableSectio
 export default class HTMLTableSectionElementIsolate extends HTMLTableSectionElementIsolateBase implements IHTMLTableSectionElementIsolate {
   public get rows(): Promise<string> | ISuperHTMLCollection | Promise<number> {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('rows'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'rows'), awaitedOptions);
   }
 }

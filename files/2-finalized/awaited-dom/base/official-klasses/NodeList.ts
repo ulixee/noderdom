@@ -4,14 +4,14 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { INodeList } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<INodeList, INodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<INodeList>('NodeList', getState, setState);
-export const nodeAttacher = new NodeAttacher<INodeList>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<INodeList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<INodeList, ISuperNode>(getState, setState, awaitedHandler);
 
 export function NodeListGenerator() {
@@ -57,7 +57,7 @@ export function NodeListGenerator() {
     }
 
     public then<TResult1 = INodeList, TResult2 = never>(onfulfilled?: ((value: INodeList) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public async forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeList) => void, thisArg?: any): Promise<void> {
@@ -79,7 +79,7 @@ export function NodeListGenerator() {
     }
 
     public [Symbol.iterator](): IterableIterator<ISuperNode> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: ISuperNode;

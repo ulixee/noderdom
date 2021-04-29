@@ -22,7 +22,7 @@ class HTMLElement extends HTMLElementBaseClass {
     // properties
     get offsetParent() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('offsetParent'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'offsetParent'), awaitedOptions);
     }
 }
 exports.default = HTMLElement;

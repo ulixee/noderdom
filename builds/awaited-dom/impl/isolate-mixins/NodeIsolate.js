@@ -13,40 +13,40 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class NodeIsolate extends NodeIsolate_1.default {
     get childNodes() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty('childNodes'), awaitedOptions);
+        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'childNodes'), awaitedOptions);
     }
     get firstChild() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addProperty('firstChild'), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addProperty(this, 'firstChild'), awaitedOptions);
     }
     get lastChild() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addProperty('lastChild'), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addProperty(this, 'lastChild'), awaitedOptions);
     }
     get nextSibling() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addProperty('nextSibling'), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addProperty(this, 'nextSibling'), awaitedOptions);
     }
     get ownerDocument() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperDocument(awaitedPath.addProperty('ownerDocument'), awaitedOptions);
+        return create_1.createSuperDocument(awaitedPath.addProperty(this, 'ownerDocument'), awaitedOptions);
     }
     get parentElement() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('parentElement'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'parentElement'), awaitedOptions);
     }
     get parentNode() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addProperty('parentNode'), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addProperty(this, 'parentNode'), awaitedOptions);
     }
     get previousSibling() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addProperty('previousSibling'), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addProperty(this, 'previousSibling'), awaitedOptions);
     }
     // methods
     getRootNode(options) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addMethod('getRootNode', options), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addMethod(this, 'getRootNode', options), awaitedOptions);
     }
 }
 exports.default = NodeIsolate;

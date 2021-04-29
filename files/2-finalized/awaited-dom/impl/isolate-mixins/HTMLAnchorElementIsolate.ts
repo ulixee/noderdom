@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLAnchorEleme
 export default class HTMLAnchorElementIsolate extends HTMLAnchorElementIsolateBase implements IHTMLAnchorElementIsolate {
   public get relList(): IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('relList'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
   }
 }

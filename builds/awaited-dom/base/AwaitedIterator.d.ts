@@ -1,14 +1,14 @@
-import { INodeAttacherProperties } from './NodeAttacher';
+import { IRemoteNodeProperties } from './NodeFactory';
 import AwaitedHandler from './AwaitedHandler';
 export default class AwaitedIterator<TClass, T> {
     static creators: any;
     private readonly getState;
-    private readonly nodeAttacher;
-    constructor(getState: (instance: TClass) => IAwaitedIteratorProperties, setState: (instance: TClass, state: Partial<IAwaitedIteratorProperties>) => void, awaitedHandler: AwaitedHandler<TClass>);
+    private readonly setState;
+    private readonly nodeFactory;
+    constructor(getState: AwaitedIterator<TClass, T>['getState'], setState: AwaitedIterator<TClass, T>['setState'], awaitedHandler: AwaitedHandler<TClass>);
     load(instance: TClass): Promise<T[]>;
-    iterateAttached(instance: TClass): IterableIterator<T>;
-    private iterateAttachedItems;
+    iterateNodePointers(instance: TClass): IterableIterator<T>;
 }
-export interface IAwaitedIteratorProperties extends INodeAttacherProperties {
+export interface IAwaitedIteratorProperties extends IRemoteNodeProperties {
     createIterableName?: string;
 }

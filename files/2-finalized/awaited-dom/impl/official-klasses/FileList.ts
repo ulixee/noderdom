@@ -10,6 +10,6 @@ const FileListBaseClass = FileListGenerator();
 export default class FileList extends FileListBaseClass implements IFileList {
   public item(index: number): IFile {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createFile(awaitedPath.addMethod('item', index), awaitedOptions);
+    return createFile(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
   }
 }

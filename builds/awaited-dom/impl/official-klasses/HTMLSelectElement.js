@@ -19,28 +19,28 @@ class HTMLSelectElement extends HTMLSelectElementBaseClass {
     // properties
     get form() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
     get labels() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
     }
     get options() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLOptionsCollection(awaitedPath.addProperty('options'), awaitedOptions);
+        return create_1.createHTMLOptionsCollection(awaitedPath.addProperty(this, 'options'), awaitedOptions);
     }
     get selectedOptions() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('selectedOptions'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'selectedOptions'), awaitedOptions);
     }
     // methods
     item(index) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod('item', index), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
     namedItem(name) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLOptionElement(awaitedPath.addMethod('namedItem', name), awaitedOptions);
+        return create_1.createHTMLOptionElement(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
     }
 }
 exports.default = HTMLSelectElement;

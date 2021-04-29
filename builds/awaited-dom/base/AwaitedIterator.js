@@ -3,53 +3,50 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const NodeAttacher_1 = __importDefault(require("./NodeAttacher"));
+const NodeFactory_1 = __importDefault(require("./NodeFactory"));
 class AwaitedIterator {
     constructor(getState, setState, awaitedHandler) {
         this.getState = getState;
-        this.nodeAttacher = new NodeAttacher_1.default(getState, setState, awaitedHandler);
+        this.setState = setState;
+        this.nodeFactory = new NodeFactory_1.default(getState, setState, awaitedHandler);
     }
     async load(instance) {
-        const attachedInstance = await this.nodeAttacher.attach(instance);
-        return [...this.iterateAttached(attachedInstance)];
+        const nodePointerInstance = await this.nodeFactory.createInstanceWithNodePointer(instance);
+        return [...this.iterateNodePointers(nodePointerInstance)];
     }
-    *iterateAttached(instance) {
+    *iterateNodePointers(instance) {
         const state = this.getState(instance);
         const awaitedPath = state.awaitedPath;
-        const attachedState = this.nodeAttacher.getAttachedState(instance);
-        if (!attachedState) {
+        const nodePointer = this.nodeFactory.getNodePointer(instance);
+        if (!nodePointer) {
             throw new Error(`Please await this iterator`);
         }
-        if (!attachedState.iterableIsCustomType) {
-            yield* this.iterateAttachedItems(instance);
-            return;
+        if (!nodePointer.iterableItems) {
+            throw new Error(`Please add an await to ${awaitedPath.hasNodeId ? 're-' : ''}run this iterator`);
         }
-        const ids = attachedState.iterableIds;
-        if (!ids) {
-            throw new Error(`Please add an await to ${awaitedPath.hasAttachedId ? 're-' : ''}run this iterator`);
-        }
-        for (const id of ids) {
-            const createChild = AwaitedIterator.creators[state.createIterableName];
+        for (const item of nodePointer.iterableItems) {
+            if (!nodePointer.iterableIsState) {
+                yield item;
+                continue;
+            }
+            const itemState = item;
+            const { type, id } = itemState;
+            let createChild = AwaitedIterator.creators[state.createIterableName];
+            if (type) {
+                const dynamicCreator = AwaitedIterator.creators[`create${type}`];
+                if (dynamicCreator)
+                    createChild = dynamicCreator;
+            }
             const awaitedOptions = state.awaitedOptions;
-            const childPath = awaitedPath.withAttachedId(id);
-            yield createChild(childPath, awaitedOptions);
+            const childPath = awaitedPath.withNodeId(instance, id);
+            const child = createChild(childPath, awaitedOptions);
+            this.setState(child, {
+                nodePointer: itemState,
+            });
+            yield child;
         }
         // clear out iterable ids
-        attachedState.iterableIds = undefined;
-    }
-    *iterateAttachedItems(instance) {
-        const state = this.getState(instance);
-        const awaitedPath = state.awaitedPath;
-        const attachedState = this.nodeAttacher.getAttachedState(instance);
-        const items = attachedState === null || attachedState === void 0 ? void 0 : attachedState.iterableItems;
-        if (!items) {
-            throw new Error(`Please add an await to ${awaitedPath.hasAttachedId ? 're-' : ''}run this iterator`);
-        }
-        for (const item of items) {
-            yield item;
-        }
-        // clear out iterable ids
-        attachedState.iterableItems = undefined;
+        nodePointer.iterableItems = undefined;
     }
 }
 exports.default = AwaitedIterator;

@@ -18,11 +18,11 @@ export default class HTMLLinkElement extends HTMLLinkElementBaseClass implements
 
   public get relList(): IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('relList'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
   }
 
   public get sizes(): IDOMTokenList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMTokenList(awaitedPath.addProperty('sizes'), awaitedOptions);
+    return createDOMTokenList(awaitedPath.addProperty(this, 'sizes'), awaitedOptions);
   }
 }

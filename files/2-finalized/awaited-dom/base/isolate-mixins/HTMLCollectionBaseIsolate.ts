@@ -22,7 +22,7 @@ export default class HTMLCollectionBaseIsolate implements IHTMLCollectionBaseIso
   }
 
   public [Symbol.iterator](): IterableIterator<ISuperElement> {
-    return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+    return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
   }
 
   [index: number]: ISuperElement;

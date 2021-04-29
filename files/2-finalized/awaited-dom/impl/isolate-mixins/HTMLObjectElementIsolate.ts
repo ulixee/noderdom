@@ -11,11 +11,11 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLObjectEleme
 export default class HTMLObjectElementIsolate extends HTMLObjectElementIsolateBase implements IHTMLObjectElementIsolate {
   public get contentDocument(): ISuperDocument {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperDocument(awaitedPath.addProperty('contentDocument'), awaitedOptions);
+    return createSuperDocument(awaitedPath.addProperty(this, 'contentDocument'), awaitedOptions);
   }
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 }

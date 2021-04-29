@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLMapElementI
 export default class HTMLMapElementIsolate extends HTMLMapElementIsolateBase implements IHTMLMapElementIsolate {
   public get areas(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('areas'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'areas'), awaitedOptions);
   }
 }

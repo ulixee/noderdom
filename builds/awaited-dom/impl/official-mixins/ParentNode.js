@@ -13,24 +13,24 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class ParentNode extends ParentNode_1.default {
     get children() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('children'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'children'), awaitedOptions);
     }
     get firstElementChild() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('firstElementChild'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'firstElementChild'), awaitedOptions);
     }
     get lastElementChild() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('lastElementChild'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'lastElementChild'), awaitedOptions);
     }
     // methods
     querySelector(selectors) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod('querySelector', selectors), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addMethod(this, 'querySelector', selectors), awaitedOptions);
     }
     querySelectorAll(selectors) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addMethod('querySelectorAll', selectors), awaitedOptions);
+        return create_1.createSuperNodeList(awaitedPath.addMethod(this, 'querySelectorAll', selectors), awaitedOptions);
     }
 }
 exports.default = ParentNode;

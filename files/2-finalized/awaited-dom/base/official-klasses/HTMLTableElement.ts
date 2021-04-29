@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLTableElement, IHTMLElement, IHTMLTableCaptionElement, IHTMLTableSectionElement } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLTableElement, IHTMLTableElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTableElement>('HTMLTableElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLTableElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLTableElement>(getState, setState, awaitedHandler);
 
 export function HTMLTableElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLTableElement extends HTMLElement implements IHTMLTableElement, PromiseLike<IHTMLTableElement> {
@@ -82,7 +82,7 @@ export function HTMLTableElementGenerator(HTMLElement: Constructable<IHTMLElemen
     }
 
     public then<TResult1 = IHTMLTableElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

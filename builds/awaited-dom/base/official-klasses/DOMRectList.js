@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DOMRectListConstantKeys = exports.DOMRectListPropertyKeys = exports.DOMRectListGenerator = exports.awaitedIterator = exports.nodeAttacher = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.DOMRectListConstantKeys = exports.DOMRectListPropertyKeys = exports.DOMRectListGenerator = exports.awaitedIterator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const AwaitedIterator_1 = __importDefault(require("../AwaitedIterator"));
-const NodeAttacher_1 = __importDefault(require("../NodeAttacher"));
+const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 // tslint:disable:variable-name
 _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
 exports.awaitedHandler = new AwaitedHandler_1.default('DOMRectList', exports.getState, exports.setState);
-exports.nodeAttacher = new NodeAttacher_1.default(exports.getState, exports.setState, exports.awaitedHandler);
+exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 exports.awaitedIterator = new AwaitedIterator_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function DOMRectListGenerator() {
     return class DOMRectList {
@@ -52,10 +52,10 @@ function DOMRectListGenerator() {
             throw new Error('DOMRectList.item not implemented');
         }
         then(onfulfilled, onrejected) {
-            return exports.nodeAttacher.attach(this).then(onfulfilled, onrejected);
+            return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.iterator]() {
-            return exports.awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+            return exports.awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
         }
     };
 }

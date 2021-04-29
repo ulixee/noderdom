@@ -18,6 +18,6 @@ export default class HTMLTableSectionElement extends HTMLTableSectionElementBase
 
   public get rows(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('rows'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'rows'), awaitedOptions);
   }
 }

@@ -8,8 +8,8 @@ import { createSuperElement } from '../create';
 export const { getState, setState, recordProxy } = StateMachine<IShadowRootIsolate, IShadowRootIsolateProperties>();
 
 export default class ShadowRootIsolate extends ShadowRootIsolateBase implements IShadowRootIsolate {
-  public get host(): ISuperElement {
+  public get host(): Promise<string> | ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('host'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'host'), awaitedOptions);
   }
 }

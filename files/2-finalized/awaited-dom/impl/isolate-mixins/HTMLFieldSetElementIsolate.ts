@@ -11,11 +11,11 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLFieldSetEle
 export default class HTMLFieldSetElementIsolate extends HTMLFieldSetElementIsolateBase implements IHTMLFieldSetElementIsolate {
   public get elements(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('elements'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'elements'), awaitedOptions);
   }
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 }

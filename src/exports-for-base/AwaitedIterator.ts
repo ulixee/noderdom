@@ -1,4 +1,4 @@
-import AwaitedNodePointers, { IRemoteNodeProperties } from './AwaitedNodePointers';
+import NodeFactory, { IRemoteNodeProperties } from './NodeFactory';
 import AwaitedHandler from './AwaitedHandler';
 import INodePointer from './INodePointer';
 
@@ -6,7 +6,7 @@ export default class AwaitedIterator<TClass, T> {
   public static creators = require('../impl/create');
   private readonly getState: (instance: TClass) => IAwaitedIteratorProperties;
   private readonly setState: (instance: TClass, state: Partial<IAwaitedIteratorProperties>) => void;
-  private readonly nodeLinker: AwaitedNodePointers<TClass>;
+  private readonly nodeFactory: NodeFactory<TClass>;
   constructor(
     getState: AwaitedIterator<TClass, T>['getState'],
     setState: AwaitedIterator<TClass, T>['setState'],
@@ -14,18 +14,18 @@ export default class AwaitedIterator<TClass, T> {
   ) {
     this.getState = getState;
     this.setState = setState;
-    this.nodeLinker = new AwaitedNodePointers<TClass>(getState, setState, awaitedHandler);
+    this.nodeFactory = new NodeFactory<TClass>(getState, setState, awaitedHandler);
   }
 
   public async load(instance: TClass): Promise<T[]> {
-    const remoteNode = await this.nodeLinker.create(instance);
-    return [...this.iterateNodePointers(remoteNode)];
+    const nodePointerInstance = await this.nodeFactory.createInstanceWithNodePointer(instance);
+    return [...this.iterateNodePointers(nodePointerInstance)];
   }
 
   public *iterateNodePointers(instance: TClass): IterableIterator<T> {
     const state = this.getState(instance);
     const awaitedPath = state.awaitedPath;
-    const nodePointer = this.nodeLinker.get(instance);
+    const nodePointer = this.nodeFactory.getNodePointer(instance);
 
     if (!nodePointer) {
       throw new Error(`Please await this iterator`);

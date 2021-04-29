@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLFrameSetElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLFrameSetElement, IHTMLFrameSetElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFrameSetElement>('HTMLFrameSetElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLFrameSetElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLFrameSetElement>(getState, setState, awaitedHandler);
 
 export function HTMLFrameSetElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLFrameSetElement extends HTMLElement implements IHTMLFrameSetElement, PromiseLike<IHTMLFrameSetElement> {
@@ -33,7 +33,7 @@ export function HTMLFrameSetElementGenerator(HTMLElement: Constructable<IHTMLEle
     }
 
     public then<TResult1 = IHTMLFrameSetElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFrameSetElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

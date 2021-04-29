@@ -1,5 +1,5 @@
 import Constructable from './Constructable';
-import IAttachedState from './IAttachedState';
+import INodePointer from './INodePointer';
 
 export class NotImplementedError extends Error {}
 
@@ -19,24 +19,24 @@ export default class AwaitedHandler<TClass> {
     return AwaitedHandler.delegate?.construct(this, instance, args);
   }
 
-  public getProperty<T>(instance: TClass, name: string, hasNullDefault: boolean = false): Promise<T> {
-    return AwaitedHandler.delegate?.getProperty(this, instance, name, hasNullDefault);
+  public async getProperty<T>(instance: TClass, name: string, hasNullDefault: boolean = false): Promise<T> {
+    return await AwaitedHandler.delegate?.getProperty(this, instance, name, hasNullDefault);
   }
 
   public setProperty<T>(instance: TClass, name: string, value: T) {
     return AwaitedHandler.delegate?.setProperty(this, instance, name, value);
   }
 
-  public loadState(instance: TClass, properties?: string[]): Promise<IAttachedState> {
-    return AwaitedHandler.delegate?.loadState(this, instance, properties);
+  public async createNodePointer(instance: TClass): Promise<INodePointer> {
+    return await AwaitedHandler.delegate?.createNodePointer(this, instance);
   }
 
-  public runMethod<T>(instance: TClass, name: string, args: any[]): Promise<T> {
-    return AwaitedHandler.delegate?.runMethod(this, instance, name, args);
+  public async runMethod<T>(instance: TClass, name: string, args: any[]): Promise<T> {
+    return await AwaitedHandler.delegate?.runMethod(this, instance, name, args);
   }
 
-  public runStatic<T>(klass: Constructable<TClass>, name: string, args: any[]): Promise<T> {
-    return AwaitedHandler.delegate?.runStatic(this, klass, name, args);
+  public async runStatic<T>(klass: Constructable<TClass>, name: string, args: any[]): Promise<T> {
+    return await AwaitedHandler.delegate?.runStatic(this, klass, name, args);
   }
 }
 
@@ -50,7 +50,7 @@ export interface IAwaitedHandlerDelegate {
     hasNullDefault?: boolean,
   ): Promise<T>;
   setProperty<T, TClass>(self: AwaitedHandler<TClass>, instance: TClass, name: string, value: T): void;
-  loadState<TClass>(self: AwaitedHandler<TClass>, instance: TClass, properties?: string[]): Promise<IAttachedState>;
+  createNodePointer<TClass>(self: AwaitedHandler<TClass>, instance: TClass): Promise<INodePointer>;
   runMethod<T, TClass>(self: AwaitedHandler<TClass>, instance: TClass, name: string, args: any[]): Promise<T>;
   runStatic<T, TClass>(
     self: AwaitedHandler<TClass>,

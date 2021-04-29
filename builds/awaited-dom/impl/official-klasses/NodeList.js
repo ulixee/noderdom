@@ -14,7 +14,7 @@ const NodeListBaseClass = NodeList_1.NodeListGenerator();
 class NodeList extends NodeListBaseClass {
     item(index) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addMethod('item', index), awaitedOptions);
+        return create_1.createSuperNode(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
 }
 exports.default = NodeList;

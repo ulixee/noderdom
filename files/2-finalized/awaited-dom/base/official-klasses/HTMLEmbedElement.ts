@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLEmbedElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLEmbedElement, IHTMLEmbedElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLEmbedElement>('HTMLEmbedElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLEmbedElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLEmbedElement>(getState, setState, awaitedHandler);
 
 export function HTMLEmbedElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLEmbedElement extends HTMLElement implements IHTMLEmbedElement, PromiseLike<IHTMLEmbedElement> {
@@ -49,7 +49,7 @@ export function HTMLEmbedElementGenerator(HTMLElement: Constructable<IHTMLElemen
     }
 
     public then<TResult1 = IHTMLEmbedElement, TResult2 = never>(onfulfilled?: ((value: IHTMLEmbedElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

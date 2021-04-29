@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IAttrIsolate, IA
 export default class AttrIsolate extends AttrIsolateBase implements IAttrIsolate {
   public get ownerElement(): ISuperElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperElement(awaitedPath.addProperty('ownerElement'), awaitedOptions);
+    return createSuperElement(awaitedPath.addProperty(this, 'ownerElement'), awaitedOptions);
   }
 }

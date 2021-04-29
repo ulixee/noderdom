@@ -11,13 +11,13 @@ const CaretPositionBaseClass = CaretPositionGenerator();
 export default class CaretPosition extends CaretPositionBaseClass implements ICaretPosition {
   public get offsetNode(): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addProperty('offsetNode'), awaitedOptions);
+    return createSuperNode(awaitedPath.addProperty(this, 'offsetNode'), awaitedOptions);
   }
 
   // methods
 
   public getClientRect(): IDOMRect {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createDOMRect(awaitedPath.addMethod('getClientRect', ), awaitedOptions);
+    return createDOMRect(awaitedPath.addMethod(this, 'getClientRect', ), awaitedOptions);
   }
 }

@@ -1,12 +1,12 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IDocumentType, INode } from '../interfaces/official';
 import { INodeProperties } from './Node';
 export declare const getState: (instance: IDocumentType) => IDocumentTypeProperties, setState: (instance: IDocumentType, properties: Partial<IDocumentTypeProperties>) => void, recordProxy: (proxy: IDocumentType, instance: IDocumentType) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocumentType>;
-export declare const nodeAttacher: NodeAttacher<IDocumentType>;
+export declare const nodeFactory: NodeFactory<IDocumentType>;
 export declare function DocumentTypeGenerator(Node: Constructable<INode>): {
     new (): {
         readonly name: Promise<string>;

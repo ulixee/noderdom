@@ -18,11 +18,11 @@ export default class HTMLObjectElement extends HTMLObjectElementBaseClass implem
 
   public get contentDocument(): ISuperDocument {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperDocument(awaitedPath.addProperty('contentDocument'), awaitedOptions);
+    return createSuperDocument(awaitedPath.addProperty(this, 'contentDocument'), awaitedOptions);
   }
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 }

@@ -13,11 +13,11 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class HTMLFieldSetElementIsolate extends HTMLFieldSetElementIsolate_1.default {
     get elements() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty('elements'), awaitedOptions);
+        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'elements'), awaitedOptions);
     }
     get form() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
 }
 exports.default = HTMLFieldSetElementIsolate;

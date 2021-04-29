@@ -2,8 +2,8 @@ import AwaitedPath from './AwaitedPath';
 import AwaitedHandler from './AwaitedHandler';
 import INodePointer from './INodePointer';
 
-export default class AwaitedNodePointers<TClass> {
-  public static creators = require('../impl/create');
+export default class NodeFactory<TClass> {
+  public static instanceCreatorsByName = require('../impl/create');
   private readonly getState: (instance: TClass) => IRemoteNodeProperties;
   private readonly setState: (instance: TClass, state: Partial<IRemoteNodeProperties>) => void;
   private readonly awaitedHandler: AwaitedHandler<TClass>;
@@ -18,20 +18,21 @@ export default class AwaitedNodePointers<TClass> {
     this.awaitedHandler = awaitedHandler;
   }
 
-  public async create(instance: TClass): Promise<TClass> {
+  public async createInstanceWithNodePointer(instance: TClass): Promise<TClass> {
     const { awaitedOptions, awaitedPath, createInstanceName } = this.getState(instance);
     const state = await this.awaitedHandler.createNodePointer(instance);
     if (!state?.id) {
       return null as any;
     }
-    let createNewInstance = AwaitedNodePointers.creators[createInstanceName];
+    let createNewInstance = NodeFactory.instanceCreatorsByName[createInstanceName];
     if (state.type) {
-      const typeCreator = AwaitedNodePointers.creators[`create${state.type}`];
+      const typeCreator = NodeFactory.instanceCreatorsByName[`create${state.type}`];
       if (typeCreator) createNewInstance = typeCreator;
     }
 
-    const awaitedNodeIdPath = state?.id ? awaitedPath.withNodeId(awaitedPath.parent as any, state?.id) : awaitedPath;
-    const newInstance = createNewInstance(awaitedNodeIdPath, awaitedOptions) as TClass;
+    const newAwaitedPath = state?.id ? awaitedPath.withNodeId(awaitedPath.parent as any, state?.id) : awaitedPath;
+
+    const newInstance = createNewInstance(newAwaitedPath, awaitedOptions) as TClass;
 
     this.setState(newInstance, {
       nodePointer: state,
@@ -49,7 +50,7 @@ export default class AwaitedNodePointers<TClass> {
     return newInstance;
   }
 
-  public get(instance: TClass): INodePointer | undefined {
+  public getNodePointer(instance: TClass): INodePointer | undefined {
     return this.getState(instance).nodePointer;
   }
 }

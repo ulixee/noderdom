@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperText } from '../interfaces/super';
 import { ICharacterDataIsolate, INodeIsolate } from '../interfaces/isolate';
 import { INonDocumentTypeChildNode, ISlotable } from '../interfaces/official';
@@ -16,7 +16,7 @@ import { ISlotableProperties, SlotablePropertyKeys, SlotableConstantKeys } from 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ISuperText, ISuperTextProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperText>('SuperText', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperText>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<ISuperText>(getState, setState, awaitedHandler);
 
 export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, Slotable: Constructable<ISlotable>) {
   const Parent = (ClassMixer(CharacterDataIsolate, [NodeIsolate, NonDocumentTypeChildNode, Slotable]) as unknown) as Constructable<ICharacterDataIsolate & INodeIsolate & INonDocumentTypeChildNode & ISlotable>;
@@ -43,7 +43,7 @@ export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacte
     }
 
     public then<TResult1 = ISuperText, TResult2 = never>(onfulfilled?: ((value: ISuperText) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

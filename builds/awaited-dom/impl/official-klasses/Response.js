@@ -19,7 +19,7 @@ class Response extends ResponseBaseClass {
     // properties
     get headers() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHeaders(awaitedPath.addProperty('headers'), awaitedOptions);
+        return create_1.createHeaders(awaitedPath.addProperty(this, 'headers'), awaitedOptions);
     }
 }
 exports.default = Response;

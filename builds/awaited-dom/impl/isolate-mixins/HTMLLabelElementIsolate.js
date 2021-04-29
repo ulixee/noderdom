@@ -13,11 +13,11 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class HTMLLabelElementIsolate extends HTMLLabelElementIsolate_1.default {
     get control() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLElement(awaitedPath.addProperty('control'), awaitedOptions);
+        return create_1.createSuperHTMLElement(awaitedPath.addProperty(this, 'control'), awaitedOptions);
     }
     get form() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
 }
 exports.default = HTMLLabelElementIsolate;

@@ -223,6 +223,17 @@ declare const SuperNodeBaseClass: {
         readonly cols: Promise<string> | Promise<number>;
         readonly rows: Promise<string> | Promise<number> | import("../../base/interfaces/super").ISuperHTMLCollection;
         readonly version: Promise<string>;
+        readonly hash: Promise<string>;
+        readonly host: Promise<string> | ISuperElement;
+        readonly hostname: Promise<string>;
+        readonly origin: Promise<string>;
+        readonly password: Promise<string>;
+        readonly pathname: Promise<string>;
+        readonly port: Promise<string>;
+        readonly protocol: Promise<string>;
+        readonly search: Promise<string>;
+        readonly username: Promise<string>;
+        toString: (() => string) & (() => Promise<string>);
         readonly allow: Promise<string>;
         readonly allowFullscreen: Promise<boolean>;
         readonly allowPaymentRequest: Promise<boolean>;
@@ -401,7 +412,6 @@ declare const SuperNodeBaseClass: {
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
         readonly delegatesFocus: Promise<boolean>;
-        readonly host: ISuperElement;
         readonly mode: Promise<import("../../base/interfaces/official").IShadowRootMode>;
         readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
         readonly wholeText: Promise<string>;

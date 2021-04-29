@@ -18,6 +18,6 @@ export default class HTMLMapElement extends HTMLMapElementBaseClass implements I
 
   public get areas(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('areas'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'areas'), awaitedOptions);
   }
 }

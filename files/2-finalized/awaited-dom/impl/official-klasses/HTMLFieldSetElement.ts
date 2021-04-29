@@ -18,11 +18,11 @@ export default class HTMLFieldSetElement extends HTMLFieldSetElementBaseClass im
 
   public get elements(): ISuperHTMLCollection {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperHTMLCollection(awaitedPath.addProperty('elements'), awaitedOptions);
+    return createSuperHTMLCollection(awaitedPath.addProperty(this, 'elements'), awaitedOptions);
   }
 
   public get form(): IHTMLFormElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+    return createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
   }
 }

@@ -17,11 +17,11 @@ export default class CSSStyleSheet extends CSSStyleSheetBaseClass implements ICS
 
   public get cssRules(): ICSSRuleList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createCSSRuleList(awaitedPath.addProperty('cssRules'), awaitedOptions);
+    return createCSSRuleList(awaitedPath.addProperty(this, 'cssRules'), awaitedOptions);
   }
 
   public get ownerRule(): ICSSRule {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createCSSRule(awaitedPath.addProperty('ownerRule'), awaitedOptions);
+    return createCSSRule(awaitedPath.addProperty(this, 'ownerRule'), awaitedOptions);
   }
 }

@@ -1,11 +1,11 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IDOMTokenList } from '../interfaces/official';
 export declare const getState: (instance: IDOMTokenList) => IDOMTokenListProperties, setState: (instance: IDOMTokenList, properties: Partial<IDOMTokenListProperties>) => void, recordProxy: (proxy: IDOMTokenList, instance: IDOMTokenList) => void;
 export declare const awaitedHandler: AwaitedHandler<IDOMTokenList>;
-export declare const nodeAttacher: NodeAttacher<IDOMTokenList>;
+export declare const nodeFactory: NodeFactory<IDOMTokenList>;
 export declare const awaitedIterator: AwaitedIterator<IDOMTokenList, string>;
 export declare function DOMTokenListGenerator(): {
     new (): {

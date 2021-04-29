@@ -10,6 +10,6 @@ const TextTrackCueBaseClass = TextTrackCueGenerator();
 export default class TextTrackCue extends TextTrackCueBaseClass implements ITextTrackCue {
   public get track(): ITextTrack {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createTextTrack(awaitedPath.addProperty('track'), awaitedOptions);
+    return createTextTrack(awaitedPath.addProperty(this, 'track'), awaitedOptions);
   }
 }

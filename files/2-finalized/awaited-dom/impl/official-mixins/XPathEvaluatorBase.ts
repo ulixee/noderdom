@@ -10,11 +10,11 @@ export const { getState, setState, recordProxy } = StateMachine<IXPathEvaluatorB
 export default class XPathEvaluatorBase extends XPathEvaluatorBaseBase implements IXPathEvaluatorBase {
   public createExpression(expression: string, resolver?: IXPathNSResolver | null): IXPathExpression {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createXPathExpression(awaitedPath.addMethod('createExpression', expression, resolver), awaitedOptions);
+    return createXPathExpression(awaitedPath.addMethod(this, 'createExpression', expression, resolver), awaitedOptions);
   }
 
   public evaluate(expression: string, contextNode: INodeIsolate, resolver?: IXPathNSResolver | null, type?: number, result?: IXPathResult | null): IXPathResult {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createXPathResult(awaitedPath.addMethod('evaluate', expression, contextNode, resolver, type, result), awaitedOptions);
+    return createXPathResult(awaitedPath.addMethod(this, 'evaluate', expression, contextNode, resolver, type, result), awaitedOptions);
   }
 }

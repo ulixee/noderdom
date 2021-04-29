@@ -5,7 +5,7 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { ISuperNodeList, ISuperNode } from '../interfaces/super';
 import { INodeListIsolate, IRadioNodeListIsolate } from '../interfaces/isolate';
 import { INodeListIsolateProperties, NodeListIsolatePropertyKeys, NodeListIsolateConstantKeys } from '../isolate-mixins/NodeListIsolate';
@@ -14,7 +14,7 @@ import { IRadioNodeListIsolateProperties, RadioNodeListIsolatePropertyKeys, Radi
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNodeList>('SuperNodeList', getState, setState);
-export const nodeAttacher = new NodeAttacher<ISuperNodeList>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<ISuperNodeList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperNodeList, ISuperNode>(getState, setState, awaitedHandler);
 
 export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListIsolate>, RadioNodeListIsolate: Constructable<IRadioNodeListIsolate>) {
@@ -63,7 +63,7 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
     }
 
     public then<TResult1 = ISuperNodeList, TResult2 = never>(onfulfilled?: ((value: ISuperNodeList) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public async forEach(callbackfn: (value: ISuperNode, key: number, parent: ISuperNodeList) => void, thisArg?: any): Promise<void> {
@@ -85,7 +85,7 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
     }
 
     public [Symbol.iterator](): IterableIterator<ISuperNode> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
 
     [index: number]: ISuperNode;

@@ -137,6 +137,17 @@ declare const SuperElementBaseClass: {
         readonly cols: Promise<string> | Promise<number>;
         readonly rows: Promise<string> | Promise<number> | ISuperHTMLCollection;
         readonly version: Promise<string>;
+        readonly hash: Promise<string>;
+        readonly host: Promise<string> | ISuperElement;
+        readonly hostname: Promise<string>;
+        readonly origin: Promise<string>;
+        readonly password: Promise<string>;
+        readonly pathname: Promise<string>;
+        readonly port: Promise<string>;
+        readonly protocol: Promise<string>;
+        readonly search: Promise<string>;
+        readonly username: Promise<string>;
+        toString: (() => string) & (() => Promise<string>);
         readonly allow: Promise<string>;
         readonly allowFullscreen: Promise<boolean>;
         readonly allowPaymentRequest: Promise<boolean>;

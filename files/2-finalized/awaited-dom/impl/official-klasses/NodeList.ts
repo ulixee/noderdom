@@ -11,6 +11,6 @@ const NodeListBaseClass = NodeListGenerator();
 export default class NodeList extends NodeListBaseClass implements INodeList {
   public item(index: number): ISuperNode {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNode(awaitedPath.addMethod('item', index), awaitedOptions);
+    return createSuperNode(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
   }
 }

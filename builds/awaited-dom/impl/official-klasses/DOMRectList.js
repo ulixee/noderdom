@@ -14,7 +14,7 @@ const DOMRectListBaseClass = DOMRectList_1.DOMRectListGenerator();
 class DOMRectList extends DOMRectListBaseClass {
     item(index) {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMRect(awaitedPath.addMethod('item', index), awaitedOptions);
+        return create_1.createDOMRect(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
 }
 exports.default = DOMRectList;

@@ -20,7 +20,7 @@ class ShadowRoot extends ShadowRootBaseClass {
     // properties
     get host() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty('host'), awaitedOptions);
+        return create_1.createSuperElement(awaitedPath.addProperty(this, 'host'), awaitedOptions);
     }
 }
 exports.default = ShadowRoot;

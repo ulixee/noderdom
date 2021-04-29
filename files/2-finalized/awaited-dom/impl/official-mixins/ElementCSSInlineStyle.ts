@@ -9,6 +9,6 @@ export const { getState, setState, recordProxy } = StateMachine<IElementCSSInlin
 export default class ElementCSSInlineStyle extends ElementCSSInlineStyleBase implements IElementCSSInlineStyle {
   public get style(): ICSSStyleDeclaration {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createCSSStyleDeclaration(awaitedPath.addProperty('style'), awaitedOptions);
+    return createCSSStyleDeclaration(awaitedPath.addProperty(this, 'style'), awaitedOptions);
   }
 }

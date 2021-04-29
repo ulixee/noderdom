@@ -3,14 +3,14 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLDetailsElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLDetailsElement, IHTMLDetailsElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDetailsElement>('HTMLDetailsElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLDetailsElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLDetailsElement>(getState, setState, awaitedHandler);
 
 export function HTMLDetailsElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLDetailsElement extends HTMLElement implements IHTMLDetailsElement, PromiseLike<IHTMLDetailsElement> {
@@ -29,7 +29,7 @@ export function HTMLDetailsElementGenerator(HTMLElement: Constructable<IHTMLElem
     }
 
     public then<TResult1 = IHTMLDetailsElement, TResult2 = never>(onfulfilled?: ((value: IHTMLDetailsElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

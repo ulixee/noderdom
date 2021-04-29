@@ -13,11 +13,11 @@ _a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState 
 class HTMLButtonElementIsolate extends HTMLButtonElementIsolate_1.default {
     get form() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
     get labels() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
     }
 }
 exports.default = HTMLButtonElementIsolate;

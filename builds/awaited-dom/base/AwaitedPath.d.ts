@@ -1,18 +1,19 @@
 export default class AwaitedPath {
-    readonly hasAttachedId: boolean;
+    readonly hasNodeId: boolean;
     private readonly jsPath;
-    constructor(...jsPath: IJsPath);
-    addProperty(name: IPropertyName): AwaitedPath;
-    addMethod(name: IMethodName, ...args: IMethodArgs): AwaitedPath;
-    withAttachedId(id: IAttachedId): AwaitedPath;
+    parent: object | null;
+    constructor(parent: object | null, ...jsPath: IJsPath);
+    addProperty(parent: object | null, name: IPropertyName): AwaitedPath;
+    addMethod(parent: object | null, name: IMethodName, ...args: IMethodArgs): AwaitedPath;
+    withNodeId(parent: object | null, id: INodeId): AwaitedPath;
     toJSON(): IJsPath;
-    static createFromString(path: string): AwaitedPath;
+    static createFromString(parent: object | null, path: string): AwaitedPath;
 }
 export declare type IJsPath = IPathStep[];
-export declare type IPathStep = IPropertyName | IMethod | IAttachedId;
+export declare type IPathStep = IPropertyName | IMethod | INodeId;
 declare type IPropertyName = string;
 declare type IMethod = [IMethodName, ...IMethodArgs];
 declare type IMethodName = string;
 declare type IMethodArgs = any[];
-declare type IAttachedId = number;
+declare type INodeId = number;
 export {};

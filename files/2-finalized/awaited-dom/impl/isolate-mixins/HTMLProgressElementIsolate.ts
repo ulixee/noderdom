@@ -10,6 +10,6 @@ export const { getState, setState, recordProxy } = StateMachine<IHTMLProgressEle
 export default class HTMLProgressElementIsolate extends HTMLProgressElementIsolateBase implements IHTMLProgressElementIsolate {
   public get labels(): ISuperNodeList {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+    return createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
   }
 }

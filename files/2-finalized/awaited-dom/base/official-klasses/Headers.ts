@@ -4,13 +4,13 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHeaders, IHeadersInit } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHeaders, IHeadersProperties>();
 export const awaitedHandler = new AwaitedHandler<IHeaders>('Headers', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHeaders>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHeaders>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IHeaders, [string, string]>(getState, setState, awaitedHandler);
 
 export function HeadersGenerator() {
@@ -45,7 +45,7 @@ export function HeadersGenerator() {
     }
 
     public then<TResult1 = IHeaders, TResult2 = never>(onfulfilled?: ((value: IHeaders) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
     public async forEach(callbackfn: (value: string, key: string, parent: IHeaders) => void, thisArg?: any): Promise<void> {
@@ -67,7 +67,7 @@ export function HeadersGenerator() {
     }
 
     public [Symbol.iterator](): IterableIterator<[string, string]> {
-      return awaitedIterator.iterateAttached(this)[Symbol.iterator]();
+      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
     }
   };
 }

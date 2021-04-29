@@ -3,7 +3,7 @@ import initializeConstantsAndProperties from '../initializeConstantsAndPropertie
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
+import NodeFactory from '../NodeFactory';
 import { IHTMLProgressElement, IHTMLElement } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
@@ -11,7 +11,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLProgressElement, IHTMLProgressElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLProgressElement>('HTMLProgressElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLProgressElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLProgressElement>(getState, setState, awaitedHandler);
 
 export function HTMLProgressElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
   return class HTMLProgressElement extends HTMLElement implements IHTMLProgressElement, PromiseLike<IHTMLProgressElement> {
@@ -42,7 +42,7 @@ export function HTMLProgressElementGenerator(HTMLElement: Constructable<IHTMLEle
     }
 
     public then<TResult1 = IHTMLProgressElement, TResult2 = never>(onfulfilled?: ((value: IHTMLProgressElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }

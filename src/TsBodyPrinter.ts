@@ -380,7 +380,7 @@ export default class TsBodyPrinter {
       `public then<TResult1 = I${this.i.name}, TResult2 = never>(onfulfilled?: ((value: I${this.i.name}) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {`,
     );
     this.printer.increaseIndent();
-    this.printer.printLine(`return awaitedNodePointers.create(this).then(onfulfilled, onrejected);`);
+    this.printer.printLine(`return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);`);
     this.printer.decreaseIndent();
     this.printer.printLine('}');
   }

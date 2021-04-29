@@ -2,18 +2,22 @@ import AwaitedHandler from '../AwaitedHandler';
 import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
+import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
-import NodeAttacher from '../NodeAttacher';
-import { IHTMLAnchorElement, IHTMLElement, IDOMTokenList } from '../interfaces/official';
+import NodeFactory from '../NodeFactory';
+import { IHTMLAnchorElement, IHTMLElement, IHTMLHyperlinkElementUtils, IDOMTokenList } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
+import { IHTMLHyperlinkElementUtilsProperties, HTMLHyperlinkElementUtilsPropertyKeys, HTMLHyperlinkElementUtilsConstantKeys } from '../official-mixins/HTMLHyperlinkElementUtils';
 
 // tslint:disable:variable-name
 export const { getState, setState, recordProxy } = StateMachine<IHTMLAnchorElement, IHTMLAnchorElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLAnchorElement>('HTMLAnchorElement', getState, setState);
-export const nodeAttacher = new NodeAttacher<IHTMLAnchorElement>(getState, setState, awaitedHandler);
+export const nodeFactory = new NodeFactory<IHTMLAnchorElement>(getState, setState, awaitedHandler);
 
-export function HTMLAnchorElementGenerator(HTMLElement: Constructable<IHTMLElement>) {
-  return class HTMLAnchorElement extends HTMLElement implements IHTMLAnchorElement, PromiseLike<IHTMLAnchorElement> {
+export function HTMLAnchorElementGenerator(HTMLElement: Constructable<IHTMLElement>, HTMLHyperlinkElementUtils: Constructable<IHTMLHyperlinkElementUtils>) {
+  const Parent = (ClassMixer(HTMLElement, [HTMLHyperlinkElementUtils]) as unknown) as Constructable<IHTMLElement & IHTMLHyperlinkElementUtils>;
+
+  return class HTMLAnchorElement extends Parent implements IHTMLAnchorElement, PromiseLike<IHTMLAnchorElement> {
     constructor() {
       super();
       initializeConstantsAndProperties<HTMLAnchorElement>(this, HTMLAnchorElementConstantKeys, HTMLAnchorElementPropertyKeys);
@@ -57,14 +61,14 @@ export function HTMLAnchorElementGenerator(HTMLElement: Constructable<IHTMLEleme
     }
 
     public then<TResult1 = IHTMLAnchorElement, TResult2 = never>(onfulfilled?: ((value: IHTMLAnchorElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
-      return nodeAttacher.attach(this).then(onfulfilled, onrejected);
+      return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
   };
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////
 
-export interface IHTMLAnchorElementProperties extends IHTMLElementProperties {
+export interface IHTMLAnchorElementProperties extends IHTMLElementProperties, IHTMLHyperlinkElementUtilsProperties {
   awaitedPath: AwaitedPath;
   awaitedOptions: any;
   createInstanceName: string;
@@ -79,6 +83,6 @@ export interface IHTMLAnchorElementProperties extends IHTMLElementProperties {
   readonly type?: Promise<string>;
 }
 
-export const HTMLAnchorElementPropertyKeys = [...HTMLElementPropertyKeys, 'download', 'hreflang', 'referrerPolicy', 'rel', 'relList', 'target', 'text', 'type'];
+export const HTMLAnchorElementPropertyKeys = [...HTMLElementPropertyKeys, ...HTMLHyperlinkElementUtilsPropertyKeys, 'download', 'hreflang', 'referrerPolicy', 'rel', 'relList', 'target', 'text', 'type'];
 
-export const HTMLAnchorElementConstantKeys = [...HTMLElementConstantKeys];
+export const HTMLAnchorElementConstantKeys = [...HTMLElementConstantKeys, ...HTMLHyperlinkElementUtilsConstantKeys];

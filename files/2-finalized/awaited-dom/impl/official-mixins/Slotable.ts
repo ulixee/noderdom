@@ -9,6 +9,6 @@ export const { getState, setState, recordProxy } = StateMachine<ISlotable, ISlot
 export default class Slotable extends SlotableBase implements ISlotable {
   public get assignedSlot(): IHTMLSlotElement {
     const { awaitedPath, awaitedOptions } = getState(this);
-    return createHTMLSlotElement(awaitedPath.addProperty('assignedSlot'), awaitedOptions);
+    return createHTMLSlotElement(awaitedPath.addProperty(this, 'assignedSlot'), awaitedOptions);
   }
 }

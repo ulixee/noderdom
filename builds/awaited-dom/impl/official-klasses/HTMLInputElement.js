@@ -19,19 +19,19 @@ class HTMLInputElement extends HTMLInputElementBaseClass {
     // properties
     get files() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createFileList(awaitedPath.addProperty('files'), awaitedOptions);
+        return create_1.createFileList(awaitedPath.addProperty(this, 'files'), awaitedOptions);
     }
     get form() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty('form'), awaitedOptions);
+        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
     get labels() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty('labels'), awaitedOptions);
+        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
     }
     get list() {
         const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLElement(awaitedPath.addProperty('list'), awaitedOptions);
+        return create_1.createSuperHTMLElement(awaitedPath.addProperty(this, 'list'), awaitedOptions);
     }
 }
 exports.default = HTMLInputElement;
