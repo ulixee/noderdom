@@ -38,6 +38,16 @@ export default class NodeFactory<TClass> {
       nodePointer: state,
     });
 
+    // @ts-ignore
+    newInstance.toJSON = () => {
+      return {
+        id: state.id,
+        type: state.type,
+        preview: state.preview,
+        ...newInstance,
+      };
+    };
+
     const thenable = (newInstance as unknown) as PromiseLike<TClass>;
     // return null first time to escape promise chain
     const originalThen = thenable.then;

@@ -1,6 +1,6 @@
 {
   "name": "awaited-dom",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
   "homepage": "https://github.com/ulixee/noderdom",
   "author": "Data Liberation Foundation",

@@ -1,0 +1,58 @@
+import AwaitedHandler from '../AwaitedHandler';
+import AwaitedPath from '../AwaitedPath';
+import Constructable from '../Constructable';
+import { IRange, IAbstractRange, IDocumentFragment, IDOMRect, IDOMRectList } from '../interfaces/official';
+import { ISuperNode } from '../interfaces/super';
+import { INodeIsolate } from '../interfaces/isolate';
+import { IAbstractRangeProperties } from './AbstractRange';
+export declare const getState: (instance: IRange) => IRangeProperties, setState: (instance: IRange, properties: Partial<IRangeProperties>) => void, recordProxy: (proxy: IRange, instance: IRange) => void;
+export declare const awaitedHandler: AwaitedHandler<IRange>;
+export declare function RangeGenerator(AbstractRange: Constructable<IAbstractRange>): {
+    new (): {
+        readonly END_TO_END: number;
+        readonly END_TO_START: number;
+        readonly START_TO_END: number;
+        readonly START_TO_START: number;
+        readonly commonAncestorContainer: ISuperNode;
+        cloneContents(): IDocumentFragment;
+        cloneRange(): IRange;
+        collapse(toStart?: boolean | undefined): Promise<void>;
+        compareBoundaryPoints(how: number, sourceRange: IRange): Promise<number>;
+        comparePoint(node: INodeIsolate, offset: number): Promise<number>;
+        createContextualFragment(fragment: string): IDocumentFragment;
+        deleteContents(): Promise<void>;
+        detach(): Promise<void>;
+        extractContents(): IDocumentFragment;
+        getBoundingClientRect(): IDOMRect;
+        getClientRects(): IDOMRectList;
+        insertNode(node: INodeIsolate): Promise<void>;
+        intersectsNode(node: INodeIsolate): Promise<boolean>;
+        isPointInRange(node: INodeIsolate, offset: number): Promise<boolean>;
+        selectNode(node: INodeIsolate): Promise<void>;
+        selectNodeContents(node: INodeIsolate): Promise<void>;
+        setEnd(node: INodeIsolate, offset: number): Promise<void>;
+        setEndAfter(node: INodeIsolate): Promise<void>;
+        setEndBefore(node: INodeIsolate): Promise<void>;
+        setStart(node: INodeIsolate, offset: number): Promise<void>;
+        setStartAfter(node: INodeIsolate): Promise<void>;
+        setStartBefore(node: INodeIsolate): Promise<void>;
+        surroundContents(newParent: INodeIsolate): Promise<void>;
+        toString(): Promise<string>;
+        readonly collapsed: Promise<boolean>;
+        readonly endContainer: ISuperNode;
+        readonly endOffset: Promise<number>;
+        readonly startContainer: ISuperNode;
+        readonly startOffset: Promise<number>;
+    };
+    readonly END_TO_END: number;
+    readonly END_TO_START: number;
+    readonly START_TO_END: number;
+    readonly START_TO_START: number;
+};
+export interface IRangeProperties extends IAbstractRangeProperties {
+    awaitedPath: AwaitedPath;
+    awaitedOptions: any;
+    readonly commonAncestorContainer?: ISuperNode;
+}
+export declare const RangePropertyKeys: string[];
+export declare const RangeConstantKeys: string[];

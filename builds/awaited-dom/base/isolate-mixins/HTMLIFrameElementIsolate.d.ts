@@ -1,0 +1,53 @@
+import AwaitedHandler from '../AwaitedHandler';
+import AwaitedPath from '../AwaitedPath';
+import { IHTMLIFrameElementIsolate } from '../interfaces/isolate';
+import { ISuperDocument } from '../interfaces/super';
+import { IFeaturePolicy, IDOMTokenList } from '../interfaces/official';
+export declare const getState: (instance: IHTMLIFrameElementIsolate) => IHTMLIFrameElementIsolateProperties, setState: (instance: IHTMLIFrameElementIsolate, properties: Partial<IHTMLIFrameElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLIFrameElementIsolate, instance: IHTMLIFrameElementIsolate) => void;
+export declare const awaitedHandler: AwaitedHandler<IHTMLIFrameElementIsolate>;
+export default class HTMLIFrameElementIsolate implements IHTMLIFrameElementIsolate {
+    get align(): Promise<string>;
+    get allow(): Promise<string>;
+    get allowFullscreen(): Promise<boolean>;
+    get allowPaymentRequest(): Promise<boolean>;
+    get contentDocument(): ISuperDocument;
+    get csp(): Promise<string>;
+    get featurePolicy(): IFeaturePolicy;
+    get frameBorder(): Promise<string>;
+    get height(): Promise<number> | Promise<string>;
+    get longDesc(): Promise<string>;
+    get marginHeight(): Promise<string>;
+    get marginWidth(): Promise<string>;
+    get name(): Promise<string>;
+    get referrerPolicy(): Promise<string>;
+    get sandbox(): IDOMTokenList;
+    get scrolling(): Promise<string>;
+    get src(): Promise<string>;
+    get srcdoc(): Promise<string>;
+    get width(): Promise<number> | Promise<string>;
+}
+export interface IHTMLIFrameElementIsolateProperties {
+    awaitedPath: AwaitedPath;
+    awaitedOptions: any;
+    readonly align?: Promise<string>;
+    readonly allow?: Promise<string>;
+    readonly allowFullscreen?: Promise<boolean>;
+    readonly allowPaymentRequest?: Promise<boolean>;
+    readonly contentDocument?: ISuperDocument;
+    readonly csp?: Promise<string>;
+    readonly featurePolicy?: IFeaturePolicy;
+    readonly frameBorder?: Promise<string>;
+    readonly height?: Promise<number> | Promise<string>;
+    readonly longDesc?: Promise<string>;
+    readonly marginHeight?: Promise<string>;
+    readonly marginWidth?: Promise<string>;
+    readonly name?: Promise<string>;
+    readonly referrerPolicy?: Promise<string>;
+    readonly sandbox?: IDOMTokenList;
+    readonly scrolling?: Promise<string>;
+    readonly src?: Promise<string>;
+    readonly srcdoc?: Promise<string>;
+    readonly width?: Promise<number> | Promise<string>;
+}
+export declare const HTMLIFrameElementIsolatePropertyKeys: string[];
+export declare const HTMLIFrameElementIsolateConstantKeys: never[];

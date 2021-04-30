@@ -32,58 +32,68 @@ export default class AwaitedPath {
     const stack: string[][] = [topPath];
     let isEscape = false;
     let isMethodCall = false;
-    let isQuoteStarted = false;
+    let isQuoteStarted = '';
 
     const pushChars = new Set(['.', '(', ')', ',', '[', ']']);
-    for (const char of path) {
+    for (let i = 0; i < path.length; i++) {
+      const char = path.charAt(i);
       if (char === '\\') {
         isEscape = !isEscape;
         continue;
       }
       if (!isEscape && (char === "'" || char === '`' || char === '"')) {
-        if (isQuoteStarted) {
+        if (isQuoteStarted === char) {
           topPath.push(pendingString);
           pendingString = '';
+          isQuoteStarted = '';
+        } else if (!isQuoteStarted) {
+          isQuoteStarted = char;
+        } else {
+          pendingString += char;
         }
-        isQuoteStarted = !isQuoteStarted;
         continue;
       }
 
       if (isQuoteStarted) {
         pendingString += char;
+        isEscape = false;
         continue;
       }
 
-      if (char === '\\s' || char === ' ' || char === '\t') {
+      if (char === '\\s' || char === ' ' || char === '\t' || char === '\n') {
+        isEscape = false;
         // don't add spacing to an empty pending string
         if (!pendingString) continue;
       }
 
-      if (char === '(' && !isEscape) {
-        topPath = [];
-        isMethodCall = true;
-        stack.push(topPath);
-        jsPath.push(topPath as any);
-      }
-
-      if (!isEscape && pushChars.has(char)) {
-        if (isMethodCall && pendingString.match(/^\d+$/)) {
-          topPath.push(Number(pendingString));
-        } else if (pendingString) {
-          topPath.push(pendingString);
+      if (!isEscape) {
+        if (char === '(') {
+          topPath = [];
+          isMethodCall = true;
+          stack.push(topPath);
+          jsPath.push(topPath as any);
         }
-        pendingString = '';
+
+        if (pushChars.has(char)) {
+          if (isMethodCall && pendingString.match(/^\d+$/)) {
+            topPath.push(Number(pendingString));
+          } else if (pendingString) {
+            topPath.push(pendingString);
+          }
+          pendingString = '';
+        }
+
+        if (char === ')') {
+          isMethodCall = false;
+          stack.pop();
+          topPath = stack[stack.length - 1];
+        }
+
+        if (!pushChars.has(char)) {
+          pendingString += char;
+        }
       }
 
-      if (char === ')' && !isEscape) {
-        isMethodCall = false;
-        stack.pop();
-        topPath = stack[stack.length - 1];
-      }
-
-      if (!pushChars.has(char) && !isEscape) {
-        pendingString += char;
-      }
       isEscape = false;
     }
     if (pendingString) topPath.push(pendingString);

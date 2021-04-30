@@ -1,0 +1,57 @@
+import { IRange, IDocumentFragment, IDOMRect, IDOMRectList } from '../../base/interfaces/official';
+import { ISuperNode } from '../../base/interfaces/super';
+import { IRangeProperties } from '../../base/official-klasses/Range';
+export declare const getState: (instance: IRange) => IRangeProperties, setState: (instance: IRange, properties: Partial<IRangeProperties>) => void, recordProxy: (proxy: IRange, instance: IRange) => void;
+declare const RangeBaseClass: {
+    new (): {
+        readonly END_TO_END: number;
+        readonly END_TO_START: number;
+        readonly START_TO_END: number;
+        readonly START_TO_START: number;
+        readonly commonAncestorContainer: ISuperNode;
+        cloneContents(): IDocumentFragment;
+        cloneRange(): IRange;
+        collapse(toStart?: boolean | undefined): Promise<void>;
+        compareBoundaryPoints(how: number, sourceRange: IRange): Promise<number>;
+        comparePoint(node: import("../../base/interfaces/isolate").INodeIsolate, offset: number): Promise<number>;
+        createContextualFragment(fragment: string): IDocumentFragment;
+        deleteContents(): Promise<void>;
+        detach(): Promise<void>;
+        extractContents(): IDocumentFragment;
+        getBoundingClientRect(): IDOMRect;
+        getClientRects(): IDOMRectList;
+        insertNode(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        intersectsNode(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<boolean>;
+        isPointInRange(node: import("../../base/interfaces/isolate").INodeIsolate, offset: number): Promise<boolean>;
+        selectNode(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        selectNodeContents(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        setEnd(node: import("../../base/interfaces/isolate").INodeIsolate, offset: number): Promise<void>;
+        setEndAfter(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        setEndBefore(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        setStart(node: import("../../base/interfaces/isolate").INodeIsolate, offset: number): Promise<void>;
+        setStartAfter(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        setStartBefore(node: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        surroundContents(newParent: import("../../base/interfaces/isolate").INodeIsolate): Promise<void>;
+        toString(): Promise<string>;
+        readonly collapsed: Promise<boolean>;
+        readonly endContainer: ISuperNode;
+        readonly endOffset: Promise<number>;
+        readonly startContainer: ISuperNode;
+        readonly startOffset: Promise<number>;
+    };
+    readonly END_TO_END: number;
+    readonly END_TO_START: number;
+    readonly START_TO_END: number;
+    readonly START_TO_START: number;
+};
+export default class Range extends RangeBaseClass implements IRange {
+    constructor();
+    get commonAncestorContainer(): ISuperNode;
+    cloneContents(): IDocumentFragment;
+    cloneRange(): IRange;
+    createContextualFragment(fragment: string): IDocumentFragment;
+    extractContents(): IDocumentFragment;
+    getBoundingClientRect(): IDOMRect;
+    getClientRects(): IDOMRectList;
+}
+export {};
