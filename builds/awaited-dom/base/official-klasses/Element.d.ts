@@ -8,7 +8,7 @@ import { INodeProperties } from './Node';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
 import { ISlotableProperties } from '../official-mixins/Slotable';
-export declare const getState: (instance: IElement) => IElementProperties, setState: (instance: IElement, properties: Partial<IElementProperties>) => void, recordProxy: (proxy: IElement, instance: IElement) => void;
+export declare const getState: (instance: IElement) => IElementProperties, setState: (instance: IElement, properties: Partial<IElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IElement>;
 export declare const nodeFactory: NodeFactory<IElement>;
 export declare function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, ParentNode: Constructable<IParentNode>, Slotable: Constructable<ISlotable>): {

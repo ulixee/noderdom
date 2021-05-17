@@ -1,28 +1,21 @@
-const globalMap = new WeakMap();
-const proxyMap = new WeakMap();
+let stateStorageSymbol = Symbol.for('noderdom/StateMachine');
+
+export function setStorageSymbol(storageSymbol: symbol): void {
+  stateStorageSymbol = storageSymbol;
+}
 
 export default function StateMachine<IClass extends object, IProperties>() {
-  function recordProxy(proxy: IClass, instance: IClass) {
-    proxyMap.set(proxy as any, instance);
-  }
-
   function setState(instance: IClass, properties: Partial<IProperties>): void {
-    if (proxyMap.has(instance)) {
-      instance = proxyMap.get(instance);
-    }
     const object: Record<string, any> = getState(instance);
-    Object.entries(properties).forEach(([key, value]: [string, any]) => {
-      object[key] = value;
-    });
-    globalMap.set(instance, object);
+    Object.assign(object, properties);
+
+    (instance as any)[stateStorageSymbol] = object;
   }
 
   function getState(instance: IClass): IProperties {
-    if (proxyMap.has(instance)) {
-      instance = proxyMap.get(instance);
-    }
-    return globalMap.get(instance) || {};
+    if (!instance) return {} as any;
+    return (instance as any)[stateStorageSymbol] || {};
   }
 
-  return { recordProxy, getState, setState };
+  return { getState, setState };
 }

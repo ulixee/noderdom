@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLObjectElementIsolate } from '../interfaces/isolate';
 import { ISuperDocument } from '../interfaces/super';
 import { IHTMLFormElement, IValidityState } from '../interfaces/official';
-export declare const getState: (instance: IHTMLObjectElementIsolate) => IHTMLObjectElementIsolateProperties, setState: (instance: IHTMLObjectElementIsolate, properties: Partial<IHTMLObjectElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLObjectElementIsolate, instance: IHTMLObjectElementIsolate) => void;
+export declare const getState: (instance: IHTMLObjectElementIsolate) => IHTMLObjectElementIsolateProperties, setState: (instance: IHTMLObjectElementIsolate, properties: Partial<IHTMLObjectElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLObjectElementIsolate>;
 export default class HTMLObjectElementIsolate implements IHTMLObjectElementIsolate {
     get align(): Promise<string>;

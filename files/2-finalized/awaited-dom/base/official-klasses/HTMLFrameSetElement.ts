@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLFrameSetElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFrameSetElement, IHTMLFrameSetElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLFrameSetElement, IHTMLFrameSetElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFrameSetElement>('HTMLFrameSetElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLFrameSetElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLFrameSetElementGenerator(HTMLElement: Constructable<IHTMLEle
   return class HTMLFrameSetElement extends HTMLElement implements IHTMLFrameSetElement, PromiseLike<IHTMLFrameSetElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLFrameSetElement>(this, HTMLFrameSetElementConstantKeys, HTMLFrameSetElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLFrameSetElement',
       });
@@ -34,6 +33,10 @@ export function HTMLFrameSetElementGenerator(HTMLElement: Constructable<IHTMLEle
 
     public then<TResult1 = IHTMLFrameSetElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFrameSetElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLFrameSetElementPropertyKeys, HTMLFrameSetElementConstantKeys);
     }
   };
 }

@@ -5,7 +5,7 @@ import { XPathResultGenerator, IXPathResultProperties } from '../../base/officia
 import { createSuperNode } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXPathResult, IXPathResultProperties>();
+export const { getState, setState } = StateMachine<IXPathResult, IXPathResultProperties>();
 const XPathResultBaseClass = XPathResultGenerator();
 
 export default class XPathResult extends XPathResultBaseClass implements IXPathResult {

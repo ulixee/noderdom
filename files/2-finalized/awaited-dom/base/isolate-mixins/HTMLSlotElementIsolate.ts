@@ -6,7 +6,7 @@ import { IAssignedNodesOptions } from '../interfaces/official';
 import { ISuperElement, ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLSlotElementIsolate, IHTMLSlotElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLSlotElementIsolate, IHTMLSlotElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLSlotElementIsolate>('HTMLSlotElementIsolate', getState, setState);
 
 export default class HTMLSlotElementIsolate implements IHTMLSlotElementIsolate {

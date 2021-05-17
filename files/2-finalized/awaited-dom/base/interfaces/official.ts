@@ -146,7 +146,7 @@ export interface IAudioTrackList {
 
   getTrackById(id: string): IAudioTrack;
 
-  [Symbol.iterator](): IterableIterator<IAudioTrack>;
+  [Symbol.iterator](): Iterator<IAudioTrack>;
 }
 
 // Blob //////////
@@ -197,7 +197,7 @@ export interface ICSSRuleList {
 
   item(index: number): ICSSRule;
 
-  [Symbol.iterator](): IterableIterator<ICSSRule>;
+  [Symbol.iterator](): Iterator<ICSSRule>;
 
   [index: number]: ICSSRule;
 }
@@ -216,7 +216,7 @@ export interface ICSSStyleDeclaration {
   removeProperty(property: string): Promise<string>;
   setProperty(property: string, value: string, priority?: string): Promise<void>;
 
-  [Symbol.iterator](): IterableIterator<string>;
+  [Symbol.iterator](): Iterator<string>;
 
   [index: number]: string;
 }
@@ -279,7 +279,7 @@ export interface IDOMRectList {
 
   item(index: number): IDOMRect;
 
-  [Symbol.iterator](): IterableIterator<IDOMRect>;
+  [Symbol.iterator](): Iterator<IDOMRect>;
 
   [index: number]: IDOMRect;
 }
@@ -320,7 +320,7 @@ export interface IDOMTokenList {
   entries(): Promise<IterableIterator<[number, string]>>;
   keys(): Promise<IterableIterator<number>>;
   values(): Promise<IterableIterator<string>>;
-  [Symbol.iterator](): IterableIterator<string>;
+  [Symbol.iterator](): Iterator<string>;
 
   [index: number]: string;
 }
@@ -472,7 +472,7 @@ export interface IFileList {
 
   item(index: number): IFile;
 
-  [Symbol.iterator](): IterableIterator<IFile>;
+  [Symbol.iterator](): Iterator<IFile>;
 
   [index: number]: IFile;
 }
@@ -492,7 +492,7 @@ export interface IHTMLCollectionBase {
 
   item(index: number): ISuperElement;
 
-  [Symbol.iterator](): IterableIterator<ISuperElement>;
+  [Symbol.iterator](): Iterator<ISuperElement>;
 
   [index: number]: ISuperElement;
 }
@@ -608,7 +608,7 @@ export interface IHeaders {
   entries(): Promise<IterableIterator<[string, string]>>;
   keys(): Promise<IterableIterator<string>>;
   values(): Promise<IterableIterator<string>>;
-  [Symbol.iterator](): IterableIterator<[string, string]>;
+  [Symbol.iterator](): Iterator<[string, string]>;
 }
 
 // ImageBitmap //////////
@@ -667,7 +667,7 @@ export interface IMediaList {
   deleteMedium(medium: string): Promise<void>;
   item(index: number): Promise<string | null>;
 
-  [Symbol.iterator](): IterableIterator<string>;
+  [Symbol.iterator](): Iterator<string>;
 
   [index: number]: string;
 }
@@ -692,7 +692,7 @@ export interface INamedNodeMap {
   getNamedItemNS(namespace: string | null, localName: string): Promise<IAttr | null>;
   item(index: number): Promise<IAttr | null>;
 
-  [Symbol.iterator](): IterableIterator<IAttr>;
+  [Symbol.iterator](): Iterator<IAttr>;
 
   [index: number]: IAttr;
 }
@@ -757,7 +757,7 @@ export interface INodeList {
   entries(): Promise<IterableIterator<[number, ISuperNode]>>;
   keys(): Promise<IterableIterator<number>>;
   values(): Promise<IterableIterator<ISuperNode>>;
-  [Symbol.iterator](): IterableIterator<ISuperNode>;
+  [Symbol.iterator](): Iterator<ISuperNode>;
 
   [index: number]: ISuperNode;
 }
@@ -969,7 +969,7 @@ export interface ITextTrackCueList {
 
   getCueById(id: string): ITextTrackCue;
 
-  [Symbol.iterator](): IterableIterator<ITextTrackCue>;
+  [Symbol.iterator](): Iterator<ITextTrackCue>;
 }
 
 // TextTrackList //////////
@@ -1011,7 +1011,7 @@ export interface IVideoTrackList {
 
   getTrackById(id: string): IVideoTrack;
 
-  [Symbol.iterator](): IterableIterator<IVideoTrack>;
+  [Symbol.iterator](): Iterator<IVideoTrack>;
 }
 
 // XMLSerializer //////////
@@ -1633,7 +1633,7 @@ export interface IHTMLSelectElement extends IHTMLElement {
   namedItem(name: string): IHTMLOptionElement;
   reportValidity(): Promise<boolean>;
 
-  [Symbol.iterator](): IterableIterator<ISuperElement>;
+  [Symbol.iterator](): Iterator<ISuperElement>;
 
   [index: number]: ISuperElement;
 }

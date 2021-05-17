@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IAudioTrack } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IAudioTrack, IAudioTrackProperties>();
+export const { getState, setState } = StateMachine<IAudioTrack, IAudioTrackProperties>();
 export const awaitedHandler = new AwaitedHandler<IAudioTrack>('AudioTrack', getState, setState);
 
 export function AudioTrackGenerator() {
   return class AudioTrack implements IAudioTrack {
     constructor() {
-      initializeConstantsAndProperties<AudioTrack>(this, AudioTrackConstantKeys, AudioTrackPropertyKeys);
     }
 
     // properties
@@ -35,6 +34,10 @@ export function AudioTrackGenerator() {
 
     public get language(): Promise<string> {
       return awaitedHandler.getProperty<string>(this, 'language', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, AudioTrackPropertyKeys, AudioTrackConstantKeys);
     }
   };
 }

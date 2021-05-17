@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { ITimeRanges } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ITimeRanges, ITimeRangesProperties>();
+export const { getState, setState } = StateMachine<ITimeRanges, ITimeRangesProperties>();
 export const awaitedHandler = new AwaitedHandler<ITimeRanges>('TimeRanges', getState, setState);
 
 export function TimeRangesGenerator() {
   return class TimeRanges implements ITimeRanges {
     constructor() {
-      initializeConstantsAndProperties<TimeRanges>(this, TimeRangesConstantKeys, TimeRangesPropertyKeys);
     }
 
     // properties
@@ -29,6 +28,10 @@ export function TimeRangesGenerator() {
 
     public start(index: number): Promise<number> {
       return awaitedHandler.runMethod<number>(this, 'start', [index]);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, TimeRangesPropertyKeys, TimeRangesConstantKeys);
     }
   };
 }

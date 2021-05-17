@@ -1,6 +1,6 @@
 import { ITextTrackCue, ITextTrack } from '../../base/interfaces/official';
 import { ITextTrackCueProperties } from '../../base/official-klasses/TextTrackCue';
-export declare const getState: (instance: ITextTrackCue) => ITextTrackCueProperties, setState: (instance: ITextTrackCue, properties: Partial<ITextTrackCueProperties>) => void, recordProxy: (proxy: ITextTrackCue, instance: ITextTrackCue) => void;
+export declare const getState: (instance: ITextTrackCue) => ITextTrackCueProperties, setState: (instance: ITextTrackCue, properties: Partial<ITextTrackCueProperties>) => void;
 declare const TextTrackCueBaseClass: {
     new (): {
         readonly endTime: Promise<number>;

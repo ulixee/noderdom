@@ -1,28 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const globalMap = new WeakMap();
-const proxyMap = new WeakMap();
+exports.setStorageSymbol = void 0;
+let stateStorageSymbol = Symbol.for('noderdom/StateMachine');
+function setStorageSymbol(storageSymbol) {
+    stateStorageSymbol = storageSymbol;
+}
+exports.setStorageSymbol = setStorageSymbol;
 function StateMachine() {
-    function recordProxy(proxy, instance) {
-        proxyMap.set(proxy, instance);
-    }
     function setState(instance, properties) {
-        if (proxyMap.has(instance)) {
-            instance = proxyMap.get(instance);
-        }
         const object = getState(instance);
-        Object.entries(properties).forEach(([key, value]) => {
-            object[key] = value;
-        });
-        globalMap.set(instance, object);
+        Object.assign(object, properties);
+        instance[stateStorageSymbol] = object;
     }
     function getState(instance) {
-        if (proxyMap.has(instance)) {
-            instance = proxyMap.get(instance);
-        }
-        return globalMap.get(instance) || {};
+        if (!instance)
+            return {};
+        return instance[stateStorageSymbol] || {};
     }
-    return { recordProxy, getState, setState };
+    return { getState, setState };
 }
 exports.default = StateMachine;
 //# sourceMappingURL=StateMachine.js.map

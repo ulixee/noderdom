@@ -6,7 +6,7 @@ import HTMLElement from './HTMLElement';
 import HTMLHyperlinkElementUtils from '../official-mixins/HTMLHyperlinkElementUtils';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAreaElement, IHTMLAreaElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLAreaElement, IHTMLAreaElementProperties>();
 const HTMLAreaElementBaseClass = HTMLAreaElementGenerator(HTMLElement, HTMLHyperlinkElementUtils);
 
 export default class HTMLAreaElement extends HTMLAreaElementBaseClass implements IHTMLAreaElement {

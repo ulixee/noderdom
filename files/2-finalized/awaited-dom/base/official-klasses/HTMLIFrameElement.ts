@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperDocument } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLIFrameElement, IHTMLIFrameElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLIFrameElement, IHTMLIFrameElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLIFrameElement>('HTMLIFrameElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLIFrameElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLIFrameElementGenerator(HTMLElement: Constructable<IHTMLEleme
   return class HTMLIFrameElement extends HTMLElement implements IHTMLIFrameElement, PromiseLike<IHTMLIFrameElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLIFrameElement>(this, HTMLIFrameElementConstantKeys, HTMLIFrameElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLIFrameElement',
       });
@@ -103,6 +102,10 @@ export function HTMLIFrameElementGenerator(HTMLElement: Constructable<IHTMLEleme
 
     public then<TResult1 = IHTMLIFrameElement, TResult2 = never>(onfulfilled?: ((value: IHTMLIFrameElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLIFrameElementPropertyKeys, HTMLIFrameElementConstantKeys);
     }
   };
 }

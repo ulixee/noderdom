@@ -1,6 +1,6 @@
 import { IFile, IBlobPart, IFilePropertyBag } from '../../base/interfaces/official';
 import { IFileProperties } from '../../base/official-klasses/File';
-export declare const getState: (instance: IFile) => IFileProperties, setState: (instance: IFile, properties: Partial<IFileProperties>) => void, recordProxy: (proxy: IFile, instance: IFile) => void;
+export declare const getState: (instance: IFile) => IFileProperties, setState: (instance: IFile, properties: Partial<IFileProperties>) => void;
 declare const FileBaseClass: {
     new (_fileBits: Iterable<IBlobPart>, _fileName: string, _options?: IFilePropertyBag | undefined): {
         readonly lastModified: Promise<number>;

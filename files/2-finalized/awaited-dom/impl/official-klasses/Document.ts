@@ -10,7 +10,7 @@ import ParentNode from '../official-mixins/ParentNode';
 import XPathEvaluatorBase from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocument, IDocumentProperties>();
+export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
 const DocumentBaseClass = DocumentGenerator(Node, DocumentOrShadowRoot, NonElementParentNode, ParentNode, XPathEvaluatorBase);
 
 export default class Document extends DocumentBaseClass implements IDocument {

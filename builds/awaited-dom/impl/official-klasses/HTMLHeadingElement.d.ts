@@ -1,6 +1,6 @@
 import { IHTMLHeadingElement } from '../../base/interfaces/official';
 import { IHTMLHeadingElementProperties } from '../../base/official-klasses/HTMLHeadingElement';
-export declare const getState: (instance: IHTMLHeadingElement) => IHTMLHeadingElementProperties, setState: (instance: IHTMLHeadingElement, properties: Partial<IHTMLHeadingElementProperties>) => void, recordProxy: (proxy: IHTMLHeadingElement, instance: IHTMLHeadingElement) => void;
+export declare const getState: (instance: IHTMLHeadingElement) => IHTMLHeadingElementProperties, setState: (instance: IHTMLHeadingElement, properties: Partial<IHTMLHeadingElementProperties>) => void;
 declare const HTMLHeadingElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

@@ -4,7 +4,7 @@ import { HTMLModElementGenerator, IHTMLModElementProperties } from '../../base/o
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLModElement, IHTMLModElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLModElement, IHTMLModElementProperties>();
 const HTMLModElementBaseClass = HTMLModElementGenerator(HTMLElement);
 
 export default class HTMLModElement extends HTMLModElementBaseClass implements IHTMLModElement {

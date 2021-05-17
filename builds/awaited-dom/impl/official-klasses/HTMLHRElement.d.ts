@@ -1,6 +1,6 @@
 import { IHTMLHRElement } from '../../base/interfaces/official';
 import { IHTMLHRElementProperties } from '../../base/official-klasses/HTMLHRElement';
-export declare const getState: (instance: IHTMLHRElement) => IHTMLHRElementProperties, setState: (instance: IHTMLHRElement, properties: Partial<IHTMLHRElementProperties>) => void, recordProxy: (proxy: IHTMLHRElement, instance: IHTMLHRElement) => void;
+export declare const getState: (instance: IHTMLHRElement) => IHTMLHRElementProperties, setState: (instance: IHTMLHRElement, properties: Partial<IHTMLHRElementProperties>) => void;
 declare const HTMLHRElementBaseClass: {
     new (): {
         then<TResult1 = IHTMLHRElement, TResult2 = never>(onfulfilled?: ((value: IHTMLHRElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

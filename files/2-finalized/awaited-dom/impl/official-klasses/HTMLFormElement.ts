@@ -4,7 +4,7 @@ import { HTMLFormElementGenerator, IHTMLFormElementProperties } from '../../base
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFormElement, IHTMLFormElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLFormElement, IHTMLFormElementProperties>();
 const HTMLFormElementBaseClass = HTMLFormElementGenerator(HTMLElement);
 
 export default class HTMLFormElement extends HTMLFormElementBaseClass implements IHTMLFormElement {

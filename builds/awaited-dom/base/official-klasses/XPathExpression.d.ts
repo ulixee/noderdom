@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IXPathExpression, IXPathResult } from '../interfaces/official';
 import { INodeIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IXPathExpression) => IXPathExpressionProperties, setState: (instance: IXPathExpression, properties: Partial<IXPathExpressionProperties>) => void, recordProxy: (proxy: IXPathExpression, instance: IXPathExpression) => void;
+export declare const getState: (instance: IXPathExpression) => IXPathExpressionProperties, setState: (instance: IXPathExpression, properties: Partial<IXPathExpressionProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IXPathExpression>;
 export declare function XPathExpressionGenerator(): {
     new (): {

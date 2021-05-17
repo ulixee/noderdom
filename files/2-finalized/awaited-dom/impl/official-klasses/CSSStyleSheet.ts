@@ -5,7 +5,7 @@ import { createCSSRuleList, createCSSRule } from '../create';
 import StyleSheet from './StyleSheet';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSStyleSheet, ICSSStyleSheetProperties>();
+export const { getState, setState } = StateMachine<ICSSStyleSheet, ICSSStyleSheetProperties>();
 const CSSStyleSheetBaseClass = CSSStyleSheetGenerator(StyleSheet);
 
 export default class CSSStyleSheet extends CSSStyleSheetBaseClass implements ICSSStyleSheet {

@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ICSSStyleSheetIsolate } from '../interfaces/isolate';
 import { ICSSRuleList, ICSSRule } from '../interfaces/official';
-export declare const getState: (instance: ICSSStyleSheetIsolate) => ICSSStyleSheetIsolateProperties, setState: (instance: ICSSStyleSheetIsolate, properties: Partial<ICSSStyleSheetIsolateProperties>) => void, recordProxy: (proxy: ICSSStyleSheetIsolate, instance: ICSSStyleSheetIsolate) => void;
+export declare const getState: (instance: ICSSStyleSheetIsolate) => ICSSStyleSheetIsolateProperties, setState: (instance: ICSSStyleSheetIsolate, properties: Partial<ICSSStyleSheetIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ICSSStyleSheetIsolate>;
 export default class CSSStyleSheetIsolate implements ICSSStyleSheetIsolate {
     get cssRules(): ICSSRuleList;

@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLEmbedElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLEmbedElementIsolate) => IHTMLEmbedElementIsolateProperties, setState: (instance: IHTMLEmbedElementIsolate, properties: Partial<IHTMLEmbedElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLEmbedElementIsolate, instance: IHTMLEmbedElementIsolate) => void;
+export declare const getState: (instance: IHTMLEmbedElementIsolate) => IHTMLEmbedElementIsolateProperties, setState: (instance: IHTMLEmbedElementIsolate, properties: Partial<IHTMLEmbedElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLEmbedElementIsolate>;
 export default class HTMLEmbedElementIsolate implements IHTMLEmbedElementIsolate {
     get align(): Promise<string>;

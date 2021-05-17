@@ -4,7 +4,7 @@ import AwaitedIterator from '../AwaitedIterator';
 import { IHTMLSelectElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
-export declare const getState: (instance: IHTMLSelectElementIsolate) => IHTMLSelectElementIsolateProperties, setState: (instance: IHTMLSelectElementIsolate, properties: Partial<IHTMLSelectElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLSelectElementIsolate, instance: IHTMLSelectElementIsolate) => void;
+export declare const getState: (instance: IHTMLSelectElementIsolate) => IHTMLSelectElementIsolateProperties, setState: (instance: IHTMLSelectElementIsolate, properties: Partial<IHTMLSelectElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSelectElementIsolate>;
 export declare const awaitedIterator: AwaitedIterator<IHTMLSelectElementIsolate, ISuperElement>;
 export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsolate {
@@ -30,7 +30,7 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
     item(index: number): ISuperElement;
     namedItem(name: string): IHTMLOptionElement;
     reportValidity(): Promise<boolean>;
-    [Symbol.iterator](): IterableIterator<ISuperElement>;
+    [Symbol.iterator](): Iterator<ISuperElement>;
     [index: number]: ISuperElement;
 }
 export interface IHTMLSelectElementIsolateProperties {

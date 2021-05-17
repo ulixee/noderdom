@@ -4,7 +4,7 @@ import { XPathEvaluatorGenerator, IXPathEvaluatorProperties } from '../../base/o
 import XPathEvaluatorBase from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXPathEvaluator, IXPathEvaluatorProperties>();
+export const { getState, setState } = StateMachine<IXPathEvaluator, IXPathEvaluatorProperties>();
 const XPathEvaluatorBaseClass = XPathEvaluatorGenerator(XPathEvaluatorBase);
 
 export default class XPathEvaluator extends XPathEvaluatorBaseClass implements IXPathEvaluator {

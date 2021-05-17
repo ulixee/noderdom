@@ -1,6 +1,6 @@
 import { IHTMLPreElement } from '../../base/interfaces/official';
 import { IHTMLPreElementProperties } from '../../base/official-klasses/HTMLPreElement';
-export declare const getState: (instance: IHTMLPreElement) => IHTMLPreElementProperties, setState: (instance: IHTMLPreElement, properties: Partial<IHTMLPreElementProperties>) => void, recordProxy: (proxy: IHTMLPreElement, instance: IHTMLPreElement) => void;
+export declare const getState: (instance: IHTMLPreElement) => IHTMLPreElementProperties, setState: (instance: IHTMLPreElement, properties: Partial<IHTMLPreElementProperties>) => void;
 declare const HTMLPreElementBaseClass: {
     new (): {
         readonly width: Promise<number>;

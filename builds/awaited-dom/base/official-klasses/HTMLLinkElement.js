@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HTMLLinkElementConstantKeys = exports.HTMLLinkElementPropertyKeys = exports.HTMLLinkElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.HTMLLinkElementConstantKeys = exports.HTMLLinkElementPropertyKeys = exports.HTMLLinkElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const HTMLElement_1 = require("./HTMLElement");
 const LinkStyle_1 = require("../official-mixins/LinkStyle");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLLinkElement', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLLinkElementGenerator(HTMLElement, LinkStyle) {
@@ -21,7 +21,6 @@ function HTMLLinkElementGenerator(HTMLElement, LinkStyle) {
     return class HTMLLinkElement extends Parent {
         constructor() {
             super();
-            initializeConstantsAndProperties_1.default(this, exports.HTMLLinkElementConstantKeys, exports.HTMLLinkElementPropertyKeys);
             exports.setState(this, {
                 createInstanceName: 'createHTMLLinkElement',
             });
@@ -59,6 +58,9 @@ function HTMLLinkElementGenerator(HTMLElement, LinkStyle) {
         }
         then(onfulfilled, onrejected) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.HTMLLinkElementPropertyKeys, exports.HTMLLinkElementConstantKeys);
         }
     };
 }

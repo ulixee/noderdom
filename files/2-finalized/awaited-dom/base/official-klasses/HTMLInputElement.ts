@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLInputElement, IHTMLInputElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLInputElement, IHTMLInputElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLInputElement>('HTMLInputElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLInputElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElemen
   return class HTMLInputElement extends HTMLElement implements IHTMLInputElement, PromiseLike<IHTMLInputElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLInputElement>(this, HTMLInputElementConstantKeys, HTMLInputElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLInputElement',
       });
@@ -237,6 +236,10 @@ export function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public then<TResult1 = IHTMLInputElement, TResult2 = never>(onfulfilled?: ((value: IHTMLInputElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLInputElementPropertyKeys, HTMLInputElementConstantKeys);
     }
   };
 }

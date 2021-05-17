@@ -1,6 +1,6 @@
 import { IHTMLCanvasElement, IMediaStream, IOffscreenCanvas } from '../../base/interfaces/official';
 import { IHTMLCanvasElementProperties } from '../../base/official-klasses/HTMLCanvasElement';
-export declare const getState: (instance: IHTMLCanvasElement) => IHTMLCanvasElementProperties, setState: (instance: IHTMLCanvasElement, properties: Partial<IHTMLCanvasElementProperties>) => void, recordProxy: (proxy: IHTMLCanvasElement, instance: IHTMLCanvasElement) => void;
+export declare const getState: (instance: IHTMLCanvasElement) => IHTMLCanvasElementProperties, setState: (instance: IHTMLCanvasElement, properties: Partial<IHTMLCanvasElementProperties>) => void;
 declare const HTMLCanvasElementBaseClass: {
     new (): {
         readonly height: Promise<number>;

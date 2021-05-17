@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLBodyElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLBodyElement, IHTMLBodyElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLBodyElement, IHTMLBodyElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLBodyElement>('HTMLBodyElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLBodyElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLBodyElementGenerator(HTMLElement: Constructable<IHTMLElement
   return class HTMLBodyElement extends HTMLElement implements IHTMLBodyElement, PromiseLike<IHTMLBodyElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLBodyElement>(this, HTMLBodyElementConstantKeys, HTMLBodyElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLBodyElement',
       });
@@ -50,6 +49,10 @@ export function HTMLBodyElementGenerator(HTMLElement: Constructable<IHTMLElement
 
     public then<TResult1 = IHTMLBodyElement, TResult2 = never>(onfulfilled?: ((value: IHTMLBodyElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLBodyElementPropertyKeys, HTMLBodyElementConstantKeys);
     }
   };
 }

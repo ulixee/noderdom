@@ -1,6 +1,6 @@
 import { IDocumentType } from '../../base/interfaces/official';
 import { IDocumentTypeProperties } from '../../base/official-klasses/DocumentType';
-export declare const getState: (instance: IDocumentType) => IDocumentTypeProperties, setState: (instance: IDocumentType, properties: Partial<IDocumentTypeProperties>) => void, recordProxy: (proxy: IDocumentType, instance: IDocumentType) => void;
+export declare const getState: (instance: IDocumentType) => IDocumentTypeProperties, setState: (instance: IDocumentType, properties: Partial<IDocumentTypeProperties>) => void;
 declare const DocumentTypeBaseClass: {
     new (): {
         readonly name: Promise<string>;

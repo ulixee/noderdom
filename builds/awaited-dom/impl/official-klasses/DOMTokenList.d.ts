@@ -1,6 +1,6 @@
 import { IDOMTokenList } from '../../base/interfaces/official';
 import { IDOMTokenListProperties } from '../../base/official-klasses/DOMTokenList';
-export declare const getState: (instance: IDOMTokenList) => IDOMTokenListProperties, setState: (instance: IDOMTokenList, properties: Partial<IDOMTokenListProperties>) => void, recordProxy: (proxy: IDOMTokenList, instance: IDOMTokenList) => void;
+export declare const getState: (instance: IDOMTokenList) => IDOMTokenListProperties, setState: (instance: IDOMTokenList, properties: Partial<IDOMTokenListProperties>) => void;
 declare const DOMTokenListBaseClass: {
     new (): {
         [index: number]: string;
@@ -19,7 +19,7 @@ declare const DOMTokenListBaseClass: {
         entries(): Promise<IterableIterator<[number, string]>>;
         keys(): Promise<IterableIterator<number>>;
         values(): Promise<IterableIterator<string>>;
-        [Symbol.iterator](): IterableIterator<string>;
+        [Symbol.iterator](): Iterator<string, any, undefined>;
     };
 };
 export default class DOMTokenList extends DOMTokenListBaseClass implements IDOMTokenList {

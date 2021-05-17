@@ -1,6 +1,6 @@
 import { IVideoPlaybackQuality } from '../../base/interfaces/official';
 import { IVideoPlaybackQualityProperties } from '../../base/official-klasses/VideoPlaybackQuality';
-export declare const getState: (instance: IVideoPlaybackQuality) => IVideoPlaybackQualityProperties, setState: (instance: IVideoPlaybackQuality, properties: Partial<IVideoPlaybackQualityProperties>) => void, recordProxy: (proxy: IVideoPlaybackQuality, instance: IVideoPlaybackQuality) => void;
+export declare const getState: (instance: IVideoPlaybackQuality) => IVideoPlaybackQualityProperties, setState: (instance: IVideoPlaybackQuality, properties: Partial<IVideoPlaybackQualityProperties>) => void;
 declare const VideoPlaybackQualityBaseClass: {
     new (): {};
 };

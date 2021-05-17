@@ -5,7 +5,7 @@ import { createHTMLFormElement } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLegendElement, IHTMLLegendElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLLegendElement, IHTMLLegendElementProperties>();
 const HTMLLegendElementBaseClass = HTMLLegendElementGenerator(HTMLElement);
 
 export default class HTMLLegendElement extends HTMLLegendElementBaseClass implements IHTMLLegendElement {

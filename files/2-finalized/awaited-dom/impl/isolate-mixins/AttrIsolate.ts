@@ -5,7 +5,7 @@ import AttrIsolateBase, { IAttrIsolateProperties } from '../../base/isolate-mixi
 import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
+export const { getState, setState } = StateMachine<IAttrIsolate, IAttrIsolateProperties>();
 
 export default class AttrIsolate extends AttrIsolateBase implements IAttrIsolate {
   public get ownerElement(): ISuperElement {

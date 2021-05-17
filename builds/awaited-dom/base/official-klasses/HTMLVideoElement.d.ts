@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IHTMLVideoElement, IHTMLMediaElement, IVideoPlaybackQuality } from '../interfaces/official';
 import { IHTMLMediaElementProperties } from './HTMLMediaElement';
-export declare const getState: (instance: IHTMLVideoElement) => IHTMLVideoElementProperties, setState: (instance: IHTMLVideoElement, properties: Partial<IHTMLVideoElementProperties>) => void, recordProxy: (proxy: IHTMLVideoElement, instance: IHTMLVideoElement) => void;
+export declare const getState: (instance: IHTMLVideoElement) => IHTMLVideoElementProperties, setState: (instance: IHTMLVideoElement, properties: Partial<IHTMLVideoElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLVideoElement>;
 export declare function HTMLVideoElementGenerator(HTMLMediaElement: Constructable<IHTMLMediaElement>): {
     new (): {

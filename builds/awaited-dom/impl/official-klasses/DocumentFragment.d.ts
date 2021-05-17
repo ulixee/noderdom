@@ -1,6 +1,6 @@
 import { IDocumentFragment } from '../../base/interfaces/official';
 import { IDocumentFragmentProperties } from '../../base/official-klasses/DocumentFragment';
-export declare const getState: (instance: IDocumentFragment) => IDocumentFragmentProperties, setState: (instance: IDocumentFragment, properties: Partial<IDocumentFragmentProperties>) => void, recordProxy: (proxy: IDocumentFragment, instance: IDocumentFragment) => void;
+export declare const getState: (instance: IDocumentFragment) => IDocumentFragmentProperties, setState: (instance: IDocumentFragment, properties: Partial<IDocumentFragmentProperties>) => void;
 declare const DocumentFragmentBaseClass: {
     new (): {
         then<TResult1 = IDocumentFragment, TResult2 = never>(onfulfilled?: ((value: IDocumentFragment) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

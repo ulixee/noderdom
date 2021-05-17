@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IDOMRectReadOnly } from '../interfaces/official';
-export declare const getState: (instance: IDOMRectReadOnly) => IDOMRectReadOnlyProperties, setState: (instance: IDOMRectReadOnly, properties: Partial<IDOMRectReadOnlyProperties>) => void, recordProxy: (proxy: IDOMRectReadOnly, instance: IDOMRectReadOnly) => void;
+export declare const getState: (instance: IDOMRectReadOnly) => IDOMRectReadOnlyProperties, setState: (instance: IDOMRectReadOnly, properties: Partial<IDOMRectReadOnlyProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IDOMRectReadOnly>;
 export declare function DOMRectReadOnlyGenerator(): {
     new (_x?: number | undefined, _y?: number | undefined, _width?: number | undefined, _height?: number | undefined): {

@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ITextTrackCue, ITextTrack } from '../interfaces/official';
-export declare const getState: (instance: ITextTrackCue) => ITextTrackCueProperties, setState: (instance: ITextTrackCue, properties: Partial<ITextTrackCueProperties>) => void, recordProxy: (proxy: ITextTrackCue, instance: ITextTrackCue) => void;
+export declare const getState: (instance: ITextTrackCue) => ITextTrackCueProperties, setState: (instance: ITextTrackCue, properties: Partial<ITextTrackCueProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ITextTrackCue>;
 export declare function TextTrackCueGenerator(): {
     new (): {

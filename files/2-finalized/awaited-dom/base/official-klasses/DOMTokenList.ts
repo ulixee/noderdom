@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { IDOMTokenList } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDOMTokenList, IDOMTokenListProperties>();
+export const { getState, setState } = StateMachine<IDOMTokenList, IDOMTokenListProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMTokenList>('DOMTokenList', getState, setState);
 export const nodeFactory = new NodeFactory<IDOMTokenList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IDOMTokenList, string>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<IDOMTokenList, string>(getSta
 export function DOMTokenListGenerator() {
   return class DOMTokenList implements IDOMTokenList, PromiseLike<IDOMTokenList> {
     constructor() {
-      initializeConstantsAndProperties<DOMTokenList>(this, DOMTokenListConstantKeys, DOMTokenListPropertyKeys);
       setState(this, {
         createInstanceName: 'createDOMTokenList',
         createIterableName: 'string',
@@ -32,14 +31,13 @@ export function DOMTokenListGenerator() {
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -109,11 +107,15 @@ export function DOMTokenListGenerator() {
       return awaitedIterator.load(this).then(x => x.values());
     }
 
-    public [Symbol.iterator](): IterableIterator<string> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<string> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: string;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, DOMTokenListPropertyKeys, DOMTokenListConstantKeys);
+    }
   };
 }
 

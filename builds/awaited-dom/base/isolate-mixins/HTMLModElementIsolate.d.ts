@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLModElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLModElementIsolate) => IHTMLModElementIsolateProperties, setState: (instance: IHTMLModElementIsolate, properties: Partial<IHTMLModElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLModElementIsolate, instance: IHTMLModElementIsolate) => void;
+export declare const getState: (instance: IHTMLModElementIsolate) => IHTMLModElementIsolateProperties, setState: (instance: IHTMLModElementIsolate, properties: Partial<IHTMLModElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLModElementIsolate>;
 export default class HTMLModElementIsolate implements IHTMLModElementIsolate {
     get cite(): Promise<string>;

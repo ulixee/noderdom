@@ -1,6 +1,6 @@
 import { IBlob } from '../../base/interfaces/official';
 import { IBlobProperties } from '../../base/official-klasses/Blob';
-export declare const getState: (instance: IBlob) => IBlobProperties, setState: (instance: IBlob, properties: Partial<IBlobProperties>) => void, recordProxy: (proxy: IBlob, instance: IBlob) => void;
+export declare const getState: (instance: IBlob) => IBlobProperties, setState: (instance: IBlob, properties: Partial<IBlobProperties>) => void;
 declare const BlobBaseClass: {
     new (_blobParts?: Iterable<import("../../base/interfaces/official").IBlobPart> | undefined, _options?: import("../../base/interfaces/official").IBlobPropertyBag | undefined): {
         readonly size: Promise<number>;

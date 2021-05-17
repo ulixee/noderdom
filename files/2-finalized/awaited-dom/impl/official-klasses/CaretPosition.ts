@@ -5,7 +5,7 @@ import { CaretPositionGenerator, ICaretPositionProperties } from '../../base/off
 import { createSuperNode, createDOMRect } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICaretPosition, ICaretPositionProperties>();
+export const { getState, setState } = StateMachine<ICaretPosition, ICaretPositionProperties>();
 const CaretPositionBaseClass = CaretPositionGenerator();
 
 export default class CaretPosition extends CaretPositionBaseClass implements ICaretPosition {

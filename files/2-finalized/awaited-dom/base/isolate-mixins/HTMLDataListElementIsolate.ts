@@ -6,7 +6,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLOptionsCollection } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDataListElementIsolate, IHTMLDataListElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLDataListElementIsolate, IHTMLDataListElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDataListElementIsolate>('HTMLDataListElementIsolate', getState, setState);
 
 export default class HTMLDataListElementIsolate implements IHTMLDataListElementIsolate {

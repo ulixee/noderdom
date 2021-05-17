@@ -1,6 +1,6 @@
 import { IHTMLAnchorElement, IDOMTokenList } from '../../base/interfaces/official';
 import { IHTMLAnchorElementProperties } from '../../base/official-klasses/HTMLAnchorElement';
-export declare const getState: (instance: IHTMLAnchorElement) => IHTMLAnchorElementProperties, setState: (instance: IHTMLAnchorElement, properties: Partial<IHTMLAnchorElementProperties>) => void, recordProxy: (proxy: IHTMLAnchorElement, instance: IHTMLAnchorElement) => void;
+export declare const getState: (instance: IHTMLAnchorElement) => IHTMLAnchorElementProperties, setState: (instance: IHTMLAnchorElement, properties: Partial<IHTMLAnchorElementProperties>) => void;
 declare const HTMLAnchorElementBaseClass: {
     new (): {
         readonly download: Promise<string>;

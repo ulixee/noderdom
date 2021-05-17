@@ -4,7 +4,7 @@ import { HTMLDataListElementGenerator, IHTMLDataListElementProperties } from '..
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDataListElement, IHTMLDataListElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLDataListElement, IHTMLDataListElementProperties>();
 const HTMLDataListElementBaseClass = HTMLDataListElementGenerator(HTMLElement);
 
 export default class HTMLDataListElement extends HTMLDataListElementBaseClass implements IHTMLDataListElement {

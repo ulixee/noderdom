@@ -5,7 +5,7 @@ import { IDocumentOrShadowRoot, ICaretPosition, ISelection } from '../interfaces
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentOrShadowRoot, IDocumentOrShadowRootProperties>();
+export const { getState, setState } = StateMachine<IDocumentOrShadowRoot, IDocumentOrShadowRootProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentOrShadowRoot>('DocumentOrShadowRoot', getState, setState);
 
 export default class DocumentOrShadowRoot implements IDocumentOrShadowRoot {

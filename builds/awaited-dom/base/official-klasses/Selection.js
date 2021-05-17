@@ -4,17 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SelectionConstantKeys = exports.SelectionPropertyKeys = exports.SelectionGenerator = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.SelectionConstantKeys = exports.SelectionPropertyKeys = exports.SelectionGenerator = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Selection', exports.getState, exports.setState);
 function SelectionGenerator() {
     return class Selection {
         constructor() {
-            initializeConstantsAndProperties_1.default(this, exports.SelectionConstantKeys, exports.SelectionPropertyKeys);
         }
         // properties
         get anchorNode() {
@@ -86,6 +85,9 @@ function SelectionGenerator() {
         }
         toString() {
             return exports.awaitedHandler.runMethod(this, 'toString', []);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.SelectionPropertyKeys, exports.SelectionConstantKeys);
         }
     };
 }

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLTemplateElement, IHTMLElement, IDocumentFragment } from '../interf
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTemplateElement, IHTMLTemplateElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTemplateElement, IHTMLTemplateElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTemplateElement>('HTMLTemplateElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLTemplateElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLTemplateElementGenerator(HTMLElement: Constructable<IHTMLEle
   return class HTMLTemplateElement extends HTMLElement implements IHTMLTemplateElement, PromiseLike<IHTMLTemplateElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLTemplateElement>(this, HTMLTemplateElementConstantKeys, HTMLTemplateElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLTemplateElement',
       });
@@ -30,6 +29,10 @@ export function HTMLTemplateElementGenerator(HTMLElement: Constructable<IHTMLEle
 
     public then<TResult1 = IHTMLTemplateElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTemplateElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLTemplateElementPropertyKeys, HTMLTemplateElementConstantKeys);
     }
   };
 }

@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IResponse, IBody, IResponseInit, IHeaders, IResponseType } from '../interfaces/official';
 import { IBodyProperties } from '../official-mixins/Body';
-export declare const getState: (instance: IResponse) => IResponseProperties, setState: (instance: IResponse, properties: Partial<IResponseProperties>) => void, recordProxy: (proxy: IResponse, instance: IResponse) => void;
+export declare const getState: (instance: IResponse) => IResponseProperties, setState: (instance: IResponse, properties: Partial<IResponseProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IResponse>;
 export declare function ResponseGenerator(Body: Constructable<IBody>): {
     new (_body?: string | ArrayBuffer | ArrayBufferView | null | undefined, _init?: IResponseInit | undefined): {

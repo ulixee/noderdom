@@ -4,7 +4,7 @@ import { HTMLEmbedElementGenerator, IHTMLEmbedElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLEmbedElement, IHTMLEmbedElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLEmbedElement, IHTMLEmbedElementProperties>();
 const HTMLEmbedElementBaseClass = HTMLEmbedElementGenerator(HTMLElement);
 
 export default class HTMLEmbedElement extends HTMLEmbedElementBaseClass implements IHTMLEmbedElement {

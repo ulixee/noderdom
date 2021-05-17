@@ -1,7 +1,7 @@
 import { IXPathResult } from '../../base/interfaces/official';
 import { ISuperNode } from '../../base/interfaces/super';
 import { IXPathResultProperties } from '../../base/official-klasses/XPathResult';
-export declare const getState: (instance: IXPathResult) => IXPathResultProperties, setState: (instance: IXPathResult, properties: Partial<IXPathResultProperties>) => void, recordProxy: (proxy: IXPathResult, instance: IXPathResult) => void;
+export declare const getState: (instance: IXPathResult) => IXPathResultProperties, setState: (instance: IXPathResult, properties: Partial<IXPathResultProperties>) => void;
 declare const XPathResultBaseClass: {
     new (): {
         readonly ANY_TYPE: number;

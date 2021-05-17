@@ -7,9 +7,7 @@ export function setStorageSymbol(storageSymbol: symbol): void {
 export default function StateMachine<IClass extends object, IProperties>() {
   function setState(instance: IClass, properties: Partial<IProperties>): void {
     const object: Record<string, any> = getState(instance);
-    Object.entries(properties).forEach(([key, value]: [string, any]) => {
-      object[key] = value;
-    });
+    Object.assign(object, properties);
 
     (instance as any)[stateStorageSymbol] = object;
   }

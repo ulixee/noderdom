@@ -4,7 +4,7 @@ import { TextTrackCueGenerator, ITextTrackCueProperties } from '../../base/offic
 import { createTextTrack } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ITextTrackCue, ITextTrackCueProperties>();
+export const { getState, setState } = StateMachine<ITextTrackCue, ITextTrackCueProperties>();
 const TextTrackCueBaseClass = TextTrackCueGenerator();
 
 export default class TextTrackCue extends TextTrackCueBaseClass implements ITextTrackCue {

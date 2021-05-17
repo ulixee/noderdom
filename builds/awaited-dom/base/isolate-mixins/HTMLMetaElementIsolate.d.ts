@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLMetaElementIsolate } from '../interfaces/isolate';
 import { IDocumentFragment } from '../interfaces/official';
-export declare const getState: (instance: IHTMLMetaElementIsolate) => IHTMLMetaElementIsolateProperties, setState: (instance: IHTMLMetaElementIsolate, properties: Partial<IHTMLMetaElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLMetaElementIsolate, instance: IHTMLMetaElementIsolate) => void;
+export declare const getState: (instance: IHTMLMetaElementIsolate) => IHTMLMetaElementIsolateProperties, setState: (instance: IHTMLMetaElementIsolate, properties: Partial<IHTMLMetaElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMetaElementIsolate>;
 export default class HTMLMetaElementIsolate implements IHTMLMetaElementIsolate {
     get content(): Promise<string> | IDocumentFragment;

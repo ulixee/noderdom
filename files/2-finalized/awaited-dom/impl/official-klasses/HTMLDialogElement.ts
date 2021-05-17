@@ -4,7 +4,7 @@ import { HTMLDialogElementGenerator, IHTMLDialogElementProperties } from '../../
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDialogElement, IHTMLDialogElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLDialogElement, IHTMLDialogElementProperties>();
 const HTMLDialogElementBaseClass = HTMLDialogElementGenerator(HTMLElement);
 
 export default class HTMLDialogElement extends HTMLDialogElementBaseClass implements IHTMLDialogElement {

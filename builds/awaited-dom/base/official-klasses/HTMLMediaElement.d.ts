@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLMediaElement, IHTMLElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IMediaStream } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLMediaElement) => IHTMLMediaElementProperties, setState: (instance: IHTMLMediaElement, properties: Partial<IHTMLMediaElementProperties>) => void, recordProxy: (proxy: IHTMLMediaElement, instance: IHTMLMediaElement) => void;
+export declare const getState: (instance: IHTMLMediaElement) => IHTMLMediaElementProperties, setState: (instance: IHTMLMediaElement, properties: Partial<IHTMLMediaElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMediaElement>;
 export declare const nodeFactory: NodeFactory<IHTMLMediaElement>;
 export declare function HTMLMediaElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

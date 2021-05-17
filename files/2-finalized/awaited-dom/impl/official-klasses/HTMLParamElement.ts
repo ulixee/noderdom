@@ -4,7 +4,7 @@ import { HTMLParamElementGenerator, IHTMLParamElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLParamElement, IHTMLParamElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLParamElement, IHTMLParamElementProperties>();
 const HTMLParamElementBaseClass = HTMLParamElementGenerator(HTMLElement);
 
 export default class HTMLParamElement extends HTMLParamElementBaseClass implements IHTMLParamElement {

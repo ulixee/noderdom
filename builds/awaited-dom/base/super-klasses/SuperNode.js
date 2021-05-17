@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SuperNodeConstantKeys = exports.SuperNodePropertyKeys = exports.SuperNodeGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.SuperNodeConstantKeys = exports.SuperNodePropertyKeys = exports.SuperNodeGenerator = exports.nodeFactory = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
@@ -98,7 +98,7 @@ const Slotable_1 = require("../official-mixins/Slotable");
 const TextIsolate_1 = require("../isolate-mixins/TextIsolate");
 const XPathEvaluatorBase_1 = require("../official-mixins/XPathEvaluatorBase");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('SuperNode', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentFragmentIsolate, DocumentIsolate, DocumentOrShadowRoot, DocumentTypeIsolate, ElementCSSInlineStyle, ElementContentEditable, ElementIsolate, HTMLAnchorElementIsolate, HTMLAreaElementIsolate, HTMLAudioElementIsolate, HTMLBRElementIsolate, HTMLBaseElementIsolate, HTMLBodyElementIsolate, HTMLButtonElementIsolate, HTMLCanvasElementIsolate, HTMLDListElementIsolate, HTMLDataElementIsolate, HTMLDataListElementIsolate, HTMLDetailsElementIsolate, HTMLDialogElementIsolate, HTMLDirectoryElementIsolate, HTMLDivElementIsolate, HTMLDocumentIsolate, HTMLElementIsolate, HTMLEmbedElementIsolate, HTMLFieldSetElementIsolate, HTMLFontElementIsolate, HTMLFormElementIsolate, HTMLFrameElementIsolate, HTMLFrameSetElementIsolate, HTMLHRElementIsolate, HTMLHeadElementIsolate, HTMLHeadingElementIsolate, HTMLHtmlElementIsolate, HTMLHyperlinkElementUtils, HTMLIFrameElementIsolate, HTMLImageElementIsolate, HTMLInputElementIsolate, HTMLLIElementIsolate, HTMLLabelElementIsolate, HTMLLegendElementIsolate, HTMLLinkElementIsolate, HTMLMapElementIsolate, HTMLMediaElementIsolate, HTMLMetaElementIsolate, HTMLMeterElementIsolate, HTMLModElementIsolate, HTMLOListElementIsolate, HTMLObjectElementIsolate, HTMLOptGroupElementIsolate, HTMLOptionElementIsolate, HTMLOrSVGElement, HTMLParagraphElementIsolate, HTMLParamElementIsolate, HTMLPreElementIsolate, HTMLProgressElementIsolate, HTMLQuoteElementIsolate, HTMLScriptElementIsolate, HTMLSelectElementIsolate, HTMLSlotElementIsolate, HTMLSourceElementIsolate, HTMLSpanElementIsolate, HTMLStyleElementIsolate, HTMLTableCaptionElementIsolate, HTMLTableCellElementIsolate, HTMLTableColElementIsolate, HTMLTableElementIsolate, HTMLTableRowElementIsolate, HTMLTableSectionElementIsolate, HTMLTemplateElementIsolate, HTMLTextAreaElementIsolate, HTMLTimeElementIsolate, HTMLTitleElementIsolate, HTMLTrackElementIsolate, HTMLUListElementIsolate, HTMLVideoElementIsolate, LinkStyle, NodeIsolate, NonDocumentTypeChildNode, NonElementParentNode, ParentNode, ShadowRootIsolate, Slotable, TextIsolate, XPathEvaluatorBase) {
@@ -125,7 +125,6 @@ function SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentFragmentI
                 this.NOTATION_NODE = 12;
                 this.PROCESSING_INSTRUCTION_NODE = 7;
                 this.TEXT_NODE = 3;
-                initializeConstantsAndProperties_1.default(this, exports.SuperNodeConstantKeys, exports.SuperNodePropertyKeys);
                 exports.setState(this, {
                     createInstanceName: 'createSuperNode',
                 });
@@ -206,6 +205,9 @@ function SuperNodeGenerator(AttrIsolate, CharacterDataIsolate, DocumentFragmentI
             }
             then(onfulfilled, onrejected) {
                 return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+            }
+            [Symbol.for('nodejs.util.inspect.custom')]() {
+                return inspectInstanceProperties_1.default(this, exports.SuperNodePropertyKeys, exports.SuperNodeConstantKeys);
             }
         },
         _a.ATTRIBUTE_NODE = 2,

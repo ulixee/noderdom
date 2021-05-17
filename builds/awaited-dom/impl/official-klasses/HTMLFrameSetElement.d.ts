@@ -1,6 +1,6 @@
 import { IHTMLFrameSetElement } from '../../base/interfaces/official';
 import { IHTMLFrameSetElementProperties } from '../../base/official-klasses/HTMLFrameSetElement';
-export declare const getState: (instance: IHTMLFrameSetElement) => IHTMLFrameSetElementProperties, setState: (instance: IHTMLFrameSetElement, properties: Partial<IHTMLFrameSetElementProperties>) => void, recordProxy: (proxy: IHTMLFrameSetElement, instance: IHTMLFrameSetElement) => void;
+export declare const getState: (instance: IHTMLFrameSetElement) => IHTMLFrameSetElementProperties, setState: (instance: IHTMLFrameSetElement, properties: Partial<IHTMLFrameSetElementProperties>) => void;
 declare const HTMLFrameSetElementBaseClass: {
     new (): {
         readonly cols: Promise<string>;

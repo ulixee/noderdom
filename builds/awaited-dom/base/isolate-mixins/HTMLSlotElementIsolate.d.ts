@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLSlotElementIsolate } from '../interfaces/isolate';
 import { IAssignedNodesOptions } from '../interfaces/official';
 import { ISuperElement, ISuperNode } from '../interfaces/super';
-export declare const getState: (instance: IHTMLSlotElementIsolate) => IHTMLSlotElementIsolateProperties, setState: (instance: IHTMLSlotElementIsolate, properties: Partial<IHTMLSlotElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLSlotElementIsolate, instance: IHTMLSlotElementIsolate) => void;
+export declare const getState: (instance: IHTMLSlotElementIsolate) => IHTMLSlotElementIsolateProperties, setState: (instance: IHTMLSlotElementIsolate, properties: Partial<IHTMLSlotElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSlotElementIsolate>;
 export default class HTMLSlotElementIsolate implements IHTMLSlotElementIsolate {
     get name(): Promise<string>;

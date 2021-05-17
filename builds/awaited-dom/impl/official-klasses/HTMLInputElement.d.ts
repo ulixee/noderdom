@@ -1,7 +1,7 @@
 import { IHTMLInputElement, IFileList, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../../base/interfaces/super';
 import { IHTMLInputElementProperties } from '../../base/official-klasses/HTMLInputElement';
-export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void, recordProxy: (proxy: IHTMLInputElement, instance: IHTMLInputElement) => void;
+export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void;
 declare const HTMLInputElementBaseClass: {
     new (): {
         readonly accept: Promise<string>;

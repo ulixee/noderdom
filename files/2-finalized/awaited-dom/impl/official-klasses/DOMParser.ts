@@ -5,7 +5,7 @@ import { DOMParserGenerator, IDOMParserProperties } from '../../base/official-kl
 import { createSuperDocument } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDOMParser, IDOMParserProperties>();
+export const { getState, setState } = StateMachine<IDOMParser, IDOMParserProperties>();
 const DOMParserBaseClass = DOMParserGenerator();
 
 export default class DOMParser extends DOMParserBaseClass implements IDOMParser {

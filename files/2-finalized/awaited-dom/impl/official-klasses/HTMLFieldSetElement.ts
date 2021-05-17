@@ -6,7 +6,7 @@ import { createSuperHTMLCollection, createHTMLFormElement } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFieldSetElement, IHTMLFieldSetElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLFieldSetElement, IHTMLFieldSetElementProperties>();
 const HTMLFieldSetElementBaseClass = HTMLFieldSetElementGenerator(HTMLElement);
 
 export default class HTMLFieldSetElement extends HTMLFieldSetElementBaseClass implements IHTMLFieldSetElement {

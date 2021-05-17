@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLImageElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLImageElement) => IHTMLImageElementProperties, setState: (instance: IHTMLImageElement, properties: Partial<IHTMLImageElementProperties>) => void, recordProxy: (proxy: IHTMLImageElement, instance: IHTMLImageElement) => void;
+export declare const getState: (instance: IHTMLImageElement) => IHTMLImageElementProperties, setState: (instance: IHTMLImageElement, properties: Partial<IHTMLImageElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLImageElement>;
 export declare const nodeFactory: NodeFactory<IHTMLImageElement>;
 export declare function HTMLImageElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

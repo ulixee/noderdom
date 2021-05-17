@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IXPathEvaluator, IXPathEvaluatorBase } from '../interfaces/official';
 import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluatorBase';
-export declare const getState: (instance: IXPathEvaluator) => IXPathEvaluatorProperties, setState: (instance: IXPathEvaluator, properties: Partial<IXPathEvaluatorProperties>) => void, recordProxy: (proxy: IXPathEvaluator, instance: IXPathEvaluator) => void;
+export declare const getState: (instance: IXPathEvaluator) => IXPathEvaluatorProperties, setState: (instance: IXPathEvaluator, properties: Partial<IXPathEvaluatorProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IXPathEvaluator>;
 export declare function XPathEvaluatorGenerator(XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {

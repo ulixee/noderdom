@@ -1,6 +1,6 @@
 import { IHTMLDivElement } from '../../base/interfaces/official';
 import { IHTMLDivElementProperties } from '../../base/official-klasses/HTMLDivElement';
-export declare const getState: (instance: IHTMLDivElement) => IHTMLDivElementProperties, setState: (instance: IHTMLDivElement, properties: Partial<IHTMLDivElementProperties>) => void, recordProxy: (proxy: IHTMLDivElement, instance: IHTMLDivElement) => void;
+export declare const getState: (instance: IHTMLDivElement) => IHTMLDivElementProperties, setState: (instance: IHTMLDivElement, properties: Partial<IHTMLDivElementProperties>) => void;
 declare const HTMLDivElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

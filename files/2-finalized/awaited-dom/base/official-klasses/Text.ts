@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -10,7 +10,7 @@ import { ICharacterDataProperties, CharacterDataPropertyKeys, CharacterDataConst
 import { ISlotableProperties, SlotablePropertyKeys, SlotableConstantKeys } from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IText, ITextProperties>();
+export const { getState, setState } = StateMachine<IText, ITextProperties>();
 export const awaitedHandler = new AwaitedHandler<IText>('Text', getState, setState);
 
 export function TextGenerator(CharacterData: Constructable<ICharacterData>, Slotable: Constructable<ISlotable>) {
@@ -19,7 +19,6 @@ export function TextGenerator(CharacterData: Constructable<ICharacterData>, Slot
   return class Text extends Parent implements IText {
     constructor(_data?: string) {
       super(_data);
-      initializeConstantsAndProperties<Text>(this, TextConstantKeys, TextPropertyKeys);
     }
 
     // properties
@@ -32,6 +31,10 @@ export function TextGenerator(CharacterData: Constructable<ICharacterData>, Slot
 
     public splitText(offset: number): Promise<ISuperText> {
       return awaitedHandler.runMethod<ISuperText>(this, 'splitText', [offset]);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, TextPropertyKeys, TextConstantKeys);
     }
   };
 }

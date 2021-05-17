@@ -5,7 +5,7 @@ import { IHTMLMediaElementIsolate } from '../interfaces/isolate';
 import { IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, IDocumentReadyState, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IMediaStream } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMediaElementIsolate, IHTMLMediaElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLMediaElementIsolate, IHTMLMediaElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMediaElementIsolate>('HTMLMediaElementIsolate', getState, setState);
 
 export default class HTMLMediaElementIsolate implements IHTMLMediaElementIsolate {

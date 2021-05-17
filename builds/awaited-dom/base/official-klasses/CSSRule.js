@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CSSRuleConstantKeys = exports.CSSRulePropertyKeys = exports.CSSRuleGenerator = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.CSSRuleConstantKeys = exports.CSSRulePropertyKeys = exports.CSSRuleGenerator = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('CSSRule', exports.getState, exports.setState);
 function CSSRuleGenerator() {
     var _a;
@@ -23,7 +23,6 @@ function CSSRuleGenerator() {
                 this.NAMESPACE_RULE = 10;
                 this.PAGE_RULE = 6;
                 this.STYLE_RULE = 1;
-                initializeConstantsAndProperties_1.default(this, exports.CSSRuleConstantKeys, exports.CSSRulePropertyKeys);
             }
             // properties
             get cssText() {
@@ -37,6 +36,9 @@ function CSSRuleGenerator() {
             }
             get type() {
                 return exports.awaitedHandler.getProperty(this, 'type', false);
+            }
+            [Symbol.for('nodejs.util.inspect.custom')]() {
+                return inspectInstanceProperties_1.default(this, exports.CSSRulePropertyKeys, exports.CSSRuleConstantKeys);
             }
         },
         _a.CHARSET_RULE = 2,

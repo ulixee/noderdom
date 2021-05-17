@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLTrackElement, IHTMLElement, ITextTrack } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLTrackElement) => IHTMLTrackElementProperties, setState: (instance: IHTMLTrackElement, properties: Partial<IHTMLTrackElementProperties>) => void, recordProxy: (proxy: IHTMLTrackElement, instance: IHTMLTrackElement) => void;
+export declare const getState: (instance: IHTMLTrackElement) => IHTMLTrackElementProperties, setState: (instance: IHTMLTrackElement, properties: Partial<IHTMLTrackElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTrackElement>;
 export declare const nodeFactory: NodeFactory<IHTMLTrackElement>;
 export declare function HTMLTrackElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -13,7 +13,7 @@ import { IHTMLCollectionIsolateProperties, HTMLCollectionIsolatePropertyKeys, HT
 import { IHTMLOptionsCollectionIsolateProperties, HTMLOptionsCollectionIsolatePropertyKeys, HTMLOptionsCollectionIsolateConstantKeys } from '../isolate-mixins/HTMLOptionsCollectionIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
+export const { getState, setState } = StateMachine<ISuperHTMLCollection, ISuperHTMLCollectionProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperHTMLCollection>('SuperHTMLCollection', getState, setState);
 export const nodeFactory = new NodeFactory<ISuperHTMLCollection>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperHTMLCollection, ISuperElement>(getState, setState, awaitedHandler);
@@ -24,7 +24,6 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
   return class SuperHTMLCollection extends Parent implements ISuperHTMLCollection, PromiseLike<ISuperHTMLCollection> {
     constructor() {
       super();
-      initializeConstantsAndProperties<SuperHTMLCollection>(this, SuperHTMLCollectionConstantKeys, SuperHTMLCollectionPropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperHTMLCollection',
         createIterableName: 'createSuperElement',
@@ -40,11 +39,12 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
           }
 
           // delegate to string indexer
-          return target.namedItem(prop as string);
+          if(typeof prop === 'string') {
+            return target.namedItem(prop as string);
+          }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -58,8 +58,12 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<ISuperElement> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<ISuperElement> {
+      return awaitedIterator.iterateNodePointers(this);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperHTMLCollectionPropertyKeys, SuperHTMLCollectionConstantKeys);
     }
   };
 }

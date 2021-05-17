@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLEmbedElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLEmbedElement) => IHTMLEmbedElementProperties, setState: (instance: IHTMLEmbedElement, properties: Partial<IHTMLEmbedElementProperties>) => void, recordProxy: (proxy: IHTMLEmbedElement, instance: IHTMLEmbedElement) => void;
+export declare const getState: (instance: IHTMLEmbedElement) => IHTMLEmbedElementProperties, setState: (instance: IHTMLEmbedElement, properties: Partial<IHTMLEmbedElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLEmbedElement>;
 export declare const nodeFactory: NodeFactory<IHTMLEmbedElement>;
 export declare function HTMLEmbedElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

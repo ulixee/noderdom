@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLParagraphElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLParagraphElementIsolate) => IHTMLParagraphElementIsolateProperties, setState: (instance: IHTMLParagraphElementIsolate, properties: Partial<IHTMLParagraphElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLParagraphElementIsolate, instance: IHTMLParagraphElementIsolate) => void;
+export declare const getState: (instance: IHTMLParagraphElementIsolate) => IHTMLParagraphElementIsolateProperties, setState: (instance: IHTMLParagraphElementIsolate, properties: Partial<IHTMLParagraphElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLParagraphElementIsolate>;
 export default class HTMLParagraphElementIsolate implements IHTMLParagraphElementIsolate {
     get align(): Promise<string>;

@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IShadowRootIsolate } from '../interfaces/isolate';
 import { ISuperElement } from '../interfaces/super';
 import { IShadowRootMode } from '../interfaces/official';
-export declare const getState: (instance: IShadowRootIsolate) => IShadowRootIsolateProperties, setState: (instance: IShadowRootIsolate, properties: Partial<IShadowRootIsolateProperties>) => void, recordProxy: (proxy: IShadowRootIsolate, instance: IShadowRootIsolate) => void;
+export declare const getState: (instance: IShadowRootIsolate) => IShadowRootIsolateProperties, setState: (instance: IShadowRootIsolate, properties: Partial<IShadowRootIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IShadowRootIsolate>;
 export default class ShadowRootIsolate implements IShadowRootIsolate {
     get delegatesFocus(): Promise<boolean>;

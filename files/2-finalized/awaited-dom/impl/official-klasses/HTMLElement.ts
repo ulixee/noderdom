@@ -9,7 +9,7 @@ import ElementContentEditable from '../official-mixins/ElementContentEditable';
 import HTMLOrSVGElement from '../official-mixins/HTMLOrSVGElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLElement, IHTMLElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLElement, IHTMLElementProperties>();
 const HTMLElementBaseClass = HTMLElementGenerator(Element, ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement);
 
 export default class HTMLElement extends HTMLElementBaseClass implements IHTMLElement {

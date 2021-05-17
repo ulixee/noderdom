@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IBody } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IBody, IBodyProperties>();
+export const { getState, setState } = StateMachine<IBody, IBodyProperties>();
 export const awaitedHandler = new AwaitedHandler<IBody>('Body', getState, setState);
 
 export default class Body implements IBody {

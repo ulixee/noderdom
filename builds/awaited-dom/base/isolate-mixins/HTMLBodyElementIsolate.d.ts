@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLBodyElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLBodyElementIsolate) => IHTMLBodyElementIsolateProperties, setState: (instance: IHTMLBodyElementIsolate, properties: Partial<IHTMLBodyElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLBodyElementIsolate, instance: IHTMLBodyElementIsolate) => void;
+export declare const getState: (instance: IHTMLBodyElementIsolate) => IHTMLBodyElementIsolateProperties, setState: (instance: IHTMLBodyElementIsolate, properties: Partial<IHTMLBodyElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLBodyElementIsolate>;
 export default class HTMLBodyElementIsolate implements IHTMLBodyElementIsolate {
     get aLink(): Promise<string>;

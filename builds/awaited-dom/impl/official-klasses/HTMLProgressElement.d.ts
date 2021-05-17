@@ -1,7 +1,7 @@
 import { IHTMLProgressElement } from '../../base/interfaces/official';
 import { ISuperNodeList } from '../../base/interfaces/super';
 import { IHTMLProgressElementProperties } from '../../base/official-klasses/HTMLProgressElement';
-export declare const getState: (instance: IHTMLProgressElement) => IHTMLProgressElementProperties, setState: (instance: IHTMLProgressElement, properties: Partial<IHTMLProgressElementProperties>) => void, recordProxy: (proxy: IHTMLProgressElement, instance: IHTMLProgressElement) => void;
+export declare const getState: (instance: IHTMLProgressElement) => IHTMLProgressElementProperties, setState: (instance: IHTMLProgressElement, properties: Partial<IHTMLProgressElementProperties>) => void;
 declare const HTMLProgressElementBaseClass: {
     new (): {
         readonly labels: ISuperNodeList;

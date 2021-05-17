@@ -1,7 +1,7 @@
 import { IRange, IDocumentFragment, IDOMRect, IDOMRectList } from '../../base/interfaces/official';
 import { ISuperNode } from '../../base/interfaces/super';
 import { IRangeProperties } from '../../base/official-klasses/Range';
-export declare const getState: (instance: IRange) => IRangeProperties, setState: (instance: IRange, properties: Partial<IRangeProperties>) => void, recordProxy: (proxy: IRange, instance: IRange) => void;
+export declare const getState: (instance: IRange) => IRangeProperties, setState: (instance: IRange, properties: Partial<IRangeProperties>) => void;
 declare const RangeBaseClass: {
     new (): {
         readonly END_TO_END: number;

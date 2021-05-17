@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IVideoTrack } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IVideoTrack, IVideoTrackProperties>();
+export const { getState, setState } = StateMachine<IVideoTrack, IVideoTrackProperties>();
 export const awaitedHandler = new AwaitedHandler<IVideoTrack>('VideoTrack', getState, setState);
 
 export function VideoTrackGenerator() {
   return class VideoTrack implements IVideoTrack {
     constructor() {
-      initializeConstantsAndProperties<VideoTrack>(this, VideoTrackConstantKeys, VideoTrackPropertyKeys);
     }
 
     // properties
@@ -35,6 +34,10 @@ export function VideoTrackGenerator() {
 
     public get selected(): Promise<boolean> {
       return awaitedHandler.getProperty<boolean>(this, 'selected', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, VideoTrackPropertyKeys, VideoTrackConstantKeys);
     }
   };
 }

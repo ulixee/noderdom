@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ICSSRule, ICSSStyleSheet } from '../interfaces/official';
-export declare const getState: (instance: ICSSRule) => ICSSRuleProperties, setState: (instance: ICSSRule, properties: Partial<ICSSRuleProperties>) => void, recordProxy: (proxy: ICSSRule, instance: ICSSRule) => void;
+export declare const getState: (instance: ICSSRule) => ICSSRuleProperties, setState: (instance: ICSSRule, properties: Partial<ICSSRuleProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ICSSRule>;
 export declare function CSSRuleGenerator(): {
     new (): {

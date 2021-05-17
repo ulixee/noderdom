@@ -1,6 +1,6 @@
 import { IMediaStream } from '../../base/interfaces/official';
 import { IMediaStreamProperties } from '../../base/official-klasses/MediaStream';
-export declare const getState: (instance: IMediaStream) => IMediaStreamProperties, setState: (instance: IMediaStream, properties: Partial<IMediaStreamProperties>) => void, recordProxy: (proxy: IMediaStream, instance: IMediaStream) => void;
+export declare const getState: (instance: IMediaStream) => IMediaStreamProperties, setState: (instance: IMediaStream, properties: Partial<IMediaStreamProperties>) => void;
 declare const MediaStreamBaseClass: {
     new (_stream?: IMediaStream | undefined): {
         readonly active: Promise<boolean>;

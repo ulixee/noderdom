@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IXMLSerializer } from '../interfaces/official';
 import { INodeIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IXMLSerializer) => IXMLSerializerProperties, setState: (instance: IXMLSerializer, properties: Partial<IXMLSerializerProperties>) => void, recordProxy: (proxy: IXMLSerializer, instance: IXMLSerializer) => void;
+export declare const getState: (instance: IXMLSerializer) => IXMLSerializerProperties, setState: (instance: IXMLSerializer, properties: Partial<IXMLSerializerProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IXMLSerializer>;
 export declare function XMLSerializerGenerator(): {
     new (): {

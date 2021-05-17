@@ -1,7 +1,7 @@
 import { IHTMLTableElement, IHTMLTableCaptionElement, IHTMLTableSectionElement } from '../../base/interfaces/official';
 import { ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IHTMLTableElementProperties } from '../../base/official-klasses/HTMLTableElement';
-export declare const getState: (instance: IHTMLTableElement) => IHTMLTableElementProperties, setState: (instance: IHTMLTableElement, properties: Partial<IHTMLTableElementProperties>) => void, recordProxy: (proxy: IHTMLTableElement, instance: IHTMLTableElement) => void;
+export declare const getState: (instance: IHTMLTableElement) => IHTMLTableElementProperties, setState: (instance: IHTMLTableElement, properties: Partial<IHTMLTableElementProperties>) => void;
 declare const HTMLTableElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

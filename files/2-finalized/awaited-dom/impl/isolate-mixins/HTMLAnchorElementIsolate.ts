@@ -5,7 +5,7 @@ import HTMLAnchorElementIsolateBase, { IHTMLAnchorElementIsolateProperties } fro
 import { createDOMTokenList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAnchorElementIsolate, IHTMLAnchorElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLAnchorElementIsolate, IHTMLAnchorElementIsolateProperties>();
 
 export default class HTMLAnchorElementIsolate extends HTMLAnchorElementIsolateBase implements IHTMLAnchorElementIsolate {
   public get relList(): IDOMTokenList {

@@ -5,7 +5,7 @@ import { IHTMLTrackElementIsolate } from '../interfaces/isolate';
 import { IDocumentReadyState, ITextTrack } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTrackElementIsolate, IHTMLTrackElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTrackElementIsolate, IHTMLTrackElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTrackElementIsolate>('HTMLTrackElementIsolate', getState, setState);
 
 export default class HTMLTrackElementIsolate implements IHTMLTrackElementIsolate {

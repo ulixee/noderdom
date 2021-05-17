@@ -1,6 +1,6 @@
 import { ICSSRule, ICSSStyleSheet } from '../../base/interfaces/official';
 import { ICSSRuleProperties } from '../../base/official-klasses/CSSRule';
-export declare const getState: (instance: ICSSRule) => ICSSRuleProperties, setState: (instance: ICSSRule, properties: Partial<ICSSRuleProperties>) => void, recordProxy: (proxy: ICSSRule, instance: ICSSRule) => void;
+export declare const getState: (instance: ICSSRule) => ICSSRuleProperties, setState: (instance: ICSSRule, properties: Partial<ICSSRuleProperties>) => void;
 declare const CSSRuleBaseClass: {
     new (): {
         readonly CHARSET_RULE: number;

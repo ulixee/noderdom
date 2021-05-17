@@ -4,7 +4,7 @@ import { HTMLTrackElementGenerator, IHTMLTrackElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTrackElement, IHTMLTrackElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTrackElement, IHTMLTrackElementProperties>();
 const HTMLTrackElementBaseClass = HTMLTrackElementGenerator(HTMLElement);
 
 export default class HTMLTrackElement extends HTMLTrackElementBaseClass implements IHTMLTrackElement {

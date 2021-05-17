@@ -1,6 +1,6 @@
 import { IHTMLMediaElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, IMediaStream } from '../../base/interfaces/official';
 import { IHTMLMediaElementProperties } from '../../base/official-klasses/HTMLMediaElement';
-export declare const getState: (instance: IHTMLMediaElement) => IHTMLMediaElementProperties, setState: (instance: IHTMLMediaElement, properties: Partial<IHTMLMediaElementProperties>) => void, recordProxy: (proxy: IHTMLMediaElement, instance: IHTMLMediaElement) => void;
+export declare const getState: (instance: IHTMLMediaElement) => IHTMLMediaElementProperties, setState: (instance: IHTMLMediaElement, properties: Partial<IHTMLMediaElementProperties>) => void;
 declare const HTMLMediaElementBaseClass: {
     new (): {
         readonly HAVE_CURRENT_DATA: number;

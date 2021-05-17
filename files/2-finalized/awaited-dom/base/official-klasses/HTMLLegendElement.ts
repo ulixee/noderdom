@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLLegendElement, IHTMLElement, IHTMLFormElement } from '../interface
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLegendElement, IHTMLLegendElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLLegendElement, IHTMLLegendElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLLegendElement>('HTMLLegendElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLLegendElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLLegendElementGenerator(HTMLElement: Constructable<IHTMLEleme
   return class HTMLLegendElement extends HTMLElement implements IHTMLLegendElement, PromiseLike<IHTMLLegendElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLLegendElement>(this, HTMLLegendElementConstantKeys, HTMLLegendElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLLegendElement',
       });
@@ -34,6 +33,10 @@ export function HTMLLegendElementGenerator(HTMLElement: Constructable<IHTMLEleme
 
     public then<TResult1 = IHTMLLegendElement, TResult2 = never>(onfulfilled?: ((value: IHTMLLegendElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLLegendElementPropertyKeys, HTMLLegendElementConstantKeys);
     }
   };
 }

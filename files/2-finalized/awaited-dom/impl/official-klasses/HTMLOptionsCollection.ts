@@ -4,7 +4,7 @@ import { HTMLOptionsCollectionGenerator, IHTMLOptionsCollectionProperties } from
 import HTMLCollection from './HTMLCollection';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionsCollection, IHTMLOptionsCollectionProperties>();
+export const { getState, setState } = StateMachine<IHTMLOptionsCollection, IHTMLOptionsCollectionProperties>();
 const HTMLOptionsCollectionBaseClass = HTMLOptionsCollectionGenerator(HTMLCollection);
 
 export default class HTMLOptionsCollection extends HTMLOptionsCollectionBaseClass implements IHTMLOptionsCollection {

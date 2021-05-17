@@ -1,7 +1,7 @@
 import { IHTMLFrameElement } from '../../base/interfaces/official';
 import { ISuperDocument } from '../../base/interfaces/super';
 import { IHTMLFrameElementProperties } from '../../base/official-klasses/HTMLFrameElement';
-export declare const getState: (instance: IHTMLFrameElement) => IHTMLFrameElementProperties, setState: (instance: IHTMLFrameElement, properties: Partial<IHTMLFrameElementProperties>) => void, recordProxy: (proxy: IHTMLFrameElement, instance: IHTMLFrameElement) => void;
+export declare const getState: (instance: IHTMLFrameElement) => IHTMLFrameElementProperties, setState: (instance: IHTMLFrameElement, properties: Partial<IHTMLFrameElementProperties>) => void;
 declare const HTMLFrameElementBaseClass: {
     new (): {
         readonly contentDocument: ISuperDocument;

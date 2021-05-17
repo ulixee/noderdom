@@ -5,7 +5,7 @@ import { IHTMLVideoElementIsolate } from '../interfaces/isolate';
 import { IVideoPlaybackQuality } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLVideoElementIsolate, IHTMLVideoElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLVideoElementIsolate, IHTMLVideoElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLVideoElementIsolate>('HTMLVideoElementIsolate', getState, setState);
 
 export default class HTMLVideoElementIsolate implements IHTMLVideoElementIsolate {

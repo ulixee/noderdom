@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ILinkStyle } from '../interfaces/official';
 import { ISuperStyleSheet } from '../interfaces/super';
-export declare const getState: (instance: ILinkStyle) => ILinkStyleProperties, setState: (instance: ILinkStyle, properties: Partial<ILinkStyleProperties>) => void, recordProxy: (proxy: ILinkStyle, instance: ILinkStyle) => void;
+export declare const getState: (instance: ILinkStyle) => ILinkStyleProperties, setState: (instance: ILinkStyle, properties: Partial<ILinkStyleProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ILinkStyle>;
 export default class LinkStyle implements ILinkStyle {
     get sheet(): ISuperStyleSheet;

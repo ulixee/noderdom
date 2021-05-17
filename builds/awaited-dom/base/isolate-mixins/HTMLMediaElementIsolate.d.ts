@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLMediaElementIsolate } from '../interfaces/isolate';
 import { IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, IDocumentReadyState, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IMediaStream } from '../interfaces/official';
-export declare const getState: (instance: IHTMLMediaElementIsolate) => IHTMLMediaElementIsolateProperties, setState: (instance: IHTMLMediaElementIsolate, properties: Partial<IHTMLMediaElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLMediaElementIsolate, instance: IHTMLMediaElementIsolate) => void;
+export declare const getState: (instance: IHTMLMediaElementIsolate) => IHTMLMediaElementIsolateProperties, setState: (instance: IHTMLMediaElementIsolate, properties: Partial<IHTMLMediaElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMediaElementIsolate>;
 export default class HTMLMediaElementIsolate implements IHTMLMediaElementIsolate {
     static readonly HAVE_CURRENT_DATA: number;

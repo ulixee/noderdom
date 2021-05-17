@@ -1,7 +1,7 @@
 import { IDOMParser, ISupportedType } from '../../base/interfaces/official';
 import { ISuperDocument } from '../../base/interfaces/super';
 import { IDOMParserProperties } from '../../base/official-klasses/DOMParser';
-export declare const getState: (instance: IDOMParser) => IDOMParserProperties, setState: (instance: IDOMParser, properties: Partial<IDOMParserProperties>) => void, recordProxy: (proxy: IDOMParser, instance: IDOMParser) => void;
+export declare const getState: (instance: IDOMParser) => IDOMParserProperties, setState: (instance: IDOMParser, properties: Partial<IDOMParserProperties>) => void;
 declare const DOMParserBaseClass: {
     new (): {
         parseFromString(str: string, type: ISupportedType): ISuperDocument;

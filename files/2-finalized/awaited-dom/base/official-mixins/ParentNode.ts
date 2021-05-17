@@ -5,7 +5,7 @@ import { IParentNode } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperElement, ISuperNodeList } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IParentNode, IParentNodeProperties>();
+export const { getState, setState } = StateMachine<IParentNode, IParentNodeProperties>();
 export const awaitedHandler = new AwaitedHandler<IParentNode>('ParentNode', getState, setState);
 
 export default class ParentNode implements IParentNode {

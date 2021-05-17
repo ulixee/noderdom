@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -10,7 +10,7 @@ import { ICSSStyleSheetIsolateProperties, CSSStyleSheetIsolatePropertyKeys, CSSS
 import { IStyleSheetIsolateProperties, StyleSheetIsolatePropertyKeys, StyleSheetIsolateConstantKeys } from '../isolate-mixins/StyleSheetIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperStyleSheet, ISuperStyleSheetProperties>();
+export const { getState, setState } = StateMachine<ISuperStyleSheet, ISuperStyleSheetProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperStyleSheet>('SuperStyleSheet', getState, setState);
 
 export function SuperStyleSheetGenerator(CSSStyleSheetIsolate: Constructable<ICSSStyleSheetIsolate>, StyleSheetIsolate: Constructable<IStyleSheetIsolate>) {
@@ -19,7 +19,10 @@ export function SuperStyleSheetGenerator(CSSStyleSheetIsolate: Constructable<ICS
   return class SuperStyleSheet extends Parent implements ISuperStyleSheet {
     constructor() {
       super();
-      initializeConstantsAndProperties<SuperStyleSheet>(this, SuperStyleSheetConstantKeys, SuperStyleSheetPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperStyleSheetPropertyKeys, SuperStyleSheetConstantKeys);
     }
   };
 }

@@ -6,7 +6,7 @@ import { createSuperElement } from '../create';
 import Node from './Node';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IAttr, IAttrProperties>();
+export const { getState, setState } = StateMachine<IAttr, IAttrProperties>();
 const AttrBaseClass = AttrGenerator(Node);
 
 export default class Attr extends AttrBaseClass implements IAttr {

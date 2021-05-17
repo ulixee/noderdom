@@ -5,7 +5,7 @@ import HTMLVideoElementIsolateBase, { IHTMLVideoElementIsolateProperties } from 
 import { createVideoPlaybackQuality } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLVideoElementIsolate, IHTMLVideoElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLVideoElementIsolate, IHTMLVideoElementIsolateProperties>();
 
 export default class HTMLVideoElementIsolate extends HTMLVideoElementIsolateBase implements IHTMLVideoElementIsolate {
   public getVideoPlaybackQuality(): IVideoPlaybackQuality {

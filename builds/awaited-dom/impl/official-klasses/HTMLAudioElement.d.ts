@@ -1,6 +1,6 @@
 import { IHTMLAudioElement } from '../../base/interfaces/official';
 import { IHTMLAudioElementProperties } from '../../base/official-klasses/HTMLAudioElement';
-export declare const getState: (instance: IHTMLAudioElement) => IHTMLAudioElementProperties, setState: (instance: IHTMLAudioElement, properties: Partial<IHTMLAudioElementProperties>) => void, recordProxy: (proxy: IHTMLAudioElement, instance: IHTMLAudioElement) => void;
+export declare const getState: (instance: IHTMLAudioElement) => IHTMLAudioElementProperties, setState: (instance: IHTMLAudioElement, properties: Partial<IHTMLAudioElementProperties>) => void;
 declare const HTMLAudioElementBaseClass: {
     new (): {
         readonly HAVE_CURRENT_DATA: number;

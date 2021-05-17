@@ -4,7 +4,7 @@ import { DOMRectListGenerator, IDOMRectListProperties } from '../../base/officia
 import { createDOMRect } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDOMRectList, IDOMRectListProperties>();
+export const { getState, setState } = StateMachine<IDOMRectList, IDOMRectListProperties>();
 const DOMRectListBaseClass = DOMRectListGenerator();
 
 export default class DOMRectList extends DOMRectListBaseClass implements IDOMRectList {

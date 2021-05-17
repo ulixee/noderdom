@@ -5,7 +5,7 @@ import { IHTMLAnchorElementIsolate } from '../interfaces/isolate';
 import { IDOMTokenList } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAnchorElementIsolate, IHTMLAnchorElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLAnchorElementIsolate, IHTMLAnchorElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLAnchorElementIsolate>('HTMLAnchorElementIsolate', getState, setState);
 
 export default class HTMLAnchorElementIsolate implements IHTMLAnchorElementIsolate {

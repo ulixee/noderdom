@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IDOMRect, IDOMRectReadOnly } from '../interfaces/official';
 import { IDOMRectReadOnlyProperties } from './DOMRectReadOnly';
-export declare const getState: (instance: IDOMRect) => IDOMRectProperties, setState: (instance: IDOMRect, properties: Partial<IDOMRectProperties>) => void, recordProxy: (proxy: IDOMRect, instance: IDOMRect) => void;
+export declare const getState: (instance: IDOMRect) => IDOMRectProperties, setState: (instance: IDOMRect, properties: Partial<IDOMRectProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IDOMRect>;
 export declare function DOMRectGenerator(DOMRectReadOnly: Constructable<IDOMRectReadOnly>): {
     new (_x?: number | undefined, _y?: number | undefined, _width?: number | undefined, _height?: number | undefined): {

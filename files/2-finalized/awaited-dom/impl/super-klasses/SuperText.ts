@@ -7,7 +7,7 @@ import NonDocumentTypeChildNode from '../official-mixins/NonDocumentTypeChildNod
 import Slotable from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperText, ISuperTextProperties>();
+export const { getState, setState } = StateMachine<ISuperText, ISuperTextProperties>();
 const SuperTextBaseClass = SuperTextGenerator(CharacterDataIsolate, NodeIsolate, NonDocumentTypeChildNode, Slotable);
 
 export default class SuperText extends SuperTextBaseClass implements ISuperText {

@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLFrameSetElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLFrameSetElement) => IHTMLFrameSetElementProperties, setState: (instance: IHTMLFrameSetElement, properties: Partial<IHTMLFrameSetElementProperties>) => void, recordProxy: (proxy: IHTMLFrameSetElement, instance: IHTMLFrameSetElement) => void;
+export declare const getState: (instance: IHTMLFrameSetElement) => IHTMLFrameSetElementProperties, setState: (instance: IHTMLFrameSetElement, properties: Partial<IHTMLFrameSetElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFrameSetElement>;
 export declare const nodeFactory: NodeFactory<IHTMLFrameSetElement>;
 export declare function HTMLFrameSetElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

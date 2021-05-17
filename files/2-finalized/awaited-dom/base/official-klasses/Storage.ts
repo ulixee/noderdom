@@ -1,19 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IStorage } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IStorage, IStorageProperties>();
+export const { getState, setState } = StateMachine<IStorage, IStorageProperties>();
 export const awaitedHandler = new AwaitedHandler<IStorage>('Storage', getState, setState);
 
 export function StorageGenerator() {
   return class Storage implements IStorage {
     constructor() {
-      initializeConstantsAndProperties<Storage>(this, StorageConstantKeys, StoragePropertyKeys);
-      // proxy supports indexed property access
       const proxy = new Proxy(this, {
         get(target, prop) {
           if (prop in target) {
@@ -24,11 +22,12 @@ export function StorageGenerator() {
           }
 
           // delegate to string indexer
-          return target.getItem(prop as string);
+          if(typeof prop === 'string') {
+            return target.getItem(prop as string);
+          }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -61,6 +60,10 @@ export function StorageGenerator() {
     }
 
 
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, StoragePropertyKeys, StorageConstantKeys);
+    }
   };
 }
 

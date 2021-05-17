@@ -5,7 +5,7 @@ import CharacterData from './CharacterData';
 import Slotable from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IText, ITextProperties>();
+export const { getState, setState } = StateMachine<IText, ITextProperties>();
 const TextBaseClass = TextGenerator(CharacterData, Slotable);
 
 export default class Text extends TextBaseClass implements IText {

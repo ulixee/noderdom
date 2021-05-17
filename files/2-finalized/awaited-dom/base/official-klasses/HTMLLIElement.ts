@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLLIElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLIElement, IHTMLLIElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLLIElement, IHTMLLIElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLLIElement>('HTMLLIElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLLIElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLLIElementGenerator(HTMLElement: Constructable<IHTMLElement>)
   return class HTMLLIElement extends HTMLElement implements IHTMLLIElement, PromiseLike<IHTMLLIElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLLIElement>(this, HTMLLIElementConstantKeys, HTMLLIElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLLIElement',
       });
@@ -34,6 +33,10 @@ export function HTMLLIElementGenerator(HTMLElement: Constructable<IHTMLElement>)
 
     public then<TResult1 = IHTMLLIElement, TResult2 = never>(onfulfilled?: ((value: IHTMLLIElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLLIElementPropertyKeys, HTMLLIElementConstantKeys);
     }
   };
 }

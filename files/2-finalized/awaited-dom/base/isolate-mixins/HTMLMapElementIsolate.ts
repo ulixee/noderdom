@@ -5,7 +5,7 @@ import { IHTMLMapElementIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMapElementIsolate, IHTMLMapElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLMapElementIsolate, IHTMLMapElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMapElementIsolate>('HTMLMapElementIsolate', getState, setState);
 
 export default class HTMLMapElementIsolate implements IHTMLMapElementIsolate {

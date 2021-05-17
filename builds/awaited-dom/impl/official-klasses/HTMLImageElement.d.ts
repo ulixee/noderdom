@@ -1,6 +1,6 @@
 import { IHTMLImageElement } from '../../base/interfaces/official';
 import { IHTMLImageElementProperties } from '../../base/official-klasses/HTMLImageElement';
-export declare const getState: (instance: IHTMLImageElement) => IHTMLImageElementProperties, setState: (instance: IHTMLImageElement, properties: Partial<IHTMLImageElementProperties>) => void, recordProxy: (proxy: IHTMLImageElement, instance: IHTMLImageElement) => void;
+export declare const getState: (instance: IHTMLImageElement) => IHTMLImageElementProperties, setState: (instance: IHTMLImageElement, properties: Partial<IHTMLImageElementProperties>) => void;
 declare const HTMLImageElementBaseClass: {
     new (): {
         readonly alt: Promise<string>;

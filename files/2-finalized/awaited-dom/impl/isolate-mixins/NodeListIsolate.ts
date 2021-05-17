@@ -5,7 +5,7 @@ import NodeListIsolateBase, { INodeListIsolateProperties } from '../../base/isol
 import { createSuperNode } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INodeListIsolate, INodeListIsolateProperties>();
+export const { getState, setState } = StateMachine<INodeListIsolate, INodeListIsolateProperties>();
 
 export default class NodeListIsolate extends NodeListIsolateBase implements INodeListIsolate {
   public item(index: number): ISuperNode {

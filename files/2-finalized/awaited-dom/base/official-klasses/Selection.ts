@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,13 +8,12 @@ import { ISuperNode } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISelection, ISelectionProperties>();
+export const { getState, setState } = StateMachine<ISelection, ISelectionProperties>();
 export const awaitedHandler = new AwaitedHandler<ISelection>('Selection', getState, setState);
 
 export function SelectionGenerator() {
   return class Selection implements ISelection {
     constructor() {
-      initializeConstantsAndProperties<Selection>(this, SelectionConstantKeys, SelectionPropertyKeys);
     }
 
     // properties
@@ -111,6 +110,10 @@ export function SelectionGenerator() {
 
     public toString(): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'toString', []);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SelectionPropertyKeys, SelectionConstantKeys);
     }
   };
 }

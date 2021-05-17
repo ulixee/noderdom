@@ -5,7 +5,7 @@ import LinkStyleBase, { ILinkStyleProperties } from '../../base/official-mixins/
 import { createSuperStyleSheet } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ILinkStyle, ILinkStyleProperties>();
+export const { getState, setState } = StateMachine<ILinkStyle, ILinkStyleProperties>();
 
 export default class LinkStyle extends LinkStyleBase implements ILinkStyle {
   public get sheet(): ISuperStyleSheet {

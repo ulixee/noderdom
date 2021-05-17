@@ -5,7 +5,7 @@ import ShadowRootIsolateBase, { IShadowRootIsolateProperties } from '../../base/
 import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IShadowRootIsolate, IShadowRootIsolateProperties>();
+export const { getState, setState } = StateMachine<IShadowRootIsolate, IShadowRootIsolateProperties>();
 
 export default class ShadowRootIsolate extends ShadowRootIsolateBase implements IShadowRootIsolate {
   public get host(): Promise<string> | ISuperElement {

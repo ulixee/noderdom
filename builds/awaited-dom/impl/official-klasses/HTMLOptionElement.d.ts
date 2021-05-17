@@ -1,6 +1,6 @@
 import { IHTMLOptionElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { IHTMLOptionElementProperties } from '../../base/official-klasses/HTMLOptionElement';
-export declare const getState: (instance: IHTMLOptionElement) => IHTMLOptionElementProperties, setState: (instance: IHTMLOptionElement, properties: Partial<IHTMLOptionElementProperties>) => void, recordProxy: (proxy: IHTMLOptionElement, instance: IHTMLOptionElement) => void;
+export declare const getState: (instance: IHTMLOptionElement) => IHTMLOptionElementProperties, setState: (instance: IHTMLOptionElement, properties: Partial<IHTMLOptionElementProperties>) => void;
 declare const HTMLOptionElementBaseClass: {
     new (): {
         readonly defaultSelected: Promise<boolean>;

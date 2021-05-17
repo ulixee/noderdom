@@ -4,19 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DOMRectConstantKeys = exports.DOMRectPropertyKeys = exports.DOMRectGenerator = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.DOMRectConstantKeys = exports.DOMRectPropertyKeys = exports.DOMRectGenerator = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const DOMRectReadOnly_1 = require("./DOMRectReadOnly");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('DOMRect', exports.getState, exports.setState);
 function DOMRectGenerator(DOMRectReadOnly) {
     return class DOMRect extends DOMRectReadOnly {
         constructor(_x, _y, _width, _height) {
             super(_x, _y, _width, _height);
-            initializeConstantsAndProperties_1.default(this, exports.DOMRectConstantKeys, exports.DOMRectPropertyKeys);
         }
         // properties
         get height() {
@@ -30,6 +29,9 @@ function DOMRectGenerator(DOMRectReadOnly) {
         }
         get y() {
             return exports.awaitedHandler.getProperty(this, 'y', false);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.DOMRectPropertyKeys, exports.DOMRectConstantKeys);
         }
     };
 }

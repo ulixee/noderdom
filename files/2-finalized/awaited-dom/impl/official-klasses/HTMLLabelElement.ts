@@ -6,7 +6,7 @@ import { createSuperHTMLElement, createHTMLFormElement } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLabelElement, IHTMLLabelElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLLabelElement, IHTMLLabelElementProperties>();
 const HTMLLabelElementBaseClass = HTMLLabelElementGenerator(HTMLElement);
 
 export default class HTMLLabelElement extends HTMLLabelElementBaseClass implements IHTMLLabelElement {

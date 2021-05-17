@@ -5,7 +5,7 @@ import NonElementParentNodeBase, { INonElementParentNodeProperties } from '../..
 import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INonElementParentNode, INonElementParentNodeProperties>();
+export const { getState, setState } = StateMachine<INonElementParentNode, INonElementParentNodeProperties>();
 
 export default class NonElementParentNode extends NonElementParentNodeBase implements INonElementParentNode {
   public getElementById(elementId: string): ISuperElement {

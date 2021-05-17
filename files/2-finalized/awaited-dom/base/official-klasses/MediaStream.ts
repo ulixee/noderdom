@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IMediaStream } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IMediaStream, IMediaStreamProperties>();
+export const { getState, setState } = StateMachine<IMediaStream, IMediaStreamProperties>();
 export const awaitedHandler = new AwaitedHandler<IMediaStream>('MediaStream', getState, setState);
 
 export function MediaStreamGenerator() {
   return class MediaStream implements IMediaStream {
     constructor(_stream?: IMediaStream) {
-      initializeConstantsAndProperties<MediaStream>(this, MediaStreamConstantKeys, MediaStreamPropertyKeys);
     }
 
     // properties
@@ -29,6 +28,10 @@ export function MediaStreamGenerator() {
 
     public clone(): IMediaStream {
       throw new Error('MediaStream.clone not implemented');
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, MediaStreamPropertyKeys, MediaStreamConstantKeys);
     }
   };
 }

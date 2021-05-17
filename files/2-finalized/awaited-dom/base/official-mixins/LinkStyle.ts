@@ -5,7 +5,7 @@ import { ILinkStyle } from '../interfaces/official';
 import { ISuperStyleSheet } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ILinkStyle, ILinkStyleProperties>();
+export const { getState, setState } = StateMachine<ILinkStyle, ILinkStyleProperties>();
 export const awaitedHandler = new AwaitedHandler<ILinkStyle>('LinkStyle', getState, setState);
 
 export default class LinkStyle implements ILinkStyle {

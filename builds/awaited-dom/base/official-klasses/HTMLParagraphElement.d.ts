@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLParagraphElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLParagraphElement) => IHTMLParagraphElementProperties, setState: (instance: IHTMLParagraphElement, properties: Partial<IHTMLParagraphElementProperties>) => void, recordProxy: (proxy: IHTMLParagraphElement, instance: IHTMLParagraphElement) => void;
+export declare const getState: (instance: IHTMLParagraphElement) => IHTMLParagraphElementProperties, setState: (instance: IHTMLParagraphElement, properties: Partial<IHTMLParagraphElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLParagraphElement>;
 export declare const nodeFactory: NodeFactory<IHTMLParagraphElement>;
 export declare function HTMLParagraphElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

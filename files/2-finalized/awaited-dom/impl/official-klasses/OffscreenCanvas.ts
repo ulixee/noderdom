@@ -4,7 +4,7 @@ import { OffscreenCanvasGenerator, IOffscreenCanvasProperties } from '../../base
 import { createImageBitmap } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IOffscreenCanvas, IOffscreenCanvasProperties>();
+export const { getState, setState } = StateMachine<IOffscreenCanvas, IOffscreenCanvasProperties>();
 const OffscreenCanvasBaseClass = OffscreenCanvasGenerator();
 
 export default class OffscreenCanvas extends OffscreenCanvasBaseClass implements IOffscreenCanvas {

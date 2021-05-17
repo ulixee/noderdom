@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { INonDocumentTypeChildNode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
-export declare const getState: (instance: INonDocumentTypeChildNode) => INonDocumentTypeChildNodeProperties, setState: (instance: INonDocumentTypeChildNode, properties: Partial<INonDocumentTypeChildNodeProperties>) => void, recordProxy: (proxy: INonDocumentTypeChildNode, instance: INonDocumentTypeChildNode) => void;
+export declare const getState: (instance: INonDocumentTypeChildNode) => INonDocumentTypeChildNodeProperties, setState: (instance: INonDocumentTypeChildNode, properties: Partial<INonDocumentTypeChildNodeProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<INonDocumentTypeChildNode>;
 export default class NonDocumentTypeChildNode implements INonDocumentTypeChildNode {
     get nextElementSibling(): ISuperElement;

@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLMeterElementIsolate } from '../interfaces/isolate';
 import { ISuperNodeList } from '../interfaces/super';
-export declare const getState: (instance: IHTMLMeterElementIsolate) => IHTMLMeterElementIsolateProperties, setState: (instance: IHTMLMeterElementIsolate, properties: Partial<IHTMLMeterElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLMeterElementIsolate, instance: IHTMLMeterElementIsolate) => void;
+export declare const getState: (instance: IHTMLMeterElementIsolate) => IHTMLMeterElementIsolateProperties, setState: (instance: IHTMLMeterElementIsolate, properties: Partial<IHTMLMeterElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMeterElementIsolate>;
 export default class HTMLMeterElementIsolate implements IHTMLMeterElementIsolate {
     get high(): Promise<number>;

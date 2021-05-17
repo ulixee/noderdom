@@ -1,6 +1,6 @@
 import { IHTMLEmbedElement } from '../../base/interfaces/official';
 import { IHTMLEmbedElementProperties } from '../../base/official-klasses/HTMLEmbedElement';
-export declare const getState: (instance: IHTMLEmbedElement) => IHTMLEmbedElementProperties, setState: (instance: IHTMLEmbedElement, properties: Partial<IHTMLEmbedElementProperties>) => void, recordProxy: (proxy: IHTMLEmbedElement, instance: IHTMLEmbedElement) => void;
+export declare const getState: (instance: IHTMLEmbedElement) => IHTMLEmbedElementProperties, setState: (instance: IHTMLEmbedElement, properties: Partial<IHTMLEmbedElementProperties>) => void;
 declare const HTMLEmbedElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

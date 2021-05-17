@@ -1,7 +1,7 @@
 import { IHTMLIFrameElement, IFeaturePolicy, IDOMTokenList } from '../../base/interfaces/official';
 import { ISuperDocument } from '../../base/interfaces/super';
 import { IHTMLIFrameElementProperties } from '../../base/official-klasses/HTMLIFrameElement';
-export declare const getState: (instance: IHTMLIFrameElement) => IHTMLIFrameElementProperties, setState: (instance: IHTMLIFrameElement, properties: Partial<IHTMLIFrameElementProperties>) => void, recordProxy: (proxy: IHTMLIFrameElement, instance: IHTMLIFrameElement) => void;
+export declare const getState: (instance: IHTMLIFrameElement) => IHTMLIFrameElementProperties, setState: (instance: IHTMLIFrameElement, properties: Partial<IHTMLIFrameElementProperties>) => void;
 declare const HTMLIFrameElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

@@ -1,6 +1,6 @@
 import { IHTMLDetailsElement } from '../../base/interfaces/official';
 import { IHTMLDetailsElementProperties } from '../../base/official-klasses/HTMLDetailsElement';
-export declare const getState: (instance: IHTMLDetailsElement) => IHTMLDetailsElementProperties, setState: (instance: IHTMLDetailsElement, properties: Partial<IHTMLDetailsElementProperties>) => void, recordProxy: (proxy: IHTMLDetailsElement, instance: IHTMLDetailsElement) => void;
+export declare const getState: (instance: IHTMLDetailsElement) => IHTMLDetailsElementProperties, setState: (instance: IHTMLDetailsElement, properties: Partial<IHTMLDetailsElementProperties>) => void;
 declare const HTMLDetailsElementBaseClass: {
     new (): {
         readonly open: Promise<boolean>;

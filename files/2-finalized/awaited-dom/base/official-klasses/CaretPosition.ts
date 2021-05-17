@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,13 +7,12 @@ import { ICaretPosition, IDOMRect } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICaretPosition, ICaretPositionProperties>();
+export const { getState, setState } = StateMachine<ICaretPosition, ICaretPositionProperties>();
 export const awaitedHandler = new AwaitedHandler<ICaretPosition>('CaretPosition', getState, setState);
 
 export function CaretPositionGenerator() {
   return class CaretPosition implements ICaretPosition {
     constructor() {
-      initializeConstantsAndProperties<CaretPosition>(this, CaretPositionConstantKeys, CaretPositionPropertyKeys);
     }
 
     // properties
@@ -30,6 +29,10 @@ export function CaretPositionGenerator() {
 
     public getClientRect(): IDOMRect {
       throw new Error('CaretPosition.getClientRect not implemented');
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, CaretPositionPropertyKeys, CaretPositionConstantKeys);
     }
   };
 }

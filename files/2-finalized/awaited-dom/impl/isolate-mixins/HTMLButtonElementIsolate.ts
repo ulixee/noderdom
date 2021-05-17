@@ -6,7 +6,7 @@ import HTMLButtonElementIsolateBase, { IHTMLButtonElementIsolateProperties } fro
 import { createHTMLFormElement, createSuperNodeList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLButtonElementIsolate, IHTMLButtonElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLButtonElementIsolate, IHTMLButtonElementIsolateProperties>();
 
 export default class HTMLButtonElementIsolate extends HTMLButtonElementIsolateBase implements IHTMLButtonElementIsolate {
   public get form(): IHTMLFormElement {

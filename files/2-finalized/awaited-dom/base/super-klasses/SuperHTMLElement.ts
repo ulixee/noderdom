@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -86,7 +86,7 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 import { ISlotableProperties, SlotablePropertyKeys, SlotableConstantKeys } from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
+export const { getState, setState } = StateMachine<ISuperHTMLElement, ISuperHTMLElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperHTMLElement>('SuperHTMLElement', getState, setState);
 export const nodeFactory = new NodeFactory<ISuperHTMLElement>(getState, setState, awaitedHandler);
 
@@ -96,7 +96,6 @@ export function SuperHTMLElementGenerator(ElementCSSInlineStyle: Constructable<I
   return class SuperHTMLElement extends Parent implements ISuperHTMLElement, PromiseLike<ISuperHTMLElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<SuperHTMLElement>(this, SuperHTMLElementConstantKeys, SuperHTMLElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperHTMLElement',
       });
@@ -176,6 +175,10 @@ export function SuperHTMLElementGenerator(ElementCSSInlineStyle: Constructable<I
 
     public then<TResult1 = ISuperHTMLElement, TResult2 = never>(onfulfilled?: ((value: ISuperHTMLElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperHTMLElementPropertyKeys, SuperHTMLElementConstantKeys);
     }
   };
 }

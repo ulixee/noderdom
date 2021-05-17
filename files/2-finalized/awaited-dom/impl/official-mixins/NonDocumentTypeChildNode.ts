@@ -5,7 +5,7 @@ import NonDocumentTypeChildNodeBase, { INonDocumentTypeChildNodeProperties } fro
 import { createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INonDocumentTypeChildNode, INonDocumentTypeChildNodeProperties>();
+export const { getState, setState } = StateMachine<INonDocumentTypeChildNode, INonDocumentTypeChildNodeProperties>();
 
 export default class NonDocumentTypeChildNode extends NonDocumentTypeChildNodeBase implements INonDocumentTypeChildNode {
   public get nextElementSibling(): ISuperElement {

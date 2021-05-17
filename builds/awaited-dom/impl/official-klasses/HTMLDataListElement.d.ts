@@ -1,6 +1,6 @@
 import { IHTMLDataListElement } from '../../base/interfaces/official';
 import { IHTMLDataListElementProperties } from '../../base/official-klasses/HTMLDataListElement';
-export declare const getState: (instance: IHTMLDataListElement) => IHTMLDataListElementProperties, setState: (instance: IHTMLDataListElement, properties: Partial<IHTMLDataListElementProperties>) => void, recordProxy: (proxy: IHTMLDataListElement, instance: IHTMLDataListElement) => void;
+export declare const getState: (instance: IHTMLDataListElement) => IHTMLDataListElementProperties, setState: (instance: IHTMLDataListElement, properties: Partial<IHTMLDataListElementProperties>) => void;
 declare const HTMLDataListElementBaseClass: {
     new (): {
         readonly options: Promise<import("../../base/interfaces/super").ISuperHTMLCollection>;

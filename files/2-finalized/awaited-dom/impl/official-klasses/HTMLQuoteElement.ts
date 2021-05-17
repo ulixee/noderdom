@@ -4,7 +4,7 @@ import { HTMLQuoteElementGenerator, IHTMLQuoteElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLQuoteElement, IHTMLQuoteElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLQuoteElement, IHTMLQuoteElementProperties>();
 const HTMLQuoteElementBaseClass = HTMLQuoteElementGenerator(HTMLElement);
 
 export default class HTMLQuoteElement extends HTMLQuoteElementBaseClass implements IHTMLQuoteElement {

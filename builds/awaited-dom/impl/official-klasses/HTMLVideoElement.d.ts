@@ -1,6 +1,6 @@
 import { IHTMLVideoElement, IVideoPlaybackQuality } from '../../base/interfaces/official';
 import { IHTMLVideoElementProperties } from '../../base/official-klasses/HTMLVideoElement';
-export declare const getState: (instance: IHTMLVideoElement) => IHTMLVideoElementProperties, setState: (instance: IHTMLVideoElement, properties: Partial<IHTMLVideoElementProperties>) => void, recordProxy: (proxy: IHTMLVideoElement, instance: IHTMLVideoElement) => void;
+export declare const getState: (instance: IHTMLVideoElement) => IHTMLVideoElementProperties, setState: (instance: IHTMLVideoElement, properties: Partial<IHTMLVideoElementProperties>) => void;
 declare const HTMLVideoElementBaseClass: {
     new (): {
         readonly height: Promise<number>;

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { IHeaders, IHeadersInit } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHeaders, IHeadersProperties>();
+export const { getState, setState } = StateMachine<IHeaders, IHeadersProperties>();
 export const awaitedHandler = new AwaitedHandler<IHeaders>('Headers', getState, setState);
 export const nodeFactory = new NodeFactory<IHeaders>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IHeaders, [string, string]>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<IHeaders, [string, string]>(g
 export function HeadersGenerator() {
   return class Headers implements IHeaders, PromiseLike<IHeaders> {
     constructor(_init?: IHeadersInit) {
-      initializeConstantsAndProperties<Headers>(this, HeadersConstantKeys, HeadersPropertyKeys);
       setState(this, {
         createInstanceName: 'createHeaders',
       });
@@ -66,8 +65,12 @@ export function HeadersGenerator() {
       return awaitedIterator.load(this).then(x => new Map(x).values());
     }
 
-    public [Symbol.iterator](): IterableIterator<[string, string]> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<[string, string]> {
+      return awaitedIterator.iterateNodePointers(this);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HeadersPropertyKeys, HeadersConstantKeys);
     }
   };
 }

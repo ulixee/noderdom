@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IRadioNodeListIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IRadioNodeListIsolate) => IRadioNodeListIsolateProperties, setState: (instance: IRadioNodeListIsolate, properties: Partial<IRadioNodeListIsolateProperties>) => void, recordProxy: (proxy: IRadioNodeListIsolate, instance: IRadioNodeListIsolate) => void;
+export declare const getState: (instance: IRadioNodeListIsolate) => IRadioNodeListIsolateProperties, setState: (instance: IRadioNodeListIsolate, properties: Partial<IRadioNodeListIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IRadioNodeListIsolate>;
 export default class RadioNodeListIsolate implements IRadioNodeListIsolate {
     get value(): Promise<string>;

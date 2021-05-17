@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { IDOMRectList, IDOMRect } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDOMRectList, IDOMRectListProperties>();
+export const { getState, setState } = StateMachine<IDOMRectList, IDOMRectListProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMRectList>('DOMRectList', getState, setState);
 export const nodeFactory = new NodeFactory<IDOMRectList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IDOMRectList, IDOMRect>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<IDOMRectList, IDOMRect>(getSt
 export function DOMRectListGenerator() {
   return class DOMRectList implements IDOMRectList, PromiseLike<IDOMRectList> {
     constructor() {
-      initializeConstantsAndProperties<DOMRectList>(this, DOMRectListConstantKeys, DOMRectListPropertyKeys);
       setState(this, {
         createInstanceName: 'createDOMRectList',
         createIterableName: 'createDOMRect',
@@ -32,14 +31,13 @@ export function DOMRectListGenerator() {
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -59,11 +57,15 @@ export function DOMRectListGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<IDOMRect> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<IDOMRect> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: IDOMRect;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, DOMRectListPropertyKeys, DOMRectListConstantKeys);
+    }
   };
 }
 

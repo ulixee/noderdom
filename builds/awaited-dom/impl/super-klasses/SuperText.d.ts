@@ -1,6 +1,6 @@
 import { ISuperText } from '../../base/interfaces/super';
 import { ISuperTextProperties } from '../../base/super-klasses/SuperText';
-export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void, recordProxy: (proxy: ISuperText, instance: ISuperText) => void;
+export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void;
 declare const SuperTextBaseClass: {
     new (_data?: string | undefined): {
         readonly wholeText: Promise<string>;

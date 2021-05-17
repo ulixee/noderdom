@@ -6,7 +6,7 @@ import { IDocumentFragment, INode, INonElementParentNode, IParentNode } from '..
 import { INodeProperties } from './Node';
 import { INonElementParentNodeProperties } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
-export declare const getState: (instance: IDocumentFragment) => IDocumentFragmentProperties, setState: (instance: IDocumentFragment, properties: Partial<IDocumentFragmentProperties>) => void, recordProxy: (proxy: IDocumentFragment, instance: IDocumentFragment) => void;
+export declare const getState: (instance: IDocumentFragment) => IDocumentFragmentProperties, setState: (instance: IDocumentFragment, properties: Partial<IDocumentFragmentProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocumentFragment>;
 export declare const nodeFactory: NodeFactory<IDocumentFragment>;
 export declare function DocumentFragmentGenerator(Node: Constructable<INode>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>): {

@@ -4,7 +4,7 @@ import { MediaStreamGenerator, IMediaStreamProperties } from '../../base/officia
 import { createMediaStream } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IMediaStream, IMediaStreamProperties>();
+export const { getState, setState } = StateMachine<IMediaStream, IMediaStreamProperties>();
 const MediaStreamBaseClass = MediaStreamGenerator();
 
 export default class MediaStream extends MediaStreamBaseClass implements IMediaStream {

@@ -1,6 +1,6 @@
 import { IHTMLTimeElement } from '../../base/interfaces/official';
 import { IHTMLTimeElementProperties } from '../../base/official-klasses/HTMLTimeElement';
-export declare const getState: (instance: IHTMLTimeElement) => IHTMLTimeElementProperties, setState: (instance: IHTMLTimeElement, properties: Partial<IHTMLTimeElementProperties>) => void, recordProxy: (proxy: IHTMLTimeElement, instance: IHTMLTimeElement) => void;
+export declare const getState: (instance: IHTMLTimeElement) => IHTMLTimeElementProperties, setState: (instance: IHTMLTimeElement, properties: Partial<IHTMLTimeElementProperties>) => void;
 declare const HTMLTimeElementBaseClass: {
     new (): {
         readonly dateTime: Promise<string>;

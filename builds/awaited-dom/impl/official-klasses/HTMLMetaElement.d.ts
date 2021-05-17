@@ -1,6 +1,6 @@
 import { IHTMLMetaElement } from '../../base/interfaces/official';
 import { IHTMLMetaElementProperties } from '../../base/official-klasses/HTMLMetaElement';
-export declare const getState: (instance: IHTMLMetaElement) => IHTMLMetaElementProperties, setState: (instance: IHTMLMetaElement, properties: Partial<IHTMLMetaElementProperties>) => void, recordProxy: (proxy: IHTMLMetaElement, instance: IHTMLMetaElement) => void;
+export declare const getState: (instance: IHTMLMetaElement) => IHTMLMetaElementProperties, setState: (instance: IHTMLMetaElement, properties: Partial<IHTMLMetaElementProperties>) => void;
 declare const HTMLMetaElementBaseClass: {
     new (): {
         readonly content: Promise<string>;

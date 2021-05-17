@@ -1,6 +1,6 @@
 import { IAudioTrack } from '../../base/interfaces/official';
 import { IAudioTrackProperties } from '../../base/official-klasses/AudioTrack';
-export declare const getState: (instance: IAudioTrack) => IAudioTrackProperties, setState: (instance: IAudioTrack, properties: Partial<IAudioTrackProperties>) => void, recordProxy: (proxy: IAudioTrack, instance: IAudioTrack) => void;
+export declare const getState: (instance: IAudioTrack) => IAudioTrackProperties, setState: (instance: IAudioTrack, properties: Partial<IAudioTrackProperties>) => void;
 declare const AudioTrackBaseClass: {
     new (): {
         readonly enabled: Promise<boolean>;

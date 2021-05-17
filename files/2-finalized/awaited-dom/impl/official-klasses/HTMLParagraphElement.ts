@@ -4,7 +4,7 @@ import { HTMLParagraphElementGenerator, IHTMLParagraphElementProperties } from '
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLParagraphElement, IHTMLParagraphElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLParagraphElement, IHTMLParagraphElementProperties>();
 const HTMLParagraphElementBaseClass = HTMLParagraphElementGenerator(HTMLElement);
 
 export default class HTMLParagraphElement extends HTMLParagraphElementBaseClass implements IHTMLParagraphElement {

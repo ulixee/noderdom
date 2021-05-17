@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { ICharacterData, INode, INonDocumentTypeChildNode } from '../interfaces/official';
 import { INodeProperties } from './Node';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
-export declare const getState: (instance: ICharacterData) => ICharacterDataProperties, setState: (instance: ICharacterData, properties: Partial<ICharacterDataProperties>) => void, recordProxy: (proxy: ICharacterData, instance: ICharacterData) => void;
+export declare const getState: (instance: ICharacterData) => ICharacterDataProperties, setState: (instance: ICharacterData, properties: Partial<ICharacterDataProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ICharacterData>;
 export declare const nodeFactory: NodeFactory<ICharacterData>;
 export declare function CharacterDataGenerator(Node: Constructable<INode>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>): {

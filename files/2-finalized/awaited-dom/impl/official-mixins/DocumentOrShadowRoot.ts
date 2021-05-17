@@ -5,7 +5,7 @@ import DocumentOrShadowRootBase, { IDocumentOrShadowRootProperties } from '../..
 import { createSuperElement, createCaretPosition, createSelection } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentOrShadowRoot, IDocumentOrShadowRootProperties>();
+export const { getState, setState } = StateMachine<IDocumentOrShadowRoot, IDocumentOrShadowRootProperties>();
 
 export default class DocumentOrShadowRoot extends DocumentOrShadowRootBase implements IDocumentOrShadowRoot {
   public get activeElement(): ISuperElement {

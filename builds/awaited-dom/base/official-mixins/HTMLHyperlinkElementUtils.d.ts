@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLHyperlinkElementUtils } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
-export declare const getState: (instance: IHTMLHyperlinkElementUtils) => IHTMLHyperlinkElementUtilsProperties, setState: (instance: IHTMLHyperlinkElementUtils, properties: Partial<IHTMLHyperlinkElementUtilsProperties>) => void, recordProxy: (proxy: IHTMLHyperlinkElementUtils, instance: IHTMLHyperlinkElementUtils) => void;
+export declare const getState: (instance: IHTMLHyperlinkElementUtils) => IHTMLHyperlinkElementUtilsProperties, setState: (instance: IHTMLHyperlinkElementUtils, properties: Partial<IHTMLHyperlinkElementUtilsProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLHyperlinkElementUtils>;
 export default class HTMLHyperlinkElementUtils implements IHTMLHyperlinkElementUtils {
     get hash(): Promise<string>;

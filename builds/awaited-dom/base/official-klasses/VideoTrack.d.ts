@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IVideoTrack } from '../interfaces/official';
-export declare const getState: (instance: IVideoTrack) => IVideoTrackProperties, setState: (instance: IVideoTrack, properties: Partial<IVideoTrackProperties>) => void, recordProxy: (proxy: IVideoTrack, instance: IVideoTrack) => void;
+export declare const getState: (instance: IVideoTrack) => IVideoTrackProperties, setState: (instance: IVideoTrack, properties: Partial<IVideoTrackProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IVideoTrack>;
 export declare function VideoTrackGenerator(): {
     new (): {

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../in
 import { INodeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INode, INodeProperties>();
+export const { getState, setState } = StateMachine<INode, INodeProperties>();
 export const awaitedHandler = new AwaitedHandler<INode>('Node', getState, setState);
 export const nodeFactory = new NodeFactory<INode>(getState, setState, awaitedHandler);
 
@@ -53,7 +53,6 @@ export function NodeGenerator() {
     public readonly PROCESSING_INSTRUCTION_NODE: number = 7;
     public readonly TEXT_NODE: number = 3;
     constructor() {
-      initializeConstantsAndProperties<Node>(this, NodeConstantKeys, NodePropertyKeys);
       setState(this, {
         createInstanceName: 'createNode',
       });
@@ -161,6 +160,10 @@ export function NodeGenerator() {
 
     public then<TResult1 = INode, TResult2 = never>(onfulfilled?: ((value: INode) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, NodePropertyKeys, NodeConstantKeys);
     }
   };
 }

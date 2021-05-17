@@ -7,7 +7,7 @@ import { ISuperNodeList, ISuperNode } from '../interfaces/super';
 import { INodeListIsolate, IRadioNodeListIsolate } from '../interfaces/isolate';
 import { INodeListIsolateProperties } from '../isolate-mixins/NodeListIsolate';
 import { IRadioNodeListIsolateProperties } from '../isolate-mixins/RadioNodeListIsolate';
-export declare const getState: (instance: ISuperNodeList) => ISuperNodeListProperties, setState: (instance: ISuperNodeList, properties: Partial<ISuperNodeListProperties>) => void, recordProxy: (proxy: ISuperNodeList, instance: ISuperNodeList) => void;
+export declare const getState: (instance: ISuperNodeList) => ISuperNodeListProperties, setState: (instance: ISuperNodeList, properties: Partial<ISuperNodeListProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperNodeList>;
 export declare const nodeFactory: NodeFactory<ISuperNodeList>;
 export declare const awaitedIterator: AwaitedIterator<ISuperNodeList, ISuperNode>;
@@ -21,7 +21,7 @@ export declare function SuperNodeListGenerator(NodeListIsolate: Constructable<IN
         entries(): Promise<IterableIterator<[number, ISuperNode]>>;
         keys(): Promise<IterableIterator<number>>;
         values(): Promise<IterableIterator<ISuperNode>>;
-        [Symbol.iterator](): IterableIterator<ISuperNode>;
+        [Symbol.iterator](): Iterator<ISuperNode>;
         readonly value: Promise<string>;
     };
 };

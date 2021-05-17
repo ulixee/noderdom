@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLTrackElementIsolate } from '../interfaces/isolate';
 import { IDocumentReadyState, ITextTrack } from '../interfaces/official';
-export declare const getState: (instance: IHTMLTrackElementIsolate) => IHTMLTrackElementIsolateProperties, setState: (instance: IHTMLTrackElementIsolate, properties: Partial<IHTMLTrackElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLTrackElementIsolate, instance: IHTMLTrackElementIsolate) => void;
+export declare const getState: (instance: IHTMLTrackElementIsolate) => IHTMLTrackElementIsolateProperties, setState: (instance: IHTMLTrackElementIsolate, properties: Partial<IHTMLTrackElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTrackElementIsolate>;
 export default class HTMLTrackElementIsolate implements IHTMLTrackElementIsolate {
     static readonly ERROR: number;

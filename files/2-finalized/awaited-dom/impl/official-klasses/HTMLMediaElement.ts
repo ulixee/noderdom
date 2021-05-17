@@ -5,7 +5,7 @@ import { createAudioTrackList, createTimeRanges, createDOMTokenList, createMedia
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMediaElement, IHTMLMediaElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMediaElement, IHTMLMediaElementProperties>();
 const HTMLMediaElementBaseClass = HTMLMediaElementGenerator(HTMLElement);
 
 export default class HTMLMediaElement extends HTMLMediaElementBaseClass implements IHTMLMediaElement {

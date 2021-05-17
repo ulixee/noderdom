@@ -1,7 +1,7 @@
 import { ICaretPosition, IDOMRect } from '../../base/interfaces/official';
 import { ISuperNode } from '../../base/interfaces/super';
 import { ICaretPositionProperties } from '../../base/official-klasses/CaretPosition';
-export declare const getState: (instance: ICaretPosition) => ICaretPositionProperties, setState: (instance: ICaretPosition, properties: Partial<ICaretPositionProperties>) => void, recordProxy: (proxy: ICaretPosition, instance: ICaretPosition) => void;
+export declare const getState: (instance: ICaretPosition) => ICaretPositionProperties, setState: (instance: ICaretPosition, properties: Partial<ICaretPositionProperties>) => void;
 declare const CaretPositionBaseClass: {
     new (): {
         readonly offset: Promise<number>;

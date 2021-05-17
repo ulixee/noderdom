@@ -5,7 +5,7 @@ import HTMLMediaElementIsolateBase, { IHTMLMediaElementIsolateProperties } from 
 import { createAudioTrackList, createTimeRanges, createDOMTokenList, createMediaError, createMediaKeys, createTextTrackList, createVideoTrackList, createMediaStream } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMediaElementIsolate, IHTMLMediaElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLMediaElementIsolate, IHTMLMediaElementIsolateProperties>();
 
 export default class HTMLMediaElementIsolate extends HTMLMediaElementIsolateBase implements IHTMLMediaElementIsolate {
   public get audioTracks(): IAudioTrackList {

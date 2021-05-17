@@ -1,7 +1,7 @@
 import { IShadowRoot } from '../../base/interfaces/official';
 import { ISuperElement } from '../../base/interfaces/super';
 import { IShadowRootProperties } from '../../base/official-klasses/ShadowRoot';
-export declare const getState: (instance: IShadowRoot) => IShadowRootProperties, setState: (instance: IShadowRoot, properties: Partial<IShadowRootProperties>) => void, recordProxy: (proxy: IShadowRoot, instance: IShadowRoot) => void;
+export declare const getState: (instance: IShadowRoot) => IShadowRootProperties, setState: (instance: IShadowRoot, properties: Partial<IShadowRootProperties>) => void;
 declare const ShadowRootBaseClass: {
     new (): {
         readonly delegatesFocus: Promise<boolean>;

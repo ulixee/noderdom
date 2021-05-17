@@ -4,7 +4,7 @@ import AwaitedIterator from '../AwaitedIterator';
 import NodeFactory from '../NodeFactory';
 import { INodeList } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
-export declare const getState: (instance: INodeList) => INodeListProperties, setState: (instance: INodeList, properties: Partial<INodeListProperties>) => void, recordProxy: (proxy: INodeList, instance: INodeList) => void;
+export declare const getState: (instance: INodeList) => INodeListProperties, setState: (instance: INodeList, properties: Partial<INodeListProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<INodeList>;
 export declare const nodeFactory: NodeFactory<INodeList>;
 export declare const awaitedIterator: AwaitedIterator<INodeList, ISuperNode>;
@@ -18,7 +18,7 @@ export declare function NodeListGenerator(): {
         entries(): Promise<IterableIterator<[number, ISuperNode]>>;
         keys(): Promise<IterableIterator<number>>;
         values(): Promise<IterableIterator<ISuperNode>>;
-        [Symbol.iterator](): IterableIterator<ISuperNode>;
+        [Symbol.iterator](): Iterator<ISuperNode>;
     };
 };
 export interface INodeListProperties {

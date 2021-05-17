@@ -5,7 +5,7 @@ import { XPathExpressionGenerator, IXPathExpressionProperties } from '../../base
 import { createXPathResult } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXPathExpression, IXPathExpressionProperties>();
+export const { getState, setState } = StateMachine<IXPathExpression, IXPathExpressionProperties>();
 const XPathExpressionBaseClass = XPathExpressionGenerator();
 
 export default class XPathExpression extends XPathExpressionBaseClass implements IXPathExpression {

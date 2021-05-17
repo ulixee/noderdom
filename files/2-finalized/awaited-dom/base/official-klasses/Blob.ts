@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IBlob, IBlobPart, IBlobPropertyBag } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IBlob, IBlobProperties>();
+export const { getState, setState } = StateMachine<IBlob, IBlobProperties>();
 export const awaitedHandler = new AwaitedHandler<IBlob>('Blob', getState, setState);
 
 export function BlobGenerator() {
   return class Blob implements IBlob {
     constructor(_blobParts?: Iterable<IBlobPart>, _options?: IBlobPropertyBag) {
-      initializeConstantsAndProperties<Blob>(this, BlobConstantKeys, BlobPropertyKeys);
     }
 
     // properties
@@ -37,6 +36,10 @@ export function BlobGenerator() {
 
     public text(): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'text', []);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, BlobPropertyKeys, BlobConstantKeys);
     }
   };
 }

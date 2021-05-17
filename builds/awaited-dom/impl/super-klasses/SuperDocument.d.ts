@@ -1,7 +1,7 @@
 import { ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../../base/interfaces/super';
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../base/interfaces/official';
 import { ISuperDocumentProperties } from '../../base/super-klasses/SuperDocument';
-export declare const getState: (instance: ISuperDocument) => ISuperDocumentProperties, setState: (instance: ISuperDocument, properties: Partial<ISuperDocumentProperties>) => void, recordProxy: (proxy: ISuperDocument, instance: ISuperDocument) => void;
+export declare const getState: (instance: ISuperDocument) => ISuperDocumentProperties, setState: (instance: ISuperDocument, properties: Partial<ISuperDocumentProperties>) => void;
 declare const SuperDocumentBaseClass: {
     new (): {
         readonly URL: Promise<string>;

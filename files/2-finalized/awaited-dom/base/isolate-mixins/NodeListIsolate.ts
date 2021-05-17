@@ -6,7 +6,7 @@ import { INodeListIsolate } from '../interfaces/isolate';
 import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INodeListIsolate, INodeListIsolateProperties>();
+export const { getState, setState } = StateMachine<INodeListIsolate, INodeListIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<INodeListIsolate>('NodeListIsolate', getState, setState);
 export const awaitedIterator = new AwaitedIterator<INodeListIsolate, ISuperNode>(getState, setState, awaitedHandler);
 
@@ -39,8 +39,8 @@ export default class NodeListIsolate implements INodeListIsolate {
     return awaitedIterator.load(this).then(x => x.values());
   }
 
-  public [Symbol.iterator](): IterableIterator<ISuperNode> {
-    return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+  public [Symbol.iterator](): Iterator<ISuperNode> {
+    return awaitedIterator.iterateNodePointers(this);
   }
 
   [index: number]: ISuperNode;

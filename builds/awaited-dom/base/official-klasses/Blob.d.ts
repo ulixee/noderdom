@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IBlob, IBlobPart, IBlobPropertyBag } from '../interfaces/official';
-export declare const getState: (instance: IBlob) => IBlobProperties, setState: (instance: IBlob, properties: Partial<IBlobProperties>) => void, recordProxy: (proxy: IBlob, instance: IBlob) => void;
+export declare const getState: (instance: IBlob) => IBlobProperties, setState: (instance: IBlob, properties: Partial<IBlobProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IBlob>;
 export declare function BlobGenerator(): {
     new (_blobParts?: Iterable<IBlobPart> | undefined, _options?: IBlobPropertyBag | undefined): {

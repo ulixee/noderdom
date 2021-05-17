@@ -4,7 +4,7 @@ import { HTMLDListElementGenerator, IHTMLDListElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDListElement, IHTMLDListElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLDListElement, IHTMLDListElementProperties>();
 const HTMLDListElementBaseClass = HTMLDListElementGenerator(HTMLElement);
 
 export default class HTMLDListElement extends HTMLDListElementBaseClass implements IHTMLDListElement {

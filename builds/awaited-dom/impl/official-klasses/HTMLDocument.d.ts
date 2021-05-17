@@ -1,6 +1,6 @@
 import { IHTMLDocument } from '../../base/interfaces/official';
 import { IHTMLDocumentProperties } from '../../base/official-klasses/HTMLDocument';
-export declare const getState: (instance: IHTMLDocument) => IHTMLDocumentProperties, setState: (instance: IHTMLDocument, properties: Partial<IHTMLDocumentProperties>) => void, recordProxy: (proxy: IHTMLDocument, instance: IHTMLDocument) => void;
+export declare const getState: (instance: IHTMLDocument) => IHTMLDocumentProperties, setState: (instance: IHTMLDocument, properties: Partial<IHTMLDocumentProperties>) => void;
 declare const HTMLDocumentBaseClass: {
     new (): {
         readonly URL: Promise<string>;

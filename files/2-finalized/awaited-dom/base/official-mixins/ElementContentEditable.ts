@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IElementContentEditable } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IElementContentEditable, IElementContentEditableProperties>();
+export const { getState, setState } = StateMachine<IElementContentEditable, IElementContentEditableProperties>();
 export const awaitedHandler = new AwaitedHandler<IElementContentEditable>('ElementContentEditable', getState, setState);
 
 export default class ElementContentEditable implements IElementContentEditable {

@@ -269,7 +269,7 @@ export interface INodeListIsolate {
   entries(): Promise<IterableIterator<[number, ISuperNode]>>;
   keys(): Promise<IterableIterator<number>>;
   values(): Promise<IterableIterator<ISuperNode>>;
-  [Symbol.iterator](): IterableIterator<ISuperNode>;
+  [Symbol.iterator](): Iterator<ISuperNode>;
 
   [index: number]: ISuperNode;
 }
@@ -281,7 +281,7 @@ export interface IHTMLCollectionBaseIsolate {
 
   item(index: number): ISuperElement;
 
-  [Symbol.iterator](): IterableIterator<ISuperElement>;
+  [Symbol.iterator](): Iterator<ISuperElement>;
 
   [index: number]: ISuperElement;
 }
@@ -894,7 +894,7 @@ export interface IHTMLSelectElementIsolate {
   namedItem(name: string): IHTMLOptionElement;
   reportValidity(): Promise<boolean>;
 
-  [Symbol.iterator](): IterableIterator<ISuperElement>;
+  [Symbol.iterator](): Iterator<ISuperElement>;
 
   [index: number]: ISuperElement;
 }

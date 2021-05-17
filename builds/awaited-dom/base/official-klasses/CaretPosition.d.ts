@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ICaretPosition, IDOMRect } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
-export declare const getState: (instance: ICaretPosition) => ICaretPositionProperties, setState: (instance: ICaretPosition, properties: Partial<ICaretPositionProperties>) => void, recordProxy: (proxy: ICaretPosition, instance: ICaretPosition) => void;
+export declare const getState: (instance: ICaretPosition) => ICaretPositionProperties, setState: (instance: ICaretPosition, properties: Partial<ICaretPositionProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ICaretPosition>;
 export declare function CaretPositionGenerator(): {
     new (): {

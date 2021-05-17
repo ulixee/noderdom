@@ -1,7 +1,7 @@
 import { IAbstractRange } from '../../base/interfaces/official';
 import { ISuperNode } from '../../base/interfaces/super';
 import { IAbstractRangeProperties } from '../../base/official-klasses/AbstractRange';
-export declare const getState: (instance: IAbstractRange) => IAbstractRangeProperties, setState: (instance: IAbstractRange, properties: Partial<IAbstractRangeProperties>) => void, recordProxy: (proxy: IAbstractRange, instance: IAbstractRange) => void;
+export declare const getState: (instance: IAbstractRange) => IAbstractRangeProperties, setState: (instance: IAbstractRange, properties: Partial<IAbstractRangeProperties>) => void;
 declare const AbstractRangeBaseClass: {
     new (): {
         readonly collapsed: Promise<boolean>;

@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLCanvasElement, IHTMLElement, IMediaStream, IOffscreenCanvas } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLCanvasElement) => IHTMLCanvasElementProperties, setState: (instance: IHTMLCanvasElement, properties: Partial<IHTMLCanvasElementProperties>) => void, recordProxy: (proxy: IHTMLCanvasElement, instance: IHTMLCanvasElement) => void;
+export declare const getState: (instance: IHTMLCanvasElement) => IHTMLCanvasElementProperties, setState: (instance: IHTMLCanvasElement, properties: Partial<IHTMLCanvasElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLCanvasElement>;
 export declare const nodeFactory: NodeFactory<IHTMLCanvasElement>;
 export declare function HTMLCanvasElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

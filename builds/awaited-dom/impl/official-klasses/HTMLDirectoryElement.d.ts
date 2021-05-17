@@ -1,6 +1,6 @@
 import { IHTMLDirectoryElement } from '../../base/interfaces/official';
 import { IHTMLDirectoryElementProperties } from '../../base/official-klasses/HTMLDirectoryElement';
-export declare const getState: (instance: IHTMLDirectoryElement) => IHTMLDirectoryElementProperties, setState: (instance: IHTMLDirectoryElement, properties: Partial<IHTMLDirectoryElementProperties>) => void, recordProxy: (proxy: IHTMLDirectoryElement, instance: IHTMLDirectoryElement) => void;
+export declare const getState: (instance: IHTMLDirectoryElement) => IHTMLDirectoryElementProperties, setState: (instance: IHTMLDirectoryElement, properties: Partial<IHTMLDirectoryElementProperties>) => void;
 declare const HTMLDirectoryElementBaseClass: {
     new (): {
         readonly compact: Promise<boolean>;

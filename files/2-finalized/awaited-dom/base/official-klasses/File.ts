@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,14 +7,13 @@ import { IFile, IBlob, IBlobPart, IFilePropertyBag } from '../interfaces/officia
 import { IBlobProperties, BlobPropertyKeys, BlobConstantKeys } from './Blob';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IFile, IFileProperties>();
+export const { getState, setState } = StateMachine<IFile, IFileProperties>();
 export const awaitedHandler = new AwaitedHandler<IFile>('File', getState, setState);
 
 export function FileGenerator(Blob: Constructable<IBlob>) {
   return class File extends Blob implements IFile {
     constructor(_fileBits: Iterable<IBlobPart>, _fileName: string, _options?: IFilePropertyBag) {
       super(_fileBits, _fileName, _options);
-      initializeConstantsAndProperties<File>(this, FileConstantKeys, FilePropertyKeys);
     }
 
     // properties
@@ -25,6 +24,10 @@ export function FileGenerator(Blob: Constructable<IBlob>) {
 
     public get name(): Promise<string> {
       return awaitedHandler.getProperty<string>(this, 'name', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, FilePropertyKeys, FileConstantKeys);
     }
   };
 }

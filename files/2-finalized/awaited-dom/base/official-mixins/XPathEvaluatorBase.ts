@@ -5,7 +5,7 @@ import { IXPathEvaluatorBase, IXPathNSResolver, IXPathExpression, IXPathResult }
 import { INodeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXPathEvaluatorBase, IXPathEvaluatorBaseProperties>();
+export const { getState, setState } = StateMachine<IXPathEvaluatorBase, IXPathEvaluatorBaseProperties>();
 export const awaitedHandler = new AwaitedHandler<IXPathEvaluatorBase>('XPathEvaluatorBase', getState, setState);
 
 export default class XPathEvaluatorBase implements IXPathEvaluatorBase {

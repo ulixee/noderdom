@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IStorage } from '../interfaces/official';
-export declare const getState: (instance: IStorage) => IStorageProperties, setState: (instance: IStorage, properties: Partial<IStorageProperties>) => void, recordProxy: (proxy: IStorage, instance: IStorage) => void;
+export declare const getState: (instance: IStorage) => IStorageProperties, setState: (instance: IStorage, properties: Partial<IStorageProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IStorage>;
 export declare function StorageGenerator(): {
     new (): {

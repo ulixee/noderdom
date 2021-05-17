@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import NodeFactory from '../NodeFactory';
 import { IXPathResult } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
-export declare const getState: (instance: IXPathResult) => IXPathResultProperties, setState: (instance: IXPathResult, properties: Partial<IXPathResultProperties>) => void, recordProxy: (proxy: IXPathResult, instance: IXPathResult) => void;
+export declare const getState: (instance: IXPathResult) => IXPathResultProperties, setState: (instance: IXPathResult, properties: Partial<IXPathResultProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IXPathResult>;
 export declare const nodeFactory: NodeFactory<IXPathResult>;
 export declare function XPathResultGenerator(): {

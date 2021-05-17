@@ -12,7 +12,7 @@ import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonElementParentNodeProperties } from '../official-mixins/NonElementParentNode';
 import { IParentNodeProperties } from '../official-mixins/ParentNode';
 import { IXPathEvaluatorBaseProperties } from '../official-mixins/XPathEvaluatorBase';
-export declare const getState: (instance: ISuperDocument) => ISuperDocumentProperties, setState: (instance: ISuperDocument, properties: Partial<ISuperDocumentProperties>) => void, recordProxy: (proxy: ISuperDocument, instance: ISuperDocument) => void;
+export declare const getState: (instance: ISuperDocument) => ISuperDocumentProperties, setState: (instance: ISuperDocument, properties: Partial<ISuperDocumentProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperDocument>;
 export declare const nodeFactory: NodeFactory<ISuperDocument>;
 export declare function SuperDocumentGenerator(DocumentIsolate: Constructable<IDocumentIsolate>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>, HTMLDocumentIsolate: Constructable<IHTMLDocumentIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonElementParentNode: Constructable<INonElementParentNode>, ParentNode: Constructable<IParentNode>, XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {

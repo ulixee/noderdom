@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IElementCSSInlineStyle, ICSSStyleDeclaration } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IElementCSSInlineStyle, IElementCSSInlineStyleProperties>();
+export const { getState, setState } = StateMachine<IElementCSSInlineStyle, IElementCSSInlineStyleProperties>();
 export const awaitedHandler = new AwaitedHandler<IElementCSSInlineStyle>('ElementCSSInlineStyle', getState, setState);
 
 export default class ElementCSSInlineStyle implements IElementCSSInlineStyle {

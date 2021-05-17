@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,14 +7,17 @@ import { IXPathEvaluator, IXPathEvaluatorBase } from '../interfaces/official';
 import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEvaluatorBaseConstantKeys } from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXPathEvaluator, IXPathEvaluatorProperties>();
+export const { getState, setState } = StateMachine<IXPathEvaluator, IXPathEvaluatorProperties>();
 export const awaitedHandler = new AwaitedHandler<IXPathEvaluator>('XPathEvaluator', getState, setState);
 
 export function XPathEvaluatorGenerator(XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>) {
   return class XPathEvaluator extends XPathEvaluatorBase implements IXPathEvaluator {
     constructor() {
       super();
-      initializeConstantsAndProperties<XPathEvaluator>(this, XPathEvaluatorConstantKeys, XPathEvaluatorPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, XPathEvaluatorPropertyKeys, XPathEvaluatorConstantKeys);
     }
   };
 }

@@ -6,7 +6,7 @@ import { createSuperDocument, createFeaturePolicy, createDOMTokenList } from '..
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLIFrameElement, IHTMLIFrameElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLIFrameElement, IHTMLIFrameElementProperties>();
 const HTMLIFrameElementBaseClass = HTMLIFrameElementGenerator(HTMLElement);
 
 export default class HTMLIFrameElement extends HTMLIFrameElementBaseClass implements IHTMLIFrameElement {

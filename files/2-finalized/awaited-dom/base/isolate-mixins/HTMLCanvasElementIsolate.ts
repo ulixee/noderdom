@@ -5,7 +5,7 @@ import { IHTMLCanvasElementIsolate } from '../interfaces/isolate';
 import { IMediaStream, IOffscreenCanvas } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLCanvasElementIsolate, IHTMLCanvasElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLCanvasElementIsolate, IHTMLCanvasElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLCanvasElementIsolate>('HTMLCanvasElementIsolate', getState, setState);
 
 export default class HTMLCanvasElementIsolate implements IHTMLCanvasElementIsolate {

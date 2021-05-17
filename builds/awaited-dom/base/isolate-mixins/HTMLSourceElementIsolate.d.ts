@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLSourceElementIsolate } from '../interfaces/isolate';
 import { IDOMTokenList } from '../interfaces/official';
-export declare const getState: (instance: IHTMLSourceElementIsolate) => IHTMLSourceElementIsolateProperties, setState: (instance: IHTMLSourceElementIsolate, properties: Partial<IHTMLSourceElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLSourceElementIsolate, instance: IHTMLSourceElementIsolate) => void;
+export declare const getState: (instance: IHTMLSourceElementIsolate) => IHTMLSourceElementIsolateProperties, setState: (instance: IHTMLSourceElementIsolate, properties: Partial<IHTMLSourceElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSourceElementIsolate>;
 export default class HTMLSourceElementIsolate implements IHTMLSourceElementIsolate {
     get media(): Promise<string>;

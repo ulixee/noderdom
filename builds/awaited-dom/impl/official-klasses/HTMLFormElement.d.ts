@@ -1,6 +1,6 @@
 import { IHTMLFormElement } from '../../base/interfaces/official';
 import { IHTMLFormElementProperties } from '../../base/official-klasses/HTMLFormElement';
-export declare const getState: (instance: IHTMLFormElement) => IHTMLFormElementProperties, setState: (instance: IHTMLFormElement, properties: Partial<IHTMLFormElementProperties>) => void, recordProxy: (proxy: IHTMLFormElement, instance: IHTMLFormElement) => void;
+export declare const getState: (instance: IHTMLFormElement) => IHTMLFormElementProperties, setState: (instance: IHTMLFormElement, properties: Partial<IHTMLFormElementProperties>) => void;
 declare const HTMLFormElementBaseClass: {
     new (): {
         readonly acceptCharset: Promise<string>;

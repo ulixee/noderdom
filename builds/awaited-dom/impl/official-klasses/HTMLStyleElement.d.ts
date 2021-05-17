@@ -1,6 +1,6 @@
 import { IHTMLStyleElement } from '../../base/interfaces/official';
 import { IHTMLStyleElementProperties } from '../../base/official-klasses/HTMLStyleElement';
-export declare const getState: (instance: IHTMLStyleElement) => IHTMLStyleElementProperties, setState: (instance: IHTMLStyleElement, properties: Partial<IHTMLStyleElementProperties>) => void, recordProxy: (proxy: IHTMLStyleElement, instance: IHTMLStyleElement) => void;
+export declare const getState: (instance: IHTMLStyleElement) => IHTMLStyleElementProperties, setState: (instance: IHTMLStyleElement, properties: Partial<IHTMLStyleElementProperties>) => void;
 declare const HTMLStyleElementBaseClass: {
     new (): {
         readonly media: Promise<string>;

@@ -155,7 +155,7 @@ export interface ISuperNodeList extends INodeListIsolate, IRadioNodeListIsolate 
   entries(): Promise<IterableIterator<[number, ISuperNode]>>;
   keys(): Promise<IterableIterator<number>>;
   values(): Promise<IterableIterator<ISuperNode>>;
-  [Symbol.iterator](): IterableIterator<ISuperNode>;
+  [Symbol.iterator](): Iterator<ISuperNode>;
 
   [index: number]: ISuperNode;
 }
@@ -165,7 +165,7 @@ export interface ISuperNodeList extends INodeListIsolate, IRadioNodeListIsolate 
 export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate {
   namedItem(name: string): ISuperElement;
 
-  [Symbol.iterator](): IterableIterator<ISuperElement>;
+  [Symbol.iterator](): Iterator<ISuperElement>;
 }
 
 // SuperText //////////

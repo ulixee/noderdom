@@ -5,7 +5,7 @@ import { IRange, IAbstractRange, IDocumentFragment, IDOMRect, IDOMRectList } fro
 import { ISuperNode } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
 import { IAbstractRangeProperties } from './AbstractRange';
-export declare const getState: (instance: IRange) => IRangeProperties, setState: (instance: IRange, properties: Partial<IRangeProperties>) => void, recordProxy: (proxy: IRange, instance: IRange) => void;
+export declare const getState: (instance: IRange) => IRangeProperties, setState: (instance: IRange, properties: Partial<IRangeProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IRange>;
 export declare function RangeGenerator(AbstractRange: Constructable<IAbstractRange>): {
     new (): {

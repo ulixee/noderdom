@@ -6,7 +6,7 @@ import HTMLElement from './HTMLElement';
 import HTMLHyperlinkElementUtils from '../official-mixins/HTMLHyperlinkElementUtils';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAnchorElement, IHTMLAnchorElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLAnchorElement, IHTMLAnchorElementProperties>();
 const HTMLAnchorElementBaseClass = HTMLAnchorElementGenerator(HTMLElement, HTMLHyperlinkElementUtils);
 
 export default class HTMLAnchorElement extends HTMLAnchorElementBaseClass implements IHTMLAnchorElement {

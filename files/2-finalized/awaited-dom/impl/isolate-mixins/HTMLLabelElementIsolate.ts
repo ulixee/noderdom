@@ -6,7 +6,7 @@ import HTMLLabelElementIsolateBase, { IHTMLLabelElementIsolateProperties } from 
 import { createSuperHTMLElement, createHTMLFormElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLabelElementIsolate, IHTMLLabelElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLLabelElementIsolate, IHTMLLabelElementIsolateProperties>();
 
 export default class HTMLLabelElementIsolate extends HTMLLabelElementIsolateBase implements IHTMLLabelElementIsolate {
   public get control(): ISuperHTMLElement {

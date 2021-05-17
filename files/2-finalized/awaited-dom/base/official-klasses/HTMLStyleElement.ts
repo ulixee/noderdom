@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -10,7 +10,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 import { ILinkStyleProperties, LinkStylePropertyKeys, LinkStyleConstantKeys } from '../official-mixins/LinkStyle';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLStyleElement, IHTMLStyleElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLStyleElement, IHTMLStyleElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLStyleElement>('HTMLStyleElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLStyleElement>(getState, setState, awaitedHandler);
 
@@ -20,7 +20,6 @@ export function HTMLStyleElementGenerator(HTMLElement: Constructable<IHTMLElemen
   return class HTMLStyleElement extends Parent implements IHTMLStyleElement, PromiseLike<IHTMLStyleElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLStyleElement>(this, HTMLStyleElementConstantKeys, HTMLStyleElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLStyleElement',
       });
@@ -38,6 +37,10 @@ export function HTMLStyleElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public then<TResult1 = IHTMLStyleElement, TResult2 = never>(onfulfilled?: ((value: IHTMLStyleElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLStyleElementPropertyKeys, HTMLStyleElementConstantKeys);
     }
   };
 }

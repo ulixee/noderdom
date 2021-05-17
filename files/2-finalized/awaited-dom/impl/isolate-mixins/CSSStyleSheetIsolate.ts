@@ -5,7 +5,7 @@ import CSSStyleSheetIsolateBase, { ICSSStyleSheetIsolateProperties } from '../..
 import { createCSSRuleList, createCSSRule } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSStyleSheetIsolate, ICSSStyleSheetIsolateProperties>();
+export const { getState, setState } = StateMachine<ICSSStyleSheetIsolate, ICSSStyleSheetIsolateProperties>();
 
 export default class CSSStyleSheetIsolate extends CSSStyleSheetIsolateBase implements ICSSStyleSheetIsolate {
   public get cssRules(): ICSSRuleList {

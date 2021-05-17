@@ -4,7 +4,7 @@ import { DOMRectGenerator, IDOMRectProperties } from '../../base/official-klasse
 import DOMRectReadOnly from './DOMRectReadOnly';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDOMRect, IDOMRectProperties>();
+export const { getState, setState } = StateMachine<IDOMRect, IDOMRectProperties>();
 const DOMRectBaseClass = DOMRectGenerator(DOMRectReadOnly);
 
 export default class DOMRect extends DOMRectBaseClass implements IDOMRect {

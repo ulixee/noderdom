@@ -5,7 +5,7 @@ import HTMLLinkElementIsolateBase, { IHTMLLinkElementIsolateProperties } from '.
 import { createDOMTokenList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLinkElementIsolate, IHTMLLinkElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLLinkElementIsolate, IHTMLLinkElementIsolateProperties>();
 
 export default class HTMLLinkElementIsolate extends HTMLLinkElementIsolateBase implements IHTMLLinkElementIsolate {
   public get relList(): IDOMTokenList {

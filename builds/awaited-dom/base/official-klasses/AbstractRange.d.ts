@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IAbstractRange } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
-export declare const getState: (instance: IAbstractRange) => IAbstractRangeProperties, setState: (instance: IAbstractRange, properties: Partial<IAbstractRangeProperties>) => void, recordProxy: (proxy: IAbstractRange, instance: IAbstractRange) => void;
+export declare const getState: (instance: IAbstractRange) => IAbstractRangeProperties, setState: (instance: IAbstractRange, properties: Partial<IAbstractRangeProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IAbstractRange>;
 export declare function AbstractRangeGenerator(): {
     new (): {

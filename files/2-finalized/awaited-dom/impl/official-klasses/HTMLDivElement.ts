@@ -4,7 +4,7 @@ import { HTMLDivElementGenerator, IHTMLDivElementProperties } from '../../base/o
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDivElement, IHTMLDivElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLDivElement, IHTMLDivElementProperties>();
 const HTMLDivElementBaseClass = HTMLDivElementGenerator(HTMLElement);
 
 export default class HTMLDivElement extends HTMLDivElementBaseClass implements IHTMLDivElement {

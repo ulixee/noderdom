@@ -5,7 +5,7 @@ import HTMLTableSectionElementIsolateBase, { IHTMLTableSectionElementIsolateProp
 import { createSuperHTMLCollection } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableSectionElementIsolate, IHTMLTableSectionElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableSectionElementIsolate, IHTMLTableSectionElementIsolateProperties>();
 
 export default class HTMLTableSectionElementIsolate extends HTMLTableSectionElementIsolateBase implements IHTMLTableSectionElementIsolate {
   public get rows(): Promise<string> | ISuperHTMLCollection | Promise<number> {

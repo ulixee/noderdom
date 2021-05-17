@@ -4,7 +4,7 @@ import { HTMLSpanElementGenerator, IHTMLSpanElementProperties } from '../../base
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLSpanElement, IHTMLSpanElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLSpanElement, IHTMLSpanElementProperties>();
 const HTMLSpanElementBaseClass = HTMLSpanElementGenerator(HTMLElement);
 
 export default class HTMLSpanElement extends HTMLSpanElementBaseClass implements IHTMLSpanElement {

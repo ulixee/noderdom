@@ -5,7 +5,7 @@ import { createMediaStream, createOffscreenCanvas } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLCanvasElement, IHTMLCanvasElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLCanvasElement, IHTMLCanvasElementProperties>();
 const HTMLCanvasElementBaseClass = HTMLCanvasElementGenerator(HTMLElement);
 
 export default class HTMLCanvasElement extends HTMLCanvasElementBaseClass implements IHTMLCanvasElement {

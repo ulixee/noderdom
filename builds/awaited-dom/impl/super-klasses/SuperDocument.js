@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const SuperDocument_1 = require("../../base/super-klasses/SuperDocument");
 const create_1 = require("../create");
@@ -16,7 +16,7 @@ const NonElementParentNode_1 = __importDefault(require("../official-mixins/NonEl
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 const XPathEvaluatorBase_1 = __importDefault(require("../official-mixins/XPathEvaluatorBase"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 const SuperDocumentBaseClass = SuperDocument_1.SuperDocumentGenerator(DocumentIsolate_1.default, DocumentOrShadowRoot_1.default, HTMLDocumentIsolate_1.default, NodeIsolate_1.default, NonElementParentNode_1.default, ParentNode_1.default, XPathEvaluatorBase_1.default);
 class SuperDocument extends SuperDocumentBaseClass {
     constructor() {

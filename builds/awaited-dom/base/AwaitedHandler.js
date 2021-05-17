@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotImplementedError = void 0;
+const StateMachine_1 = require("./StateMachine");
 class NotImplementedError extends Error {
 }
 exports.NotImplementedError = NotImplementedError;
@@ -33,6 +34,9 @@ class AwaitedHandler {
     async runStatic(klass, name, args) {
         var _a;
         return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runStatic(this, klass, name, args));
+    }
+    static setStorageSymbol(storageSymbol) {
+        return StateMachine_1.setStorageSymbol(storageSymbol);
     }
 }
 exports.default = AwaitedHandler;

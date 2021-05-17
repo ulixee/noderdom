@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLVideoElementIsolate } from '../interfaces/isolate';
 import { IVideoPlaybackQuality } from '../interfaces/official';
-export declare const getState: (instance: IHTMLVideoElementIsolate) => IHTMLVideoElementIsolateProperties, setState: (instance: IHTMLVideoElementIsolate, properties: Partial<IHTMLVideoElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLVideoElementIsolate, instance: IHTMLVideoElementIsolate) => void;
+export declare const getState: (instance: IHTMLVideoElementIsolate) => IHTMLVideoElementIsolateProperties, setState: (instance: IHTMLVideoElementIsolate, properties: Partial<IHTMLVideoElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLVideoElementIsolate>;
 export default class HTMLVideoElementIsolate implements IHTMLVideoElementIsolate {
     get height(): Promise<number> | Promise<string>;

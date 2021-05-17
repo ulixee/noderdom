@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLAnchorElementIsolate } from '../interfaces/isolate';
 import { IDOMTokenList } from '../interfaces/official';
-export declare const getState: (instance: IHTMLAnchorElementIsolate) => IHTMLAnchorElementIsolateProperties, setState: (instance: IHTMLAnchorElementIsolate, properties: Partial<IHTMLAnchorElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLAnchorElementIsolate, instance: IHTMLAnchorElementIsolate) => void;
+export declare const getState: (instance: IHTMLAnchorElementIsolate) => IHTMLAnchorElementIsolateProperties, setState: (instance: IHTMLAnchorElementIsolate, properties: Partial<IHTMLAnchorElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLAnchorElementIsolate>;
 export default class HTMLAnchorElementIsolate implements IHTMLAnchorElementIsolate {
     get download(): Promise<string>;

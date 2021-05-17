@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IImageBitmap } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IImageBitmap, IImageBitmapProperties>();
+export const { getState, setState } = StateMachine<IImageBitmap, IImageBitmapProperties>();
 export const awaitedHandler = new AwaitedHandler<IImageBitmap>('ImageBitmap', getState, setState);
 
 export function ImageBitmapGenerator() {
   return class ImageBitmap implements IImageBitmap {
     constructor() {
-      initializeConstantsAndProperties<ImageBitmap>(this, ImageBitmapConstantKeys, ImageBitmapPropertyKeys);
     }
 
     // properties
@@ -29,6 +28,10 @@ export function ImageBitmapGenerator() {
 
     public close(): Promise<void> {
       return awaitedHandler.runMethod<void>(this, 'close', []);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, ImageBitmapPropertyKeys, ImageBitmapConstantKeys);
     }
   };
 }

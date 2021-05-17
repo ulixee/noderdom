@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { INamedNodeMap, IAttr } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
+export const { getState, setState } = StateMachine<INamedNodeMap, INamedNodeMapProperties>();
 export const awaitedHandler = new AwaitedHandler<INamedNodeMap>('NamedNodeMap', getState, setState);
 export const nodeFactory = new NodeFactory<INamedNodeMap>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<INamedNodeMap, IAttr>(getStat
 export function NamedNodeMapGenerator() {
   return class NamedNodeMap implements INamedNodeMap, PromiseLike<INamedNodeMap> {
     constructor() {
-      initializeConstantsAndProperties<NamedNodeMap>(this, NamedNodeMapConstantKeys, NamedNodeMapPropertyKeys);
       setState(this, {
         createInstanceName: 'createNamedNodeMap',
         createIterableName: 'createAttr',
@@ -32,17 +31,18 @@ export function NamedNodeMapGenerator() {
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
 
           // delegate to string indexer
-          return target.getNamedItem(prop as string);
+          if(typeof prop === 'string') {
+            return target.getNamedItem(prop as string);
+          }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -70,11 +70,15 @@ export function NamedNodeMapGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<IAttr> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<IAttr> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: IAttr;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, NamedNodeMapPropertyKeys, NamedNodeMapConstantKeys);
+    }
   };
 }
 

@@ -6,7 +6,7 @@ import NonElementParentNode from '../official-mixins/NonElementParentNode';
 import ParentNode from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentFragment, IDocumentFragmentProperties>();
+export const { getState, setState } = StateMachine<IDocumentFragment, IDocumentFragmentProperties>();
 const DocumentFragmentBaseClass = DocumentFragmentGenerator(Node, NonElementParentNode, ParentNode);
 
 export default class DocumentFragment extends DocumentFragmentBaseClass implements IDocumentFragment {

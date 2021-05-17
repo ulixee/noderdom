@@ -6,7 +6,7 @@ import HTMLFieldSetElementIsolateBase, { IHTMLFieldSetElementIsolateProperties }
 import { createSuperHTMLCollection, createHTMLFormElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFieldSetElementIsolate, IHTMLFieldSetElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLFieldSetElementIsolate, IHTMLFieldSetElementIsolateProperties>();
 
 export default class HTMLFieldSetElementIsolate extends HTMLFieldSetElementIsolateBase implements IHTMLFieldSetElementIsolate {
   public get elements(): ISuperHTMLCollection {

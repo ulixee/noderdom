@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMeterElement, IHTMLMeterElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMeterElement, IHTMLMeterElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMeterElement>('HTMLMeterElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLMeterElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLMeterElementGenerator(HTMLElement: Constructable<IHTMLElemen
   return class HTMLMeterElement extends HTMLElement implements IHTMLMeterElement, PromiseLike<IHTMLMeterElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLMeterElement>(this, HTMLMeterElementConstantKeys, HTMLMeterElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLMeterElement',
       });
@@ -55,6 +54,10 @@ export function HTMLMeterElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public then<TResult1 = IHTMLMeterElement, TResult2 = never>(onfulfilled?: ((value: IHTMLMeterElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLMeterElementPropertyKeys, HTMLMeterElementConstantKeys);
     }
   };
 }

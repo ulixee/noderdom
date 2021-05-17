@@ -5,7 +5,7 @@ import { IHTMLLegendElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLegendElementIsolate, IHTMLLegendElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLLegendElementIsolate, IHTMLLegendElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLLegendElementIsolate>('HTMLLegendElementIsolate', getState, setState);
 
 export default class HTMLLegendElementIsolate implements IHTMLLegendElementIsolate {

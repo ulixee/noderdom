@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,14 +7,13 @@ import { IRequest, IBody, IRequestInfo, IRequestInit, IRequestCache, IRequestCre
 import { IBodyProperties, BodyPropertyKeys, BodyConstantKeys } from '../official-mixins/Body';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IRequest, IRequestProperties>();
+export const { getState, setState } = StateMachine<IRequest, IRequestProperties>();
 export const awaitedHandler = new AwaitedHandler<IRequest>('Request', getState, setState);
 
 export function RequestGenerator(Body: Constructable<IBody>) {
   return class Request extends Body implements IRequest {
     constructor(_input: IRequestInfo, _init?: IRequestInit) {
       super(_input, _init);
-      initializeConstantsAndProperties<Request>(this, RequestConstantKeys, RequestPropertyKeys);
     }
 
     // properties
@@ -73,6 +72,10 @@ export function RequestGenerator(Body: Constructable<IBody>) {
 
     public get url(): Promise<string> {
       return awaitedHandler.getProperty<string>(this, 'url', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, RequestPropertyKeys, RequestConstantKeys);
     }
   };
 }

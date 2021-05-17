@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RangeConstantKeys = exports.RangePropertyKeys = exports.RangeGenerator = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.RangeConstantKeys = exports.RangePropertyKeys = exports.RangeGenerator = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const AbstractRange_1 = require("./AbstractRange");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Range', exports.getState, exports.setState);
 function RangeGenerator(AbstractRange) {
     var _a;
@@ -21,7 +21,6 @@ function RangeGenerator(AbstractRange) {
                 this.END_TO_START = 3;
                 this.START_TO_END = 1;
                 this.START_TO_START = 0;
-                initializeConstantsAndProperties_1.default(this, exports.RangeConstantKeys, exports.RangePropertyKeys);
             }
             // properties
             get commonAncestorContainer() {
@@ -99,6 +98,9 @@ function RangeGenerator(AbstractRange) {
             }
             toString() {
                 return exports.awaitedHandler.runMethod(this, 'toString', []);
+            }
+            [Symbol.for('nodejs.util.inspect.custom')]() {
+                return inspectInstanceProperties_1.default(this, exports.RangePropertyKeys, exports.RangeConstantKeys);
             }
         },
         _a.END_TO_END = 2,

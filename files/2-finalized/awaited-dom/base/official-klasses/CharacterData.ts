@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -10,7 +10,7 @@ import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKeys, NonDocumentTypeChildNodeConstantKeys } from '../official-mixins/NonDocumentTypeChildNode';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICharacterData, ICharacterDataProperties>();
+export const { getState, setState } = StateMachine<ICharacterData, ICharacterDataProperties>();
 export const awaitedHandler = new AwaitedHandler<ICharacterData>('CharacterData', getState, setState);
 export const nodeFactory = new NodeFactory<ICharacterData>(getState, setState, awaitedHandler);
 
@@ -20,7 +20,6 @@ export function CharacterDataGenerator(Node: Constructable<INode>, NonDocumentTy
   return class CharacterData extends Parent implements ICharacterData, PromiseLike<ICharacterData> {
     constructor() {
       super();
-      initializeConstantsAndProperties<CharacterData>(this, CharacterDataConstantKeys, CharacterDataPropertyKeys);
       setState(this, {
         createInstanceName: 'createCharacterData',
       });
@@ -44,6 +43,10 @@ export function CharacterDataGenerator(Node: Constructable<INode>, NonDocumentTy
 
     public then<TResult1 = ICharacterData, TResult2 = never>(onfulfilled?: ((value: ICharacterData) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, CharacterDataPropertyKeys, CharacterDataConstantKeys);
     }
   };
 }

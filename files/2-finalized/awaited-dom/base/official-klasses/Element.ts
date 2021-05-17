@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -13,7 +13,7 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 import { ISlotableProperties, SlotablePropertyKeys, SlotableConstantKeys } from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IElement, IElementProperties>();
+export const { getState, setState } = StateMachine<IElement, IElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IElement>('Element', getState, setState);
 export const nodeFactory = new NodeFactory<IElement>(getState, setState, awaitedHandler);
 
@@ -23,7 +23,6 @@ export function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChil
   return class Element extends Parent implements IElement, PromiseLike<IElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<Element>(this, ElementConstantKeys, ElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createElement',
       });
@@ -195,6 +194,10 @@ export function ElementGenerator(Node: Constructable<INode>, NonDocumentTypeChil
 
     public then<TResult1 = IElement, TResult2 = never>(onfulfilled?: ((value: IElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, ElementPropertyKeys, ElementConstantKeys);
     }
   };
 }

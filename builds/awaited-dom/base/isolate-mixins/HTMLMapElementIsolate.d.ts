@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLMapElementIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection } from '../interfaces/super';
-export declare const getState: (instance: IHTMLMapElementIsolate) => IHTMLMapElementIsolateProperties, setState: (instance: IHTMLMapElementIsolate, properties: Partial<IHTMLMapElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLMapElementIsolate, instance: IHTMLMapElementIsolate) => void;
+export declare const getState: (instance: IHTMLMapElementIsolate) => IHTMLMapElementIsolateProperties, setState: (instance: IHTMLMapElementIsolate, properties: Partial<IHTMLMapElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMapElementIsolate>;
 export default class HTMLMapElementIsolate implements IHTMLMapElementIsolate {
     get areas(): ISuperHTMLCollection;

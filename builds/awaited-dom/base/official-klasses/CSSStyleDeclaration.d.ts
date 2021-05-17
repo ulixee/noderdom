@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
 import NodeFactory from '../NodeFactory';
 import { ICSSStyleDeclaration, ICSSRule } from '../interfaces/official';
-export declare const getState: (instance: ICSSStyleDeclaration) => ICSSStyleDeclarationProperties, setState: (instance: ICSSStyleDeclaration, properties: Partial<ICSSStyleDeclarationProperties>) => void, recordProxy: (proxy: ICSSStyleDeclaration, instance: ICSSStyleDeclaration) => void;
+export declare const getState: (instance: ICSSStyleDeclaration) => ICSSStyleDeclarationProperties, setState: (instance: ICSSStyleDeclaration, properties: Partial<ICSSStyleDeclarationProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ICSSStyleDeclaration>;
 export declare const nodeFactory: NodeFactory<ICSSStyleDeclaration>;
 export declare const awaitedIterator: AwaitedIterator<ICSSStyleDeclaration, string>;
@@ -20,7 +20,7 @@ export declare function CSSStyleDeclarationGenerator(): {
         removeProperty(property: string): Promise<string>;
         setProperty(property: string, value: string, priority?: string | undefined): Promise<void>;
         then<TResult1 = ICSSStyleDeclaration, TResult2 = never>(onfulfilled?: ((value: ICSSStyleDeclaration) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
-        [Symbol.iterator](): IterableIterator<string>;
+        [Symbol.iterator](): Iterator<string>;
     };
 };
 export interface ICSSStyleDeclarationProperties {

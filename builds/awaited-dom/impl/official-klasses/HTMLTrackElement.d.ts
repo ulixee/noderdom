@@ -1,6 +1,6 @@
 import { IHTMLTrackElement } from '../../base/interfaces/official';
 import { IHTMLTrackElementProperties } from '../../base/official-klasses/HTMLTrackElement';
-export declare const getState: (instance: IHTMLTrackElement) => IHTMLTrackElementProperties, setState: (instance: IHTMLTrackElement, properties: Partial<IHTMLTrackElementProperties>) => void, recordProxy: (proxy: IHTMLTrackElement, instance: IHTMLTrackElement) => void;
+export declare const getState: (instance: IHTMLTrackElement) => IHTMLTrackElementProperties, setState: (instance: IHTMLTrackElement, properties: Partial<IHTMLTrackElementProperties>) => void;
 declare const HTMLTrackElementBaseClass: {
     new (): {
         readonly ERROR: number;

@@ -4,7 +4,7 @@ import { HTMLAudioElementGenerator, IHTMLAudioElementProperties } from '../../ba
 import HTMLMediaElement from './HTMLMediaElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAudioElement, IHTMLAudioElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLAudioElement, IHTMLAudioElementProperties>();
 const HTMLAudioElementBaseClass = HTMLAudioElementGenerator(HTMLMediaElement);
 
 export default class HTMLAudioElement extends HTMLAudioElementBaseClass implements IHTMLAudioElement {

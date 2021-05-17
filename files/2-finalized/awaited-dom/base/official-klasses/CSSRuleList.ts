@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { ICSSRuleList, ICSSRule } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSRuleList, ICSSRuleListProperties>();
+export const { getState, setState } = StateMachine<ICSSRuleList, ICSSRuleListProperties>();
 export const awaitedHandler = new AwaitedHandler<ICSSRuleList>('CSSRuleList', getState, setState);
 export const nodeFactory = new NodeFactory<ICSSRuleList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ICSSRuleList, ICSSRule>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<ICSSRuleList, ICSSRule>(getSt
 export function CSSRuleListGenerator() {
   return class CSSRuleList implements ICSSRuleList, PromiseLike<ICSSRuleList> {
     constructor() {
-      initializeConstantsAndProperties<CSSRuleList>(this, CSSRuleListConstantKeys, CSSRuleListPropertyKeys);
       setState(this, {
         createInstanceName: 'createCSSRuleList',
         createIterableName: 'createCSSRule',
@@ -32,14 +31,13 @@ export function CSSRuleListGenerator() {
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -59,11 +57,15 @@ export function CSSRuleListGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<ICSSRule> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<ICSSRule> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: ICSSRule;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, CSSRuleListPropertyKeys, CSSRuleListConstantKeys);
+    }
   };
 }
 

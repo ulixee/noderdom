@@ -4,7 +4,7 @@ import { HTMLTitleElementGenerator, IHTMLTitleElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTitleElement, IHTMLTitleElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTitleElement, IHTMLTitleElementProperties>();
 const HTMLTitleElementBaseClass = HTMLTitleElementGenerator(HTMLElement);
 
 export default class HTMLTitleElement extends HTMLTitleElementBaseClass implements IHTMLTitleElement {

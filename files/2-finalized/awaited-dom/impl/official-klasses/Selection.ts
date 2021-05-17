@@ -5,7 +5,7 @@ import { SelectionGenerator, ISelectionProperties } from '../../base/official-kl
 import { createSuperNode, createRange } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISelection, ISelectionProperties>();
+export const { getState, setState } = StateMachine<ISelection, ISelectionProperties>();
 const SelectionBaseClass = SelectionGenerator();
 
 export default class Selection extends SelectionBaseClass implements ISelection {

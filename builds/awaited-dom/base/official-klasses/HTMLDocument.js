@@ -4,19 +4,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HTMLDocumentConstantKeys = exports.HTMLDocumentPropertyKeys = exports.HTMLDocumentGenerator = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.HTMLDocumentConstantKeys = exports.HTMLDocumentPropertyKeys = exports.HTMLDocumentGenerator = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const Document_1 = require("./Document");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLDocument', exports.getState, exports.setState);
 function HTMLDocumentGenerator(Document) {
     return class HTMLDocument extends Document {
         constructor() {
             super();
-            initializeConstantsAndProperties_1.default(this, exports.HTMLDocumentConstantKeys, exports.HTMLDocumentPropertyKeys);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.HTMLDocumentPropertyKeys, exports.HTMLDocumentConstantKeys);
         }
     };
 }

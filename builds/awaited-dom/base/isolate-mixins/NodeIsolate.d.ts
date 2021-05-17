@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { INodeIsolate } from '../interfaces/isolate';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
 import { IGetRootNodeOptions } from '../interfaces/official';
-export declare const getState: (instance: INodeIsolate) => INodeIsolateProperties, setState: (instance: INodeIsolate, properties: Partial<INodeIsolateProperties>) => void, recordProxy: (proxy: INodeIsolate, instance: INodeIsolate) => void;
+export declare const getState: (instance: INodeIsolate) => INodeIsolateProperties, setState: (instance: INodeIsolate, properties: Partial<INodeIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<INodeIsolate>;
 export default class NodeIsolate implements INodeIsolate {
     static readonly ATTRIBUTE_NODE: number;

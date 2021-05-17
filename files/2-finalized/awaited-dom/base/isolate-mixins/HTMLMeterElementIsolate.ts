@@ -5,7 +5,7 @@ import { IHTMLMeterElementIsolate } from '../interfaces/isolate';
 import { ISuperNodeList } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMeterElementIsolate, IHTMLMeterElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLMeterElementIsolate, IHTMLMeterElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMeterElementIsolate>('HTMLMeterElementIsolate', getState, setState);
 
 export default class HTMLMeterElementIsolate implements IHTMLMeterElementIsolate {

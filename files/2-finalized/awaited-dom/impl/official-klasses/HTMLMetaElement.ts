@@ -4,7 +4,7 @@ import { HTMLMetaElementGenerator, IHTMLMetaElementProperties } from '../../base
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMetaElement, IHTMLMetaElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMetaElement, IHTMLMetaElementProperties>();
 const HTMLMetaElementBaseClass = HTMLMetaElementGenerator(HTMLElement);
 
 export default class HTMLMetaElement extends HTMLMetaElementBaseClass implements IHTMLMetaElement {

@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IParentNode } from '../interfaces/official';
 import { ISuperHTMLCollection, ISuperElement, ISuperNodeList } from '../interfaces/super';
-export declare const getState: (instance: IParentNode) => IParentNodeProperties, setState: (instance: IParentNode, properties: Partial<IParentNodeProperties>) => void, recordProxy: (proxy: IParentNode, instance: IParentNode) => void;
+export declare const getState: (instance: IParentNode) => IParentNodeProperties, setState: (instance: IParentNode, properties: Partial<IParentNodeProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IParentNode>;
 export default class ParentNode implements IParentNode {
     get childElementCount(): Promise<number>;

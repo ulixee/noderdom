@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLTrackElement, IHTMLElement, ITextTrack } from '../interfaces/offic
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTrackElement, IHTMLTrackElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTrackElement, IHTMLTrackElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTrackElement>('HTMLTrackElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLTrackElement>(getState, setState, awaitedHandler);
 
@@ -25,7 +25,6 @@ export function HTMLTrackElementGenerator(HTMLElement: Constructable<IHTMLElemen
     public readonly NONE: number = 0;
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLTrackElement>(this, HTMLTrackElementConstantKeys, HTMLTrackElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLTrackElement',
       });
@@ -63,6 +62,10 @@ export function HTMLTrackElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public then<TResult1 = IHTMLTrackElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTrackElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLTrackElementPropertyKeys, HTMLTrackElementConstantKeys);
     }
   };
 }

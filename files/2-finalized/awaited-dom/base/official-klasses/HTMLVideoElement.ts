@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,14 +7,13 @@ import { IHTMLVideoElement, IHTMLMediaElement, IVideoPlaybackQuality } from '../
 import { IHTMLMediaElementProperties, HTMLMediaElementPropertyKeys, HTMLMediaElementConstantKeys } from './HTMLMediaElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLVideoElement, IHTMLVideoElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLVideoElement, IHTMLVideoElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLVideoElement>('HTMLVideoElement', getState, setState);
 
 export function HTMLVideoElementGenerator(HTMLMediaElement: Constructable<IHTMLMediaElement>) {
   return class HTMLVideoElement extends HTMLMediaElement implements IHTMLVideoElement {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLVideoElement>(this, HTMLVideoElementConstantKeys, HTMLVideoElementPropertyKeys);
     }
 
     // properties
@@ -43,6 +42,10 @@ export function HTMLVideoElementGenerator(HTMLMediaElement: Constructable<IHTMLM
 
     public getVideoPlaybackQuality(): IVideoPlaybackQuality {
       throw new Error('HTMLVideoElement.getVideoPlaybackQuality not implemented');
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLVideoElementPropertyKeys, HTMLVideoElementConstantKeys);
     }
   };
 }

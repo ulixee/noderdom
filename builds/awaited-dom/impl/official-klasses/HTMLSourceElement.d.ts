@@ -1,6 +1,6 @@
 import { IHTMLSourceElement } from '../../base/interfaces/official';
 import { IHTMLSourceElementProperties } from '../../base/official-klasses/HTMLSourceElement';
-export declare const getState: (instance: IHTMLSourceElement) => IHTMLSourceElementProperties, setState: (instance: IHTMLSourceElement, properties: Partial<IHTMLSourceElementProperties>) => void, recordProxy: (proxy: IHTMLSourceElement, instance: IHTMLSourceElement) => void;
+export declare const getState: (instance: IHTMLSourceElement) => IHTMLSourceElementProperties, setState: (instance: IHTMLSourceElement, properties: Partial<IHTMLSourceElementProperties>) => void;
 declare const HTMLSourceElementBaseClass: {
     new (): {
         readonly media: Promise<string>;

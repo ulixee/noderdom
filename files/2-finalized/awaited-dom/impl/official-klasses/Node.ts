@@ -5,7 +5,7 @@ import { NodeGenerator, INodeProperties } from '../../base/official-klasses/Node
 import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INode, INodeProperties>();
+export const { getState, setState } = StateMachine<INode, INodeProperties>();
 const NodeBaseClass = NodeGenerator();
 
 export default class Node extends NodeBaseClass implements INode {

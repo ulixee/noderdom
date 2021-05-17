@@ -1,12 +1,12 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IMediaError } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IMediaError, IMediaErrorProperties>();
+export const { getState, setState } = StateMachine<IMediaError, IMediaErrorProperties>();
 export const awaitedHandler = new AwaitedHandler<IMediaError>('MediaError', getState, setState);
 
 export function MediaErrorGenerator() {
@@ -21,7 +21,10 @@ export function MediaErrorGenerator() {
     public readonly MEDIA_ERR_NETWORK: number = 2;
     public readonly MEDIA_ERR_SRC_NOT_SUPPORTED: number = 4;
     constructor() {
-      initializeConstantsAndProperties<MediaError>(this, MediaErrorConstantKeys, MediaErrorPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, MediaErrorPropertyKeys, MediaErrorConstantKeys);
     }
   };
 }

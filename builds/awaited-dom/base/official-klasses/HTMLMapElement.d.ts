@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLMapElement, IHTMLElement } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLMapElement) => IHTMLMapElementProperties, setState: (instance: IHTMLMapElement, properties: Partial<IHTMLMapElementProperties>) => void, recordProxy: (proxy: IHTMLMapElement, instance: IHTMLMapElement) => void;
+export declare const getState: (instance: IHTMLMapElement) => IHTMLMapElementProperties, setState: (instance: IHTMLMapElement, properties: Partial<IHTMLMapElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMapElement>;
 export declare const nodeFactory: NodeFactory<IHTMLMapElement>;
 export declare function HTMLMapElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

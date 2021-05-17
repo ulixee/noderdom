@@ -12,7 +12,7 @@ import ParentNode from '../official-mixins/ParentNode';
 import XPathEvaluatorBase from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
+export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 const SuperDocumentBaseClass = SuperDocumentGenerator(DocumentIsolate, DocumentOrShadowRoot, HTMLDocumentIsolate, NodeIsolate, NonElementParentNode, ParentNode, XPathEvaluatorBase);
 
 export default class SuperDocument extends SuperDocumentBaseClass implements ISuperDocument {

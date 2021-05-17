@@ -4,7 +4,7 @@ import SlotableBase, { ISlotableProperties } from '../../base/official-mixins/Sl
 import { createHTMLSlotElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISlotable, ISlotableProperties>();
+export const { getState, setState } = StateMachine<ISlotable, ISlotableProperties>();
 
 export default class Slotable extends SlotableBase implements ISlotable {
   public get assignedSlot(): IHTMLSlotElement {

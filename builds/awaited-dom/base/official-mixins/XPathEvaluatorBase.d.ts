@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IXPathEvaluatorBase, IXPathNSResolver, IXPathExpression, IXPathResult } from '../interfaces/official';
 import { INodeIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IXPathEvaluatorBase) => IXPathEvaluatorBaseProperties, setState: (instance: IXPathEvaluatorBase, properties: Partial<IXPathEvaluatorBaseProperties>) => void, recordProxy: (proxy: IXPathEvaluatorBase, instance: IXPathEvaluatorBase) => void;
+export declare const getState: (instance: IXPathEvaluatorBase) => IXPathEvaluatorBaseProperties, setState: (instance: IXPathEvaluatorBase, properties: Partial<IXPathEvaluatorBaseProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IXPathEvaluatorBase>;
 export default class XPathEvaluatorBase implements IXPathEvaluatorBase {
     createExpression(expression: string, resolver?: IXPathNSResolver | null): IXPathExpression;

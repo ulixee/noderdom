@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLDetailsElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDetailsElement, IHTMLDetailsElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLDetailsElement, IHTMLDetailsElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDetailsElement>('HTMLDetailsElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLDetailsElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLDetailsElementGenerator(HTMLElement: Constructable<IHTMLElem
   return class HTMLDetailsElement extends HTMLElement implements IHTMLDetailsElement, PromiseLike<IHTMLDetailsElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLDetailsElement>(this, HTMLDetailsElementConstantKeys, HTMLDetailsElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLDetailsElement',
       });
@@ -30,6 +29,10 @@ export function HTMLDetailsElementGenerator(HTMLElement: Constructable<IHTMLElem
 
     public then<TResult1 = IHTMLDetailsElement, TResult2 = never>(onfulfilled?: ((value: IHTMLDetailsElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLDetailsElementPropertyKeys, HTMLDetailsElementConstantKeys);
     }
   };
 }

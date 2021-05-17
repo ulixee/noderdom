@@ -4,7 +4,7 @@ import { AudioTrackListGenerator, IAudioTrackListProperties } from '../../base/o
 import { createAudioTrack } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IAudioTrackList, IAudioTrackListProperties>();
+export const { getState, setState } = StateMachine<IAudioTrackList, IAudioTrackListProperties>();
 const AudioTrackListBaseClass = AudioTrackListGenerator();
 
 export default class AudioTrackList extends AudioTrackListBaseClass implements IAudioTrackList {

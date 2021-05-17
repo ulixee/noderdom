@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLDataListElementIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLOptionsCollection } from '../interfaces/official';
-export declare const getState: (instance: IHTMLDataListElementIsolate) => IHTMLDataListElementIsolateProperties, setState: (instance: IHTMLDataListElementIsolate, properties: Partial<IHTMLDataListElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLDataListElementIsolate, instance: IHTMLDataListElementIsolate) => void;
+export declare const getState: (instance: IHTMLDataListElementIsolate) => IHTMLDataListElementIsolateProperties, setState: (instance: IHTMLDataListElementIsolate, properties: Partial<IHTMLDataListElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLDataListElementIsolate>;
 export default class HTMLDataListElementIsolate implements IHTMLDataListElementIsolate {
     get options(): Promise<ISuperHTMLCollection> | IHTMLOptionsCollection;

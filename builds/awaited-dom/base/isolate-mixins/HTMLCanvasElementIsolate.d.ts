@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLCanvasElementIsolate } from '../interfaces/isolate';
 import { IMediaStream, IOffscreenCanvas } from '../interfaces/official';
-export declare const getState: (instance: IHTMLCanvasElementIsolate) => IHTMLCanvasElementIsolateProperties, setState: (instance: IHTMLCanvasElementIsolate, properties: Partial<IHTMLCanvasElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLCanvasElementIsolate, instance: IHTMLCanvasElementIsolate) => void;
+export declare const getState: (instance: IHTMLCanvasElementIsolate) => IHTMLCanvasElementIsolateProperties, setState: (instance: IHTMLCanvasElementIsolate, properties: Partial<IHTMLCanvasElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLCanvasElementIsolate>;
 export default class HTMLCanvasElementIsolate implements IHTMLCanvasElementIsolate {
     get height(): Promise<number> | Promise<string>;

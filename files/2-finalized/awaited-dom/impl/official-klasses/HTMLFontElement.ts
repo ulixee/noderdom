@@ -4,7 +4,7 @@ import { HTMLFontElementGenerator, IHTMLFontElementProperties } from '../../base
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFontElement, IHTMLFontElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLFontElement, IHTMLFontElementProperties>();
 const HTMLFontElementBaseClass = HTMLFontElementGenerator(HTMLElement);
 
 export default class HTMLFontElement extends HTMLFontElementBaseClass implements IHTMLFontElement {

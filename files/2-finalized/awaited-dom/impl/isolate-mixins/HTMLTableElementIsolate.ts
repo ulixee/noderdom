@@ -6,7 +6,7 @@ import HTMLTableElementIsolateBase, { IHTMLTableElementIsolateProperties } from 
 import { createHTMLTableCaptionElement, createSuperHTMLCollection, createHTMLTableSectionElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableElementIsolate, IHTMLTableElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableElementIsolate, IHTMLTableElementIsolateProperties>();
 
 export default class HTMLTableElementIsolate extends HTMLTableElementIsolateBase implements IHTMLTableElementIsolate {
   public get caption(): IHTMLTableCaptionElement {

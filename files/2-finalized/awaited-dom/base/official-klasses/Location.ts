@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { ILocation } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ILocation, ILocationProperties>();
+export const { getState, setState } = StateMachine<ILocation, ILocationProperties>();
 export const awaitedHandler = new AwaitedHandler<ILocation>('Location', getState, setState);
 
 export function LocationGenerator() {
   return class Location implements ILocation {
     constructor() {
-      initializeConstantsAndProperties<Location>(this, LocationConstantKeys, LocationPropertyKeys);
     }
 
     // properties
@@ -101,6 +100,10 @@ export function LocationGenerator() {
 
     public toString(): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'toString', []);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, LocationPropertyKeys, LocationConstantKeys);
     }
   };
 }

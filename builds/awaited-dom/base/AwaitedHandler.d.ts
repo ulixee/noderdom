@@ -14,6 +14,7 @@ export default class AwaitedHandler<TClass> {
     createNodePointer(instance: TClass): Promise<INodePointer>;
     runMethod<T>(instance: TClass, name: string, args: any[]): Promise<T>;
     runStatic<T>(klass: Constructable<TClass>, name: string, args: any[]): Promise<T>;
+    static setStorageSymbol(storageSymbol: symbol): void;
 }
 export interface IAwaitedHandlerDelegate {
     construct<TClass>(self: AwaitedHandler<TClass>, instance: TClass, args: any[]): TClass;

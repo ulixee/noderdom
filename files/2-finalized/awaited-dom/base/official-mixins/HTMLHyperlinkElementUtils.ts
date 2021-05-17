@@ -5,7 +5,7 @@ import { IHTMLHyperlinkElementUtils } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLHyperlinkElementUtils, IHTMLHyperlinkElementUtilsProperties>();
+export const { getState, setState } = StateMachine<IHTMLHyperlinkElementUtils, IHTMLHyperlinkElementUtilsProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLHyperlinkElementUtils>('HTMLHyperlinkElementUtils', getState, setState);
 
 export default class HTMLHyperlinkElementUtils implements IHTMLHyperlinkElementUtils {

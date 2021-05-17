@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableElement, IHTMLTableElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableElement, IHTMLTableElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTableElement>('HTMLTableElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLTableElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLTableElementGenerator(HTMLElement: Constructable<IHTMLElemen
   return class HTMLTableElement extends HTMLElement implements IHTMLTableElement, PromiseLike<IHTMLTableElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLTableElement>(this, HTMLTableElementConstantKeys, HTMLTableElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLTableElement',
       });
@@ -83,6 +82,10 @@ export function HTMLTableElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public then<TResult1 = IHTMLTableElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLTableElementPropertyKeys, HTMLTableElementConstantKeys);
     }
   };
 }

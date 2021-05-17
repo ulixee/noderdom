@@ -4,7 +4,7 @@ import { HTMLTableColElementGenerator, IHTMLTableColElementProperties } from '..
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableColElement, IHTMLTableColElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableColElement, IHTMLTableColElementProperties>();
 const HTMLTableColElementBaseClass = HTMLTableColElementGenerator(HTMLElement);
 
 export default class HTMLTableColElement extends HTMLTableColElementBaseClass implements IHTMLTableColElement {

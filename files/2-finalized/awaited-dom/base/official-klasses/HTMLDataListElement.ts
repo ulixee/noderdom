@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDataListElement, IHTMLDataListElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLDataListElement, IHTMLDataListElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDataListElement>('HTMLDataListElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLDataListElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLDataListElementGenerator(HTMLElement: Constructable<IHTMLEle
   return class HTMLDataListElement extends HTMLElement implements IHTMLDataListElement, PromiseLike<IHTMLDataListElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLDataListElement>(this, HTMLDataListElementConstantKeys, HTMLDataListElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLDataListElement',
       });
@@ -31,6 +30,10 @@ export function HTMLDataListElementGenerator(HTMLElement: Constructable<IHTMLEle
 
     public then<TResult1 = IHTMLDataListElement, TResult2 = never>(onfulfilled?: ((value: IHTMLDataListElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLDataListElementPropertyKeys, HTMLDataListElementConstantKeys);
     }
   };
 }

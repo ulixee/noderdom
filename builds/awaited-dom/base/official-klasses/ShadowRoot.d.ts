@@ -5,7 +5,7 @@ import { IShadowRoot, IDocumentFragment, IDocumentOrShadowRoot, IShadowRootMode 
 import { ISuperElement } from '../interfaces/super';
 import { IDocumentFragmentProperties } from './DocumentFragment';
 import { IDocumentOrShadowRootProperties } from '../official-mixins/DocumentOrShadowRoot';
-export declare const getState: (instance: IShadowRoot) => IShadowRootProperties, setState: (instance: IShadowRoot, properties: Partial<IShadowRootProperties>) => void, recordProxy: (proxy: IShadowRoot, instance: IShadowRoot) => void;
+export declare const getState: (instance: IShadowRoot) => IShadowRootProperties, setState: (instance: IShadowRoot, properties: Partial<IShadowRootProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IShadowRoot>;
 export declare function ShadowRootGenerator(DocumentFragment: Constructable<IDocumentFragment>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>): {
     new (): {

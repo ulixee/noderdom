@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLProgressElementIsolate } from '../interfaces/isolate';
 import { ISuperNodeList } from '../interfaces/super';
-export declare const getState: (instance: IHTMLProgressElementIsolate) => IHTMLProgressElementIsolateProperties, setState: (instance: IHTMLProgressElementIsolate, properties: Partial<IHTMLProgressElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLProgressElementIsolate, instance: IHTMLProgressElementIsolate) => void;
+export declare const getState: (instance: IHTMLProgressElementIsolate) => IHTMLProgressElementIsolateProperties, setState: (instance: IHTMLProgressElementIsolate, properties: Partial<IHTMLProgressElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLProgressElementIsolate>;
 export default class HTMLProgressElementIsolate implements IHTMLProgressElementIsolate {
     get labels(): ISuperNodeList;

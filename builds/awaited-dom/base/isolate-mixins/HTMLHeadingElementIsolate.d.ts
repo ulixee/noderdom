@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLHeadingElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLHeadingElementIsolate) => IHTMLHeadingElementIsolateProperties, setState: (instance: IHTMLHeadingElementIsolate, properties: Partial<IHTMLHeadingElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLHeadingElementIsolate, instance: IHTMLHeadingElementIsolate) => void;
+export declare const getState: (instance: IHTMLHeadingElementIsolate) => IHTMLHeadingElementIsolateProperties, setState: (instance: IHTMLHeadingElementIsolate, properties: Partial<IHTMLHeadingElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLHeadingElementIsolate>;
 export default class HTMLHeadingElementIsolate implements IHTMLHeadingElementIsolate {
     get align(): Promise<string>;

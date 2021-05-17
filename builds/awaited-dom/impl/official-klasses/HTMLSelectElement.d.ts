@@ -1,7 +1,7 @@
 import { IHTMLSelectElement, IHTMLFormElement, IHTMLOptionsCollection, IHTMLOptionElement } from '../../base/interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../../base/interfaces/super';
 import { IHTMLSelectElementProperties } from '../../base/official-klasses/HTMLSelectElement';
-export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void, recordProxy: (proxy: IHTMLSelectElement, instance: IHTMLSelectElement) => void;
+export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void;
 declare const HTMLSelectElementBaseClass: {
     new (): {
         [index: number]: ISuperElement;
@@ -28,7 +28,7 @@ declare const HTMLSelectElementBaseClass: {
         namedItem(name: string): IHTMLOptionElement;
         reportValidity(): Promise<boolean>;
         then<TResult1 = IHTMLSelectElement, TResult2 = never>(onfulfilled?: ((value: IHTMLSelectElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
-        [Symbol.iterator](): IterableIterator<ISuperElement>;
+        [Symbol.iterator](): Iterator<ISuperElement, any, undefined>;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
         readonly dir: Promise<string>;

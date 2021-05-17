@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IDocumentFragmentIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentFragmentIsolate, IDocumentFragmentIsolateProperties>();
+export const { getState, setState } = StateMachine<IDocumentFragmentIsolate, IDocumentFragmentIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentFragmentIsolate>('DocumentFragmentIsolate', getState, setState);
 
 export default class DocumentFragmentIsolate implements IDocumentFragmentIsolate {}

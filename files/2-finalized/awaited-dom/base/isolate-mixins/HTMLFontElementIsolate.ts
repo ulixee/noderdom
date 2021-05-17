@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLFontElementIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFontElementIsolate, IHTMLFontElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLFontElementIsolate, IHTMLFontElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFontElementIsolate>('HTMLFontElementIsolate', getState, setState);
 
 export default class HTMLFontElementIsolate implements IHTMLFontElementIsolate {

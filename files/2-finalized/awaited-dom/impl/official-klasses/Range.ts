@@ -6,7 +6,7 @@ import { createSuperNode, createDocumentFragment, createRange, createDOMRect, cr
 import AbstractRange from './AbstractRange';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IRange, IRangeProperties>();
+export const { getState, setState } = StateMachine<IRange, IRangeProperties>();
 const RangeBaseClass = RangeGenerator(AbstractRange);
 
 export default class Range extends RangeBaseClass implements IRange {

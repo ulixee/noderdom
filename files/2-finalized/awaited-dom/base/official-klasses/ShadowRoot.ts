@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -10,7 +10,7 @@ import { IDocumentFragmentProperties, DocumentFragmentPropertyKeys, DocumentFrag
 import { IDocumentOrShadowRootProperties, DocumentOrShadowRootPropertyKeys, DocumentOrShadowRootConstantKeys } from '../official-mixins/DocumentOrShadowRoot';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IShadowRoot, IShadowRootProperties>();
+export const { getState, setState } = StateMachine<IShadowRoot, IShadowRootProperties>();
 export const awaitedHandler = new AwaitedHandler<IShadowRoot>('ShadowRoot', getState, setState);
 
 export function ShadowRootGenerator(DocumentFragment: Constructable<IDocumentFragment>, DocumentOrShadowRoot: Constructable<IDocumentOrShadowRoot>) {
@@ -19,7 +19,6 @@ export function ShadowRootGenerator(DocumentFragment: Constructable<IDocumentFra
   return class ShadowRoot extends Parent implements IShadowRoot {
     constructor() {
       super();
-      initializeConstantsAndProperties<ShadowRoot>(this, ShadowRootConstantKeys, ShadowRootPropertyKeys);
     }
 
     // properties
@@ -38,6 +37,10 @@ export function ShadowRootGenerator(DocumentFragment: Constructable<IDocumentFra
 
     public get mode(): Promise<IShadowRootMode> {
       return awaitedHandler.getProperty<IShadowRootMode>(this, 'mode', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, ShadowRootPropertyKeys, ShadowRootConstantKeys);
     }
   };
 }

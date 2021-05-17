@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ElementConstantKeys = exports.ElementPropertyKeys = exports.ElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.ElementConstantKeys = exports.ElementPropertyKeys = exports.ElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
@@ -15,7 +15,7 @@ const NonDocumentTypeChildNode_1 = require("../official-mixins/NonDocumentTypeCh
 const ParentNode_1 = require("../official-mixins/ParentNode");
 const Slotable_1 = require("../official-mixins/Slotable");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Element', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode, Slotable) {
@@ -23,7 +23,6 @@ function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode, Slotable) 
     return class Element extends Parent {
         constructor() {
             super();
-            initializeConstantsAndProperties_1.default(this, exports.ElementConstantKeys, exports.ElementPropertyKeys);
             exports.setState(this, {
                 createInstanceName: 'createElement',
             });
@@ -152,6 +151,9 @@ function ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode, Slotable) 
         }
         then(onfulfilled, onrejected) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.ElementPropertyKeys, exports.ElementConstantKeys);
         }
     };
 }

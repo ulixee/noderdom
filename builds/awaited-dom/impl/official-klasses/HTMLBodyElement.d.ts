@@ -1,6 +1,6 @@
 import { IHTMLBodyElement } from '../../base/interfaces/official';
 import { IHTMLBodyElementProperties } from '../../base/official-klasses/HTMLBodyElement';
-export declare const getState: (instance: IHTMLBodyElement) => IHTMLBodyElementProperties, setState: (instance: IHTMLBodyElement, properties: Partial<IHTMLBodyElementProperties>) => void, recordProxy: (proxy: IHTMLBodyElement, instance: IHTMLBodyElement) => void;
+export declare const getState: (instance: IHTMLBodyElement) => IHTMLBodyElementProperties, setState: (instance: IHTMLBodyElement, properties: Partial<IHTMLBodyElementProperties>) => void;
 declare const HTMLBodyElementBaseClass: {
     new (): {
         readonly aLink: Promise<string>;

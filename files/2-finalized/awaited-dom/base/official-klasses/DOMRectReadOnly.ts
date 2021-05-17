@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IDOMRectReadOnly } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDOMRectReadOnly, IDOMRectReadOnlyProperties>();
+export const { getState, setState } = StateMachine<IDOMRectReadOnly, IDOMRectReadOnlyProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMRectReadOnly>('DOMRectReadOnly', getState, setState);
 
 export function DOMRectReadOnlyGenerator() {
   return class DOMRectReadOnly implements IDOMRectReadOnly {
     constructor(_x?: number, _y?: number, _width?: number, _height?: number) {
-      initializeConstantsAndProperties<DOMRectReadOnly>(this, DOMRectReadOnlyConstantKeys, DOMRectReadOnlyPropertyKeys);
     }
 
     // properties
@@ -53,6 +52,10 @@ export function DOMRectReadOnlyGenerator() {
 
     public toJSON(): Promise<any> {
       return awaitedHandler.runMethod<any>(this, 'toJSON', []);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, DOMRectReadOnlyPropertyKeys, DOMRectReadOnlyConstantKeys);
     }
   };
 }

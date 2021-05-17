@@ -1,18 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IVideoPlaybackQuality } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IVideoPlaybackQuality, IVideoPlaybackQualityProperties>();
+export const { getState, setState } = StateMachine<IVideoPlaybackQuality, IVideoPlaybackQualityProperties>();
 export const awaitedHandler = new AwaitedHandler<IVideoPlaybackQuality>('VideoPlaybackQuality', getState, setState);
 
 export function VideoPlaybackQualityGenerator() {
   return class VideoPlaybackQuality implements IVideoPlaybackQuality {
     constructor() {
-      initializeConstantsAndProperties<VideoPlaybackQuality>(this, VideoPlaybackQualityConstantKeys, VideoPlaybackQualityPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, VideoPlaybackQualityPropertyKeys, VideoPlaybackQualityConstantKeys);
     }
   };
 }

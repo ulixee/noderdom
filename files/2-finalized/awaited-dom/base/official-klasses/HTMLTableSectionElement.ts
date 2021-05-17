@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableSectionElement, IHTMLTableSectionElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableSectionElement, IHTMLTableSectionElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTableSectionElement>('HTMLTableSectionElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLTableSectionElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLTableSectionElementGenerator(HTMLElement: Constructable<IHTM
   return class HTMLTableSectionElement extends HTMLElement implements IHTMLTableSectionElement, PromiseLike<IHTMLTableSectionElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLTableSectionElement>(this, HTMLTableSectionElementConstantKeys, HTMLTableSectionElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLTableSectionElement',
       });
@@ -47,6 +46,10 @@ export function HTMLTableSectionElementGenerator(HTMLElement: Constructable<IHTM
 
     public then<TResult1 = IHTMLTableSectionElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableSectionElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLTableSectionElementPropertyKeys, HTMLTableSectionElementConstantKeys);
     }
   };
 }

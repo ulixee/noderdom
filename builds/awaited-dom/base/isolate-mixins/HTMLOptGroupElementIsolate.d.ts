@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLOptGroupElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLOptGroupElementIsolate) => IHTMLOptGroupElementIsolateProperties, setState: (instance: IHTMLOptGroupElementIsolate, properties: Partial<IHTMLOptGroupElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLOptGroupElementIsolate, instance: IHTMLOptGroupElementIsolate) => void;
+export declare const getState: (instance: IHTMLOptGroupElementIsolate) => IHTMLOptGroupElementIsolateProperties, setState: (instance: IHTMLOptGroupElementIsolate, properties: Partial<IHTMLOptGroupElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLOptGroupElementIsolate>;
 export default class HTMLOptGroupElementIsolate implements IHTMLOptGroupElementIsolate {
     get disabled(): Promise<boolean>;

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLMetaElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMetaElement, IHTMLMetaElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMetaElement, IHTMLMetaElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMetaElement>('HTMLMetaElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLMetaElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLMetaElementGenerator(HTMLElement: Constructable<IHTMLElement
   return class HTMLMetaElement extends HTMLElement implements IHTMLMetaElement, PromiseLike<IHTMLMetaElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLMetaElement>(this, HTMLMetaElementConstantKeys, HTMLMetaElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLMetaElement',
       });
@@ -42,6 +41,10 @@ export function HTMLMetaElementGenerator(HTMLElement: Constructable<IHTMLElement
 
     public then<TResult1 = IHTMLMetaElement, TResult2 = never>(onfulfilled?: ((value: IHTMLMetaElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLMetaElementPropertyKeys, HTMLMetaElementConstantKeys);
     }
   };
 }

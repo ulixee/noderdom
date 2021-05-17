@@ -5,7 +5,7 @@ import { IHTMLFrameElementIsolate } from '../interfaces/isolate';
 import { ISuperDocument } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFrameElementIsolate, IHTMLFrameElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLFrameElementIsolate, IHTMLFrameElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFrameElementIsolate>('HTMLFrameElementIsolate', getState, setState);
 
 export default class HTMLFrameElementIsolate implements IHTMLFrameElementIsolate {

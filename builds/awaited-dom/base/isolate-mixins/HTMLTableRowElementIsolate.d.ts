@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLTableRowElementIsolate } from '../interfaces/isolate';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLTableCellElement } from '../interfaces/official';
-export declare const getState: (instance: IHTMLTableRowElementIsolate) => IHTMLTableRowElementIsolateProperties, setState: (instance: IHTMLTableRowElementIsolate, properties: Partial<IHTMLTableRowElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLTableRowElementIsolate, instance: IHTMLTableRowElementIsolate) => void;
+export declare const getState: (instance: IHTMLTableRowElementIsolate) => IHTMLTableRowElementIsolateProperties, setState: (instance: IHTMLTableRowElementIsolate, properties: Partial<IHTMLTableRowElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTableRowElementIsolate>;
 export default class HTMLTableRowElementIsolate implements IHTMLTableRowElementIsolate {
     get align(): Promise<string>;

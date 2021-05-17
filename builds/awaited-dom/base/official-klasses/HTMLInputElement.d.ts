@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLInputElement, IHTMLElement, IFileList, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void, recordProxy: (proxy: IHTMLInputElement, instance: IHTMLInputElement) => void;
+export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLInputElement>;
 export declare const nodeFactory: NodeFactory<IHTMLInputElement>;
 export declare function HTMLInputElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

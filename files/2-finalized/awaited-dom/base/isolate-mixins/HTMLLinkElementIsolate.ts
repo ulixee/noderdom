@@ -5,7 +5,7 @@ import { IHTMLLinkElementIsolate } from '../interfaces/isolate';
 import { IDOMTokenList } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLLinkElementIsolate, IHTMLLinkElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLLinkElementIsolate, IHTMLLinkElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLLinkElementIsolate>('HTMLLinkElementIsolate', getState, setState);
 
 export default class HTMLLinkElementIsolate implements IHTMLLinkElementIsolate {

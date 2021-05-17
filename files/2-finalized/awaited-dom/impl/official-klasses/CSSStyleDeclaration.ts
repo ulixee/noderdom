@@ -4,7 +4,7 @@ import { CSSStyleDeclarationGenerator, ICSSStyleDeclarationProperties } from '..
 import { createCSSRule } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSStyleDeclaration, ICSSStyleDeclarationProperties>();
+export const { getState, setState } = StateMachine<ICSSStyleDeclaration, ICSSStyleDeclarationProperties>();
 const CSSStyleDeclarationBaseClass = CSSStyleDeclarationGenerator();
 
 export default class CSSStyleDeclaration extends CSSStyleDeclarationBaseClass implements ICSSStyleDeclaration {

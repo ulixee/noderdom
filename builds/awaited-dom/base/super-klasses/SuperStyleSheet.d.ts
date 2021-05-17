@@ -5,7 +5,7 @@ import { ISuperStyleSheet } from '../interfaces/super';
 import { ICSSStyleSheetIsolate, IStyleSheetIsolate } from '../interfaces/isolate';
 import { ICSSStyleSheetIsolateProperties } from '../isolate-mixins/CSSStyleSheetIsolate';
 import { IStyleSheetIsolateProperties } from '../isolate-mixins/StyleSheetIsolate';
-export declare const getState: (instance: ISuperStyleSheet) => ISuperStyleSheetProperties, setState: (instance: ISuperStyleSheet, properties: Partial<ISuperStyleSheetProperties>) => void, recordProxy: (proxy: ISuperStyleSheet, instance: ISuperStyleSheet) => void;
+export declare const getState: (instance: ISuperStyleSheet) => ISuperStyleSheetProperties, setState: (instance: ISuperStyleSheet, properties: Partial<ISuperStyleSheetProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperStyleSheet>;
 export declare function SuperStyleSheetGenerator(CSSStyleSheetIsolate: Constructable<ICSSStyleSheetIsolate>, StyleSheetIsolate: Constructable<IStyleSheetIsolate>): {
     new (): {

@@ -9,7 +9,7 @@ import { ICharacterDataIsolateProperties } from '../isolate-mixins/CharacterData
 import { INodeIsolateProperties } from '../isolate-mixins/NodeIsolate';
 import { INonDocumentTypeChildNodeProperties } from '../official-mixins/NonDocumentTypeChildNode';
 import { ISlotableProperties } from '../official-mixins/Slotable';
-export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void, recordProxy: (proxy: ISuperText, instance: ISuperText) => void;
+export declare const getState: (instance: ISuperText) => ISuperTextProperties, setState: (instance: ISuperText, properties: Partial<ISuperTextProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ISuperText>;
 export declare const nodeFactory: NodeFactory<ISuperText>;
 export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, Slotable: Constructable<ISlotable>): {

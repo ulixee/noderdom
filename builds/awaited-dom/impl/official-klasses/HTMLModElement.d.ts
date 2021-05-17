@@ -1,6 +1,6 @@
 import { IHTMLModElement } from '../../base/interfaces/official';
 import { IHTMLModElementProperties } from '../../base/official-klasses/HTMLModElement';
-export declare const getState: (instance: IHTMLModElement) => IHTMLModElementProperties, setState: (instance: IHTMLModElement, properties: Partial<IHTMLModElementProperties>) => void, recordProxy: (proxy: IHTMLModElement, instance: IHTMLModElement) => void;
+export declare const getState: (instance: IHTMLModElement) => IHTMLModElementProperties, setState: (instance: IHTMLModElement, properties: Partial<IHTMLModElementProperties>) => void;
 declare const HTMLModElementBaseClass: {
     new (): {
         readonly cite: Promise<string>;

@@ -6,7 +6,7 @@ import { createSuperNodeList } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLProgressElement, IHTMLProgressElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLProgressElement, IHTMLProgressElementProperties>();
 const HTMLProgressElementBaseClass = HTMLProgressElementGenerator(HTMLElement);
 
 export default class HTMLProgressElement extends HTMLProgressElementBaseClass implements IHTMLProgressElement {

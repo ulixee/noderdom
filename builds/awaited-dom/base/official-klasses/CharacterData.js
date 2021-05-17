@@ -4,16 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CharacterDataConstantKeys = exports.CharacterDataPropertyKeys = exports.CharacterDataGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.CharacterDataConstantKeys = exports.CharacterDataPropertyKeys = exports.CharacterDataGenerator = exports.nodeFactory = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const Node_1 = require("./Node");
 const NonDocumentTypeChildNode_1 = require("../official-mixins/NonDocumentTypeChildNode");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('CharacterData', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function CharacterDataGenerator(Node, NonDocumentTypeChildNode) {
@@ -21,7 +21,6 @@ function CharacterDataGenerator(Node, NonDocumentTypeChildNode) {
     return class CharacterData extends Parent {
         constructor() {
             super();
-            initializeConstantsAndProperties_1.default(this, exports.CharacterDataConstantKeys, exports.CharacterDataPropertyKeys);
             exports.setState(this, {
                 createInstanceName: 'createCharacterData',
             });
@@ -39,6 +38,9 @@ function CharacterDataGenerator(Node, NonDocumentTypeChildNode) {
         }
         then(onfulfilled, onrejected) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.CharacterDataPropertyKeys, exports.CharacterDataConstantKeys);
         }
     };
 }

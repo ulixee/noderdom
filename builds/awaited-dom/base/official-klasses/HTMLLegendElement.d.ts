@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLLegendElement, IHTMLElement, IHTMLFormElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLLegendElement) => IHTMLLegendElementProperties, setState: (instance: IHTMLLegendElement, properties: Partial<IHTMLLegendElementProperties>) => void, recordProxy: (proxy: IHTMLLegendElement, instance: IHTMLLegendElement) => void;
+export declare const getState: (instance: IHTMLLegendElement) => IHTMLLegendElementProperties, setState: (instance: IHTMLLegendElement, properties: Partial<IHTMLLegendElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLLegendElement>;
 export declare const nodeFactory: NodeFactory<IHTMLLegendElement>;
 export declare function HTMLLegendElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

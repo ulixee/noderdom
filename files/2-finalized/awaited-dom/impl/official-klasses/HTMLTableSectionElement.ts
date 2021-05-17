@@ -6,7 +6,7 @@ import { createSuperHTMLCollection } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableSectionElement, IHTMLTableSectionElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableSectionElement, IHTMLTableSectionElementProperties>();
 const HTMLTableSectionElementBaseClass = HTMLTableSectionElementGenerator(HTMLElement);
 
 export default class HTMLTableSectionElement extends HTMLTableSectionElementBaseClass implements IHTMLTableSectionElement {

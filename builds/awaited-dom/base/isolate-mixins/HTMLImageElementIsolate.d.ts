@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLImageElementIsolate } from '../interfaces/isolate';
 import { IDOMTokenList } from '../interfaces/official';
-export declare const getState: (instance: IHTMLImageElementIsolate) => IHTMLImageElementIsolateProperties, setState: (instance: IHTMLImageElementIsolate, properties: Partial<IHTMLImageElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLImageElementIsolate, instance: IHTMLImageElementIsolate) => void;
+export declare const getState: (instance: IHTMLImageElementIsolate) => IHTMLImageElementIsolateProperties, setState: (instance: IHTMLImageElementIsolate, properties: Partial<IHTMLImageElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLImageElementIsolate>;
 export default class HTMLImageElementIsolate implements IHTMLImageElementIsolate {
     get alt(): Promise<string>;

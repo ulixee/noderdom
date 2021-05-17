@@ -4,7 +4,7 @@ import { CSSRuleGenerator, ICSSRuleProperties } from '../../base/official-klasse
 import { createCSSRule, createCSSStyleSheet } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSRule, ICSSRuleProperties>();
+export const { getState, setState } = StateMachine<ICSSRule, ICSSRuleProperties>();
 const CSSRuleBaseClass = CSSRuleGenerator();
 
 export default class CSSRule extends CSSRuleBaseClass implements ICSSRule {

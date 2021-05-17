@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLDialogElementIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDialogElementIsolate, IHTMLDialogElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLDialogElementIsolate, IHTMLDialogElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDialogElementIsolate>('HTMLDialogElementIsolate', getState, setState);
 
 export default class HTMLDialogElementIsolate implements IHTMLDialogElementIsolate {

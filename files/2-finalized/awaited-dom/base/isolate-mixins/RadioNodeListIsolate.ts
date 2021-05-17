@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IRadioNodeListIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IRadioNodeListIsolate, IRadioNodeListIsolateProperties>();
+export const { getState, setState } = StateMachine<IRadioNodeListIsolate, IRadioNodeListIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IRadioNodeListIsolate>('RadioNodeListIsolate', getState, setState);
 
 export default class RadioNodeListIsolate implements IRadioNodeListIsolate {

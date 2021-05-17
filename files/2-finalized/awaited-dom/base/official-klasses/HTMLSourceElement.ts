@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLSourceElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLSourceElement, IHTMLSourceElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLSourceElement, IHTMLSourceElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLSourceElement>('HTMLSourceElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLSourceElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLSourceElementGenerator(HTMLElement: Constructable<IHTMLEleme
   return class HTMLSourceElement extends HTMLElement implements IHTMLSourceElement, PromiseLike<IHTMLSourceElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLSourceElement>(this, HTMLSourceElementConstantKeys, HTMLSourceElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLSourceElement',
       });
@@ -46,6 +45,10 @@ export function HTMLSourceElementGenerator(HTMLElement: Constructable<IHTMLEleme
 
     public then<TResult1 = IHTMLSourceElement, TResult2 = never>(onfulfilled?: ((value: IHTMLSourceElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLSourceElementPropertyKeys, HTMLSourceElementConstantKeys);
     }
   };
 }

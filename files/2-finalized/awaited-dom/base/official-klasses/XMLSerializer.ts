@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,19 +7,22 @@ import { IXMLSerializer } from '../interfaces/official';
 import { INodeIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXMLSerializer, IXMLSerializerProperties>();
+export const { getState, setState } = StateMachine<IXMLSerializer, IXMLSerializerProperties>();
 export const awaitedHandler = new AwaitedHandler<IXMLSerializer>('XMLSerializer', getState, setState);
 
 export function XMLSerializerGenerator() {
   return class XMLSerializer implements IXMLSerializer {
     constructor() {
-      initializeConstantsAndProperties<XMLSerializer>(this, XMLSerializerConstantKeys, XMLSerializerPropertyKeys);
     }
 
     // methods
 
     public serializeToString(root: INodeIsolate): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'serializeToString', [root]);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, XMLSerializerPropertyKeys, XMLSerializerConstantKeys);
     }
   };
 }

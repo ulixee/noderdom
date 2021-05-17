@@ -3,7 +3,7 @@ import { IHeaders } from '../../base/interfaces/official';
 import { HeadersGenerator, IHeadersProperties } from '../../base/official-klasses/Headers';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHeaders, IHeadersProperties>();
+export const { getState, setState } = StateMachine<IHeaders, IHeadersProperties>();
 const HeadersBaseClass = HeadersGenerator();
 
 export default class Headers extends HeadersBaseClass implements IHeaders {}

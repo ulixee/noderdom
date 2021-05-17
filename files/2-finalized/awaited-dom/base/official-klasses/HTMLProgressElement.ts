@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLProgressElement, IHTMLProgressElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLProgressElement, IHTMLProgressElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLProgressElement>('HTMLProgressElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLProgressElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLProgressElementGenerator(HTMLElement: Constructable<IHTMLEle
   return class HTMLProgressElement extends HTMLElement implements IHTMLProgressElement, PromiseLike<IHTMLProgressElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLProgressElement>(this, HTMLProgressElementConstantKeys, HTMLProgressElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLProgressElement',
       });
@@ -43,6 +42,10 @@ export function HTMLProgressElementGenerator(HTMLElement: Constructable<IHTMLEle
 
     public then<TResult1 = IHTMLProgressElement, TResult2 = never>(onfulfilled?: ((value: IHTMLProgressElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLProgressElementPropertyKeys, HTMLProgressElementConstantKeys);
     }
   };
 }

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -11,7 +11,7 @@ import { INonElementParentNodeProperties, NonElementParentNodePropertyKeys, NonE
 import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys } from '../official-mixins/ParentNode';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentFragment, IDocumentFragmentProperties>();
+export const { getState, setState } = StateMachine<IDocumentFragment, IDocumentFragmentProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentFragment>('DocumentFragment', getState, setState);
 export const nodeFactory = new NodeFactory<IDocumentFragment>(getState, setState, awaitedHandler);
 
@@ -21,7 +21,6 @@ export function DocumentFragmentGenerator(Node: Constructable<INode>, NonElement
   return class DocumentFragment extends Parent implements IDocumentFragment, PromiseLike<IDocumentFragment> {
     constructor() {
       super();
-      initializeConstantsAndProperties<DocumentFragment>(this, DocumentFragmentConstantKeys, DocumentFragmentPropertyKeys);
       setState(this, {
         createInstanceName: 'createDocumentFragment',
       });
@@ -29,6 +28,10 @@ export function DocumentFragmentGenerator(Node: Constructable<INode>, NonElement
 
     public then<TResult1 = IDocumentFragment, TResult2 = never>(onfulfilled?: ((value: IDocumentFragment) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, DocumentFragmentPropertyKeys, DocumentFragmentConstantKeys);
     }
   };
 }

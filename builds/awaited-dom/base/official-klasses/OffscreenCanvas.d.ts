@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IOffscreenCanvas, IImageEncodeOptions, IBlob, IImageBitmap } from '../interfaces/official';
-export declare const getState: (instance: IOffscreenCanvas) => IOffscreenCanvasProperties, setState: (instance: IOffscreenCanvas, properties: Partial<IOffscreenCanvasProperties>) => void, recordProxy: (proxy: IOffscreenCanvas, instance: IOffscreenCanvas) => void;
+export declare const getState: (instance: IOffscreenCanvas) => IOffscreenCanvasProperties, setState: (instance: IOffscreenCanvas, properties: Partial<IOffscreenCanvasProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IOffscreenCanvas>;
 export declare function OffscreenCanvasGenerator(): {
     new (_width: number, _height: number): {

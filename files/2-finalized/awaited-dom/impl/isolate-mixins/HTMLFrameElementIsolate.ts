@@ -5,7 +5,7 @@ import HTMLFrameElementIsolateBase, { IHTMLFrameElementIsolateProperties } from 
 import { createSuperDocument } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFrameElementIsolate, IHTMLFrameElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLFrameElementIsolate, IHTMLFrameElementIsolateProperties>();
 
 export default class HTMLFrameElementIsolate extends HTMLFrameElementIsolateBase implements IHTMLFrameElementIsolate {
   public get contentDocument(): ISuperDocument {

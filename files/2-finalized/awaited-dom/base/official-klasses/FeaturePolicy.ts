@@ -1,18 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IFeaturePolicy } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IFeaturePolicy, IFeaturePolicyProperties>();
+export const { getState, setState } = StateMachine<IFeaturePolicy, IFeaturePolicyProperties>();
 export const awaitedHandler = new AwaitedHandler<IFeaturePolicy>('FeaturePolicy', getState, setState);
 
 export function FeaturePolicyGenerator() {
   return class FeaturePolicy implements IFeaturePolicy {
     constructor() {
-      initializeConstantsAndProperties<FeaturePolicy>(this, FeaturePolicyConstantKeys, FeaturePolicyPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, FeaturePolicyPropertyKeys, FeaturePolicyConstantKeys);
     }
   };
 }

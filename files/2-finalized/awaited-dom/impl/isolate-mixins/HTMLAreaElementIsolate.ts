@@ -5,7 +5,7 @@ import HTMLAreaElementIsolateBase, { IHTMLAreaElementIsolateProperties } from '.
 import { createDOMTokenList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAreaElementIsolate, IHTMLAreaElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLAreaElementIsolate, IHTMLAreaElementIsolateProperties>();
 
 export default class HTMLAreaElementIsolate extends HTMLAreaElementIsolateBase implements IHTMLAreaElementIsolate {
   public get relList(): IDOMTokenList {

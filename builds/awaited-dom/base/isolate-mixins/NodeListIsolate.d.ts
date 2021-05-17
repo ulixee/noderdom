@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
 import { INodeListIsolate } from '../interfaces/isolate';
 import { ISuperNode } from '../interfaces/super';
-export declare const getState: (instance: INodeListIsolate) => INodeListIsolateProperties, setState: (instance: INodeListIsolate, properties: Partial<INodeListIsolateProperties>) => void, recordProxy: (proxy: INodeListIsolate, instance: INodeListIsolate) => void;
+export declare const getState: (instance: INodeListIsolate) => INodeListIsolateProperties, setState: (instance: INodeListIsolate, properties: Partial<INodeListIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<INodeListIsolate>;
 export declare const awaitedIterator: AwaitedIterator<INodeListIsolate, ISuperNode>;
 export default class NodeListIsolate implements INodeListIsolate {
@@ -13,7 +13,7 @@ export default class NodeListIsolate implements INodeListIsolate {
     entries(): Promise<IterableIterator<[number, ISuperNode]>>;
     keys(): Promise<IterableIterator<number>>;
     values(): Promise<IterableIterator<ISuperNode>>;
-    [Symbol.iterator](): IterableIterator<ISuperNode>;
+    [Symbol.iterator](): Iterator<ISuperNode>;
     [index: number]: ISuperNode;
 }
 export interface INodeListIsolateProperties {

@@ -6,7 +6,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLFormElement, IValidityState } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFieldSetElementIsolate, IHTMLFieldSetElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLFieldSetElementIsolate, IHTMLFieldSetElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFieldSetElementIsolate>('HTMLFieldSetElementIsolate', getState, setState);
 
 export default class HTMLFieldSetElementIsolate implements IHTMLFieldSetElementIsolate {

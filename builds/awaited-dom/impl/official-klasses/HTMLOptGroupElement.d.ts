@@ -1,6 +1,6 @@
 import { IHTMLOptGroupElement } from '../../base/interfaces/official';
 import { IHTMLOptGroupElementProperties } from '../../base/official-klasses/HTMLOptGroupElement';
-export declare const getState: (instance: IHTMLOptGroupElement) => IHTMLOptGroupElementProperties, setState: (instance: IHTMLOptGroupElement, properties: Partial<IHTMLOptGroupElementProperties>) => void, recordProxy: (proxy: IHTMLOptGroupElement, instance: IHTMLOptGroupElement) => void;
+export declare const getState: (instance: IHTMLOptGroupElement) => IHTMLOptGroupElementProperties, setState: (instance: IHTMLOptGroupElement, properties: Partial<IHTMLOptGroupElementProperties>) => void;
 declare const HTMLOptGroupElementBaseClass: {
     new (): {
         readonly disabled: Promise<boolean>;

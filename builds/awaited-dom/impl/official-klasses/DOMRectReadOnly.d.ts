@@ -1,6 +1,6 @@
 import { IDOMRectReadOnly } from '../../base/interfaces/official';
 import { IDOMRectReadOnlyProperties } from '../../base/official-klasses/DOMRectReadOnly';
-export declare const getState: (instance: IDOMRectReadOnly) => IDOMRectReadOnlyProperties, setState: (instance: IDOMRectReadOnly, properties: Partial<IDOMRectReadOnlyProperties>) => void, recordProxy: (proxy: IDOMRectReadOnly, instance: IDOMRectReadOnly) => void;
+export declare const getState: (instance: IDOMRectReadOnly) => IDOMRectReadOnlyProperties, setState: (instance: IDOMRectReadOnly, properties: Partial<IDOMRectReadOnlyProperties>) => void;
 declare const DOMRectReadOnlyBaseClass: {
     new (_x?: number | undefined, _y?: number | undefined, _width?: number | undefined, _height?: number | undefined): {
         readonly bottom: Promise<number>;

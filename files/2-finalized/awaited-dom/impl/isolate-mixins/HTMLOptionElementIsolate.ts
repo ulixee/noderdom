@@ -5,7 +5,7 @@ import HTMLOptionElementIsolateBase, { IHTMLOptionElementIsolateProperties } fro
 import { createHTMLFormElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionElementIsolate, IHTMLOptionElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLOptionElementIsolate, IHTMLOptionElementIsolateProperties>();
 
 export default class HTMLOptionElementIsolate extends HTMLOptionElementIsolateBase implements IHTMLOptionElementIsolate {
   public get form(): IHTMLFormElement {

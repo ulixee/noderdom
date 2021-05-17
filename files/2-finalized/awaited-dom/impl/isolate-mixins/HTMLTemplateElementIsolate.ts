@@ -5,7 +5,7 @@ import HTMLTemplateElementIsolateBase, { IHTMLTemplateElementIsolateProperties }
 import { createDocumentFragment } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTemplateElementIsolate, IHTMLTemplateElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTemplateElementIsolate, IHTMLTemplateElementIsolateProperties>();
 
 export default class HTMLTemplateElementIsolate extends HTMLTemplateElementIsolateBase implements IHTMLTemplateElementIsolate {
   public get content(): Promise<string> | IDocumentFragment {

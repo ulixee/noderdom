@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLMediaElement, IHTMLElement, IAudioTrackList, ITimeRanges, IDOMToke
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMediaElement, IHTMLMediaElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMediaElement, IHTMLMediaElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMediaElement>('HTMLMediaElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLMediaElement>(getState, setState, awaitedHandler);
 
@@ -35,7 +35,6 @@ export function HTMLMediaElementGenerator(HTMLElement: Constructable<IHTMLElemen
     public readonly NETWORK_NO_SOURCE: number = 3;
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLMediaElement>(this, HTMLMediaElementConstantKeys, HTMLMediaElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLMediaElement',
       });
@@ -187,6 +186,10 @@ export function HTMLMediaElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public then<TResult1 = IHTMLMediaElement, TResult2 = never>(onfulfilled?: ((value: IHTMLMediaElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLMediaElementPropertyKeys, HTMLMediaElementConstantKeys);
     }
   };
 }

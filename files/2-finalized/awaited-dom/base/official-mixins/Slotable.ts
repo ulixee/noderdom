@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { ISlotable, IHTMLSlotElement } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISlotable, ISlotableProperties>();
+export const { getState, setState } = StateMachine<ISlotable, ISlotableProperties>();
 export const awaitedHandler = new AwaitedHandler<ISlotable>('Slotable', getState, setState);
 
 export default class Slotable implements ISlotable {

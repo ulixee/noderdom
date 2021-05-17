@@ -5,7 +5,7 @@ import HTMLMeterElementIsolateBase, { IHTMLMeterElementIsolateProperties } from 
 import { createSuperNodeList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMeterElementIsolate, IHTMLMeterElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLMeterElementIsolate, IHTMLMeterElementIsolateProperties>();
 
 export default class HTMLMeterElementIsolate extends HTMLMeterElementIsolateBase implements IHTMLMeterElementIsolate {
   public get labels(): ISuperNodeList {

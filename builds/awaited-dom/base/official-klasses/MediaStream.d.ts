@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IMediaStream } from '../interfaces/official';
-export declare const getState: (instance: IMediaStream) => IMediaStreamProperties, setState: (instance: IMediaStream, properties: Partial<IMediaStreamProperties>) => void, recordProxy: (proxy: IMediaStream, instance: IMediaStream) => void;
+export declare const getState: (instance: IMediaStream) => IMediaStreamProperties, setState: (instance: IMediaStream, properties: Partial<IMediaStreamProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IMediaStream>;
 export declare function MediaStreamGenerator(): {
     new (_stream?: IMediaStream | undefined): {

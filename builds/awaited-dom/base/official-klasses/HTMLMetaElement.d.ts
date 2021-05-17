@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLMetaElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLMetaElement) => IHTMLMetaElementProperties, setState: (instance: IHTMLMetaElement, properties: Partial<IHTMLMetaElementProperties>) => void, recordProxy: (proxy: IHTMLMetaElement, instance: IHTMLMetaElement) => void;
+export declare const getState: (instance: IHTMLMetaElement) => IHTMLMetaElementProperties, setState: (instance: IHTMLMetaElement, properties: Partial<IHTMLMetaElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMetaElement>;
 export declare const nodeFactory: NodeFactory<IHTMLMetaElement>;
 export declare function HTMLMetaElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

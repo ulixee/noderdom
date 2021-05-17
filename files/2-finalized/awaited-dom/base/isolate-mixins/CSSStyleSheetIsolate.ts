@@ -5,7 +5,7 @@ import { ICSSStyleSheetIsolate } from '../interfaces/isolate';
 import { ICSSRuleList, ICSSRule } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSStyleSheetIsolate, ICSSStyleSheetIsolateProperties>();
+export const { getState, setState } = StateMachine<ICSSStyleSheetIsolate, ICSSStyleSheetIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<ICSSStyleSheetIsolate>('CSSStyleSheetIsolate', getState, setState);
 
 export default class CSSStyleSheetIsolate implements ICSSStyleSheetIsolate {

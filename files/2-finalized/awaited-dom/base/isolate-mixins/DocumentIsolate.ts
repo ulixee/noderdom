@@ -6,7 +6,7 @@ import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList 
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
+export const { getState, setState } = StateMachine<IDocumentIsolate, IDocumentIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentIsolate>('DocumentIsolate', getState, setState);
 
 export default class DocumentIsolate implements IDocumentIsolate {

@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLFontElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLFontElementIsolate) => IHTMLFontElementIsolateProperties, setState: (instance: IHTMLFontElementIsolate, properties: Partial<IHTMLFontElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLFontElementIsolate, instance: IHTMLFontElementIsolate) => void;
+export declare const getState: (instance: IHTMLFontElementIsolate) => IHTMLFontElementIsolateProperties, setState: (instance: IHTMLFontElementIsolate, properties: Partial<IHTMLFontElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFontElementIsolate>;
 export default class HTMLFontElementIsolate implements IHTMLFontElementIsolate {
     get color(): Promise<string>;

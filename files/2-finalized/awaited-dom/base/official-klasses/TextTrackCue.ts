@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { ITextTrackCue, ITextTrack } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ITextTrackCue, ITextTrackCueProperties>();
+export const { getState, setState } = StateMachine<ITextTrackCue, ITextTrackCueProperties>();
 export const awaitedHandler = new AwaitedHandler<ITextTrackCue>('TextTrackCue', getState, setState);
 
 export function TextTrackCueGenerator() {
   return class TextTrackCue implements ITextTrackCue {
     constructor() {
-      initializeConstantsAndProperties<TextTrackCue>(this, TextTrackCueConstantKeys, TextTrackCuePropertyKeys);
     }
 
     // properties
@@ -35,6 +34,10 @@ export function TextTrackCueGenerator() {
 
     public get track(): ITextTrack {
       throw new Error('TextTrackCue.track getter not implemented');
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, TextTrackCuePropertyKeys, TextTrackCueConstantKeys);
     }
   };
 }

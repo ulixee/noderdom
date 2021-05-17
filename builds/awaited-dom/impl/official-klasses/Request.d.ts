@@ -1,6 +1,6 @@
 import { IRequest, IRequestInfo, IRequestInit, IHeaders } from '../../base/interfaces/official';
 import { IRequestProperties } from '../../base/official-klasses/Request';
-export declare const getState: (instance: IRequest) => IRequestProperties, setState: (instance: IRequest, properties: Partial<IRequestProperties>) => void, recordProxy: (proxy: IRequest, instance: IRequest) => void;
+export declare const getState: (instance: IRequest) => IRequestProperties, setState: (instance: IRequest, properties: Partial<IRequestProperties>) => void;
 declare const RequestBaseClass: {
     new (_input: IRequestInfo, _init?: IRequestInit | undefined): {
         readonly cache: Promise<import("../../base/interfaces/official").IRequestCache>;

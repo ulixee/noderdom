@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLDataListElement, IHTMLElement } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLDataListElement) => IHTMLDataListElementProperties, setState: (instance: IHTMLDataListElement, properties: Partial<IHTMLDataListElementProperties>) => void, recordProxy: (proxy: IHTMLDataListElement, instance: IHTMLDataListElement) => void;
+export declare const getState: (instance: IHTMLDataListElement) => IHTMLDataListElementProperties, setState: (instance: IHTMLDataListElement, properties: Partial<IHTMLDataListElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLDataListElement>;
 export declare const nodeFactory: NodeFactory<IHTMLDataListElement>;
 export declare function HTMLDataListElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

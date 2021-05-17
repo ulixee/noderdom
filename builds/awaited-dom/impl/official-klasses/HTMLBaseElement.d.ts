@@ -1,6 +1,6 @@
 import { IHTMLBaseElement } from '../../base/interfaces/official';
 import { IHTMLBaseElementProperties } from '../../base/official-klasses/HTMLBaseElement';
-export declare const getState: (instance: IHTMLBaseElement) => IHTMLBaseElementProperties, setState: (instance: IHTMLBaseElement, properties: Partial<IHTMLBaseElementProperties>) => void, recordProxy: (proxy: IHTMLBaseElement, instance: IHTMLBaseElement) => void;
+export declare const getState: (instance: IHTMLBaseElement) => IHTMLBaseElementProperties, setState: (instance: IHTMLBaseElement, properties: Partial<IHTMLBaseElementProperties>) => void;
 declare const HTMLBaseElementBaseClass: {
     new (): {
         readonly href: Promise<string>;

@@ -4,18 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StorageConstantKeys = exports.StoragePropertyKeys = exports.StorageGenerator = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.StorageConstantKeys = exports.StoragePropertyKeys = exports.StorageGenerator = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Storage', exports.getState, exports.setState);
 function StorageGenerator() {
     return class Storage {
         constructor() {
-            initializeConstantsAndProperties_1.default(this, exports.StorageConstantKeys, exports.StoragePropertyKeys);
-            // proxy supports indexed property access
             const proxy = new Proxy(this, {
                 get(target, prop) {
                     if (prop in target) {
@@ -26,10 +24,11 @@ function StorageGenerator() {
                         return value;
                     }
                     // delegate to string indexer
-                    return target.getItem(prop);
+                    if (typeof prop === 'string') {
+                        return target.getItem(prop);
+                    }
                 },
             });
-            exports.recordProxy(proxy, this);
             return proxy;
         }
         // properties
@@ -51,6 +50,9 @@ function StorageGenerator() {
         }
         setItem(key, value) {
             return exports.awaitedHandler.runMethod(this, 'setItem', [key, value]);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.StoragePropertyKeys, exports.StorageConstantKeys);
         }
     };
 }

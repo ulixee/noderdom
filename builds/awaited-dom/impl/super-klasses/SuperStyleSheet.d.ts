@@ -1,6 +1,6 @@
 import { ISuperStyleSheet } from '../../base/interfaces/super';
 import { ISuperStyleSheetProperties } from '../../base/super-klasses/SuperStyleSheet';
-export declare const getState: (instance: ISuperStyleSheet) => ISuperStyleSheetProperties, setState: (instance: ISuperStyleSheet, properties: Partial<ISuperStyleSheetProperties>) => void, recordProxy: (proxy: ISuperStyleSheet, instance: ISuperStyleSheet) => void;
+export declare const getState: (instance: ISuperStyleSheet) => ISuperStyleSheetProperties, setState: (instance: ISuperStyleSheet, properties: Partial<ISuperStyleSheetProperties>) => void;
 declare const SuperStyleSheetBaseClass: {
     new (): {
         readonly cssRules: import("../../base/interfaces/official").ICSSRuleList;

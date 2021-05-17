@@ -1,18 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { ITextTrackList } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ITextTrackList, ITextTrackListProperties>();
+export const { getState, setState } = StateMachine<ITextTrackList, ITextTrackListProperties>();
 export const awaitedHandler = new AwaitedHandler<ITextTrackList>('TextTrackList', getState, setState);
 
 export function TextTrackListGenerator() {
   return class TextTrackList implements ITextTrackList {
     constructor() {
-      initializeConstantsAndProperties<TextTrackList>(this, TextTrackListConstantKeys, TextTrackListPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, TextTrackListPropertyKeys, TextTrackListConstantKeys);
     }
   };
 }

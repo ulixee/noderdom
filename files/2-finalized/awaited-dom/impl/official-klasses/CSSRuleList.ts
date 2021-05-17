@@ -4,7 +4,7 @@ import { CSSRuleListGenerator, ICSSRuleListProperties } from '../../base/officia
 import { createCSSRule } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSRuleList, ICSSRuleListProperties>();
+export const { getState, setState } = StateMachine<ICSSRuleList, ICSSRuleListProperties>();
 const CSSRuleListBaseClass = CSSRuleListGenerator();
 
 export default class CSSRuleList extends CSSRuleListBaseClass implements ICSSRuleList {

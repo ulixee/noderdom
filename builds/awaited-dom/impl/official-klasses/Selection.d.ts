@@ -1,7 +1,7 @@
 import { ISelection, IRange } from '../../base/interfaces/official';
 import { ISuperNode } from '../../base/interfaces/super';
 import { ISelectionProperties } from '../../base/official-klasses/Selection';
-export declare const getState: (instance: ISelection) => ISelectionProperties, setState: (instance: ISelection, properties: Partial<ISelectionProperties>) => void, recordProxy: (proxy: ISelection, instance: ISelection) => void;
+export declare const getState: (instance: ISelection) => ISelectionProperties, setState: (instance: ISelection, properties: Partial<ISelectionProperties>) => void;
 declare const SelectionBaseClass: {
     new (): {
         readonly anchorNode: ISuperNode;

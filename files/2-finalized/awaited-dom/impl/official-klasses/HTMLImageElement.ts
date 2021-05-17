@@ -4,7 +4,7 @@ import { HTMLImageElementGenerator, IHTMLImageElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLImageElement, IHTMLImageElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLImageElement, IHTMLImageElementProperties>();
 const HTMLImageElementBaseClass = HTMLImageElementGenerator(HTMLElement);
 
 export default class HTMLImageElement extends HTMLImageElementBaseClass implements IHTMLImageElement {

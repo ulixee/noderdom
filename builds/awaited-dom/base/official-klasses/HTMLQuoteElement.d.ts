@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLQuoteElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLQuoteElement) => IHTMLQuoteElementProperties, setState: (instance: IHTMLQuoteElement, properties: Partial<IHTMLQuoteElementProperties>) => void, recordProxy: (proxy: IHTMLQuoteElement, instance: IHTMLQuoteElement) => void;
+export declare const getState: (instance: IHTMLQuoteElement) => IHTMLQuoteElementProperties, setState: (instance: IHTMLQuoteElement, properties: Partial<IHTMLQuoteElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLQuoteElement>;
 export declare const nodeFactory: NodeFactory<IHTMLQuoteElement>;
 export declare function HTMLQuoteElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

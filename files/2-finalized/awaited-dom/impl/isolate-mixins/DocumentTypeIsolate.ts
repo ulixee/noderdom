@@ -3,6 +3,6 @@ import { IDocumentTypeIsolate } from '../../base/interfaces/isolate';
 import DocumentTypeIsolateBase, { IDocumentTypeIsolateProperties } from '../../base/isolate-mixins/DocumentTypeIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentTypeIsolate, IDocumentTypeIsolateProperties>();
+export const { getState, setState } = StateMachine<IDocumentTypeIsolate, IDocumentTypeIsolateProperties>();
 
 export default class DocumentTypeIsolate extends DocumentTypeIsolateBase implements IDocumentTypeIsolate {}

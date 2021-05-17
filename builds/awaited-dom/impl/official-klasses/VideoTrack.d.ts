@@ -1,6 +1,6 @@
 import { IVideoTrack } from '../../base/interfaces/official';
 import { IVideoTrackProperties } from '../../base/official-klasses/VideoTrack';
-export declare const getState: (instance: IVideoTrack) => IVideoTrackProperties, setState: (instance: IVideoTrack, properties: Partial<IVideoTrackProperties>) => void, recordProxy: (proxy: IVideoTrack, instance: IVideoTrack) => void;
+export declare const getState: (instance: IVideoTrack) => IVideoTrackProperties, setState: (instance: IVideoTrack, properties: Partial<IVideoTrackProperties>) => void;
 declare const VideoTrackBaseClass: {
     new (): {
         readonly id: Promise<string>;

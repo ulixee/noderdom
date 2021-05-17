@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLSourceElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLSourceElement) => IHTMLSourceElementProperties, setState: (instance: IHTMLSourceElement, properties: Partial<IHTMLSourceElementProperties>) => void, recordProxy: (proxy: IHTMLSourceElement, instance: IHTMLSourceElement) => void;
+export declare const getState: (instance: IHTMLSourceElement) => IHTMLSourceElementProperties, setState: (instance: IHTMLSourceElement, properties: Partial<IHTMLSourceElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSourceElement>;
 export declare const nodeFactory: NodeFactory<IHTMLSourceElement>;
 export declare function HTMLSourceElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

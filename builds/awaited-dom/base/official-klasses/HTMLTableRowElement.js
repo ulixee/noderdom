@@ -4,21 +4,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HTMLTableRowElementConstantKeys = exports.HTMLTableRowElementPropertyKeys = exports.HTMLTableRowElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.HTMLTableRowElementConstantKeys = exports.HTMLTableRowElementPropertyKeys = exports.HTMLTableRowElementGenerator = exports.nodeFactory = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const HTMLElement_1 = require("./HTMLElement");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLTableRowElement', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLTableRowElementGenerator(HTMLElement) {
     return class HTMLTableRowElement extends HTMLElement {
         constructor() {
             super();
-            initializeConstantsAndProperties_1.default(this, exports.HTMLTableRowElementConstantKeys, exports.HTMLTableRowElementPropertyKeys);
             exports.setState(this, {
                 createInstanceName: 'createHTMLTableRowElement',
             });
@@ -57,6 +56,9 @@ function HTMLTableRowElementGenerator(HTMLElement) {
         }
         then(onfulfilled, onrejected) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+        }
+        [Symbol.for('nodejs.util.inspect.custom')]() {
+            return inspectInstanceProperties_1.default(this, exports.HTMLTableRowElementPropertyKeys, exports.HTMLTableRowElementConstantKeys);
         }
     };
 }

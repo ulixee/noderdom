@@ -1,7 +1,7 @@
 import { INodeList } from '../../base/interfaces/official';
 import { ISuperNode } from '../../base/interfaces/super';
 import { INodeListProperties } from '../../base/official-klasses/NodeList';
-export declare const getState: (instance: INodeList) => INodeListProperties, setState: (instance: INodeList, properties: Partial<INodeListProperties>) => void, recordProxy: (proxy: INodeList, instance: INodeList) => void;
+export declare const getState: (instance: INodeList) => INodeListProperties, setState: (instance: INodeList, properties: Partial<INodeListProperties>) => void;
 declare const NodeListBaseClass: {
     new (): {
         [index: number]: ISuperNode;
@@ -12,7 +12,7 @@ declare const NodeListBaseClass: {
         entries(): Promise<IterableIterator<[number, ISuperNode]>>;
         keys(): Promise<IterableIterator<number>>;
         values(): Promise<IterableIterator<ISuperNode>>;
-        [Symbol.iterator](): IterableIterator<ISuperNode>;
+        [Symbol.iterator](): Iterator<ISuperNode, any, undefined>;
     };
 };
 export default class NodeList extends NodeListBaseClass implements INodeList {

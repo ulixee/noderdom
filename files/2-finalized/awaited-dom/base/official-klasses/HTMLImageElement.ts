@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLImageElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLImageElement, IHTMLImageElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLImageElement, IHTMLImageElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLImageElement>('HTMLImageElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLImageElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLImageElementGenerator(HTMLElement: Constructable<IHTMLElemen
   return class HTMLImageElement extends HTMLElement implements IHTMLImageElement, PromiseLike<IHTMLImageElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLImageElement>(this, HTMLImageElementConstantKeys, HTMLImageElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLImageElement',
       });
@@ -100,6 +99,10 @@ export function HTMLImageElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public then<TResult1 = IHTMLImageElement, TResult2 = never>(onfulfilled?: ((value: IHTMLImageElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLImageElementPropertyKeys, HTMLImageElementConstantKeys);
     }
   };
 }

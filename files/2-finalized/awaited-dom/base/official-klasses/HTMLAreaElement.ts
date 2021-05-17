@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -10,7 +10,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 import { IHTMLHyperlinkElementUtilsProperties, HTMLHyperlinkElementUtilsPropertyKeys, HTMLHyperlinkElementUtilsConstantKeys } from '../official-mixins/HTMLHyperlinkElementUtils';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAreaElement, IHTMLAreaElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLAreaElement, IHTMLAreaElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLAreaElement>('HTMLAreaElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLAreaElement>(getState, setState, awaitedHandler);
 
@@ -20,7 +20,6 @@ export function HTMLAreaElementGenerator(HTMLElement: Constructable<IHTMLElement
   return class HTMLAreaElement extends Parent implements IHTMLAreaElement, PromiseLike<IHTMLAreaElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLAreaElement>(this, HTMLAreaElementConstantKeys, HTMLAreaElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLAreaElement',
       });
@@ -74,6 +73,10 @@ export function HTMLAreaElementGenerator(HTMLElement: Constructable<IHTMLElement
 
     public then<TResult1 = IHTMLAreaElement, TResult2 = never>(onfulfilled?: ((value: IHTMLAreaElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLAreaElementPropertyKeys, HTMLAreaElementConstantKeys);
     }
   };
 }

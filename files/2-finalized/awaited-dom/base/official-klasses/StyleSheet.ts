@@ -1,18 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IStyleSheet } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IStyleSheet, IStyleSheetProperties>();
+export const { getState, setState } = StateMachine<IStyleSheet, IStyleSheetProperties>();
 export const awaitedHandler = new AwaitedHandler<IStyleSheet>('StyleSheet', getState, setState);
 
 export function StyleSheetGenerator() {
   return class StyleSheet implements IStyleSheet {
     constructor() {
-      initializeConstantsAndProperties<StyleSheet>(this, StyleSheetConstantKeys, StyleSheetPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, StyleSheetPropertyKeys, StyleSheetConstantKeys);
     }
   };
 }

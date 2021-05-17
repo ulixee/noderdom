@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -10,7 +10,7 @@ import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKey
 import { IHTMLHyperlinkElementUtilsProperties, HTMLHyperlinkElementUtilsPropertyKeys, HTMLHyperlinkElementUtilsConstantKeys } from '../official-mixins/HTMLHyperlinkElementUtils';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLAnchorElement, IHTMLAnchorElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLAnchorElement, IHTMLAnchorElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLAnchorElement>('HTMLAnchorElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLAnchorElement>(getState, setState, awaitedHandler);
 
@@ -20,7 +20,6 @@ export function HTMLAnchorElementGenerator(HTMLElement: Constructable<IHTMLEleme
   return class HTMLAnchorElement extends Parent implements IHTMLAnchorElement, PromiseLike<IHTMLAnchorElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLAnchorElement>(this, HTMLAnchorElementConstantKeys, HTMLAnchorElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLAnchorElement',
       });
@@ -62,6 +61,10 @@ export function HTMLAnchorElementGenerator(HTMLElement: Constructable<IHTMLEleme
 
     public then<TResult1 = IHTMLAnchorElement, TResult2 = never>(onfulfilled?: ((value: IHTMLAnchorElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLAnchorElementPropertyKeys, HTMLAnchorElementConstantKeys);
     }
   };
 }

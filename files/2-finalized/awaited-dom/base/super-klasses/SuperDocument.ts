@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -17,7 +17,7 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEvaluatorBaseConstantKeys } from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
+export const { getState, setState } = StateMachine<ISuperDocument, ISuperDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperDocument>('SuperDocument', getState, setState);
 export const nodeFactory = new NodeFactory<ISuperDocument>(getState, setState, awaitedHandler);
 
@@ -27,7 +27,6 @@ export function SuperDocumentGenerator(DocumentIsolate: Constructable<IDocumentI
   return class SuperDocument extends Parent implements ISuperDocument, PromiseLike<ISuperDocument> {
     constructor() {
       super();
-      initializeConstantsAndProperties<SuperDocument>(this, SuperDocumentConstantKeys, SuperDocumentPropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperDocument',
       });
@@ -191,6 +190,10 @@ export function SuperDocumentGenerator(DocumentIsolate: Constructable<IDocumentI
 
     public then<TResult1 = ISuperDocument, TResult2 = never>(onfulfilled?: ((value: ISuperDocument) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperDocumentPropertyKeys, SuperDocumentConstantKeys);
     }
   };
 }

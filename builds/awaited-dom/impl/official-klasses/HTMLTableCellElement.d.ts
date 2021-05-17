@@ -1,6 +1,6 @@
 import { IHTMLTableCellElement } from '../../base/interfaces/official';
 import { IHTMLTableCellElementProperties } from '../../base/official-klasses/HTMLTableCellElement';
-export declare const getState: (instance: IHTMLTableCellElement) => IHTMLTableCellElementProperties, setState: (instance: IHTMLTableCellElement, properties: Partial<IHTMLTableCellElementProperties>) => void, recordProxy: (proxy: IHTMLTableCellElement, instance: IHTMLTableCellElement) => void;
+export declare const getState: (instance: IHTMLTableCellElement) => IHTMLTableCellElementProperties, setState: (instance: IHTMLTableCellElement, properties: Partial<IHTMLTableCellElementProperties>) => void;
 declare const HTMLTableCellElementBaseClass: {
     new (): {
         then<TResult1 = IHTMLTableCellElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableCellElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

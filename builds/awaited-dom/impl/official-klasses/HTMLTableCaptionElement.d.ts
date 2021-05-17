@@ -1,6 +1,6 @@
 import { IHTMLTableCaptionElement } from '../../base/interfaces/official';
 import { IHTMLTableCaptionElementProperties } from '../../base/official-klasses/HTMLTableCaptionElement';
-export declare const getState: (instance: IHTMLTableCaptionElement) => IHTMLTableCaptionElementProperties, setState: (instance: IHTMLTableCaptionElement, properties: Partial<IHTMLTableCaptionElementProperties>) => void, recordProxy: (proxy: IHTMLTableCaptionElement, instance: IHTMLTableCaptionElement) => void;
+export declare const getState: (instance: IHTMLTableCaptionElement) => IHTMLTableCaptionElementProperties, setState: (instance: IHTMLTableCaptionElement, properties: Partial<IHTMLTableCaptionElementProperties>) => void;
 declare const HTMLTableCaptionElementBaseClass: {
     new (): {
         then<TResult1 = IHTMLTableCaptionElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableCaptionElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

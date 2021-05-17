@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,14 +7,17 @@ import { IHTMLOptionsCollection, IHTMLCollection } from '../interfaces/official'
 import { IHTMLCollectionProperties, HTMLCollectionPropertyKeys, HTMLCollectionConstantKeys } from './HTMLCollection';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLOptionsCollection, IHTMLOptionsCollectionProperties>();
+export const { getState, setState } = StateMachine<IHTMLOptionsCollection, IHTMLOptionsCollectionProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOptionsCollection>('HTMLOptionsCollection', getState, setState);
 
 export function HTMLOptionsCollectionGenerator(HTMLCollection: Constructable<IHTMLCollection>) {
   return class HTMLOptionsCollection extends HTMLCollection implements IHTMLOptionsCollection {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLOptionsCollection>(this, HTMLOptionsCollectionConstantKeys, HTMLOptionsCollectionPropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLOptionsCollectionPropertyKeys, HTMLOptionsCollectionConstantKeys);
     }
   };
 }

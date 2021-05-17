@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLAreaElementIsolate } from '../interfaces/isolate';
 import { IDOMTokenList } from '../interfaces/official';
-export declare const getState: (instance: IHTMLAreaElementIsolate) => IHTMLAreaElementIsolateProperties, setState: (instance: IHTMLAreaElementIsolate, properties: Partial<IHTMLAreaElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLAreaElementIsolate, instance: IHTMLAreaElementIsolate) => void;
+export declare const getState: (instance: IHTMLAreaElementIsolate) => IHTMLAreaElementIsolateProperties, setState: (instance: IHTMLAreaElementIsolate, properties: Partial<IHTMLAreaElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLAreaElementIsolate>;
 export default class HTMLAreaElementIsolate implements IHTMLAreaElementIsolate {
     get alt(): Promise<string>;

@@ -1,6 +1,6 @@
 import { IHTMLLegendElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { IHTMLLegendElementProperties } from '../../base/official-klasses/HTMLLegendElement';
-export declare const getState: (instance: IHTMLLegendElement) => IHTMLLegendElementProperties, setState: (instance: IHTMLLegendElement, properties: Partial<IHTMLLegendElementProperties>) => void, recordProxy: (proxy: IHTMLLegendElement, instance: IHTMLLegendElement) => void;
+export declare const getState: (instance: IHTMLLegendElement) => IHTMLLegendElementProperties, setState: (instance: IHTMLLegendElement, properties: Partial<IHTMLLegendElementProperties>) => void;
 declare const HTMLLegendElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLSpanElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLSpanElement) => IHTMLSpanElementProperties, setState: (instance: IHTMLSpanElement, properties: Partial<IHTMLSpanElementProperties>) => void, recordProxy: (proxy: IHTMLSpanElement, instance: IHTMLSpanElement) => void;
+export declare const getState: (instance: IHTMLSpanElement) => IHTMLSpanElementProperties, setState: (instance: IHTMLSpanElement, properties: Partial<IHTMLSpanElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSpanElement>;
 export declare const nodeFactory: NodeFactory<IHTMLSpanElement>;
 export declare function HTMLSpanElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

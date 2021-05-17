@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLTableSectionElement, IHTMLElement } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLTableSectionElement) => IHTMLTableSectionElementProperties, setState: (instance: IHTMLTableSectionElement, properties: Partial<IHTMLTableSectionElementProperties>) => void, recordProxy: (proxy: IHTMLTableSectionElement, instance: IHTMLTableSectionElement) => void;
+export declare const getState: (instance: IHTMLTableSectionElement) => IHTMLTableSectionElementProperties, setState: (instance: IHTMLTableSectionElement, properties: Partial<IHTMLTableSectionElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTableSectionElement>;
 export declare const nodeFactory: NodeFactory<IHTMLTableSectionElement>;
 export declare function HTMLTableSectionElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

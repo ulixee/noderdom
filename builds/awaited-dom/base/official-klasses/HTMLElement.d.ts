@@ -8,7 +8,7 @@ import { IElementProperties } from './Element';
 import { IElementCSSInlineStyleProperties } from '../official-mixins/ElementCSSInlineStyle';
 import { IElementContentEditableProperties } from '../official-mixins/ElementContentEditable';
 import { IHTMLOrSVGElementProperties } from '../official-mixins/HTMLOrSVGElement';
-export declare const getState: (instance: IHTMLElement) => IHTMLElementProperties, setState: (instance: IHTMLElement, properties: Partial<IHTMLElementProperties>) => void, recordProxy: (proxy: IHTMLElement, instance: IHTMLElement) => void;
+export declare const getState: (instance: IHTMLElement) => IHTMLElementProperties, setState: (instance: IHTMLElement, properties: Partial<IHTMLElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLElement>;
 export declare const nodeFactory: NodeFactory<IHTMLElement>;
 export declare function HTMLElementGenerator(Element: Constructable<IElement>, ElementCSSInlineStyle: Constructable<IElementCSSInlineStyle>, ElementContentEditable: Constructable<IElementContentEditable>, HTMLOrSVGElement: Constructable<IHTMLOrSVGElement>): {

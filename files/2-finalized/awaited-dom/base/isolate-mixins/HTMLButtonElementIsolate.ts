@@ -6,7 +6,7 @@ import { IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLButtonElementIsolate, IHTMLButtonElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLButtonElementIsolate, IHTMLButtonElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLButtonElementIsolate>('HTMLButtonElementIsolate', getState, setState);
 
 export default class HTMLButtonElementIsolate implements IHTMLButtonElementIsolate {

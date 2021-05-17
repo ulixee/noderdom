@@ -6,7 +6,7 @@ import { createHTMLFormElement, createSuperNodeList } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTextAreaElement, IHTMLTextAreaElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTextAreaElement, IHTMLTextAreaElementProperties>();
 const HTMLTextAreaElementBaseClass = HTMLTextAreaElementGenerator(HTMLElement);
 
 export default class HTMLTextAreaElement extends HTMLTextAreaElementBaseClass implements IHTMLTextAreaElement {

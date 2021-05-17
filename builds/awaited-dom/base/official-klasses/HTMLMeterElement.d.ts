@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLMeterElement, IHTMLElement } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLMeterElement) => IHTMLMeterElementProperties, setState: (instance: IHTMLMeterElement, properties: Partial<IHTMLMeterElementProperties>) => void, recordProxy: (proxy: IHTMLMeterElement, instance: IHTMLMeterElement) => void;
+export declare const getState: (instance: IHTMLMeterElement) => IHTMLMeterElementProperties, setState: (instance: IHTMLMeterElement, properties: Partial<IHTMLMeterElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMeterElement>;
 export declare const nodeFactory: NodeFactory<IHTMLMeterElement>;
 export declare function HTMLMeterElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

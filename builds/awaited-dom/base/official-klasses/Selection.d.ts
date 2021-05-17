@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { ISelection, IRange } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: ISelection) => ISelectionProperties, setState: (instance: ISelection, properties: Partial<ISelectionProperties>) => void, recordProxy: (proxy: ISelection, instance: ISelection) => void;
+export declare const getState: (instance: ISelection) => ISelectionProperties, setState: (instance: ISelection, properties: Partial<ISelectionProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ISelection>;
 export declare function SelectionGenerator(): {
     new (): {

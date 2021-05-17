@@ -1,7 +1,7 @@
 import { IHTMLMeterElement } from '../../base/interfaces/official';
 import { ISuperNodeList } from '../../base/interfaces/super';
 import { IHTMLMeterElementProperties } from '../../base/official-klasses/HTMLMeterElement';
-export declare const getState: (instance: IHTMLMeterElement) => IHTMLMeterElementProperties, setState: (instance: IHTMLMeterElement, properties: Partial<IHTMLMeterElementProperties>) => void, recordProxy: (proxy: IHTMLMeterElement, instance: IHTMLMeterElement) => void;
+export declare const getState: (instance: IHTMLMeterElement) => IHTMLMeterElementProperties, setState: (instance: IHTMLMeterElement, properties: Partial<IHTMLMeterElementProperties>) => void;
 declare const HTMLMeterElementBaseClass: {
     new (): {
         readonly high: Promise<number>;

@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLAnchorElement, IHTMLElement, IHTMLHyperlinkElementUtils, IDOMTokenList } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
 import { IHTMLHyperlinkElementUtilsProperties } from '../official-mixins/HTMLHyperlinkElementUtils';
-export declare const getState: (instance: IHTMLAnchorElement) => IHTMLAnchorElementProperties, setState: (instance: IHTMLAnchorElement, properties: Partial<IHTMLAnchorElementProperties>) => void, recordProxy: (proxy: IHTMLAnchorElement, instance: IHTMLAnchorElement) => void;
+export declare const getState: (instance: IHTMLAnchorElement) => IHTMLAnchorElementProperties, setState: (instance: IHTMLAnchorElement, properties: Partial<IHTMLAnchorElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLAnchorElement>;
 export declare const nodeFactory: NodeFactory<IHTMLAnchorElement>;
 export declare function HTMLAnchorElementGenerator(HTMLElement: Constructable<IHTMLElement>, HTMLHyperlinkElementUtils: Constructable<IHTMLHyperlinkElementUtils>): {

@@ -1,12 +1,12 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { ICSSRule, ICSSStyleSheet } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSRule, ICSSRuleProperties>();
+export const { getState, setState } = StateMachine<ICSSRule, ICSSRuleProperties>();
 export const awaitedHandler = new AwaitedHandler<ICSSRule>('CSSRule', getState, setState);
 
 export function CSSRuleGenerator() {
@@ -29,7 +29,6 @@ export function CSSRuleGenerator() {
     public readonly PAGE_RULE: number = 6;
     public readonly STYLE_RULE: number = 1;
     constructor() {
-      initializeConstantsAndProperties<CSSRule>(this, CSSRuleConstantKeys, CSSRulePropertyKeys);
     }
 
     // properties
@@ -48,6 +47,10 @@ export function CSSRuleGenerator() {
 
     public get type(): Promise<number> {
       return awaitedHandler.getProperty<number>(this, 'type', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, CSSRulePropertyKeys, CSSRuleConstantKeys);
     }
   };
 }

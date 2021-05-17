@@ -4,7 +4,7 @@ import NodeFactory from '../NodeFactory';
 import { INode, IGetRootNodeOptions } from '../interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../interfaces/super';
 import { INodeIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: INode) => INodeProperties, setState: (instance: INode, properties: Partial<INodeProperties>) => void, recordProxy: (proxy: INode, instance: INode) => void;
+export declare const getState: (instance: INode) => INodeProperties, setState: (instance: INode, properties: Partial<INodeProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<INode>;
 export declare const nodeFactory: NodeFactory<INode>;
 export declare function NodeGenerator(): {

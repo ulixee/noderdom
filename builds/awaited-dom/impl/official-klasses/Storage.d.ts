@@ -1,6 +1,6 @@
 import { IStorage } from '../../base/interfaces/official';
 import { IStorageProperties } from '../../base/official-klasses/Storage';
-export declare const getState: (instance: IStorage) => IStorageProperties, setState: (instance: IStorage, properties: Partial<IStorageProperties>) => void, recordProxy: (proxy: IStorage, instance: IStorage) => void;
+export declare const getState: (instance: IStorage) => IStorageProperties, setState: (instance: IStorage, properties: Partial<IStorageProperties>) => void;
 declare const StorageBaseClass: {
     new (): {
         readonly length: Promise<number>;

@@ -1,7 +1,7 @@
 import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../../base/interfaces/super';
 import { IGetRootNodeOptions } from '../../base/interfaces/official';
 import { ISuperNodeProperties } from '../../base/super-klasses/SuperNode';
-export declare const getState: (instance: ISuperNode) => ISuperNodeProperties, setState: (instance: ISuperNode, properties: Partial<ISuperNodeProperties>) => void, recordProxy: (proxy: ISuperNode, instance: ISuperNode) => void;
+export declare const getState: (instance: ISuperNode) => ISuperNodeProperties, setState: (instance: ISuperNode, properties: Partial<ISuperNodeProperties>) => void;
 declare const SuperNodeBaseClass: {
     new (): {
         [index: number]: ISuperElement;
@@ -365,7 +365,7 @@ declare const SuperNodeBaseClass: {
         readonly selectedOptions: import("../../base/interfaces/super").ISuperHTMLCollection;
         item(index: number): ISuperElement;
         namedItem(name: string): import("../../base/interfaces/official").IHTMLOptionElement;
-        [Symbol.iterator](): IterableIterator<ISuperElement>;
+        [Symbol.iterator](): Iterator<ISuperElement, any, undefined>;
         assignedElements(options?: import("../../base/interfaces/official").IAssignedNodesOptions | undefined): Promise<Iterable<ISuperElement>>;
         assignedNodes(options?: import("../../base/interfaces/official").IAssignedNodesOptions | undefined): Promise<Iterable<ISuperNode>>;
         readonly ch: Promise<string>;

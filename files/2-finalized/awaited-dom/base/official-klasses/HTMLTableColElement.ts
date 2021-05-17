@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLTableColElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableColElement, IHTMLTableColElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableColElement, IHTMLTableColElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTableColElement>('HTMLTableColElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLTableColElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLTableColElementGenerator(HTMLElement: Constructable<IHTMLEle
   return class HTMLTableColElement extends HTMLElement implements IHTMLTableColElement, PromiseLike<IHTMLTableColElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLTableColElement>(this, HTMLTableColElementConstantKeys, HTMLTableColElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLTableColElement',
       });
@@ -50,6 +49,10 @@ export function HTMLTableColElementGenerator(HTMLElement: Constructable<IHTMLEle
 
     public then<TResult1 = IHTMLTableColElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableColElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLTableColElementPropertyKeys, HTMLTableColElementConstantKeys);
     }
   };
 }

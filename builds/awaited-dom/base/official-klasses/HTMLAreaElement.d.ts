@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLAreaElement, IHTMLElement, IHTMLHyperlinkElementUtils, IDOMTokenList } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
 import { IHTMLHyperlinkElementUtilsProperties } from '../official-mixins/HTMLHyperlinkElementUtils';
-export declare const getState: (instance: IHTMLAreaElement) => IHTMLAreaElementProperties, setState: (instance: IHTMLAreaElement, properties: Partial<IHTMLAreaElementProperties>) => void, recordProxy: (proxy: IHTMLAreaElement, instance: IHTMLAreaElement) => void;
+export declare const getState: (instance: IHTMLAreaElement) => IHTMLAreaElementProperties, setState: (instance: IHTMLAreaElement, properties: Partial<IHTMLAreaElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLAreaElement>;
 export declare const nodeFactory: NodeFactory<IHTMLAreaElement>;
 export declare function HTMLAreaElementGenerator(HTMLElement: Constructable<IHTMLElement>, HTMLHyperlinkElementUtils: Constructable<IHTMLHyperlinkElementUtils>): {

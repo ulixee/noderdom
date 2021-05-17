@@ -1,7 +1,7 @@
 import { IHTMLObjectElement, IHTMLFormElement } from '../../base/interfaces/official';
 import { ISuperDocument } from '../../base/interfaces/super';
 import { IHTMLObjectElementProperties } from '../../base/official-klasses/HTMLObjectElement';
-export declare const getState: (instance: IHTMLObjectElement) => IHTMLObjectElementProperties, setState: (instance: IHTMLObjectElement, properties: Partial<IHTMLObjectElementProperties>) => void, recordProxy: (proxy: IHTMLObjectElement, instance: IHTMLObjectElement) => void;
+export declare const getState: (instance: IHTMLObjectElement) => IHTMLObjectElementProperties, setState: (instance: IHTMLObjectElement, properties: Partial<IHTMLObjectElementProperties>) => void;
 declare const HTMLObjectElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -14,7 +14,7 @@ import { INonDocumentTypeChildNodeProperties, NonDocumentTypeChildNodePropertyKe
 import { ISlotableProperties, SlotablePropertyKeys, SlotableConstantKeys } from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperText, ISuperTextProperties>();
+export const { getState, setState } = StateMachine<ISuperText, ISuperTextProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperText>('SuperText', getState, setState);
 export const nodeFactory = new NodeFactory<ISuperText>(getState, setState, awaitedHandler);
 
@@ -24,7 +24,6 @@ export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacte
   return class SuperText extends Parent implements ISuperText, PromiseLike<ISuperText> {
     constructor(_data?: string) {
       super(_data);
-      initializeConstantsAndProperties<SuperText>(this, SuperTextConstantKeys, SuperTextPropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperText',
       });
@@ -44,6 +43,10 @@ export function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacte
 
     public then<TResult1 = ISuperText, TResult2 = never>(onfulfilled?: ((value: ISuperText) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperTextPropertyKeys, SuperTextConstantKeys);
     }
   };
 }

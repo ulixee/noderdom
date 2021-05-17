@@ -5,7 +5,7 @@ import { createDocumentFragment } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTemplateElement, IHTMLTemplateElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTemplateElement, IHTMLTemplateElementProperties>();
 const HTMLTemplateElementBaseClass = HTMLTemplateElementGenerator(HTMLElement);
 
 export default class HTMLTemplateElement extends HTMLTemplateElementBaseClass implements IHTMLTemplateElement {

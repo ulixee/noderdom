@@ -5,7 +5,7 @@ import XPathEvaluatorBaseBase, { IXPathEvaluatorBaseProperties } from '../../bas
 import { createXPathExpression, createXPathResult } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXPathEvaluatorBase, IXPathEvaluatorBaseProperties>();
+export const { getState, setState } = StateMachine<IXPathEvaluatorBase, IXPathEvaluatorBaseProperties>();
 
 export default class XPathEvaluatorBase extends XPathEvaluatorBaseBase implements IXPathEvaluatorBase {
   public createExpression(expression: string, resolver?: IXPathNSResolver | null): IXPathExpression {

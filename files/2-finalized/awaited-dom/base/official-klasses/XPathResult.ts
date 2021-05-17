@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IXPathResult } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IXPathResult, IXPathResultProperties>();
+export const { getState, setState } = StateMachine<IXPathResult, IXPathResultProperties>();
 export const awaitedHandler = new AwaitedHandler<IXPathResult>('XPathResult', getState, setState);
 export const nodeFactory = new NodeFactory<IXPathResult>(getState, setState, awaitedHandler);
 
@@ -36,7 +36,6 @@ export function XPathResultGenerator() {
     public readonly UNORDERED_NODE_ITERATOR_TYPE: number = 4;
     public readonly UNORDERED_NODE_SNAPSHOT_TYPE: number = 6;
     constructor() {
-      initializeConstantsAndProperties<XPathResult>(this, XPathResultConstantKeys, XPathResultPropertyKeys);
       setState(this, {
         createInstanceName: 'createXPathResult',
       });
@@ -84,6 +83,10 @@ export function XPathResultGenerator() {
 
     public then<TResult1 = IXPathResult, TResult2 = never>(onfulfilled?: ((value: IXPathResult) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, XPathResultPropertyKeys, XPathResultConstantKeys);
     }
   };
 }

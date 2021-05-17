@@ -7,7 +7,7 @@ export default class AwaitedIterator<TClass, T> {
     private readonly nodeFactory;
     constructor(getState: AwaitedIterator<TClass, T>['getState'], setState: AwaitedIterator<TClass, T>['setState'], awaitedHandler: AwaitedHandler<TClass>);
     load(instance: TClass): Promise<T[]>;
-    iterateNodePointers(instance: TClass): IterableIterator<T>;
+    iterateNodePointers(instance: TClass): Iterator<T>;
 }
 export interface IAwaitedIteratorProperties extends IRemoteNodeProperties {
     createIterableName?: string;

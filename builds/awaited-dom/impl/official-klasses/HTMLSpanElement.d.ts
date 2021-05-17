@@ -1,6 +1,6 @@
 import { IHTMLSpanElement } from '../../base/interfaces/official';
 import { IHTMLSpanElementProperties } from '../../base/official-klasses/HTMLSpanElement';
-export declare const getState: (instance: IHTMLSpanElement) => IHTMLSpanElementProperties, setState: (instance: IHTMLSpanElement, properties: Partial<IHTMLSpanElementProperties>) => void, recordProxy: (proxy: IHTMLSpanElement, instance: IHTMLSpanElement) => void;
+export declare const getState: (instance: IHTMLSpanElement) => IHTMLSpanElementProperties, setState: (instance: IHTMLSpanElement, properties: Partial<IHTMLSpanElementProperties>) => void;
 declare const HTMLSpanElementBaseClass: {
     new (): {
         then<TResult1 = IHTMLSpanElement, TResult2 = never>(onfulfilled?: ((value: IHTMLSpanElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

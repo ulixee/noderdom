@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLDataElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDataElement, IHTMLDataElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLDataElement, IHTMLDataElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLDataElement>('HTMLDataElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLDataElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLDataElementGenerator(HTMLElement: Constructable<IHTMLElement
   return class HTMLDataElement extends HTMLElement implements IHTMLDataElement, PromiseLike<IHTMLDataElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLDataElement>(this, HTMLDataElementConstantKeys, HTMLDataElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLDataElement',
       });
@@ -30,6 +29,10 @@ export function HTMLDataElementGenerator(HTMLElement: Constructable<IHTMLElement
 
     public then<TResult1 = IHTMLDataElement, TResult2 = never>(onfulfilled?: ((value: IHTMLDataElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLDataElementPropertyKeys, HTMLDataElementConstantKeys);
     }
   };
 }

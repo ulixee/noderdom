@@ -4,7 +4,7 @@ import { HTMLTimeElementGenerator, IHTMLTimeElementProperties } from '../../base
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTimeElement, IHTMLTimeElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTimeElement, IHTMLTimeElementProperties>();
 const HTMLTimeElementBaseClass = HTMLTimeElementGenerator(HTMLElement);
 
 export default class HTMLTimeElement extends HTMLTimeElementBaseClass implements IHTMLTimeElement {

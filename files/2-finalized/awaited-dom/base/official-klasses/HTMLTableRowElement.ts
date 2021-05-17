@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableRowElement, IHTMLTableRowElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableRowElement, IHTMLTableRowElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTableRowElement>('HTMLTableRowElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLTableRowElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLTableRowElementGenerator(HTMLElement: Constructable<IHTMLEle
   return class HTMLTableRowElement extends HTMLElement implements IHTMLTableRowElement, PromiseLike<IHTMLTableRowElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLTableRowElement>(this, HTMLTableRowElementConstantKeys, HTMLTableRowElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLTableRowElement',
       });
@@ -69,6 +68,10 @@ export function HTMLTableRowElementGenerator(HTMLElement: Constructable<IHTMLEle
 
     public then<TResult1 = IHTMLTableRowElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableRowElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLTableRowElementPropertyKeys, HTMLTableRowElementConstantKeys);
     }
   };
 }

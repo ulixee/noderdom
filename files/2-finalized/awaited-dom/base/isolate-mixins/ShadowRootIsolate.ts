@@ -6,7 +6,7 @@ import { ISuperElement } from '../interfaces/super';
 import { IShadowRootMode } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IShadowRootIsolate, IShadowRootIsolateProperties>();
+export const { getState, setState } = StateMachine<IShadowRootIsolate, IShadowRootIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IShadowRootIsolate>('ShadowRootIsolate', getState, setState);
 
 export default class ShadowRootIsolate implements IShadowRootIsolate {

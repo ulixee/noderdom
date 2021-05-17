@@ -1,6 +1,6 @@
 import { ITextTrackList } from '../../base/interfaces/official';
 import { ITextTrackListProperties } from '../../base/official-klasses/TextTrackList';
-export declare const getState: (instance: ITextTrackList) => ITextTrackListProperties, setState: (instance: ITextTrackList, properties: Partial<ITextTrackListProperties>) => void, recordProxy: (proxy: ITextTrackList, instance: ITextTrackList) => void;
+export declare const getState: (instance: ITextTrackList) => ITextTrackListProperties, setState: (instance: ITextTrackList, properties: Partial<ITextTrackListProperties>) => void;
 declare const TextTrackListBaseClass: {
     new (): {};
 };

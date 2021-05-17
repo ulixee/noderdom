@@ -5,7 +5,7 @@ import { AbstractRangeGenerator, IAbstractRangeProperties } from '../../base/off
 import { createSuperNode } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IAbstractRange, IAbstractRangeProperties>();
+export const { getState, setState } = StateMachine<IAbstractRange, IAbstractRangeProperties>();
 const AbstractRangeBaseClass = AbstractRangeGenerator();
 
 export default class AbstractRange extends AbstractRangeBaseClass implements IAbstractRange {

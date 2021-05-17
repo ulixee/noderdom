@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { ILocation } from '../interfaces/official';
-export declare const getState: (instance: ILocation) => ILocationProperties, setState: (instance: ILocation, properties: Partial<ILocationProperties>) => void, recordProxy: (proxy: ILocation, instance: ILocation) => void;
+export declare const getState: (instance: ILocation) => ILocationProperties, setState: (instance: ILocation, properties: Partial<ILocationProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<ILocation>;
 export declare function LocationGenerator(): {
     new (): {

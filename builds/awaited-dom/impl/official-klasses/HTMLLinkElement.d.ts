@@ -1,6 +1,6 @@
 import { IHTMLLinkElement, IDOMTokenList } from '../../base/interfaces/official';
 import { IHTMLLinkElementProperties } from '../../base/official-klasses/HTMLLinkElement';
-export declare const getState: (instance: IHTMLLinkElement) => IHTMLLinkElementProperties, setState: (instance: IHTMLLinkElement, properties: Partial<IHTMLLinkElementProperties>) => void, recordProxy: (proxy: IHTMLLinkElement, instance: IHTMLLinkElement) => void;
+export declare const getState: (instance: IHTMLLinkElement) => IHTMLLinkElementProperties, setState: (instance: IHTMLLinkElement, properties: Partial<IHTMLLinkElementProperties>) => void;
 declare const HTMLLinkElementBaseClass: {
     new (): {
         readonly as: Promise<string>;

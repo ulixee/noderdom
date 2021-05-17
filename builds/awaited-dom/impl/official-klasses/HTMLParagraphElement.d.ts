@@ -1,6 +1,6 @@
 import { IHTMLParagraphElement } from '../../base/interfaces/official';
 import { IHTMLParagraphElementProperties } from '../../base/official-klasses/HTMLParagraphElement';
-export declare const getState: (instance: IHTMLParagraphElement) => IHTMLParagraphElementProperties, setState: (instance: IHTMLParagraphElement, properties: Partial<IHTMLParagraphElementProperties>) => void, recordProxy: (proxy: IHTMLParagraphElement, instance: IHTMLParagraphElement) => void;
+export declare const getState: (instance: IHTMLParagraphElement) => IHTMLParagraphElementProperties, setState: (instance: IHTMLParagraphElement, properties: Partial<IHTMLParagraphElementProperties>) => void;
 declare const HTMLParagraphElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

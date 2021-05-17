@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { ICSSStyleDeclaration, ICSSRule } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ICSSStyleDeclaration, ICSSStyleDeclarationProperties>();
+export const { getState, setState } = StateMachine<ICSSStyleDeclaration, ICSSStyleDeclarationProperties>();
 export const awaitedHandler = new AwaitedHandler<ICSSStyleDeclaration>('CSSStyleDeclaration', getState, setState);
 export const nodeFactory = new NodeFactory<ICSSStyleDeclaration>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ICSSStyleDeclaration, string>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<ICSSStyleDeclaration, string>
 export function CSSStyleDeclarationGenerator() {
   return class CSSStyleDeclaration implements ICSSStyleDeclaration, PromiseLike<ICSSStyleDeclaration> {
     constructor() {
-      initializeConstantsAndProperties<CSSStyleDeclaration>(this, CSSStyleDeclarationConstantKeys, CSSStyleDeclarationPropertyKeys);
       setState(this, {
         createInstanceName: 'createCSSStyleDeclaration',
         createIterableName: 'string',
@@ -32,14 +31,13 @@ export function CSSStyleDeclarationGenerator() {
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -87,11 +85,15 @@ export function CSSStyleDeclarationGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<string> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<string> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: string;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, CSSStyleDeclarationPropertyKeys, CSSStyleDeclarationConstantKeys);
+    }
   };
 }
 

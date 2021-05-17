@@ -1,6 +1,6 @@
 import { IHTMLQuoteElement } from '../../base/interfaces/official';
 import { IHTMLQuoteElementProperties } from '../../base/official-klasses/HTMLQuoteElement';
-export declare const getState: (instance: IHTMLQuoteElement) => IHTMLQuoteElementProperties, setState: (instance: IHTMLQuoteElement, properties: Partial<IHTMLQuoteElementProperties>) => void, recordProxy: (proxy: IHTMLQuoteElement, instance: IHTMLQuoteElement) => void;
+export declare const getState: (instance: IHTMLQuoteElement) => IHTMLQuoteElementProperties, setState: (instance: IHTMLQuoteElement, properties: Partial<IHTMLQuoteElementProperties>) => void;
 declare const HTMLQuoteElementBaseClass: {
     new (): {
         readonly cite: Promise<string>;

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { IFileList, IFile } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IFileList, IFileListProperties>();
+export const { getState, setState } = StateMachine<IFileList, IFileListProperties>();
 export const awaitedHandler = new AwaitedHandler<IFileList>('FileList', getState, setState);
 export const nodeFactory = new NodeFactory<IFileList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IFileList, IFile>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<IFileList, IFile>(getState, s
 export function FileListGenerator() {
   return class FileList implements IFileList, PromiseLike<IFileList> {
     constructor() {
-      initializeConstantsAndProperties<FileList>(this, FileListConstantKeys, FileListPropertyKeys);
       setState(this, {
         createInstanceName: 'createFileList',
         createIterableName: 'createFile',
@@ -32,14 +31,13 @@ export function FileListGenerator() {
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -59,11 +57,15 @@ export function FileListGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<IFile> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<IFile> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: IFile;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, FileListPropertyKeys, FileListConstantKeys);
+    }
   };
 }
 

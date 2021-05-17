@@ -1,6 +1,6 @@
 import { IMediaError } from '../../base/interfaces/official';
 import { IMediaErrorProperties } from '../../base/official-klasses/MediaError';
-export declare const getState: (instance: IMediaError) => IMediaErrorProperties, setState: (instance: IMediaError, properties: Partial<IMediaErrorProperties>) => void, recordProxy: (proxy: IMediaError, instance: IMediaError) => void;
+export declare const getState: (instance: IMediaError) => IMediaErrorProperties, setState: (instance: IMediaError, properties: Partial<IMediaErrorProperties>) => void;
 declare const MediaErrorBaseClass: {
     new (): {
         readonly MEDIA_ERR_ABORTED: number;

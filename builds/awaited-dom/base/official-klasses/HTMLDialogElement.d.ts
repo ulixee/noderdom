@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLDialogElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLDialogElement) => IHTMLDialogElementProperties, setState: (instance: IHTMLDialogElement, properties: Partial<IHTMLDialogElementProperties>) => void, recordProxy: (proxy: IHTMLDialogElement, instance: IHTMLDialogElement) => void;
+export declare const getState: (instance: IHTMLDialogElement) => IHTMLDialogElementProperties, setState: (instance: IHTMLDialogElement, properties: Partial<IHTMLDialogElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLDialogElement>;
 export declare const nodeFactory: NodeFactory<IHTMLDialogElement>;
 export declare function HTMLDialogElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { IAudioTrackList, IAudioTrack } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IAudioTrackList, IAudioTrackListProperties>();
+export const { getState, setState } = StateMachine<IAudioTrackList, IAudioTrackListProperties>();
 export const awaitedHandler = new AwaitedHandler<IAudioTrackList>('AudioTrackList', getState, setState);
 export const nodeFactory = new NodeFactory<IAudioTrackList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IAudioTrackList, IAudioTrack>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<IAudioTrackList, IAudioTrack>
 export function AudioTrackListGenerator() {
   return class AudioTrackList implements IAudioTrackList, PromiseLike<IAudioTrackList> {
     constructor() {
-      initializeConstantsAndProperties<AudioTrackList>(this, AudioTrackListConstantKeys, AudioTrackListPropertyKeys);
       setState(this, {
         createInstanceName: 'createAudioTrackList',
         createIterableName: 'createAudioTrack',
@@ -39,8 +38,12 @@ export function AudioTrackListGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<IAudioTrack> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<IAudioTrack> {
+      return awaitedIterator.iterateNodePointers(this);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, AudioTrackListPropertyKeys, AudioTrackListConstantKeys);
     }
   };
 }

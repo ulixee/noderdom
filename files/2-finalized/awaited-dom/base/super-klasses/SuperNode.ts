@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -97,7 +97,7 @@ import { ITextIsolateProperties, TextIsolatePropertyKeys, TextIsolateConstantKey
 import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEvaluatorBaseConstantKeys } from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperNode, ISuperNodeProperties>();
+export const { getState, setState } = StateMachine<ISuperNode, ISuperNodeProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNode>('SuperNode', getState, setState);
 export const nodeFactory = new NodeFactory<ISuperNode>(getState, setState, awaitedHandler);
 
@@ -144,7 +144,6 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
     public readonly TEXT_NODE: number = 3;
     constructor() {
       super();
-      initializeConstantsAndProperties<SuperNode>(this, SuperNodeConstantKeys, SuperNodePropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperNode',
       });
@@ -252,6 +251,10 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
 
     public then<TResult1 = ISuperNode, TResult2 = never>(onfulfilled?: ((value: ISuperNode) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperNodePropertyKeys, SuperNodeConstantKeys);
     }
   };
 }

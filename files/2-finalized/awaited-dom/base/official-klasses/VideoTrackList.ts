@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { IVideoTrackList, IVideoTrack } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IVideoTrackList, IVideoTrackListProperties>();
+export const { getState, setState } = StateMachine<IVideoTrackList, IVideoTrackListProperties>();
 export const awaitedHandler = new AwaitedHandler<IVideoTrackList>('VideoTrackList', getState, setState);
 export const nodeFactory = new NodeFactory<IVideoTrackList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IVideoTrackList, IVideoTrack>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<IVideoTrackList, IVideoTrack>
 export function VideoTrackListGenerator() {
   return class VideoTrackList implements IVideoTrackList, PromiseLike<IVideoTrackList> {
     constructor() {
-      initializeConstantsAndProperties<VideoTrackList>(this, VideoTrackListConstantKeys, VideoTrackListPropertyKeys);
       setState(this, {
         createInstanceName: 'createVideoTrackList',
         createIterableName: 'createVideoTrack',
@@ -43,8 +42,12 @@ export function VideoTrackListGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<IVideoTrack> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<IVideoTrack> {
+      return awaitedIterator.iterateNodePointers(this);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, VideoTrackListPropertyKeys, VideoTrackListConstantKeys);
     }
   };
 }

@@ -1,7 +1,7 @@
 import { INode, IGetRootNodeOptions } from '../../base/interfaces/official';
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../../base/interfaces/super';
 import { INodeProperties } from '../../base/official-klasses/Node';
-export declare const getState: (instance: INode) => INodeProperties, setState: (instance: INode, properties: Partial<INodeProperties>) => void, recordProxy: (proxy: INode, instance: INode) => void;
+export declare const getState: (instance: INode) => INodeProperties, setState: (instance: INode, properties: Partial<INodeProperties>) => void;
 declare const NodeBaseClass: {
     new (): {
         readonly ATTRIBUTE_NODE: number;

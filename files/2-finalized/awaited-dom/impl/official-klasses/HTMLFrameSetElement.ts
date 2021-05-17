@@ -4,7 +4,7 @@ import { HTMLFrameSetElementGenerator, IHTMLFrameSetElementProperties } from '..
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFrameSetElement, IHTMLFrameSetElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLFrameSetElement, IHTMLFrameSetElementProperties>();
 const HTMLFrameSetElementBaseClass = HTMLFrameSetElementGenerator(HTMLElement);
 
 export default class HTMLFrameSetElement extends HTMLFrameSetElementBaseClass implements IHTMLFrameSetElement {

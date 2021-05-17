@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLFieldSetElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLFieldSetElement) => IHTMLFieldSetElementProperties, setState: (instance: IHTMLFieldSetElement, properties: Partial<IHTMLFieldSetElementProperties>) => void, recordProxy: (proxy: IHTMLFieldSetElement, instance: IHTMLFieldSetElement) => void;
+export declare const getState: (instance: IHTMLFieldSetElement) => IHTMLFieldSetElementProperties, setState: (instance: IHTMLFieldSetElement, properties: Partial<IHTMLFieldSetElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFieldSetElement>;
 export declare const nodeFactory: NodeFactory<IHTMLFieldSetElement>;
 export declare function HTMLFieldSetElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

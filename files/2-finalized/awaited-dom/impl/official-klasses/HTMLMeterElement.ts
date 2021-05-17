@@ -6,7 +6,7 @@ import { createSuperNodeList } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMeterElement, IHTMLMeterElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMeterElement, IHTMLMeterElementProperties>();
 const HTMLMeterElementBaseClass = HTMLMeterElementGenerator(HTMLElement);
 
 export default class HTMLMeterElement extends HTMLMeterElementBaseClass implements IHTMLMeterElement {

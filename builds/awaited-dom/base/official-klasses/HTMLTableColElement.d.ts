@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLTableColElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLTableColElement) => IHTMLTableColElementProperties, setState: (instance: IHTMLTableColElement, properties: Partial<IHTMLTableColElementProperties>) => void, recordProxy: (proxy: IHTMLTableColElement, instance: IHTMLTableColElement) => void;
+export declare const getState: (instance: IHTMLTableColElement) => IHTMLTableColElementProperties, setState: (instance: IHTMLTableColElement, properties: Partial<IHTMLTableColElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTableColElement>;
 export declare const nodeFactory: NodeFactory<IHTMLTableColElement>;
 export declare function HTMLTableColElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

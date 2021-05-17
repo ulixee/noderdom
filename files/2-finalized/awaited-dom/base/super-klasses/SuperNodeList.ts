@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -12,7 +12,7 @@ import { INodeListIsolateProperties, NodeListIsolatePropertyKeys, NodeListIsolat
 import { IRadioNodeListIsolateProperties, RadioNodeListIsolatePropertyKeys, RadioNodeListIsolateConstantKeys } from '../isolate-mixins/RadioNodeListIsolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
+export const { getState, setState } = StateMachine<ISuperNodeList, ISuperNodeListProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperNodeList>('SuperNodeList', getState, setState);
 export const nodeFactory = new NodeFactory<ISuperNodeList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ISuperNodeList, ISuperNode>(getState, setState, awaitedHandler);
@@ -23,7 +23,6 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
   return class SuperNodeList extends Parent implements ISuperNodeList, PromiseLike<ISuperNodeList> {
     constructor() {
       super();
-      initializeConstantsAndProperties<SuperNodeList>(this, SuperNodeListConstantKeys, SuperNodeListPropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperNodeList',
         createIterableName: 'createSuperNode',
@@ -39,14 +38,13 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -84,11 +82,15 @@ export function SuperNodeListGenerator(NodeListIsolate: Constructable<INodeListI
       return awaitedIterator.load(this).then(x => x.values());
     }
 
-    public [Symbol.iterator](): IterableIterator<ISuperNode> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<ISuperNode> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: ISuperNode;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperNodeListPropertyKeys, SuperNodeListConstantKeys);
+    }
   };
 }
 

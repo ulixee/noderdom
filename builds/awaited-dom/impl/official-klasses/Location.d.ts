@@ -1,6 +1,6 @@
 import { ILocation } from '../../base/interfaces/official';
 import { ILocationProperties } from '../../base/official-klasses/Location';
-export declare const getState: (instance: ILocation) => ILocationProperties, setState: (instance: ILocation, properties: Partial<ILocationProperties>) => void, recordProxy: (proxy: ILocation, instance: ILocation) => void;
+export declare const getState: (instance: ILocation) => ILocationProperties, setState: (instance: ILocation, properties: Partial<ILocationProperties>) => void;
 declare const LocationBaseClass: {
     new (): {
         hash: any;

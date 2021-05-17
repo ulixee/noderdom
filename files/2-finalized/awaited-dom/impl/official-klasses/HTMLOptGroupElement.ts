@@ -4,7 +4,7 @@ import { HTMLOptGroupElementGenerator, IHTMLOptGroupElementProperties } from '..
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLOptGroupElement, IHTMLOptGroupElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLOptGroupElement, IHTMLOptGroupElementProperties>();
 const HTMLOptGroupElementBaseClass = HTMLOptGroupElementGenerator(HTMLElement);
 
 export default class HTMLOptGroupElement extends HTMLOptGroupElementBaseClass implements IHTMLOptGroupElement {

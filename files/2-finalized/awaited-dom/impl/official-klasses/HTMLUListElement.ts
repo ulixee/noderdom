@@ -4,7 +4,7 @@ import { HTMLUListElementGenerator, IHTMLUListElementProperties } from '../../ba
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLUListElement, IHTMLUListElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLUListElement, IHTMLUListElementProperties>();
 const HTMLUListElementBaseClass = HTMLUListElementGenerator(HTMLElement);
 
 export default class HTMLUListElement extends HTMLUListElementBaseClass implements IHTMLUListElement {

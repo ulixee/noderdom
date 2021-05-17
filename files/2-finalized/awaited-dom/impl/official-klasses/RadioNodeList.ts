@@ -4,7 +4,7 @@ import { RadioNodeListGenerator, IRadioNodeListProperties } from '../../base/off
 import NodeList from './NodeList';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IRadioNodeList, IRadioNodeListProperties>();
+export const { getState, setState } = StateMachine<IRadioNodeList, IRadioNodeListProperties>();
 const RadioNodeListBaseClass = RadioNodeListGenerator(NodeList);
 
 export default class RadioNodeList extends RadioNodeListBaseClass implements IRadioNodeList {

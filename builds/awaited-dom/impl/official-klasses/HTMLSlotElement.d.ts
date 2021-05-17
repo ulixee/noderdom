@@ -1,6 +1,6 @@
 import { IHTMLSlotElement } from '../../base/interfaces/official';
 import { IHTMLSlotElementProperties } from '../../base/official-klasses/HTMLSlotElement';
-export declare const getState: (instance: IHTMLSlotElement) => IHTMLSlotElementProperties, setState: (instance: IHTMLSlotElement, properties: Partial<IHTMLSlotElementProperties>) => void, recordProxy: (proxy: IHTMLSlotElement, instance: IHTMLSlotElement) => void;
+export declare const getState: (instance: IHTMLSlotElement) => IHTMLSlotElementProperties, setState: (instance: IHTMLSlotElement, properties: Partial<IHTMLSlotElementProperties>) => void;
 declare const HTMLSlotElementBaseClass: {
     new (): {
         readonly name: Promise<string>;

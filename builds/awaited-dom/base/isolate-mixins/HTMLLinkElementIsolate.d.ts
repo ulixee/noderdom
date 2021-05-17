@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLLinkElementIsolate } from '../interfaces/isolate';
 import { IDOMTokenList } from '../interfaces/official';
-export declare const getState: (instance: IHTMLLinkElementIsolate) => IHTMLLinkElementIsolateProperties, setState: (instance: IHTMLLinkElementIsolate, properties: Partial<IHTMLLinkElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLLinkElementIsolate, instance: IHTMLLinkElementIsolate) => void;
+export declare const getState: (instance: IHTMLLinkElementIsolate) => IHTMLLinkElementIsolateProperties, setState: (instance: IHTMLLinkElementIsolate, properties: Partial<IHTMLLinkElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLLinkElementIsolate>;
 export default class HTMLLinkElementIsolate implements IHTMLLinkElementIsolate {
     get as(): Promise<string>;

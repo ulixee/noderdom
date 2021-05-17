@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -14,7 +14,7 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 import { IXPathEvaluatorBaseProperties, XPathEvaluatorBasePropertyKeys, XPathEvaluatorBaseConstantKeys } from '../official-mixins/XPathEvaluatorBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocument, IDocumentProperties>();
+export const { getState, setState } = StateMachine<IDocument, IDocumentProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocument>('Document', getState, setState);
 export const nodeFactory = new NodeFactory<IDocument>(getState, setState, awaitedHandler);
 
@@ -24,7 +24,6 @@ export function DocumentGenerator(Node: Constructable<INode>, DocumentOrShadowRo
   return class Document extends Parent implements IDocument, PromiseLike<IDocument> {
     constructor() {
       super();
-      initializeConstantsAndProperties<Document>(this, DocumentConstantKeys, DocumentPropertyKeys);
       setState(this, {
         createInstanceName: 'createDocument',
       });
@@ -188,6 +187,10 @@ export function DocumentGenerator(Node: Constructable<INode>, DocumentOrShadowRo
 
     public then<TResult1 = IDocument, TResult2 = never>(onfulfilled?: ((value: IDocument) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, DocumentPropertyKeys, DocumentConstantKeys);
     }
   };
 }

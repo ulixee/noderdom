@@ -5,7 +5,7 @@ import { IHTMLMetaElementIsolate } from '../interfaces/isolate';
 import { IDocumentFragment } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMetaElementIsolate, IHTMLMetaElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLMetaElementIsolate, IHTMLMetaElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMetaElementIsolate>('HTMLMetaElementIsolate', getState, setState);
 
 export default class HTMLMetaElementIsolate implements IHTMLMetaElementIsolate {

@@ -4,7 +4,7 @@ import { FileListGenerator, IFileListProperties } from '../../base/official-klas
 import { createFile } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IFileList, IFileListProperties>();
+export const { getState, setState } = StateMachine<IFileList, IFileListProperties>();
 const FileListBaseClass = FileListGenerator();
 
 export default class FileList extends FileListBaseClass implements IFileList {

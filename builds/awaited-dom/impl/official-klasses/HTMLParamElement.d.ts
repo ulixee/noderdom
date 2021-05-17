@@ -1,6 +1,6 @@
 import { IHTMLParamElement } from '../../base/interfaces/official';
 import { IHTMLParamElementProperties } from '../../base/official-klasses/HTMLParamElement';
-export declare const getState: (instance: IHTMLParamElement) => IHTMLParamElementProperties, setState: (instance: IHTMLParamElement, properties: Partial<IHTMLParamElementProperties>) => void, recordProxy: (proxy: IHTMLParamElement, instance: IHTMLParamElement) => void;
+export declare const getState: (instance: IHTMLParamElement) => IHTMLParamElementProperties, setState: (instance: IHTMLParamElement, properties: Partial<IHTMLParamElementProperties>) => void;
 declare const HTMLParamElementBaseClass: {
     new (): {
         readonly name: Promise<string>;

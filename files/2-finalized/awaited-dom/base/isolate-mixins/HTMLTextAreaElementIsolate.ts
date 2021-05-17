@@ -6,7 +6,7 @@ import { IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/
 import { ISuperNodeList, ISuperHTMLCollection } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTextAreaElementIsolate, IHTMLTextAreaElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTextAreaElementIsolate, IHTMLTextAreaElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTextAreaElementIsolate>('HTMLTextAreaElementIsolate', getState, setState);
 
 export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementIsolate {

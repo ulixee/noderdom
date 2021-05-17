@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLProgressElement, IHTMLElement } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLProgressElement) => IHTMLProgressElementProperties, setState: (instance: IHTMLProgressElement, properties: Partial<IHTMLProgressElementProperties>) => void, recordProxy: (proxy: IHTMLProgressElement, instance: IHTMLProgressElement) => void;
+export declare const getState: (instance: IHTMLProgressElement) => IHTMLProgressElementProperties, setState: (instance: IHTMLProgressElement, properties: Partial<IHTMLProgressElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLProgressElement>;
 export declare const nodeFactory: NodeFactory<IHTMLProgressElement>;
 export declare function HTMLProgressElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

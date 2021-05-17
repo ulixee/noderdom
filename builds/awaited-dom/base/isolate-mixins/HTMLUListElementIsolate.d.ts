@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLUListElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLUListElementIsolate) => IHTMLUListElementIsolateProperties, setState: (instance: IHTMLUListElementIsolate, properties: Partial<IHTMLUListElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLUListElementIsolate, instance: IHTMLUListElementIsolate) => void;
+export declare const getState: (instance: IHTMLUListElementIsolate) => IHTMLUListElementIsolateProperties, setState: (instance: IHTMLUListElementIsolate, properties: Partial<IHTMLUListElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLUListElementIsolate>;
 export default class HTMLUListElementIsolate implements IHTMLUListElementIsolate {
     get compact(): Promise<boolean>;

@@ -1,6 +1,6 @@
 import { IXPathEvaluator } from '../../base/interfaces/official';
 import { IXPathEvaluatorProperties } from '../../base/official-klasses/XPathEvaluator';
-export declare const getState: (instance: IXPathEvaluator) => IXPathEvaluatorProperties, setState: (instance: IXPathEvaluator, properties: Partial<IXPathEvaluatorProperties>) => void, recordProxy: (proxy: IXPathEvaluator, instance: IXPathEvaluator) => void;
+export declare const getState: (instance: IXPathEvaluator) => IXPathEvaluatorProperties, setState: (instance: IXPathEvaluator, properties: Partial<IXPathEvaluatorProperties>) => void;
 declare const XPathEvaluatorBaseClass: {
     new (): {
         createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {

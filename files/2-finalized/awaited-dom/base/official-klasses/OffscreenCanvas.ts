@@ -1,18 +1,17 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IOffscreenCanvas, IImageEncodeOptions, IBlob, IImageBitmap } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IOffscreenCanvas, IOffscreenCanvasProperties>();
+export const { getState, setState } = StateMachine<IOffscreenCanvas, IOffscreenCanvasProperties>();
 export const awaitedHandler = new AwaitedHandler<IOffscreenCanvas>('OffscreenCanvas', getState, setState);
 
 export function OffscreenCanvasGenerator() {
   return class OffscreenCanvas implements IOffscreenCanvas {
     constructor(_width: number, _height: number) {
-      initializeConstantsAndProperties<OffscreenCanvas>(this, OffscreenCanvasConstantKeys, OffscreenCanvasPropertyKeys);
     }
 
     // properties
@@ -33,6 +32,10 @@ export function OffscreenCanvasGenerator() {
 
     public transferToImageBitmap(): IImageBitmap {
       throw new Error('OffscreenCanvas.transferToImageBitmap not implemented');
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, OffscreenCanvasPropertyKeys, OffscreenCanvasConstantKeys);
     }
   };
 }

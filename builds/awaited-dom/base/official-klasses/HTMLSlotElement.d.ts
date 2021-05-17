@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLSlotElement, IHTMLElement, IAssignedNodesOptions } from '../interfaces/official';
 import { ISuperElement, ISuperNode } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLSlotElement) => IHTMLSlotElementProperties, setState: (instance: IHTMLSlotElement, properties: Partial<IHTMLSlotElementProperties>) => void, recordProxy: (proxy: IHTMLSlotElement, instance: IHTMLSlotElement) => void;
+export declare const getState: (instance: IHTMLSlotElement) => IHTMLSlotElementProperties, setState: (instance: IHTMLSlotElement, properties: Partial<IHTMLSlotElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSlotElement>;
 export declare const nodeFactory: NodeFactory<IHTMLSlotElement>;
 export declare function HTMLSlotElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

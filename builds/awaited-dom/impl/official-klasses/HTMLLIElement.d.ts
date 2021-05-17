@@ -1,6 +1,6 @@
 import { IHTMLLIElement } from '../../base/interfaces/official';
 import { IHTMLLIElementProperties } from '../../base/official-klasses/HTMLLIElement';
-export declare const getState: (instance: IHTMLLIElement) => IHTMLLIElementProperties, setState: (instance: IHTMLLIElement, properties: Partial<IHTMLLIElementProperties>) => void, recordProxy: (proxy: IHTMLLIElement, instance: IHTMLLIElement) => void;
+export declare const getState: (instance: IHTMLLIElement) => IHTMLLIElementProperties, setState: (instance: IHTMLLIElement, properties: Partial<IHTMLLIElementProperties>) => void;
 declare const HTMLLIElementBaseClass: {
     new (): {
         readonly type: Promise<string>;

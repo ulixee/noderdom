@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLTextAreaElementIsolate } from '../interfaces/isolate';
 import { IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection } from '../interfaces/super';
-export declare const getState: (instance: IHTMLTextAreaElementIsolate) => IHTMLTextAreaElementIsolateProperties, setState: (instance: IHTMLTextAreaElementIsolate, properties: Partial<IHTMLTextAreaElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLTextAreaElementIsolate, instance: IHTMLTextAreaElementIsolate) => void;
+export declare const getState: (instance: IHTMLTextAreaElementIsolate) => IHTMLTextAreaElementIsolateProperties, setState: (instance: IHTMLTextAreaElementIsolate, properties: Partial<IHTMLTextAreaElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTextAreaElementIsolate>;
 export default class HTMLTextAreaElementIsolate implements IHTMLTextAreaElementIsolate {
     get autocomplete(): Promise<string>;

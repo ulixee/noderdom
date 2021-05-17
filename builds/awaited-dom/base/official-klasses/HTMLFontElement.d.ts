@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLFontElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLFontElement) => IHTMLFontElementProperties, setState: (instance: IHTMLFontElement, properties: Partial<IHTMLFontElementProperties>) => void, recordProxy: (proxy: IHTMLFontElement, instance: IHTMLFontElement) => void;
+export declare const getState: (instance: IHTMLFontElement) => IHTMLFontElementProperties, setState: (instance: IHTMLFontElement, properties: Partial<IHTMLFontElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFontElement>;
 export declare const nodeFactory: NodeFactory<IHTMLFontElement>;
 export declare function HTMLFontElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

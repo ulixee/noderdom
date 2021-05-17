@@ -5,7 +5,7 @@ import { INonElementParentNode } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INonElementParentNode, INonElementParentNodeProperties>();
+export const { getState, setState } = StateMachine<INonElementParentNode, INonElementParentNodeProperties>();
 export const awaitedHandler = new AwaitedHandler<INonElementParentNode>('NonElementParentNode', getState, setState);
 
 export default class NonElementParentNode implements INonElementParentNode {

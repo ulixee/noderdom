@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLLinkElement, IHTMLElement, ILinkStyle, IDOMTokenList } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
 import { ILinkStyleProperties } from '../official-mixins/LinkStyle';
-export declare const getState: (instance: IHTMLLinkElement) => IHTMLLinkElementProperties, setState: (instance: IHTMLLinkElement, properties: Partial<IHTMLLinkElementProperties>) => void, recordProxy: (proxy: IHTMLLinkElement, instance: IHTMLLinkElement) => void;
+export declare const getState: (instance: IHTMLLinkElement) => IHTMLLinkElementProperties, setState: (instance: IHTMLLinkElement, properties: Partial<IHTMLLinkElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLLinkElement>;
 export declare const nodeFactory: NodeFactory<IHTMLLinkElement>;
 export declare function HTMLLinkElementGenerator(HTMLElement: Constructable<IHTMLElement>, LinkStyle: Constructable<ILinkStyle>): {

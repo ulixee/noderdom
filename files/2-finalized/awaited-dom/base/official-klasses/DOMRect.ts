@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,14 +7,13 @@ import { IDOMRect, IDOMRectReadOnly } from '../interfaces/official';
 import { IDOMRectReadOnlyProperties, DOMRectReadOnlyPropertyKeys, DOMRectReadOnlyConstantKeys } from './DOMRectReadOnly';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDOMRect, IDOMRectProperties>();
+export const { getState, setState } = StateMachine<IDOMRect, IDOMRectProperties>();
 export const awaitedHandler = new AwaitedHandler<IDOMRect>('DOMRect', getState, setState);
 
 export function DOMRectGenerator(DOMRectReadOnly: Constructable<IDOMRectReadOnly>) {
   return class DOMRect extends DOMRectReadOnly implements IDOMRect {
     constructor(_x?: number, _y?: number, _width?: number, _height?: number) {
       super(_x, _y, _width, _height);
-      initializeConstantsAndProperties<DOMRect>(this, DOMRectConstantKeys, DOMRectPropertyKeys);
     }
 
     // properties
@@ -33,6 +32,10 @@ export function DOMRectGenerator(DOMRectReadOnly: Constructable<IDOMRectReadOnly
 
     public get y(): Promise<number> {
       return awaitedHandler.getProperty<number>(this, 'y', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, DOMRectPropertyKeys, DOMRectConstantKeys);
     }
   };
 }

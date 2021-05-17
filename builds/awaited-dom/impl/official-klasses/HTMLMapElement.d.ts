@@ -1,7 +1,7 @@
 import { IHTMLMapElement } from '../../base/interfaces/official';
 import { ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IHTMLMapElementProperties } from '../../base/official-klasses/HTMLMapElement';
-export declare const getState: (instance: IHTMLMapElement) => IHTMLMapElementProperties, setState: (instance: IHTMLMapElement, properties: Partial<IHTMLMapElementProperties>) => void, recordProxy: (proxy: IHTMLMapElement, instance: IHTMLMapElement) => void;
+export declare const getState: (instance: IHTMLMapElement) => IHTMLMapElementProperties, setState: (instance: IHTMLMapElement, properties: Partial<IHTMLMapElementProperties>) => void;
 declare const HTMLMapElementBaseClass: {
     new (): {
         readonly areas: ISuperHTMLCollection;

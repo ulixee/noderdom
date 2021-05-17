@@ -6,7 +6,7 @@ import { IHTMLTableCaptionElement, IHTMLTableSectionElement } from '../interface
 import { ISuperHTMLCollection } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableElementIsolate, IHTMLTableElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableElementIsolate, IHTMLTableElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTableElementIsolate>('HTMLTableElementIsolate', getState, setState);
 
 export default class HTMLTableElementIsolate implements IHTMLTableElementIsolate {

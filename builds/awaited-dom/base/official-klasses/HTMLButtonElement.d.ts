@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLButtonElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLButtonElement) => IHTMLButtonElementProperties, setState: (instance: IHTMLButtonElement, properties: Partial<IHTMLButtonElementProperties>) => void, recordProxy: (proxy: IHTMLButtonElement, instance: IHTMLButtonElement) => void;
+export declare const getState: (instance: IHTMLButtonElement) => IHTMLButtonElementProperties, setState: (instance: IHTMLButtonElement, properties: Partial<IHTMLButtonElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLButtonElement>;
 export declare const nodeFactory: NodeFactory<IHTMLButtonElement>;
 export declare function HTMLButtonElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

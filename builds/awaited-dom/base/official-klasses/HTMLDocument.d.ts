@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IHTMLDocument, IDocument } from '../interfaces/official';
 import { IDocumentProperties } from './Document';
-export declare const getState: (instance: IHTMLDocument) => IHTMLDocumentProperties, setState: (instance: IHTMLDocument, properties: Partial<IHTMLDocumentProperties>) => void, recordProxy: (proxy: IHTMLDocument, instance: IHTMLDocument) => void;
+export declare const getState: (instance: IHTMLDocument) => IHTMLDocumentProperties, setState: (instance: IHTMLDocument, properties: Partial<IHTMLDocumentProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLDocument>;
 export declare function HTMLDocumentGenerator(Document: Constructable<IDocument>): {
     new (): {

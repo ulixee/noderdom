@@ -1,18 +1,21 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IValidityState } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IValidityState, IValidityStateProperties>();
+export const { getState, setState } = StateMachine<IValidityState, IValidityStateProperties>();
 export const awaitedHandler = new AwaitedHandler<IValidityState>('ValidityState', getState, setState);
 
 export function ValidityStateGenerator() {
   return class ValidityState implements IValidityState {
     constructor() {
-      initializeConstantsAndProperties<ValidityState>(this, ValidityStateConstantKeys, ValidityStatePropertyKeys);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, ValidityStatePropertyKeys, ValidityStateConstantKeys);
     }
   };
 }

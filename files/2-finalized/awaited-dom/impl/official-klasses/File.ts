@@ -4,7 +4,7 @@ import { FileGenerator, IFileProperties } from '../../base/official-klasses/File
 import Blob from './Blob';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IFile, IFileProperties>();
+export const { getState, setState } = StateMachine<IFile, IFileProperties>();
 const FileBaseClass = FileGenerator(Blob);
 
 export default class File extends FileBaseClass implements IFile {

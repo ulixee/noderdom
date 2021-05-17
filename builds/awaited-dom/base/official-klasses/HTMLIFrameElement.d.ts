@@ -5,7 +5,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLIFrameElement, IHTMLElement, IFeaturePolicy, IDOMTokenList } from '../interfaces/official';
 import { ISuperDocument } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLIFrameElement) => IHTMLIFrameElementProperties, setState: (instance: IHTMLIFrameElement, properties: Partial<IHTMLIFrameElementProperties>) => void, recordProxy: (proxy: IHTMLIFrameElement, instance: IHTMLIFrameElement) => void;
+export declare const getState: (instance: IHTMLIFrameElement) => IHTMLIFrameElementProperties, setState: (instance: IHTMLIFrameElement, properties: Partial<IHTMLIFrameElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLIFrameElement>;
 export declare const nodeFactory: NodeFactory<IHTMLIFrameElement>;
 export declare function HTMLIFrameElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

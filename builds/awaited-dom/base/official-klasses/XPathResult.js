@@ -4,13 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.XPathResultConstantKeys = exports.XPathResultPropertyKeys = exports.XPathResultGenerator = exports.nodeFactory = exports.awaitedHandler = exports.recordProxy = exports.setState = exports.getState = void 0;
+exports.XPathResultConstantKeys = exports.XPathResultPropertyKeys = exports.XPathResultGenerator = exports.nodeFactory = exports.awaitedHandler = exports.setState = exports.getState = void 0;
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
-const initializeConstantsAndProperties_1 = __importDefault(require("../initializeConstantsAndProperties"));
+const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState, exports.recordProxy = _a.recordProxy;
+_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('XPathResult', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function XPathResultGenerator() {
@@ -27,7 +27,6 @@ function XPathResultGenerator() {
                 this.STRING_TYPE = 2;
                 this.UNORDERED_NODE_ITERATOR_TYPE = 4;
                 this.UNORDERED_NODE_SNAPSHOT_TYPE = 6;
-                initializeConstantsAndProperties_1.default(this, exports.XPathResultConstantKeys, exports.XPathResultPropertyKeys);
                 exports.setState(this, {
                     createInstanceName: 'createXPathResult',
                 });
@@ -63,6 +62,9 @@ function XPathResultGenerator() {
             }
             then(onfulfilled, onrejected) {
                 return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+            }
+            [Symbol.for('nodejs.util.inspect.custom')]() {
+                return inspectInstanceProperties_1.default(this, exports.XPathResultPropertyKeys, exports.XPathResultConstantKeys);
             }
         },
         _a.ANY_TYPE = 0,

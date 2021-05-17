@@ -7,7 +7,7 @@ import DocumentFragment from './DocumentFragment';
 import DocumentOrShadowRoot from '../official-mixins/DocumentOrShadowRoot';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IShadowRoot, IShadowRootProperties>();
+export const { getState, setState } = StateMachine<IShadowRoot, IShadowRootProperties>();
 const ShadowRootBaseClass = ShadowRootGenerator(DocumentFragment, DocumentOrShadowRoot);
 
 export default class ShadowRoot extends ShadowRootBaseClass implements IShadowRoot {

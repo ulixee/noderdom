@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLTableColElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLTableColElementIsolate) => IHTMLTableColElementIsolateProperties, setState: (instance: IHTMLTableColElementIsolate, properties: Partial<IHTMLTableColElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLTableColElementIsolate, instance: IHTMLTableColElementIsolate) => void;
+export declare const getState: (instance: IHTMLTableColElementIsolate) => IHTMLTableColElementIsolateProperties, setState: (instance: IHTMLTableColElementIsolate, properties: Partial<IHTMLTableColElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLTableColElementIsolate>;
 export default class HTMLTableColElementIsolate implements IHTMLTableColElementIsolate {
     get align(): Promise<string>;

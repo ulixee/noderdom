@@ -2,7 +2,7 @@ import { IDocumentIsolate } from '../../base/interfaces/isolate';
 import { ISuperHTMLCollection, ISuperHTMLElement, ISuperElement, ISuperNodeList } from '../../base/interfaces/super';
 import { IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation } from '../../base/interfaces/official';
 import DocumentIsolateBase, { IDocumentIsolateProperties } from '../../base/isolate-mixins/DocumentIsolate';
-export declare const getState: (instance: IDocumentIsolate) => IDocumentIsolateProperties, setState: (instance: IDocumentIsolate, properties: Partial<IDocumentIsolateProperties>) => void, recordProxy: (proxy: IDocumentIsolate, instance: IDocumentIsolate) => void;
+export declare const getState: (instance: IDocumentIsolate) => IDocumentIsolateProperties, setState: (instance: IDocumentIsolate, properties: Partial<IDocumentIsolateProperties>) => void;
 export default class DocumentIsolate extends DocumentIsolateBase implements IDocumentIsolate {
     get anchors(): ISuperHTMLCollection;
     get body(): ISuperHTMLElement;

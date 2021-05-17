@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IFile, IBlob, IBlobPart, IFilePropertyBag } from '../interfaces/official';
 import { IBlobProperties } from './Blob';
-export declare const getState: (instance: IFile) => IFileProperties, setState: (instance: IFile, properties: Partial<IFileProperties>) => void, recordProxy: (proxy: IFile, instance: IFile) => void;
+export declare const getState: (instance: IFile) => IFileProperties, setState: (instance: IFile, properties: Partial<IFileProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IFile>;
 export declare function FileGenerator(Blob: Constructable<IBlob>): {
     new (_fileBits: Iterable<IBlobPart>, _fileName: string, _options?: IFilePropertyBag | undefined): {

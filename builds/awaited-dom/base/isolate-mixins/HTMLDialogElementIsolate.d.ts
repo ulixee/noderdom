@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLDialogElementIsolate } from '../interfaces/isolate';
-export declare const getState: (instance: IHTMLDialogElementIsolate) => IHTMLDialogElementIsolateProperties, setState: (instance: IHTMLDialogElementIsolate, properties: Partial<IHTMLDialogElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLDialogElementIsolate, instance: IHTMLDialogElementIsolate) => void;
+export declare const getState: (instance: IHTMLDialogElementIsolate) => IHTMLDialogElementIsolateProperties, setState: (instance: IHTMLDialogElementIsolate, properties: Partial<IHTMLDialogElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLDialogElementIsolate>;
 export default class HTMLDialogElementIsolate implements IHTMLDialogElementIsolate {
     get open(): Promise<boolean>;

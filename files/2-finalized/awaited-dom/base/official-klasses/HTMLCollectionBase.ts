@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { IHTMLCollectionBase } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLCollectionBase, IHTMLCollectionBaseProperties>();
+export const { getState, setState } = StateMachine<IHTMLCollectionBase, IHTMLCollectionBaseProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLCollectionBase>('HTMLCollectionBase', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLCollectionBase>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<IHTMLCollectionBase, ISuperElement>(getState, setState, awaitedHandler);
@@ -17,7 +17,6 @@ export const awaitedIterator = new AwaitedIterator<IHTMLCollectionBase, ISuperEl
 export function HTMLCollectionBaseGenerator() {
   return class HTMLCollectionBase implements IHTMLCollectionBase, PromiseLike<IHTMLCollectionBase> {
     constructor() {
-      initializeConstantsAndProperties<HTMLCollectionBase>(this, HTMLCollectionBaseConstantKeys, HTMLCollectionBasePropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLCollectionBase',
         createIterableName: 'createSuperElement',
@@ -33,14 +32,13 @@ export function HTMLCollectionBaseGenerator() {
           }
 
           // delegate to indexer property
-          if (!isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -60,11 +58,15 @@ export function HTMLCollectionBaseGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<ISuperElement> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<ISuperElement> {
+      return awaitedIterator.iterateNodePointers(this);
     }
 
     [index: number]: ISuperElement;
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLCollectionBasePropertyKeys, HTMLCollectionBaseConstantKeys);
+    }
   };
 }
 

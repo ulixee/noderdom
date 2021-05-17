@@ -6,7 +6,7 @@ import HTMLTableRowElementIsolateBase, { IHTMLTableRowElementIsolateProperties }
 import { createSuperHTMLCollection, createHTMLTableCellElement } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTableRowElementIsolate, IHTMLTableRowElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTableRowElementIsolate, IHTMLTableRowElementIsolateProperties>();
 
 export default class HTMLTableRowElementIsolate extends HTMLTableRowElementIsolateBase implements IHTMLTableRowElementIsolate {
   public get cells(): ISuperHTMLCollection {

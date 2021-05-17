@@ -1,6 +1,6 @@
 import { IHTMLTableColElement } from '../../base/interfaces/official';
 import { IHTMLTableColElementProperties } from '../../base/official-klasses/HTMLTableColElement';
-export declare const getState: (instance: IHTMLTableColElement) => IHTMLTableColElementProperties, setState: (instance: IHTMLTableColElement, properties: Partial<IHTMLTableColElementProperties>) => void, recordProxy: (proxy: IHTMLTableColElement, instance: IHTMLTableColElement) => void;
+export declare const getState: (instance: IHTMLTableColElement) => IHTMLTableColElementProperties, setState: (instance: IHTMLTableColElement, properties: Partial<IHTMLTableColElementProperties>) => void;
 declare const HTMLTableColElementBaseClass: {
     new (): {
         readonly align: Promise<string>;

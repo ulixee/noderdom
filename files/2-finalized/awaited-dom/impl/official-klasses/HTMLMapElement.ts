@@ -6,7 +6,7 @@ import { createSuperHTMLCollection } from '../create';
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMapElement, IHTMLMapElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMapElement, IHTMLMapElementProperties>();
 const HTMLMapElementBaseClass = HTMLMapElementGenerator(HTMLElement);
 
 export default class HTMLMapElement extends HTMLMapElementBaseClass implements IHTMLMapElement {

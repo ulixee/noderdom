@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,14 +8,13 @@ import { ISuperElement } from '../interfaces/super';
 import { IHTMLCollectionBaseProperties, HTMLCollectionBasePropertyKeys, HTMLCollectionBaseConstantKeys } from './HTMLCollectionBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLCollection, IHTMLCollectionProperties>();
+export const { getState, setState } = StateMachine<IHTMLCollection, IHTMLCollectionProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLCollection>('HTMLCollection', getState, setState);
 
 export function HTMLCollectionGenerator(HTMLCollectionBase: Constructable<IHTMLCollectionBase>) {
   return class HTMLCollection extends HTMLCollectionBase implements IHTMLCollection {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLCollection>(this, HTMLCollectionConstantKeys, HTMLCollectionPropertyKeys);
       // proxy supports indexed property access
       const proxy = new Proxy(this, {
         get(target, prop) {
@@ -27,11 +26,12 @@ export function HTMLCollectionGenerator(HTMLCollectionBase: Constructable<IHTMLC
           }
 
           // delegate to string indexer
-          return target.namedItem(prop as string);
+          if(typeof prop === 'string') {
+            return target.namedItem(prop as string);
+          }
         },
       });
 
-      recordProxy(proxy, this);
       return proxy;
     }
 
@@ -42,6 +42,10 @@ export function HTMLCollectionGenerator(HTMLCollectionBase: Constructable<IHTMLC
     }
 
 
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLCollectionPropertyKeys, HTMLCollectionConstantKeys);
+    }
   };
 }
 

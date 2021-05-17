@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLModElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLModElement, IHTMLModElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLModElement, IHTMLModElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLModElement>('HTMLModElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLModElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLModElementGenerator(HTMLElement: Constructable<IHTMLElement>
   return class HTMLModElement extends HTMLElement implements IHTMLModElement, PromiseLike<IHTMLModElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLModElement>(this, HTMLModElementConstantKeys, HTMLModElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLModElement',
       });
@@ -34,6 +33,10 @@ export function HTMLModElementGenerator(HTMLElement: Constructable<IHTMLElement>
 
     public then<TResult1 = IHTMLModElement, TResult2 = never>(onfulfilled?: ((value: IHTMLModElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLModElementPropertyKeys, HTMLModElementConstantKeys);
     }
   };
 }

@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLButtonElement, IHTMLButtonElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLButtonElement, IHTMLButtonElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLButtonElement>('HTMLButtonElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLButtonElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLButtonElementGenerator(HTMLElement: Constructable<IHTMLEleme
   return class HTMLButtonElement extends HTMLElement implements IHTMLButtonElement, PromiseLike<IHTMLButtonElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLButtonElement>(this, HTMLButtonElementConstantKeys, HTMLButtonElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLButtonElement',
       });
@@ -97,6 +96,10 @@ export function HTMLButtonElementGenerator(HTMLElement: Constructable<IHTMLEleme
 
     public then<TResult1 = IHTMLButtonElement, TResult2 = never>(onfulfilled?: ((value: IHTMLButtonElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLButtonElementPropertyKeys, HTMLButtonElementConstantKeys);
     }
   };
 }

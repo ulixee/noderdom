@@ -4,7 +4,7 @@ import { HTMLDocumentGenerator, IHTMLDocumentProperties } from '../../base/offic
 import Document from './Document';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLDocument, IHTMLDocumentProperties>();
+export const { getState, setState } = StateMachine<IHTMLDocument, IHTMLDocumentProperties>();
 const HTMLDocumentBaseClass = HTMLDocumentGenerator(Document);
 
 export default class HTMLDocument extends HTMLDocumentBaseClass implements IHTMLDocument {

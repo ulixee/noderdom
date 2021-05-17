@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLFieldSetElement, IHTMLFieldSetElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLFieldSetElement, IHTMLFieldSetElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLFieldSetElement>('HTMLFieldSetElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLFieldSetElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLFieldSetElementGenerator(HTMLElement: Constructable<IHTMLEle
   return class HTMLFieldSetElement extends HTMLElement implements IHTMLFieldSetElement, PromiseLike<IHTMLFieldSetElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLFieldSetElement>(this, HTMLFieldSetElementConstantKeys, HTMLFieldSetElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLFieldSetElement',
       });
@@ -69,6 +68,10 @@ export function HTMLFieldSetElementGenerator(HTMLElement: Constructable<IHTMLEle
 
     public then<TResult1 = IHTMLFieldSetElement, TResult2 = never>(onfulfilled?: ((value: IHTMLFieldSetElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLFieldSetElementPropertyKeys, HTMLFieldSetElementConstantKeys);
     }
   };
 }

@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IHTMLAudioElement, IHTMLMediaElement } from '../interfaces/official';
 import { IHTMLMediaElementProperties } from './HTMLMediaElement';
-export declare const getState: (instance: IHTMLAudioElement) => IHTMLAudioElementProperties, setState: (instance: IHTMLAudioElement, properties: Partial<IHTMLAudioElementProperties>) => void, recordProxy: (proxy: IHTMLAudioElement, instance: IHTMLAudioElement) => void;
+export declare const getState: (instance: IHTMLAudioElement) => IHTMLAudioElementProperties, setState: (instance: IHTMLAudioElement, properties: Partial<IHTMLAudioElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLAudioElement>;
 export declare function HTMLAudioElementGenerator(HTMLMediaElement: Constructable<IHTMLMediaElement>): {
     new (): {

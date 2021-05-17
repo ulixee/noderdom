@@ -1,6 +1,6 @@
 import { IHTMLTitleElement } from '../../base/interfaces/official';
 import { IHTMLTitleElementProperties } from '../../base/official-klasses/HTMLTitleElement';
-export declare const getState: (instance: IHTMLTitleElement) => IHTMLTitleElementProperties, setState: (instance: IHTMLTitleElement, properties: Partial<IHTMLTitleElementProperties>) => void, recordProxy: (proxy: IHTMLTitleElement, instance: IHTMLTitleElement) => void;
+export declare const getState: (instance: IHTMLTitleElement) => IHTMLTitleElementProperties, setState: (instance: IHTMLTitleElement, properties: Partial<IHTMLTitleElementProperties>) => void;
 declare const HTMLTitleElementBaseClass: {
     new (): {
         readonly text: Promise<string>;

@@ -5,7 +5,7 @@ import { ITextIsolate } from '../interfaces/isolate';
 import { ISuperText } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ITextIsolate, ITextIsolateProperties>();
+export const { getState, setState } = StateMachine<ITextIsolate, ITextIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<ITextIsolate>('TextIsolate', getState, setState);
 
 export default class TextIsolate implements ITextIsolate {

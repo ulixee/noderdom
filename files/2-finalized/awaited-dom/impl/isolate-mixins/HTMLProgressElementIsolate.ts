@@ -5,7 +5,7 @@ import HTMLProgressElementIsolateBase, { IHTMLProgressElementIsolateProperties }
 import { createSuperNodeList } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLProgressElementIsolate, IHTMLProgressElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLProgressElementIsolate, IHTMLProgressElementIsolateProperties>();
 
 export default class HTMLProgressElementIsolate extends HTMLProgressElementIsolateBase implements IHTMLProgressElementIsolate {
   public get labels(): ISuperNodeList {

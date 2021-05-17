@@ -1,7 +1,7 @@
 import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IMediaError } from '../interfaces/official';
-export declare const getState: (instance: IMediaError) => IMediaErrorProperties, setState: (instance: IMediaError, properties: Partial<IMediaErrorProperties>) => void, recordProxy: (proxy: IMediaError, instance: IMediaError) => void;
+export declare const getState: (instance: IMediaError) => IMediaErrorProperties, setState: (instance: IMediaError, properties: Partial<IMediaErrorProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IMediaError>;
 export declare function MediaErrorGenerator(): {
     new (): {

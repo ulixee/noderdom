@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
@@ -86,7 +86,7 @@ import { IParentNodeProperties, ParentNodePropertyKeys, ParentNodeConstantKeys }
 import { ISlotableProperties, SlotablePropertyKeys, SlotableConstantKeys } from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ISuperElement, ISuperElementProperties>();
+export const { getState, setState } = StateMachine<ISuperElement, ISuperElementProperties>();
 export const awaitedHandler = new AwaitedHandler<ISuperElement>('SuperElement', getState, setState);
 export const nodeFactory = new NodeFactory<ISuperElement>(getState, setState, awaitedHandler);
 
@@ -96,7 +96,6 @@ export function SuperElementGenerator(ElementCSSInlineStyle: Constructable<IElem
   return class SuperElement extends Parent implements ISuperElement, PromiseLike<ISuperElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<SuperElement>(this, SuperElementConstantKeys, SuperElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createSuperElement',
       });
@@ -268,6 +267,10 @@ export function SuperElementGenerator(ElementCSSInlineStyle: Constructable<IElem
 
     public then<TResult1 = ISuperElement, TResult2 = never>(onfulfilled?: ((value: ISuperElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, SuperElementPropertyKeys, SuperElementConstantKeys);
     }
   };
 }

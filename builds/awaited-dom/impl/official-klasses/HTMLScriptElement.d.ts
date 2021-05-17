@@ -1,6 +1,6 @@
 import { IHTMLScriptElement } from '../../base/interfaces/official';
 import { IHTMLScriptElementProperties } from '../../base/official-klasses/HTMLScriptElement';
-export declare const getState: (instance: IHTMLScriptElement) => IHTMLScriptElementProperties, setState: (instance: IHTMLScriptElement, properties: Partial<IHTMLScriptElementProperties>) => void, recordProxy: (proxy: IHTMLScriptElement, instance: IHTMLScriptElement) => void;
+export declare const getState: (instance: IHTMLScriptElement) => IHTMLScriptElementProperties, setState: (instance: IHTMLScriptElement, properties: Partial<IHTMLScriptElementProperties>) => void;
 declare const HTMLScriptElementBaseClass: {
     new (): {
         readonly async: Promise<boolean>;

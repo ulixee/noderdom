@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import { IHTMLFormControlsCollection, IHTMLCollectionBase, IRadioNodeList } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
 import { IHTMLCollectionBaseProperties } from './HTMLCollectionBase';
-export declare const getState: (instance: IHTMLFormControlsCollection) => IHTMLFormControlsCollectionProperties, setState: (instance: IHTMLFormControlsCollection, properties: Partial<IHTMLFormControlsCollectionProperties>) => void, recordProxy: (proxy: IHTMLFormControlsCollection, instance: IHTMLFormControlsCollection) => void;
+export declare const getState: (instance: IHTMLFormControlsCollection) => IHTMLFormControlsCollectionProperties, setState: (instance: IHTMLFormControlsCollection, properties: Partial<IHTMLFormControlsCollectionProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFormControlsCollection>;
 export declare function HTMLFormControlsCollectionGenerator(HTMLCollectionBase: Constructable<IHTMLCollectionBase>): {
     new (): {
@@ -12,7 +12,7 @@ export declare function HTMLFormControlsCollectionGenerator(HTMLCollectionBase: 
         namedItem(name: string): Promise<IRadioNodeList | ISuperElement | null>;
         readonly length: Promise<number>;
         item(index: number): ISuperElement;
-        [Symbol.iterator](): IterableIterator<ISuperElement>;
+        [Symbol.iterator](): Iterator<ISuperElement, any, undefined>;
     };
 };
 export interface IHTMLFormControlsCollectionProperties extends IHTMLCollectionBaseProperties {

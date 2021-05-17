@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMapElement, IHTMLMapElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLMapElement, IHTMLMapElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLMapElement>('HTMLMapElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLMapElement>(getState, setState, awaitedHandler);
 
@@ -17,7 +17,6 @@ export function HTMLMapElementGenerator(HTMLElement: Constructable<IHTMLElement>
   return class HTMLMapElement extends HTMLElement implements IHTMLMapElement, PromiseLike<IHTMLMapElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLMapElement>(this, HTMLMapElementConstantKeys, HTMLMapElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLMapElement',
       });
@@ -35,6 +34,10 @@ export function HTMLMapElementGenerator(HTMLElement: Constructable<IHTMLElement>
 
     public then<TResult1 = IHTMLMapElement, TResult2 = never>(onfulfilled?: ((value: IHTMLMapElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLMapElementPropertyKeys, HTMLMapElementConstantKeys);
     }
   };
 }

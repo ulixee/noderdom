@@ -5,7 +5,7 @@ import HTMLElement from './HTMLElement';
 import LinkStyle from '../official-mixins/LinkStyle';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLStyleElement, IHTMLStyleElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLStyleElement, IHTMLStyleElementProperties>();
 const HTMLStyleElementBaseClass = HTMLStyleElementGenerator(HTMLElement, LinkStyle);
 
 export default class HTMLStyleElement extends HTMLStyleElementBaseClass implements IHTMLStyleElement {

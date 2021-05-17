@@ -6,7 +6,7 @@ import NodeFactory from '../NodeFactory';
 import { IHTMLSelectElement, IHTMLElement, IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void, recordProxy: (proxy: IHTMLSelectElement, instance: IHTMLSelectElement) => void;
+export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSelectElement>;
 export declare const nodeFactory: NodeFactory<IHTMLSelectElement>;
 export declare const awaitedIterator: AwaitedIterator<IHTMLSelectElement, ISuperElement>;
@@ -36,7 +36,7 @@ export declare function HTMLSelectElementGenerator(HTMLElement: Constructable<IH
         namedItem(name: string): IHTMLOptionElement;
         reportValidity(): Promise<boolean>;
         then<TResult1 = IHTMLSelectElement, TResult2 = never>(onfulfilled?: ((value: IHTMLSelectElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
-        [Symbol.iterator](): IterableIterator<ISuperElement>;
+        [Symbol.iterator](): Iterator<ISuperElement>;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;
         readonly dir: Promise<string>;

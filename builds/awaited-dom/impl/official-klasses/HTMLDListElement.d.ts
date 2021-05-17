@@ -1,6 +1,6 @@
 import { IHTMLDListElement } from '../../base/interfaces/official';
 import { IHTMLDListElementProperties } from '../../base/official-klasses/HTMLDListElement';
-export declare const getState: (instance: IHTMLDListElement) => IHTMLDListElementProperties, setState: (instance: IHTMLDListElement, properties: Partial<IHTMLDListElementProperties>) => void, recordProxy: (proxy: IHTMLDListElement, instance: IHTMLDListElement) => void;
+export declare const getState: (instance: IHTMLDListElement) => IHTMLDListElementProperties, setState: (instance: IHTMLDListElement, properties: Partial<IHTMLDListElementProperties>) => void;
 declare const HTMLDListElementBaseClass: {
     new (): {
         readonly compact: Promise<boolean>;

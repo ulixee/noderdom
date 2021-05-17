@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLFrameElementIsolate } from '../interfaces/isolate';
 import { ISuperDocument } from '../interfaces/super';
-export declare const getState: (instance: IHTMLFrameElementIsolate) => IHTMLFrameElementIsolateProperties, setState: (instance: IHTMLFrameElementIsolate, properties: Partial<IHTMLFrameElementIsolateProperties>) => void, recordProxy: (proxy: IHTMLFrameElementIsolate, instance: IHTMLFrameElementIsolate) => void;
+export declare const getState: (instance: IHTMLFrameElementIsolate) => IHTMLFrameElementIsolateProperties, setState: (instance: IHTMLFrameElementIsolate, properties: Partial<IHTMLFrameElementIsolateProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLFrameElementIsolate>;
 export default class HTMLFrameElementIsolate implements IHTMLFrameElementIsolate {
     get contentDocument(): ISuperDocument;

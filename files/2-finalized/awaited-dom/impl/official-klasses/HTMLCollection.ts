@@ -6,7 +6,7 @@ import { createSuperElement } from '../create';
 import HTMLCollectionBase from './HTMLCollectionBase';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLCollection, IHTMLCollectionProperties>();
+export const { getState, setState } = StateMachine<IHTMLCollection, IHTMLCollectionProperties>();
 const HTMLCollectionBaseClass = HTMLCollectionGenerator(HTMLCollectionBase);
 
 export default class HTMLCollection extends HTMLCollectionBaseClass implements IHTMLCollection {

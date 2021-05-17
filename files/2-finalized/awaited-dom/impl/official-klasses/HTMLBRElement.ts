@@ -4,7 +4,7 @@ import { HTMLBRElementGenerator, IHTMLBRElementProperties } from '../../base/off
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLBRElement, IHTMLBRElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLBRElement, IHTMLBRElementProperties>();
 const HTMLBRElementBaseClass = HTMLBRElementGenerator(HTMLElement);
 
 export default class HTMLBRElement extends HTMLBRElementBaseClass implements IHTMLBRElement {

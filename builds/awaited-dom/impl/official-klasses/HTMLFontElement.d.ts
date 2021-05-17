@@ -1,6 +1,6 @@
 import { IHTMLFontElement } from '../../base/interfaces/official';
 import { IHTMLFontElementProperties } from '../../base/official-klasses/HTMLFontElement';
-export declare const getState: (instance: IHTMLFontElement) => IHTMLFontElementProperties, setState: (instance: IHTMLFontElement, properties: Partial<IHTMLFontElementProperties>) => void, recordProxy: (proxy: IHTMLFontElement, instance: IHTMLFontElement) => void;
+export declare const getState: (instance: IHTMLFontElement) => IHTMLFontElementProperties, setState: (instance: IHTMLFontElement, properties: Partial<IHTMLFontElementProperties>) => void;
 declare const HTMLFontElementBaseClass: {
     new (): {
         readonly color: Promise<string>;

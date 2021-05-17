@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,13 +7,12 @@ import { IAbstractRange } from '../interfaces/official';
 import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IAbstractRange, IAbstractRangeProperties>();
+export const { getState, setState } = StateMachine<IAbstractRange, IAbstractRangeProperties>();
 export const awaitedHandler = new AwaitedHandler<IAbstractRange>('AbstractRange', getState, setState);
 
 export function AbstractRangeGenerator() {
   return class AbstractRange implements IAbstractRange {
     constructor() {
-      initializeConstantsAndProperties<AbstractRange>(this, AbstractRangeConstantKeys, AbstractRangePropertyKeys);
     }
 
     // properties
@@ -36,6 +35,10 @@ export function AbstractRangeGenerator() {
 
     public get startOffset(): Promise<number> {
       return awaitedHandler.getProperty<number>(this, 'startOffset', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, AbstractRangePropertyKeys, AbstractRangeConstantKeys);
     }
   };
 }

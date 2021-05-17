@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLTitleElementIsolate } from '../interfaces/isolate';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLTitleElementIsolate, IHTMLTitleElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLTitleElementIsolate, IHTMLTitleElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLTitleElementIsolate>('HTMLTitleElementIsolate', getState, setState);
 
 export default class HTMLTitleElementIsolate implements IHTMLTitleElementIsolate {

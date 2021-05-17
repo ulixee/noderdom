@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -7,14 +7,13 @@ import { IResponse, IBody, IBodyInit, IResponseInit, IHeaders, IResponseType } f
 import { IBodyProperties, BodyPropertyKeys, BodyConstantKeys } from '../official-mixins/Body';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IResponse, IResponseProperties>();
+export const { getState, setState } = StateMachine<IResponse, IResponseProperties>();
 export const awaitedHandler = new AwaitedHandler<IResponse>('Response', getState, setState);
 
 export function ResponseGenerator(Body: Constructable<IBody>) {
   return class Response extends Body implements IResponse {
     constructor(_body?: IBodyInit | null, _init?: IResponseInit) {
       super(_body, _init);
-      initializeConstantsAndProperties<Response>(this, ResponseConstantKeys, ResponsePropertyKeys);
     }
 
     // properties
@@ -45,6 +44,10 @@ export function ResponseGenerator(Body: Constructable<IBody>) {
 
     public get url(): Promise<string> {
       return awaitedHandler.getProperty<string>(this, 'url', false);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, ResponsePropertyKeys, ResponseConstantKeys);
     }
   };
 }

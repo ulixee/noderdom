@@ -1,6 +1,6 @@
 import { ISuperNodeList, ISuperNode } from '../../base/interfaces/super';
 import { ISuperNodeListProperties } from '../../base/super-klasses/SuperNodeList';
-export declare const getState: (instance: ISuperNodeList) => ISuperNodeListProperties, setState: (instance: ISuperNodeList, properties: Partial<ISuperNodeListProperties>) => void, recordProxy: (proxy: ISuperNodeList, instance: ISuperNodeList) => void;
+export declare const getState: (instance: ISuperNodeList) => ISuperNodeListProperties, setState: (instance: ISuperNodeList, properties: Partial<ISuperNodeListProperties>) => void;
 declare const SuperNodeListBaseClass: {
     new (): {
         [index: number]: ISuperNode;
@@ -11,7 +11,7 @@ declare const SuperNodeListBaseClass: {
         entries(): Promise<IterableIterator<[number, ISuperNode]>>;
         keys(): Promise<IterableIterator<number>>;
         values(): Promise<IterableIterator<ISuperNode>>;
-        [Symbol.iterator](): IterableIterator<ISuperNode>;
+        [Symbol.iterator](): Iterator<ISuperNode, any, undefined>;
         readonly value: Promise<string>;
     };
 };

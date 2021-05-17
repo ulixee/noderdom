@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IHTMLScriptElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLScriptElement, IHTMLScriptElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLScriptElement, IHTMLScriptElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLScriptElement>('HTMLScriptElement', getState, setState);
 export const nodeFactory = new NodeFactory<IHTMLScriptElement>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function HTMLScriptElementGenerator(HTMLElement: Constructable<IHTMLEleme
   return class HTMLScriptElement extends HTMLElement implements IHTMLScriptElement, PromiseLike<IHTMLScriptElement> {
     constructor() {
       super();
-      initializeConstantsAndProperties<HTMLScriptElement>(this, HTMLScriptElementConstantKeys, HTMLScriptElementPropertyKeys);
       setState(this, {
         createInstanceName: 'createHTMLScriptElement',
       });
@@ -66,6 +65,10 @@ export function HTMLScriptElementGenerator(HTMLElement: Constructable<IHTMLEleme
 
     public then<TResult1 = IHTMLScriptElement, TResult2 = never>(onfulfilled?: ((value: IHTMLScriptElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, HTMLScriptElementPropertyKeys, HTMLScriptElementConstantKeys);
     }
   };
 }

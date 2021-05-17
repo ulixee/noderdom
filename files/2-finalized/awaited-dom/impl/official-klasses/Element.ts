@@ -9,7 +9,7 @@ import ParentNode from '../official-mixins/ParentNode';
 import Slotable from '../official-mixins/Slotable';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IElement, IElementProperties>();
+export const { getState, setState } = StateMachine<IElement, IElementProperties>();
 const ElementBaseClass = ElementGenerator(Node, NonDocumentTypeChildNode, ParentNode, Slotable);
 
 export default class Element extends ElementBaseClass implements IElement {

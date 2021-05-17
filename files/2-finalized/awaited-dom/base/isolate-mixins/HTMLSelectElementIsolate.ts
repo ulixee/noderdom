@@ -7,7 +7,7 @@ import { IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionEl
 import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLSelectElementIsolate, IHTMLSelectElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLSelectElementIsolate, IHTMLSelectElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLSelectElementIsolate>('HTMLSelectElementIsolate', getState, setState);
 export const awaitedIterator = new AwaitedIterator<IHTMLSelectElementIsolate, ISuperElement>(getState, setState, awaitedHandler);
 
@@ -102,8 +102,8 @@ export default class HTMLSelectElementIsolate implements IHTMLSelectElementIsola
     return awaitedHandler.runMethod<boolean>(this, 'reportValidity', []);
   }
 
-  public [Symbol.iterator](): IterableIterator<ISuperElement> {
-    return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+  public [Symbol.iterator](): Iterator<ISuperElement> {
+    return awaitedIterator.iterateNodePointers(this);
   }
 
   [index: number]: ISuperElement;

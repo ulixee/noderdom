@@ -4,7 +4,7 @@ import AwaitedIterator from '../AwaitedIterator';
 import NodeFactory from '../NodeFactory';
 import { IHTMLCollectionBase } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
-export declare const getState: (instance: IHTMLCollectionBase) => IHTMLCollectionBaseProperties, setState: (instance: IHTMLCollectionBase, properties: Partial<IHTMLCollectionBaseProperties>) => void, recordProxy: (proxy: IHTMLCollectionBase, instance: IHTMLCollectionBase) => void;
+export declare const getState: (instance: IHTMLCollectionBase) => IHTMLCollectionBaseProperties, setState: (instance: IHTMLCollectionBase, properties: Partial<IHTMLCollectionBaseProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLCollectionBase>;
 export declare const nodeFactory: NodeFactory<IHTMLCollectionBase>;
 export declare const awaitedIterator: AwaitedIterator<IHTMLCollectionBase, ISuperElement>;
@@ -14,7 +14,7 @@ export declare function HTMLCollectionBaseGenerator(): {
         readonly length: Promise<number>;
         item(index: number): ISuperElement;
         then<TResult1 = IHTMLCollectionBase, TResult2 = never>(onfulfilled?: ((value: IHTMLCollectionBase) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
-        [Symbol.iterator](): IterableIterator<ISuperElement>;
+        [Symbol.iterator](): Iterator<ISuperElement>;
     };
 };
 export interface IHTMLCollectionBaseProperties {

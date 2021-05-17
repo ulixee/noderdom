@@ -5,7 +5,7 @@ import HTMLCanvasElementIsolateBase, { IHTMLCanvasElementIsolateProperties } fro
 import { createMediaStream, createOffscreenCanvas } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLCanvasElementIsolate, IHTMLCanvasElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLCanvasElementIsolate, IHTMLCanvasElementIsolateProperties>();
 
 export default class HTMLCanvasElementIsolate extends HTMLCanvasElementIsolateBase implements IHTMLCanvasElementIsolate {
   public captureStream(frameRequestRate?: number): IMediaStream {

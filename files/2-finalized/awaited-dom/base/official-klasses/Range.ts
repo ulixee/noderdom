@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -9,7 +9,7 @@ import { INodeIsolate } from '../interfaces/isolate';
 import { IAbstractRangeProperties, AbstractRangePropertyKeys, AbstractRangeConstantKeys } from './AbstractRange';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IRange, IRangeProperties>();
+export const { getState, setState } = StateMachine<IRange, IRangeProperties>();
 export const awaitedHandler = new AwaitedHandler<IRange>('Range', getState, setState);
 
 export function RangeGenerator(AbstractRange: Constructable<IAbstractRange>) {
@@ -25,7 +25,6 @@ export function RangeGenerator(AbstractRange: Constructable<IAbstractRange>) {
     public readonly START_TO_START: number = 0;
     constructor() {
       super();
-      initializeConstantsAndProperties<Range>(this, RangeConstantKeys, RangePropertyKeys);
     }
 
     // properties
@@ -130,6 +129,10 @@ export function RangeGenerator(AbstractRange: Constructable<IAbstractRange>) {
 
     public toString(): Promise<string> {
       return awaitedHandler.runMethod<string>(this, 'toString', []);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, RangePropertyKeys, RangeConstantKeys);
     }
   };
 }

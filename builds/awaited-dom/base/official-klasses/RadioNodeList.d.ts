@@ -3,7 +3,7 @@ import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import { IRadioNodeList, INodeList } from '../interfaces/official';
 import { INodeListProperties } from './NodeList';
-export declare const getState: (instance: IRadioNodeList) => IRadioNodeListProperties, setState: (instance: IRadioNodeList, properties: Partial<IRadioNodeListProperties>) => void, recordProxy: (proxy: IRadioNodeList, instance: IRadioNodeList) => void;
+export declare const getState: (instance: IRadioNodeList) => IRadioNodeListProperties, setState: (instance: IRadioNodeList, properties: Partial<IRadioNodeListProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IRadioNodeList>;
 export declare function RadioNodeListGenerator(NodeList: Constructable<INodeList>): {
     new (): {
@@ -15,7 +15,7 @@ export declare function RadioNodeListGenerator(NodeList: Constructable<INodeList
         entries(): Promise<IterableIterator<[number, import("../interfaces/super").ISuperNode]>>;
         keys(): Promise<IterableIterator<number>>;
         values(): Promise<IterableIterator<import("../interfaces/super").ISuperNode>>;
-        [Symbol.iterator](): IterableIterator<import("../interfaces/super").ISuperNode>;
+        [Symbol.iterator](): Iterator<import("../interfaces/super").ISuperNode, any, undefined>;
     };
 };
 export interface IRadioNodeListProperties extends INodeListProperties {

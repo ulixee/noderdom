@@ -6,7 +6,7 @@ import { createHTMLFormElement, createSuperNodeList, createHTMLOptionsCollection
 import HTMLElement from './HTMLElement';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLSelectElement, IHTMLSelectElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLSelectElement, IHTMLSelectElementProperties>();
 const HTMLSelectElementBaseClass = HTMLSelectElementGenerator(HTMLElement);
 
 export default class HTMLSelectElement extends HTMLSelectElementBaseClass implements IHTMLSelectElement {

@@ -4,7 +4,7 @@ import AwaitedPath from '../AwaitedPath';
 import { IHTMLOrSVGElement } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLOrSVGElement, IHTMLOrSVGElementProperties>();
+export const { getState, setState } = StateMachine<IHTMLOrSVGElement, IHTMLOrSVGElementProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLOrSVGElement>('HTMLOrSVGElement', getState, setState);
 
 export default class HTMLOrSVGElement implements IHTMLOrSVGElement {

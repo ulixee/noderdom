@@ -1,6 +1,6 @@
 import { IHTMLAreaElement, IDOMTokenList } from '../../base/interfaces/official';
 import { IHTMLAreaElementProperties } from '../../base/official-klasses/HTMLAreaElement';
-export declare const getState: (instance: IHTMLAreaElement) => IHTMLAreaElementProperties, setState: (instance: IHTMLAreaElement, properties: Partial<IHTMLAreaElementProperties>) => void, recordProxy: (proxy: IHTMLAreaElement, instance: IHTMLAreaElement) => void;
+export declare const getState: (instance: IHTMLAreaElement) => IHTMLAreaElementProperties, setState: (instance: IHTMLAreaElement, properties: Partial<IHTMLAreaElementProperties>) => void;
 declare const HTMLAreaElementBaseClass: {
     new (): {
         readonly alt: Promise<string>;

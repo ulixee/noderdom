@@ -1,6 +1,6 @@
 import { IHTMLTemplateElement, IDocumentFragment } from '../../base/interfaces/official';
 import { IHTMLTemplateElementProperties } from '../../base/official-klasses/HTMLTemplateElement';
-export declare const getState: (instance: IHTMLTemplateElement) => IHTMLTemplateElementProperties, setState: (instance: IHTMLTemplateElement, properties: Partial<IHTMLTemplateElementProperties>) => void, recordProxy: (proxy: IHTMLTemplateElement, instance: IHTMLTemplateElement) => void;
+export declare const getState: (instance: IHTMLTemplateElement) => IHTMLTemplateElementProperties, setState: (instance: IHTMLTemplateElement, properties: Partial<IHTMLTemplateElementProperties>) => void;
 declare const HTMLTemplateElementBaseClass: {
     new (): {
         readonly content: IDocumentFragment;

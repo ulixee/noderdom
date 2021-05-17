@@ -1,7 +1,7 @@
 import { IAttr } from '../../base/interfaces/official';
 import { ISuperElement } from '../../base/interfaces/super';
 import { IAttrProperties } from '../../base/official-klasses/Attr';
-export declare const getState: (instance: IAttr) => IAttrProperties, setState: (instance: IAttr, properties: Partial<IAttrProperties>) => void, recordProxy: (proxy: IAttr, instance: IAttr) => void;
+export declare const getState: (instance: IAttr) => IAttrProperties, setState: (instance: IAttr, properties: Partial<IAttrProperties>) => void;
 declare const AttrBaseClass: {
     new (): {
         readonly localName: Promise<string>;

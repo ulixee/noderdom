@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import { IDocumentType, INode } from '../interfaces/official';
 import { INodeProperties, NodePropertyKeys, NodeConstantKeys } from './Node';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IDocumentType, IDocumentTypeProperties>();
+export const { getState, setState } = StateMachine<IDocumentType, IDocumentTypeProperties>();
 export const awaitedHandler = new AwaitedHandler<IDocumentType>('DocumentType', getState, setState);
 export const nodeFactory = new NodeFactory<IDocumentType>(getState, setState, awaitedHandler);
 
@@ -16,7 +16,6 @@ export function DocumentTypeGenerator(Node: Constructable<INode>) {
   return class DocumentType extends Node implements IDocumentType, PromiseLike<IDocumentType> {
     constructor() {
       super();
-      initializeConstantsAndProperties<DocumentType>(this, DocumentTypeConstantKeys, DocumentTypePropertyKeys);
       setState(this, {
         createInstanceName: 'createDocumentType',
       });
@@ -38,6 +37,10 @@ export function DocumentTypeGenerator(Node: Constructable<INode>) {
 
     public then<TResult1 = IDocumentType, TResult2 = never>(onfulfilled?: ((value: IDocumentType) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, DocumentTypePropertyKeys, DocumentTypeConstantKeys);
     }
   };
 }

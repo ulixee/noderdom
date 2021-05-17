@@ -1,6 +1,6 @@
 import { IHTMLDialogElement } from '../../base/interfaces/official';
 import { IHTMLDialogElementProperties } from '../../base/official-klasses/HTMLDialogElement';
-export declare const getState: (instance: IHTMLDialogElement) => IHTMLDialogElementProperties, setState: (instance: IHTMLDialogElement, properties: Partial<IHTMLDialogElementProperties>) => void, recordProxy: (proxy: IHTMLDialogElement, instance: IHTMLDialogElement) => void;
+export declare const getState: (instance: IHTMLDialogElement) => IHTMLDialogElementProperties, setState: (instance: IHTMLDialogElement, properties: Partial<IHTMLDialogElementProperties>) => void;
 declare const HTMLDialogElementBaseClass: {
     new (): {
         readonly open: Promise<boolean>;

@@ -5,7 +5,7 @@ import HTMLMapElementIsolateBase, { IHTMLMapElementIsolateProperties } from '../
 import { createSuperHTMLCollection } from '../create';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLMapElementIsolate, IHTMLMapElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLMapElementIsolate, IHTMLMapElementIsolateProperties>();
 
 export default class HTMLMapElementIsolate extends HTMLMapElementIsolateBase implements IHTMLMapElementIsolate {
   public get areas(): ISuperHTMLCollection {

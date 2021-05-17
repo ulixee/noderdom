@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
 import { IHTMLOptGroupElement, IHTMLElement } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
-export declare const getState: (instance: IHTMLOptGroupElement) => IHTMLOptGroupElementProperties, setState: (instance: IHTMLOptGroupElement, properties: Partial<IHTMLOptGroupElementProperties>) => void, recordProxy: (proxy: IHTMLOptGroupElement, instance: IHTMLOptGroupElement) => void;
+export declare const getState: (instance: IHTMLOptGroupElement) => IHTMLOptGroupElementProperties, setState: (instance: IHTMLOptGroupElement, properties: Partial<IHTMLOptGroupElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLOptGroupElement>;
 export declare const nodeFactory: NodeFactory<IHTMLOptGroupElement>;
 export declare function HTMLOptGroupElementGenerator(HTMLElement: Constructable<IHTMLElement>): {

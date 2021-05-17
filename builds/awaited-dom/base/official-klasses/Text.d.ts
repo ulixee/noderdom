@@ -5,7 +5,7 @@ import { IText, ICharacterData, ISlotable } from '../interfaces/official';
 import { ISuperText } from '../interfaces/super';
 import { ICharacterDataProperties } from './CharacterData';
 import { ISlotableProperties } from '../official-mixins/Slotable';
-export declare const getState: (instance: IText) => ITextProperties, setState: (instance: IText, properties: Partial<ITextProperties>) => void, recordProxy: (proxy: IText, instance: IText) => void;
+export declare const getState: (instance: IText) => ITextProperties, setState: (instance: IText, properties: Partial<ITextProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IText>;
 export declare function TextGenerator(CharacterData: Constructable<ICharacterData>, Slotable: Constructable<ISlotable>): {
     new (_data?: string | undefined): {

@@ -5,7 +5,7 @@ import { IHTMLProgressElementIsolate } from '../interfaces/isolate';
 import { ISuperNodeList } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLProgressElementIsolate, IHTMLProgressElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLProgressElementIsolate, IHTMLProgressElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLProgressElementIsolate>('HTMLProgressElementIsolate', getState, setState);
 
 export default class HTMLProgressElementIsolate implements IHTMLProgressElementIsolate {

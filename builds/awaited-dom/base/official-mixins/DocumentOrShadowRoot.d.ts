@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import { IDocumentOrShadowRoot, ICaretPosition, ISelection } from '../interfaces/official';
 import { ISuperElement } from '../interfaces/super';
-export declare const getState: (instance: IDocumentOrShadowRoot) => IDocumentOrShadowRootProperties, setState: (instance: IDocumentOrShadowRoot, properties: Partial<IDocumentOrShadowRootProperties>) => void, recordProxy: (proxy: IDocumentOrShadowRoot, instance: IDocumentOrShadowRoot) => void;
+export declare const getState: (instance: IDocumentOrShadowRoot) => IDocumentOrShadowRootProperties, setState: (instance: IDocumentOrShadowRoot, properties: Partial<IDocumentOrShadowRootProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IDocumentOrShadowRoot>;
 export default class DocumentOrShadowRoot implements IDocumentOrShadowRoot {
     get activeElement(): ISuperElement;

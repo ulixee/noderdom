@@ -1,5 +1,5 @@
 import AwaitedHandler from '../AwaitedHandler';
-import initializeConstantsAndProperties from '../initializeConstantsAndProperties';
+import inspectInstanceProperties from '../inspectInstanceProperties';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
@@ -8,7 +8,7 @@ import NodeFactory from '../NodeFactory';
 import { ITextTrackCueList, ITextTrackCue } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<ITextTrackCueList, ITextTrackCueListProperties>();
+export const { getState, setState } = StateMachine<ITextTrackCueList, ITextTrackCueListProperties>();
 export const awaitedHandler = new AwaitedHandler<ITextTrackCueList>('TextTrackCueList', getState, setState);
 export const nodeFactory = new NodeFactory<ITextTrackCueList>(getState, setState, awaitedHandler);
 export const awaitedIterator = new AwaitedIterator<ITextTrackCueList, ITextTrackCue>(getState, setState, awaitedHandler);
@@ -16,7 +16,6 @@ export const awaitedIterator = new AwaitedIterator<ITextTrackCueList, ITextTrack
 export function TextTrackCueListGenerator() {
   return class TextTrackCueList implements ITextTrackCueList, PromiseLike<ITextTrackCueList> {
     constructor() {
-      initializeConstantsAndProperties<TextTrackCueList>(this, TextTrackCueListConstantKeys, TextTrackCueListPropertyKeys);
       setState(this, {
         createInstanceName: 'createTextTrackCueList',
         createIterableName: 'createTextTrackCue',
@@ -39,8 +38,12 @@ export function TextTrackCueListGenerator() {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
 
-    public [Symbol.iterator](): IterableIterator<ITextTrackCue> {
-      return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();
+    public [Symbol.iterator](): Iterator<ITextTrackCue> {
+      return awaitedIterator.iterateNodePointers(this);
+    }
+
+    public [Symbol.for('nodejs.util.inspect.custom')]() {
+      return inspectInstanceProperties(this, TextTrackCueListPropertyKeys, TextTrackCueListConstantKeys);
     }
   };
 }

@@ -6,7 +6,7 @@ import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement } from '../in
 import { IGetRootNodeOptions } from '../interfaces/official';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<INodeIsolate, INodeIsolateProperties>();
+export const { getState, setState } = StateMachine<INodeIsolate, INodeIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<INodeIsolate>('NodeIsolate', getState, setState);
 
 export default class NodeIsolate implements INodeIsolate {

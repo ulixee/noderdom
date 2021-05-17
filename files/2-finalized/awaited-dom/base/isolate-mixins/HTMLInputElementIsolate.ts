@@ -6,7 +6,7 @@ import { IFileList, IHTMLFormElement, IValidityState, ISelectionMode } from '../
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
-export const { getState, setState, recordProxy } = StateMachine<IHTMLInputElementIsolate, IHTMLInputElementIsolateProperties>();
+export const { getState, setState } = StateMachine<IHTMLInputElementIsolate, IHTMLInputElementIsolateProperties>();
 export const awaitedHandler = new AwaitedHandler<IHTMLInputElementIsolate>('HTMLInputElementIsolate', getState, setState);
 
 export default class HTMLInputElementIsolate implements IHTMLInputElementIsolate {
