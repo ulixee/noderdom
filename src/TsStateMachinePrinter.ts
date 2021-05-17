@@ -36,7 +36,7 @@ export default class TsStateMachinePrinter {
 
   public printInitializer() {
     const i: Types.Interface = this.i;
-    const vars = ['getState', 'setState', 'recordProxy'];
+    const vars = ['getState', 'setState'];
     this.printer.print(`export const { ${vars.join(', ')} } = StateMachine<I${i.name}, I${i.name}Properties>();`);
   }
 
