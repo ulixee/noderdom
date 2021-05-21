@@ -1,10 +1,12 @@
 import Constructable from './Constructable';
 import INodePointer from './INodePointer';
+import { setStorageSymbol } from './StateMachine';
 
 export class NotImplementedError extends Error {}
 
 export default class AwaitedHandler<TClass> {
   public static delegate: IAwaitedHandlerDelegate;
+
   public readonly getState: any;
   public readonly setState: any;
   public readonly className: string;
@@ -37,6 +39,10 @@ export default class AwaitedHandler<TClass> {
 
   public async runStatic<T>(klass: Constructable<TClass>, name: string, args: any[]): Promise<T> {
     return await AwaitedHandler.delegate?.runStatic(this, klass, name, args);
+  }
+
+  public static setStorageSymbol(storageSymbol: symbol): void {
+    return setStorageSymbol(storageSymbol);
   }
 }
 

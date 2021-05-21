@@ -156,14 +156,14 @@ export default class TsIteratorExtractor {
     const subtypes = this.getIteratorSubtypes();
     const iteratorType = this.stringifySingleOrTupleTypes(subtypes as string[]);
 
-    const returnType = `IterableIterator<${iteratorType}>`;
+    const returnType = `Iterator<${iteratorType}>`;
     if (this.skipImplementation) {
       this.printer.printLine(`[Symbol.iterator](): ${returnType};`);
     } else {
       this.printer.printSeparatorLine();
       this.printer.printLine(`public [Symbol.iterator](): ${returnType} {`);
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(`  return awaitedIterator.iterateNodePointers(this)[Symbol.iterator]();`);
+        this.printer.printLine(`  return awaitedIterator.iterateNodePointers(this);`);
       } else {
         this.printer.printLine(`  // implementation required`);
       }

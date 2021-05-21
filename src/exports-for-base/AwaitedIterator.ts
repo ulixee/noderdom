@@ -19,10 +19,17 @@ export default class AwaitedIterator<TClass, T> {
 
   public async load(instance: TClass): Promise<T[]> {
     const nodePointerInstance = await this.nodeFactory.createInstanceWithNodePointer(instance);
-    return [...this.iterateNodePointers(nodePointerInstance)];
+    const iterator = this.iterateNodePointers(nodePointerInstance);
+    const result = [];
+    let next;
+    while ((next = iterator.next())) {
+      if (next.done) break;
+      result.push(next.value);
+    }
+    return result;
   }
 
-  public *iterateNodePointers(instance: TClass): IterableIterator<T> {
+  public iterateNodePointers(instance: TClass): Iterator<T> {
     const state = this.getState(instance);
     const awaitedPath = state.awaitedPath;
     const nodePointer = this.nodeFactory.getNodePointer(instance);
@@ -35,31 +42,37 @@ export default class AwaitedIterator<TClass, T> {
       throw new Error(`Please add an await to ${awaitedPath.hasNodeId ? 're-' : ''}run this iterator`);
     }
 
-    for (const item of nodePointer.iterableItems) {
-      if (!nodePointer.iterableIsState) {
-        yield item as any;
-        continue;
-      }
-
-      const itemState = item as INodePointer;
-      const { type, id } = itemState;
-      let createChild = AwaitedIterator.creators[state.createIterableName!];
-      if (type) {
-        const dynamicCreator = AwaitedIterator.creators[`create${type}`];
-        if (dynamicCreator) createChild = dynamicCreator;
-      }
-      const awaitedOptions = state.awaitedOptions;
-      const childPath = awaitedPath.withNodeId(instance as any, id);
-      const child = createChild(childPath, awaitedOptions) as T;
-
-      this.setState(child as any, {
-        nodePointer: itemState,
-      });
-      yield child;
-    }
-
-    // clear out iterable ids
-    nodePointer.iterableItems = undefined;
+    let index = 0;
+    const defaultCreateChild = AwaitedIterator.creators[state.createIterableName as string];
+    return {
+      next: (): IteratorResult<T, T> => {
+        if (index < nodePointer.iterableItems!.length) {
+          const value = nodePointer.iterableItems![index];
+          index += 1;
+          if (!nodePointer.iterableIsState) {
+            return { value: value as any, done: false };
+          } else {
+            const { type, id } = value as INodePointer;
+            let createChild = defaultCreateChild;
+            if (type) {
+              const dynamicCreator = AwaitedIterator.creators[`create${type}`];
+              if (dynamicCreator) createChild = dynamicCreator;
+            }
+            const awaitedOptions = state.awaitedOptions;
+            const childPath = awaitedPath.withNodeId(instance as any, id);
+            const child = createChild(childPath, awaitedOptions);
+            this.setState(child, {
+              nodePointer: value as INodePointer,
+            });
+            return { value: child, done: false };
+          }
+        } else {
+          // clear out iterable ids
+          nodePointer.iterableItems = undefined;
+          return { value: undefined as any, done: true };
+        }
+      },
+    };
   }
 }
 

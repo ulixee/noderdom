@@ -116,6 +116,7 @@ export default class TsBodyPrinter {
       this.printIndexers();
     }
 
+    this.printInspect();
     this.printStaticMethods();
   }
 
@@ -165,9 +166,6 @@ export default class TsBodyPrinter {
         this.printer.printLine(`super(${signature ? ParamUtils.paramNames(signature.params!, true).join(', ') : ''});`);
       }
       if (this.buildType === BuildType.base) {
-        this.printer.printLine(
-          `initializeConstantsAndProperties<${i.name}>(this, ${i.name}ConstantKeys, ${i.name}PropertyKeys);`,
-        );
         if (this.i.isAwaitedNodePointer || this.iteratorExtractor.hasIterable()) {
           this.printer.printLine(`setState(this, {`);
           this.printer.increaseIndent();
@@ -210,7 +208,9 @@ export default class TsBodyPrinter {
           if (integerIndexer) {
             this.printer.printLine();
             this.printer.printLine(`// delegate to indexer property`);
-            this.printer.printLine(`if (!isNaN(prop as number)) {`);
+            this.printer.printLine(
+              `if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {`,
+            );
             this.printer.increaseIndent();
             this.printer.printLine(`const param = parseInt(prop as string, 10);`);
             this.printer.printLine(`return target.${integerIndexer.m.name}(param);`);
@@ -220,7 +220,11 @@ export default class TsBodyPrinter {
           if (stringIndexer) {
             this.printer.printLine();
             this.printer.printLine(`// delegate to string indexer`);
+            this.printer.printLine(`if(typeof prop === 'string') {`);
+            this.printer.increaseIndent();
             this.printer.printLine(`return target.${stringIndexer.m.name}(prop as string);`);
+            this.printer.decreaseIndent();
+            this.printer.printLine(`}`);
           }
 
           this.printer.decreaseIndent();
@@ -228,7 +232,6 @@ export default class TsBodyPrinter {
           this.printer.decreaseIndent();
           this.printer.printLine('});');
           this.printer.printLine();
-          this.printer.printLine('recordProxy(proxy, this);');
           this.printer.printLine('return proxy;');
         }
       }
@@ -381,6 +384,20 @@ export default class TsBodyPrinter {
     );
     this.printer.increaseIndent();
     this.printer.printLine(`return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);`);
+    this.printer.decreaseIndent();
+    this.printer.printLine('}');
+  }
+
+  public printInspect() {
+    if (this.buildType !== BuildType.base || this.skipImplementation || this.skipConstructor) return;
+    this.printer.printSeparatorLine();
+
+    this.printer.printLine(`public [Symbol.for('nodejs.util.inspect.custom')]() {`);
+    this.printer.increaseIndent();
+    const i = this.i;
+    this.printer.printLine(
+      `return inspectInstanceProperties(this, ${i.name}PropertyKeys, ${i.name}ConstantKeys);`,
+    );
     this.printer.decreaseIndent();
     this.printer.printLine('}');
   }

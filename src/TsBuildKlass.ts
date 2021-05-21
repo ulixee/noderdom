@@ -189,7 +189,7 @@ export default class TsBuildKlass {
     const isAwaited = this.domType === DomType.awaited;
     const handlerClassName = `${isAwaited ? 'Awaited' : 'Detached'}Handler`;
     printable.push(`import ${handlerClassName} from '${baseDir}/${handlerClassName}';`);
-    printable.push(`import initializeConstantsAndProperties from '${baseDir}/initializeConstantsAndProperties';`);
+    printable.push(`import inspectInstanceProperties from '${baseDir}/inspectInstanceProperties';`);
     printable.push(`import StateMachine from '${baseDir}/StateMachine';`);
     printable.push(`import AwaitedPath from '${baseDir}/AwaitedPath';`);
     if (this.inheritsFrom.length > 1) {
