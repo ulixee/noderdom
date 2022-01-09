@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
-import { IHTMLTextAreaElement, IHTMLElement, IHTMLFormElement, IValidityState } from '../interfaces/official';
+import { IHTMLTextAreaElement, IHTMLElement, IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLTextAreaElement) => IHTMLTextAreaElementProperties, setState: (instance: IHTMLTextAreaElement, properties: Partial<IHTMLTextAreaElementProperties>) => void;
@@ -39,7 +39,7 @@ export declare function HTMLTextAreaElementGenerator(HTMLElement: Constructable<
         reportValidity(): Promise<boolean>;
         select(): Promise<void>;
         setCustomValidity(error: string): Promise<void>;
-        setRangeText(replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined): Promise<void>;
+        setRangeText(replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: ISelectionMode | undefined): Promise<void>;
         setSelectionRange(start: number, end: number, direction?: string | undefined): Promise<void>;
         then<TResult1 = IHTMLTextAreaElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTextAreaElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         readonly accessKey: Promise<string>;

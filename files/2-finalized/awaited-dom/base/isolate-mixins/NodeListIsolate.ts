@@ -23,7 +23,7 @@ export default class NodeListIsolate implements INodeListIsolate {
 
   public async forEach(callbackfn: (value: ISuperNode, key: number, parent: INodeListIsolate) => void, thisArg?: any): Promise<void> {
     for (const [key, value] of await this.entries()) {
-      callbackfn.call(thisArg, value, key, this);
+      await callbackfn.call(thisArg, value, key, this);
     }
   }
 

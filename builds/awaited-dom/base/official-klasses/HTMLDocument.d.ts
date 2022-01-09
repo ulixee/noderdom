@@ -100,12 +100,8 @@ export declare function HTMLDocumentGenerator(Document: Constructable<IDocument>
         readonly lastElementChild: import("../interfaces/super").ISuperElement;
         querySelector(selectors: string): import("../interfaces/super").ISuperElement;
         querySelectorAll(selectors: string): import("../interfaces/super").ISuperNodeList;
-        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined): import("../interfaces/official").IXPathExpression;
-        evaluate(expression: string, contextNode: import("../interfaces/isolate").INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
+        createExpression(expression: string, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined): import("../interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: import("../interfaces/isolate").INodeIsolate, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
 };
 export interface IHTMLDocumentProperties extends IDocumentProperties {

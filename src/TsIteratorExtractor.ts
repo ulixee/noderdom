@@ -187,7 +187,7 @@ export default class TsIteratorExtractor {
       if (this.buildType === BuildType.base) {
         this.printer.increaseIndent();
         this.printer.printLine(`for (const [key, value] of await this.entries()) {`);
-        this.printer.printLine(`  callbackfn.call(thisArg, value, key, this);`);
+        this.printer.printLine(`  await callbackfn.call(thisArg, value, key, this);`);
         this.printer.printLine('}');
         this.printer.decreaseIndent();
       } else {

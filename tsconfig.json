@@ -15,6 +15,8 @@
     /* Strict Type-Checking Options */
     "strict": true /* Enable all strict type-checking options. */,
     "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
     "noUnusedLocals": true /* Report errors on unused locals. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
 

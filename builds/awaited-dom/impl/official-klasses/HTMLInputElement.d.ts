@@ -52,7 +52,7 @@ declare const HTMLInputElementBaseClass: {
         checkValidity(): Promise<boolean>;
         reportValidity(): Promise<boolean>;
         select(): Promise<void>;
-        setRangeText(replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined): Promise<void>;
+        setRangeText(replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: import("../../base/interfaces/official").ISelectionMode | undefined): Promise<void>;
         setSelectionRange(start: number, end: number, direction?: string | undefined): Promise<void>;
         stepDown(n?: number | undefined): Promise<void>;
         stepUp(n?: number | undefined): Promise<void>;

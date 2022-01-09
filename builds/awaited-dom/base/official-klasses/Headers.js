@@ -43,7 +43,7 @@ function HeadersGenerator() {
         }
         async forEach(callbackfn, thisArg) {
             for (const [key, value] of await this.entries()) {
-                callbackfn.call(thisArg, value, key, this);
+                await callbackfn.call(thisArg, value, key, this);
             }
         }
         entries() {

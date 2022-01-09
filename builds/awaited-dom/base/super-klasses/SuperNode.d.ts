@@ -371,7 +371,7 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
         readonly valueAsDate: Promise<any>;
         readonly valueAsNumber: Promise<number>;
         select: (() => Promise<void>) & (() => Promise<void>);
-        setRangeText: ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined) => Promise<void>) & ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined) => Promise<void>);
+        setRangeText: ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: import("../interfaces/official").ISelectionMode | undefined) => Promise<void>) & ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: import("../interfaces/official").ISelectionMode | undefined) => Promise<void>);
         setSelectionRange: ((start: number, end: number, direction?: string | undefined) => Promise<void>) & ((start: number, end: number, direction?: string | undefined) => Promise<void>);
         stepDown(n?: number | undefined): Promise<void>;
         stepUp(n?: number | undefined): Promise<void>;
@@ -509,12 +509,8 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
         readonly assignedSlot: import("../interfaces/official").IHTMLSlotElement;
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<import("../interfaces/super").ISuperText>;
-        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined): import("../interfaces/official").IXPathExpression;
-        evaluate(expression: string, contextNode: INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
+        createExpression(expression: string, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined): import("../interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: INodeIsolate, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
     readonly ATTRIBUTE_NODE: number;
     readonly CDATA_SECTION_NODE: number;

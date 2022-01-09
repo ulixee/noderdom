@@ -111,12 +111,8 @@ export declare function SuperDocumentGenerator(DocumentIsolate: Constructable<ID
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
-        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined): import("../interfaces/official").IXPathExpression;
-        evaluate(expression: string, contextNode: INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
+        createExpression(expression: string, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined): import("../interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: INodeIsolate, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
 };
 export interface ISuperDocumentProperties extends IDocumentIsolateProperties, IDocumentOrShadowRootProperties, IHTMLDocumentIsolateProperties, INodeIsolateProperties, INonElementParentNodeProperties, IParentNodeProperties, IXPathEvaluatorBaseProperties {

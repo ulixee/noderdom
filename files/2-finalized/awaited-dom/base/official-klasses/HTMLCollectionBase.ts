@@ -32,7 +32,7 @@ export function HTMLCollectionBaseGenerator() {
           }
 
           // delegate to indexer property
-          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as unknown as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }

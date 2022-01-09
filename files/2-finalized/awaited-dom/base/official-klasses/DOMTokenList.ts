@@ -31,7 +31,7 @@ export function DOMTokenListGenerator() {
           }
 
           // delegate to indexer property
-          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as unknown as number)) {
             const param = parseInt(prop as string, 10);
             return target.item(param);
           }
@@ -91,7 +91,7 @@ export function DOMTokenListGenerator() {
 
     public async forEach(callbackfn: (value: string, key: number, parent: IDOMTokenList) => void, thisArg?: any): Promise<void> {
       for (const [key, value] of await this.entries()) {
-        callbackfn.call(thisArg, value, key, this);
+        await callbackfn.call(thisArg, value, key, this);
       }
     }
 

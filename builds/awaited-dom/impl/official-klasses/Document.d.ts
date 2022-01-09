@@ -98,12 +98,8 @@ declare const DocumentBaseClass: {
         readonly lastElementChild: ISuperElement;
         querySelector(selectors: string): ISuperElement;
         querySelectorAll(selectors: string): ISuperNodeList;
-        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined): import("../../base/interfaces/official").IXPathExpression;
-        evaluate(expression: string, contextNode: import("../../base/interfaces/isolate").INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined, type?: number | undefined, result?: import("../../base/interfaces/official").IXPathResult | null | undefined): import("../../base/interfaces/official").IXPathResult;
+        createExpression(expression: string, resolver?: import("../../base/interfaces/official").IXPathNSResolver | null | undefined): import("../../base/interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: import("../../base/interfaces/isolate").INodeIsolate, resolver?: import("../../base/interfaces/official").IXPathNSResolver | null | undefined, type?: number | undefined, result?: import("../../base/interfaces/official").IXPathResult | null | undefined): import("../../base/interfaces/official").IXPathResult;
     };
 };
 export default class Document extends DocumentBaseClass implements IDocument {

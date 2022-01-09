@@ -2,7 +2,7 @@ import { IHeaders } from '../../base/interfaces/official';
 import { IHeadersProperties } from '../../base/official-klasses/Headers';
 export declare const getState: (instance: IHeaders) => IHeadersProperties, setState: (instance: IHeaders, properties: Partial<IHeadersProperties>) => void;
 declare const HeadersBaseClass: {
-    new (_init?: Record<string, string> | Iterable<Iterable<string>> | undefined): {
+    new (_init?: import("../../base/interfaces/official").IHeadersInit | undefined): {
         append(name: string, value: string): Promise<void>;
         delete(name: string): Promise<void>;
         get(name: string): Promise<string | null>;
