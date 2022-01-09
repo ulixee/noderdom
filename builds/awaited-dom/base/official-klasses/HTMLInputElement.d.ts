@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
-import { IHTMLInputElement, IHTMLElement, IFileList, IHTMLFormElement, IValidityState } from '../interfaces/official';
+import { IHTMLInputElement, IHTMLElement, IFileList, IHTMLFormElement, IValidityState, ISelectionMode } from '../interfaces/official';
 import { ISuperNodeList, ISuperHTMLElement } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLInputElement) => IHTMLInputElementProperties, setState: (instance: IHTMLInputElement, properties: Partial<IHTMLInputElementProperties>) => void;
@@ -58,7 +58,7 @@ export declare function HTMLInputElementGenerator(HTMLElement: Constructable<IHT
         checkValidity(): Promise<boolean>;
         reportValidity(): Promise<boolean>;
         select(): Promise<void>;
-        setRangeText(replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined): Promise<void>;
+        setRangeText(replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: ISelectionMode | undefined): Promise<void>;
         setSelectionRange(start: number, end: number, direction?: string | undefined): Promise<void>;
         stepDown(n?: number | undefined): Promise<void>;
         stepUp(n?: number | undefined): Promise<void>;

@@ -209,7 +209,7 @@ export default class TsBodyPrinter {
             this.printer.printLine();
             this.printer.printLine(`// delegate to indexer property`);
             this.printer.printLine(
-              `if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as number)) {`,
+              `if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as unknown as number)) {`,
             );
             this.printer.increaseIndent();
             this.printer.printLine(`const param = parseInt(prop as string, 10);`);

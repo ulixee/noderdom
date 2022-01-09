@@ -278,7 +278,7 @@ declare const SuperNodeBaseClass: {
         readonly valueAsDate: Promise<any>;
         readonly valueAsNumber: Promise<number>;
         select: (() => Promise<void>) & (() => Promise<void>);
-        setRangeText: ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined) => Promise<void>) & ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined) => Promise<void>);
+        setRangeText: ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: import("../../base/interfaces/official").ISelectionMode | undefined) => Promise<void>) & ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: import("../../base/interfaces/official").ISelectionMode | undefined) => Promise<void>);
         setSelectionRange: ((start: number, end: number, direction?: string | undefined) => Promise<void>) & ((start: number, end: number, direction?: string | undefined) => Promise<void>);
         stepDown(n?: number | undefined): Promise<void>;
         stepUp(n?: number | undefined): Promise<void>;
@@ -416,12 +416,8 @@ declare const SuperNodeBaseClass: {
         readonly assignedSlot: import("../../base/interfaces/official").IHTMLSlotElement;
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<import("../../base/interfaces/super").ISuperText>;
-        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined): import("../../base/interfaces/official").IXPathExpression;
-        evaluate(expression: string, contextNode: import("../../base/interfaces/isolate").INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined, type?: number | undefined, result?: import("../../base/interfaces/official").IXPathResult | null | undefined): import("../../base/interfaces/official").IXPathResult;
+        createExpression(expression: string, resolver?: import("../../base/interfaces/official").IXPathNSResolver | null | undefined): import("../../base/interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: import("../../base/interfaces/isolate").INodeIsolate, resolver?: import("../../base/interfaces/official").IXPathNSResolver | null | undefined, type?: number | undefined, result?: import("../../base/interfaces/official").IXPathResult | null | undefined): import("../../base/interfaces/official").IXPathResult;
     };
     readonly ATTRIBUTE_NODE: number;
     readonly CDATA_SECTION_NODE: number;

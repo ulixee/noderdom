@@ -73,7 +73,7 @@ export default class TsImporter {
       const { path, filename } = this.extractPathAndFilename(buildType, objectStruct, objectMeta, name);
       const objectName = objectStruct === ObjectStruct.interface ? `I${name}` : name;
 
-      importsByPath[path] = importsByPath[path] || { filename: filename, importNames: new Set() };
+      importsByPath[path] = importsByPath[path] || { filename: filename, importNames: new Set(), defaultImportName: undefined };
       importsByPath[path].importNames.add(objectName);
       if (name === filename) {
         importsByPath[path].defaultImportName = name;

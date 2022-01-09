@@ -49,7 +49,7 @@ export function HeadersGenerator() {
 
     public async forEach(callbackfn: (value: string, key: string, parent: IHeaders) => void, thisArg?: any): Promise<void> {
       for (const [key, value] of await this.entries()) {
-        callbackfn.call(thisArg, value, key, this);
+        await callbackfn.call(thisArg, value, key, this);
       }
     }
 

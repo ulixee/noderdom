@@ -193,7 +193,7 @@ declare const SuperElementBaseClass: {
         readonly valueAsDate: Promise<any>;
         readonly valueAsNumber: Promise<number>;
         select: (() => Promise<void>) & (() => Promise<void>);
-        setRangeText: ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined) => Promise<void>) & ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: "end" | "preserve" | "select" | "start" | undefined) => Promise<void>);
+        setRangeText: ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: import("../../base/interfaces/official").ISelectionMode | undefined) => Promise<void>) & ((replacement: string, start?: number | undefined, end?: number | undefined, selectionMode?: import("../../base/interfaces/official").ISelectionMode | undefined) => Promise<void>);
         setSelectionRange: ((start: number, end: number, direction?: string | undefined) => Promise<void>) & ((start: number, end: number, direction?: string | undefined) => Promise<void>);
         stepDown(n?: number | undefined): Promise<void>;
         stepUp(n?: number | undefined): Promise<void>;

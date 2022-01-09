@@ -7,12 +7,8 @@ export declare const getState: (instance: IXPathEvaluator) => IXPathEvaluatorPro
 export declare const awaitedHandler: AwaitedHandler<IXPathEvaluator>;
 export declare function XPathEvaluatorGenerator(XPathEvaluatorBase: Constructable<IXPathEvaluatorBase>): {
     new (): {
-        createExpression(expression: string, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined): import("../interfaces/official").IXPathExpression;
-        evaluate(expression: string, contextNode: import("../interfaces/isolate").INodeIsolate, resolver?: ((prefix: string | null) => string | null) | {
-            lookupNamespaceURI(prefix: string | null): string | null;
-        } | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
+        createExpression(expression: string, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined): import("../interfaces/official").IXPathExpression;
+        evaluate(expression: string, contextNode: import("../interfaces/isolate").INodeIsolate, resolver?: import("../interfaces/official").IXPathNSResolver | null | undefined, type?: number | undefined, result?: import("../interfaces/official").IXPathResult | null | undefined): import("../interfaces/official").IXPathResult;
     };
 };
 export interface IXPathEvaluatorProperties extends IXPathEvaluatorBaseProperties {

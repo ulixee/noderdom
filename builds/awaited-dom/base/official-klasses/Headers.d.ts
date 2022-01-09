@@ -2,13 +2,13 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
 import NodeFactory from '../NodeFactory';
-import { IHeaders } from '../interfaces/official';
+import { IHeaders, IHeadersInit } from '../interfaces/official';
 export declare const getState: (instance: IHeaders) => IHeadersProperties, setState: (instance: IHeaders, properties: Partial<IHeadersProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHeaders>;
 export declare const nodeFactory: NodeFactory<IHeaders>;
 export declare const awaitedIterator: AwaitedIterator<IHeaders, [string, string]>;
 export declare function HeadersGenerator(): {
-    new (_init?: Record<string, string> | Iterable<Iterable<string>> | undefined): {
+    new (_init?: IHeadersInit | undefined): {
         append(name: string, value: string): Promise<void>;
         delete(name: string): Promise<void>;
         get(name: string): Promise<string | null>;
