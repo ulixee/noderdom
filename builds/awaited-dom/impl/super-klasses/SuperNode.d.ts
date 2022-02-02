@@ -1,4 +1,4 @@
-import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../../base/interfaces/super';
+import { ISuperNode, ISuperElement, ISuperNodeList, ISuperDocument } from '../../base/interfaces/super';
 import { IGetRootNodeOptions } from '../../base/interfaces/official';
 import { ISuperNodeProperties } from '../../base/super-klasses/SuperNode';
 export declare const getState: (instance: ISuperNode) => ISuperNodeProperties, setState: (instance: ISuperNode, properties: Partial<ISuperNodeProperties>) => void;

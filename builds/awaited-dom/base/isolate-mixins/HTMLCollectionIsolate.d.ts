@@ -6,6 +6,7 @@ export declare const getState: (instance: IHTMLCollectionIsolate) => IHTMLCollec
 export declare const awaitedHandler: AwaitedHandler<IHTMLCollectionIsolate>;
 export default class HTMLCollectionIsolate implements IHTMLCollectionIsolate {
     namedItem(name: string): ISuperElement;
+    [index: number]: ISuperElement;
 }
 export interface IHTMLCollectionIsolateProperties {
     awaitedPath: AwaitedPath;

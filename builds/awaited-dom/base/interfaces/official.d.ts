@@ -327,6 +327,7 @@ export interface IFileList {
 }
 export interface IHTMLCollection extends IHTMLCollectionBase {
     namedItem(name: string): ISuperElement;
+    [index: number]: ISuperElement;
 }
 export interface IHTMLCollectionBase {
     readonly length: Promise<number>;
@@ -338,6 +339,7 @@ export interface IHTMLDocument extends IDocument {
 }
 export interface IHTMLFormControlsCollection extends IHTMLCollectionBase {
     namedItem(name: string): Promise<IRadioNodeList | ISuperElement | null>;
+    [index: number]: ISuperElement;
 }
 export interface IHTMLHyperlinkElementUtils {
     readonly hash: Promise<string>;
@@ -549,6 +551,7 @@ export interface IParentNode {
 }
 export interface IRadioNodeList extends INodeList {
     readonly value: Promise<string>;
+    [index: number]: ISuperNode;
 }
 export interface IRange extends IAbstractRange {
     readonly END_TO_END: number;

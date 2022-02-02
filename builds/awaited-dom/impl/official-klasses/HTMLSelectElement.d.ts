@@ -1,5 +1,5 @@
 import { IHTMLSelectElement, IHTMLFormElement, IHTMLOptionsCollection, IHTMLOptionElement } from '../../base/interfaces/official';
-import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../../base/interfaces/super';
+import { ISuperElement, ISuperNodeList, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IHTMLSelectElementProperties } from '../../base/official-klasses/HTMLSelectElement';
 export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void;
 declare const HTMLSelectElementBaseClass: {

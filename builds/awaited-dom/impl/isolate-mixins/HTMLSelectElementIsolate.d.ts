@@ -1,6 +1,6 @@
 import { IHTMLSelectElementIsolate } from '../../base/interfaces/isolate';
+import { ISuperElement, ISuperNodeList, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IHTMLFormElement, IHTMLOptionsCollection, IHTMLOptionElement } from '../../base/interfaces/official';
-import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../../base/interfaces/super';
 import HTMLSelectElementIsolateBase, { IHTMLSelectElementIsolateProperties } from '../../base/isolate-mixins/HTMLSelectElementIsolate';
 export declare const getState: (instance: IHTMLSelectElementIsolate) => IHTMLSelectElementIsolateProperties, setState: (instance: IHTMLSelectElementIsolate, properties: Partial<IHTMLSelectElementIsolateProperties>) => void;
 export default class HTMLSelectElementIsolate extends HTMLSelectElementIsolateBase implements IHTMLSelectElementIsolate {

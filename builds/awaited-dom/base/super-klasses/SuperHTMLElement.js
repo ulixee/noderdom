@@ -98,6 +98,24 @@ function SuperHTMLElementGenerator(ElementCSSInlineStyle, ElementContentEditable
             exports.setState(this, {
                 createInstanceName: 'createSuperHTMLElement',
             });
+            // proxy supports indexed property access
+            const proxy = new Proxy(this, {
+                get(target, prop) {
+                    if (prop in target) {
+                        // @ts-ignore
+                        const value = target[prop];
+                        if (typeof value === 'function')
+                            return value.bind(target);
+                        return value;
+                    }
+                    // delegate to indexer property
+                    if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop)) {
+                        const param = parseInt(prop, 10);
+                        return target.item(param);
+                    }
+                },
+            });
+            return proxy;
         }
         // properties
         get accessKey() {

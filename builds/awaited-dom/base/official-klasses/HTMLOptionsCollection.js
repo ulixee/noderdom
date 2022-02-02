@@ -16,6 +16,23 @@ function HTMLOptionsCollectionGenerator(HTMLCollection) {
     return class HTMLOptionsCollection extends HTMLCollection {
         constructor() {
             super();
+            // proxy supports indexed property access
+            const proxy = new Proxy(this, {
+                get(target, prop) {
+                    if (prop in target) {
+                        // @ts-ignore
+                        const value = target[prop];
+                        if (typeof value === 'function')
+                            return value.bind(target);
+                        return value;
+                    }
+                    // delegate to string indexer
+                    if (typeof prop === 'string') {
+                        return target.namedItem(prop);
+                    }
+                },
+            });
+            return proxy;
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
             return inspectInstanceProperties_1.default(this, exports.HTMLOptionsCollectionPropertyKeys, exports.HTMLOptionsCollectionConstantKeys);

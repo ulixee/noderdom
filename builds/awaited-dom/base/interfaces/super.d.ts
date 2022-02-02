@@ -82,6 +82,7 @@ export interface ISuperElement extends IElementCSSInlineStyle, IElementContentEd
     requestFullscreen(options?: IFullscreenOptions): Promise<void>;
     requestPointerLock(): Promise<void>;
     scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void>;
+    [index: number]: ISuperElement;
 }
 export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocumentFragmentIsolate, IDocumentIsolate, IDocumentOrShadowRoot, IDocumentTypeIsolate, IElementCSSInlineStyle, IElementContentEditable, IElementIsolate, IHTMLAnchorElementIsolate, IHTMLAreaElementIsolate, IHTMLAudioElementIsolate, IHTMLBRElementIsolate, IHTMLBaseElementIsolate, IHTMLBodyElementIsolate, IHTMLButtonElementIsolate, IHTMLCanvasElementIsolate, IHTMLDListElementIsolate, IHTMLDataElementIsolate, IHTMLDataListElementIsolate, IHTMLDetailsElementIsolate, IHTMLDialogElementIsolate, IHTMLDirectoryElementIsolate, IHTMLDivElementIsolate, IHTMLDocumentIsolate, IHTMLElementIsolate, IHTMLEmbedElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFontElementIsolate, IHTMLFormElementIsolate, IHTMLFrameElementIsolate, IHTMLFrameSetElementIsolate, IHTMLHRElementIsolate, IHTMLHeadElementIsolate, IHTMLHeadingElementIsolate, IHTMLHtmlElementIsolate, IHTMLHyperlinkElementUtils, IHTMLIFrameElementIsolate, IHTMLImageElementIsolate, IHTMLInputElementIsolate, IHTMLLIElementIsolate, IHTMLLabelElementIsolate, IHTMLLegendElementIsolate, IHTMLLinkElementIsolate, IHTMLMapElementIsolate, IHTMLMediaElementIsolate, IHTMLMetaElementIsolate, IHTMLMeterElementIsolate, IHTMLModElementIsolate, IHTMLOListElementIsolate, IHTMLObjectElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLOrSVGElement, IHTMLParagraphElementIsolate, IHTMLParamElementIsolate, IHTMLPreElementIsolate, IHTMLProgressElementIsolate, IHTMLQuoteElementIsolate, IHTMLScriptElementIsolate, IHTMLSelectElementIsolate, IHTMLSlotElementIsolate, IHTMLSourceElementIsolate, IHTMLSpanElementIsolate, IHTMLStyleElementIsolate, IHTMLTableCaptionElementIsolate, IHTMLTableCellElementIsolate, IHTMLTableColElementIsolate, IHTMLTableElementIsolate, IHTMLTableRowElementIsolate, IHTMLTableSectionElementIsolate, IHTMLTemplateElementIsolate, IHTMLTextAreaElementIsolate, IHTMLTimeElementIsolate, IHTMLTitleElementIsolate, IHTMLTrackElementIsolate, IHTMLUListElementIsolate, IHTMLVideoElementIsolate, ILinkStyle, INodeIsolate, INonDocumentTypeChildNode, INonElementParentNode, IParentNode, IShadowRootIsolate, ISlotable, ITextIsolate, IXPathEvaluatorBase {
     readonly ATTRIBUTE_NODE: number;
@@ -126,6 +127,7 @@ export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocume
     lookupNamespaceURI(prefix: string | null): Promise<string | null>;
     lookupPrefix(namespace: string | null): Promise<string | null>;
     normalize(): Promise<void>;
+    [index: number]: ISuperElement;
 }
 export interface ISuperNodeList extends INodeListIsolate, IRadioNodeListIsolate {
     readonly length: Promise<number>;
@@ -140,6 +142,7 @@ export interface ISuperNodeList extends INodeListIsolate, IRadioNodeListIsolate 
 export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate, IHTMLCollectionIsolate, IHTMLOptionsCollectionIsolate {
     namedItem(name: string): ISuperElement;
     [Symbol.iterator](): Iterator<ISuperElement>;
+    [index: number]: ISuperElement;
 }
 export interface ISuperText extends ICharacterDataIsolate, INodeIsolate, INonDocumentTypeChildNode, ISlotable {
     readonly wholeText: Promise<string>;
@@ -165,4 +168,5 @@ export interface ISuperHTMLElement extends IElementCSSInlineStyle, IElementConte
     readonly title: Promise<string>;
     readonly translate: Promise<boolean>;
     click(): Promise<void>;
+    [index: number]: ISuperElement;
 }

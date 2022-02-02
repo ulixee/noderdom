@@ -26,6 +26,11 @@ function HTMLFormControlsCollectionGenerator(HTMLCollectionBase) {
                             return value.bind(target);
                         return value;
                     }
+                    // delegate to indexer property
+                    if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop)) {
+                        const param = parseInt(prop, 10);
+                        return target.item(param);
+                    }
                     // delegate to string indexer
                     if (typeof prop === 'string') {
                         return target.namedItem(prop);

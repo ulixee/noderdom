@@ -4,7 +4,7 @@ import Constructable from '../Constructable';
 import AwaitedIterator from '../AwaitedIterator';
 import NodeFactory from '../NodeFactory';
 import { IHTMLSelectElement, IHTMLElement, IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
-import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
+import { ISuperElement, ISuperNodeList, ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLSelectElement) => IHTMLSelectElementProperties, setState: (instance: IHTMLSelectElement, properties: Partial<IHTMLSelectElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLSelectElement>;
