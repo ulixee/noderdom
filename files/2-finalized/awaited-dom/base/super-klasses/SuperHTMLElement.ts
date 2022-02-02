@@ -99,6 +99,25 @@ export function SuperHTMLElementGenerator(ElementCSSInlineStyle: Constructable<I
       setState(this, {
         createInstanceName: 'createSuperHTMLElement',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to indexer property
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as unknown as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+        },
+      });
+
+      return proxy;
     }
 
     // properties
@@ -176,6 +195,10 @@ export function SuperHTMLElementGenerator(ElementCSSInlineStyle: Constructable<I
     public then<TResult1 = ISuperHTMLElement, TResult2 = never>(onfulfilled?: ((value: ISuperHTMLElement) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
+
+
+
+    [index: number]: ISuperElement;
 
     public [Symbol.for('nodejs.util.inspect.custom')]() {
       return inspectInstanceProperties(this, SuperHTMLElementPropertyKeys, SuperHTMLElementConstantKeys);

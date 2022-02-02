@@ -1,5 +1,6 @@
 import StateMachine from '../../base/StateMachine';
 import { IRadioNodeList } from '../../base/interfaces/official';
+import { ISuperNode } from '../../base/interfaces/super';
 import { RadioNodeListGenerator, IRadioNodeListProperties } from '../../base/official-klasses/RadioNodeList';
 import NodeList from './NodeList';
 

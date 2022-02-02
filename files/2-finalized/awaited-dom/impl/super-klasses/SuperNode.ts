@@ -1,5 +1,5 @@
 import StateMachine from '../../base/StateMachine';
-import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../../base/interfaces/super';
+import { ISuperNode, ISuperElement, ISuperNodeList, ISuperDocument } from '../../base/interfaces/super';
 import { IGetRootNodeOptions } from '../../base/interfaces/official';
 import { SuperNodeGenerator, ISuperNodeProperties } from '../../base/super-klasses/SuperNode';
 import { createSuperNodeList, createSuperNode, createSuperDocument, createSuperElement } from '../create';

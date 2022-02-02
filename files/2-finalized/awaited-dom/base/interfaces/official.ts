@@ -483,6 +483,8 @@ export interface IHTMLCollection extends IHTMLCollectionBase {
   namedItem(name: string): ISuperElement;
 
 
+
+  [index: number]: ISuperElement;
 }
 
 // HTMLCollectionBase //////////
@@ -507,6 +509,8 @@ export interface IHTMLFormControlsCollection extends IHTMLCollectionBase {
   namedItem(name: string): Promise<IRadioNodeList | ISuperElement | null>;
 
 
+
+  [index: number]: ISuperElement;
 }
 
 // HTMLHyperlinkElementUtils //////////
@@ -803,6 +807,9 @@ export interface IParentNode {
 
 export interface IRadioNodeList extends INodeList {
   readonly value: Promise<string>;
+
+
+  [index: number]: ISuperNode;
 }
 
 // Range //////////

@@ -1,7 +1,7 @@
 import StateMachine from '../../base/StateMachine';
 import { IHTMLSelectElementIsolate } from '../../base/interfaces/isolate';
+import { ISuperElement, ISuperNodeList, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { IHTMLFormElement, IHTMLOptionsCollection, IHTMLOptionElement } from '../../base/interfaces/official';
-import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../../base/interfaces/super';
 import HTMLSelectElementIsolateBase, { IHTMLSelectElementIsolateProperties } from '../../base/isolate-mixins/HTMLSelectElementIsolate';
 import { createHTMLFormElement, createSuperNodeList, createHTMLOptionsCollection, createSuperHTMLCollection, createSuperElement, createHTMLOptionElement } from '../create';
 

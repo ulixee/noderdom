@@ -93,6 +93,10 @@ export interface ISuperElement extends IElementCSSInlineStyle, IElementContentEd
   requestFullscreen(options?: IFullscreenOptions): Promise<void>;
   requestPointerLock(): Promise<void>;
   scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void>;
+
+
+
+  [index: number]: ISuperElement;
 }
 
 // SuperNode //////////
@@ -142,6 +146,10 @@ export interface ISuperNode extends IAttrIsolate, ICharacterDataIsolate, IDocume
   lookupNamespaceURI(prefix: string | null): Promise<string | null>;
   lookupPrefix(namespace: string | null): Promise<string | null>;
   normalize(): Promise<void>;
+
+
+
+  [index: number]: ISuperElement;
 }
 
 // SuperNodeList //////////
@@ -166,6 +174,8 @@ export interface ISuperHTMLCollection extends IHTMLCollectionBaseIsolate, IHTMLC
   namedItem(name: string): ISuperElement;
 
   [Symbol.iterator](): Iterator<ISuperElement>;
+
+  [index: number]: ISuperElement;
 }
 
 // SuperText //////////
@@ -205,6 +215,10 @@ export interface ISuperHTMLElement extends IElementCSSInlineStyle, IElementConte
   readonly translate: Promise<boolean>;
 
   click(): Promise<void>;
+
+
+
+  [index: number]: ISuperElement;
 }
 
 // SVG ELEMENTS

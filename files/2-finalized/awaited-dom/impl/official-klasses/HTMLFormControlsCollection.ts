@@ -1,5 +1,6 @@
 import StateMachine from '../../base/StateMachine';
-import { IHTMLFormControlsCollection } from '../../base/interfaces/official';
+import { IHTMLFormControlsCollection, IRadioNodeList } from '../../base/interfaces/official';
+import { ISuperElement } from '../../base/interfaces/super';
 import { HTMLFormControlsCollectionGenerator, IHTMLFormControlsCollectionProperties } from '../../base/official-klasses/HTMLFormControlsCollection';
 import HTMLCollectionBase from './HTMLCollectionBase';
 

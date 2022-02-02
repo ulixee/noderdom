@@ -256,6 +256,9 @@ export interface IDocumentTypeIsolate {
 
 export interface IRadioNodeListIsolate {
   readonly value: Promise<string>;
+
+
+  [index: number]: ISuperNode;
 }
 
 // NodeListIsolate //////////
@@ -296,6 +299,8 @@ export interface IHTMLCollectionIsolate {
   namedItem(name: string): ISuperElement;
 
 
+
+  [index: number]: ISuperElement;
 }
 
 // CSSStyleSheetIsolate //////////

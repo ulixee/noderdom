@@ -1,5 +1,5 @@
 import StateMachine from '../../base/StateMachine';
-import { INamedNodeMap } from '../../base/interfaces/official';
+import { INamedNodeMap, IAttr } from '../../base/interfaces/official';
 import { NamedNodeMapGenerator, INamedNodeMapProperties } from '../../base/official-klasses/NamedNodeMap';
 
 // tslint:disable:variable-name

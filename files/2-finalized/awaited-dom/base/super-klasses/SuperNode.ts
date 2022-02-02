@@ -5,7 +5,7 @@ import AwaitedPath from '../AwaitedPath';
 import ClassMixer from '../ClassMixer';
 import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
-import { ISuperNode, ISuperNodeList, ISuperDocument, ISuperElement } from '../interfaces/super';
+import { ISuperNode, ISuperElement, ISuperNodeList, ISuperDocument } from '../interfaces/super';
 import { IAttrIsolate, ICharacterDataIsolate, IDocumentFragmentIsolate, IDocumentIsolate, IDocumentTypeIsolate, IElementIsolate, IHTMLAnchorElementIsolate, IHTMLAreaElementIsolate, IHTMLAudioElementIsolate, IHTMLBRElementIsolate, IHTMLBaseElementIsolate, IHTMLBodyElementIsolate, IHTMLButtonElementIsolate, IHTMLCanvasElementIsolate, IHTMLDListElementIsolate, IHTMLDataElementIsolate, IHTMLDataListElementIsolate, IHTMLDetailsElementIsolate, IHTMLDialogElementIsolate, IHTMLDirectoryElementIsolate, IHTMLDivElementIsolate, IHTMLDocumentIsolate, IHTMLElementIsolate, IHTMLEmbedElementIsolate, IHTMLFieldSetElementIsolate, IHTMLFontElementIsolate, IHTMLFormElementIsolate, IHTMLFrameElementIsolate, IHTMLFrameSetElementIsolate, IHTMLHRElementIsolate, IHTMLHeadElementIsolate, IHTMLHeadingElementIsolate, IHTMLHtmlElementIsolate, IHTMLIFrameElementIsolate, IHTMLImageElementIsolate, IHTMLInputElementIsolate, IHTMLLIElementIsolate, IHTMLLabelElementIsolate, IHTMLLegendElementIsolate, IHTMLLinkElementIsolate, IHTMLMapElementIsolate, IHTMLMediaElementIsolate, IHTMLMetaElementIsolate, IHTMLMeterElementIsolate, IHTMLModElementIsolate, IHTMLOListElementIsolate, IHTMLObjectElementIsolate, IHTMLOptGroupElementIsolate, IHTMLOptionElementIsolate, IHTMLParagraphElementIsolate, IHTMLParamElementIsolate, IHTMLPreElementIsolate, IHTMLProgressElementIsolate, IHTMLQuoteElementIsolate, IHTMLScriptElementIsolate, IHTMLSelectElementIsolate, IHTMLSlotElementIsolate, IHTMLSourceElementIsolate, IHTMLSpanElementIsolate, IHTMLStyleElementIsolate, IHTMLTableCaptionElementIsolate, IHTMLTableCellElementIsolate, IHTMLTableColElementIsolate, IHTMLTableElementIsolate, IHTMLTableRowElementIsolate, IHTMLTableSectionElementIsolate, IHTMLTemplateElementIsolate, IHTMLTextAreaElementIsolate, IHTMLTimeElementIsolate, IHTMLTitleElementIsolate, IHTMLTrackElementIsolate, IHTMLUListElementIsolate, IHTMLVideoElementIsolate, INodeIsolate, IShadowRootIsolate, ITextIsolate } from '../interfaces/isolate';
 import { IDocumentOrShadowRoot, IElementCSSInlineStyle, IElementContentEditable, IHTMLHyperlinkElementUtils, IHTMLOrSVGElement, ILinkStyle, INonDocumentTypeChildNode, INonElementParentNode, IParentNode, ISlotable, IXPathEvaluatorBase, IGetRootNodeOptions } from '../interfaces/official';
 import { IAttrIsolateProperties, AttrIsolatePropertyKeys, AttrIsolateConstantKeys } from '../isolate-mixins/AttrIsolate';
@@ -147,6 +147,25 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
       setState(this, {
         createInstanceName: 'createSuperNode',
       });
+      // proxy supports indexed property access
+      const proxy = new Proxy(this, {
+        get(target, prop) {
+          if (prop in target) {
+            // @ts-ignore
+            const value: any = target[prop];
+            if (typeof value === 'function') return value.bind(target);
+            return value;
+          }
+
+          // delegate to indexer property
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as unknown as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+        },
+      });
+
+      return proxy;
     }
 
     // properties
@@ -252,6 +271,10 @@ export function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsolate>, Cha
     public then<TResult1 = ISuperNode, TResult2 = never>(onfulfilled?: ((value: ISuperNode) => (PromiseLike<TResult1> | TResult1)) | undefined | null, onrejected?: ((reason: any) => (PromiseLike<TResult2> | TResult2)) | undefined | null): Promise<TResult1 | TResult2> {
       return nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
     }
+
+
+
+    [index: number]: ISuperElement;
 
     public [Symbol.for('nodejs.util.inspect.custom')]() {
       return inspectInstanceProperties(this, SuperNodePropertyKeys, SuperNodeConstantKeys);

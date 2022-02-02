@@ -3,8 +3,8 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import AwaitedIterator from '../AwaitedIterator';
 import { IHTMLSelectElementIsolate } from '../interfaces/isolate';
+import { ISuperElement, ISuperNodeList, ISuperHTMLCollection } from '../interfaces/super';
 import { IHTMLFormElement, IHTMLOptionsCollection, IValidityState, IHTMLOptionElement } from '../interfaces/official';
-import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLSelectElementIsolate, IHTMLSelectElementIsolateProperties>();
