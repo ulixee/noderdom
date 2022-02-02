@@ -14,6 +14,8 @@ export default class HTMLCollectionIsolate implements IHTMLCollectionIsolate {
   }
 
 
+
+  [index: number]: ISuperElement;
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////

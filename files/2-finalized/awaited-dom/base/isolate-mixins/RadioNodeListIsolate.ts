@@ -2,6 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IRadioNodeListIsolate } from '../interfaces/isolate';
+import { ISuperNode } from '../interfaces/super';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IRadioNodeListIsolate, IRadioNodeListIsolateProperties>();
@@ -11,6 +12,9 @@ export default class RadioNodeListIsolate implements IRadioNodeListIsolate {
   public get value(): Promise<string> {
     return awaitedHandler.getProperty<string>(this, 'value', false);
   }
+
+
+  [index: number]: ISuperNode;
 }
 
 // INTERFACES RELATED TO STATE MACHINE PROPERTIES ////////////////////////////

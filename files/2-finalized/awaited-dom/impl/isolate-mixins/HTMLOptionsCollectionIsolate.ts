@@ -1,5 +1,6 @@
 import StateMachine from '../../base/StateMachine';
 import { IHTMLOptionsCollectionIsolate } from '../../base/interfaces/isolate';
+import { ISuperElement } from '../../base/interfaces/super';
 import HTMLOptionsCollectionIsolateBase, { IHTMLOptionsCollectionIsolateProperties } from '../../base/isolate-mixins/HTMLOptionsCollectionIsolate';
 
 // tslint:disable:variable-name

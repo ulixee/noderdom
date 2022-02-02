@@ -38,6 +38,12 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
             return value;
           }
 
+          // delegate to indexer property
+          if ((typeof prop === 'string' || typeof prop === 'number') && !isNaN(prop as unknown as number)) {
+            const param = parseInt(prop as string, 10);
+            return target.item(param);
+          }
+
           // delegate to string indexer
           if(typeof prop === 'string') {
             return target.namedItem(prop as string);
@@ -61,6 +67,8 @@ export function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate: Construc
     public [Symbol.iterator](): Iterator<ISuperElement> {
       return awaitedIterator.iterateNodePointers(this);
     }
+
+    [index: number]: ISuperElement;
 
     public [Symbol.for('nodejs.util.inspect.custom')]() {
       return inspectInstanceProperties(this, SuperHTMLCollectionPropertyKeys, SuperHTMLCollectionConstantKeys);

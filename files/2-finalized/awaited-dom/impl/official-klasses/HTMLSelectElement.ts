@@ -1,6 +1,6 @@
 import StateMachine from '../../base/StateMachine';
 import { IHTMLSelectElement, IHTMLFormElement, IHTMLOptionsCollection, IHTMLOptionElement } from '../../base/interfaces/official';
-import { ISuperNodeList, ISuperHTMLCollection, ISuperElement } from '../../base/interfaces/super';
+import { ISuperElement, ISuperNodeList, ISuperHTMLCollection } from '../../base/interfaces/super';
 import { HTMLSelectElementGenerator, IHTMLSelectElementProperties } from '../../base/official-klasses/HTMLSelectElement';
 import { createHTMLFormElement, createSuperNodeList, createHTMLOptionsCollection, createSuperHTMLCollection, createSuperElement, createHTMLOptionElement } from '../create';
 import HTMLElement from './HTMLElement';

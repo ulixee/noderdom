@@ -1,5 +1,6 @@
 import StateMachine from '../../base/StateMachine';
 import { IRadioNodeListIsolate } from '../../base/interfaces/isolate';
+import { ISuperNode } from '../../base/interfaces/super';
 import RadioNodeListIsolateBase, { IRadioNodeListIsolateProperties } from '../../base/isolate-mixins/RadioNodeListIsolate';
 
 // tslint:disable:variable-name

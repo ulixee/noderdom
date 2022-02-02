@@ -84,9 +84,33 @@ export default class TsBodyPrinter {
       .filter(p => this.buildType !== BuildType.impl || this.isAbstract(p))
       .sort(compareName);
 
-    this.indexers = Object.values(i.methods)
-      .filter(m => this.hasIndexerSignature(m))
-      .filter(m => this.hasSignatureParams(m));
+    this.indexers = [];
+    const allExtendedMethods = Object.values(i.methods);
+
+    if (i.extends && i.extends !== 'Object') {
+      const parent = this.components.interfaces[i.extends];
+      allExtendedMethods.push(...Object.values(parent.methods));
+    }
+
+    if (i.implements && i.implements.length) {
+      for (const impl of i.implements) {
+        const isolate = this.components.awaitedIsolates[impl];
+        if (!isolate) continue;
+        allExtendedMethods.push(...Object.values(isolate.methods));
+      }
+    }
+
+    for (const method of allExtendedMethods) {
+      if (!this.hasIndexerSignature(method)) continue;
+      const [signature] = method.signatures;
+      const indexType = TypeUtils.convertDomTypeToTsType(signature.params[0]);
+      const exists = this.indexers.find(x => TypeUtils.convertDomTypeToTsType(x.signatures[0].params[0]) === indexType);
+      if (exists) continue;
+
+      const returnTypes = TypeUtils.extractCustomTypes(signature);
+      for (const returnType of returnTypes) this.referencedObjects.add(returnType);
+      this.indexers.push(method);
+    }
 
     const { domType, buildType, skipImplementation } = this;
     const iteratorOptions = { domType, buildType, skipImplementation };
@@ -395,9 +419,7 @@ export default class TsBodyPrinter {
     this.printer.printLine(`public [Symbol.for('nodejs.util.inspect.custom')]() {`);
     this.printer.increaseIndent();
     const i = this.i;
-    this.printer.printLine(
-      `return inspectInstanceProperties(this, ${i.name}PropertyKeys, ${i.name}ConstantKeys);`,
-    );
+    this.printer.printLine(`return inspectInstanceProperties(this, ${i.name}PropertyKeys, ${i.name}ConstantKeys);`);
     this.printer.decreaseIndent();
     this.printer.printLine('}');
   }
@@ -591,24 +613,29 @@ export default class TsBodyPrinter {
   }
 
   private printIndexers() {
-    const i: Types.Interface = this.i;
     this.indexers.forEach(m => {
       if (!this.isTypescriptCompatibleIndexer(m)) {
         return;
       }
       const indexer = m.signatures[0].params![0];
-      const firstTypeParam = i.typeParameters && i.typeParameters[0];
-      const extendedType = firstTypeParam && firstTypeParam.extends ? firstTypeParam.name : null;
       const tsType1 = TypeUtils.convertDomTypeToTsType(indexer);
-      const typeObj2 = {
-        type: m.signatures[0].type,
-        subtype: m.signatures[0].subtype,
-        nullable: undefined,
-      };
-      const tsType2 = TypeUtils.convertDomTypeToTsType(typeObj2, !extendedType);
+      const tsType2 = this.getIndexerReturnType(m);
+
       this.printer.printSeparatorLine();
       this.printer.printLine(`[${indexer.name}: ${tsType1}]: ${tsType2};`);
     });
+  }
+
+  private getIndexerReturnType(method: Types.Method): string {
+    const i: Types.Interface = this.i;
+    const firstTypeParam = i.typeParameters && i.typeParameters[0];
+    const extendedType = firstTypeParam && firstTypeParam.extends ? firstTypeParam.name : null;
+    const typeObj2 = {
+      type: method.signatures[0].type,
+      subtype: method.signatures[0].subtype,
+      nullable: undefined,
+    };
+    return TypeUtils.convertDomTypeToTsType(typeObj2, !extendedType);
   }
 
   // To decide if a given method is an indexer and should be emitted
@@ -668,13 +695,6 @@ export default class TsBodyPrinter {
   private isAbstract(property: Types.Property | Types.Method) {
     const isAwaited = this.domType === DomType.awaited;
     return isAwaited && property.isAbstract === 1;
-  }
-
-  private hasSignatureParams(m: Types.AnonymousMethod) {
-    const signatures = m.signatures;
-    if (!signatures?.length) return false;
-    if (!signatures[0].params?.length) return false;
-    return !!signatures[0].params[0];
   }
 
   private printStaticMethods() {

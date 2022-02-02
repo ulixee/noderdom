@@ -1,5 +1,6 @@
 import StateMachine from '../../base/StateMachine';
 import { IHTMLOptionsCollection } from '../../base/interfaces/official';
+import { ISuperElement } from '../../base/interfaces/super';
 import { HTMLOptionsCollectionGenerator, IHTMLOptionsCollectionProperties } from '../../base/official-klasses/HTMLOptionsCollection';
 import HTMLCollection from './HTMLCollection';
 
