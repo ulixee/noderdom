@@ -1,6 +1,6 @@
 {
   "name": "noderdom",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
   "homepage": "https://github.com/ulixee/noderdom",
   "author": "Data Liberation Foundation",
@@ -34,7 +34,9 @@
     "step:2-ts": "ts-node ./scripts/0-import/importComponentFiltersFromDb.ts awaited && ts-node ./scripts/1-process/compileAwaitedComponents.ts && ts-node ./scripts/2-finalize/generateDOM.ts awaited",
     "step:2-docs": "ts-node ./scripts/2-finalize/generateDocs.ts awaited"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@unblocked-web/js-path": "2.0.0-alpha.1"
+  },
   "devDependencies": {
     "@types/better-sqlite3": "^5.4.0",
     "@types/node": "^13.1.7",

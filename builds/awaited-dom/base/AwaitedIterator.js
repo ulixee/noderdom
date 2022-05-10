@@ -39,7 +39,7 @@ class AwaitedIterator {
                 if (index < nodePointer.iterableItems.length) {
                     const value = nodePointer.iterableItems[index];
                     index += 1;
-                    if (!nodePointer.iterableIsState) {
+                    if (!nodePointer.iterableIsNodePointers) {
                         return { value: value, done: false };
                     }
                     else {

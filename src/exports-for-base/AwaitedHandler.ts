@@ -1,5 +1,5 @@
 import Constructable from './Constructable';
-import INodePointer from './INodePointer';
+import { INodePointer } from '@unblocked-web/js-path';
 import { setStorageSymbol } from './StateMachine';
 
 export class NotImplementedError extends Error {}

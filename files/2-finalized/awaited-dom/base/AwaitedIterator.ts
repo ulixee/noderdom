@@ -1,6 +1,6 @@
 import NodeFactory, { IRemoteNodeProperties } from './NodeFactory';
 import AwaitedHandler from './AwaitedHandler';
-import INodePointer from './INodePointer';
+import { INodePointer } from '@unblocked-web/js-path';
 
 export default class AwaitedIterator<TClass, T> {
   public static creators = require('../impl/create');
@@ -49,7 +49,7 @@ export default class AwaitedIterator<TClass, T> {
         if (index < nodePointer.iterableItems!.length) {
           const value = nodePointer.iterableItems![index];
           index += 1;
-          if (!nodePointer.iterableIsState) {
+          if (!nodePointer.iterableIsNodePointers) {
             return { value: value as any, done: false };
           } else {
             const { type, id } = value as INodePointer;

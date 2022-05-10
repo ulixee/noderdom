@@ -1,5 +1,5 @@
 import Constructable from './Constructable';
-import INodePointer from './INodePointer';
+import { INodePointer } from '@unblocked-web/js-path';
 export declare class NotImplementedError extends Error {
 }
 export default class AwaitedHandler<TClass> {

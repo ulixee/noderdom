@@ -1,3 +1,5 @@
+import { IJsPath } from '@unblocked-web/js-path';
+
 export default class AwaitedPath {
   public readonly hasNodeId: boolean;
   private readonly jsPath: IJsPath;
@@ -9,15 +11,15 @@ export default class AwaitedPath {
     this.hasNodeId = jsPath && jsPath.length > 0 && typeof jsPath[0] === 'number';
   }
 
-  public addProperty(parent: object | null, name: IPropertyName) {
+  public addProperty(parent: object | null, name: string) {
     return new AwaitedPath(parent, ...this.jsPath, name);
   }
 
-  public addMethod(parent: object | null, name: IMethodName, ...args: IMethodArgs) {
+  public addMethod(parent: object | null, name: string, ...args: any[]) {
     return new AwaitedPath(parent, ...this.jsPath, [name, ...args]);
   }
 
-  public withNodeId(parent: object | null, id: INodeId) {
+  public withNodeId(parent: object | null, id: number) {
     return new AwaitedPath(parent, id);
   }
 
@@ -100,11 +102,3 @@ export default class AwaitedPath {
     return new AwaitedPath(parent, ...jsPath);
   }
 }
-
-export type IJsPath = IPathStep[];
-export type IPathStep = IPropertyName | IMethod | INodeId;
-type IPropertyName = string;
-type IMethod = [IMethodName, ...IMethodArgs];
-type IMethodName = string;
-type IMethodArgs = any[];
-type INodeId = number;
