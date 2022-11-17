@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const Headers_1 = require("../../base/official-klasses/Headers");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HeadersBaseClass = Headers_1.HeadersGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HeadersBaseClass = (0, Headers_1.HeadersGenerator)();
 class Headers extends HeadersBaseClass {
 }
 exports.default = Headers;

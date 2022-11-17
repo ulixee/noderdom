@@ -10,7 +10,7 @@ const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceP
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const Document_1 = require("./Document");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLDocument', exports.getState, exports.setState);
 function HTMLDocumentGenerator(Document) {
     return class HTMLDocument extends Document {
@@ -18,7 +18,7 @@ function HTMLDocumentGenerator(Document) {
             super();
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLDocumentPropertyKeys, exports.HTMLDocumentConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLDocumentPropertyKeys, exports.HTMLDocumentConstantKeys);
         }
     };
 }

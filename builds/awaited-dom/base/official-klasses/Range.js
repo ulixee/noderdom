@@ -10,7 +10,7 @@ const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceP
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const AbstractRange_1 = require("./AbstractRange");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Range', exports.getState, exports.setState);
 function RangeGenerator(AbstractRange) {
     var _a;
@@ -100,7 +100,7 @@ function RangeGenerator(AbstractRange) {
                 return exports.awaitedHandler.runMethod(this, 'toString', []);
             }
             [Symbol.for('nodejs.util.inspect.custom')]() {
-                return inspectInstanceProperties_1.default(this, exports.RangePropertyKeys, exports.RangeConstantKeys);
+                return (0, inspectInstanceProperties_1.default)(this, exports.RangePropertyKeys, exports.RangeConstantKeys);
             }
         },
         _a.END_TO_END = 2,

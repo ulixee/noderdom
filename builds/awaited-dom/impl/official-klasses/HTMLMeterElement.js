@@ -10,16 +10,16 @@ const HTMLMeterElement_1 = require("../../base/official-klasses/HTMLMeterElement
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLMeterElementBaseClass = HTMLMeterElement_1.HTMLMeterElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLMeterElementBaseClass = (0, HTMLMeterElement_1.HTMLMeterElementGenerator)(HTMLElement_1.default);
 class HTMLMeterElement extends HTMLMeterElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get labels() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperNodeList)(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
     }
 }
 exports.default = HTMLMeterElement;

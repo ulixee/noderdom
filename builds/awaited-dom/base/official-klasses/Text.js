@@ -12,10 +12,10 @@ const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const CharacterData_1 = require("./CharacterData");
 const Slotable_1 = require("../official-mixins/Slotable");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Text', exports.getState, exports.setState);
 function TextGenerator(CharacterData, Slotable) {
-    const Parent = ClassMixer_1.default(CharacterData, [Slotable]);
+    const Parent = (0, ClassMixer_1.default)(CharacterData, [Slotable]);
     return class Text extends Parent {
         constructor(_data) {
             super(_data);
@@ -29,7 +29,7 @@ function TextGenerator(CharacterData, Slotable) {
             return exports.awaitedHandler.runMethod(this, 'splitText', [offset]);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.TextPropertyKeys, exports.TextConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.TextPropertyKeys, exports.TextConstantKeys);
         }
     };
 }

@@ -9,12 +9,12 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const DOMRectList_1 = require("../../base/official-klasses/DOMRectList");
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const DOMRectListBaseClass = DOMRectList_1.DOMRectListGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const DOMRectListBaseClass = (0, DOMRectList_1.DOMRectListGenerator)();
 class DOMRectList extends DOMRectListBaseClass {
     item(index) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMRect(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMRect)(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
 }
 exports.default = DOMRectList;

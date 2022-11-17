@@ -14,15 +14,15 @@ const Node_1 = require("./Node");
 const NonElementParentNode_1 = require("../official-mixins/NonElementParentNode");
 const ParentNode_1 = require("../official-mixins/ParentNode");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('DocumentFragment', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function DocumentFragmentGenerator(Node, NonElementParentNode, ParentNode) {
-    const Parent = ClassMixer_1.default(Node, [NonElementParentNode, ParentNode]);
+    const Parent = (0, ClassMixer_1.default)(Node, [NonElementParentNode, ParentNode]);
     return class DocumentFragment extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createDocumentFragment',
             });
         }
@@ -30,7 +30,7 @@ function DocumentFragmentGenerator(Node, NonElementParentNode, ParentNode) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.DocumentFragmentPropertyKeys, exports.DocumentFragmentConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.DocumentFragmentPropertyKeys, exports.DocumentFragmentConstantKeys);
         }
     };
 }

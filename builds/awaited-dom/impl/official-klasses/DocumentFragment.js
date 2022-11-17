@@ -11,8 +11,8 @@ const Node_1 = __importDefault(require("./Node"));
 const NonElementParentNode_1 = __importDefault(require("../official-mixins/NonElementParentNode"));
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const DocumentFragmentBaseClass = DocumentFragment_1.DocumentFragmentGenerator(Node_1.default, NonElementParentNode_1.default, ParentNode_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const DocumentFragmentBaseClass = (0, DocumentFragment_1.DocumentFragmentGenerator)(Node_1.default, NonElementParentNode_1.default, ParentNode_1.default);
 class DocumentFragment extends DocumentFragmentBaseClass {
     constructor() {
         super();

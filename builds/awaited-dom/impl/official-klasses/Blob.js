@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const Blob_1 = require("../../base/official-klasses/Blob");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const BlobBaseClass = Blob_1.BlobGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const BlobBaseClass = (0, Blob_1.BlobGenerator)();
 class Blob extends BlobBaseClass {
 }
 exports.default = Blob;

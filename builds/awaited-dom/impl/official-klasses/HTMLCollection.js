@@ -10,16 +10,16 @@ const HTMLCollection_1 = require("../../base/official-klasses/HTMLCollection");
 const create_1 = require("../create");
 const HTMLCollectionBase_1 = __importDefault(require("./HTMLCollectionBase"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLCollectionBaseClass = HTMLCollection_1.HTMLCollectionGenerator(HTMLCollectionBase_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLCollectionBaseClass = (0, HTMLCollection_1.HTMLCollectionGenerator)(HTMLCollectionBase_1.default);
 class HTMLCollection extends HTMLCollectionBaseClass {
     constructor() {
         super();
     }
     // methods
     namedItem(name) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
     }
 }
 exports.default = HTMLCollection;

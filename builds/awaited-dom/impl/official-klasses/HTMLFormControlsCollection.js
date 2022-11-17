@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLFormControlsCollection_1 = require("../../base/official-klasses/HTMLFormControlsCollection");
 const HTMLCollectionBase_1 = __importDefault(require("./HTMLCollectionBase"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLFormControlsCollectionBaseClass = HTMLFormControlsCollection_1.HTMLFormControlsCollectionGenerator(HTMLCollectionBase_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLFormControlsCollectionBaseClass = (0, HTMLFormControlsCollection_1.HTMLFormControlsCollectionGenerator)(HTMLCollectionBase_1.default);
 class HTMLFormControlsCollection extends HTMLFormControlsCollectionBaseClass {
     constructor() {
         super();

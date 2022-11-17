@@ -9,7 +9,7 @@ class NodeFactory {
     async createInstanceWithNodePointer(instance) {
         const { awaitedOptions, awaitedPath, createInstanceName } = this.getState(instance);
         const state = await this.awaitedHandler.createNodePointer(instance);
-        if (!(state === null || state === void 0 ? void 0 : state.id)) {
+        if (!state?.id) {
             return null;
         }
         let createNewInstance = NodeFactory.instanceCreatorsByName[createInstanceName];
@@ -18,7 +18,7 @@ class NodeFactory {
             if (typeCreator)
                 createNewInstance = typeCreator;
         }
-        const newAwaitedPath = (state === null || state === void 0 ? void 0 : state.id) ? awaitedPath.withNodeId(awaitedPath.parent, state === null || state === void 0 ? void 0 : state.id) : awaitedPath;
+        const newAwaitedPath = state?.id ? awaitedPath.withNodeId(awaitedPath.parent, state?.id) : awaitedPath;
         const newInstance = createNewInstance(newAwaitedPath, awaitedOptions);
         this.setState(newInstance, {
             nodePointer: state,

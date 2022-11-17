@@ -10,53 +10,53 @@ const HTMLMediaElement_1 = require("../../base/official-klasses/HTMLMediaElement
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLMediaElementBaseClass = HTMLMediaElement_1.HTMLMediaElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLMediaElementBaseClass = (0, HTMLMediaElement_1.HTMLMediaElementGenerator)(HTMLElement_1.default);
 class HTMLMediaElement extends HTMLMediaElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get audioTracks() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createAudioTrackList(awaitedPath.addProperty(this, 'audioTracks'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createAudioTrackList)(awaitedPath.addProperty(this, 'audioTracks'), awaitedOptions);
     }
     get buffered() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createTimeRanges(awaitedPath.addProperty(this, 'buffered'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createTimeRanges)(awaitedPath.addProperty(this, 'buffered'), awaitedOptions);
     }
     get controlsList() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'controlsList'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'controlsList'), awaitedOptions);
     }
     get error() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createMediaError(awaitedPath.addProperty(this, 'error'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createMediaError)(awaitedPath.addProperty(this, 'error'), awaitedOptions);
     }
     get mediaKeys() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createMediaKeys(awaitedPath.addProperty(this, 'mediaKeys'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createMediaKeys)(awaitedPath.addProperty(this, 'mediaKeys'), awaitedOptions);
     }
     get played() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createTimeRanges(awaitedPath.addProperty(this, 'played'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createTimeRanges)(awaitedPath.addProperty(this, 'played'), awaitedOptions);
     }
     get seekable() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createTimeRanges(awaitedPath.addProperty(this, 'seekable'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createTimeRanges)(awaitedPath.addProperty(this, 'seekable'), awaitedOptions);
     }
     get textTracks() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createTextTrackList(awaitedPath.addProperty(this, 'textTracks'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createTextTrackList)(awaitedPath.addProperty(this, 'textTracks'), awaitedOptions);
     }
     get videoTracks() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createVideoTrackList(awaitedPath.addProperty(this, 'videoTracks'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createVideoTrackList)(awaitedPath.addProperty(this, 'videoTracks'), awaitedOptions);
     }
     // methods
     captureStream() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createMediaStream(awaitedPath.addMethod(this, 'captureStream'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createMediaStream)(awaitedPath.addMethod(this, 'captureStream'), awaitedOptions);
     }
 }
 exports.default = HTMLMediaElement;

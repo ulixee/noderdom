@@ -10,16 +10,16 @@ const HTMLTableSectionElement_1 = require("../../base/official-klasses/HTMLTable
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLTableSectionElementBaseClass = HTMLTableSectionElement_1.HTMLTableSectionElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLTableSectionElementBaseClass = (0, HTMLTableSectionElement_1.HTMLTableSectionElementGenerator)(HTMLElement_1.default);
 class HTMLTableSectionElement extends HTMLTableSectionElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get rows() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'rows'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'rows'), awaitedOptions);
     }
 }
 exports.default = HTMLTableSectionElement;

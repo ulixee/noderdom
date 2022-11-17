@@ -9,11 +9,11 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const ElementCSSInlineStyle_1 = __importDefault(require("../../base/official-mixins/ElementCSSInlineStyle"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class ElementCSSInlineStyle extends ElementCSSInlineStyle_1.default {
     get style() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createCSSStyleDeclaration(awaitedPath.addProperty(this, 'style'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createCSSStyleDeclaration)(awaitedPath.addProperty(this, 'style'), awaitedOptions);
     }
 }
 exports.default = ElementCSSInlineStyle;

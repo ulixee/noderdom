@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLAudioElement_1 = require("../../base/official-klasses/HTMLAudioElement");
 const HTMLMediaElement_1 = __importDefault(require("./HTMLMediaElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLAudioElementBaseClass = HTMLAudioElement_1.HTMLAudioElementGenerator(HTMLMediaElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLAudioElementBaseClass = (0, HTMLAudioElement_1.HTMLAudioElementGenerator)(HTMLMediaElement_1.default);
 class HTMLAudioElement extends HTMLAudioElementBaseClass {
     constructor() {
         super();

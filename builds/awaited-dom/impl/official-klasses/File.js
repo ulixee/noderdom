@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const File_1 = require("../../base/official-klasses/File");
 const Blob_1 = __importDefault(require("./Blob"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const FileBaseClass = File_1.FileGenerator(Blob_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const FileBaseClass = (0, File_1.FileGenerator)(Blob_1.default);
 class File extends FileBaseClass {
     constructor(_fileBits, _fileName, _options) {
         super(_fileBits, _fileName, _options);

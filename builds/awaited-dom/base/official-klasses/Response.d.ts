@@ -6,7 +6,7 @@ import { IBodyProperties } from '../official-mixins/Body';
 export declare const getState: (instance: IResponse) => IResponseProperties, setState: (instance: IResponse, properties: Partial<IResponseProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IResponse>;
 export declare function ResponseGenerator(Body: Constructable<IBody>): {
-    new (_body?: IBodyInit | null | undefined, _init?: IResponseInit | undefined): {
+    new (_body?: IBodyInit | null, _init?: IResponseInit): {
         readonly headers: IHeaders;
         readonly ok: Promise<boolean>;
         readonly redirected: Promise<boolean>;

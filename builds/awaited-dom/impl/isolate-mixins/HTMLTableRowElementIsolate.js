@@ -9,16 +9,16 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLTableRowElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLTableRowElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLTableRowElementIsolate extends HTMLTableRowElementIsolate_1.default {
     get cells() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'cells'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'cells'), awaitedOptions);
     }
     // methods
     insertCell(index) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLTableCellElement(awaitedPath.addMethod(this, 'insertCell', index), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLTableCellElement)(awaitedPath.addMethod(this, 'insertCell', index), awaitedOptions);
     }
 }
 exports.default = HTMLTableRowElementIsolate;

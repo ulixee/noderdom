@@ -1,6 +1,6 @@
 import NodeFactory, { IRemoteNodeProperties } from './NodeFactory';
 import AwaitedHandler from './AwaitedHandler';
-import { INodePointer } from '@unblocked-web/js-path';
+import { INodePointer } from '@ulixee/js-path';
 
 export default class AwaitedIterator<TClass, T> {
   public static creators = require('../impl/create');

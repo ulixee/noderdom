@@ -8,7 +8,7 @@ export declare const awaitedHandler: AwaitedHandler<IHeaders>;
 export declare const nodeFactory: NodeFactory<IHeaders>;
 export declare const awaitedIterator: AwaitedIterator<IHeaders, [string, string]>;
 export declare function HeadersGenerator(): {
-    new (_init?: IHeadersInit | undefined): {
+    new (_init?: IHeadersInit): {
         append(name: string, value: string): Promise<void>;
         delete(name: string): Promise<void>;
         get(name: string): Promise<string | null>;

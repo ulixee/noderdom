@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLParagraphElement_1 = require("../../base/official-klasses/HTMLParagraphElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLParagraphElementBaseClass = HTMLParagraphElement_1.HTMLParagraphElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLParagraphElementBaseClass = (0, HTMLParagraphElement_1.HTMLParagraphElementGenerator)(HTMLElement_1.default);
 class HTMLParagraphElement extends HTMLParagraphElementBaseClass {
     constructor() {
         super();

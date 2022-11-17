@@ -13,15 +13,15 @@ const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const HTMLElement_1 = require("./HTMLElement");
 const LinkStyle_1 = require("../official-mixins/LinkStyle");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLLinkElement', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLLinkElementGenerator(HTMLElement, LinkStyle) {
-    const Parent = ClassMixer_1.default(HTMLElement, [LinkStyle]);
+    const Parent = (0, ClassMixer_1.default)(HTMLElement, [LinkStyle]);
     return class HTMLLinkElement extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createHTMLLinkElement',
             });
         }
@@ -60,7 +60,7 @@ function HTMLLinkElementGenerator(HTMLElement, LinkStyle) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLLinkElementPropertyKeys, exports.HTMLLinkElementConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLLinkElementPropertyKeys, exports.HTMLLinkElementConstantKeys);
         }
     };
 }

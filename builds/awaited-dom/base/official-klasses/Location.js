@@ -9,7 +9,7 @@ const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Location', exports.getState, exports.setState);
 function LocationGenerator() {
     return class Location {
@@ -81,7 +81,7 @@ function LocationGenerator() {
             return exports.awaitedHandler.runMethod(this, 'toString', []);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.LocationPropertyKeys, exports.LocationConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.LocationPropertyKeys, exports.LocationConstantKeys);
         }
     };
 }

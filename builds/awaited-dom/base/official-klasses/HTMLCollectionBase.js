@@ -11,14 +11,14 @@ const StateMachine_1 = __importDefault(require("../StateMachine"));
 const AwaitedIterator_1 = __importDefault(require("../AwaitedIterator"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLCollectionBase', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 exports.awaitedIterator = new AwaitedIterator_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLCollectionBaseGenerator() {
     return class HTMLCollectionBase {
         constructor() {
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createHTMLCollectionBase',
                 createIterableName: 'createSuperElement',
             });
@@ -56,7 +56,7 @@ function HTMLCollectionBaseGenerator() {
             return exports.awaitedIterator.iterateNodePointers(this);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLCollectionBasePropertyKeys, exports.HTMLCollectionBaseConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLCollectionBasePropertyKeys, exports.HTMLCollectionBaseConstantKeys);
         }
     };
 }

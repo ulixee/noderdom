@@ -9,11 +9,11 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const NonElementParentNode_1 = __importDefault(require("../../base/official-mixins/NonElementParentNode"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class NonElementParentNode extends NonElementParentNode_1.default {
     getElementById(elementId) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod(this, 'getElementById', elementId), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addMethod(this, 'getElementById', elementId), awaitedOptions);
     }
 }
 exports.default = NonElementParentNode;

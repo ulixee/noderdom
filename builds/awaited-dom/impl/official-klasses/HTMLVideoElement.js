@@ -10,16 +10,16 @@ const HTMLVideoElement_1 = require("../../base/official-klasses/HTMLVideoElement
 const create_1 = require("../create");
 const HTMLMediaElement_1 = __importDefault(require("./HTMLMediaElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLVideoElementBaseClass = HTMLVideoElement_1.HTMLVideoElementGenerator(HTMLMediaElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLVideoElementBaseClass = (0, HTMLVideoElement_1.HTMLVideoElementGenerator)(HTMLMediaElement_1.default);
 class HTMLVideoElement extends HTMLVideoElementBaseClass {
     constructor() {
         super();
     }
     // methods
     getVideoPlaybackQuality() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createVideoPlaybackQuality(awaitedPath.addMethod(this, 'getVideoPlaybackQuality'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createVideoPlaybackQuality)(awaitedPath.addMethod(this, 'getVideoPlaybackQuality'), awaitedOptions);
     }
 }
 exports.default = HTMLVideoElement;

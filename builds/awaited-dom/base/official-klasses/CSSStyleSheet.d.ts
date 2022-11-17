@@ -10,7 +10,7 @@ export declare function CSSStyleSheetGenerator(StyleSheet: Constructable<IStyleS
         readonly cssRules: ICSSRuleList;
         readonly ownerRule: ICSSRule;
         deleteRule(index: number): Promise<void>;
-        insertRule(rule: string, index?: number | undefined): Promise<number>;
+        insertRule(rule: string, index?: number): Promise<number>;
     };
 };
 export interface ICSSStyleSheetProperties extends IStyleSheetProperties {

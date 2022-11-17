@@ -9,15 +9,15 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLLabelElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLLabelElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLLabelElementIsolate extends HTMLLabelElementIsolate_1.default {
     get control() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLElement(awaitedPath.addProperty(this, 'control'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLElement)(awaitedPath.addProperty(this, 'control'), awaitedOptions);
     }
     get form() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLFormElement)(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
 }
 exports.default = HTMLLabelElementIsolate;

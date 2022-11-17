@@ -9,15 +9,15 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLLinkElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLLinkElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLLinkElementIsolate extends HTMLLinkElementIsolate_1.default {
     get relList() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
     }
     get sizes() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'sizes'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'sizes'), awaitedOptions);
     }
 }
 exports.default = HTMLLinkElementIsolate;

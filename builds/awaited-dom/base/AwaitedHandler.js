@@ -12,31 +12,25 @@ class AwaitedHandler {
         this.setState = setState;
     }
     construct(instance, args) {
-        var _a;
-        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.construct(this, instance, args);
+        return AwaitedHandler.delegate?.construct(this, instance, args);
     }
     async getProperty(instance, name, hasNullDefault = false) {
-        var _a;
-        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.getProperty(this, instance, name, hasNullDefault));
+        return await AwaitedHandler.delegate?.getProperty(this, instance, name, hasNullDefault);
     }
     setProperty(instance, name, value) {
-        var _a;
-        return (_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.setProperty(this, instance, name, value);
+        return AwaitedHandler.delegate?.setProperty(this, instance, name, value);
     }
     async createNodePointer(instance) {
-        var _a;
-        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.createNodePointer(this, instance));
+        return await AwaitedHandler.delegate?.createNodePointer(this, instance);
     }
     async runMethod(instance, name, args) {
-        var _a;
-        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runMethod(this, instance, name, args));
+        return await AwaitedHandler.delegate?.runMethod(this, instance, name, args);
     }
     async runStatic(klass, name, args) {
-        var _a;
-        return await ((_a = AwaitedHandler.delegate) === null || _a === void 0 ? void 0 : _a.runStatic(this, klass, name, args));
+        return await AwaitedHandler.delegate?.runStatic(this, klass, name, args);
     }
     static setStorageSymbol(storageSymbol) {
-        return StateMachine_1.setStorageSymbol(storageSymbol);
+        return (0, StateMachine_1.setStorageSymbol)(storageSymbol);
     }
 }
 exports.default = AwaitedHandler;

@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLDialogElement_1 = require("../../base/official-klasses/HTMLDialogElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLDialogElementBaseClass = HTMLDialogElement_1.HTMLDialogElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLDialogElementBaseClass = (0, HTMLDialogElement_1.HTMLDialogElementGenerator)(HTMLElement_1.default);
 class HTMLDialogElement extends HTMLDialogElementBaseClass {
     constructor() {
         super();

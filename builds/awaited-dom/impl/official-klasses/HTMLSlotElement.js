@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLSlotElement_1 = require("../../base/official-klasses/HTMLSlotElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLSlotElementBaseClass = HTMLSlotElement_1.HTMLSlotElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLSlotElementBaseClass = (0, HTMLSlotElement_1.HTMLSlotElementGenerator)(HTMLElement_1.default);
 class HTMLSlotElement extends HTMLSlotElementBaseClass {
     constructor() {
         super();

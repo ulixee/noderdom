@@ -9,7 +9,7 @@ const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('TextTrackCue', exports.getState, exports.setState);
 function TextTrackCueGenerator() {
     return class TextTrackCue {
@@ -32,7 +32,7 @@ function TextTrackCueGenerator() {
             throw new Error('TextTrackCue.track getter not implemented');
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.TextTrackCuePropertyKeys, exports.TextTrackCueConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.TextTrackCuePropertyKeys, exports.TextTrackCueConstantKeys);
         }
     };
 }

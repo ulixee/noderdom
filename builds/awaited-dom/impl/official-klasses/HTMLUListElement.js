@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLUListElement_1 = require("../../base/official-klasses/HTMLUListElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLUListElementBaseClass = HTMLUListElement_1.HTMLUListElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLUListElementBaseClass = (0, HTMLUListElement_1.HTMLUListElementGenerator)(HTMLElement_1.default);
 class HTMLUListElement extends HTMLUListElementBaseClass {
     constructor() {
         super();

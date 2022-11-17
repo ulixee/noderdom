@@ -10,7 +10,7 @@ const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceP
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const NodeList_1 = require("./NodeList");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('RadioNodeList', exports.getState, exports.setState);
 function RadioNodeListGenerator(NodeList) {
     return class RadioNodeList extends NodeList {
@@ -40,7 +40,7 @@ function RadioNodeListGenerator(NodeList) {
             return exports.awaitedHandler.getProperty(this, 'value', false);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.RadioNodeListPropertyKeys, exports.RadioNodeListConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.RadioNodeListPropertyKeys, exports.RadioNodeListConstantKeys);
         }
     };
 }

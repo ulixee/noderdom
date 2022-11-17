@@ -4,7 +4,7 @@ import { IMediaStream } from '../interfaces/official';
 export declare const getState: (instance: IMediaStream) => IMediaStreamProperties, setState: (instance: IMediaStream, properties: Partial<IMediaStreamProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IMediaStream>;
 export declare function MediaStreamGenerator(): {
-    new (_stream?: IMediaStream | undefined): {
+    new (_stream?: IMediaStream): {
         readonly active: Promise<boolean>;
         readonly id: Promise<string>;
         clone(): IMediaStream;

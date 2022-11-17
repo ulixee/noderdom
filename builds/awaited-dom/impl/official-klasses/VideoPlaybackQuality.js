@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const VideoPlaybackQuality_1 = require("../../base/official-klasses/VideoPlaybackQuality");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const VideoPlaybackQualityBaseClass = VideoPlaybackQuality_1.VideoPlaybackQualityGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const VideoPlaybackQualityBaseClass = (0, VideoPlaybackQuality_1.VideoPlaybackQualityGenerator)();
 class VideoPlaybackQuality extends VideoPlaybackQualityBaseClass {
 }
 exports.default = VideoPlaybackQuality;

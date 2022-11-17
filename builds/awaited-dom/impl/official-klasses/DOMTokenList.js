@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const DOMTokenList_1 = require("../../base/official-klasses/DOMTokenList");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const DOMTokenListBaseClass = DOMTokenList_1.DOMTokenListGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const DOMTokenListBaseClass = (0, DOMTokenList_1.DOMTokenListGenerator)();
 class DOMTokenList extends DOMTokenListBaseClass {
 }
 exports.default = DOMTokenList;

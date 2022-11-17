@@ -9,12 +9,12 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const MediaStream_1 = require("../../base/official-klasses/MediaStream");
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const MediaStreamBaseClass = MediaStream_1.MediaStreamGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const MediaStreamBaseClass = (0, MediaStream_1.MediaStreamGenerator)();
 class MediaStream extends MediaStreamBaseClass {
     clone() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createMediaStream(awaitedPath.addMethod(this, 'clone'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createMediaStream)(awaitedPath.addMethod(this, 'clone'), awaitedOptions);
     }
 }
 exports.default = MediaStream;

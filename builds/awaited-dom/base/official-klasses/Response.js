@@ -10,7 +10,7 @@ const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceP
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const Body_1 = require("../official-mixins/Body");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Response', exports.getState, exports.setState);
 function ResponseGenerator(Body) {
     return class Response extends Body {
@@ -40,7 +40,7 @@ function ResponseGenerator(Body) {
             return exports.awaitedHandler.getProperty(this, 'url', false);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.ResponsePropertyKeys, exports.ResponseConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.ResponsePropertyKeys, exports.ResponseConstantKeys);
         }
     };
 }

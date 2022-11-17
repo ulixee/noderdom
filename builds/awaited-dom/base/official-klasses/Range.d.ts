@@ -16,7 +16,7 @@ export declare function RangeGenerator(AbstractRange: Constructable<IAbstractRan
         readonly commonAncestorContainer: ISuperNode;
         cloneContents(): IDocumentFragment;
         cloneRange(): IRange;
-        collapse(toStart?: boolean | undefined): Promise<void>;
+        collapse(toStart?: boolean): Promise<void>;
         compareBoundaryPoints(how: number, sourceRange: IRange): Promise<number>;
         comparePoint(node: INodeIsolate, offset: number): Promise<number>;
         createContextualFragment(fragment: string): IDocumentFragment;

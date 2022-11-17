@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLDataElement_1 = require("../../base/official-klasses/HTMLDataElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLDataElementBaseClass = HTMLDataElement_1.HTMLDataElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLDataElementBaseClass = (0, HTMLDataElement_1.HTMLDataElementGenerator)(HTMLElement_1.default);
 class HTMLDataElement extends HTMLDataElementBaseClass {
     constructor() {
         super();

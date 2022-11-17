@@ -8,7 +8,7 @@ import { ISlotableProperties } from '../official-mixins/Slotable';
 export declare const getState: (instance: IText) => ITextProperties, setState: (instance: IText, properties: Partial<ITextProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IText>;
 export declare function TextGenerator(CharacterData: Constructable<ICharacterData>, Slotable: Constructable<ISlotable>): {
-    new (_data?: string | undefined): {
+    new (_data?: string): {
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<ISuperText>;
         readonly data: Promise<string>;

@@ -10,20 +10,20 @@ const HTMLTextAreaElement_1 = require("../../base/official-klasses/HTMLTextAreaE
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLTextAreaElementBaseClass = HTMLTextAreaElement_1.HTMLTextAreaElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLTextAreaElementBaseClass = (0, HTMLTextAreaElement_1.HTMLTextAreaElementGenerator)(HTMLElement_1.default);
 class HTMLTextAreaElement extends HTMLTextAreaElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get form() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLFormElement)(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
     get labels() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperNodeList)(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
     }
 }
 exports.default = HTMLTextAreaElement;

@@ -10,16 +10,16 @@ const Request_1 = require("../../base/official-klasses/Request");
 const create_1 = require("../create");
 const Body_1 = __importDefault(require("../official-mixins/Body"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const RequestBaseClass = Request_1.RequestGenerator(Body_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const RequestBaseClass = (0, Request_1.RequestGenerator)(Body_1.default);
 class Request extends RequestBaseClass {
     constructor(_input, _init) {
         super(_input, _init);
     }
     // properties
     get headers() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHeaders(awaitedPath.addProperty(this, 'headers'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHeaders)(awaitedPath.addProperty(this, 'headers'), awaitedOptions);
     }
 }
 exports.default = Request;

@@ -12,8 +12,8 @@ const NodeIsolate_1 = __importDefault(require("../isolate-mixins/NodeIsolate"));
 const NonDocumentTypeChildNode_1 = __importDefault(require("../official-mixins/NonDocumentTypeChildNode"));
 const Slotable_1 = __importDefault(require("../official-mixins/Slotable"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const SuperTextBaseClass = SuperText_1.SuperTextGenerator(CharacterDataIsolate_1.default, NodeIsolate_1.default, NonDocumentTypeChildNode_1.default, Slotable_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const SuperTextBaseClass = (0, SuperText_1.SuperTextGenerator)(CharacterDataIsolate_1.default, NodeIsolate_1.default, NonDocumentTypeChildNode_1.default, Slotable_1.default);
 class SuperText extends SuperTextBaseClass {
     constructor(_data) {
         super(_data);

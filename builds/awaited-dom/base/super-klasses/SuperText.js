@@ -15,15 +15,15 @@ const NodeIsolate_1 = require("../isolate-mixins/NodeIsolate");
 const NonDocumentTypeChildNode_1 = require("../official-mixins/NonDocumentTypeChildNode");
 const Slotable_1 = require("../official-mixins/Slotable");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('SuperText', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function SuperTextGenerator(CharacterDataIsolate, NodeIsolate, NonDocumentTypeChildNode, Slotable) {
-    const Parent = ClassMixer_1.default(CharacterDataIsolate, [NodeIsolate, NonDocumentTypeChildNode, Slotable]);
+    const Parent = (0, ClassMixer_1.default)(CharacterDataIsolate, [NodeIsolate, NonDocumentTypeChildNode, Slotable]);
     return class SuperText extends Parent {
         constructor(_data) {
             super(_data);
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createSuperText',
             });
         }
@@ -39,7 +39,7 @@ function SuperTextGenerator(CharacterDataIsolate, NodeIsolate, NonDocumentTypeCh
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.SuperTextPropertyKeys, exports.SuperTextConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.SuperTextPropertyKeys, exports.SuperTextConstantKeys);
         }
     };
 }

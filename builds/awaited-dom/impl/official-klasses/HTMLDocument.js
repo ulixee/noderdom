@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLDocument_1 = require("../../base/official-klasses/HTMLDocument");
 const Document_1 = __importDefault(require("./Document"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLDocumentBaseClass = HTMLDocument_1.HTMLDocumentGenerator(Document_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLDocumentBaseClass = (0, HTMLDocument_1.HTMLDocumentGenerator)(Document_1.default);
 class HTMLDocument extends HTMLDocumentBaseClass {
     constructor() {
         super();

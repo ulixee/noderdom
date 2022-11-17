@@ -19,7 +19,7 @@ export declare function HTMLTableRowElementGenerator(HTMLElement: Constructable<
         readonly sectionRowIndex: Promise<number>;
         readonly vAlign: Promise<string>;
         deleteCell(index: number): Promise<void>;
-        insertCell(index?: number | undefined): IHTMLTableCellElement;
+        insertCell(index?: number): IHTMLTableCellElement;
         then<TResult1 = IHTMLTableRowElement, TResult2 = never>(onfulfilled?: ((value: IHTMLTableRowElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;

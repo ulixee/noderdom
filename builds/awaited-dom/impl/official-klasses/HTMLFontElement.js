@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLFontElement_1 = require("../../base/official-klasses/HTMLFontElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLFontElementBaseClass = HTMLFontElement_1.HTMLFontElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLFontElementBaseClass = (0, HTMLFontElement_1.HTMLFontElementGenerator)(HTMLElement_1.default);
 class HTMLFontElement extends HTMLFontElementBaseClass {
     constructor() {
         super();

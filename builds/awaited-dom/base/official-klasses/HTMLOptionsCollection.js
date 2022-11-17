@@ -10,7 +10,7 @@ const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceP
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const HTMLCollection_1 = require("./HTMLCollection");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLOptionsCollection', exports.getState, exports.setState);
 function HTMLOptionsCollectionGenerator(HTMLCollection) {
     return class HTMLOptionsCollection extends HTMLCollection {
@@ -35,7 +35,7 @@ function HTMLOptionsCollectionGenerator(HTMLCollection) {
             return proxy;
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLOptionsCollectionPropertyKeys, exports.HTMLOptionsCollectionConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLOptionsCollectionPropertyKeys, exports.HTMLOptionsCollectionConstantKeys);
         }
     };
 }

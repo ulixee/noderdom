@@ -12,10 +12,10 @@ const ClassMixer_1 = __importDefault(require("../ClassMixer"));
 const DocumentFragment_1 = require("./DocumentFragment");
 const DocumentOrShadowRoot_1 = require("../official-mixins/DocumentOrShadowRoot");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('ShadowRoot', exports.getState, exports.setState);
 function ShadowRootGenerator(DocumentFragment, DocumentOrShadowRoot) {
-    const Parent = ClassMixer_1.default(DocumentFragment, [DocumentOrShadowRoot]);
+    const Parent = (0, ClassMixer_1.default)(DocumentFragment, [DocumentOrShadowRoot]);
     return class ShadowRoot extends Parent {
         constructor() {
             super();
@@ -34,7 +34,7 @@ function ShadowRootGenerator(DocumentFragment, DocumentOrShadowRoot) {
             return exports.awaitedHandler.getProperty(this, 'mode', false);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.ShadowRootPropertyKeys, exports.ShadowRootConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.ShadowRootPropertyKeys, exports.ShadowRootConstantKeys);
         }
     };
 }

@@ -10,20 +10,20 @@ const CSSStyleSheet_1 = require("../../base/official-klasses/CSSStyleSheet");
 const create_1 = require("../create");
 const StyleSheet_1 = __importDefault(require("./StyleSheet"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const CSSStyleSheetBaseClass = CSSStyleSheet_1.CSSStyleSheetGenerator(StyleSheet_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const CSSStyleSheetBaseClass = (0, CSSStyleSheet_1.CSSStyleSheetGenerator)(StyleSheet_1.default);
 class CSSStyleSheet extends CSSStyleSheetBaseClass {
     constructor() {
         super();
     }
     // properties
     get cssRules() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createCSSRuleList(awaitedPath.addProperty(this, 'cssRules'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createCSSRuleList)(awaitedPath.addProperty(this, 'cssRules'), awaitedOptions);
     }
     get ownerRule() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createCSSRule(awaitedPath.addProperty(this, 'ownerRule'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createCSSRule)(awaitedPath.addProperty(this, 'ownerRule'), awaitedOptions);
     }
 }
 exports.default = CSSStyleSheet;

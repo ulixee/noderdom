@@ -6,7 +6,7 @@ import { IBlobProperties } from './Blob';
 export declare const getState: (instance: IFile) => IFileProperties, setState: (instance: IFile, properties: Partial<IFileProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IFile>;
 export declare function FileGenerator(Blob: Constructable<IBlob>): {
-    new (_fileBits: Iterable<IBlobPart>, _fileName: string, _options?: IFilePropertyBag | undefined): {
+    new (_fileBits: Iterable<IBlobPart>, _fileName: string, _options?: IFilePropertyBag): {
         readonly lastModified: Promise<number>;
         readonly name: Promise<string>;
         readonly size: Promise<number>;

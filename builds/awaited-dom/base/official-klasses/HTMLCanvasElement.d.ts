@@ -11,8 +11,8 @@ export declare function HTMLCanvasElementGenerator(HTMLElement: Constructable<IH
     new (): {
         readonly height: Promise<number>;
         readonly width: Promise<number>;
-        captureStream(frameRequestRate?: number | undefined): IMediaStream;
-        toDataURL(type?: string | undefined, quality?: any): Promise<string>;
+        captureStream(frameRequestRate?: number): IMediaStream;
+        toDataURL(type?: string, quality?: any): Promise<string>;
         transferControlToOffscreen(): IOffscreenCanvas;
         then<TResult1 = IHTMLCanvasElement, TResult2 = never>(onfulfilled?: ((value: IHTMLCanvasElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         readonly accessKey: Promise<string>;

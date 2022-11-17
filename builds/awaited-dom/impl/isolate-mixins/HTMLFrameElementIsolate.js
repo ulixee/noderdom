@@ -9,11 +9,11 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLFrameElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLFrameElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLFrameElementIsolate extends HTMLFrameElementIsolate_1.default {
     get contentDocument() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperDocument(awaitedPath.addProperty(this, 'contentDocument'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperDocument)(awaitedPath.addProperty(this, 'contentDocument'), awaitedOptions);
     }
 }
 exports.default = HTMLFrameElementIsolate;

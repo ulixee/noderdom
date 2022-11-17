@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const MediaList_1 = require("../../base/official-klasses/MediaList");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const MediaListBaseClass = MediaList_1.MediaListGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const MediaListBaseClass = (0, MediaList_1.MediaListGenerator)();
 class MediaList extends MediaListBaseClass {
 }
 exports.default = MediaList;

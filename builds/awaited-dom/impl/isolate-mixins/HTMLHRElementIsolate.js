@@ -8,7 +8,7 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLHRElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLHRElementIsolate"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLHRElementIsolate extends HTMLHRElementIsolate_1.default {
 }
 exports.default = HTMLHRElementIsolate;

@@ -11,16 +11,16 @@ const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 const HTMLHyperlinkElementUtils_1 = __importDefault(require("../official-mixins/HTMLHyperlinkElementUtils"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLAnchorElementBaseClass = HTMLAnchorElement_1.HTMLAnchorElementGenerator(HTMLElement_1.default, HTMLHyperlinkElementUtils_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLAnchorElementBaseClass = (0, HTMLAnchorElement_1.HTMLAnchorElementGenerator)(HTMLElement_1.default, HTMLHyperlinkElementUtils_1.default);
 class HTMLAnchorElement extends HTMLAnchorElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get relList() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
     }
 }
 exports.default = HTMLAnchorElement;

@@ -4,7 +4,7 @@ import { IDOMRectReadOnly } from '../interfaces/official';
 export declare const getState: (instance: IDOMRectReadOnly) => IDOMRectReadOnlyProperties, setState: (instance: IDOMRectReadOnly, properties: Partial<IDOMRectReadOnlyProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IDOMRectReadOnly>;
 export declare function DOMRectReadOnlyGenerator(): {
-    new (_x?: number | undefined, _y?: number | undefined, _width?: number | undefined, _height?: number | undefined): {
+    new (_x?: number, _y?: number, _width?: number, _height?: number): {
         readonly bottom: Promise<number>;
         readonly height: Promise<number>;
         readonly left: Promise<number>;

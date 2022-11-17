@@ -10,8 +10,8 @@ const SuperStyleSheet_1 = require("../../base/super-klasses/SuperStyleSheet");
 const CSSStyleSheetIsolate_1 = __importDefault(require("../isolate-mixins/CSSStyleSheetIsolate"));
 const StyleSheetIsolate_1 = __importDefault(require("../isolate-mixins/StyleSheetIsolate"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const SuperStyleSheetBaseClass = SuperStyleSheet_1.SuperStyleSheetGenerator(CSSStyleSheetIsolate_1.default, StyleSheetIsolate_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const SuperStyleSheetBaseClass = (0, SuperStyleSheet_1.SuperStyleSheetGenerator)(CSSStyleSheetIsolate_1.default, StyleSheetIsolate_1.default);
 class SuperStyleSheet extends SuperStyleSheetBaseClass {
     constructor() {
         super();

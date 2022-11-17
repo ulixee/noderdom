@@ -9,12 +9,12 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const TextTrackCueList_1 = require("../../base/official-klasses/TextTrackCueList");
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const TextTrackCueListBaseClass = TextTrackCueList_1.TextTrackCueListGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const TextTrackCueListBaseClass = (0, TextTrackCueList_1.TextTrackCueListGenerator)();
 class TextTrackCueList extends TextTrackCueListBaseClass {
     getCueById(id) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createTextTrackCue(awaitedPath.addMethod(this, 'getCueById', id), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createTextTrackCue)(awaitedPath.addMethod(this, 'getCueById', id), awaitedOptions);
     }
 }
 exports.default = TextTrackCueList;

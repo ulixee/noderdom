@@ -15,15 +15,15 @@ const ElementCSSInlineStyle_1 = require("../official-mixins/ElementCSSInlineStyl
 const ElementContentEditable_1 = require("../official-mixins/ElementContentEditable");
 const HTMLOrSVGElement_1 = require("../official-mixins/HTMLOrSVGElement");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLElement', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLElementGenerator(Element, ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement) {
-    const Parent = ClassMixer_1.default(Element, [ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement]);
+    const Parent = (0, ClassMixer_1.default)(Element, [ElementCSSInlineStyle, ElementContentEditable, HTMLOrSVGElement]);
     return class HTMLElement extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createHTMLElement',
             });
         }
@@ -84,7 +84,7 @@ function HTMLElementGenerator(Element, ElementCSSInlineStyle, ElementContentEdit
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLElementPropertyKeys, exports.HTMLElementConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLElementPropertyKeys, exports.HTMLElementConstantKeys);
         }
     };
 }

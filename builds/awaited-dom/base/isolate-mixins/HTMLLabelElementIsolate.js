@@ -8,7 +8,7 @@ exports.HTMLLabelElementIsolateConstantKeys = exports.HTMLLabelElementIsolatePro
 const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLLabelElementIsolate', exports.getState, exports.setState);
 class HTMLLabelElementIsolate {
     get control() {

@@ -6,7 +6,7 @@ export declare const getState: (instance: IXPathExpression) => IXPathExpressionP
 export declare const awaitedHandler: AwaitedHandler<IXPathExpression>;
 export declare function XPathExpressionGenerator(): {
     new (): {
-        evaluate(contextNode: INodeIsolate, type?: number | undefined, result?: IXPathResult | null | undefined): IXPathResult;
+        evaluate(contextNode: INodeIsolate, type?: number, result?: IXPathResult | null): IXPathResult;
     };
 };
 export interface IXPathExpressionProperties {

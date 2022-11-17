@@ -11,16 +11,16 @@ const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 const HTMLHyperlinkElementUtils_1 = __importDefault(require("../official-mixins/HTMLHyperlinkElementUtils"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLAreaElementBaseClass = HTMLAreaElement_1.HTMLAreaElementGenerator(HTMLElement_1.default, HTMLHyperlinkElementUtils_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLAreaElementBaseClass = (0, HTMLAreaElement_1.HTMLAreaElementGenerator)(HTMLElement_1.default, HTMLHyperlinkElementUtils_1.default);
 class HTMLAreaElement extends HTMLAreaElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get relList() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'relList'), awaitedOptions);
     }
 }
 exports.default = HTMLAreaElement;

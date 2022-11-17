@@ -7,7 +7,7 @@ export declare function OffscreenCanvasGenerator(): {
     new (_width: number, _height: number): {
         readonly height: Promise<number>;
         readonly width: Promise<number>;
-        convertToBlob(options?: IImageEncodeOptions | undefined): Promise<IBlob>;
+        convertToBlob(options?: IImageEncodeOptions): Promise<IBlob>;
         transferToImageBitmap(): IImageBitmap;
     };
 };

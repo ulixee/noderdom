@@ -12,16 +12,16 @@ const HTMLCollectionBaseIsolate_1 = __importDefault(require("../isolate-mixins/H
 const HTMLCollectionIsolate_1 = __importDefault(require("../isolate-mixins/HTMLCollectionIsolate"));
 const HTMLOptionsCollectionIsolate_1 = __importDefault(require("../isolate-mixins/HTMLOptionsCollectionIsolate"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const SuperHTMLCollectionBaseClass = SuperHTMLCollection_1.SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate_1.default, HTMLCollectionIsolate_1.default, HTMLOptionsCollectionIsolate_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const SuperHTMLCollectionBaseClass = (0, SuperHTMLCollection_1.SuperHTMLCollectionGenerator)(HTMLCollectionBaseIsolate_1.default, HTMLCollectionIsolate_1.default, HTMLOptionsCollectionIsolate_1.default);
 class SuperHTMLCollection extends SuperHTMLCollectionBaseClass {
     constructor() {
         super();
     }
     // methods
     namedItem(name) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
     }
 }
 exports.default = SuperHTMLCollection;

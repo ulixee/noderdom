@@ -10,7 +10,7 @@ const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceP
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 const HTMLMediaElement_1 = require("./HTMLMediaElement");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLAudioElement', exports.getState, exports.setState);
 function HTMLAudioElementGenerator(HTMLMediaElement) {
     return class HTMLAudioElement extends HTMLMediaElement {
@@ -18,7 +18,7 @@ function HTMLAudioElementGenerator(HTMLMediaElement) {
             super();
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLAudioElementPropertyKeys, exports.HTMLAudioElementConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLAudioElementPropertyKeys, exports.HTMLAudioElementConstantKeys);
         }
     };
 }

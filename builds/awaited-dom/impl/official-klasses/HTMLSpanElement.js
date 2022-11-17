@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLSpanElement_1 = require("../../base/official-klasses/HTMLSpanElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLSpanElementBaseClass = HTMLSpanElement_1.HTMLSpanElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLSpanElementBaseClass = (0, HTMLSpanElement_1.HTMLSpanElementGenerator)(HTMLElement_1.default);
 class HTMLSpanElement extends HTMLSpanElementBaseClass {
     constructor() {
         super();

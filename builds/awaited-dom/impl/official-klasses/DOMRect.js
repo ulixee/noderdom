@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const DOMRect_1 = require("../../base/official-klasses/DOMRect");
 const DOMRectReadOnly_1 = __importDefault(require("./DOMRectReadOnly"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const DOMRectBaseClass = DOMRect_1.DOMRectGenerator(DOMRectReadOnly_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const DOMRectBaseClass = (0, DOMRect_1.DOMRectGenerator)(DOMRectReadOnly_1.default);
 class DOMRect extends DOMRectBaseClass {
     constructor(_x, _y, _width, _height) {
         super(_x, _y, _width, _height);

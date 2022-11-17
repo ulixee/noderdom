@@ -9,16 +9,16 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const AbstractRange_1 = require("../../base/official-klasses/AbstractRange");
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const AbstractRangeBaseClass = AbstractRange_1.AbstractRangeGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const AbstractRangeBaseClass = (0, AbstractRange_1.AbstractRangeGenerator)();
 class AbstractRange extends AbstractRangeBaseClass {
     get endContainer() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addProperty(this, 'endContainer'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperNode)(awaitedPath.addProperty(this, 'endContainer'), awaitedOptions);
     }
     get startContainer() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNode(awaitedPath.addProperty(this, 'startContainer'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperNode)(awaitedPath.addProperty(this, 'startContainer'), awaitedOptions);
     }
 }
 exports.default = AbstractRange;

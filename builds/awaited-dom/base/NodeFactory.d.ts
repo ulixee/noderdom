@@ -1,6 +1,6 @@
 import AwaitedPath from './AwaitedPath';
 import AwaitedHandler from './AwaitedHandler';
-import { INodePointer } from '@unblocked-web/js-path';
+import { INodePointer } from '@ulixee/js-path';
 export default class NodeFactory<TClass> {
     static instanceCreatorsByName: any;
     private readonly getState;

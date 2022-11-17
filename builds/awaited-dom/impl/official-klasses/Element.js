@@ -13,45 +13,45 @@ const NonDocumentTypeChildNode_1 = __importDefault(require("../official-mixins/N
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 const Slotable_1 = __importDefault(require("../official-mixins/Slotable"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const ElementBaseClass = Element_1.ElementGenerator(Node_1.default, NonDocumentTypeChildNode_1.default, ParentNode_1.default, Slotable_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const ElementBaseClass = (0, Element_1.ElementGenerator)(Node_1.default, NonDocumentTypeChildNode_1.default, ParentNode_1.default, Slotable_1.default);
 class Element extends ElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get attributes() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createNamedNodeMap(awaitedPath.addProperty(this, 'attributes'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createNamedNodeMap)(awaitedPath.addProperty(this, 'attributes'), awaitedOptions);
     }
     get classList() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'classList'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'classList'), awaitedOptions);
     }
     get part() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'part'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'part'), awaitedOptions);
     }
     get shadowRoot() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createShadowRoot(awaitedPath.addProperty(this, 'shadowRoot'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createShadowRoot)(awaitedPath.addProperty(this, 'shadowRoot'), awaitedOptions);
     }
     // methods
     closest(selectors) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod(this, 'closest', selectors), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addMethod(this, 'closest', selectors), awaitedOptions);
     }
     getElementsByClassName(classNames) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByClassName', classNames), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addMethod(this, 'getElementsByClassName', classNames), awaitedOptions);
     }
     getElementsByTagName(qualifiedName) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagName', qualifiedName), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addMethod(this, 'getElementsByTagName', qualifiedName), awaitedOptions);
     }
     getElementsByTagNameNS(namespace, localName) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagNameNS', namespace, localName), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addMethod(this, 'getElementsByTagNameNS', namespace, localName), awaitedOptions);
     }
 }
 exports.default = Element;

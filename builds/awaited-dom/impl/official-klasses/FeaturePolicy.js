@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const FeaturePolicy_1 = require("../../base/official-klasses/FeaturePolicy");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const FeaturePolicyBaseClass = FeaturePolicy_1.FeaturePolicyGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const FeaturePolicyBaseClass = (0, FeaturePolicy_1.FeaturePolicyGenerator)();
 class FeaturePolicy extends FeaturePolicyBaseClass {
 }
 exports.default = FeaturePolicy;

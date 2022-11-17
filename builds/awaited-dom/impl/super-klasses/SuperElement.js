@@ -85,45 +85,45 @@ const NonDocumentTypeChildNode_1 = __importDefault(require("../official-mixins/N
 const ParentNode_1 = __importDefault(require("../official-mixins/ParentNode"));
 const Slotable_1 = __importDefault(require("../official-mixins/Slotable"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const SuperElementBaseClass = SuperElement_1.SuperElementGenerator(ElementCSSInlineStyle_1.default, ElementContentEditable_1.default, ElementIsolate_1.default, HTMLAnchorElementIsolate_1.default, HTMLAreaElementIsolate_1.default, HTMLAudioElementIsolate_1.default, HTMLBRElementIsolate_1.default, HTMLBaseElementIsolate_1.default, HTMLBodyElementIsolate_1.default, HTMLButtonElementIsolate_1.default, HTMLCanvasElementIsolate_1.default, HTMLDListElementIsolate_1.default, HTMLDataElementIsolate_1.default, HTMLDataListElementIsolate_1.default, HTMLDetailsElementIsolate_1.default, HTMLDialogElementIsolate_1.default, HTMLDirectoryElementIsolate_1.default, HTMLDivElementIsolate_1.default, HTMLElementIsolate_1.default, HTMLEmbedElementIsolate_1.default, HTMLFieldSetElementIsolate_1.default, HTMLFontElementIsolate_1.default, HTMLFormElementIsolate_1.default, HTMLFrameElementIsolate_1.default, HTMLFrameSetElementIsolate_1.default, HTMLHRElementIsolate_1.default, HTMLHeadElementIsolate_1.default, HTMLHeadingElementIsolate_1.default, HTMLHtmlElementIsolate_1.default, HTMLHyperlinkElementUtils_1.default, HTMLIFrameElementIsolate_1.default, HTMLImageElementIsolate_1.default, HTMLInputElementIsolate_1.default, HTMLLIElementIsolate_1.default, HTMLLabelElementIsolate_1.default, HTMLLegendElementIsolate_1.default, HTMLLinkElementIsolate_1.default, HTMLMapElementIsolate_1.default, HTMLMediaElementIsolate_1.default, HTMLMetaElementIsolate_1.default, HTMLMeterElementIsolate_1.default, HTMLModElementIsolate_1.default, HTMLOListElementIsolate_1.default, HTMLObjectElementIsolate_1.default, HTMLOptGroupElementIsolate_1.default, HTMLOptionElementIsolate_1.default, HTMLOrSVGElement_1.default, HTMLParagraphElementIsolate_1.default, HTMLParamElementIsolate_1.default, HTMLPreElementIsolate_1.default, HTMLProgressElementIsolate_1.default, HTMLQuoteElementIsolate_1.default, HTMLScriptElementIsolate_1.default, HTMLSelectElementIsolate_1.default, HTMLSlotElementIsolate_1.default, HTMLSourceElementIsolate_1.default, HTMLSpanElementIsolate_1.default, HTMLStyleElementIsolate_1.default, HTMLTableCaptionElementIsolate_1.default, HTMLTableCellElementIsolate_1.default, HTMLTableColElementIsolate_1.default, HTMLTableElementIsolate_1.default, HTMLTableRowElementIsolate_1.default, HTMLTableSectionElementIsolate_1.default, HTMLTemplateElementIsolate_1.default, HTMLTextAreaElementIsolate_1.default, HTMLTimeElementIsolate_1.default, HTMLTitleElementIsolate_1.default, HTMLTrackElementIsolate_1.default, HTMLUListElementIsolate_1.default, HTMLVideoElementIsolate_1.default, LinkStyle_1.default, NodeIsolate_1.default, NonDocumentTypeChildNode_1.default, ParentNode_1.default, Slotable_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const SuperElementBaseClass = (0, SuperElement_1.SuperElementGenerator)(ElementCSSInlineStyle_1.default, ElementContentEditable_1.default, ElementIsolate_1.default, HTMLAnchorElementIsolate_1.default, HTMLAreaElementIsolate_1.default, HTMLAudioElementIsolate_1.default, HTMLBRElementIsolate_1.default, HTMLBaseElementIsolate_1.default, HTMLBodyElementIsolate_1.default, HTMLButtonElementIsolate_1.default, HTMLCanvasElementIsolate_1.default, HTMLDListElementIsolate_1.default, HTMLDataElementIsolate_1.default, HTMLDataListElementIsolate_1.default, HTMLDetailsElementIsolate_1.default, HTMLDialogElementIsolate_1.default, HTMLDirectoryElementIsolate_1.default, HTMLDivElementIsolate_1.default, HTMLElementIsolate_1.default, HTMLEmbedElementIsolate_1.default, HTMLFieldSetElementIsolate_1.default, HTMLFontElementIsolate_1.default, HTMLFormElementIsolate_1.default, HTMLFrameElementIsolate_1.default, HTMLFrameSetElementIsolate_1.default, HTMLHRElementIsolate_1.default, HTMLHeadElementIsolate_1.default, HTMLHeadingElementIsolate_1.default, HTMLHtmlElementIsolate_1.default, HTMLHyperlinkElementUtils_1.default, HTMLIFrameElementIsolate_1.default, HTMLImageElementIsolate_1.default, HTMLInputElementIsolate_1.default, HTMLLIElementIsolate_1.default, HTMLLabelElementIsolate_1.default, HTMLLegendElementIsolate_1.default, HTMLLinkElementIsolate_1.default, HTMLMapElementIsolate_1.default, HTMLMediaElementIsolate_1.default, HTMLMetaElementIsolate_1.default, HTMLMeterElementIsolate_1.default, HTMLModElementIsolate_1.default, HTMLOListElementIsolate_1.default, HTMLObjectElementIsolate_1.default, HTMLOptGroupElementIsolate_1.default, HTMLOptionElementIsolate_1.default, HTMLOrSVGElement_1.default, HTMLParagraphElementIsolate_1.default, HTMLParamElementIsolate_1.default, HTMLPreElementIsolate_1.default, HTMLProgressElementIsolate_1.default, HTMLQuoteElementIsolate_1.default, HTMLScriptElementIsolate_1.default, HTMLSelectElementIsolate_1.default, HTMLSlotElementIsolate_1.default, HTMLSourceElementIsolate_1.default, HTMLSpanElementIsolate_1.default, HTMLStyleElementIsolate_1.default, HTMLTableCaptionElementIsolate_1.default, HTMLTableCellElementIsolate_1.default, HTMLTableColElementIsolate_1.default, HTMLTableElementIsolate_1.default, HTMLTableRowElementIsolate_1.default, HTMLTableSectionElementIsolate_1.default, HTMLTemplateElementIsolate_1.default, HTMLTextAreaElementIsolate_1.default, HTMLTimeElementIsolate_1.default, HTMLTitleElementIsolate_1.default, HTMLTrackElementIsolate_1.default, HTMLUListElementIsolate_1.default, HTMLVideoElementIsolate_1.default, LinkStyle_1.default, NodeIsolate_1.default, NonDocumentTypeChildNode_1.default, ParentNode_1.default, Slotable_1.default);
 class SuperElement extends SuperElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get attributes() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createNamedNodeMap(awaitedPath.addProperty(this, 'attributes'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createNamedNodeMap)(awaitedPath.addProperty(this, 'attributes'), awaitedOptions);
     }
     get classList() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'classList'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'classList'), awaitedOptions);
     }
     get part() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createDOMTokenList(awaitedPath.addProperty(this, 'part'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createDOMTokenList)(awaitedPath.addProperty(this, 'part'), awaitedOptions);
     }
     get shadowRoot() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createShadowRoot(awaitedPath.addProperty(this, 'shadowRoot'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createShadowRoot)(awaitedPath.addProperty(this, 'shadowRoot'), awaitedOptions);
     }
     // methods
     closest(selectors) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod(this, 'closest', selectors), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addMethod(this, 'closest', selectors), awaitedOptions);
     }
     getElementsByClassName(classNames) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByClassName', classNames), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addMethod(this, 'getElementsByClassName', classNames), awaitedOptions);
     }
     getElementsByTagName(qualifiedName) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagName', qualifiedName), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addMethod(this, 'getElementsByTagName', qualifiedName), awaitedOptions);
     }
     getElementsByTagNameNS(namespace, localName) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addMethod(this, 'getElementsByTagNameNS', namespace, localName), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addMethod(this, 'getElementsByTagNameNS', namespace, localName), awaitedOptions);
     }
 }
 exports.default = SuperElement;

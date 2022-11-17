@@ -50,9 +50,9 @@ export declare function ElementGenerator(Node: Constructable<INode>, NonDocument
         hasAttributes(): Promise<boolean>;
         hasPointerCapture(pointerId: number): Promise<boolean>;
         matches(selectors: string): Promise<boolean>;
-        requestFullscreen(options?: IFullscreenOptions | undefined): Promise<void>;
+        requestFullscreen(options?: IFullscreenOptions): Promise<void>;
         requestPointerLock(): Promise<void>;
-        scrollIntoView(arg?: boolean | IScrollIntoViewOptions | undefined): Promise<void>;
+        scrollIntoView(arg?: boolean | IScrollIntoViewOptions): Promise<void>;
         then<TResult1 = IElement, TResult2 = never>(onfulfilled?: ((value: IElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         readonly ATTRIBUTE_NODE: number;
         readonly CDATA_SECTION_NODE: number;

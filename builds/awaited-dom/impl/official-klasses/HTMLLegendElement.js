@@ -10,16 +10,16 @@ const HTMLLegendElement_1 = require("../../base/official-klasses/HTMLLegendEleme
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLLegendElementBaseClass = HTMLLegendElement_1.HTMLLegendElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLLegendElementBaseClass = (0, HTMLLegendElement_1.HTMLLegendElementGenerator)(HTMLElement_1.default);
 class HTMLLegendElement extends HTMLLegendElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get form() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLFormElement)(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
 }
 exports.default = HTMLLegendElement;

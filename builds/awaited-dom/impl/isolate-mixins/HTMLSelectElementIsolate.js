@@ -9,32 +9,32 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLSelectElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLSelectElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLSelectElementIsolate extends HTMLSelectElementIsolate_1.default {
     get form() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLFormElement)(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
     get labels() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperNodeList)(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
     }
     get options() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLOptionsCollection(awaitedPath.addProperty(this, 'options'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLOptionsCollection)(awaitedPath.addProperty(this, 'options'), awaitedOptions);
     }
     get selectedOptions() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'selectedOptions'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'selectedOptions'), awaitedOptions);
     }
     // methods
     item(index) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
     namedItem(name) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLOptionElement(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLOptionElement)(awaitedPath.addMethod(this, 'namedItem', name), awaitedOptions);
     }
 }
 exports.default = HTMLSelectElementIsolate;

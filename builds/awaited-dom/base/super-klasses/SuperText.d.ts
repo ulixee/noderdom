@@ -13,7 +13,7 @@ export declare const getState: (instance: ISuperText) => ISuperTextProperties, s
 export declare const awaitedHandler: AwaitedHandler<ISuperText>;
 export declare const nodeFactory: NodeFactory<ISuperText>;
 export declare function SuperTextGenerator(CharacterDataIsolate: Constructable<ICharacterDataIsolate>, NodeIsolate: Constructable<INodeIsolate>, NonDocumentTypeChildNode: Constructable<INonDocumentTypeChildNode>, Slotable: Constructable<ISlotable>): {
-    new (_data?: string | undefined): {
+    new (_data?: string): {
         readonly wholeText: Promise<string>;
         splitText(offset: number): Promise<ISuperText>;
         then<TResult1 = ISuperText, TResult2 = never>(onfulfilled?: ((value: ISuperText) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

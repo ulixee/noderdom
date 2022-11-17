@@ -10,21 +10,21 @@ const HTMLTableRowElement_1 = require("../../base/official-klasses/HTMLTableRowE
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLTableRowElementBaseClass = HTMLTableRowElement_1.HTMLTableRowElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLTableRowElementBaseClass = (0, HTMLTableRowElement_1.HTMLTableRowElementGenerator)(HTMLElement_1.default);
 class HTMLTableRowElement extends HTMLTableRowElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get cells() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'cells'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'cells'), awaitedOptions);
     }
     // methods
     insertCell(index) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLTableCellElement(awaitedPath.addMethod(this, 'insertCell', index), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLTableCellElement)(awaitedPath.addMethod(this, 'insertCell', index), awaitedOptions);
     }
 }
 exports.default = HTMLTableRowElement;

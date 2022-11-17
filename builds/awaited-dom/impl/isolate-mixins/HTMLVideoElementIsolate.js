@@ -9,11 +9,11 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLVideoElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLVideoElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLVideoElementIsolate extends HTMLVideoElementIsolate_1.default {
     getVideoPlaybackQuality() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createVideoPlaybackQuality(awaitedPath.addMethod(this, 'getVideoPlaybackQuality'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createVideoPlaybackQuality)(awaitedPath.addMethod(this, 'getVideoPlaybackQuality'), awaitedOptions);
     }
 }
 exports.default = HTMLVideoElementIsolate;

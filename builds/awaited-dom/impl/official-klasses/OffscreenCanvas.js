@@ -9,12 +9,12 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const OffscreenCanvas_1 = require("../../base/official-klasses/OffscreenCanvas");
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const OffscreenCanvasBaseClass = OffscreenCanvas_1.OffscreenCanvasGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const OffscreenCanvasBaseClass = (0, OffscreenCanvas_1.OffscreenCanvasGenerator)();
 class OffscreenCanvas extends OffscreenCanvasBaseClass {
     transferToImageBitmap() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createImageBitmap(awaitedPath.addMethod(this, 'transferToImageBitmap'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createImageBitmap)(awaitedPath.addMethod(this, 'transferToImageBitmap'), awaitedOptions);
     }
 }
 exports.default = OffscreenCanvas;

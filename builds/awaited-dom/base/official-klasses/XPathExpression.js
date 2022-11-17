@@ -9,7 +9,7 @@ const AwaitedHandler_1 = __importDefault(require("../AwaitedHandler"));
 const inspectInstanceProperties_1 = __importDefault(require("../inspectInstanceProperties"));
 const StateMachine_1 = __importDefault(require("../StateMachine"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('XPathExpression', exports.getState, exports.setState);
 function XPathExpressionGenerator() {
     return class XPathExpression {
@@ -20,7 +20,7 @@ function XPathExpressionGenerator() {
             throw new Error('XPathExpression.evaluate not implemented');
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.XPathExpressionPropertyKeys, exports.XPathExpressionConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.XPathExpressionPropertyKeys, exports.XPathExpressionConstantKeys);
         }
     };
 }

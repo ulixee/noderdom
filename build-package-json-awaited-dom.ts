@@ -13,7 +13,7 @@ const pkg = require('./package.json');
 delete pkg.devDependencies;
 delete pkg.scripts;
 
-pkg.name = 'awaited-dom';
+pkg.name = '@ulixee/awaited-dom';
 pkg.keywords.push('AwaitedDOM');
 
 Fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2));

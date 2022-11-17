@@ -10,8 +10,8 @@ const HTMLStyleElement_1 = require("../../base/official-klasses/HTMLStyleElement
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 const LinkStyle_1 = __importDefault(require("../official-mixins/LinkStyle"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLStyleElementBaseClass = HTMLStyleElement_1.HTMLStyleElementGenerator(HTMLElement_1.default, LinkStyle_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLStyleElementBaseClass = (0, HTMLStyleElement_1.HTMLStyleElementGenerator)(HTMLElement_1.default, LinkStyle_1.default);
 class HTMLStyleElement extends HTMLStyleElementBaseClass {
     constructor() {
         super();

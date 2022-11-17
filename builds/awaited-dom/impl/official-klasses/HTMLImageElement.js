@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLImageElement_1 = require("../../base/official-klasses/HTMLImageElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLImageElementBaseClass = HTMLImageElement_1.HTMLImageElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLImageElementBaseClass = (0, HTMLImageElement_1.HTMLImageElementGenerator)(HTMLElement_1.default);
 class HTMLImageElement extends HTMLImageElementBaseClass {
     constructor() {
         super();

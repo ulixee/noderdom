@@ -1,6 +1,6 @@
 {
-  "name": "awaited-dom",
-  "version": "1.4.0",
+  "name": "@ulixee/awaited-dom",
+  "version": "1.4.1",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
   "homepage": "https://github.com/ulixee/noderdom",
   "author": "Data Liberation Foundation",
@@ -8,6 +8,9 @@
     "Caleb Clark",
     "Blake Byrnes"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "keywords": [
     "w3c",
@@ -20,7 +23,7 @@
     "AwaitedDOM"
   ],
   "dependencies": {
-    "@unblocked-web/js-path": "2.0.0-alpha.1"
+    "@ulixee/js-path": "^2.0.0-alpha.13"
   },
   "repository": {
     "type": "git",

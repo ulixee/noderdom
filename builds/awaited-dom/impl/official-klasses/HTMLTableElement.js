@@ -10,32 +10,32 @@ const HTMLTableElement_1 = require("../../base/official-klasses/HTMLTableElement
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLTableElementBaseClass = HTMLTableElement_1.HTMLTableElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLTableElementBaseClass = (0, HTMLTableElement_1.HTMLTableElementGenerator)(HTMLElement_1.default);
 class HTMLTableElement extends HTMLTableElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get caption() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLTableCaptionElement(awaitedPath.addProperty(this, 'caption'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLTableCaptionElement)(awaitedPath.addProperty(this, 'caption'), awaitedOptions);
     }
     get rows() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'rows'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'rows'), awaitedOptions);
     }
     get tBodies() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'tBodies'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'tBodies'), awaitedOptions);
     }
     get tFoot() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLTableSectionElement(awaitedPath.addProperty(this, 'tFoot'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLTableSectionElement)(awaitedPath.addProperty(this, 'tFoot'), awaitedOptions);
     }
     get tHead() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLTableSectionElement(awaitedPath.addProperty(this, 'tHead'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLTableSectionElement)(awaitedPath.addProperty(this, 'tHead'), awaitedOptions);
     }
 }
 exports.default = HTMLTableElement;

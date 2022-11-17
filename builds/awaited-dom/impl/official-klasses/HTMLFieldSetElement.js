@@ -10,20 +10,20 @@ const HTMLFieldSetElement_1 = require("../../base/official-klasses/HTMLFieldSetE
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLFieldSetElementBaseClass = HTMLFieldSetElement_1.HTMLFieldSetElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLFieldSetElementBaseClass = (0, HTMLFieldSetElement_1.HTMLFieldSetElementGenerator)(HTMLElement_1.default);
 class HTMLFieldSetElement extends HTMLFieldSetElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get elements() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'elements'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'elements'), awaitedOptions);
     }
     get form() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLFormElement)(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
 }
 exports.default = HTMLFieldSetElement;

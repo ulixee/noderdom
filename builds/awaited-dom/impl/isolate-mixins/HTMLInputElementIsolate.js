@@ -9,23 +9,23 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLInputElementIsolate_1 = __importDefault(require("../../base/isolate-mixins/HTMLInputElementIsolate"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class HTMLInputElementIsolate extends HTMLInputElementIsolate_1.default {
     get files() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createFileList(awaitedPath.addProperty(this, 'files'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createFileList)(awaitedPath.addProperty(this, 'files'), awaitedOptions);
     }
     get form() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLFormElement)(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
     get labels() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperNodeList)(awaitedPath.addProperty(this, 'labels'), awaitedOptions);
     }
     get list() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLElement(awaitedPath.addProperty(this, 'list'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLElement)(awaitedPath.addProperty(this, 'list'), awaitedOptions);
     }
 }
 exports.default = HTMLInputElementIsolate;

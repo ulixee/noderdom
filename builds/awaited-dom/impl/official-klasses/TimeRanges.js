@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const TimeRanges_1 = require("../../base/official-klasses/TimeRanges");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const TimeRangesBaseClass = TimeRanges_1.TimeRangesGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const TimeRangesBaseClass = (0, TimeRanges_1.TimeRangesGenerator)();
 class TimeRanges extends TimeRangesBaseClass {
 }
 exports.default = TimeRanges;

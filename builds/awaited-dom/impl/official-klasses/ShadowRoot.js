@@ -11,16 +11,16 @@ const create_1 = require("../create");
 const DocumentFragment_1 = __importDefault(require("./DocumentFragment"));
 const DocumentOrShadowRoot_1 = __importDefault(require("../official-mixins/DocumentOrShadowRoot"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const ShadowRootBaseClass = ShadowRoot_1.ShadowRootGenerator(DocumentFragment_1.default, DocumentOrShadowRoot_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const ShadowRootBaseClass = (0, ShadowRoot_1.ShadowRootGenerator)(DocumentFragment_1.default, DocumentOrShadowRoot_1.default);
 class ShadowRoot extends ShadowRootBaseClass {
     constructor() {
         super();
     }
     // properties
     get host() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty(this, 'host'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addProperty(this, 'host'), awaitedOptions);
     }
 }
 exports.default = ShadowRoot;

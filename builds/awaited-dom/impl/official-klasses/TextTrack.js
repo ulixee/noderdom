@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const TextTrack_1 = require("../../base/official-klasses/TextTrack");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const TextTrackBaseClass = TextTrack_1.TextTrackGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const TextTrackBaseClass = (0, TextTrack_1.TextTrackGenerator)();
 class TextTrack extends TextTrackBaseClass {
 }
 exports.default = TextTrack;

@@ -15,16 +15,16 @@ const HTMLCollectionBaseIsolate_1 = require("../isolate-mixins/HTMLCollectionBas
 const HTMLCollectionIsolate_1 = require("../isolate-mixins/HTMLCollectionIsolate");
 const HTMLOptionsCollectionIsolate_1 = require("../isolate-mixins/HTMLOptionsCollectionIsolate");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('SuperHTMLCollection', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 exports.awaitedIterator = new AwaitedIterator_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate, HTMLCollectionIsolate, HTMLOptionsCollectionIsolate) {
-    const Parent = ClassMixer_1.default(HTMLCollectionBaseIsolate, [HTMLCollectionIsolate, HTMLOptionsCollectionIsolate]);
+    const Parent = (0, ClassMixer_1.default)(HTMLCollectionBaseIsolate, [HTMLCollectionIsolate, HTMLOptionsCollectionIsolate]);
     return class SuperHTMLCollection extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createSuperHTMLCollection',
                 createIterableName: 'createSuperElement',
             });
@@ -62,7 +62,7 @@ function SuperHTMLCollectionGenerator(HTMLCollectionBaseIsolate, HTMLCollectionI
             return exports.awaitedIterator.iterateNodePointers(this);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.SuperHTMLCollectionPropertyKeys, exports.SuperHTMLCollectionConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.SuperHTMLCollectionPropertyKeys, exports.SuperHTMLCollectionConstantKeys);
         }
     };
 }

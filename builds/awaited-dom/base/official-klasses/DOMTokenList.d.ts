@@ -19,7 +19,7 @@ export declare function DOMTokenListGenerator(): {
         replace(token: string, newToken: string): Promise<boolean>;
         supports(token: string): Promise<boolean>;
         toString(): Promise<string>;
-        toggle(token: string, force?: boolean | undefined): Promise<boolean>;
+        toggle(token: string, force?: boolean): Promise<boolean>;
         then<TResult1 = IDOMTokenList, TResult2 = never>(onfulfilled?: ((value: IDOMTokenList) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         forEach(callbackfn: (value: string, key: number, parent: IDOMTokenList) => void, thisArg?: any): Promise<void>;
         entries(): Promise<IterableIterator<[number, string]>>;

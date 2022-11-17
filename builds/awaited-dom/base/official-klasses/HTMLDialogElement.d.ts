@@ -11,7 +11,7 @@ export declare function HTMLDialogElementGenerator(HTMLElement: Constructable<IH
     new (): {
         readonly open: Promise<boolean>;
         readonly returnValue: Promise<string>;
-        close(returnValue?: string | undefined): Promise<void>;
+        close(returnValue?: string): Promise<void>;
         show(): Promise<void>;
         showModal(): Promise<void>;
         then<TResult1 = IHTMLDialogElement, TResult2 = never>(onfulfilled?: ((value: IHTMLDialogElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;

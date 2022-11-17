@@ -9,15 +9,15 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const XPathEvaluatorBase_1 = __importDefault(require("../../base/official-mixins/XPathEvaluatorBase"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class XPathEvaluatorBase extends XPathEvaluatorBase_1.default {
     createExpression(expression, resolver) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createXPathExpression(awaitedPath.addMethod(this, 'createExpression', expression, resolver), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createXPathExpression)(awaitedPath.addMethod(this, 'createExpression', expression, resolver), awaitedOptions);
     }
     evaluate(expression, contextNode, resolver, type, result) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createXPathResult(awaitedPath.addMethod(this, 'evaluate', expression, contextNode, resolver, type, result), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createXPathResult)(awaitedPath.addMethod(this, 'evaluate', expression, contextNode, resolver, type, result), awaitedOptions);
     }
 }
 exports.default = XPathEvaluatorBase;

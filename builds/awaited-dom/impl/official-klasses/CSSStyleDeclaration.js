@@ -9,12 +9,12 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const CSSStyleDeclaration_1 = require("../../base/official-klasses/CSSStyleDeclaration");
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const CSSStyleDeclarationBaseClass = CSSStyleDeclaration_1.CSSStyleDeclarationGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const CSSStyleDeclarationBaseClass = (0, CSSStyleDeclaration_1.CSSStyleDeclarationGenerator)();
 class CSSStyleDeclaration extends CSSStyleDeclarationBaseClass {
     get parentRule() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createCSSRule(awaitedPath.addProperty(this, 'parentRule'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createCSSRule)(awaitedPath.addProperty(this, 'parentRule'), awaitedOptions);
     }
 }
 exports.default = CSSStyleDeclaration;

@@ -14,16 +14,16 @@ const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const NodeListIsolate_1 = require("../isolate-mixins/NodeListIsolate");
 const RadioNodeListIsolate_1 = require("../isolate-mixins/RadioNodeListIsolate");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('SuperNodeList', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 exports.awaitedIterator = new AwaitedIterator_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function SuperNodeListGenerator(NodeListIsolate, RadioNodeListIsolate) {
-    const Parent = ClassMixer_1.default(NodeListIsolate, [RadioNodeListIsolate]);
+    const Parent = (0, ClassMixer_1.default)(NodeListIsolate, [RadioNodeListIsolate]);
     return class SuperNodeList extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createSuperNodeList',
                 createIterableName: 'createSuperNode',
             });
@@ -75,7 +75,7 @@ function SuperNodeListGenerator(NodeListIsolate, RadioNodeListIsolate) {
             return exports.awaitedIterator.iterateNodePointers(this);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.SuperNodeListPropertyKeys, exports.SuperNodeListConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.SuperNodeListPropertyKeys, exports.SuperNodeListConstantKeys);
         }
     };
 }

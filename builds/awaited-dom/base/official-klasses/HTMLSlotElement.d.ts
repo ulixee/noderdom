@@ -11,8 +11,8 @@ export declare const nodeFactory: NodeFactory<IHTMLSlotElement>;
 export declare function HTMLSlotElementGenerator(HTMLElement: Constructable<IHTMLElement>): {
     new (): {
         readonly name: Promise<string>;
-        assignedElements(options?: IAssignedNodesOptions | undefined): Promise<Iterable<ISuperElement>>;
-        assignedNodes(options?: IAssignedNodesOptions | undefined): Promise<Iterable<ISuperNode>>;
+        assignedElements(options?: IAssignedNodesOptions): Promise<Iterable<ISuperElement>>;
+        assignedNodes(options?: IAssignedNodesOptions): Promise<Iterable<ISuperNode>>;
         then<TResult1 = IHTMLSlotElement, TResult2 = never>(onfulfilled?: ((value: IHTMLSlotElement) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): Promise<TResult1 | TResult2>;
         readonly accessKey: Promise<string>;
         readonly autoCapitalize: Promise<string>;

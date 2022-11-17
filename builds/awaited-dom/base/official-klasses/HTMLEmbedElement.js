@@ -11,14 +11,14 @@ const StateMachine_1 = __importDefault(require("../StateMachine"));
 const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const HTMLElement_1 = require("./HTMLElement");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLEmbedElement', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLEmbedElementGenerator(HTMLElement) {
     return class HTMLEmbedElement extends HTMLElement {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createHTMLEmbedElement',
             });
         }
@@ -45,7 +45,7 @@ function HTMLEmbedElementGenerator(HTMLElement) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLEmbedElementPropertyKeys, exports.HTMLEmbedElementConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLEmbedElementPropertyKeys, exports.HTMLEmbedElementConstantKeys);
         }
     };
 }

@@ -16,15 +16,15 @@ const NonElementParentNode_1 = require("../official-mixins/NonElementParentNode"
 const ParentNode_1 = require("../official-mixins/ParentNode");
 const XPathEvaluatorBase_1 = require("../official-mixins/XPathEvaluatorBase");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('Document', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function DocumentGenerator(Node, DocumentOrShadowRoot, NonElementParentNode, ParentNode, XPathEvaluatorBase) {
-    const Parent = ClassMixer_1.default(Node, [DocumentOrShadowRoot, NonElementParentNode, ParentNode, XPathEvaluatorBase]);
+    const Parent = (0, ClassMixer_1.default)(Node, [DocumentOrShadowRoot, NonElementParentNode, ParentNode, XPathEvaluatorBase]);
     return class Document extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createDocument',
             });
         }
@@ -148,7 +148,7 @@ function DocumentGenerator(Node, DocumentOrShadowRoot, NonElementParentNode, Par
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.DocumentPropertyKeys, exports.DocumentConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.DocumentPropertyKeys, exports.DocumentConstantKeys);
         }
     };
 }

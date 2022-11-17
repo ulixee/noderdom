@@ -10,20 +10,20 @@ const HTMLCanvasElement_1 = require("../../base/official-klasses/HTMLCanvasEleme
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLCanvasElementBaseClass = HTMLCanvasElement_1.HTMLCanvasElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLCanvasElementBaseClass = (0, HTMLCanvasElement_1.HTMLCanvasElementGenerator)(HTMLElement_1.default);
 class HTMLCanvasElement extends HTMLCanvasElementBaseClass {
     constructor() {
         super();
     }
     // methods
     captureStream(frameRequestRate) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createMediaStream(awaitedPath.addMethod(this, 'captureStream', frameRequestRate), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createMediaStream)(awaitedPath.addMethod(this, 'captureStream', frameRequestRate), awaitedOptions);
     }
     transferControlToOffscreen() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createOffscreenCanvas(awaitedPath.addMethod(this, 'transferControlToOffscreen'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createOffscreenCanvas)(awaitedPath.addMethod(this, 'transferControlToOffscreen'), awaitedOptions);
     }
 }
 exports.default = HTMLCanvasElement;

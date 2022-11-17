@@ -13,15 +13,15 @@ const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const HTMLElement_1 = require("./HTMLElement");
 const HTMLHyperlinkElementUtils_1 = require("../official-mixins/HTMLHyperlinkElementUtils");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLAnchorElement', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLAnchorElementGenerator(HTMLElement, HTMLHyperlinkElementUtils) {
-    const Parent = ClassMixer_1.default(HTMLElement, [HTMLHyperlinkElementUtils]);
+    const Parent = (0, ClassMixer_1.default)(HTMLElement, [HTMLHyperlinkElementUtils]);
     return class HTMLAnchorElement extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createHTMLAnchorElement',
             });
         }
@@ -54,7 +54,7 @@ function HTMLAnchorElementGenerator(HTMLElement, HTMLHyperlinkElementUtils) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLAnchorElementPropertyKeys, exports.HTMLAnchorElementConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLAnchorElementPropertyKeys, exports.HTMLAnchorElementConstantKeys);
         }
     };
 }

@@ -8,8 +8,8 @@ exports.setState = exports.getState = void 0;
 const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const XMLSerializer_1 = require("../../base/official-klasses/XMLSerializer");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const XMLSerializerBaseClass = XMLSerializer_1.XMLSerializerGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const XMLSerializerBaseClass = (0, XMLSerializer_1.XMLSerializerGenerator)();
 class XMLSerializer extends XMLSerializerBaseClass {
 }
 exports.default = XMLSerializer;

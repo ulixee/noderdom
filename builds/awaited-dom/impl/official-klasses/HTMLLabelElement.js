@@ -10,20 +10,20 @@ const HTMLLabelElement_1 = require("../../base/official-klasses/HTMLLabelElement
 const create_1 = require("../create");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLLabelElementBaseClass = HTMLLabelElement_1.HTMLLabelElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLLabelElementBaseClass = (0, HTMLLabelElement_1.HTMLLabelElementGenerator)(HTMLElement_1.default);
 class HTMLLabelElement extends HTMLLabelElementBaseClass {
     constructor() {
         super();
     }
     // properties
     get control() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLElement(awaitedPath.addProperty(this, 'control'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLElement)(awaitedPath.addProperty(this, 'control'), awaitedOptions);
     }
     get form() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLFormElement(awaitedPath.addProperty(this, 'form'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLFormElement)(awaitedPath.addProperty(this, 'form'), awaitedOptions);
     }
 }
 exports.default = HTMLLabelElement;

@@ -132,7 +132,7 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
         readonly textContent: Promise<string | null>;
         compareDocumentPosition(other: INodeIsolate): Promise<number>;
         contains(other: INodeIsolate | null): Promise<boolean>;
-        getRootNode(options?: IGetRootNodeOptions | undefined): ISuperNode;
+        getRootNode(options?: IGetRootNodeOptions): ISuperNode;
         hasChildNodes(): Promise<boolean>;
         isDefaultNamespace(namespace: string | null): Promise<boolean>;
         isEqualNode(otherNode: INodeIsolate | null): Promise<boolean>;

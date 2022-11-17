@@ -9,28 +9,28 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const ParentNode_1 = __importDefault(require("../../base/official-mixins/ParentNode"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class ParentNode extends ParentNode_1.default {
     get children() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperHTMLCollection(awaitedPath.addProperty(this, 'children'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperHTMLCollection)(awaitedPath.addProperty(this, 'children'), awaitedOptions);
     }
     get firstElementChild() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty(this, 'firstElementChild'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addProperty(this, 'firstElementChild'), awaitedOptions);
     }
     get lastElementChild() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addProperty(this, 'lastElementChild'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addProperty(this, 'lastElementChild'), awaitedOptions);
     }
     // methods
     querySelector(selectors) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperElement(awaitedPath.addMethod(this, 'querySelector', selectors), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperElement)(awaitedPath.addMethod(this, 'querySelector', selectors), awaitedOptions);
     }
     querySelectorAll(selectors) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createSuperNodeList(awaitedPath.addMethod(this, 'querySelectorAll', selectors), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createSuperNodeList)(awaitedPath.addMethod(this, 'querySelectorAll', selectors), awaitedOptions);
     }
 }
 exports.default = ParentNode;

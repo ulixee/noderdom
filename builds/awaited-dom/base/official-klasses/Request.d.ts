@@ -6,7 +6,7 @@ import { IBodyProperties } from '../official-mixins/Body';
 export declare const getState: (instance: IRequest) => IRequestProperties, setState: (instance: IRequest, properties: Partial<IRequestProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IRequest>;
 export declare function RequestGenerator(Body: Constructable<IBody>): {
-    new (_input: IRequestInfo, _init?: IRequestInit | undefined): {
+    new (_input: IRequestInfo, _init?: IRequestInit): {
         readonly cache: Promise<IRequestCache>;
         readonly credentials: Promise<IRequestCredentials>;
         readonly destination: Promise<IRequestDestination>;

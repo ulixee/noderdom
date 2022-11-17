@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const XPathEvaluator_1 = require("../../base/official-klasses/XPathEvaluator");
 const XPathEvaluatorBase_1 = __importDefault(require("../official-mixins/XPathEvaluatorBase"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const XPathEvaluatorBaseClass = XPathEvaluator_1.XPathEvaluatorGenerator(XPathEvaluatorBase_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const XPathEvaluatorBaseClass = (0, XPathEvaluator_1.XPathEvaluatorGenerator)(XPathEvaluatorBase_1.default);
 class XPathEvaluator extends XPathEvaluatorBaseClass {
     constructor() {
         super();

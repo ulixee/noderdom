@@ -13,15 +13,15 @@ const NodeFactory_1 = __importDefault(require("../NodeFactory"));
 const HTMLElement_1 = require("./HTMLElement");
 const HTMLHyperlinkElementUtils_1 = require("../official-mixins/HTMLHyperlinkElementUtils");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 exports.awaitedHandler = new AwaitedHandler_1.default('HTMLAreaElement', exports.getState, exports.setState);
 exports.nodeFactory = new NodeFactory_1.default(exports.getState, exports.setState, exports.awaitedHandler);
 function HTMLAreaElementGenerator(HTMLElement, HTMLHyperlinkElementUtils) {
-    const Parent = ClassMixer_1.default(HTMLElement, [HTMLHyperlinkElementUtils]);
+    const Parent = (0, ClassMixer_1.default)(HTMLElement, [HTMLHyperlinkElementUtils]);
     return class HTMLAreaElement extends Parent {
         constructor() {
             super();
-            exports.setState(this, {
+            (0, exports.setState)(this, {
                 createInstanceName: 'createHTMLAreaElement',
             });
         }
@@ -63,7 +63,7 @@ function HTMLAreaElementGenerator(HTMLElement, HTMLHyperlinkElementUtils) {
             return exports.nodeFactory.createInstanceWithNodePointer(this).then(onfulfilled, onrejected);
         }
         [Symbol.for('nodejs.util.inspect.custom')]() {
-            return inspectInstanceProperties_1.default(this, exports.HTMLAreaElementPropertyKeys, exports.HTMLAreaElementConstantKeys);
+            return (0, inspectInstanceProperties_1.default)(this, exports.HTMLAreaElementPropertyKeys, exports.HTMLAreaElementConstantKeys);
         }
     };
 }

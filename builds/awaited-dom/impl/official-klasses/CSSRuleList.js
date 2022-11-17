@@ -9,12 +9,12 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const CSSRuleList_1 = require("../../base/official-klasses/CSSRuleList");
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const CSSRuleListBaseClass = CSSRuleList_1.CSSRuleListGenerator();
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const CSSRuleListBaseClass = (0, CSSRuleList_1.CSSRuleListGenerator)();
 class CSSRuleList extends CSSRuleListBaseClass {
     item(index) {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createCSSRule(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createCSSRule)(awaitedPath.addMethod(this, 'item', index), awaitedOptions);
     }
 }
 exports.default = CSSRuleList;

@@ -9,11 +9,11 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const Slotable_1 = __importDefault(require("../../base/official-mixins/Slotable"));
 const create_1 = require("../create");
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
 class Slotable extends Slotable_1.default {
     get assignedSlot() {
-        const { awaitedPath, awaitedOptions } = exports.getState(this);
-        return create_1.createHTMLSlotElement(awaitedPath.addProperty(this, 'assignedSlot'), awaitedOptions);
+        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
+        return (0, create_1.createHTMLSlotElement)(awaitedPath.addProperty(this, 'assignedSlot'), awaitedOptions);
     }
 }
 exports.default = Slotable;

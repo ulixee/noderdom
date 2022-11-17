@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLTableCaptionElement_1 = require("../../base/official-klasses/HTMLTableCaptionElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLTableCaptionElementBaseClass = HTMLTableCaptionElement_1.HTMLTableCaptionElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLTableCaptionElementBaseClass = (0, HTMLTableCaptionElement_1.HTMLTableCaptionElementGenerator)(HTMLElement_1.default);
 class HTMLTableCaptionElement extends HTMLTableCaptionElementBaseClass {
     constructor() {
         super();

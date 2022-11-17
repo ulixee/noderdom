@@ -9,8 +9,8 @@ const StateMachine_1 = __importDefault(require("../../base/StateMachine"));
 const HTMLHeadingElement_1 = require("../../base/official-klasses/HTMLHeadingElement");
 const HTMLElement_1 = __importDefault(require("./HTMLElement"));
 // tslint:disable:variable-name
-_a = StateMachine_1.default(), exports.getState = _a.getState, exports.setState = _a.setState;
-const HTMLHeadingElementBaseClass = HTMLHeadingElement_1.HTMLHeadingElementGenerator(HTMLElement_1.default);
+_a = (0, StateMachine_1.default)(), exports.getState = _a.getState, exports.setState = _a.setState;
+const HTMLHeadingElementBaseClass = (0, HTMLHeadingElement_1.HTMLHeadingElementGenerator)(HTMLElement_1.default);
 class HTMLHeadingElement extends HTMLHeadingElementBaseClass {
     constructor() {
         super();
