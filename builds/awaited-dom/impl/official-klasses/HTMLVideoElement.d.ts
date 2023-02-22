@@ -48,7 +48,6 @@ declare const HTMLVideoElementBaseClass: {
         readonly videoTracks: import("../../base/interfaces/official").IVideoTrackList;
         readonly volume: Promise<number>;
         canPlayType(type: string): Promise<import("../../base/interfaces/official").ICanPlayTypeResult>;
-        captureStream(): import("../../base/interfaces/official").IMediaStream;
         load(): Promise<void>;
         pause(): Promise<void>;
         play(): Promise<void>;

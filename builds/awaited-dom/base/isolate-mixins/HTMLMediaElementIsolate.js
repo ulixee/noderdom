@@ -114,9 +114,6 @@ class HTMLMediaElementIsolate {
     canPlayType(type) {
         return exports.awaitedHandler.runMethod(this, 'canPlayType', [type]);
     }
-    captureStream() {
-        throw new Error('HTMLMediaElementIsolate.captureStream not implemented');
-    }
     load() {
         return exports.awaitedHandler.runMethod(this, 'load', []);
     }

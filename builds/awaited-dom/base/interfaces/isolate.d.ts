@@ -1,6 +1,4 @@
-/// <reference no-default-lib="true"/>
 import { ISuperNodeList, ISuperNode, ISuperDocument, ISuperElement, ISuperHTMLCollection, ISuperHTMLElement, ISuperText } from './super';
-import { INodeIsolate } from './isolate';
 import { IGetRootNodeOptions, IDocumentType, IFeaturePolicy, IHTMLHeadElement, IDOMImplementation, ILocation, IDocumentReadyState, IVisibilityState, INamedNodeMap, IDOMTokenList, IShadowRoot, IAttr, IDOMRect, IDOMRectList, IFullscreenOptions, IScrollIntoViewOptions, IHTMLFormElement, IValidityState, IMediaStream, IOffscreenCanvas, IHTMLOptionsCollection, IFileList, ISelectionMode, IAudioTrackList, ITimeRanges, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IVideoPlaybackQuality, IDocumentFragment, IHTMLOptionElement, IAssignedNodesOptions, IHTMLTableCaptionElement, IHTMLTableSectionElement, IHTMLTableCellElement, ITextTrack, IShadowRootMode, ICSSRuleList, ICSSRule } from './official';
 export interface INodeIsolate {
     readonly ATTRIBUTE_NODE: number;
@@ -170,7 +168,6 @@ export interface IHTMLMediaElementIsolate {
     readonly videoTracks: IVideoTrackList;
     readonly volume: Promise<number>;
     canPlayType(type: string): Promise<ICanPlayTypeResult>;
-    captureStream(): IMediaStream;
     load(): Promise<void>;
     pause(): Promise<void>;
     play(): Promise<void>;

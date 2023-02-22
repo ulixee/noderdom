@@ -85,7 +85,7 @@ declare const SuperElementBaseClass: {
         reportValidity: (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>);
         readonly height: Promise<string> | Promise<number>;
         readonly width: Promise<string> | Promise<number>;
-        captureStream: ((frameRequestRate?: number | undefined) => import("../../base/interfaces/official").IMediaStream) & (() => import("../../base/interfaces/official").IMediaStream);
+        captureStream(frameRequestRate?: number | undefined): import("../../base/interfaces/official").IMediaStream;
         toDataURL(type?: string | undefined, quality?: any): Promise<string>;
         transferControlToOffscreen(): import("../../base/interfaces/official").IOffscreenCanvas;
         readonly compact: Promise<boolean>;

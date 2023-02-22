@@ -56,7 +56,12 @@ export default class TsImporter {
     return this.importsToString(importsByPath);
   }
 
-  public extractAll(references: string[], buildType: IBuildType, objectStruct: IObjectStruct): string {
+  public extractAll(
+    references: string[],
+    buildType: IBuildType,
+    objectStruct: IObjectStruct,
+    entrypoint?: string,
+  ): string {
     const importsByPath: IImportsByPath = {};
 
     references.forEach(name => {
@@ -71,9 +76,16 @@ export default class TsImporter {
       }
 
       const { path, filename } = this.extractPathAndFilename(buildType, objectStruct, objectMeta, name);
+      if (entrypoint && Path.basename(entrypoint) === filename + '.ts') {
+        return;
+      }
       const objectName = objectStruct === ObjectStruct.interface ? `I${name}` : name;
 
-      importsByPath[path] = importsByPath[path] || { filename: filename, importNames: new Set(), defaultImportName: undefined };
+      importsByPath[path] = importsByPath[path] || {
+        filename: filename,
+        importNames: new Set(),
+        defaultImportName: undefined,
+      };
       importsByPath[path].importNames.add(objectName);
       if (name === filename) {
         importsByPath[path].defaultImportName = name;

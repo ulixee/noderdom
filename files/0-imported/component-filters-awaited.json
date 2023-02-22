@@ -2227,7 +2227,7 @@
         "isEnabled": true
       },
       "captureStream": {
-        "isEnabled": true,
+        "isEnabled": false,
         "isAbstract": true
       },
       "load": {

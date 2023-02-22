@@ -1,6 +1,6 @@
 {
   "name": "@ulixee/awaited-dom",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Library for converting WebIDLs to Typescript interfaces and classes",
   "homepage": "https://github.com/ulixee/noderdom",
   "author": "Data Liberation Foundation",
@@ -23,7 +23,7 @@
     "AwaitedDOM"
   ],
   "dependencies": {
-    "@ulixee/js-path": "^2.0.0-alpha.13"
+    "@ulixee/js-path": "^2.0.0-alpha.18"
   },
   "repository": {
     "type": "git",

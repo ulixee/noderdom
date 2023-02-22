@@ -1,4 +1,3 @@
-/// <reference no-default-lib="true"/>
 import { ISuperNode, ISuperElement, ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperStyleSheet, ISuperText } from './super';
 import { INodeIsolate } from './isolate';
 export declare type ICanPlayTypeResult = '' | 'maybe' | 'probably';
@@ -395,7 +394,6 @@ export interface IHTMLMediaElement extends IHTMLElement {
     readonly videoTracks: IVideoTrackList;
     readonly volume: Promise<number>;
     canPlayType(type: string): Promise<ICanPlayTypeResult>;
-    captureStream(): IMediaStream;
     load(): Promise<void>;
     pause(): Promise<void>;
     play(): Promise<void>;

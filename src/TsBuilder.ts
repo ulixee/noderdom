@@ -25,6 +25,7 @@ interface IOptions {
 
 interface IImportCodeModuleOptions {
   currentDir: string;
+  currentFile: string
   references: string[];
   localReferences?: string[];
 }
@@ -110,12 +111,13 @@ export default class TsBuilder {
     return codeModules;
   }
 
-  public extractOfficialInterfaceImports(basicTypes: ICodeModule[]) {
+  public extractOfficialInterfaceImports(basicTypes: ICodeModule[], entrypoint: string) {
     const options = { domType: this.domType };
     const codeModules = this.interfaces.map(i => new TsInterfaceExtractor(this.components, i, options).run());
 
     const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
       currentDir: this.pathsByBuildType.base.interfaces,
+      currentFile: entrypoint,
       references: [...codeModules, ...basicTypes].map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
       localReferences: [...codeModules, ...basicTypes].map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
     });
@@ -139,7 +141,7 @@ export default class TsBuilder {
     return codeModules;
   }
 
-  public extractIsolateInterfaceImports() {
+  public extractIsolateInterfaceImports(isolatePath:string) {
     const options = { domType: this.domType };
     const codeModules: ICodeModule[] = [];
     for (const i of Object.values(this.components.awaitedIsolates)) {
@@ -148,6 +150,7 @@ export default class TsBuilder {
 
     const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
       currentDir: this.pathsByBuildType.base.interfaces,
+      currentFile: isolatePath,
       references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
     });
 
@@ -169,13 +172,14 @@ export default class TsBuilder {
     return codeModules;
   }
 
-  public extractSuperInterfaceImports() {
+  public extractSuperInterfaceImports(entrypoint: string) {
     const codeModules = Object.values(this.components.awaitedSupers).map(i => {
       return new TsInterfaceExtractor(this.components, i, { domType: this.domType }).run();
     });
 
     const importsCodeModule = this.extractImportCodeModule(BuildType.base, ObjectStruct.interface, {
       currentDir: this.pathsByBuildType.base.interfaces,
+      currentFile: entrypoint,
       references: codeModules.map(x => x.referencedObjects).reduce((a, b) => a.concat(b), []),
       localReferences: codeModules.map(x => x.definedObjects).reduce((a, b) => a.concat(b), []),
     });
@@ -324,10 +328,10 @@ export default class TsBuilder {
     options: IImportCodeModuleOptions,
   ): ICodeModule | null {
     const { objectMetaByName, pathsByBuildType } = this;
-    const { references, localReferences, currentDir } = options;
+    const { references, localReferences, currentDir, currentFile } = options;
     const tsImporterOptions = { localReferences, currentDir, objectMetaByName, pathsByBuildType };
     const tsImporter = new TsImporter(tsImporterOptions);
-    const importCode = tsImporter.extractAll(references, importFromBuildType, importFromObjectStruct);
+    const importCode = tsImporter.extractAll(references, importFromBuildType, importFromObjectStruct, currentFile);
     return {
       name: 'Import',
       definedObjects: [],

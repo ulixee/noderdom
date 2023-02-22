@@ -1,4 +1,4 @@
-import { IHTMLMediaElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, IMediaStream } from '../../base/interfaces/official';
+import { IHTMLMediaElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList } from '../../base/interfaces/official';
 import { IHTMLMediaElementProperties } from '../../base/official-klasses/HTMLMediaElement';
 export declare const getState: (instance: IHTMLMediaElement) => IHTMLMediaElementProperties, setState: (instance: IHTMLMediaElement, properties: Partial<IHTMLMediaElementProperties>) => void;
 declare const HTMLMediaElementBaseClass: {
@@ -42,7 +42,6 @@ declare const HTMLMediaElementBaseClass: {
         readonly videoTracks: IVideoTrackList;
         readonly volume: Promise<number>;
         canPlayType(type: string): Promise<import("../../base/interfaces/official").ICanPlayTypeResult>;
-        captureStream(): IMediaStream;
         load(): Promise<void>;
         pause(): Promise<void>;
         play(): Promise<void>;
@@ -186,6 +185,5 @@ export default class HTMLMediaElement extends HTMLMediaElementBaseClass implemen
     get seekable(): ITimeRanges;
     get textTracks(): ITextTrackList;
     get videoTracks(): IVideoTrackList;
-    captureStream(): IMediaStream;
 }
 export {};

@@ -5848,17 +5848,6 @@
             }
           ],
           "exposed": "Window"
-        },
-        "captureStream": {
-          "name": "captureStream",
-          "signatures": [
-            {
-              "type": "MediaStream",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
         }
       },
       "anonymousMethods": [],
@@ -16546,17 +16535,6 @@
             }
           ],
           "exposed": "Window"
-        },
-        "captureStream": {
-          "name": "captureStream",
-          "signatures": [
-            {
-              "type": "MediaStream",
-              "params": []
-            }
-          ],
-          "exposed": "Window",
-          "isAbstract": 1
         }
       },
       "anonymousMethods": [],

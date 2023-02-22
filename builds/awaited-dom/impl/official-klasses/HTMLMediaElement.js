@@ -53,11 +53,6 @@ class HTMLMediaElement extends HTMLMediaElementBaseClass {
         const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
         return (0, create_1.createVideoTrackList)(awaitedPath.addProperty(this, 'videoTracks'), awaitedOptions);
     }
-    // methods
-    captureStream() {
-        const { awaitedPath, awaitedOptions } = (0, exports.getState)(this);
-        return (0, create_1.createMediaStream)(awaitedPath.addMethod(this, 'captureStream'), awaitedOptions);
-    }
 }
 exports.default = HTMLMediaElement;
 //# sourceMappingURL=HTMLMediaElement.js.map

@@ -124,9 +124,6 @@ function HTMLMediaElementGenerator(HTMLElement) {
             canPlayType(type) {
                 return exports.awaitedHandler.runMethod(this, 'canPlayType', [type]);
             }
-            captureStream() {
-                throw new Error('HTMLMediaElement.captureStream not implemented');
-            }
             load() {
                 return exports.awaitedHandler.runMethod(this, 'load', []);
             }

@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
-import { IHTMLMediaElement, IHTMLElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IMediaStream } from '../interfaces/official';
+import { IHTMLMediaElement, IHTMLElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult } from '../interfaces/official';
 import { IHTMLElementProperties } from './HTMLElement';
 export declare const getState: (instance: IHTMLMediaElement) => IHTMLMediaElementProperties, setState: (instance: IHTMLMediaElement, properties: Partial<IHTMLMediaElementProperties>) => void;
 export declare const awaitedHandler: AwaitedHandler<IHTMLMediaElement>;
@@ -48,7 +48,6 @@ export declare function HTMLMediaElementGenerator(HTMLElement: Constructable<IHT
         readonly videoTracks: IVideoTrackList;
         readonly volume: Promise<number>;
         canPlayType(type: string): Promise<ICanPlayTypeResult>;
-        captureStream(): IMediaStream;
         load(): Promise<void>;
         pause(): Promise<void>;
         play(): Promise<void>;

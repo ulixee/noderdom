@@ -268,7 +268,7 @@ export declare function SuperNodeGenerator(AttrIsolate: Constructable<IAttrIsola
         reportValidity: (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>) & (() => Promise<boolean>);
         readonly height: Promise<string> | Promise<number>;
         readonly width: Promise<string> | Promise<number>;
-        captureStream: ((frameRequestRate?: number | undefined) => import("../interfaces/official").IMediaStream) & (() => import("../interfaces/official").IMediaStream);
+        captureStream(frameRequestRate?: number | undefined): import("../interfaces/official").IMediaStream;
         toDataURL(type?: string | undefined, quality?: any): Promise<string>;
         transferControlToOffscreen(): import("../interfaces/official").IOffscreenCanvas;
         readonly compact: Promise<boolean>;

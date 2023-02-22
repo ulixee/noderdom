@@ -2,7 +2,7 @@ import AwaitedHandler from '../AwaitedHandler';
 import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import { IHTMLMediaElementIsolate } from '../interfaces/isolate';
-import { IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, IDocumentReadyState, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IMediaStream } from '../interfaces/official';
+import { IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, IDocumentReadyState, ITextTrackList, IVideoTrackList, ICanPlayTypeResult } from '../interfaces/official';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLMediaElementIsolate, IHTMLMediaElementIsolateProperties>();
@@ -151,10 +151,6 @@ export default class HTMLMediaElementIsolate implements IHTMLMediaElementIsolate
 
   public canPlayType(type: string): Promise<ICanPlayTypeResult> {
     return awaitedHandler.runMethod<ICanPlayTypeResult>(this, 'canPlayType', [type]);
-  }
-
-  public captureStream(): IMediaStream {
-    throw new Error('HTMLMediaElementIsolate.captureStream not implemented');
   }
 
   public load(): Promise<void> {

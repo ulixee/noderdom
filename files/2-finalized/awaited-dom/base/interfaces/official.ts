@@ -1,5 +1,4 @@
 // tslint:disable: prettier
-/// <reference no-default-lib="true"/>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import { ISuperNode, ISuperElement, ISuperDocument, ISuperHTMLCollection, ISuperHTMLElement, ISuperNodeList, ISuperStyleSheet, ISuperText } from './super';
@@ -575,7 +574,6 @@ export interface IHTMLMediaElement extends IHTMLElement {
   readonly volume: Promise<number>;
 
   canPlayType(type: string): Promise<ICanPlayTypeResult>;
-  captureStream(): IMediaStream;
   load(): Promise<void>;
   pause(): Promise<void>;
   play(): Promise<void>;

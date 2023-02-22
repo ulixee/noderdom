@@ -52,7 +52,6 @@ export declare function HTMLVideoElementGenerator(HTMLMediaElement: Constructabl
         readonly videoTracks: import("../interfaces/official").IVideoTrackList;
         readonly volume: Promise<number>;
         canPlayType(type: string): Promise<import("../interfaces/official").ICanPlayTypeResult>;
-        captureStream(): import("../interfaces/official").IMediaStream;
         load(): Promise<void>;
         pause(): Promise<void>;
         play(): Promise<void>;

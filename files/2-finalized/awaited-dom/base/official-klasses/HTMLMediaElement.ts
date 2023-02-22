@@ -4,7 +4,7 @@ import StateMachine from '../StateMachine';
 import AwaitedPath from '../AwaitedPath';
 import Constructable from '../Constructable';
 import NodeFactory from '../NodeFactory';
-import { IHTMLMediaElement, IHTMLElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult, IMediaStream } from '../interfaces/official';
+import { IHTMLMediaElement, IHTMLElement, IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, ICanPlayTypeResult } from '../interfaces/official';
 import { IHTMLElementProperties, HTMLElementPropertyKeys, HTMLElementConstantKeys } from './HTMLElement';
 
 // tslint:disable:variable-name
@@ -162,10 +162,6 @@ export function HTMLMediaElementGenerator(HTMLElement: Constructable<IHTMLElemen
 
     public canPlayType(type: string): Promise<ICanPlayTypeResult> {
       return awaitedHandler.runMethod<ICanPlayTypeResult>(this, 'canPlayType', [type]);
-    }
-
-    public captureStream(): IMediaStream {
-      throw new Error('HTMLMediaElement.captureStream not implemented');
     }
 
     public load(): Promise<void> {

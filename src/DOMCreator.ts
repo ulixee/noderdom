@@ -62,12 +62,13 @@ export default class DOMCreator {
     const superInterfaces = domType === DomType.awaited ? tsBuilder.extractSuperInterfaces() : [];
 
     // official interfaces
-    const officialInterfaceImports = tsBuilder.extractOfficialInterfaceImports(basicTypes);
+    const officialEntrypoint = `${pathsByBuildType.base.interfaces}/${ObjectType.official}.ts`
+    const officialInterfaceImports = tsBuilder.extractOfficialInterfaceImports(basicTypes, officialEntrypoint);
     const officialInterfaceCode = this.stringifyInterfaceCodeModules(DOMCreator.outputIntro, officialInterfaceImports, [
       ...basicTypes,
       ...officialInterfaces,
     ]);
-    Fs.writeFileSync(`${pathsByBuildType.base.interfaces}/${ObjectType.official}.ts`, officialInterfaceCode);
+    Fs.writeFileSync(officialEntrypoint, officialInterfaceCode);
 
     // element interfaces
     const elementInterfaceImports = tsBuilder.extractElementInterfaceImports();
@@ -77,24 +78,26 @@ export default class DOMCreator {
 
     // isolate interfaces
     if (isolateInterfaces.length) {
-      const isolateInterfaceImports = tsBuilder.extractIsolateInterfaceImports();
+      const isolatePath = `${this.pathsByBuildType.base.interfaces}/${ObjectType.isolate}.ts`;
+      const isolateInterfaceImports = tsBuilder.extractIsolateInterfaceImports(isolatePath);
       const isolateInterfaceCode = this.stringifyInterfaceCodeModules(
         DOMCreator.outputIntro,
         isolateInterfaceImports,
         isolateInterfaces,
       );
-      Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.isolate}.ts`, isolateInterfaceCode);
+      Fs.writeFileSync(isolatePath, isolateInterfaceCode);
     }
 
     // super interfaces
     if (superInterfaces.length) {
-      const superInterfaceImports = tsBuilder.extractSuperInterfaceImports();
+      const superPath = `${this.pathsByBuildType.base.interfaces}/${ObjectType.super}.ts`
+      const superInterfaceImports = tsBuilder.extractSuperInterfaceImports(superPath);
       const superInterfaceCode = this.stringifyInterfaceCodeModules(
         DOMCreator.outputIntro,
         superInterfaceImports,
         superInterfaces,
       );
-      Fs.writeFileSync(`${this.pathsByBuildType.base.interfaces}/${ObjectType.super}.ts`, superInterfaceCode);
+      Fs.writeFileSync(superPath, superInterfaceCode);
     }
 
     // CLASSES /////////////////////////
@@ -223,7 +226,6 @@ export default class DOMCreator {
   private static get outputIntro() {
     return [
       '// tslint:disable: prettier',
-      '/// <reference no-default-lib="true"/>',
       '///////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n',
       '',
     ].join('\n');

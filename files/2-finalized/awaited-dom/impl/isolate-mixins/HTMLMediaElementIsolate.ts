@@ -1,8 +1,8 @@
 import StateMachine from '../../base/StateMachine';
 import { IHTMLMediaElementIsolate } from '../../base/interfaces/isolate';
-import { IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList, IMediaStream } from '../../base/interfaces/official';
+import { IAudioTrackList, ITimeRanges, IDOMTokenList, IMediaError, IMediaKeys, ITextTrackList, IVideoTrackList } from '../../base/interfaces/official';
 import HTMLMediaElementIsolateBase, { IHTMLMediaElementIsolateProperties } from '../../base/isolate-mixins/HTMLMediaElementIsolate';
-import { createAudioTrackList, createTimeRanges, createDOMTokenList, createMediaError, createMediaKeys, createTextTrackList, createVideoTrackList, createMediaStream } from '../create';
+import { createAudioTrackList, createTimeRanges, createDOMTokenList, createMediaError, createMediaKeys, createTextTrackList, createVideoTrackList } from '../create';
 
 // tslint:disable:variable-name
 export const { getState, setState } = StateMachine<IHTMLMediaElementIsolate, IHTMLMediaElementIsolateProperties>();
@@ -51,12 +51,5 @@ export default class HTMLMediaElementIsolate extends HTMLMediaElementIsolateBase
   public get videoTracks(): IVideoTrackList {
     const { awaitedPath, awaitedOptions } = getState(this);
     return createVideoTrackList(awaitedPath.addProperty(this, 'videoTracks'), awaitedOptions);
-  }
-
-  // methods
-
-  public captureStream(): IMediaStream {
-    const { awaitedPath, awaitedOptions } = getState(this);
-    return createMediaStream(awaitedPath.addMethod(this, 'captureStream', ), awaitedOptions);
   }
 }
