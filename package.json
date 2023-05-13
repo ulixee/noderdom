@@ -61,10 +61,7 @@
     "tslint-microsoft-contrib": "^6.2.0",
     "tslint-no-circular-imports": "^0.7.0",
     "tslint-plugin-prettier": "^2.1.0",
-    "typescript": "^4.9.5",
-    "vue-property-decorator": "^8.4.0",
-    "vue-runner": "^0.1.6",
-    "@vue/cli-plugin-typescript": "^4.5.9",
+    "typescript": "^5.0.4",
     "webidl2": "^23.10.1"
   },
   "repository": {

@@ -1,0 +1,27 @@
+{
+  "name": "@ulixee/noderdom-customizer",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service build --mode development --dest site --watch",
+    "build": "vue-cli-service build --mode production --dest site"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/runtime-corejs3": "^7.13.10",
+    "axios": "^0.21.2",
+    "better-sqlite3": "^7.5.3",
+    "typescript": "^5.0.4",
+    "vue": "^3.2.31",
+    "sass": "^1.49.9",
+    "sass-loader": "^10.2.0",
+    "ts-loader": "^9.2.6",
+    "vue-loader": "^17.1.1",
+    "webidl2": "^23.10.1",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-typescript": "~5.0.1",
+    "@vue/cli-service": "~5.0.8",
+    "@vue/compiler-sfc": "^3.2.31",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^9.1.0"
+  }
+}
