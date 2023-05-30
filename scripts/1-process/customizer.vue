@@ -162,7 +162,9 @@ option inactive-->
                 </div>
               </div>
               <TransitionGroup class="items" name="list-fade" tag="ul">
-                <li v-for="method of klass.methods" v-if="!method">empty method {{ klass.name }}</li>
+                <template v-for="method of klass.methods">
+                  <li v-if="!method">empty method {{ klass.name }}</li>
+                </template>
                 <li
                   v-for="method of klass.methods.filter(
                     x => x.isEnabled || klass.extra.unhideHiddenMethods || !x.meta.isHidden,
